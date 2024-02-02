@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ket-book"
+version = "0.1.0"
+description = ""
+authors = ["Evandro Chagas Ribeiro da Rosa <evandro@quantuloop.com>"]
+readme = "README.md"
+packages = [{include = "ket_book"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+jupyter-book = "^0.15.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

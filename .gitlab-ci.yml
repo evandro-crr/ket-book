@@ -1,0 +1,13 @@
+image: python:slim
+
+pages:
+  script:
+    - pip install -U jupyter-book
+    - jupyter-book clean book
+    - jupyter-book build book
+    - mv book/_build/html public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
