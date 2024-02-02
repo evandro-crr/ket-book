@@ -10,7 +10,7 @@ Na Álgebra Linear abstrata, pode-se considerar espaços vetoriais sobre diverso
 
 Na Computação Quântica o interesse é voltado a espaços vetoriais de **dimensão finita** sobre o corpo dos números complexos. Isso permite a identificação do espaço com as $n$-uplas de números complexos, o que simplifica grandemente a teoria. Os resultados resumidos neste capítulo estão situados nesse contexto.
 
-A principal referência para esse capítulo é {cite:t}*book:qcqi_nc*. Outra referência muito útil é {cite:t}*book:al_elon*, que possui um capítulo voltado a espaços vetoriais complexos. Livros texto clássicos de Álgebra Linear, como {cite:t}*book:al_steinbruch* também são úteis. Embora tenham ênfase em espaços vetoriais reais, a maioria das definições, resultados e demonstrações se transporta integralmente para os espaços vetoriais complexos.
+A principal referência para esse capítulo é {cite}`book:qcqi_nc`. Outra referência muito útil é {cite}`book:al_elon`, que possui um capítulo voltado a espaços vetoriais complexos. Livros texto clássicos de Álgebra Linear, como {cite}`book:al_steinbruch` também são úteis. Embora tenham ênfase em espaços vetoriais reais, a maioria das definições, resultados e demonstrações se transporta integralmente para os espaços vetoriais complexos.
 
 Será considerado um pré-requisito a este texto um curso de Álgebra Linear ao nível de graduação abordando-se os seguintes itens: espaços vetoriais, base e dimensão, transformações lineares, autovalores e autovetores. Por ter um caráter de resumo, os resultados apresentados, via de regra, não são acompanhados de suas demonstrações, as quais podem ser encontradas nos livros mencionados no parágrafo anterior.
 
@@ -921,7 +921,7 @@ pode ser representado na base $\mathcal{X}$ por
 Seja $A$ um operador linear, com matriz na base computacional também representada por $A$. Os *autovalores* de $A$ são os números complexos $\lambda$ que satisfazem
 
 ```{math}
-A \ket{v} = \lambda \ket{v} \ \  \text{para algum $\ket{v} \neq 0` .}
+A \ket{v} = \lambda \ket{v} \ \  \text{para algum $\ket{v} \neq 0$ .}
 ```
 
 Os vetores não nulos $\ket{v}$ que satisfazem a equação acima são chamados *autovetores* de $A$ associados ao autovalor $\lambda$.
@@ -1482,7 +1482,7 @@ A figura abaixo traz um quadro resumo dos operadores especiais abordados neste c
 :class: no-scaled-link
 :width: 100%
 
-Relação entre os operadores especiais estudados neste capítulo. Fonte: Slides de Álgebra Linear, UFSM {cite:t}*slides:al_jonas*
+Relação entre os operadores especiais estudados neste capítulo. Fonte: Slides de Álgebra Linear, UFSM {cite}`slides:al_jonas`
 :::
 
 ```{csv-table} Resumo das propriedades dos operadores especiais estudados neste capítulo
@@ -1894,3 +1894,8 @@ Essa notação pode ser utilizada para bras e para operadores: $\bra{\psi}^{\oti
 ```
 
 Há, pois, diversas maneiras de se denotar os mesmos vetores ou operadores. Essa variedade é útil para permitir a escrita de expressões compactas em diversas situações em que o produto tensorial aparece.
+
+## Referencias
+
+```{bibliography}
+```
