@@ -1,1 +1,1 @@
-https://evandro-crr.gitlab.io/ket-book
+https://evandro-crr.github.io/ket-book
