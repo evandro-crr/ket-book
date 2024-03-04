@@ -6,3 +6,8 @@ root: index
 chapters:
 - file: pytutorial
 - file: algebra
+- file: postulados
+- file: algoritmos
+  sections:
+  - file: algoritmos/grover
+- file: referencias
