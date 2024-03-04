@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
@@ -174,6 +175,11 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial de Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="algebra.html">Álgebra Linear para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="algoritmos.html">Algoritmos Quânticos</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/grover.html">Algoritmo de Grover</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
 </ul>
 
     </div>
@@ -422,7 +428,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tutorial-de-python">
 <h1>Tutorial de Python<a class="headerlink" href="#tutorial-de-python" title="Link permanente para este cabeçalho">#</a></h1>
-<p>Este capítulo traz uma breve introdução ao Python. Nosso objetivo é apresentar conceitos básicos, visando um público que não possui familiaridade com a linguagem de programação. Caso você já tenha familiaridade com alguma linguagem de programação e/ou queira aprofundar seu conhecimento em Python, recomendamos o <a class="reference external" href="https://docs.python.org/pt-br/3.10/tutorial/">tutorial oficial de Python</a> e o <a class="reference external" href="https://www.w3schools.com/python">Python Tutorial</a> da W3Schools (em inglês).</p>
+<p>Este capítulo traz uma breve introdução ao Python. Nosso objetivo é apresentar conceitos básicos, visando um público que não possui familiaridade com linguagens de programação. Caso você já tenha familiaridade com alguma linguagem de programação e/ou queira aprofundar seu conhecimento em Python, recomendamos o <a class="reference external" href="https://docs.python.org/pt-br/3.10/tutorial/">tutorial oficial de Python</a> e o <a class="reference external" href="https://www.w3schools.com/python">Python Tutorial</a> da W3Schools (em inglês).</p>
 <section id="ambiente-de-execucao">
 <h2>Ambiente de Execução<a class="headerlink" href="#ambiente-de-execucao" title="Link permanente para este cabeçalho">#</a></h2>
 <p>É possível executar e interagir com todo código Python neste site, basta ativar a opção 🚀 Live Code. Essa é uma ótima maneira de testar seus conhecimentos. No entanto, o código executado não fica salvo, e a página volta ao seu estado inicial sempre que recarregada.</p>
@@ -439,7 +445,7 @@ document.write(`
 </section>
 <section id="variaveis-e-tipos-de-dados">
 <h2>Variáveis e Tipos de Dados<a class="headerlink" href="#variaveis-e-tipos-de-dados" title="Link permanente para este cabeçalho">#</a></h2>
-<p>As informações, como números e palavras, são armazenadas em variáveis. Cada variável possui um nome e um valor. Para criar ou atualizar o valor de uma variável, é usado o operador <code class="docutils literal notranslate"><span class="pre">=</span></code> como no exemplo abaixo, onde é atribuído o valor 42 à variável answer.</p>
+<p>As informações, como números e palavras, são armazenadas em variáveis. Cada variável possui um nome e um valor. Para criar ou atualizar o valor de uma variável, é usado o operador <code class="docutils literal notranslate"><span class="pre">=</span></code> como no exemplo abaixo, onde é atribuído o valor 42 à variável <code class="docutils literal notranslate"><span class="pre">answer</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">answer</span> <span class="o">=</span> <span class="mi">42</span>
@@ -450,7 +456,7 @@ document.write(`
 <p>Você pode usar a função <code class="docutils literal notranslate"><span class="pre">print</span></code> para mostrar na tela o valor de uma variável.</p>
 <div class="admonition tip">
 <p class="admonition-title">Dica</p>
-<p>Caso você tenha ativado o Live Code, é necessário executar o código da célula anterior antes de executar o código abaixo. Caso contrário, a variável answer não estará disponível. Todas as variáveis definidas em uma célula ficam disponíveis para as demais, no entanto, é necessário executar a célula para isso.</p>
+<p>Caso você tenha ativado o Live Code, é necessário executar o código da célula anterior antes de executar o código abaixo. Caso contrário, a variável <code class="docutils literal notranslate"><span class="pre">answer</span></code> não estará disponível. Todas as variáveis definidas em uma célula ficam disponíveis para as demais, no entanto, é necessário executar a célula para isso.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -464,7 +470,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Além de números inteiros, é possível atribuir números reais, complexos, palavras e outras estruturas de dados para variáveis.</p>
+<p>Além de números inteiros, é possível atribuir números reais, complexos, palavras (também chamado de string) e outras estruturas de dados para variáveis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Isso é um comentário e não é executado</span>
@@ -499,7 +505,7 @@ Texto é do tipo &lt;class &#39;str&#39;&gt;
 </section>
 <section id="operacoes-matematicas-basicas">
 <h2>Operações Matemáticas Básicas<a class="headerlink" href="#operacoes-matematicas-basicas" title="Link permanente para este cabeçalho">#</a></h2>
-<p>Operações matemáticas básicas estão disponíveis nativamente no Python. É possível somar (<code class="docutils literal notranslate"><span class="pre">+</span></code>), subtrair (<code class="docutils literal notranslate"><span class="pre">-</span></code>), multiplicar (<code class="docutils literal notranslate"><span class="pre">*</span></code>), dividir (<code class="docutils literal notranslate"><span class="pre">/</span></code>) números e encontrar o resto da divisão inteira (<code class="docutils literal notranslate"><span class="pre">%</span></code>) entre números. Além disso, também é possível realizar operações de potenciação (<code class="docutils literal notranslate"><span class="pre">**</span></code>) e divisão inteira (<code class="docutils literal notranslate"><span class="pre">//</span></code>). As operações seguem a precedência de operadores usual, e é possível usar parênteses para definir a ordem das operações. O exemplo abaixo mostra algumas operações.</p>
+<p>Operações matemáticas básicas estão disponíveis nativamente no Python. É possível somar (<code class="docutils literal notranslate"><span class="pre">+</span></code>), subtrair (<code class="docutils literal notranslate"><span class="pre">-</span></code>), multiplicar (<code class="docutils literal notranslate"><span class="pre">*</span></code>), dividir (<code class="docutils literal notranslate"><span class="pre">/</span></code>) números e encontrar o resto da divisão inteira (<code class="docutils literal notranslate"><span class="pre">%</span></code>) entre números. Além disso, também é possível realizar operações de potenciação (<code class="docutils literal notranslate"><span class="pre">**</span></code>) e divisão inteira (<code class="docutils literal notranslate"><span class="pre">//</span></code>). As operações seguem a precedência de operadores usual, e é possível usar parênteses para definir a ordem das operações.</p>
 <p>Abaixo segue exemplos simples de como realizar operações matemáticas básicas em Python. Experimente modificar e executar este código em para ver os resultados das operações.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -579,7 +585,7 @@ Resultado 2: 30
 <p>Como teste para executar um trecho de código condicional, normalmente, é usado um valor booleano, que pode assumir <code class="docutils literal notranslate"><span class="pre">True</span></code> (verdadeiro) ou <code class="docutils literal notranslate"><span class="pre">False</span></code> (falso). Assim, considerando que <code class="docutils literal notranslate"><span class="pre">numero</span></code> é par, <code class="docutils literal notranslate"><span class="pre">numero</span> <span class="pre">%</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">0</span></code> resulta em <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <p>É possível definir um trecho alternativo de execução caso uma condição não seja verdadeira. Nesse caso, é usado o <code class="docutils literal notranslate"><span class="pre">else</span></code>. Note que o uso do <code class="docutils literal notranslate"><span class="pre">else</span></code> é opcional e ele apenas executa se a condição falhar.</p>
 <p>Outro aspecto importante do Python é a indentação. Um trecho de código é definido pela quantidade de espaço no início da linha. Usualmente, 4 espaços são usados para abrir um novo bloco de código. No exemplo anterior, a linha após o <code class="docutils literal notranslate"><span class="pre">if</span></code> está indentada, indicando que a função <code class="docutils literal notranslate"><span class="pre">print</span></code> faz parte do trecho de código controlado pelo <code class="docutils literal notranslate"><span class="pre">if</span></code>. Da mesma forma, a linha após o <code class="docutils literal notranslate"><span class="pre">else</span></code> está indentada para indicar que a linha faz parte do trecho de código do <code class="docutils literal notranslate"><span class="pre">else</span></code>.</p>
-<p>É possível aninhar operações condicionais, como no exemplo abaixo. Lembre-se sempre de identar corretamente seu código, caso contrário, o Python irá lançar um erro sintático, ou pior, o código pode retornar um valor errado.</p>
+<p>É possível aninhar operações condicionais, como no exemplo abaixo. Lembre-se sempre de identar corretamente seu código, caso contrário, o Python irá acusar um erro sintático, ou pior, o código pode retornar um valor errado.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
@@ -948,10 +954,10 @@ Lista de pares após remover o terceiro elemento: [2, 6, 8, 10, 12]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">telefones</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Alice&quot;</span><span class="p">:</span> <span class="s2">&quot;(23) 93901-1295 &quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Bob&quot;</span><span class="p">:</span> <span class="s2">&quot;(27) 97684-2155 &quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Carlos&quot;</span><span class="p">:</span> <span class="s2">&quot;(53) 93429-5110 &quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Daniel&quot;</span><span class="p">:</span> <span class="s2">&quot;(88) 93771-0112 &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Alice&quot;</span><span class="p">:</span> <span class="s2">&quot;(23) 93901-1295&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Bob&quot;</span><span class="p">:</span> <span class="s2">&quot;(27) 97684-2155&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Carlos&quot;</span><span class="p">:</span> <span class="s2">&quot;(53) 93429-5110&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Daniel&quot;</span><span class="p">:</span> <span class="s2">&quot;(88) 93771-0112&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="k">for</span> <span class="n">nome</span> <span class="ow">in</span> <span class="n">telefones</span><span class="p">:</span>
@@ -960,10 +966,10 @@ Lista de pares após remover o terceiro elemento: [2, 6, 8, 10, 12]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número de Alice é (23) 93901-1295 
-Número de Bob é (27) 97684-2155 
-Número de Carlos é (53) 93429-5110 
-Número de Daniel é (88) 93771-0112 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número de Alice é (23) 93901-1295
+Número de Bob é (27) 97684-2155
+Número de Carlos é (53) 93429-5110
+Número de Daniel é (88) 93771-0112
 </pre></div>
 </div>
 </div>
@@ -972,7 +978,7 @@ Número de Daniel é (88) 93771-0112
 <ul class="simple">
 <li><p>Acessar elementos do dicionário pela chave: Podemos acessar o valor associado a uma chave específica utilizando a notação de colchetes, como <code class="docutils literal notranslate"><span class="pre">telefones[&quot;Alice&quot;]</span></code>.</p></li>
 <li><p>Adicionar novos pares chave-valor ao dicionário: Podemos adicionar novos elementos ao dicionário utilizando a notação de colchetes e o operador de atribuição, como <code class="docutils literal notranslate"><span class="pre">telefones[&quot;Eva&quot;]</span> <span class="pre">=</span> <span class="pre">&quot;(99)</span> <span class="pre">99999-9999&quot;</span></code>.</p></li>
-<li><p>Remover elementos do dicionário: Podemos remover elementos do dicionário utilizando o comando del.</p></li>
+<li><p>Remover elementos do dicionário: Podemos remover elementos do dicionário utilizando o comando <code class="docutils literal notranslate"><span class="pre">del</span></code>.</p></li>
 <li><p>Iterar sobre os elementos do dicionário: Podemos percorrer todas as chaves de um dicionário utilizando um loop <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p></li>
 <li><p>Verificar se uma chave está presente no dicionário: Podemos verificar se uma determinada chave está presente no dicionário utilizando o operador <code class="docutils literal notranslate"><span class="pre">in</span></code>.</p></li>
 </ul>

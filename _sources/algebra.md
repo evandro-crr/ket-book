@@ -10,7 +10,7 @@ Na Álgebra Linear abstrata, pode-se considerar espaços vetoriais sobre diverso
 
 Na Computação Quântica o interesse é voltado a espaços vetoriais de **dimensão finita** sobre o corpo dos números complexos. Isso permite a identificação do espaço com as $n$-uplas de números complexos, o que simplifica grandemente a teoria. Os resultados resumidos neste capítulo estão situados nesse contexto.
 
-A principal referência para esse capítulo é {cite}`book:qcqi_nc`. Outra referência muito útil é {cite}`book:al_elon`, que possui um capítulo voltado a espaços vetoriais complexos. Livros texto clássicos de Álgebra Linear, como {cite}`book:al_steinbruch` também são úteis. Embora tenham ênfase em espaços vetoriais reais, a maioria das definições, resultados e demonstrações se transporta integralmente para os espaços vetoriais complexos.
+A principal referência para esse capítulo é {cite}`nielsen_quantum_2010`. Outra referência muito útil é {cite}`lima_algebra_2021`, que possui um capítulo voltado a espaços vetoriais complexos. Livros texto clássicos de Álgebra Linear, como {cite}`steinbruch_algebra_2009` também são úteis. Embora tenham ênfase em espaços vetoriais reais, a maioria das definições, resultados e demonstrações se transporta integralmente para os espaços vetoriais complexos.
 
 Será considerado um pré-requisito a este texto um curso de Álgebra Linear ao nível de graduação abordando-se os seguintes itens: espaços vetoriais, base e dimensão, transformações lineares, autovalores e autovetores. Por ter um caráter de resumo, os resultados apresentados, via de regra, não são acompanhados de suas demonstrações, as quais podem ser encontradas nos livros mencionados no parágrafo anterior.
 
@@ -197,7 +197,7 @@ A matriz de mudança de base admite matriz inversa, que corresponde à mudança 
 :::{note}
 O símbolo $I$ na matriz de mudança de base $[I]^{\beta_{\text{old}}}_{\beta_{\text{new}}}$ refere-se ao operador identidade.
 A matriz de mudança de base corresponde à matriz do operador identidade nas bases $\beta_{\text{old}}$ e $\beta_{\text{new}}$.
-As matrizes referente a operadores lineares serão vistas na seção [cap2sec_matriz_tl].
+As matrizes referente a operadores lineares serão vistas na seção [Matriz de uma Transformação Linear](cap2sec-matriz-tl).
 :::
 
 (cap2ex-matrix-mudanca-de-base)=
@@ -426,7 +426,7 @@ Portanto, os coeficientes do vetor $\ket{\psi}$ na base ortonormal são obtidos 
 :::{admonition} Exemplo
 :class: tip
 
-A base $\ket{0}$, $\ket{1}$ é ortonormal, em consequência dos exemplos [cap2ex_base_comp_norma_1] e [cap2ex_ortogonalidade_base_comp]. As projeções de um vetor $\ket{\psi} = a_0 \ket{0} + a_1 \ket{1}$ na base computacional são dadas por
+A base $\ket{0}$, $\ket{1}$ é ortonormal, em consequência dos exemplos [Normal 1](cap2ex-base-comp-norma-1) e [Ortogonalidade da Base Computacional](cap2ex-ortogonalidade-base-comp). As projeções de um vetor $\ket{\psi} = a_0 \ket{0} + a_1 \ket{1}$ na base computacional são dadas por
 
 ```{math}
 \begin{eqnarray*}
@@ -445,7 +445,7 @@ e o vetor $\ket{\psi}$ pode ser escrito como
 :::{admonition} Exemplo
 :class: tip
 
-A base $\ket{+}$, $\ket{-}$ é ortonormal em consequência dos exemplos [cap2ex_base_comp_norma_1] e [cap2ex_ortogonalidade_base_x]. Os coeficientes do vetor $\ket{\psi} = \frac{1}{2} \left( \ket{0} + i \sqrt{3} \ket{1} \right)$ na base $\mathcal{X}$ são dados por:
+A base $\ket{+}$, $\ket{-}$ é ortonormal em consequência dos exemplos [Norma 1](cap2ex-base-comp-norma-1) e [Ortogonalidade da Base X](cap2ex-ortogonalidade-base-x). Os coeficientes do vetor $\ket{\psi} = \frac{1}{2} \left( \ket{0} + i \sqrt{3} \ket{1} \right)$ na base $\mathcal{X}$ são dados por:
 
 ```{math}
 \begin{eqnarray*}
@@ -530,7 +530,7 @@ No espaço vetorial $\mathbb{R}^n$ essa desigualdade permite definir o conceito 
 
 ### Matriz de Mudança de Base entre Bases Ortonormais
 
-Da mesma forma que em [cap2matriz_de_mudança_de_base], é possível escrever uma matriz que faz a mudança de base entre duas bases ortonormais $\beta_{\text{old}} = \big\{\ket{u_0}, \ldots, \ket{u_{n-1}} \big\}$ e $\beta_{\text{new}} = \big\{ \ket{v_0}, \ldots, \ket{v_{n-1}} \big\}$. As colunas da matriz de mudança de base são os vetores da base nova escritos como combinação linear dos vetores da base antiga. Como as bases são ortonormais, esses coeficientes podem ser obtidos pela projeção na direção dos vetores da base, como descrito na seção [cap2base_ortonormal].
+Da mesma forma que em [Matriz de Mudança de Base](cap2matriz-de-mudanca-de-base), é possível escrever uma matriz que faz a mudança de base entre duas bases ortonormais $\beta_{\text{old}} = \big\{\ket{u_0}, \ldots, \ket{u_{n-1}} \big\}$ e $\beta_{\text{new}} = \big\{ \ket{v_0}, \ldots, \ket{v_{n-1}} \big\}$. As colunas da matriz de mudança de base são os vetores da base nova escritos como combinação linear dos vetores da base antiga. Como as bases são ortonormais, esses coeficientes podem ser obtidos pela projeção na direção dos vetores da base, como descrito na seção [Base Ortonormal](cap2base-ortonormal).
 
 A matriz de mudança de base, nesse caso, é dada por
 
@@ -552,7 +552,7 @@ A matriz de mudança de base, nesse caso, é dada por
 
 A matriz de mudança de base satisfaz $[I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }\phantom{\big{|}}^{-1} = [I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }\phantom{\big{|}}^{\dagger} = [I]^{\beta_{\text{new}}}_{\beta_{\text{old}} }$.
 
-Isso significa que a matriz de mudança de base é *unitária*, um assunto que será visto na seção [cap2operadores_unitarios].
+Isso significa que a matriz de mudança de base é *unitária*, um assunto que será visto na seção [Operadores Unitários](cap2operadores-unitarios).
 
 :::{admonition} Exemplo
 :class: tip
@@ -574,7 +574,7 @@ Portanto, a matriz de mudança de base de $\mathcal{I}$ para $\mathcal{X}$ é da
 [I]^\mathcal{I}_\mathcal{X} = \begin{bmatrix} \braket{0 | +} & \braket{0 | -} \\ \braket{1 | +} & \braket{1 | -} \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 & \phantom{-}1 \\ 1 & -1 \end{bmatrix}  = H \ .
 ```
 
-Esse é o mesmo resultado obtido no exemplo [cap2ex_matrix_mudança_de_base].
+Esse é o mesmo resultado obtido no exemplo [Matrix Mudança de Base](cap2ex-matrix-mudanca-de-base).
 :::
 
 ### Produto Exterior
@@ -816,7 +816,7 @@ com $[\cdot]$ significando que os vetores em questão estão escritos como vetor
 :::{admonition} Exemplo
 :class: tip
 
-A matriz da transformação linear do exemplo [cap2ex_transformacao_linear_nos_elementos_da_base], na base computacional, é obtida escrevendo-se a ação de $X$ sobre os vetores da base.
+A matriz da transformação linear do exemplo [Transformação Linear nos Elementos da Base](cap2ex-transformacao-linear-nos-elementos-da-base), na base computacional, é obtida escrevendo-se a ação de $X$ sobre os vetores da base.
 
 ```{math}
 \begin{array}{l}
@@ -886,7 +886,7 @@ Se as bases $\beta_U$ e $\beta_U^\prime$ forem ortonormais, a fórmula para muda
   = \big( [I]^{\beta_U}_{\beta_U^\prime} \big)^{\dagger} [A]^{\beta_U}_{\beta_U} \big( [I]^{\beta_U}_{\beta_U^\prime} \big) \ ,
 ```
 
-em que a operação simbolizada por $\dagger$ é a transposição e conjugação da matriz. Essa operação será introduzida formalmente na seção [cap2operador_adjunto].
+em que a operação simbolizada por $\dagger$ é a transposição e conjugação da matriz. Essa operação será introduzida formalmente na seção [Operador Adjunto](cap2operador-adjunto).
 
 (cap2ex-matriz-hadamard-mudanca-base-x)=
 
@@ -894,7 +894,7 @@ em que a operação simbolizada por $\dagger$ é a transposição e conjugação
 :class: tip
 
 Considere as bases $\mathcal{I}$ e $\mathcal{X}$ apresentadas no exemplo [Base para 1 qubit].
-A matriz de mudança de base de $\mathcal{I}$ para $\mathcal{X}$ e vice-versa é a matriz de Hadamard $H$, como visto no exemplo [cap2ex_matrix_mudança_de_base]. O operador $X$, visto no exemplo [cap2ex_matrizes_de_pauli], cuja matriz na base computacional é
+A matriz de mudança de base de $\mathcal{I}$ para $\mathcal{X}$ e vice-versa é a matriz de Hadamard $H$, como visto no exemplo [Matrix Mudança de Base](cap2ex-matrix-mudanca-de-base). O operador $X$, visto no exemplo [Matrizes de Pauli](cap2ex-matrizes-de-pauli), cuja matriz na base computacional é
 
 ```{math}
 X = [X]_{\mathcal{I}} =  \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
@@ -988,7 +988,7 @@ Uma vez descobertos os autovalores $\lambda$, retorna-se à equação $A \ket{v}
 
 para encontrar todos os autovetores $\ket{v} \neq 0$ satisfazendo essa equação. Como a matriz $A-\lambda I$ é singular (essa é a condição para se encontrar $\lambda$), a equação em questão admite infinitas soluções $\ket{v}$, formando um sistema linear possível e indeterminado.
 
-Em algumas situações é possível montar uma base para o espaço composta por autovetores do operador $A$. Há condições sobre o operador que revelam se é possível obter uma base ortonormal de autovetores. Isso será visto na seção [cap2tipos_especiais_de_operadores]. A obtenção de uma base de autovetores permite escrever a matriz $A$ nessa base como uma matriz diagonal, o que se prova útil em diversas circunstâncias.
+Em algumas situações é possível montar uma base para o espaço composta por autovetores do operador $A$. Há condições sobre o operador que revelam se é possível obter uma base ortonormal de autovetores. Isso será visto na seção [Tipos Especiais de Operadores](cap2tipos-especiais-de-operadores). A obtenção de uma base de autovetores permite escrever a matriz $A$ nessa base como uma matriz diagonal, o que se prova útil em diversas circunstâncias.
 
 (cap2ex-autovetores-x)=
 
@@ -1120,13 +1120,13 @@ A matriz de $A$ na base $\mathcal{V}$ é dada por:
 \end{eqnarray*}
 ```
 
-A matriz $M$ nada mais é que a matriz de mudança de base $M=[I]^{\mathcal{I}}_{\mathcal{V}}$. Conforme a seção [cap2matriz_de_mudança_de_base] , pode-se escrever:
+A matriz $M$ nada mais é que a matriz de mudança de base $M=[I]^{\mathcal{I}}_{\mathcal{V}}$. Conforme a seção [Matriz de Mudança de Base](cap2matriz-de-mudanca-de-base) , pode-se escrever:
 
 ```{math}
 D = [A]_\mathcal{V} = [I]^{\mathcal{V}}_{\mathcal{I}} [A] [I]_{\mathcal{V}}^{\mathcal{I}} = M^{-1} A M \ .
 ```
 
-Ainda, se a base $\mathcal{V}$ for ortonormal, conforme [cap2base_ortonormal], pode-se escrever
+Ainda, se a base $\mathcal{V}$ for ortonormal, conforme [Base Ortonormal](cap2base-ortonormal), pode-se escrever
 
 ```{math}
 D = M^\dagger A M \ .
@@ -1147,7 +1147,7 @@ A = AI = \sum_k A \ket{v_k}\bra{v_k} = \sum_k \lambda_k \ket{v_k}\bra{v_k} \ .
 :::{admonition} Exemplo
 :class: tip
 
-No exemplo [cap2ex_autovetores_X] foram calculados os autovalores e autovetores da matriz
+No exemplo [Autovetores X](cap2ex-autovetores-X) foram calculados os autovalores e autovetores da matriz
 
 ```{math}
 X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \ ,
@@ -1279,7 +1279,6 @@ A A^\dagger = \begin{bmatrix} 1+i & -1 \\ 1 & 1-i \end{bmatrix} \begin{bmatrix} 
 ```{math}
 A^\dagger A = \begin{bmatrix} 1-i & 1 \\ -1 & 1+i \end{bmatrix} \begin{bmatrix} 1+i & -1 \\ 1 & 1-i \end{bmatrix} = \begin{bmatrix}3 & 0 \\ 0 & 3 \end{bmatrix}
 ```
-```
 
 A importância do operador normal decorre do seguinte teorema:
 
@@ -1319,7 +1318,7 @@ A^\dagger = \begin{bmatrix}1 & -i \\ i & 1\end{bmatrix} = A \ .
 
 Os operadores hermitianos estão relacionados com a evolução no tempo de um sistema quântico fechado e com a medida de um observável.
 
-Um operador hermitiano é, automaticamente, um operador normal, tendo em vista que $H H^\dagger = H^2 = H^\dagger H$. Conforme o teorema [cap2teorema_espectral_op_normal], todo operador hermitiano é, pois, diagonalizável. Além disso, há um teorema que permite tirar conclusões a respeito dos autovalores de uma matriz hermitiana.
+Um operador hermitiano é, automaticamente, um operador normal, tendo em vista que $H H^\dagger = H^2 = H^\dagger H$. Conforme o teorema [Teorema Espectral: Operador Normal](cap2teorema-espectral-op-normal), todo operador hermitiano é, pois, diagonalizável. Além disso, há um teorema que permite tirar conclusões a respeito dos autovalores de uma matriz hermitiana.
 
 (cap2teorema-espectral-op-hermitiano)=
 
@@ -1341,24 +1340,24 @@ Um operador $U$ é dito *unitário* se satisfizer alguma das condições equival
 
 (cap2ex-operador-unitario)=
 
-:::{admonition} Exemplo  :class: tip
-begin\{example}label{}
+:::{admonition} Exemplo
+:class: tip
 
-: O operador definido pela matriz
+O operador definido pela matriz
 
-  ```{math}
-  H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 & \phantom{-}1 \\ 1 & -1 \end{bmatrix}
-  ```
+```{math}
+H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 & \phantom{-}1 \\ 1 & -1 \end{bmatrix}
+```
 
-  é unitário, pois as colunas $\ket{c_0} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}$ e $\ket{c_1} = \frac{1}{\sqrt{2}} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}$ são vetores ortonormais:
+é unitário, pois as colunas $\ket{c_0} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}$ e $\ket{c_1} = \frac{1}{\sqrt{2}} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}$ são vetores ortonormais:
 
-  ```{math}
-  \begin{eqnarray*}
-  ||{\ket{c_0}||} &=& ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
-  ||{\ket{c_0}||} &=& ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
-  \braket{c_0 | c_1} &=& \begin{bmatrix} 1 & 1 \end{bmatrix} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix} = 1 - 1 = 0
-  \end{eqnarray*}
-  ```
+```{math}
+\begin{eqnarray*}
+||{\ket{c_0}||} &=& ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
+||{\ket{c_0}||} &=& ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
+\braket{c_0 | c_1} &=& \begin{bmatrix} 1 & 1 \end{bmatrix} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix} = 1 - 1 = 0
+\end{eqnarray*}
+```
 :::
 
 O produto de dois operadores unitários é unitário:
@@ -1367,7 +1366,7 @@ O produto de dois operadores unitários é unitário:
 (U_1 U_2)^\dagger = U_2^\dagger U_1^\dagger = U_2^{-1} U_1^{-1} = (U_1 U_2)^{-1} \ .
 ```
 
-A condição de um operador ser unitário também implica normalidade, visto que $U U^\dagger = I = U^\dagger U$. De acordo com o teorema [cap2teorema_espectral_op_normal], todo operador unitário é, então, diagonalizável. Pode-se mostrar o seguinte teorema.
+A condição de um operador ser unitário também implica normalidade, visto que $U U^\dagger = I = U^\dagger U$. De acordo com o teorema [Teorema Espectral: Operador Normal](cap2teorema-espectral-op-normal), todo operador unitário é, então, diagonalizável. Pode-se mostrar o seguinte teorema.
 
 (cap2teorema-espectral-op-unitario)=
 
@@ -1409,7 +1408,7 @@ Um *operador de projeção* é um operador $P$ que satisfaz:
 
 - **(OProj)** $P^2 =  P$.
 
-Os autovalores de $P$ podem assumir os valores $\lambda = 0$ ou $\lambda = 1$. De fato, se $\lambda$ é um autovalor com autovetor $\ket{v}\neq 0$ associado, tem-se $P\ket{v} = \lambda \ket{v} \implies \lambda \ket{v} = P\ket{v} = PP\ket{v} = \lambda P\ket{v} = \lambda^2 \ket{v}$, logo, $(\lambda^2 - \lambda)\ket{v} = 0$ e, como $\ket{v} \neq 0$, tem-se $\lambda^2 - \lambda = 0$ e, por fim, $\lambda = 0$ ou $\lambda = 1$. Isso prova, em virtude dos teoremas [cap2teorema_espectral_op_hermitiano] e [cap2teorema_espectral_op_unitário], que todo operador de projeção é hermitiano e positivo.
+Os autovalores de $P$ podem assumir os valores $\lambda = 0$ ou $\lambda = 1$. De fato, se $\lambda$ é um autovalor com autovetor $\ket{v}\neq 0$ associado, tem-se $P\ket{v} = \lambda \ket{v} \implies \lambda \ket{v} = P\ket{v} = PP\ket{v} = \lambda P\ket{v} = \lambda^2 \ket{v}$, logo, $(\lambda^2 - \lambda)\ket{v} = 0$ e, como $\ket{v} \neq 0$, tem-se $\lambda^2 - \lambda = 0$ e, por fim, $\lambda = 0$ ou $\lambda = 1$. Isso prova, em virtude dos teoremas [Teorema Espectral: Operador Hermitiano](cap2teorema-espectral-op-hermitiano) e [Teorema Espectral: Operador Unitário](cap2teorema-espectral-op-unitario), que todo operador de projeção é hermitiano e positivo.
 
 Considere o subspaço vetorial de dimensão finita $W = P(V)$ (imagem de $P$). Seja $k=\dim W$ e tome uma base ortonormal $\big\{ \ket{v_0}, \ldots , \ket{v_{k-1}} \big\}$ de $P(V)$. Estendendo-se a $\big\{ \ket{v_0}, \ldots , \ket{v_{k-1}}, \ket{v_k} , \ldots , \ket{v_{n-1}} \big\}$ base ortonormal do espaço $V$, é possível escrever o operador $P$ como
 
@@ -1482,7 +1481,7 @@ A figura abaixo traz um quadro resumo dos operadores especiais abordados neste c
 :class: no-scaled-link
 :width: 100%
 
-Relação entre os operadores especiais estudados neste capítulo. Fonte: Slides de Álgebra Linear, UFSM {cite}`slides:al_jonas`
+Relação entre os operadores especiais estudados neste capítulo. Fonte: [Slides de Álgebra Linear, UFSM](https://sites.google.com/site/jonasmaziero/home/edu/topicos-em-ciencia-da-informacao-quantica).
 :::
 
 ```{csv-table} Resumo das propriedades dos operadores especiais estudados neste capítulo
@@ -1633,11 +1632,12 @@ z \cdot \big(\ket{v} \otimes \ket{w}\big) = \big(z\ket{v}\big) \otimes \ket{w} =
 
 Sejam $V$ e $W$ espaços de Hilbert, isto é, espaços munidos de produto interno. O produto tensorial $V\otimes W$ pode ser munido com um produto interno derivado dos produtos internos de $V$ e de $W$. Defina:
 
+(cap2def-produto-interno-vetores-da-base)=
 ```{math}
 \begin{eqnarray}
   \Big( \ket{v_k}\otimes \ket{w_l} , \ket{v_{k^\prime}}\otimes \ket{w_{l^\prime}} \Big)
 &=&  \Big( \ket{v_k} , \ket{v_{k^\prime}} \Big)_V \cdot \Big( \ket{w_l} , \ket{w_{l^\prime}} \Big)_W  \nonumber \\
-&=& \braket{v_k | v_{k^\prime}}  \cdot \braket{w_l | w_{l^\prime}} =  \delta_{k,k\prime} \delta_{l,l^\prime} \ , \quad \quad \quad    \label{cap2:def_produto_interno_vetores_da_base}
+&=& \braket{v_k | v_{k^\prime}}  \cdot \braket{w_l | w_{l^\prime}} =  \delta_{k,k\prime} \delta_{l,l^\prime} \ , \quad \quad \quad
 \end{eqnarray}
 ```
 
@@ -1658,10 +1658,10 @@ e decorre da definição de produto interno que
 :::{admonition} Exemplo
 :class: tip
 
-O espaço vetorial $\mathbb{C}^2 \otimes \mathbb{C}^2$ que descreve 2 qubits foi apresentado no exemplo [cap2ex_espaco_vet_2qubits]. O produto interno nesse espaço é explicitado no que segue.
+O espaço vetorial $\mathbb{C}^2 \otimes \mathbb{C}^2$ que descreve 2 qubits foi apresentado no exemplo [Espaço Vetorial de 2 Qubits](cap2ex-espaco-vet-2qubits). O produto interno nesse espaço é explicitado no que segue.
 Use os índices $A$ e $B$ para fazer referência à primeira e à segunda entrada tensorial, respectivamente.
 
-O produto interno dos vetores da base é dado pela equação [cap2def_produto_interno_vetores_da_base], que se traduz em
+O produto interno dos vetores da base é dado pela equação [Produto Interno de Vetores da Base](cap2def-produto-interno-vetores-da-base), que se traduz em
 
 ```{math}
 \begin{eqnarray*}
@@ -1782,7 +1782,7 @@ Se forem usados rótulos $1$ e $2$ para as entradas tensoriais, a conta do exemp
 \end{split}
 ```
 
-Mais detalhes sobre a notação encontram-se na seção [cap2produto_tensorial_notacao].
+Mais detalhes sobre a notação encontram-se na seção [Produto Tensorial: Notação](cap2produto-tensorial-notacao).
 :::
 
 ### Produto de Kronecker
@@ -1894,8 +1894,3 @@ Essa notação pode ser utilizada para bras e para operadores: $\bra{\psi}^{\oti
 ```
 
 Há, pois, diversas maneiras de se denotar os mesmos vetores ou operadores. Essa variedade é útil para permitir a escrita de expressões compactas em diversas situações em que o produto tensorial aparece.
-
-## Referencias
-
-```{bibliography}
-```
