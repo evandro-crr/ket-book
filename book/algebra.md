@@ -1497,6 +1497,7 @@ Positivo& $\bra{\psi}P\ket{\psi} \geq 0 \ , \ \ \forall \ket{\psi}$
 Positivo definido& $\bra{\psi}P\ket{\psi} > 0 \ , \ \ \forall \ket{\psi}\neq 0$
 ```
 
+(produto-tensorial)=
 ## Produto Tensorial
 
 É possível compor dois espaços vetoriais para formar um terceiro espaço. Uma maneira de fazer isso é por meio do *produto tensorial*. Em Computação Quântica, essa construção é fundamental para se trabalhar com sistemas compostos por mais de um qubit. Um sistema de dois qubits será o produto tensorial de dois espaços $\mathbb{C}^2$, que modelam um qubit.
