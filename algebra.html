@@ -178,10 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="pytutorial.html">Tutorial de Python</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Álgebra Linear para Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postulados.html">Postulados da Mecânica Quântica</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="algoritmos.html">Algoritmos Quânticos</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/grover.html">Algoritmo de Grover</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="kettutorial.html">Programação Quântica com Ket</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
 </ul>
 
@@ -377,7 +374,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial">Produto Tensorial</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-do-produto-tensorial">Espaço Vetorial do Produto Tensorial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano">Comparação do Produto Tensorial com o Produto Cartesiano</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Produto Interno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Produto Interno</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-de-kronecker">Produto de Kronecker</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial-de-varios-espacos-vetoriais">Produto Tensorial de Vários Espaços Vetoriais</a></li>
@@ -1375,14 +1372,14 @@ isto é, a matriz <span class="math notranslate nohighlight">\([A]_\beta^{\ \dag
 <section id="resumo">
 <h3>Resumo<a class="headerlink" href="#resumo" title="Link permanente para este cabeçalho">#</a></h3>
 <p>A figura abaixo traz um quadro resumo dos operadores especiais abordados neste capítulo.</p>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id6">
 <img alt="_images/operators.png" class="no-scaled-link" src="_images/operators.png" style="width: 100%;" />
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Relação entre os operadores especiais estudados neste capítulo. Fonte: <a class="reference external" href="https://sites.google.com/site/jonasmaziero/home/edu/topicos-em-ciencia-da-informacao-quantica">Slides de Álgebra Linear, UFSM</a>.</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Relação entre os operadores especiais estudados neste capítulo. Fonte: <a class="reference external" href="https://sites.google.com/site/jonasmaziero/home/edu/topicos-em-ciencia-da-informacao-quantica">Slides de Álgebra Linear, UFSM</a>.</span><a class="headerlink" href="#id6" title="Link Permanente para essa imagem">#</a></p>
 </figcaption>
 </figure>
-<table class="table" id="id6">
-<caption><span class="caption-number">Tabela 1 </span><span class="caption-text">Resumo das propriedades dos operadores especiais estudados neste capítulo</span><a class="headerlink" href="#id6" title="Link Permanente para essa tabela">#</a></caption>
+<table class="table" id="id7">
+<caption><span class="caption-number">Tabela 1 </span><span class="caption-text">Resumo das propriedades dos operadores especiais estudados neste capítulo</span><a class="headerlink" href="#id7" title="Link Permanente para essa tabela">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Operador</p></th>
 <th class="head"><p>Propriedade</p></th>
@@ -1412,7 +1409,7 @@ isto é, a matriz <span class="math notranslate nohighlight">\([A]_\beta^{\ \dag
 </section>
 </section>
 <section id="produto-tensorial">
-<h2>Produto Tensorial<a class="headerlink" href="#produto-tensorial" title="Link permanente para este cabeçalho">#</a></h2>
+<span id="id4"></span><h2>Produto Tensorial<a class="headerlink" href="#produto-tensorial" title="Link permanente para este cabeçalho">#</a></h2>
 <p>É possível compor dois espaços vetoriais para formar um terceiro espaço. Uma maneira de fazer isso é por meio do <em>produto tensorial</em>. Em Computação Quântica, essa construção é fundamental para se trabalhar com sistemas compostos por mais de um qubit. Um sistema de dois qubits será o produto tensorial de dois espaços <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>, que modelam um qubit.</p>
 <section id="espaco-vetorial-do-produto-tensorial">
 <h3>Espaço Vetorial do Produto Tensorial<a class="headerlink" href="#espaco-vetorial-do-produto-tensorial" title="Link permanente para este cabeçalho">#</a></h3>
@@ -1468,8 +1465,8 @@ isto é, a matriz <span class="math notranslate nohighlight">\([A]_\beta^{\ \dag
 <h3>Comparação do Produto Tensorial com o Produto Cartesiano<a class="headerlink" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano" title="Link permanente para este cabeçalho">#</a></h3>
 <p>O <em>produto cartesiano</em>, às vezes chamado <em>soma direta</em> é outra maneira de se compor dois espaços vetoriais em um espaço “maior”, denotado por <span class="math notranslate nohighlight">\(V \times W\)</span> ou por <span class="math notranslate nohighlight">\(V \oplus W\)</span>. O produto cartesiano é formado por duplas <span class="math notranslate nohighlight">\(\big( \ket{v} , \ket{w} \big)\)</span>, com <span class="math notranslate nohighlight">\(\ket{v} \in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w} \in W\)</span>. Nesta subseção, a notação <span class="math notranslate nohighlight">\(( \cdot \, , \cdot )\)</span> refere-se a par ordenado em vez de produto interno como no restante do texto.</p>
 <p>As diferenças entre essas duas operações estão dispostas no que segue:</p>
-<table class="table" id="id7">
-<caption><span class="caption-number">Tabela 2 </span><span class="caption-text">Tabela comparativa entre produto tensorial e produto cartesiano (também chamado soma direta)</span><a class="headerlink" href="#id7" title="Link Permanente para essa tabela">#</a></caption>
+<table class="table" id="id8">
+<caption><span class="caption-number">Tabela 2 </span><span class="caption-text">Tabela comparativa entre produto tensorial e produto cartesiano (também chamado soma direta)</span><a class="headerlink" href="#id8" title="Link Permanente para essa tabela">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"></th>
 <th class="head"><p>Produto Tensorial</p></th>
@@ -1507,8 +1504,8 @@ isto é, a matriz <span class="math notranslate nohighlight">\([A]_\beta^{\ \dag
 <div class="math notranslate nohighlight">
 \[z \cdot \big(\ket{v} \otimes \ket{w}\big) = \big(z\ket{v}\big) \otimes \ket{w} = \ket{v} \otimes \big(z\ket{w} \big) \ .\]</div>
 </section>
-<section id="id4">
-<h3>Produto Interno<a class="headerlink" href="#id4" title="Link permanente para este cabeçalho">#</a></h3>
+<section id="id5">
+<h3>Produto Interno<a class="headerlink" href="#id5" title="Link permanente para este cabeçalho">#</a></h3>
 <p>Sejam <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span> espaços de Hilbert, isto é, espaços munidos de produto interno. O produto tensorial <span class="math notranslate nohighlight">\(V\otimes W\)</span> pode ser munido com um produto interno derivado dos produtos internos de <span class="math notranslate nohighlight">\(V\)</span> e de <span class="math notranslate nohighlight">\(W\)</span>. Defina:</p>
 <div class="math notranslate nohighlight" id="cap2def-produto-interno-vetores-da-base">
 \[\begin{split}\begin{eqnarray}
@@ -1793,7 +1790,7 @@ O vetor <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w}\)</
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial">Produto Tensorial</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-do-produto-tensorial">Espaço Vetorial do Produto Tensorial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano">Comparação do Produto Tensorial com o Produto Cartesiano</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Produto Interno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Produto Interno</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-de-kronecker">Produto de Kronecker</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial-de-varios-espacos-vetoriais">Produto Tensorial de Vários Espaços Vetoriais</a></li>
