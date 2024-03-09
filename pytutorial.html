@@ -468,7 +468,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Além de números inteiros, é possível atribuir números reais, complexos, palavras (também chamado de string) e outras estruturas de dados para variáveis.</p>
+<p>Além de números inteiros (<a class="reference external" href="https://docs.python.org/pt-br/3.10/library/functions.html#int" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>), é possível atribuir números reais (<a class="reference external" href="https://docs.python.org/pt-br/3.10/library/functions.html#float" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>), complexos (<a class="reference external" href="https://docs.python.org/pt-br/3.10/library/functions.html#complex" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">complex</span></code></a>), palavras (também chamado de string, <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#str" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) e outras estruturas de dados para variáveis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Isso é um comentário e não é executado</span>
@@ -632,7 +632,7 @@ x não é o maior, mas é maior que y
 </div>
 </div>
 </div>
-<p>A cada repetição do laço <code class="docutils literal notranslate"><span class="pre">for</span></code>, o iterador assume um novo valor. Usando a função <code class="docutils literal notranslate"><span class="pre">range</span></code>, é possível iterar por todos os números entre 0 e a condição de parada -1. É possível usar <code class="docutils literal notranslate"><span class="pre">range(início,</span> <span class="pre">fim)</span></code> para iterar entre início e fim -1.</p>
+<p>A cada repetição do laço <code class="docutils literal notranslate"><span class="pre">for</span></code>, o iterador assume um novo valor. Usando a função <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#range" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">range</span></code></a>, é possível iterar por todos os números entre 0 e a condição de parada -1. É possível usar <code class="docutils literal notranslate"><span class="pre">range(início,</span> <span class="pre">fim)</span></code> para iterar entre início e fim -1.</p>
 <p>No exemplo a baixo, o laço <code class="docutils literal notranslate"><span class="pre">for</span></code> itera sobre os números de 1 a 5, calcula o quadrado de cada número e adiciona à variável <code class="docutils literal notranslate"><span class="pre">soma_quadrados</span></code>. O resultado final é a soma dos quadrados desses números.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -652,7 +652,7 @@ x não é o maior, mas é maior que y
 </div>
 </div>
 </div>
-<p>Além de usar o <code class="docutils literal notranslate"><span class="pre">range</span></code>, é possível iterar sobre outras estruturas de dados. Por exemplo, é possível iterar sobre uma lista de strings (texto).</p>
+<p>Além de usar o <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#range" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">range</span></code></a>, é possível iterar sobre outras estruturas de dados. Por exemplo, é possível iterar sobre uma lista de strings (texto).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;rato&quot;</span><span class="p">,</span> <span class="s2">&quot;cutia&quot;</span><span class="p">,</span> <span class="s2">&quot;lagarto&quot;</span><span class="p">]:</span>
@@ -744,11 +744,11 @@ lagarto tem 7 letras
 </div>
 </div>
 </div>
-<p>Você também pode chamar funções já definidas. Por exemplo, <code class="docutils literal notranslate"><span class="pre">print</span></code> é uma função já definida do Python. Além desta, existem diversas outras, como a função <code class="docutils literal notranslate"><span class="pre">range</span></code> vista anteriormente.</p>
+<p>Você também pode chamar funções já definidas. Por exemplo, <code class="docutils literal notranslate"><span class="pre">print</span></code> é uma função já definida do Python. Além desta, existem diversas outras, como a função <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#range" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">range</span></code></a> vista anteriormente.</p>
 </section>
 <section id="importando-modulos">
 <h2>Importando Módulos<a class="headerlink" href="#importando-modulos" title="Link permanente para este cabeçalho">#</a></h2>
-<p>Além das funcionalidades básicas do Python, algumas já vistas neste tutorial, a linguagem traz uma vasta biblioteca com módulos específicos para criptografia, processamento de texto, gerenciamento de arquivos e muito mais. Recomendamos consultar a documentação do Python para ver quais bibliotecas o Python traz por padrão: <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/index.html">Documentação Python</a>. Para exemplificar o uso de módulos no Python, vamos importar a biblioteca <code class="docutils literal notranslate"><span class="pre">math</span></code>.</p>
+<p>Além das funcionalidades básicas do Python, algumas já vistas neste tutorial, a linguagem traz uma vasta biblioteca com módulos específicos para criptografia, processamento de texto, gerenciamento de arquivos e muito mais. Recomendamos consultar a documentação do Python para ver quais bibliotecas o Python traz por padrão: <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/index.html">Documentação Python</a>. Para exemplificar o uso de módulos no Python, vamos importar a biblioteca <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/math.html#module-math" title="(em Python v3.10)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code></a>.</p>
 <p>Para importar uma biblioteca, é usada a instrução <code class="docutils literal notranslate"><span class="pre">import</span></code>, como no exemplo abaixo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -795,7 +795,7 @@ Seno de π = 1.2246467991473532e-16
 <p>Estruturar seus dados de maneira correta é essencial para conseguir resolver alguns problemas usando programação de maneira eficiente. Dentre as estruturas de dados que o Python implementa, duas são essenciais: listas e dicionários.</p>
 <section id="listas">
 <h3>Listas<a class="headerlink" href="#listas" title="Link permanente para este cabeçalho">#</a></h3>
-<p>Lista é uma estrutura de dados simples, onde cada elemento tem uma posição e é possível adicionar e remover elementos da lista, além de iterar sobre a mesma. Em Python, para criar uma lista, basta listar seus itens como no exemplo abaixo:</p>
+<p>Lista (<a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#list" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) é uma estrutura de dados simples, onde cada elemento tem uma posição e é possível adicionar e remover elementos da lista, além de iterar sobre a mesma. Em Python, para criar uma lista, basta listar seus itens como no exemplo abaixo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista_de_pares</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
@@ -824,7 +824,7 @@ Seno de π = 1.2246467991473532e-16
 </div>
 </div>
 </div>
-<p>Além disso, existem outras formas de criar listas, como por exemplo, usando <code class="docutils literal notranslate"><span class="pre">range</span></code> ou iterando sobre outra lista.</p>
+<p>Além disso, existem outras formas de criar listas, como por exemplo, usando <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#range" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">range</span></code></a> ou iterando sobre outra lista.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista_de_pares</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
@@ -949,7 +949,7 @@ Lista de pares após remover o terceiro elemento: [2, 6, 8, 10, 12]
 </section>
 <section id="dicionarios">
 <h3>Dicionários<a class="headerlink" href="#dicionarios" title="Link permanente para este cabeçalho">#</a></h3>
-<p>Dicionário é uma estrutura de dados que mapeia uma chave a um valor, análogo a um dicionário de português que mapeia uma palavra para o seu significado. É possível construir um dicionário diretamente, como no exemplo abaixo:</p>
+<p>Dicionário (<a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#dict" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) é uma estrutura de dados que mapeia uma chave a um valor, análogo a um dicionário de português que mapeia uma palavra para o seu significado. É possível construir um dicionário diretamente, como no exemplo abaixo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">telefones</span> <span class="o">=</span> <span class="p">{</span>
