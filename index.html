@@ -304,7 +304,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -320,6 +322,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#site-interativo">Site Interativo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conteudo">CONTEÚDO</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -333,7 +344,15 @@ document.write(`
 <h1>Introdução à Computação Quântica<a class="headerlink" href="#introducao-a-computacao-quantica" title="Link permanente para este cabeçalho">#</a></h1>
 <p>Este é um material didático auxiliar para a disciplina FSC7152 – Computação Quântica da UFSC, que tem como objetivo estabelecer uma ponte entre os conceitos teóricos vistos em sala de aula e a prática da programação quântica utilizando a <a class="reference external" href="https://quantumket.org">plataforma Ket</a>.</p>
 <p>Parte deste material é adaptada das notas de aula do Prof. Dr. Eduardo Inácio Duzzioni e do TCC de Giovani Goraiebe Pollachini.</p>
-<p><strong>CONTEÚDO</strong></p>
+<section id="site-interativo">
+<h2>Site Interativo<a class="headerlink" href="#site-interativo" title="Link permanente para este cabeçalho">#</a></h2>
+<p>Todo código presente neste site pode ser executado diretamente na própria página ou carregado para ambientes interativos como o Google Colab ou o Binder. Isso permite que você experimente e modifique os exemplos de código para entender melhor os conceitos apresentados.</p>
+<p>Ativar a execução dos exemplos de código é fundamental para uma experiência de aprendizado mais interativa e prática. Isso permite que você teste as implementações apresentadas, experimente diferentes parâmetros e explore o comportamento das operações quânticas em tempo real.</p>
+<p>Para ativar a execução de código no site, basta clicar na opção <i class="fas fa-check-circle"></i> <strong>Live Code</strong> presente na barra superior direita da página (quando disponível). Isso iniciará a execução do código e você poderá ver o resultado diretamente na página. Além disso, você também pode clicar nos botões <strong>Colab</strong> ou <strong>Binder</strong> para carregar o código em um ambiente interativo externo, onde poderá executá-lo, modificá-lo e salvar o resultado conforme desejado.</p>
+<p>Essa abordagem oferece uma maneira prática e didática de explorar os conceitos de computação quântica, permitindo que você experimente ativamente e desenvolva sua compreensão por meio da prática e da experimentação direta.</p>
+</section>
+<section id="conteudo">
+<h2>CONTEÚDO<a class="headerlink" href="#conteudo" title="Link permanente para este cabeçalho">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pytutorial.html">Tutorial de Python</a></li>
@@ -343,6 +362,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
 </ul>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -391,7 +411,21 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#site-interativo">Site Interativo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conteudo">CONTEÚDO</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
