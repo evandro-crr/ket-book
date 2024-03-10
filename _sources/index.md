@@ -10,11 +10,11 @@ Todo código presente neste site pode ser executado diretamente na própria pág
 
 Ativar a execução dos exemplos de código é fundamental para uma experiência de aprendizado mais interativa e prática. Isso permite que você teste as implementações apresentadas, experimente diferentes parâmetros e explore o comportamento das operações quânticas em tempo real.
 
-Para ativar a execução de código no site, basta clicar na opção <i class="fas fa-rocket"></i> **Live Code** presente na barra superior direita da página (quando disponível). Isso iniciará a execução do código e você poderá ver o resultado diretamente na página. Além disso, você também pode clicar nos botões **Colab** ou **Binder** para carregar o código em um ambiente interativo externo, onde poderá executá-lo, modificá-lo e salvar o resultado conforme desejado.
+Para ativar a execução de código no site, basta clicar na opção <i class="fas fa-rocket"></i> **Live Code** presente na barra superior direita da página (quando disponível). Isso iniciará a execução do código e você poderá ver o resultado diretamente na página. Além disso, você também pode clicar nos botões <i class="fas fa-rocket"></i> **Colab** ou <i class="fas fa-rocket"></i> **Binder** para carregar o código em um ambiente interativo externo, onde poderá executá-lo, modificá-lo e salvar o resultado conforme desejado.
 
 Essa abordagem oferece uma maneira prática e didática de explorar os conceitos de computação quântica, permitindo que você experimente ativamente e desenvolva sua compreensão por meio da prática e da experimentação direta.
 
-## CONTEÚDO
+## Conteúdo
 
 ```{tableofcontents}
 ```
