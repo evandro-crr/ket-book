@@ -1,0 +1,22 @@
+google_qc
+Google’s cryostats reach temperatures of 10 millikelvin to run its quantum processors.
+ERIK LUCERO
+Commercialize 
+early quantum 
+technologies
+9 MARCH 2017 | VOL 543 | NATURE | 171
+https://storage.googleapis.com/pub-tools-public-publication-data/pdf/45919.pdf
+
+
+google_6q
+The smaller of these chips, a 6-mm square, holds 6 qubits.
+ERIK LUCERO
+Commercialize 
+early quantum 
+technologies
+9 MARCH 2017 | VOL 543 | NATURE | 171
+https://storage.googleapis.com/pub-tools-public-publication-data/pdf/45919.pdf
+
+google_9q
+Photograph of the device containing nine quantum bits (qubits). Each qubit interacts with its neighbors to protect them from error.
+https://ai.googleblog.com/2015/03/a-step-closer-to-quantum-computation.html

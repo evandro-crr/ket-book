@@ -1,0 +1,147 @@
+\select@language {brazil}
+\select@language {brazil}
+\contentsline {chapter}{Introdu\c c\~ao}{1}{chapter*.2}
+\contentsline {section}{Breve Hist\'orico da Computa\c c\~ao Qu\^antica}{1}{section*.3}
+\contentsline {section}{Motiva\c c\~ao para a Computa\c c\~ao Qu\^antica}{2}{section*.4}
+\contentsline {section}{Sobre o TCC}{2}{section*.5}
+\contentsline {chapter}{\numberline {1}{\language \langwohyphens \'Algebra Linear para Computa\c c\~ao Qu\^antica}}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}{\language \langwohyphens Espa\c co Vetorial, Base e Dimens\~ao}}{6}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Espa\c co Vetorial}{6}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Base e Dimens\~ao}{7}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}{\language \langwohyphens Matriz de Mudan\c ca de Base}}{9}{subsection.1.1.3}
+\contentsline {section}{\numberline {1.2}{\language \langwohyphens Produto Interno, Norma e Produto Exterior}}{10}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Produto Interno}{10}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Norma}{12}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Ortogonalidade}{12}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}Base Ortonormal}{13}{subsection.1.2.4}
+\contentsline {subsection}{\numberline {1.2.5}{\language \langwohyphens Desigualdade de Cauchy-Schwarz}}{14}{subsection.1.2.5}
+\contentsline {subsection}{\numberline {1.2.6}{\language \langwohyphens Matriz de Mudan\c ca de Base entre Bases \\Ortonormais}}{15}{subsection.1.2.6}
+\contentsline {subsection}{\numberline {1.2.7}Produto Exterior}{16}{subsection.1.2.7}
+\contentsline {section}{\numberline {1.3}Transforma\c c\~oes Lineares}{17}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}{\language \langwohyphens Transforma\c c\~ao Linear e Operador Linear}}{17}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Funcional Linear}{18}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}{\language \langwohyphens Proje\c c\~ao e Rela\c c\~ao de Completude}}{18}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}{\language \langwohyphens Defini\c c\~ao de uma Transforma\c c\~ao Linear nos \\Elementos da Base}}{19}{subsection.1.3.4}
+\contentsline {subsection}{\numberline {1.3.5}{\language \langwohyphens Matriz de uma Transforma\c c\~ao Linear}}{20}{subsection.1.3.5}
+\contentsline {subsection}{\numberline {1.3.6}{\language \langwohyphens Matriz da Composi\c c\~ao de Transforma\c c\~oes \\Lineares}}{22}{subsection.1.3.6}
+\contentsline {subsection}{\numberline {1.3.7}Mudan\c ca de Base}{22}{subsection.1.3.7}
+\contentsline {section}{\numberline {1.4}{\language \langwohyphens Autovalores, Autovetores e Decomposi\c c\~ao Espectral}}{23}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Autovalores e Autovetores}{23}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}C\'alculo de Autovalores}{24}{subsection.1.4.2}
+\contentsline {subsection}{\numberline {1.4.3}C\'alculo de Autovetores}{24}{subsection.1.4.3}
+\contentsline {subsection}{\numberline {1.4.4}Diagonaliza\c c\~ao de Operadores}{26}{subsection.1.4.4}
+\contentsline {section}{\numberline {1.5}{\language \langwohyphens Tipos Especiais de Operadores}}{29}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Operador Adjunto}{29}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}Operadores Normais}{30}{subsection.1.5.2}
+\contentsline {subsection}{\numberline {1.5.3}Operadores Hermitianos ou Autoadjuntos}{30}{subsection.1.5.3}
+\contentsline {subsection}{\numberline {1.5.4}Operadores Unit\'arios}{31}{subsection.1.5.4}
+\contentsline {subsection}{\numberline {1.5.5}Operadores Positivos}{32}{subsection.1.5.5}
+\contentsline {subsection}{\numberline {1.5.6}Operadores de Proje\c c\~ao}{32}{subsection.1.5.6}
+\contentsline {subsection}{\numberline {1.5.7}Resumo}{34}{subsection.1.5.7}
+\contentsline {section}{\numberline {1.6}Produto Tensorial}{35}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}{\language \langwohyphens Espa\c co Vetorial do Produto Tensorial}}{35}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}{\language \langwohyphens Compara\c c\~ao do Produto Tensorial com o \\Produto Cartesiano}}{36}{subsection.1.6.2}
+\contentsline {subsection}{\numberline {1.6.3}Produto Interno}{37}{subsection.1.6.3}
+\contentsline {subsection}{\numberline {1.6.4}Operadores}{39}{subsection.1.6.4}
+\contentsline {subsection}{\numberline {1.6.5}Produto de Kronecker}{40}{subsection.1.6.5}
+\contentsline {subsection}{\numberline {1.6.6}{\language \langwohyphens Produto Tensorial de V\'arios Espa\c cos Vetoriais}}{41}{subsection.1.6.6}
+\contentsline {subsection}{\numberline {1.6.7}Nota\c c\~ao}{41}{subsection.1.6.7}
+\contentsline {chapter}{\numberline {2}Introdu\c c\~ao \`a Mec\^anica Qu\^antica}{45}{chapter.2}
+\contentsline {section}{\numberline {2.1}Postulados da Mec\^anica Qu\^antica}{45}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Descri\c c\~ao de um Sistema F\IeC {\'\i }sico}{45}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Evolu\c c\~ao Temporal de um Sistema F\IeC {\'\i }sico}{46}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Medidas em Sistemas F\IeC {\'\i }sicos}{49}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Valor esperado de um Observ\'avel}{51}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.5}Sistemas Compostos}{52}{subsection.2.1.5}
+\contentsline {section}{\numberline {2.2}Matrizes de Pauli}{54}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Defini\c c\~ao}{55}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Propriedades}{55}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Autovalores, Autovetores e Diagonaliza\c c\~ao}{56}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Estados de Bell}{56}{section.2.3}
+\contentsline {chapter}{\numberline {3}Computa\c c\~ao Qu\^antica}{59}{chapter.3}
+\contentsline {section}{\numberline {3.1}Computa\c c\~ao Qu\^antica de Circuitos}{60}{section.3.1}
+\contentsline {section}{\numberline {3.2}O Qubit}{61}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Descri\c c\~ao Matem\'atica do Qubit}{61}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Fase Relativa e Fase Global}{61}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Representa\c c\~ao de um Qubit na Esfera de Bloch}{63}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Justificativas para a se\c c\~ao anterior}{65}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}Nota\c c\~ao de Circuitos}{66}{section.3.3}
+\contentsline {section}{\numberline {3.4}Portas L\'ogicas Qu\^anticas}{68}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Portas L\'ogicas de 1 Qubit}{68}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Portas L\'ogicas de 2 Qubits}{71}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Portas L\'ogicas de 3 Qubits}{74}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Identidades de Circuitos}{75}{section.3.5}
+\contentsline {section}{\numberline {3.6}{\language \langwohyphens Universalidade das Portas L\'ogicas \\Qu\^anticas}}{85}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}{\language \langwohyphens Universalidade de Portas L\'ogicas na \\Computa\c c\~ao Cl\'assica Revers\IeC {\'\i }vel}}{85}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}{\language \langwohyphens Universalidade de Portas L\'ogicas na \\Computa\c c\~ao Qu\^antica}}{86}{subsection.3.6.2}
+\contentsline {section}{\numberline {3.7}Teorema da N\~ao-Clonagem}{87}{section.3.7}
+\contentsline {chapter}{\numberline {4}Panorama Atual da Computa\c c\~ao Qu\^antica}{91}{chapter.4}
+\contentsline {section}{\numberline {4.1}Expectativas de Mercado}{91}{section.4.1}
+\contentsline {section}{\numberline {4.2}Empresas e Desenvolvimentos Atuais}{94}{section.4.2}
+\contentsline {chapter}{\numberline {5}{\language \langwohyphens Computa\c c\~ao Qu\^antica com IBM Quantum Experience}}{97}{chapter.5}
+\contentsline {section}{\numberline {5.1}IBM Quantum Experience}{97}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Computadores Dispon\IeC {\'\i }veis}{97}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Como Programar}{98}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Informativos e Guias de Usu\'ario}{101}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}Circuito Quantum Half Adder}{102}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Projeto do Circuito}{102}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Simula\c c\~ao do Circuito no IBM QX}{104}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Execu\c c\~ao do Circuito no IBM QX}{105}{subsection.5.2.3}
+\contentsline {chapter}{\numberline {6}Protocolos e Algoritmos Qu\^anticos}{107}{chapter.6}
+\contentsline {section}{\numberline {6.1}Codifica\c c\~ao Superdensa}{107}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Vis\~ao geral}{107}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Circuito}{108}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Funcionamento Detalhado}{108}{subsection.6.1.3}
+\contentsline {section}{\numberline {6.2}Circuito de Teletransporte}{110}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Vis\~ao Geral}{111}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Circuito}{111}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Funcionamento Detalhado}{112}{subsection.6.2.3}
+\contentsline {section}{\numberline {6.3}Or\'aculos Qu\^anticos}{115}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Or\'aculo XOR}{116}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Or\'aculo de Fase}{116}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}{\language \langwohyphens Constru\c c\~ao do Or\'aculo de Fase usando o \\Or\'aculo XOR}}{117}{subsection.6.3.3}
+\contentsline {section}{\numberline {6.4}Algoritmo de Deutsch-Jozsa}{117}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Problema de Deutsch-Jozsa}{117}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Algoritmo de Deutsch-Jozsa}{118}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Algoritmo Cl\'assico}{121}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Compara\c c\~ao de Desempenho}{126}{subsection.6.4.4}
+\contentsline {section}{\numberline {6.5}Algoritmo de Simon}{126}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Problema de Simon}{127}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Algoritmo de Simon}{129}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Algoritmo Cl\'assico}{139}{subsection.6.5.3}
+\contentsline {subsection}{\numberline {6.5.4}Compara\c c\~ao de Desempenho}{141}{subsection.6.5.4}
+\contentsline {section}{\numberline {6.6}Algoritmo de Busca de Grover}{141}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Problema de Grover}{141}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Algoritmo de Grover}{142}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}Algoritmo Cl\'assico}{151}{subsection.6.6.3}
+\contentsline {subsection}{\numberline {6.6.4}Compara\c c\~ao de Desempenho}{151}{subsection.6.6.4}
+\contentsline {section}{\numberline {6.7}Algoritmo de Bernstein-Vazirani}{152}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Problema de Bernstein-Vazirani}{152}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}Algoritmo de Bernstein-Vazirani (vers\~ao XOR)}{153}{subsection.6.7.2}
+\contentsline {subsection}{\numberline {6.7.3}Algoritmo de Bernstein-Vazirani (vers\~ao fase)}{155}{subsection.6.7.3}
+\contentsline {subsection}{\numberline {6.7.4}Algoritmo Cl\'assico}{157}{subsection.6.7.4}
+\contentsline {subsection}{\numberline {6.7.5}Compara\c c\~ao de Desempenho}{157}{subsection.6.7.5}
+\contentsline {section}{\numberline {6.8}Transformada de Fourier Qu\^antica - QFT}{158}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Transformada Discreta de Fourier - DFT}{158}{subsection.6.8.1}
+\contentsline {subsection}{\numberline {6.8.2}Defini\c c\~ao e Exemplos}{158}{subsection.6.8.2}
+\contentsline {subsection}{\numberline {6.8.3}Propriedades da QFT}{158}{subsection.6.8.3}
+\contentsline {subsubsection}{\numberline {6.8.3.1}A QFT \'e unit\'aria}{158}{subsubsection.6.8.3.1}
+\contentsline {subsection}{\numberline {6.8.4}Circuito para QFT}{158}{subsection.6.8.4}
+\contentsline {subsubsection}{\numberline {6.8.4.1}QFT para $n=1$ qubit}{158}{subsubsection.6.8.4.1}
+\contentsline {subsubsection}{\numberline {6.8.4.2}QFT para $n=2$ qubits}{158}{subsubsection.6.8.4.2}
+\contentsline {subsubsection}{\numberline {6.8.4.3}QFT para $n$ qubits}{158}{subsubsection.6.8.4.3}
+\contentsline {subsection}{\numberline {6.8.5}Algumas aplica\c c\~oes}{158}{subsection.6.8.5}
+\contentsline {section}{\numberline {6.9}Algoritmo de Shor}{158}{section.6.9}
+\contentsline {chapter}{Conclus\~ao}{159}{chapter*.71}
+\contentsline {section}{Considera\c c\~oes Finais}{159}{section*.72}
+\contentsline {section}{Perspectivas}{159}{section*.73}
+\contentsline {chapter}{Bibliografia}{160}{section*.73}
+\contentsline {chapter}{\numberline {A}{\language \langwohyphens Elementos de Computa\c c\~ao Cl\'assica}}{165}{appendix.A}
+\contentsline {section}{\numberline {A.1}Introdu\c c\~ao}{165}{section.A.1}
+\contentsline {section}{\numberline {A.2}N\IeC {\'\i }veis de Abstra\c c\~ao}{166}{section.A.2}
+\contentsline {section}{\numberline {A.3}N\IeC {\'\i }vel L\'ogico}{167}{section.A.3}
+\contentsline {subsection}{\numberline {A.3.1}\'Algebra Booleana}{167}{subsection.A.3.1}
+\contentsline {subsection}{\numberline {A.3.2}Portas L\'ogicas}{168}{subsection.A.3.2}
+\contentsline {subsection}{\numberline {A.3.3}Teoremas da \'Algebra Booleana}{170}{subsection.A.3.3}
+\contentsline {subsection}{\numberline {A.3.4}Universalidade das Portas L\'ogicas Cl\'assicas}{172}{subsection.A.3.4}
+\contentsline {subsection}{\numberline {A.3.5}Somadores e Unidade L\'ogica/Aritm\'etica}{175}{subsection.A.3.5}

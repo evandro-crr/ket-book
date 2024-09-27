@@ -1,0 +1,16 @@
+\select@language {brazilian}
+\contentsline {section}{\numberline {1}Defini\IeC {\c c}\IeC {\~a}o}{1}
+\contentsline {section}{\numberline {2}Exemplos de \IeC {\'a}lgebras de Hopf}{2}
+\contentsline {subsection}{\numberline {2.1}\IeC {\'A}lgebra das fun\IeC {\c c}\IeC {\~o}es $\mathcal {F}(G)$ de um grupo finito}{2}
+\contentsline {subsection}{\numberline {2.2}\IeC {\'A}lgebra de grupo $\mathbb {K}G$}{7}
+\contentsline {subsection}{\numberline {2.3}\IeC {\'A}lgebra tensorial $\mathcal {T}(V)$}{9}
+\contentsline {subsection}{\numberline {2.4}\IeC {\'A}lgebra envolvente universal $\mathcal {U}(\mathfrak {g})$}{10}
+\contentsline {section}{\numberline {3}Hopf-sub\IeC {\'a}lgebras, Hopf-ideais e morfismos}{11}
+\contentsline {section}{\numberline {4}Algumas propriedades da ant\IeC {\'\i }poda}{12}
+\contentsline {section}{\numberline {5}\IeC {\'A}lgebras de Hopf oposta, co-oposta e oposta-co-oposta}{20}
+\contentsline {section}{\numberline {6}\IeC {\'A}lgebra de Hopf do produto tensorial}{23}
+\contentsline {section}{\numberline {7}\IeC {\'A}lgebra de Hopf quociente}{24}
+\contentsline {section}{\numberline {8}\IeC {\'A}lgebra de Hopf dual}{25}
+\contentsline {subsection}{\numberline {8.1}Dimens\IeC {\~a}o finita}{25}
+\contentsline {subsection}{\numberline {8.2}Dual finito}{27}
+\contentsline {section}{\numberline {9}Dualidade em \IeC {\'a}lgebras de Hopf}{29}

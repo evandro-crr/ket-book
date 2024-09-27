@@ -1,0 +1,138 @@
+\begin{thebibliography}{10}
+
+\bibitem{book:lecture_notes_scott_aaronson}
+Scott Aaronson.
+\newblock {\em {\normalfont \textbf{Lecture Notes for Quantum Information
+  Science}, \texttt{https://www.scottaaronson.com/qclec}}}.
+\newblock 2018.
+
+\bibitem{article:toff_had_quantum_universal_dorit}
+Dorit Aharonov.
+\newblock {\normalfont \textbf{A simple proof that Toffoli and Hadamard are
+  quantum universal}}.
+\newblock {\em arXiv preprint quant-ph/0301040}, 2003.
+
+\bibitem{book:pqci_benenti}
+Giuliano Benenti, Giulio Casati, and Giuliano Strini.
+\newblock {\em {\normalfont \textbf{Principles of Quantum Computation and
+  Information -- Volume I: Basic Concepts}}}.
+\newblock World Scientific, 2004.
+
+\bibitem{webinar:gartner}
+Matthew Brisse and Mark Horvath.
+\newblock {\normalfont \textbf{Quantum Computing: The Misunderstood and Feared
+  Disruption}, Gartner, \texttt{https://www.gartner.com/webinar/3868072}.
+  Acesso em abril de 2018}, Apr 18 2018.
+
+\bibitem{book:iba_halmos}
+Steven Givant and Paul Halmos.
+\newblock {\em {\normalfont \textbf{Introduction to Boolean Algebras}}}.
+\newblock Springer, 2009.
+
+\bibitem{book:iqm_griffiths}
+David~J. Griffiths.
+\newblock {\em {\normalfont \textbf{Introduction to Quantum Mechanics}}}.
+\newblock Prentice Hall, 1995.
+
+\bibitem{book:diss_vanessa}
+Vanessa~Pitirini Guarienti.
+\newblock {\em {\normalfont \textbf{Computa\c{c}\~{a}o Qu\^{a}ntica
+  Adiab\'{a}tica em Sistemas Relativ\'{i}sticos}}}.
+\newblock UFSC, 2016.
+
+\bibitem{book:ddca_harris}
+David~Money Harris and Sarah~L. Harris.
+\newblock {\em {\normalfont \textbf{Digital Design and Computer
+  Architecture}}}.
+\newblock Elsevier, 2nd edition, 2013.
+
+\bibitem{article:hhl_algorithm_for_lin_sys_of_eq}
+Aram~W. Harrow, Avinatan Hassidim, and Seth Lloyd.
+\newblock Quantum algorithm for linear systems of equations.
+\newblock {\em Phys. Rev. Lett.}, 103:150502, Oct 2009.
+
+\bibitem{book:al_elon}
+Elon~Lages Lima.
+\newblock {\em {\normalfont \textbf{\'{A}lgebra Linear}}}.
+\newblock IMPA, 7 edition, 2006.
+
+\bibitem{book:lcdf_mkm}
+M.~Morris Mano, Charles~R. Kime, and Tom Martin.
+\newblock {\em {\normalfont \textbf{Logic and Computer Design Fundamentals}}}.
+\newblock Pearson, 5th edition, 2015.
+
+\bibitem{slides:al_jonas}
+Jonas Maziero.
+\newblock {\normalfont \textbf{\'{A}lgebra Linear (Slides)}, UFSM,
+  \texttt{https://sites.google.com/site/jonasmaziero/home/edu/topicos-em-ciencia-da-informacao-quantica}.
+  Acesso em maio de 2018}.
+
+\bibitem{book:ecc_moon}
+Todd~K. Moon.
+\newblock {\em {\normalfont \textbf{Error Correction Coding -- Mathematical
+  Methods and Algorithms}}}.
+\newblock Wiley, 2005.
+
+\bibitem{site:comp_hist_museum}
+Computer~History Museum.
+\newblock {\normalfont \textbf{Exhibition -- Birth of the Computer -- ENIAC},
+  \texttt{http://www.computerhistory.org/revolution/birth-of-the-
+  computer/4/78}. Acesso em maio de 2018}.
+
+\bibitem{book:qcqi_nc}
+Michael~A. Nielsen and Isaac~L. Chuang.
+\newblock {\em {\normalfont \textbf{Quantum Computation and Quantum Information
+  -- 10th Anniversary Edition}}}.
+\newblock Cambridge University Press, 10th anv edition, 2010.
+
+\bibitem{book:cod_patterson}
+David~A. Patterson and John~L. Hennessy.
+\newblock {\em {\normalfont \textbf{Computer Organization and Design: the
+  hardware/software interface}}}.
+\newblock Elsevier, 5th edition, 2014.
+
+\bibitem{book:icq_portugal}
+Renato Portugal, Carlile~Campos Lavor, Luiz~Mariano Carvalho, and Nelson
+  Maculan.
+\newblock {\em {\normalfont \textbf{Uma Introdu\c{c}\~{a}o \`{a}
+  Computa\c{c}\~{a}o Qu\^{a}ntica}}}.
+\newblock SBMAC, 2 edition, 2012.
+
+\bibitem{book:lecture_notes_preskill}
+John Preskill.
+\newblock {\em {\normalfont \textbf{Lecture Notes for Physics 229: Quantum
+  Information and Computation}}}.
+\newblock 1998.
+
+\bibitem{videolecture:qisI_p2}
+Peter Shor and Isaac Chuang.
+\newblock {\normalfont \textbf{Quantum Information Science I, part II}, edX,
+  MIT,
+  \texttt{https://courses.edx.org/courses/course-v1:MITx+8.370.2x+1T2018/course/}.}
+  acesso em abril de 2018.
+
+\bibitem{book:al_steinbruch}
+Alfredo Steinbruch and Paulo Winterle.
+\newblock {\em {\normalfont \textbf{\'{A}lgebra Linear}}}.
+\newblock Pearson, 2 edition, 1987.
+
+\bibitem{site:lpn_ibmqx}
+IBM~QX team.
+\newblock {\normalfont \textbf{Learning Parity with Noise}, IBM Quantum
+  Experience,
+  \texttt{https://quantumexperience.ng.bluemix.net/proxy/\\tutorial/full-user-guide/004-Quantum\_Algorithms/081-Learning\_Parity\_with\_Noise.html}.
+  Acesso em maio de 2018}.
+
+\bibitem{book:dd_vahid}
+Frank Vahid.
+\newblock {\em {\normalfont \textbf{Digital Design with RTL Design, VHDL, and
+  Verilog}}}.
+\newblock Wiley, 2nd edition, 2011.
+
+\bibitem{book:ds_tocci}
+Neal~S. Widmer, Gregory~L. Moss, and Ronald~J. Tocci.
+\newblock {\em {\normalfont \textbf{Digital Systems -- Principles and
+  Applications}}}.
+\newblock Pearson, 12th edition, 2017.
+
+\end{thebibliography}

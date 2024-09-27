@@ -1,0 +1,2058 @@
+
+\chapter{Protocolos e Algoritmos Quânticos}\label{cap5:Alg_Q}
+
+Neste capítulo serão abordados alguns protocolos e algoritmos quânticos conhecidos na literatura. Quando possível, é feita uma comparação com os algoritmos clássicos conhecidos. 
+
+\begin{section}{Codificação Superdensa}\label{cap5:sd_coding}
+ 
+ A codificação superdensa é um protocolo que envolve duas partes, Alice e Bob\footnote{Em Teoria da Informação e Criptografia Quântica, é uma convenção tácita rotular os dois lados da comunicação por Alice e Bob!}, que queiram se comunicar trocando bits. Alice quer enviar bits de mensagem para Bob. 
+ 
+ \begin{comment}
+ Em Teoria da Informação, estuda-se métodos de codificar e decodificar uma mensagem, constituída por uma sequência de bits. Um bloco dessa sequência chama-se \emph{palavra}. Um desses blocos de bits da mensagem é conhecido como \emph{palavra de mensagem} e é transformado pelo codificador em um bloco de bits conhecido como \emph{palavra código}. Os \emph{Códigos de Bloco} funcionam com essa ideia de mandar blocos de mensagem codificados com tamanho fixo de bits por bloco, e permitem o envio de mensagens de maneira confiável por meio de um canal ruidoso.
+ \end{comment}
+ 
+ Não é possível, classicamente, codificar 2 bits de mensagem em 1 bit transmitido, já que só há $2^1 = 2$ palavras código -- as palavras 0 e 1 -- e $2^2 = 4$ palavras de mensagem que podem ser enviadas -- as palavras 00, 01, 10 e 11. No entanto, é possível codificar 2 bits de mensagem em 1 qubit transmitido, e é essa a função do \emph{circuito de codificação superdensa}. 
+ 
+ Uma referência para este conteúdo é \cite{book:qcqi_nc}, seção 2.3, p.97-98. 
+ 
+ \begin{subsection}{Visão geral}
+ 
+   A codificação superdensa envolve o compartilhamento prévio de um par de qubits emaranhados, no estado de Bell $\ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}$. Esse estado independe da mensagem que Alice quer enviar a Bob, e pode ter sido distribuído por uma fonte externa de pares emaranhados.
+ 
+ Assim, o primeiro qubit está com Alice e o segundo, com Bob. Alice pode realizar operações em seu qubit em função dos bits de mensagem que ela quer enviar. Após as operações, ela envia seu qubit a Bob, que passa a estar em posse dos dois qubits. Bob pode medí-los de maneira a obter os bits de mensagem.
+
+ \end{subsection}
+
+  \begin{subsection}{Circuito}
+ 
+  O circuito completo para a codificação superdensa é representado abaixo. Seu funcionamento detalhado será abordado a seguir.
+
+ \begin{figure}[H]
+ \[\Qcircuit @C=10pt @R=6pt @!R  
+{ % Alice
+                &  \mbox{Alice} &     &     &               &              &      &      &     &                                & & \\
+ \lstick{b_0}             &\cw  & \cw & \cw   & \control \cw         &      &      &     &                                &     & & \\
+ \lstick{b_1}             & \cw & \cw & \control \cw   &   \cwx &      &      &     &                                &     & & \\
+                          & \qw & \qw & \gate{X} \cwx & \gate{Z}\cwx &  \qw & \qw  &     &                                &     & & \\
+  % Bob                                                                                                           
+\lstick{\ket{\beta_{00}} \quad} &     &     &               &              &      & \qwx & \qw & \multimeasureD{1}{\mathcal{B}} & \cw & \cw & \rstick{\!\!\!\!b_0} \\
+                          &\qw  & \qw & \qw           & \qw          &  \qw & \qw  & \qw & \ghost{\mathcal{B}}    & \cw & \cw & \rstick{\!\!\!\!b_1} 
+  \gategroup{2}{2}{4}{10}{1.6em}{--} \gategroup{5}{2}{6}{10}{1.5em}{--} \gategroup{4}{1}{6}{1}{1.5em}{\{}  \\
+   &  \mbox{Bob}    &     &               &              &      &      &     &                                &     &  &  } 
+  \] 
+ \caption{Circuito completo para Codificação Superdensa. A medição na base de Bell pode ser realizada pelo circuito da figura \ref{cap5:fig_med_base_bell}.}
+ \end{figure}
+ 
+
+ \end{subsection}
+   
+ \begin{subsection}{Funcionamento Detalhado}
+  
+  \subsubsection*{Setup}
+  Num primeiro momento, Alice e Bob compartilham o estado de Bell
+  \[ \ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}} \ . \]
+  Usamos os rótulos $A$ para o primeiro qubit (da Alice) e $B$ para o segundo qubit (que está com Bob). 
+  
+  \subsubsection*{Codificação - Alice}
+  Se forem realizadas as operações que constam na tabela \ref{cap5:tab_operacoes_cod_superdensa}, Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.
+ \begin{table}[H]
+  \[ \begin{array}{ccc}
+  \text{Mensagem} & \text{Operação} & \text{Resultado} \bigstrut[b] \\ \hline 
+\bigstrut[t]   00 & I_A & \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \ket{\beta_{00}} \\
+  01 & Z_A & \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \ket{\beta_{01}}  \\
+  10 & X_A & \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \ket{\beta_{10}}  \\
+  11 & iY_A = Z_A X_A & \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \ket{\beta_{11}} 
+ \end{array} \]
+ \caption{Tabela de codificação da mensagem para a Codificação Superdensa.}
+ \label{cap5:tab_operacoes_cod_superdensa}
+ \end{table}
+
+Observa-se que $ZX = iY$ pela identidade de circuitos dada na proposição \ref{cap4:id_para_matr_pauli}. Os estados de Bell $\ket{\beta_{00}}$, $\ket{\beta_{01}}$, $\ket{\beta_{10}}$ e $\ket{\beta_{11}}$ formam uma base para o espaço de 2 qubits (seção \ref{cap3:sec_estados_bell}). Observa-se também que, se a mensagem é $b_0 b_1$, então quando $b_1 = 1$ aplica-se $X_A$ e quando $b_0 = 1$, aplica-se $Z_A$. Dessa forma, para todos os valores da mensagem $b_0 b_1$, pode-se escrever a operação no qubit $A$ por $Z_A^{\,\, b_0} X_A^{\,\, b_1}$. Portanto, a operação que Alice deve fazer em seu qubit pode ser representada pelo seguinte circuito controlado por cbits:
+\begin{figure}[H]
+  \[\Qcircuit @C=10pt @R=6pt @!R 
+  {
+ \lstick{b_0} &\cw  & \cw & \cw            & \control \cw &      &    \\
+ \lstick{b_1} & \cw & \cw & \control \cw   &   \cwx       &      &    \\
+              & \qw & \qw & \gate{X} \cwx  & \gate{Z}\cwx &  \qw &  \rstick{\!\!\!\!\text{enviar para Bob}}  }
+ \]
+\caption{Operações que Alice deve fazer em seu qubit antes de enviá-lo para Bob. O circuito realiza a operação $Z_A^{\,\, b_0} X_A^{\,\, b_1}$. }
+\end{figure} 
+ 
+ \subsubsection*{Decodificação - Bob}
+ Alice envia, então, seu qubit a Bob, que realiza uma medida na base de Bell. Bob consegue distinguir em qual estado o par de qubits se encontra com essa medida, e, consequentemente, consegue saber quais bits de mensagem foram enviados: se o resultado for $\ket{\beta_{b_0b_1}}$, então a mensagem é $b_0 b_1$. 
+ 
+ A medição na base de Bell pode ser realizada em função da medição na base computacional pelo seguinte circuito:
+ 
+ \begin{figure}[H]
+  \[
+  \phantom{\ket{\beta_{b_0b_1}}}
+  \Qcircuit @C=10pt @R=10pt @!R  
+   { 
+   \dstick{\ket{\beta_{b_0b_1}} \quad \quad \quad \quad \quad } & \multimeasureD{1}{\mathcal{B}} & \cw & \rstick{\!\!\!\!\!\!b_0}  \\
+                                                                & \ghost{\mathcal{B}}            & \cw & \rstick{\!\!\!\!\!\!b_1}
+    \gategroup{1}{1}{2}{1}{1.2em}{\{}
+     }
+  \quad  \quad \begin{array}{c} \\ \\ = \end{array}\quad \quad  \phantom{\ket{\beta_{b_0b_1}}}
+   \Qcircuit @C=10pt @R=6pt @!R  
+   { 
+   \dstick{\ket{\beta_{b_0b_1}} \quad \quad \quad \quad \quad } &  \gate{H} & \ctrl{1} & \meter & \cw & \rstick{\!\!\!\!\!\!b_0} \\
+                                                                &   \qw     &   \targ  & \meter & \cw & \rstick{\!\!\!\!\!\!b_1}
+   \gategroup{1}{1}{2}{1}{1.2em}{\{} 
+   }
+  \]
+  \caption{Circuito para medição na base de Bell $\mathcal{B}$. Esta é a ação que Bob deve tomar ao receber o qubit de Alice.}
+  \label{cap5:fig_med_base_bell} % \label MUST BE HERE !
+  \end{figure}
+ 
+ 
+ \end{subsection}
+
+ 
+
+
+ 
+\end{section}
+
+\begin{section}{Circuito de Teletransporte}\label{cap5:telep_circ}
+ 
+ O circuito de teletransporte também envolve duas partes, chamadas de Alice e Bob, como de costume. Dessa vez, Alice está em posse de um qubit $\ket{\psi}$ cujo estado lhe é desconhecido e precisa enviá-lo a Bob. No entanto, o único meio de comunicação entre os dois é um canal clássico, por onde só é possível enviar cbits. Pode-se pensar em uma linha telefônica, ou uma conexão de internet entre os dois, por exemplo, e que os dois estão a uma grande distância um do outro. Enviando apenas bits clássicos, Alice deve tentar enviar o estado de seu qubit a Bob.
+ 
+ Aparentemente não seria possível realizar essa tarefa, pois o estado de um qubit $\ket{\psi} = a\ket{0} + b \ket{1}$ é definido por dois números complexos $a$ e $b$, que demandariam muitos bits para serem representados de maneira satisfatória (mas aproximada apenas). Além disso, Alice não tem conhecimento sobre o estado do seu qubit, e uma medida não seria suficiente para conseguir encontrar os coeficientes $a$ e $b$. Seriam necessárias muitas medidas de cópias do sistema em bases diferentes para se conseguir obter estimativas das probabilidades de o resultado ser $\ket{0}$ ou $\ket{1}$, e isso não é possível de se fazer quando não se tem cópias do sistema.  
+ 
+ No entanto, se Alice e Bob estiverem compartilhando um par de qubits emaranhados, a situação torna-se mais favorável. O par emaranhado $ \ket{\beta_{00}} $
+ pode ter sido distribuído previamente, e não depende do qubit $\ket{\psi}$ de Alice. O \emph{circuito de teletransporte} faz uso desse par emaranhado para realizar essa tarefa de enviar o estado de um qubit (não conhecido) fazendo-se uso apenas de um canal clássico. O nome ``teletransporte'' tornou-se popular para fazer referência ao circuito, mas não é muito adequado. Esse circuito envia apenas a informação sobre o estado, não ocorrendo deslocamento físico do qubit em questão.
+ 
+ Uma referência para esse circuito pode ser encontrado em \cite{book:qcqi_nc}, seção 1.3.7, p.26-28.
+ 
+ \begin{subsection}{Visão Geral}
+
+  Como na codificação superdensa, o circuito de teletransporte necessita do compartilhamento prévio de dois qubits emaranhados no estado de Bell $\ket{\beta_{00}}$, que independe do qubit que Alice quer enviar a Bob. 
+   
+   Além desse par compartilhado, Alice tem um qubit em um estado $\ket{\psi}$ desconhecido. Alice realiza determinadas operações nos seus dois qubits e realiza medidas na base computacional. Ao medir seus dois qubits, ela obtém informação clássica (cbits), e envia-as a Bob.
+   
+   Bob recebe os cbits e, em função do resultado, realiza algumas operações em seu qubit (o segundo qubit do par emaranhado compartilhado previamente).  Essas operações o ajudam a recuperar o estado do qubit que Alice queria enviar, completando a tarefa. 
+   
+   Nesse processo, o qubit $\ket{\psi}$ de Alice tem seu estado destruído pela medida, mas reaparece no qubit de Bob por causa do emaranhamento, restando apenas realizar uma correção em função do resultado da medida de Alice.
+ \end{subsection}
+
+  \begin{subsection}{Circuito}
+  
+  O circuito abaixo realiza o teletransporte do estado de 1 qubit de Alice para Bob utilizando apenas o envio de 2 cbits. O funcionamento detalhado do Circuito de Teletransporte será visto adiante. 
+   \begin{figure}[H]
+    \[\Qcircuit @C=12pt @R=10pt @!R  
+{ % Alice
+                               &                                                & \mbox{Alice} \gategroup{2}{3}{3}{10}{3em}{--}     &         &          &        &                  &                      &                      &     &   &          \\
+ \lstick{\ket{\psi}}           & \qw                                            & \qw                                               &\ctrl{1} & \gate{H} & \meter & \ustick{b_0} \cw & \cw                  & \control \cw \cwx[3] &     &   &          \\
+                               & \qw                                            &                                               \qw &\targ    & \qw      & \meter & \ustick{b_1} \cw & \control \cw \cwx[2] &                      &     &   &          \\
+ \lstick{\ket{\beta_{00}}\quad}&                                                &                                                   &         &          &        &                  &                      &                      &     &   &          \\
+  % Bob                                                                                                                          
+                               & \qw     \gategroup{3}{1}{5}{1}{1.5em}{\{}      &\qw                                                &\qw      & \qw      & \qw    & \qw              & \gate{X}             & \gate{Z}             & \qw &\qw& \rstick{\ket{\psi}} \qw  \\
+                               &                                                &  \mbox{Bob}  \gategroup{5}{3}{5}{10}{3em}{--}     &         &          &        &                  &                      &                      &     &   &   
+ %           1                 %            2                                   % 3                                                 %   4     %   5      % 6      % 7                %  8                   %  9                   % 10  % 11                                 
+           }
+  \] 
+  \caption{Circuito de Teletransporte completo.}
+ \end{figure}
+  
+ \end{subsection}
+  
+ \begin{subsection}{Funcionamento Detalhado}
+   
+   \subsubsection*{Setup}
+   Alice e Bob previamente compartilham o estado de Bell   
+   \[ \ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}} \ . \]
+   Alice também possui um qubit $\ket{\psi} = a\ket{0} + b\ket{1}$ em um estado não necessariamente conhecido por ela. Sua intenção é que Bob tenha uma ``cópia'' do estado desse qubit. Usando-se os rótulos $A_1$ e $A_2$ para os qubits de Alice e $B$ para o de Bob, o estado do sistema completo pode ser escrito como
+   \[ \begin{split}
+       \ket{\psi_0} 
+       &= \ket{\psi}_{A_1} \ket{\beta_{00}}_{A_2 B} \\
+       &=  \big( a \ket{0}_{A_1} + b \ket{1}_{A_1} \big) \frac{1}{\sqrt{2}}\big(\ket{0}_{A_2}\ket{0}_B +  \ket{1}_{A_2}\ket{1}_B \big) \\
+       &=  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2}\ket{0}_B  + \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2}\ket{1}_B  \\
+       &\phantom{=} \quad + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\ket{0}_B  + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2}\ket{1}_B \\
+       &=  \left(  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
+       &\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B    \ . 
+      \end{split} \]
+   
+   \subsubsection*{Preparação - Alice}
+   Alice realiza as operações CNOT nos dois qubits e Hadamard em $A_1$, e o sistema completo passa a ficar no estado:
+   \[ \begin{split}
+    \ket{\psi_1} 
+    &= \text{CNOT}_{A_1,A_2} \ket{\psi_0} \\
+    &= \text{CNOT}_{A_1,A_2} \bigg[ \left(  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
+     &\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B \bigg]\\
+   &=\left( \tfrac{a}{\sqrt{2}} \text{CNOT}_{A_1,A_2} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \text{CNOT}_{A_1,A_2} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
+       &\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \text{CNOT}_{A_1,A_2}\ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \text{CNOT}_{A_1,A_2} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B \\
+   &= \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
+       &\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2} \right)\ket{1}_B \\
+   \end{split} \]
+ \[ \begin{split}
+    \ket{\psi_2} 
+    &= H_{A_1} \ket{\psi_1} \\
+    &= H_{A_1} \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
+       &\phantom{=} \quad  + H_{A_1} \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2} \right)\ket{1}_B \\
+    &=  \left( \tfrac{a}{\sqrt{2}} H_{A_1}\ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  H_{A_1}\ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
+       &\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} H_{A_1}\ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} H_{A_1} \ket{1}_{A_1} \ket{0}_{A_2} \right)\ket{1}_B \\
+    &=  \left( \tfrac{a}{2} \big(\ket{0}_{A_1} + \ket{1}_{A_1}\big) \ket{0}_{A_2} + \tfrac{b}{2} \big(\ket{0}_{A_1} - \ket{1}_{A_1}\big) \ket{1}_{A_2}\right) \ket{0}_B   \\
+       &\phantom{=} \quad  + \left( \tfrac{a}{2} \big(\ket{0}_{A_1} + \ket{1}_{A_1}\big)\ket{1}_{A_2} + \tfrac{b}{2} \big(\ket{0}_{A_1} - \ket{1}_{A_1}\big) \ket{0}_{A_2} \right)\ket{1}_B \\   
+    &= \ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right) + \ket{01}_{A_1A_2}\left( \tfrac{b}{2} \ket{0}_B + \tfrac{a}{2} \ket{1}_B \right) \\
+       &\phantom{=} \quad  + \ket{10}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B - \tfrac{b}{2} \ket{1}_B \right)  + \ket{11}_{A_1A_2}\left(- \tfrac{b}{2} \ket{0}_B + \tfrac{a}{2} \ket{1}_B   \right) 
+    \end{split} \]   
+    
+   Alice realiza, então, a medida dos seus dois qubits na base computacional. Essa medida faz com que o sistema total encontre-se no estado 
+   \[ \ket{\psi_3} = \ket{b_0 b_1}_{A_1A_2} \ket{\psi_3}_B \ . \]
+   em que o resultado da medida é $b_0 b_1$. O qubit que está com Bob passa a ficar no estado $\ket{\psi_3}_B$, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.
+   \begin{table}[H]
+   \[ \begin{array}{cc}
+     \bigstrut \text{Resultado da medida} & \text{Estado do qubit $B$} \\ \hline
+      00 & \phantom{-}a \ket{0} + b \ket{1} \bigstrut[t] \\
+      01 & \phantom{-}b \ket{0} + a \ket{1} \\
+      10 & \phantom{-}a \ket{0} - b \ket{1} \\
+      11 & -b \ket{0} + a \ket{1} 
+      \end{array} \]
+    \caption{Possíveis resultados da medição de Alice para o Circuito de Teletransporte.}
+    \label{cap5:tab_result_med_circ_teletr}
+    \end{table}
+    
+  O cálculo da primeira linha da tabela \ref{cap5:tab_result_med_circ_teletr} é exemplificado a seguir. Caso o resultado da medida tenha sido $00$, o estado do sistema total $\ket{\psi_3}$ é obtido pela projeção $ \op{00}{00}_{A_1 A_2} $ seguida de uma normalização do vetor resultante. É conveniente lembrar que $\abs{a}^2 + \abs{b}^2 = 1$ pela normalização do estado $\ket{\psi} = a\ket{0} + b\ket{1}$ do início do algoritmo.
+  \[ \op{00}{00}_{A_1 A_2} \ket{\psi_2} = \ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right) \]
+  \[\begin{split}
+      \ket{\psi_2} 
+      &= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \sqrt{\abs{\tfrac{a}{2}}^2 + \abs{\tfrac{b}{2}}^2 } }  \\
+      &= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \tfrac{1}{2} \sqrt{\abs{a}^2 + \abs{b}^2 } }  \\
+      &= \ket{00}_{A_1A_2}\left( a \ket{0}_B + b \ket{1}_B \right) \ .
+    \end{split} \]
+  Os outros estados da tabela são obtidos com contas similares.
+  
+  Agora, Alice pode enviar o resultado da medida para Bob e o qubit em posse dele ficará no estado correspondente na tabela \ref{cap5:tab_result_med_circ_teletr}. 
+  
+  \begin{figure}
+   \[\Qcircuit @C=12pt @R=10pt @!R  
+{ % Alice
+  \lstick{\ket{\psi}}          & \qw                                            & \qw                                               &\ctrl{1} & \gate{H} & \meter & \cw &  \rstick{b_0}  \cw         \\
+                               & \qw                                            &                                               \qw &\targ    & \qw      & \meter & \cw &  \rstick{b_1}  \cw         \\
+                               &                                                &                                                   &         &          &        &                  &                 }
+  \phantom{b_0} \quad \ \ 
+  \begin{array}{c}
+   \\ \\ \text{enviar para Bob}
+  \end{array}
+ \]
+ \caption{Alice realiza operações em seus qubits e envia informação clássica para Bob. O estado do qubit que ela deseja enviar se perde no processo de medição.}
+  \end{figure}
+
+  
+  \subsubsection*{Processamento final - Bob}
+   
+  Nesse ponto, Bob já tem conhecimento do resultado da medida de Alice e o estado do seu qubit corresponde à entrada correspondente na tabela \ref{cap5:tab_result_med_circ_teletr}. Para recuperar o estado $a\ket{0} + b\ket{1}$, Bob deve fazer algumas operações para corrigir o estado do seu qubit, em função do valor da medida informado a ele. 
+  
+  Se a medida for $00$, seu qubit está em $ a\ket{0} + b\ket{1}$ e nada precisa ser feito. Se a medida resultou em $01$, seu qubit está em $b\ket{0} + a\ket{1}$; nesse caso, é possível perceber que a porta $X$ fornece novamente o estado desejado $b\ket{1} + a\ket{0}$. Considerando-se todos os resultados possíveis da medida, monta-se a correção necessária para cada caso, conforme disposto na tabela \ref{cap5:tab_operacoes_circ_teletransporte}. 
+  
+  \begin{table}[H]
+   \[ \begin{array}{cccc}
+    \bigstrut   \text{Medida} & \text{Estado do qubit $B$} & \text{Aplicar operações} & \text{Estado final} \\ \hline
+      00 & \phantom{-}a \ket{0} + b \ket{1} &  I_B  &  a \ket{0} + b \ket{1} = \ket{\psi} \bigstrut[t] \\
+      01 & \phantom{-}b \ket{0} + a \ket{1} & X_B   &  a \ket{0} + b \ket{1} = \ket{\psi}\\
+      10 & \phantom{-}a \ket{0} - b \ket{1} & Z_B   &  a \ket{0} + b \ket{1} = \ket{\psi}\\
+      11 & -b \ket{0} + a \ket{1}           & Z_B X_B &  a \ket{0} + b \ket{1} = \ket{\psi}     
+      \end{array}  \]
+   \caption{Correções aplicadas por Bob para obter o estado original do qubit de Alice no Circuito de Teletransporte.}
+  \label{cap5:tab_operacoes_circ_teletransporte}
+  \end{table}
+  
+  Essas operações, como na codificação superdensa, podem ser resumidas na operação controlada classicamente $Z_B^{\, b_0} X_B^{\, b_1}$, em que $b_0b_1$ é o resultado da medida. Dessa forma, pode-se representar o processamento de Bob pelo circuito a seguir.
+   
+  \begin{figure}[H]
+   \[\Qcircuit @C=12pt @R=4pt @!R  
+{
+ \lstick{b_0}     & \cw                  & \control \cw \cwx[2] &     &   &          \\
+ \lstick{b_1}     & \control \cw \cwx[1] &                      &     &   &          \\
+                  & \gate{X}             & \gate{Z}             & \qw &\qw& \rstick{\ket{\psi}} \qw  
+           } \]
+  \caption{Bob recebe os bits enviados por Alice e, em função dos valores recebidos, realiza um processamento final em seu qubit, recuperando o estado $\ket{\psi}$ que Alice tinha e que pretendia enviar.}
+  \end{figure}
+
+  Com isso, independente do resultado da medida, Bob tem, ao final, o estado $\ket{\psi}$ que Alice queria transmitir. 
+ 
+   
+ \end{subsection}
+
+
+\end{section}
+
+\begin{section}{Oráculos Quânticos}
+ 
+ Os oráculos são funções booleanas $f \colon \{ 0,1 \}^n \to \{ 0,1 \}$ consideradas como ``caixas pretas''. Dado um vetor de bits $x$, o oráculo clássico fornece $f(x)$. Alguns problemas computacionais são escritos em termos de oráculos, como o problema de Deutsch-Jozsa, o problema de Simon e o problema de busca de Grover. Para abordar esses problemas, é necessário definir uma versão quântica desse oráculo, o que será abordado nesta seção. 
+ 
+ Há duas maneiras de se escrever um análogo quântico ao oráculo clássico: o \emph{oráculo XOR} e o \emph{oráculo de fase}.
+ 
+ \begin{subsection}{Oráculo XOR}\label{cap5:sec_oraculo_xor}
+  
+  O \emph{oráculo XOR} é uma operação unitária que realiza a função booleana $f$ por meio de um bit extra, que sinaliza as entradas em que $f$ vale 1. 
+  
+  \begin{figure}[H]
+  \vspace{-10pt}
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{x}} &  \ustick{\ n}\qw  & {/} \qw & \qw &\ctrl{1} & \qw & \qw &  \rstick{\ket{x}}                  \qw     \\
+   \lstick{\ket{b}} & \qw               &\qw      & \qw & \gate{O}& \qw & \qw & \rstick{\ket{b\oplus f(x)}} \qw  
+    }
+   \]
+   \vspace{-10pt}
+   \caption{Oráculo quântico XOR. O comportamento na base computacional está descrito no circuito. O rótulo $n$ no primeiro fio representa $n$ qubits. O controle inverte o $n+1$-ésimo qubit quando os $n$ primeiros qubits $\ket{x}$ da entrada cumprem $f(x) = 1$.}
+  \end{figure}
+
+   \begin{figure}[H]
+   \vspace{-20pt}
+   \[ 
+    \Qcircuit @C=5pt @R=5pt %@!R 
+    {
+                               &  \qw \gategroup{1}{1}{4}{1}{0.6em}{\{}  &   \qw & \ctrl{2} & \qw & \qw& \qw  \gategroup{1}{7}{4}{7}{0.6em}{\}}   \\
+      \dstick{\ket{x} \quad \quad \quad }                          &   \qw                               &   \qw & \ctrl{2} &\qw    & \qw &  \dstick{ \quad \quad \quad \ket{x}}\qw       \\
+           &  \push{\vdots}                                 &                  &          &  \push{\vdots}  &   \\    
+                               &   \qw                                   &   \qw & \ctrl{1} & \qw & \qw&  \qw     \\
+   \lstick{\ket{0}}            & \qw                                     & \qw   & \gate{O} & \qw & \qw& \rstick{\ket{f(x)}} \qw  
+    }
+   \]
+   \vspace{-10pt}
+   \caption{Oráculo quântico XOR. Comportamento quando $\ket{b}=\ket{0}$ e quando $\ket{x}$ é vetor da base computacional.}
+  \end{figure}
+  
+  O oráculo XOR pode ser generalizado para funções $f \colon  \{ 0,1 \}^n \to  \{ 0,1 \}^n$ ou, ainda, para funções $f \colon  \{ 0,1 \}^n \to  \{ 0,1 \}^m$.
+  
+    \begin{figure}[H]
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{x}} &  \ustick{\ n}\qw  & {/} \qw & \qw &\ctrl{1} & \qw & \qw &  \rstick{\ket{x}}                  \qw     \\
+   \lstick{\ket{y}} &  \ustick{\ m}\qw  & {/} \qw & \qw & \gate{O}& \qw & \qw & \rstick{\ket{y \oplus f(x)}} \qw  
+    }
+   \]
+   \vspace{-10pt}
+   \caption{Oráculo quântico XOR para funções booleanas com entradas de $n$ bits e saídas de $m$ bits. A operação $\oplus$ é a XOR realizada bit a bit.}
+  \end{figure}
+  
+ \end{subsection}
+
+ \begin{subsection}{Oráculo de Fase}\label{cap5:sec_oraculo_fase}
+  
+  O \emph{oráculo de fase} é uma operação unitária que sinaliza as entradas em que $f$ vale 1 introduzindo uma fase de $\pi$, isto é, uma multiplicação por $-1$.
+  
+   \begin{figure}[H]
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{x}} &  \ustick{\ n}\qw  & {/} \qw & \qw & \gate{O} & \qw &  \rstick{(-1)^{f(x)}\ket{x}}   \qw     \\
+    }
+   \]
+   \vspace{-15pt}
+   \caption{Oráculo quântico de fase. O comportamento na base computacional está descrito no circuito. O rótulo $n$ no primeiro fio representa $n$ qubits. A fase da entrada $\ket{x}$ fica invertida quando $f(x) = 1$.}
+  \end{figure}
+  
+ \end{subsection}
+
+ \begin{subsection}{\nohyphens{Construção do Oráculo de Fase usando o \\Oráculo XOR}}
+  Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alvo como um qubit auxiliar. Ao usarmos $\ket{-}$ na entrada alvo do oráculo XOR, obtemos, para qualquer estado $\ket{x}$ da base computacional:
+  \[ \ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
+  \begin{cases}
+   \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &\text{se $f(x)=0$} \vspace{5pt} \\
+   \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &\text{se $f(x)=1$} \ ,
+  \end{cases}
+ \]
+  o que pode ser resumido por $\ket{x}\big((-1)^{f(x)}\ket{-} \big)$. Além disso, o fator multiplicativo $(-1)^{f(x)}$ pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:
+  \[ \ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-} \ . \]
+  
+ A figura a seguir ilustra a construção do oráculo de fase.
+    \begin{figure}[H]
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{x}} &  \ustick{\ n}\qw  & {/} \qw & \qw &\ctrl{1}              & \qw & \qw &  \push{\ket{x}}            \qw  & \dstick{=} & & \rstick{(-1)^{f(x)}\ket{x}}  \\
+   \lstick{\ket{-}} & \qw               &\qw      & \qw & \gate{O_{\text{XOR}}}& \qw & \qw &  \push{(-1)^{f(x)} \ket{-}} \qw &            & & \rstick{\ket{-}} 
+    }
+   \]
+   \caption{Construção do oráculo de fase a partir do oráculo XOR. $\ket{x}$ representa um estado da base computacional.}
+  \end{figure}
+  \vspace{20pt}
+  
+ \end{subsection}
+
+ 
+\end{section}
+
+\begin{section}{Algoritmo de Deutsch-Jozsa}
+ 
+  O Algoritmo de Deutsch-Jozsa é um algoritmo quântico projetado para resolver o Problema de Deutsch-Jozsa. Esse problema não tem especial ênfase em aplicações, mas torna-se laboratório interessante para investigar técnicas e possíveis vantagens da Computação Quântica. As principais referências para esta seção são o livro \cite{book:qcqi_nc}, seção 1.4.4, p.34-36, e as videoaulas U2.2, subunidade SU2 de \cite{videolecture:qisI_p2}.
+ 
+ \begin{subsection}{Problema de Deutsch-Jozsa}
+  
+  Antes de enunciar o problema de Deutsch-Jozsa é conveniente escrever algumas definições.
+  
+  \begin{definition}[Função constante e função balanceada]
+  \ 
+  
+   A função booleana $f \colon \{ 0,1 \}^n \to \{0,1\}$ é dita \emph{constante} se $f$ assume o mesmo valor em todas as entradas:
+   \[ \begin{array}{ll}
+       f(x) = 0 \ , \ \ \forall x \in  \{ 0,1 \}^n &  \text{ ou} \\
+        f(x) = 1 \ , \ \ \forall x \in  \{ 0,1 \}^n &  \ .
+      \end{array}   \] 
+      
+   A função $f$ é dita \emph{balanceada} se admite o valor $0$ em metade das suas entradas e admite $1$ na metade complementar das entradas.
+  \end{definition}
+  
+   \begin{example}
+    A função booleana $f(x) = 1$ é constante. 
+  \end{example}
+  
+  \begin{example}
+   Denote $x \in \{ 0,1 \}^n $ por $x = x_{n-1} \ldots x_1 x_0$. A função booleana $f(x) = x_0$ é balanceada, pois para exatamente metade das entradas $x$ tem-se $x_0 = 0$ e para a outra metade, tem-se $x_0 = 1$. 
+  \end{example}
+
+  \begin{example}
+   Considere a função booleana com entradas de $n=2$ bits dada por $f(a,b) = a\cdot b$, em que, lembrando, $\cdot$ representa a porta AND. A tabela verdade dessa função é representada abaixo.
+   \[ \begin{array}{cc|c}
+    a & b & f(a,b) = a \cdot b \\ \hline
+    0 & 0 & 0 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    1 & 1 & 1 
+   \end{array} \]
+  Essa função não é balanceada nem constante.
+  \end{example}
+
+  \begin{comment}
+  \begin{example}
+     A função booleana $f(x) = x$ é balanceada.
+  \end{example}
+  
+     \begin{example}
+    Cada vetor de bits $x \in  \{ 0,1 \}^n$ pode ser representado unicamente por um número inteiro entre $0$ e $2^n - 1$. Pode-se confundir a notação considerando $x$ como sendo um número inteiro nessa faixa de valores ou como sendo um vetor de bits. Agora considere a função booleana dada por $f(x) = (2^n -1) - x$. Então $f$ é balanceada.
+  \end{example}
+  \end{comment}
+ 
+ O problema desta seção tem o seguinte enunciado. 
+ 
+  \begin{problem*}{de Deutsch-Jozsa}
+     Seja uma função booleana $f \colon \{ 0,1 \}^n \to \{0,1\}$ que pode ser apenas ou constante ou balanceada. Decidir se $f$ é constante ou balanceada. 
+  \end{problem*}
+
+  Deseja-se, dada uma função $f$ considerada como caixa preta, e com o compromisso de ser ou constante ou balanceada, decidir qual dos dois casos mutuamente excludentes é verdadeiro.
+  
+ \end{subsection}
+
+ \begin{comment}
+ \begin{subsection}{Algoritmo de Deutsch-Jozsa -- caso $n=2$}
+  
+ \end{subsection}
+ \end{comment}
+ 
+ \begin{subsection}{Algoritmo de Deutsch-Jozsa}
+  Para resolver o problema de Deutsch-Jozsa com um algoritmo quântico, é necessário ter uma versão quântica da função booleana $f$, dada como oráculo, isto é, dada como uma caixa preta em que não se pode visualizar a subrotina que calcula $f$. 
+  
+  Considere que $f$ seja dada por meio do oráculo de fase (como na seção \ref{cap5:sec_oraculo_fase}). O algoritmo de Deutsch-Jozsa para decidir se $f$ é constante ou balanceada é dado pelo procedimento abaixo.
+  
+  \subsubsection*{Algoritmo de Deutsch-Jozsa}
+  \noindent \textbf{Entrada:} $O_\text{F}(f) = O$ \ \ (oráculo de fase associado à função booleana $f$)
+  \vspace{6pt} \\
+  \noindent \textbf{Procedimento:} \vspace{4pt} \\
+  $\begin{array}{lll}
+   \text{etapa 0:} & \ket{0}^{\otimes n} & \text{\small{preparação do estado inicial}} \\
+   \text{etapa 1:} & \ket{+}^{\otimes n} & \text{\small{superposição de estados com $H^{\otimes n}$}} \\
+   \text{etapa 2:} & O_\text{F}\ket{+}^{\otimes n} & \text{\small{aplicação de $f$ (oráculo de fase)}} \\
+   \text{etapa 3:} & \bra{+}^{\otimes n}O_\text{F}\ket{+}^{\otimes n} & \text{\small{testar para $\ket{+}^{\otimes n}$ (base girada $\mathcal{X}$)}} \\
+  \end{array} $
+  \vspace{6pt} \\
+  \textbf{Saída:} Probabilidade da medida de $\ket{\psi_2}$ resultar em  $\ket{+}^{\otimes n}$ é 
+   \[P = 
+   \begin{cases}
+   1 & \text{se $f$ é constante} \\
+   0 & \text{se $f$ é balanceada}
+   \end{cases} \]
+   Portanto, se o estado após a medida na base $\mathcal{X}$ for $\ket{+}^{\otimes n}$, então decide-se que $f$ é constante. E se o estado após a medida for qualquer outro, decide-se que $f$ é balanceada.
+   
+   \subsubsection*{Circuito}
+    \begin{figure}[H]
+   Notação compacta:
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{0}^{\otimes n}} &  \ustick{\ n}\qw  & {/} \qw & \qw & \gate{H^{\otimes n}} & \gate{O_\text{F}(f)} & \gate{H^{\otimes n}} & \qw & \qw &\meter}
+   \]
+   \\ 
+   Notação expandida:
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{0}} & \qw & \qw & \qw & \gate{H} & \multigate{3}{O_\text{F}(f)} & \qw & \gate{H} & \qw & \qw &\meter \\
+   \lstick{\ket{0}} & \qw & \qw & \qw & \gate{H} & \ghost{O_\text{F}(f)}        & \qw &  \gate{H} & \qw & \qw &\meter \\
+   \lstick{\vdots}  &     &     &     & \vdots   & \ghostnoqw{O_\text{F}(f)}    &     &  \vdots   &     &     & \vdots  \\
+   \lstick{\ket{0}} & \qw & \qw & \qw & \gate{H} & \ghost{O_\text{F}(f)}        & \qw &  \gate{H} & \qw & \qw &\meter \gategroup{1}{8}{4}{11}{12pt}{--} \\
+                    &     &     &     &          &                              & & & & \mbox{\footnotesize Medição na base girada $\mathcal{X}$} 
+   }
+   \]
+   \caption{Algoritmo de Deutsch-Jozsa.}
+   \label{cap5:circuito_deutsch_jozsa}
+  \end{figure}
+  
+  % Comentário: Colocar esse assunto em um capítulo separado sobre ``técnicas para medições''?
+  \begin{remark}
+   A porção destacada na figura \ref{cap5:circuito_deutsch_jozsa} corresponde à medição na base $\mathcal{X}$ feita a partir da medição na base computacional. 
+   De fato, o operador de Hadamard realiza mudança de base de $\mathcal{X}$ (base girada) para $\mathcal{I}$ (base computacional), conforme exemplo \ref{cap2:ex_matriz_hadamard_mudança_base_x}, de forma que o resultado medido na base computacional corresponde a uma medição na base $\mathcal{X}$. A figura \ref{cap5:fig_med_base_girada_x} ilustra a medição na base girada feita em função da medição na base computacional.  \vspace{4pt}
+   \begin{figure}[H]
+    \[ 
+    \Qcircuit @C=8pt @R=10pt @!R 
+    {
+    & \ustick{\ket{+}} \qw & \qw & \gate{H} & \ustick{\ \ket{0}} \qw & \qw & \meter 
+   } 
+   \qquad \qquad
+    \Qcircuit @C=8pt @R=10pt @!R 
+    {
+    & \ustick{\ket{-}} \qw & \qw & \gate{H} & \ustick{\ \ket{1}} \qw & \qw & \meter 
+   }
+   \]
+   \caption{Medição na base girada $\mathcal{X}$ realizada em função de medição na base computacional.}
+   \label{cap5:fig_med_base_girada_x}
+   \end{figure}
+
+  \end{remark}
+
+  
+   \subsubsection*{Análise detalhada do algoritmo}
+   Na etapa 1, aplica-se $H$ para cada qubit de entrada, resultando em:
+   \[ \begin{split}
+    \ket{\psi_1} 
+    &= H^{\otimes n} \ket{0}^{\otimes n} \\
+    &= \ket{+}^{\otimes n} \\
+    &= \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \ldots \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \\
+    &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} \ket{x} \ ,
+   \end{split} \] 
+   em que $\mathbb{B}_n$ representa o conjunto de todas as palavras de $n$ bits. Isto é, 
+   \[\begin{split}
+       \mathbb{B}_n 
+       &= \{ 0\ldots 00 \, , \, \, 0 \ldots 01 \, , \, \, 0\ldots 10 \, , \, \, 0 \ldots 11 \, , \, \, \ldots \, , \, \, 1 \ldots 11 \}  \\
+       &= \{ 0, 1, 2, 3, \ldots, 2^n-1 \}  \ .
+     \end{split} \]
+   \begin{remark}\label{cap5:rmk_notacao_vetor_bits_nro_inteiro}
+     Por vezes é útil fazer a identificação entre vetores de bits e números inteiros sem sinal, para simplificar a notação. Por exemplo, $0 = 0\ldots000$, $1 = 0\ldots001$, $2 = 0\ldots010$, $3 = 0\ldots011$ e assim por diante, até $2^n-1 = 1 \ldots 111$. Essa identificação consta na tabela \ref{cap1:tab_vetor_bits_representacao_nros_inteiros} do apêndice \ref{cap1_comp_classica}.
+   \end{remark}
+
+  
+   
+   A aplicação do oráculo na etapa 2 fornece:
+    \[ \begin{split}
+    \ket{\psi_2} 
+    &= O_\text{F} \ket{\psi_1}  \\
+    &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} O \ket{x} \\
+    &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} (-1)^{f(x)} \ket{x} \ .
+    \end{split} \]
+    Se a função for constante, o fator $(-1)^{f(x)} $ se tornará um sinal global $+$ ou $-$, que essencialmente não altera o estado anterior. 
+    
+    A última etapa consiste na medição na base girada $\mathcal{X}$. Para realizar essa medida, pode-se aplicar $H$ a todos os qubits e medir na base computacional, como ilustrado na figura \ref{cap5:circuito_deutsch_jozsa}. Calculando a probabilidade de se obter $\ket{+}^{\otimes n}$, consegue-se:
+    \[ \begin{split}
+    \bra{+}^{\otimes n} \ket{\psi_2}
+    &= \left( \frac{1}{\sqrt{2^n}} \sum_{y \in \mathbb{B}_n} \bra{y} \right) \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} (-1)^{f(x)} \ket{x} \\
+    &= \frac{1}{2^n} \sum_{x \in \mathbb{B}_n} \sum_{y \in \mathbb{B}_n} (-1)^{f(x)}  \bra{y}\ket{x} \\
+    &= \frac{1}{2^n} \sum_{x \in \mathbb{B}_n} \sum_{y \in \mathbb{B}_n} (-1)^{f(x)}  \delta_{x,y} \\
+    &= \frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} \ .
+    \end{split} \]
+    Caso a função seja constante, a última equação fornece 
+    \[ \frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} =   \pm \frac{1}{2^n} 2^n = \pm 1 \ . \] 
+    E caso a função seja balanceada, metade das parcelas contribui com $1$ e a outra metade com $-1$, portanto
+    \[ \frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} =    \frac{1}{2^n} 0 = 0 \ . \] 
+    
+    A probabilidade $P$ de se obter $\ket{+}^{\otimes n}$ é dada pelo módulo ao quadrado do resultado obtido, logo
+    \[ P = \abs{ \bra{+}^{\otimes n} \ket{\psi_2} }^2 = 
+     \begin{cases}
+   1 & \text{se $f$ é constante} \\
+   0 & \text{se $f$ é balanceada} \ .
+   \end{cases} \]
+   
+   Dessa forma, decide-se por ``$f$ é constante'' se a medida resultar no estado $\ket{+}^{\otimes n}$ e por ``$f$ é balanceada'', se resultar em um estado diferente. Esse teste é realizado no algoritmo por uma mudança de base, realizada pela porta Hadamard, e uma medição na base computacional, como ilustrado nas figuras \ref{cap5:circuito_deutsch_jozsa} e \ref{cap5:fig_med_base_girada_x}.
+   
+ \end{subsection}
+ 
+ \begin{subsection}{Algoritmo Clássico}
+  
+  Agora considere o problema de Deutsch-Jozsa no contexto clássico. Tem-se $f$ dada como uma caixa preta e se quer decidir se $f$ é constante ou balanceada. A seguir serão vistas brevemente as abordagens clássicas determinística e aleatória para o problema. 
+  
+  
+  \subsubsection*{Algoritmo Clássico Determinístico}
+  
+  A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar aplicações sucessivas de $f$ para diversas entradas até se ter certeza de qual opção é válida (se $f$ é constante ou balanceada). Por exemplo\footnote{Nesta parte, usou-se a notação que confunde uma palavra de bits com sua representação por número inteiro sem sinal. Ver observação \ref{cap5:rmk_notacao_vetor_bits_nro_inteiro}.}, calcula-se $f(0)$, $f(1)$, $f(2)$, $\ldots$ e se verifica se $f(1) = f(0)$, $f(2) = f(1)$, $\ldots$ ou não. Caso ocorra $f(j) \neq f(i)$, então a opção certa é ``$f$ é balanceada'', e caso isso não ocorra, a opção correta é ``$f$ é constante''. 
+  
+  Para se distinguir com certeza as duas opções, deve-se aplicar $f$ a metade das entradas possíveis mais uma, ou seja, a $2^n/2 + 1$ entradas. Isso porque, na pior das hipóteses, a função era balanceada e, obteve-se um mesmo resultado, por azar, para as $2^n/2$ entradas testadas, impedindo que se faça a escolha com certeza.
+  
+  Dessa forma, o custo computacional desse algoritmo é de $2^n/2 + 1$ aplicações de $f$.
+  
+  \subsubsection*{Algoritmo Clássico Probabilístico}
+  
+  Um algoritmo probabilístico utiliza a probabilidade como recurso computacional. Para esse tipo de computação, é possível que entradas iguais produzam saídas diferentes, e que a máquina passe por estados diferentes durante a computação, em função de fatores probabilísticos presentes no algoritmo. 
+  Nesse contexto, se for permitida uma probabilidade de erro $\varepsilon$ na decisão e o uso de sorteios aleatórios em certas etapas, é possível reduzir o custo computacional do algoritmo clássico determinístico. 
+  
+  Primeiramente, permite-se que as entradas $i$ sejam tiradas aleatoriamente, cada uma com mesma probabilidade $p(i) = 1/2^n$. Por exemplo, se $f$ for constante $1$ ($f(i) = 1 \forall j$), a probabilidade de resultar $1$ é $1 = 100\%$ e a de resultar $0$ é $0 = 0\%$. Se $f$ for balanceada, a probabilidade de resultar $1$ é $0,\!5 = 50\%$ e o mesmo vale para o resultado $0$. Supõe-se, para simplificar a discussão, que o sorteio das entradas é feito sem memória\footnote{Para um número de bits $n$ grande, esse caso é semelhante ao caso com memória, em que não se permite repetir as entradas no sorteio.}, isto é, com chance de se sortear duas entradas iguais.
+   \vspace{-5pt}
+  \begin{figure}[H]
+   \[ \begin{array}{cccc}
+       \bigstrut \text{$f$ constante} & & & \text{$f$ balanceada}  \vspace{8 pt} \\ 
+       \begin{array}{lc} 
+       f=0\colon & \begin{array}{c} \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} 
+                                 \\ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \end{array}\\
+                         & \text{\footnotesize $p(f(i)=0) = 1$} \\
+                         & \text{\footnotesize $p(f(i)=1) = 0$}
+                         \\ \\
+       f=1\colon & \begin{array}{c} \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
+                                 \\ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \\ \end{array}\\
+                         &  \text{\footnotesize $p(f(i)=0) = 0$} \\
+                          & \text{\footnotesize $p(f(i)=1) = 1$}
+                         \end{array}
+        & & &
+        \begin{array}{c} 
+                    \begin{array}{c} \text{\Large $\bullet$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
+                                  \\ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\circ$}  \\ 
+       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
+       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
+       \end{array} \\ \\ \\
+       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \end{array}
+      \end{array} 
+      \end{array} \]
+       \vspace{-10pt}
+  \caption{Probabilidade de obtenção dos resultados $f(i)=0$ e $f(i) = 1$ para os casos de $f$ constante e $f$ balanceada ($n=3$ bits). As entradas são sorteadas aleatoriamente, com igual probabilidade.}
+  \label{cap5:fig_probabilidade_resultado_f_dj}
+  \end{figure}
+
+%   A condição de parada do algoritmo probabilístico é a seguinte. 
+ A primeira avaliação $f(i_1)$ não traz mais informação para distinguir entre constante e balanceada. 
+  \vspace{-10pt}
+  \begin{figure}[H]
+   \[ \begin{array}{cccc}
+       \bigstrut \text{$f$ constante} & & & \text{$f$ balanceada}  \vspace{8 pt} \\ 
+       \begin{array}{lc} 
+       f=0\colon & \begin{array}{c} \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} 
+                                 \\ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \end{array}\\
+       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
+       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
+                         \\ \\
+       \cancel{f=1\colon} & \begin{array}{c} \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
+                                 \\ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \\ \end{array}\\
+       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
+       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
+                        \\ \end{array}
+        & & &
+        \begin{array}{c} \\
+                    \begin{array}{c} \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
+                                  \\ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\circ$}  \\ 
+       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
+       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
+       \end{array} \\ \\ 
+       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
+       \text{Caso: $f(i_1) = 0$ ($i_1= 1$)} \end{array}
+      \end{array} 
+      \end{array} \]
+  \caption{Exemplo de sorteio aleatório de uma entrada $i_1$ e avaliação $f(i_1)$. Se $f(i_1) = 0$, não é possível distinguir ainda se $f = 0$ ou se $f$ é balanceada. }
+   \vspace{-10pt}
+  %\label{cap5:fig_probabilidade_resultado_f_dj}
+  \end{figure}
+ 
+ A segunda aplicação, se resultar $f(i_2) \neq f(i_1)$, já resolve com certeza que $f$ é balanceada. 
+  \vspace{-10pt}
+  \begin{figure}[H]
+   \[ \begin{array}{cccc}
+       \bigstrut \cancel{\text{$f$ constante}} & & & \text{$f$ balanceada}  \vspace{8 pt} \\ 
+       \begin{array}{lc} 
+       \cancel{f=0\colon} & \begin{array}{c} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} 
+                                 \\ \ \text{\Large $\circ$}  \ \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \end{array}\\
+       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
+       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
+                         \\ \\
+       \cancel{f=1\colon} & \begin{array}{c} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
+                                 \\ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \\ \end{array}\\
+       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
+       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
+                       \\  \end{array}
+        & & &
+        \begin{array}{c} \\
+                    \begin{array}{c} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
+                                  \\ \ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\circ$}  \\ 
+       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
+       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
+       \end{array} \\ \\ 
+       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
+       \text{Caso: $f(i_1) = 0$ ($i_1 = 1$)} \\ \text{\phantom{Caso: }$f(i_2)=1$ ($i_2 = 6$)} \end{array}
+      \end{array} 
+      \end{array} \]
+       \vspace{-15pt}
+  \caption{Exemplo de sorteio aleatório de duas entradas $i_1$,$i_2$. Se $f(i_1) \neq f(i_2)$, conclui-se que $f$ é balanceada sem probabilidade de erro. }
+  %\label{cap5:fig_probabilidade_resultado_f_dj}
+  \end{figure}
+ 
+ Se o resultado for $f(i_2) = f(i_1)$, tende-se a pensar que $f$ seria constante e a probabilidade de se estar errado é a probabilidade de tirar duas saídas iguais aleatoriamente numa função balanceada, ou seja, $P_e = 1 \cdot 0,\!5 = 0,\!5$. 
+   \vspace{-10pt}
+  \begin{figure}[H]
+   \[ \begin{array}{cccc}
+       \bigstrut \text{$f$ constante} & & & \text{$f$ balanceada}  \vspace{8 pt} \\ 
+       \begin{array}{lc} 
+       f=0\colon & \begin{array}{l} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ 
+                                 \\ \ \text{\Large $\circ$}  \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \end{array}\\
+       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
+       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
+                         \\ \\
+       \cancel{f=1\colon} & \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$}\ 
+                                 \\ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \\ \end{array}\\
+       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
+       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
+                       \\  \end{array}
+        & & &
+        \begin{array}{c} \\
+                    \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ 
+                                  \\ \ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$}   \\ 
+       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
+       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
+       \end{array} \\ \\ 
+       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
+       \text{Caso: $f(i_1) = 0$ ($i_1 = 1$)} \\ \text{\phantom{Caso: }$f(i_2)=0$ ($i_2 = 7$)} \end{array}
+      \end{array} 
+      \end{array} \]
+   \vspace{-15pt}
+  \caption{Exemplo de sorteio aleatório de duas entradas $i_1$,$i_2$. Caso $f(i_1) = f(i_2)$ e se decida parar o algoritmo, a resposta escolhida seria ``$f$ é constante'', e a probabilidade de erro seria $P_e = 50\%$. Isto é, a probabilidade de, caso a função seja balanceada, ter-se obtido duas entradas iguais, seria $P_e = 50\%$. }
+  %\label{cap5:fig_probabilidade_resultado_f_dj}
+  \end{figure}
+ 
+ Na terceira etapa, caso $f(i_3) \neq f(i_2)$, resolve-se com certeza que $f$ é balanceada e caso $f(i_3) = f(i_2)$, conclui-se pela opção constante com probabilidade de erro igual a $P_e = 1 \cdot 0,\!5 \cdot 0,\!5 = 0,\!25$, correspondente à probabilidade de que, numa função balanceada, tenha-se o mesmo resultado para 3 entradas sorteadas aleatoriamente com igual probabilidade. 
+ \vspace{-10pt}
+  \begin{figure}[H]
+  \[ \begin{array}{cccc}
+       \bigstrut \cancel{\text{$f$ constante}} & & & \text{$f$ balanceada}  \\ 
+       \begin{array}{lc} 
+       \cancel{f=0\colon} & \begin{array}{l} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} 
+                                 \\ \ \text{\Large $\circ$}  \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \end{array}\\
+       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
+       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
+                         \\ \\
+       \cancel{f=1\colon} & \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} 
+                                 \\ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \\ \end{array}\\
+       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
+       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
+                       \\  \end{array}
+        & & &
+        \begin{array}{c} \\
+                    \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$}  \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} 
+                                  \\ \ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$}  \\ 
+       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
+       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
+       \end{array} \\ \\ 
+       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
+       \text{Caso: $f(i_1) = 0$ ($i_1 = 1$)} \\ \text{\phantom{Caso: }$f(i_2)=0$ ($i_2 = 7$)} \\ \text{\phantom{Caso: }$f(i_3)=1$ ($i_3 = 2$)} \end{array}
+      \end{array} 
+      \end{array} \]
+       \vspace{-8pt}
+  \caption{Exemplo de sorteio aleatório de três entradas $i_1$,$i_2$,$i_3$. Caso $f(i_2) \neq f(i_3)$, pode-se concluir que $f$ é balanceada sem chance de erro. }
+  %\label{cap5:fig_probabilidade_resultado_f_dj}
+  \end{figure}
+  \vspace{-10pt}
+    \begin{figure}[H]
+  \[ \begin{array}{cccc}
+       \bigstrut  \text{$f$ constante} & & & \text{$f$ balanceada}  \\ 
+       \begin{array}{lc} 
+       f=0\colon & \begin{array}{l} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} 
+                                 \\ \ \text{\Large $\circ$}  \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \end{array}\\
+       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
+       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
+                         \\ \\
+       \cancel{f=1\colon} & \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
+                                 \\ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \\ \end{array}\\
+       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
+       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
+                       \\  \end{array}
+        & & &
+        \begin{array}{c} \\
+                    \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$} \  \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
+                                  \\ \ \text{\Large $\circ$}   \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$}  \\ 
+       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
+       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
+       \end{array} \\ \\ 
+       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
+       \text{Caso: $f(i_1) = 0$ ($i_1 = 1$)} \\ \text{\phantom{Caso: }$f(i_2)=0$ ($i_2 = 7$)} \\ \text{\phantom{Caso: }$f(i_3)=0$ ($i_3 = 5$)} \end{array}
+      \end{array} 
+      \end{array} \]
+       \vspace{-8pt}
+  \caption{Exemplo de sorteio aleatório de três entradas $i_1$,$i_2$,$i_3$. Caso $f(i_2) = f(i_3)$ e se encerre o algoritmo, escolhe-se a opção ``$f$ é constante'' com probabilidade de erro $P_e = 0,\!25 = 25\%$. }
+  %\label{cap5:fig_probabilidade_resultado_f_dj}
+  \end{figure}
+ 
+ Seguindo essa ideia, na $m$-ésima aplicação de $f$, se ocorrer $f(i_m) \neq f(i_{m-1})$, conclui-se com certeza a opção ``$f$ é balanceada'' e se $f(i_m) = f(i_{m-1})$, pode-se concluir que ``$f$ é constante'' com probabilidade de erro 
+ \[ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1} \ . \]
+  
+  Para uma probabilidade de erro  $P_e < 1/2$ na decisão, deve-se repetir o algoritmo até que a probabilidade de erro $P_{e,m} = 1/2^{m-1}$ satisfaça
+  \[\frac{1}{2^{m-1}} < \frac{1}{2} \implies 2^m > 2^2 \implies m >2 \implies m \geq 3  \ . \]
+  Se forem $m=3$ aplicações, a probabilidade de erro será limitada por $\varepsilon = 1/2^{m-1} = 0,\!25 < 0,\!5$, como visto anteriormente. 
+  
+ \end{subsection}
+
+ \begin{subsection}{Comparação de Desempenho}
+ 
+ A tabela abaixo traz a comparação entre o desempenho dos algoritmos clássico determinístico, clássico probabilístico e quântico. 
+ 
+ \begin{table}[H]
+  \centering
+  \begin{tabular}{l|l}
+  \bigstrut Algoritmo  &  Desempenho (\# aplicações de $f$) \\ \hline
+ \bigstrut[t] Class. Det. & $2^n/2 + 1$ \\
+  Class. Prob. & 3 \\
+  Quântico & 1
+  \end{tabular}
+  \caption{Comparação de desempenho entre os algoritmos quântico, clássico determinístico e clássico probabilístico (com probabilidade de erro $<50\%$) para o problema de Deutsch-Jozsa.}
+ \end{table}
+ 
+Essa comparação entre o desempenho clássico e quântico, no entanto, não pode ser considerada muito seriamente. Há que se levar em conta que são arquiteturas diferentes: aplicar uma operação $f$ clássica (correspondente a chamar uma subrotina ``caixa preta'') e aplicar o oráculo de fase $O_\text{F}(f)$ em um circuito quântico são coisas distintas. Não é claro que essas operações têm custo computacional equivalente para que sejam comparadas diretamente como na tabela apresentada. Por outro lado, como comparação simplificada, essa análise serve para se ter uma noção dos ganhos que a Computação Quântica poderia trazer em relação a Computação Clássica. 
+
+Em relação ao algoritmo clássico determinístico, o algoritmo quântico apresenta ganho exponencial em desempenho. Já em relação ao algoritmo clássico probabilístico, o desempenho é semelhante.
+
+\end{subsection}
+
+\end{section}
+
+\begin{section}{Algoritmo de Simon}
+ 
+ Assim como no caso do Algoritmo de Deutsch-Jozsa, o Algoritmo de Simon é um algoritmo quântico projetado para resolver o Problema de Simon. Esse problema também tem propósito de funcionar como laboratório de testes para a Computação Quântica, não apresentando aplicações conhecidas. A principal referência para esta seção são as videoaulas U2.3 da subunidade SU2 disponíveis em \cite{videolecture:qisI_p2}. 
+ 
+  \begin{subsection}{Problema de Simon}
+   
+   O problema de Simon é um problema de promessa, em que é dada uma função booleana $f \colon \{ 0,1 \}^n \to  \{ 0,1 \}^n$ que pode ser ou 1-para-1 ou 2-para-1. Esses termos serão definidos e acompanhados de exemplos para melhor entendimento. Em seguida, o enunciado do problema de Simon será escrito formalmente. 
+   
+   \begin{definition}[Função 1-para-1 e 2-para-1]
+    Seja $f \colon \{ 0,1 \}^n \to  \{ 0,1 \}^n$ uma função booleana de $n$ para $n$ bits.
+    
+    A função $f$ é dita \emph{1-para-1} se é uma bijeção\footnote{Isto é, (1) se não repete valores para diferentes entradas e (2) se o seu resultado varre todas as opções de palavras de $n$ bits. O item (1) significa que $f$ é \emph{injetiva} e (2) significa que $f$ é \emph{sobrejetiva}. Em símbolos, essas propriedades ficam:
+    \begin{itemize}
+     \item[(1)] $x_1,x_2 \in \mathbb{B}_n, \ \ x_1 \neq x_2 \implies f(x_1) \neq f(x_2)$ 
+     \item[(2)] $\forall y \in \mathbb{B}_n, \exists x \in \mathbb{B}_n \colon y = f(x)$.
+    \end{itemize}
+    }. Nesse caso, isso significa que cada resultado $y \in  \{ 0,1 \}^n$ é obtido por exatamente uma entrada $x_1$, ou seja, $f(x_1) = y$. Cada duas entradas distintas $x_1 \neq x_2$ geram resultados diferentes $f(x_1) \neq f(x_2)$.
+    
+    A função $f$ é dita \emph{2-para-1} se cada resultado $y \in  \{ 0,1 \}^n$ é obtido por exatamente duas entradas $x_1$ e $x_2$, isto é, $f(x_1) = f(x_2) = y$. 
+   \end{definition}
+   
+   O problema de Simon requer um compromisso para a função booleana de entrada. A propriedade que a função deve satisfazer é chamada, no presente trabalho, de \emph{propriedade de Simon}.
+   
+   \begin{definition}[Propriedade de Simon]
+    Sejam $f \colon \{ 0,1 \}^n \to  \{ 0,1 \}^n$ uma função booleana de $n$ para $n$ bits e $c \in  \{ 0,1 \}^n$.
+    
+    Diz-se que $f$ satisfaz a \emph{propriedade de Simon} se 
+    \[f(x_1) = f(x_2) \Longleftrightarrow x_2 = x_1 \oplus c \ , \]
+    em que a operação $\oplus$ é a XOR (ou seja, adição módulo 2) realizada bit a bit nos dois vetores de bits. 
+   \end{definition}
+
+
+   \begin{example}
+    A função booleana $f \colon \{ 0,1 \}^2 \to  \{ 0,1 \}^2$ definida pela tabela abaixo é 1-para-1.
+    \[
+    \begin{array}{c|c}
+     x & f(x) \\ \hline 
+     00  & 10 \\
+     01  & 11 \\
+     10  & 00 \\
+     11  & 01
+    \end{array} \]
+   
+   \end{example}
+   
+   \begin{example}
+    A função booleana $f \colon \{ 0,1 \}^2 \to  \{ 0,1 \}^2$ definida pela tabela abaixo é 2-para-1.
+    \[
+    \begin{array}{c|c}
+     x   & f(x) \\ \hline 
+     00  & 10 \\
+     01  & 01 \\
+     10  & 10 \\
+     11  & 01
+    \end{array} \]
+    
+    Essa função também satisfaz a propriedade de Simon com $c = 10$. De fato, 
+    \[ \begin{array}{lll}
+        10 = 00 \oplus 10 & & f(00) = f(10) = 10  \\
+        11 = 01 \oplus 10 & & f(01) = f(11) = 01 \ .
+       \end{array} \]
+   \end{example}
+
+   \begin{remark}
+    Nem toda função booleana 2-para-1 satisfaz a propriedade de Simon. De fato, a função $f \colon \{ 0,1 \}^3 \to  \{ 0,1 \}^3$ dada por\footnote{Para simplificar, usou-se a notação que confunde uma palavra de bits com sua representação por número inteiro sem sinal. Ver observação \ref{cap5:rmk_notacao_vetor_bits_nro_inteiro}.}
+    \[
+    \begin{array}{c|cccc|c}
+     x    & f(x) & & & x & f(x) \\ \cline{1-2} \cline{5-6}
+     000  & 2 & & & 100  & 2 \\
+     001  & 5 & & & 101  & 3 \\
+     010  & 1 & & & 110  & 1 \\
+     011  & 5 & & & 111  & 3
+    \end{array} \]
+    Essa função é 2-para-1. Se satisfizesse a propriedade de Simon, existiria $c$ satisfazendo $f(x\oplus c ) = f(x)$ para todo $x$. No entanto, 
+    \[ 
+        f(000) = f(100), 100 = 000 \oplus 100 \implies c = 100 \]
+    e tem-se que
+    \[  101 = 001 \oplus 100 \ \text{mas} \ f(101) \neq f(001) \ .\]
+    Essa contradição significa que a propriedade de Simon não é satisfeita.
+   \end{remark}
+   
+   \begin{remark}
+    Se $f$ satisfaz a propriedade de Simon com $c=0\ldots0$, então $f$ é 1-para-1. E se $f$ satisfaz a propriedade de Simon com $c\neq 0\ldots0$, então $f$ é 2-para-1.
+   \end{remark}
+
+   De posse dessas definições, o problema de Simon tem o seguinte enunciado. 
+   
+  \begin{problem*}{de Simon}
+   Dada uma função booleana $f\colon \{ 0,1 \}^n \to  \{ 0,1 \}^n$ satisfazendo a propriedade de Simon, distinguir se $f$ é 1-para-1 ou se é 2-para-1 e encontrar o período $c$.
+  \end{problem*}
+  
+  \end{subsection}
+  
+  \begin{subsection}{Algoritmo de Simon}
+   
+   O algoritmo a ser apresentado pressupõe que a função booleana $f$ seja dada como um oráculo XOR (ver seção \ref{cap5:sec_oraculo_xor}). Também são necessários 2 registradores de $n$ qubits. O algoritmo descreve uma subrotina a ser repetida da ordem de $n$ vezes. Em cada iteração, obtém-se um pouco de informação, que será processada classicamente para obter como saída o valor de $c$ e a decisão se $f$ é 1-para-1 ou 2-para-1.
+   
+   \subsubsection*{Algoritmo de Simon}
+     \noindent \textbf{Entrada:} $O_\text{XOR}(f) = O$ \ \ (oráculo XOR associado a $f$)
+  \vspace{6pt} \\
+  \noindent \textbf{Procedimento:} \vspace{4pt} \\ 
+  $\begin{array}{lll}
+   \text{etapa 0:} & \ket{0}\ket{0} & \text{\small{preparação do estado inicial}} \vspace{2pt} \\ 
+   \text{etapa 1:} &\displaystyle \tfrac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{0} & \text{\small{$H^{\otimes n}$ no registrador 1}} \vspace{2pt} \\ 
+   \text{etapa 2:} &\displaystyle \tfrac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{f(x)} & \text{\small{aplicação de $f$ (oráculo XOR)}} \vspace{2pt} \\ 
+   \text{etapa 3:} &\displaystyle \tfrac{1}{2^n} \sum_{x\in\mathbb{B}_n}\sum_{y\in\mathbb{B}_n} \ket{y}\ket{f(x)} & \text{\small{$H^{\otimes n}$ no registrador 1}} \vspace{2pt} \\ 
+   \text{etapa 4:} &\text{\small{Medição}}    & \text{\small{obtém informação sobre a resposta}} \vspace{2pt} \\ 
+   \text{etapa 5:} &\multicolumn{2}{l}{\text{\small{Repetir etapas 0-4 }} \text{\small{da ordem de $n$ vezes}} } \vspace{2pt} \\ 
+   \text{etapa 6:} &\multicolumn{2}{l}{\text{\small{Computar a resposta }} \text{\small{classicamente com as }} \text{\small{informações obtidas}}  } 
+  \end{array} $
+  \vspace{6pt} \\
+  \textbf{Saída:} Após processamento clássico final, valor do período $c$ e decisão se $f$ é 1-para-1 ou 2-para-1.
+   
+   \subsubsection*{Circuito}
+       \begin{figure}[H]
+   Notação compacta:
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+    \lstick{\text{reg.1} \ \ \ket{0}^{\otimes n}} &  \ustick{\ n}\qw  & {/} \qw & \qw & \gate{H^{\otimes n}} & \ctrl{1}               & \gate{H^{\otimes n}} & \qw & \qw &\meter \\
+   \lstick{\text{reg.2} \ \ \ket{0}^{\otimes n}}  &  \ustick{\ n}\qw  & {/} \qw & \qw & \qw                  & \gate{O_\text{XOR}(f)} & \qw                  & \qw & \qw &\meter 
+   }
+   \]
+   \\ 
+   Notação expandida:
+   \small{
+   \[ 
+    \Qcircuit @C=5pt @R=4pt %@!R 
+    {
+    & & & \lstick{\ket{0}}  & \qw \gategroup{1}{1}{4}{1}{1.2em}{\{}& \qw & \gate{H} & \ctrl{1}                       & \gate{H} & \qw & \qw &\meter \\
+     & & & \lstick{\ket{0}}  & \qw & \qw & \gate{H} & \ctrl{2}                       & \gate{H} & \qw & \qw &\meter \\
+        \ustick{\text{reg.1}\quad \quad \quad \quad \ \ }  & & & &\vdots&        &          &                                &          &     &\vdots&   \\
+     & & & \lstick{\ket{0}}  & \qw & \qw & \gate{H} & \ctrl{2}                       & \gate{H} & \qw & \qw &\meter  \\
+              & & &          &     &     &          &                                &          &     &     &       \\
+    & & & \lstick{\ket{0}}  & \qw \gategroup{6}{1}{9}{1}{1.2em}{\{}& \qw & \qw      & \multigate{3}{O_\text{XOR}(f)} & \qw      & \qw & \qw &\meter \\
+    & & & \lstick{\ket{0}}   & \qw & \qw & \qw      & \ghost{O_\text{XOR}(f)}        & \qw      & \qw & \qw &\meter \\
+    \ustick{\text{reg.2}\quad \quad \quad \quad \ \ }    & & &   &\vdots&        &          & \ghostnoqw{O_\text{XOR}(f)}    &          &     &\vdots&      \\
+   & & &  \lstick{\ket{0}}  & \qw & \qw & \qw      & \ghost{O_\text{XOR}(f)}        & \qw      & \qw & \qw &\meter 
+   }
+   \]}
+   \caption{Uma iteração do algoritmo de Simon.}
+   \label{cap5:circuito_simon}
+  \end{figure}
+  \vspace{10pt} 
+  
+   \subsubsection*{Contas auxiliares}
+   
+   \begin{definition}
+    Usa-se a seguinte notação, com o intuito de simplificar algumas expressões:
+    \[ \begin{split} 
+       \tilde{0} &= +  \\
+       \tilde{1} &= - \ . 
+       \end{split} \]
+    Dado um vetor de bits $x \in \mathbb{B}_n$, escreve-se $\ket{\tilde{x}} = \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} }$ para designar um produto tensorial de estados $\ket{+}$ e $\ket{-}$. Por exemplo,
+    \[ \ket{x} = \ket{0110} \Longleftrightarrow \ket{\tilde{x}} = \ket{+--+} \ . \]
+   \end{definition}
+   
+   \begin{definition}
+    $\mathbb{B}_n$ é o conjunto de todos os vetores de $n$ bits. 
+   \end{definition}
+
+     
+   \begin{proposition}\label{cap5:prop_produto_tensorial_de_H_1}
+    Vale que 
+    \[ H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \op{\tilde{y}}{y} \ . \]
+   \end{proposition}
+  
+   \begin{proof}
+    Prova-se por indução em $n$. 
+    
+    Vale para $n=1$ qubit, já que $H$ pode ser escrito como
+    \[ H = \op{+}{0} + \op{-}{1} \ . \]
+    
+    Vale para $n=2$ qubits, pois
+    \[ \begin{split} 
+       H^{\otimes 2} 
+       &= H \otimes H \\
+       &= \big( \op{+}{0} + \op{-}{1} \big) \otimes  \big( \op{+}{0} + \op{-}{1} \big) \\
+       &= \op{++}{00} + \op{+-}{01} + \op{-+}{10} + \op{--}{11} \\
+       &= \sum_{y \in \mathbb{B}_2}\op{\tilde{y}}{y} \ . 
+       \end{split}\]
+    
+    Supõe-se, então, que seja válido para $n$ qubits. Verifica-se o caso $n+1$:
+    \[ \begin{split} 
+       H^{\otimes n+1} 
+       &= H^{\otimes n} \otimes H \\
+       &= \left( \sum_{y \in \mathbb{B}_n}\op{\tilde{y}}{y} \right) \otimes \big( \op{+}{0} + \op{-}{1} \big) \\
+       &= \left( \sum_{y \in \mathbb{B}_n}\op{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1}}{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\op{+}{0}}_{y_n = 0} + \underbrace{\op{-}{1}}_{y_n = 1} \big) \\
+       &= \sum_{y \in \mathbb{B}_{n+1}} \op{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1} \tilde{y}_n}{y_0 y_1 \ldots y_{n-1} y_n} \\
+       &= \sum_{y \in \mathbb{B}_{n+1}} \op{\tilde{y}}{y} \ .
+       \end{split} \]
+       Isso conclui a indução em $n$.
+   \end{proof}
+
+   
+   \begin{proposition}\label{cap5:prop_produto_tensorial_estados_+-}
+    Vale que
+    \[ \ket{\tilde{x}} = \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y} \ , \]
+    em que $x \cdot y = x_0 y_0 + x_1 y_1 + \ldots + x_{n-1}y_{n-1}$.
+   \end{proposition}
+
+   \begin{proof}
+    Mostra-se por indução em $n$. 
+    
+    Para $n=1$ qubit, tem-se que
+    \[ \begin{split}
+        \ket{\tilde{0}} &= \ket{+} = \frac{1}{\sqrt{2}} \big( \ket{0} + \ket{1} \big) \\
+        \ket{\tilde{1}} &= \ket{-} = \frac{1}{\sqrt{2}} \big( \ket{0} - \ket{1} \big) \ .
+       \end{split} \]
+       
+   Para $n=2$ qubits, tem-se que 
+   \[ \begin{split}
+        \ket{\tilde{0} \tilde{0} } &= \ket{++} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} + \ket{01} + \ket{10} + \ket{11} \big) \\
+        \ket{\tilde{0} \tilde{1} } &= \ket{+-} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} - \ket{01} + \ket{10} - \ket{11}\big) \\ 
+        \ket{\tilde{1} \tilde{0} } &= \ket{-+} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} + \ket{01} - \ket{10} - \ket{11} \big) \\ 
+        \ket{\tilde{1} \tilde{1} } &= \ket{--} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} - \ket{01} - \ket{10} + \ket{11} \big) \ ,
+       \end{split} \]
+   que pode ser resumido em
+   \[ \ket{\tilde{x}} = \frac{1}{\sqrt{2^2}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}  \ . \]
+   
+   Assume-se que o enunciado seja válido para $n$ qubits. O caso $n+1$ fica como a seguir.
+   \[ \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} \tilde{x}_n } = \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{\tilde{x}_n } \]
+   Caso $\tilde{x}_n = +$, tem-se
+   \[ \begin{split}
+      &\ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} + } \\
+      \phantom{x}  &= \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{+} \\
+       &=  \left(\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y} \right) \otimes \ket{+}  \\
+       &=  \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y_0 \ldots y_{n-1}}  \otimes \frac{1}{\sqrt{2}} \big( \ket{0} + \ket{1} \big) \\
+       &=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \big( \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} +  \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \big) \\
+       &=  \frac{1}{\sqrt{2^{n+1}}} \Biggg( \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
+       & \qquad \qquad \qquad \qquad \qquad +\ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \Biggg) \\
+       &= \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_{n+1}} (-1)^{(x_0 \ldots x_{n-1}0)\cdot y} \ket{y_0 \ldots y_{n-1} y_n } \ .
+      \end{split}   \]
+   No caso $\tilde{x}_n = -$, tem-se
+   \[ \begin{split}
+      &\ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} - } \\
+      \phantom{x}  &= \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{-} \\
+       &=  \left(\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y} \right) \otimes \ket{-}  \\
+       &=  \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y_0 \ldots y_{n-1}}  \otimes \frac{1}{\sqrt{2}} \big( \ket{0} - \ket{1} \big) \\
+       &=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \big( \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} -  \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \big) \\
+       &=  \frac{1}{\sqrt{2^{n+1}}} \Biggg( \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
+       & \qquad \qquad \qquad \qquad \qquad + \ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \Biggg) \\
+       &= \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_{n+1}} (-1)^{(x_0 \ldots x_{n-1}1)\cdot y} \ket{y_0 \ldots y_{n-1} y_n } \ .
+      \end{split}   \]
+      
+      Isso conclui a demonstração.
+   \end{proof}
+
+   \begin{proposition}\label{cap5:prop_expressao_para_prod_tens_portas_hadamard}
+    O produto tensorial de $n$ operadores de Hadamard é dado por 
+    \[ H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y \in \mathbb{B}_n} (-1)^{x \cdot y} \op{x}{y} \ . \]
+   \end{proposition}
+   
+   \begin{proof}
+    Usando as proposições \ref{cap5:prop_produto_tensorial_de_H_1} e \ref{cap5:prop_produto_tensorial_estados_+-}, tem-se que 
+    \[ H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \op{\tilde{y}}{y} = \sum_{y \in \mathbb{B}_n} \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}\op{x}{y} \ . \qedhere \]
+   \end{proof}
+
+   \begin{proposition}\label{cap5:prop_expressao_para_hadamard_aplicada_a_vetor_na_base_comp}
+    A aplicação de $H^{\otimes n}$ a um estado $\ket{x} = \ket{x_{0} x_1 \ldots x_{n-1}}$ na base computacional é dada por 
+    \[ H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y} \ , \]
+    em que $x \cdot y = x_0 y_0 + x_1 y_1 + \ldots + x_{n-1}y_{n-1}$.
+   \end{proposition}
+   
+   \begin{proof}
+    Usando as proposição \ref{cap5:prop_expressao_para_prod_tens_portas_hadamard}, tem-se que
+    \[ \begin{split}
+        H^{\otimes n} \ket{x} 
+        &= \frac{1}{\sqrt{2^n}} \sum_{y,z\in\mathbb{B}_n} (-1)^{y\cdot z} \ket{y}\bra{z} \ket{x} \\
+        &= \frac{1}{\sqrt{2^n}} \sum_{y,z\in\mathbb{B}_n} (-1)^{y\cdot z} \ket{y} \delta_{z,x} \\
+        &= \frac{1}{\sqrt{2^n}} \sum_{y \in\mathbb{B}_n} (-1)^{y\cdot x} \ket{y} \ . 
+       \end{split}  \]
+   \end{proof}
+
+   \begin{remark}\label{cap5:rmk_notacao_analoga_a_produto_interno_de_vetores_de_bits}
+    A soma e o produto em 
+    \[ x \cdot y = x_0 y_0 + x_1 y_1 + \ldots + x_{n-1}y_{n-1} \tag{int} \] podem ser entendidos como operações com números ou como operações com bits
+    \[ x \cdot y = x_0 y_0 \oplus x_1 y_1 \oplus \ldots \oplus x_{n-1}y_{n-1} \tag{bit} \]
+    em que o produto é dado pela AND e a soma $\oplus$ é dada pela XOR. Ambas as expressões resultam no mesmo sinal $(-1)^{x\cdot y}$, pois a expressão (bit) corresponde a (int) módulo 2, visto que a AND se comporta como um produto e a XOR, como uma adição módulo 2. 
+   \end{remark}
+   
+   \subsubsection*{Etapas da subrotina de Simon}
+   As etapas da subrotina quântica são mostradas em detalhes no texto que segue. Inicialmente, aplica-se $H^{\otimes n}$ ao primeiro registrador, obtendo-se 
+   \[ \ket{\psi_1} = \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{0} , \]
+   em que o primeiro ket engloba $n$ qubits e representa o primeiro registrador, e o segundo ket contém $n$ bits e representa o segundo registrador. 
+   
+   A aplicação do oráculo na etapa 2 mantém o primeiro registrador e faz a XOR bit a bit de $0$ com $f(x)$:
+   \[ \begin{split}
+       \ket{\psi_2} 
+       &= O_{\text{XOR}} \ket{\psi_1} \\
+       &= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} O_{\text{XOR}} \ket{x}\ket{0} \\
+       &= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{f(x)} \ .
+      \end{split} \]
+   
+   Na etapa 3, aplica-se novamente $H^{\otimes n}$ ao primeiro registrador:
+  \[ \begin{split} 
+       \ket{\psi_3} 
+       &= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \big(H^{\otimes n}\ket{x}\big)\ket{f(x)} \\
+       &= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n}\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \\
+       &= \frac{1}{2^n} \sum_{x\in\mathbb{B}_n} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \ . 
+      \end{split} \tag{$\ast$} \]
+      
+      \begin{comment}
+  É conveniente passar o somatório em $x$ para o segundo registrador, ficando com:
+  \[ \begin{split}
+       \ket{\psi_3} 
+       &= \frac{1}{2^n} \sum_{y\in\mathbb{B}_n} \ket{y}\left( \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}  \ket{f(x)} \right) \ .
+       \end{split} \]
+       \end{comment}
+       
+  A medida na base computacional, na etapa 4, faz o estado do sistema colapsar em $\ket{y}\ket{z}$, com $z=f(x)$. Como $f$ tem a propriedade de Simon, os únicos valores que resultam em $z$ pela aplicação de $f$ são
+  \[ z = f(x_1) = f(x_2) \ , \ \ x_2 = x_1 \oplus c \ . \]
+  
+  \subsubsection*{Probabilidades nas medições}
+  
+  Caso $c \neq 0$, o coeficiente multiplicando o estado $\ket{y}\ket{z}$ em ($\ast$) é dado por
+  \[ \begin{split} 
+     a_{y,z}
+     &= \frac{1}{2^n} \big( (-1)^{x_1 \cdot y} + (-1)^{x_2 \cdot y} \big) \\
+     &= \frac{1}{2^n} \big( (-1)^{x_1 \cdot y} + (-1)^{(x_1 \oplus c) \cdot y} \big) \\
+     &= \frac{1}{2^n} \big( (-1)^{x_1 \cdot y} + (-1)^{(x_1 \cdot y) \oplus (c \cdot y)} \big) \\
+     &= \frac{1}{2^n} \big( (-1)^{x_1 \cdot y} + (-1)^{x_1 \cdot y} (-1)^{ c \cdot y} \big) \\
+     &= \frac{1}{2^n} (-1)^{(x_1 \cdot y)} \big( 1 + (-1)^{ c \cdot y} \big) \\
+     &= \begin{cases} 
+         0 & \ \ \   c\cdot y = 1 \ , \\
+         (-1)^{(x_1 \cdot y)} \frac{2}{2^n} & \ \ \   c \cdot y = 0 \ .
+        \end{cases}
+     \end{split} \]
+  A probabilidade de se encontrar o sistema no estado $\ket{y}\ket{z}$ é, então,
+  \[ \begin{split}
+      p_{y,z} 
+      &= \abs{a_{y,z}}^2 = \begin{cases} 
+         0 & \ \ \  c\cdot y = 1 \\
+         \frac{2^2}{2^{2n}} & \ \ \  c \cdot y = 0
+        \end{cases}
+     \end{split} \tag{p1} \]
+ Assim, a medida só fornece vetores de bits $y$ perpendiculares a $c$. A informação que se ganha para encontrar $c$ é a equação
+ \[ c \cdot y = c_1 y_1 \oplus c_1 y_1 \oplus \ldots \oplus c_n y_n = 0  \ . \]
+ 
+ Caso $c = 0$, o coeficiente em ($\ast$) fica apenas
+    $
+     a_{y,z}
+      = \frac{1}{2^n} (-1)^{x_1 \cdot y}
+     $
+ e a probabilidade de se encontrar o sistema em $\ket{y}\ket{z}$ é
+     \[
+     p_{y,z}
+     =  \abs{a_{y,z}}^2 = 2^{-2n} \ . \tag{p2}
+     \]
+     Logo, qualquer vetor de bits $y$ pode sair como resultado da medição. 
+     
+     \subsubsection*{Encontrando o valor do período $c$ -- exemplo}
+     
+     Primeiramente, apresenta-se o processamento para encontrar o período $c$ em um exemplo, com o objetivo de facilitar a compreensão do método no caso geral.
+     
+       \begin{example}[Encontrando período $c$ com o algoritmo de Simon]
+      \ 
+      
+        Seja $n = 4$ bits. Aplica-se a primeira iteração da subrotina quântica do algoritmo de Simon. Suponha que se obteve o resultado $y^{(1)} = 0111$. Esse resultado gera a equação
+      \[ y^{(1)} \cdot c = 0 \implies c_2 \oplus c_3 \oplus c_4 = 0 \implies c_2 = c_3 \oplus c_4 \ . \]
+      Continua-se aplicando a subrotina até se obter $n-1 = 3$ equações LI.
+      
+      A segunda iteração fornece $y^{(2)} = 1001$. Esse resultado corresponde à equação
+      \[ y^{(2)} \cdot c = 0 \implies c_1 \oplus c_4 = 0  \ , \]
+      e o sistema, após simplificação, fica
+      \[ \begin{cases}
+           c_2 = c_3 \oplus c_4 \\
+           c_1 = c_4 \ .
+         \end{cases} \]
+      Como ainda não são 3 equações LI, continua-se a iteração.
+      
+      Na terceira iteração, o resultado é $y^{(3)} = 1110$. A equação correspondente é
+      \[ y^{(3)} \cdot c = 0 \implies c_1 \oplus c_2 \oplus c_3 = 0  \implies c_4 \oplus (c_3 \oplus c_4)\oplus c_3 = 0 \implies 0 = 0 \ , \]
+      e essa equação não fornece informação útil. O sistema continua sendo de 2 equações LI:
+       \[ \begin{cases}
+           c_2 = c_3 \oplus c_4 \\
+           c_1 = c_4 \ .
+         \end{cases} \]
+         
+     Na quarta iteração obtém-se $y^{(4)} = 0001$, e a equação que esse resultado gera é
+     \[ y^{(4)} \cdot c = 0 \implies c_4 = 0  \ . \]
+     O sistema fica
+     \[ \begin{cases}
+           c_2 = c_3 \\
+           c_1 = 0  \\
+           c_4 = 0  \ .
+         \end{cases} \]
+     Agora são $3 = n-1$ equações LI. As soluções são $c' = 0000$ e $c'' = 0110$. Poder-se-ia concluir que $f$ é 2-para-1 com período $c=0110$. No entanto, a probabilidade de se estar errado nesse caso é a probabilidade de se obter 4 resultados no mesmo subespaço de dimensão 3, sendo que $f$ seria 1-para-1 e os $2^n = 2^4$ resultados seriam equiprováveis: 
+     \[ \varepsilon_4 \lesssim 1 \cdot 1 \cdot 1 \cdot \frac{2^3}{2^4} = \frac{1}{2} \]
+     
+     Para reduzir a probabilidade de erro, aplica-se a subrotina novamente. Suponha que obtém-se $y^{(5)} = 1111$. Verifica-se se  $y^{(5)} \perp c''$ ou não. Caso não fosse, concluir-se-ia que haveria mais uma equação independente e o sistema só teria solução $c'=0$. Não é esse o caso aqui, pois 
+     \[ y^{(5)} \cdot c'' = 1111 \cdot 0110 = 0 \oplus 1 \oplus 1 \oplus 0 = 0 \implies y^{(5)} \perp c'' \ . \]
+     Poderia concluir-se, nessa etapa, que $f$ é 2-para-1 com probabilidade de erro igual à probabilidade de se sortear aleatoriamente 5 vetores e todos cairem no mesmo subespaço vetorial de dimensão 3:
+     \[ \varepsilon_5 \lesssim 1 \cdot 1 \cdot 1 \cdot \frac{2^3}{2^4}\cdot \frac{2^3}{2^4} = \frac{1}{4} \ . \]
+     
+     Terminando o algoritmo na iteração 5, tem-se que $f$ é 2-para-1 e que o período é $c = 0110$. 
+     
+     A título de curiosidade, a $f$ utilizada neste exemplo é disposta na tabela abaixo, em que $A, B, C, D, E, F, G$ e $H$ denotam 8 palavras distintas de 4 bits.
+      \[
+    \begin{array}{c|cccc|c}
+     x    & f(x) & & & x & f(x) \\ \cline{1-2} \cline{5-6}
+     0000  & A & & & 1000  & E \\
+     0001  & B & & & 1001  & F \\
+     0010  & C & & & 1010  & G \\
+     0011  & D & & & 1011  & H \\
+     0100  & C & & & 1100  & G \\
+     0101  & D & & & 1101  & H \\
+     0110  & A & & & 1110  & E \\
+     0111  & B & & & 1111  & F
+    \end{array} \]
+    Repare que, de fato, $f$ é 2-para-1 com $c = 0110$.
+     \end{example}
+     
+     \subsubsection*{Encontrando o valor do período $c$ -- caso geral}
+     
+ Repetindo a subrotina $m$ vezes, obtém-se os resultados $y^{(1)}, \ldots, y^{(m)}$ das medidas no registrador 1 e o sistema de equações lineares na incógnita $c = c_1 c_2 \ldots c_n$:
+ \[ \begin{cases}
+   \ y^{(1)} \cdot c = 0\\
+   \ y^{(2)} \cdot c = 0\\
+   \ \phantom{y^{(1)} \cdot c} \vdots \\
+   \ y^{(m)} \cdot c = 0
+  \end{cases} \tag{s} \]
+Esse sistema sempre admite a solução $c = 0$. Supõe-se que se tenha obtido, após a aplicação da subrotina por um número suficiente de vezes, um sistema linear com um número suficiente de equações linearmente independentes (ficará mais claro o que significaria ``suficiente'' nesse contexto). 
+
+\begin{remark}
+Para analisar esse sistema, é interessante considerar $\mathbb{B}_n$ como espaço vetorial sobre os escalares $\mathbb{B} = \{ 0,1 \}$ e com a soma de vetores dada pela XOR bit a bit $\oplus$. É possível verificar que esse espaço satisfaz os axiomas de espaço vetorial. Além disso, é possível imitar o produto interno em $\mathbb{R}^n$ ou $\mathbb{C}^n$ com a operação $r\cdot s = r_1 s_1 \oplus \ldots \oplus r_n s_n$. 
+
+O espaço $\mathbb{B}_n$ tem dimensão $n$ e contém $2^n$ vetores. A maioria dos resultados de Álgebra Linear se mantém para esse caso, exceto que esses espaços vetoriais têm um número finito de vetores e que é possível ter $x \neq 0$ e $x \cdot x = 0$, de forma que o produto $\cdot$ não é um produto interno em $\mathbb{B}_n$. Os subespaços de $\mathbb{B}_n$ têm dimensão $2^m, m\leq n$. O subespaço gerado por $c \neq 0$ é $\{0,c\}$ e tem dimensão 1. Se $W$ é um subespaço, então o conjunto $W^\perp$ dos vetores perpendiculares a $W$ é também um subespaço, e vale que $\dim W + \dim W^\perp = \dim \mathbb{B}_n = n$.
+
+Os livros de Códigos Corretores de Erros (da Computação Clássica) costumam denotar $\mathbb{B}$ por $GF(2)$, chamado \emph{campo de Galois} (\emph{Galois field}) de dois elementos. Uma referência contendo um resumo da teoria relacionada ao espaço vetorial $GF(2)^n$ é \cite{book:ecc_moon}, seção 2.4, p.75-80. 
+\vspace{8pt}
+\end{remark}
+
+Se $f$ for 1-para-1, espera-se que o sistema admita apenas a solução trivial $c=0$. Os valores $y^{(1)}, \ldots, y^{(m)}$ podem ser quaisquer dos $2^n$ vetores de bits em $\mathbb{B}_n$, por causa da equação (p2). Como a dimensão de $\mathbb{B}_n$ é $n$, há no máximo $n$ vetores de bits LI nesse espaço. Isso significa que o sistema acima é equivalente a um sistema de $n$ equações LI, e que só admite a solução trivial $c=0$, como esperado.
+
+Por outro lado, se $f$ for 2-para-1, espera-se que o sistema tenha duas soluções: $0$ e $c\neq 0$. Nesse caso, os valores $y^{(1)}, \ldots, y^{(m)}$ são, obrigatoriamente, perpendiculares ao vetor $c$. Se $W$ é o subespaço gerado por $c$, tem-se que  $y^{(1)}, \ldots, y^{(m)} \in W^\perp$ e que $\dim W = 1$ e $\dim W^\perp = n-1$, de forma que $\dim W + \dim W^\perp = \dim \mathbb{B}_n$. Assim, há no máximo $n-1$ vetores LI e perpendiculares a $c$. O sistema (s) é equivalente a um sistema de $n-1$ equações LI, e apresenta uma variável livre $c_j$, que pode assumir os valores 0 ou 1, gerando as soluções $0$ e $c\neq 0$, como era esperado. 
+
+Resumindo, se as $m$ repetições da subrotina quântica do algoritmo de Simon produzirem um sistema de equações com o máximo possível de equações LI, a solução do sistema fornecerá $c$ e, dependendo se há apenas a solução nula ou se, além dessa, há uma solução $c \neq 0$, pode-se distinguir os casos ``$f$ é 1-para-1'' ou ``$f$ é 2-para-1''. O número de repetições $m$ requerido é proporcional a $n$.
+
+\begin{comment}
+Na primeira iteração, o número de vetores que acrescentam informação é $2^n - 1$ dentre os $2^n$ possíveis (apenas o vetor nulo seria útil). Após obter um vetor não nulo, a próxima iteração tem a chance de $2^{n-1} - 1$ entre $2^n$ de resultar num vetor que seja LI com o anterior. 
+\end{comment}
+     
+   \subsubsection*{Probabilidade de erro}
+   
+    Em relação à probabilidade de erro no caso geral, tem-se o seguinte. A partir de um número de iterações suficientemente grande (da ordem de $n$), a cada nova iteração, ou se descobre que $f$ é 1-para-1 (resultado cada vez mais improvável) ou se escolhe que $f$ é 2-para-1 com probabilidade de erro:
+     \[ \varepsilon_m \lesssim \underbrace{1  \ldots  1}_{n-1 \text{ vezes}} \cdot \underbrace{ \frac{2^{n-1}}{2^n} \ldots \frac{2^{n-1}}{2^n}}_{m-(n-1) \text{ vezes}} = \frac{1}{2^{m-n+1}} \ . \]
+    Essa estimativa não é exata, pois está considerando o caso em que $n-1$ resultados forneceram vetores de bits não-nulos e LI, e os outros resultados cairam no subespaço gerado pelos $n-1$ vetores LI. Poderia ter acontecido de se obter menos vetores LI e os outros cairem no subespaço gerado por eles, apesar de parecer menos provável. Essa estimativa, contudo, serve para dar uma pista quanto à quantidade de iterações do algoritmo quântico. Dessa forma, se o número de iterações $m$ for da ordem de $n$, a probabilidade de erro pode ser feita menor que $1/2$.
+     
+  \end{subsection}
+  
+  \begin{subsection}{Algoritmo Clássico}
+  
+  \subsubsection*{Algoritmo Clássico Determinístico}
+  
+   Um algoritmo clássico para o Problema de Simon consiste em escolher entradas $x$ em $\mathbb{B}_n$, calcular $f(x)$ e comparar com os outros valores já obtidos, até que se encontre um par de vetores distintos $x_{(1)}$ e $x_{(2)}$ com $f(x_{(1)}) = f(x_{(2)})$ ou até que se possa concluir que $f$ é 1-para-1. 
+   
+   Supondo que seja possível armazenar todas as entradas testadas e seus resultados pela aplicação da $f$, na pior das hipóteses, deve-se calcular $f$ para metade das entradas mais uma, isto é, $2^{n}/2 + 1$ vezes. Caso $f$ seja 1-para-1, todos os resultados seriam distintos, e caso $f$ seja 2-para-1, na pior das hipóteses, na tentativa de número $2^{n}/2 + 1$ será obtido um valor repetido após aplicação da função. 
+   
+   \subsubsection*{Algoritmo Clássico Probabilístico}
+   
+   Para melhorar o desempenho do algoritmo determinístico acima, pode-se relaxar o desempenho, permitindo-se uma probabilidade de erro $\varepsilon$ na escolha. Sorteia-se aleatoriamente $x$ dentre o conjunto de entradas não testadas ainda, calcula-se $f(x)$ e compara-se o valor obtido com o fornecido pelas entradas já testadas. Repete-se por um número suficiente de tentativas ou até algum par ser encontrado; se nenhum par foi encontrado, decide-se por ``$f$ é 1-para-1'' e se for encontrado, decide-se por ``$f$ é 2-para-1'' e utiliza-se o par $x_{(1)}, x_{(2)}$ encontrado para calcular $c = x_{(1)}\oplus x_{(2)}$.
+      
+   Após $m$ iterações, o número de pares já testados é $N_{\text{ob}}$, em que
+   \[ N_{\text{ob}} = \binom{m}{2} = \frac{m(m-1)}{2} \ ,\]
+   isto é, o número de pares que se pode formar dentre $m$ elementos distintos sem importar a ordem em que se encontram no par.
+   
+   Caso $f$ seja 2-para-1, o número de pares desejado (ou seja, que resultam no mesmo valor após aplicação de $f$) é $N_{\text{des}}$ dado por
+   \[ N_{\text{des}} = \frac{2^n}{2} \ . \]
+   
+   A probabilidade de pelo menos um par desejado ter sido obtido após $k$ iterações é
+   \[ p_m = \frac{N_{\text{ob}}}{N_{\text{des}}} = \frac{m(m-1)}{2^n} \ . \]
+   
+   Caso nenhum par desejado tenha sido encontrado, opta-se por ``$f$ é 1-para-1'' com probabilidade de erro dada por 
+   \[ \varepsilon_m = 1 - p_m = 1 - \frac{m(m-1)}{2^n} \ . \]
+   Para que a probabilidade de erro seja $\varepsilon < 1/2$, deve-se ter
+   \[ \varepsilon_m < \frac{1}{2} \implies  \frac{m(m-1)}{2^n} > \frac{1}{2} \implies m^2 - m - 2^{n-1} > 0 \ . \]
+   Resolvendo para $m > 0$, deve-se ter 
+   \[ m > \frac{1 + \sqrt{1 + 2^{n+1}}}{2} \ , \]
+   logo $m$ deve ser da ordem de $2^{n/2}$ iterações. 
+   
+  \end{subsection}
+  
+  \begin{subsection}{Comparação de Desempenho}
+   
+   O desempenho dos algoritmos clássico determinístico, clássico probabilístico e quântico são resumidos na tabela abaixo.
+ 
+ \begin{table}[H]
+  \centering
+  \begin{tabular}{l|l}
+  \bigstrut Algoritmo  &  Desempenho (\# aplicações de $f$) \\ \hline
+ \bigstrut[t] Class. Det. & da ordem de $2^n/2$ aplicações \\
+  Class. Prob. & da ordem de $2^{n/2}$ aplicações \\
+  Quântico & da ordem de $n$ aplicações
+  \end{tabular}
+  \caption{Comparação de desempenho entre os algoritmos quântico, clássico determinístico e clássico probabilístico (com probabilidade de erro $<50\%$) para o Problema de Simon.}
+ \end{table}
+ 
+Da mesma forma como no problema de Deutsch-Jozsa, essa comparação tem limitações, mas serve como laboratório para testar em que situações a Computação Quântica pode trazer vantagem computacional em relação à Computação Clássica. Em particular, esse é um exemplo em que o algoritmo quântico apresenta ganho exponencial em desempenho em relação aos algoritmos clássicos existentes. 
+
+  \end{subsection}
+
+
+ 
+\end{section}
+
+\begin{section}{Algoritmo de Busca de Grover}
+
+ 
+ Esta seção aborda o Algoritmo de Grover, um algoritmo quântico que permite encontrar um elemento em uma lista não ordenada. Uma descrição mais rigorosa desse problema, bem como as alternativas clássicas para o mesmo são apresentadas neste texto. As referências utilizadas nesta parte são o livro \cite{book:icq_portugal}, capítulo 3, e as videoaulas U2.6 da subunidade SU4 do curso \cite{videolecture:qisI_p2}.
+ 
+ \begin{subsection}{Problema de Grover}
+  
+  O problema de Grover consiste em encontrar um elemento específico em uma lista de $2^n$ itens. A lista é formada por palavras binárias de $n$ dígitos. Há uma função booleana $f\colon \{ 0,1 \}^n \to \{ 0,1 \}$ que só sinaliza '1' para uma entrada $x_0$ em particular, que pode ser desconhecida. Em outras palavras, a função $f$ pode ser descrita por 
+  \[ f(x) = \begin{cases}
+             0 \ , \ x \neq x_0 \\
+             1 \ , \  x = x_0 \ .
+            \end{cases} \]
+  A maneira de saber se o item $x$ considerado corresponde ao desejado é por meio da aplicação de $f$. Essa função poderia ser chamada de ``teste'', e caso se queira saber se o item $x$ da lista é o desejado (em outras palavras, se $x = x_0$), deve-se fazer o teste em $x$ e ver se o teste resulta em '1' (item desejado foi encontrado) ou '0' (o item testado não é o desejado).
+  
+  \begin{problem*}{de Grover}
+  Encontrar a única entrada $x_0 \in  \{ 0,1 \}^n$ tal que o resultado do teste $f$ sinaliza '1'. Ou seja, encontrar único $x_0$ com 
+  \[f(x_0) = 1 \ . \]
+  \end{problem*}
+  
+  Em seguida, um algoritmo quântico é apresentado para resolver o problema de forma mais eficiente do que seria possível classicamente. 
+ 
+ \end{subsection}
+
+ \begin{subsection}{Algoritmo de Grover}
+ 
+ O algoritmo de Grover é um algoritmo quântico para resolução do problema de Grover, que consiste em encontrar o elemento em uma lista por meio de um teste $f$, e o elemento desejado é o único $x_0$ que faz com que o teste sinalize 1. O algoritmo quântico consiste em aplicar uma subrotina quântica, o operador de Grover, por um número de vezes da ordem de $\sqrt{N}$, em que $N=2^n$ é o número de itens na lista, indexados por $n$ bits.
+ 
+  \subsubsection*{Algoritmo de Grover}
+  \noindent \textbf{Entrada:} $O_\text{F}(f) = O$ \ \ (oráculo de fase associado à função booleana $f$)
+  \vspace{6pt} \\
+ \noindent \textbf{Procedimento:} \vspace{4pt} \\
+  $\begin{array}{lll}
+   \text{etapa 0:} & \ket{0}^{\otimes n} & \text{\small{preparação do estado inicial}} \\
+   \text{etapa 1:} & H^{\otimes n}\ket{0}^{\otimes n} & \text{\small{superposição dos estados na base computacional}} \\
+   \text{etapa 2:} & G & \text{\small{aplicação do operador de Grover}} \\
+   \text{etapa 3:} & \multicolumn{2}{l}{\text{\small{repetir etapa 2  por $k$ vezes, com}}}  \\
+                   & \multicolumn{2}{l}{k = \dfrac{\acos(\frac{1}{\sqrt{N}})}{\acos(\frac{N-2}{N})} \ , \ \ N = 2^n \ .}
+   \end{array} $ \vspace{6pt} \\  
+    \noindent \textbf{Operador de Grover $G$:} \vspace{4pt} \\
+  $\begin{array}{lll}
+   \text{etapa 1:} & O_\text{F}\ket{+}^{\otimes n} & \text{\small{aplicação de $f$ (oráculo de fase)}}  \\ 
+   \text{etapa 2:} & H^{\otimes n} & \\
+   \text{etapa 3:} &  2\op{0}{0} - I &  \\
+   \text{etapa 4:} & H^{\otimes n} &  \\
+  \end{array} $ 
+  \vspace{6pt} \\
+  \textbf{Saída:} Leitura do registrador fornece o item $x_0$ buscado, com probabilidade de acerto
+   \[ P_a >\frac{N-1}{N} , \ \ N = 2^n  \ . \]
+   
+   \subsubsection*{Circuito}
+    \begin{figure}[H]
+   Notação compacta:
+   \[ 
+    \Qcircuit @C=5pt @R=15pt @!R 
+    {
+   \lstick{\ket{0}^{\otimes n}} &  \ustick{\ n}\qw  & {/} \qw & \qw & \gate{H^{\otimes n}} & \gate{G} & \gate{G} & \qw & \push{\cdots\ \, } & \gate{G} 
+   \gategroup{1}{6}{1}{10}{1.0em}{_\}}  & \qw & \qw &\meter \\
+   & & & & & & & \ustick{k \text{ vezes}} & & & & & } 
+   \]
+    \[ 
+    \Qcircuit @C=5pt @R=15pt @!R 
+    {
+    &  \ustick{\ n}\qw  & {/} \qw & \qw & \gate{G} & \qw & \qw & \qw & & = & & & \qw & \qw  & \gate{O_\text{F}(f)} & \gate{H^{\otimes n}} & \gate{2\op{0}{0} - I} & \gate{H^{\otimes n}} & \qw & \qw  }
+    \]
+\begin{comment}
+   \\ 
+   Notação expandida:
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{0}} & \qw & \qw & \qw & \gate{H} & \multigate{3}{O_\text{F}(f)} & \gate{H} & \qw & \qw &\meter \\
+   \lstick{\ket{0}} & \qw & \qw & \qw & \gate{H} & \ghost{O_\text{F}(f)}        & \gate{H} & \qw & \qw &\meter \\
+   \lstick{\vdots}  &     &     &     & \vdots   & \ghostnoqw{O_\text{F}(f)}    & \vdots   &     &     & \vdots  \\
+   \lstick{\ket{0}} & \qw & \qw & \qw & \gate{H} & \ghost{O_\text{F}(f)}        & \gate{H} & \qw & \qw &\meter 
+   }
+   \]
+\end{comment}
+   \caption{Algoritmo de Busca de Grover.}
+   \label{cap5:circuito_grover}
+  \end{figure}
+  
+  \subsubsection*{Notação auxiliar}
+  
+     Para facilitar, lista-se abaixo a notação utilizada nesse algoritmo:
+   \[ \ket{0} = \ket{0 \ldots 0} = \ket{0}^{\otimes n} \]
+   \[ \ket{\psi} := \ket{+}^{\otimes n}  \]
+   \[\mathbb{B}_n : \text{ conjunto de todas as palavras de $n$ bits} \]
+   \[ N := 2^n \ \ \begin{cases}
+                    \text{$n$: número de qubits de cada item da lista} \\
+                    \text{$N$: número de itens na lista } 
+                   \end{cases} \] 
+   \[ \ket{\alpha} := \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}} \frac{\ket{x}}{\sqrt{N-1}} \]       
+   \[ \ket{\beta} := \ket{x_0} \text{: item desejado na lista} \]
+   \[ S := \text{span}_\mathbb{R} \{ \ket{\alpha} , \ket{\beta} \} \text{: espaço vetorial gerado por $\ket{\alpha}$, $\ket{\beta}$ com escalares reais} \]
+ 
+  \subsubsection*{Contas auxiliares}
+  
+   Vale que:
+   \[ \begin{split} 
+       \ket{\psi} 
+       &= \ket{+}^{\otimes n} \\
+       &= \sum_{x \in \mathbb{B}_n} \frac{\ket{x}}{\sqrt{N}} \\
+       &= \frac{\sqrt{N-1}}{\sqrt{N}} \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}} \frac{\ket{x}}{\sqrt{N-1}} \ \   + \  \  \frac{\ket{x_0}}{\sqrt{N}} \\
+       &= \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta}
+      \end{split} \tag{$\psi$} \]
+      
+   A aplicação de $O_\text{F}$ em $\ket{\alpha}$ e $\ket{\beta}$ fica:
+   \[ \begin{split}
+    O_\text{F} \ket{\alpha} 
+    &=  O_\text{F}\sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}} \frac{\ket{x}}{\sqrt{N-1}}  \\
+    &= \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}}\frac{1}{\sqrt{N-1}} O_\text{F}\ket{x} \\
+    &= \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}}\frac{1}{\sqrt{N-1}} \ket{x} \\
+    &= \ket{\alpha}  \ , 
+   \end{split} \tag{$\alpha$} \]
+   \[ \begin{split}
+        O_\text{F} \ket{\beta} 
+        &=  O_\text{F} \ket{x_0}  \\
+        &=  - \ket{x_0} \\
+        &= - \ket{\beta} \ .
+      \end{split} \tag{$\beta$} \]
+      
+      O operador $G$ pode ser escrito como:
+    \[ \begin{split}
+        G 
+        &= H^{\otimes n} (2\op{0}{0} - I) H^{\otimes n} O_\text{F} \\
+        &= \big(2H^{\otimes n}\op{0}{0}H^{\otimes n} - H^{\otimes n}I H^{\otimes n}  \big)O_\text{F} \\
+        &= \big(2H^{\otimes n}\op{0}{0}(H^{\otimes n})^\dag - H^{\otimes n} H^{\otimes n}  \big)O_\text{F} \\
+        &= (2\op{\psi}{\psi} - I) O_\text{F} \ ,
+       \end{split} \tag{$G$} \]
+   em que foi definido $\ket{\psi} = \ket{+}^{\otimes n}$. 
+
+   \subsubsection*{Primeira aplicação do operador $G$}
+
+   Antes de aplicar o operador $G$ pela primeira vez, prepara-se o estado inicial fazendo uma superposição com pesos iguais em cada qubit:
+   \[ \begin{split}
+    \ket{\psi_0} 
+    &= H^{\otimes n} \ket{0}^{\otimes n} \\
+    &= \ket{+}^{\otimes n} \\
+    &= \ket{\psi} \\
+    &=  \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta}  \ \ \text{usando ($\psi$)} \ . \\
+   \end{split} \] 
+   Nota-se que $ \ket{\psi_0}$ pertence ao subespaço vetorial $S$ gerado por $\ket{\alpha},\ket{\beta}$ e com escalares reais. Isso permitirá uma interpretação geométrica muito útil para o entendimento do algoritmo. 
+   
+   Na etapa 1 de $G$, aplica-se o oráculo de fase ao estado inicial $\ket{\psi}$:
+   \[ \begin{split}
+       \ket{\psi_1} 
+       &= O_\text{F} \ket{\psi_0} \\
+       &= O_\text{F} \left( \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta}  \right) \ \ \text{usando ($\psi$)} \\
+       &= \frac{\sqrt{N-1}}{\sqrt{N}} O_\text{F} \ket{\alpha} + \frac{1}{\sqrt{N}} O_\text{F} \ket{\beta} \\
+       &= \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} - \frac{1}{\sqrt{N}} \ket{\beta}  \ \ \text{usando ($\alpha$) e ($\beta$)}
+      \end{split}  \]
+   O vetor $\ket{\psi_1}$ continua no espaço $S$, e a aplicação do oráculo de fase pode ser visualizada como uma reflexão em torno do eixo $\ket{\alpha}$.
+ 
+  \begin{figure}[H]
+  \centering
+\begin{tikzpicture}[>=stealth]
+\draw[->] (-1,0) -- (4,0)
+node[below right] {$\ket{\alpha}$};
+\draw[->] (0,-1) -- (0,4)
+node[left] {$\ket{\beta}$};
+\draw[gray,dashed] (2.954,-0.5209) arc (-10:100:3);
+\draw[->,thick] (0,0) -- (2.9885,0.26146)
+node[above right] {$\ket{\psi_0}$};
+\draw[->,thick] (0,0) -- (2.9885,-0.26146)
+node[below right] {$\ket{\psi_1}$};
+\end{tikzpicture}
+\caption{Aplicação do oráculo de fase equivale a uma reflexão em relação ao eixo $\ket{\alpha}$.}
+  \end{figure}
+  
+   As etapas 2, 3 e 4 de $G$ redundam em aplicar $2 \op{\psi}{\psi} - I$ em $ \ket{\psi_1} $, conforme equação ($G$). E a aplicação desse operador pode ser vista geometricamente de acordo com a figura abaixo.
+   \[ \begin{split}
+       \ket{\psi_2} 
+       &= (2 \op{\psi}{\psi} - I) \ket{\psi_1} \\
+       &= 2 \op{\psi}{\psi}\ket{\psi_1} - \ket{\psi_1}
+      \end{split} \]
+
+    \begin{figure}[H]
+  \centering
+\begin{tikzpicture}[>=stealth]
+% \draw[->] (-1,0) -- (4,0)
+% node[below right] {$\ket{\alpha}$};
+% \draw[->] (0,-1) -- (0,4)
+% node[left] {$\ket{\beta}$};
+% \draw[gray,dashed] (2.954,-0.5209) arc (-10:100:3);
+\draw[gray,dashed] (-0.99619469809,-0.08715574274) -- (6.97336288664,0.61009019923)
+node[above right] {$\ket{\psi}$};
+\draw[gray,dashed] (2.9885,-0.26146) -- (2.89777747887,0.7764571353);
+\draw[gray,dashed] (2.9885,-0.26146) -- (5.88619591729,0.51497541405);
+% \draw[->,thick] (0,0) -- (2.9885,0.26146);
+\draw[->,thick] (0,0) -- (2.9885,-0.26146)
+node[below left] {$\ket{\psi_1}$};
+\draw[->,thick] (0,0) -- (2.89777747887,0.7764571353)
+node[above left] {$\ket{\psi_2}$};
+\draw[->,thick,gray] (0,0) -- (2.94309795864,0.25748770702);
+\draw[->,thick,gray] (2.94309795864,0.25748770702) -- (5.88619591729,0.51497541405)
+node[below right] {$2\op{\psi}{\psi} \ket{\psi_1}$};
+\draw[->,thick,gray] (5.88619591729,0.51497541405) -- (2.89777747887,0.7764571353)
+node[above right] {$\ \ -\ket{\psi_1}$};
+\end{tikzpicture}
+\caption{Aplicação do operador $2\op{\psi}{\psi} - I$ equivale a uma reflexão em relação à reta determinada pelo vetor $\ket{\psi}$.}
+  \end{figure}
+   
+
+   
+   Dessa forma, a primeira aplicação do operador $G$ fornece o seguinte.
+   
+     \begin{figure}[H]
+  \centering
+\begin{tikzpicture}[>=stealth]
+\draw[->] (-1,0) -- (4,0)
+node[below right] {$\ket{\alpha}$};
+\draw[->] (0,-4) -- (0,4)
+node[left] {$\ket{\beta}$};
+\draw[gray,dashed] (-0.520944533,-2.95442325904) arc (-100:100:3);
+\draw[->,thick,black!70] (0,0) -- (2.9885,0.26146); %\psi_0
+\draw[->,thick,black!70] (0,0) -- (2.9885,-0.26146); %\psi_1
+\draw[->,thick] (0,0) -- (2.89777747887,0.7764571353); %\psi_2
+\draw[thick][black!70]  (1.99238939618,-0.17431148549) arc (-5:5:2);
+\draw[thick][black!70]  (1.99238939618,0.17431148549) arc (5:15:2);
+\draw[gray,dashed] (-0.99619469809,-0.08715574274) -- (3.08820356408,0.27018280251);
+% rótulos
+\draw[black!70] (2.9885,0.26146) node[right] {$\ket{\psi_0} = \ket{\psi}$};
+\draw[black!70] (2.9885,-0.26146) node[below right] {$\ket{\psi_1}$};
+\draw (2.89777747887,0.7764571353) node[above right] {$\ket{\psi_2} = G \ket{\psi}$};
+\draw[black!70] (2.1,0) node[right,fill=white,inner sep=1pt] {$\theta$};
+\draw[black!70]  (2.05,0.39) node[right,fill=white,inner sep=1pt] {$\theta$};
+\end{tikzpicture}
+\caption{Aplicação do operador $G$. O efeito corresponde à rotação do vetor por um ângulo $\theta$ no sentido anti-horário.}
+\label{cap5:fig_aplicacao_G_em_psi}
+  \end{figure}
+   
+   
+   
+   
+   \subsubsection*{Aplicações subsequentes do operador $G$}
+  
+    As aplicações sucessivas do operador de Grover têm o mesmo efeito descrito anteriormente. Cada aplicação de $G$ corresponde a uma rotação no sentido anti-horário. A figura a seguir ilustra a $l$-ésima aplicação de $G$.
+   
+   
+   
+        \begin{figure}[H]
+  \centering
+\begin{tikzpicture}[>=stealth]
+\draw[->] (-1,0) -- (4,0)
+node[below right] {$\ket{\alpha}$};
+\draw[->] (0,-4) -- (0,4)
+node[left] {$\ket{\beta}$};
+\draw[gray,dashed] (-0.520944533,-2.95442325904) arc (-100:100:3);
+\draw[gray,dashed] (2.12132034356,2.12132034356) -- (2.12132034356,-2.12132034356);
+\draw[gray,dashed] (2.12132034356,-2.12132034356) -- (1.72072930905,2.45745613287);
+\draw[->,thick,black!70] (0,0) -- (2.12132034356,2.12132034356); %\psi_0
+\draw[->,thick,black!70] (0,0) -- (2.12132034356,-2.12132034356); %\psi_1
+\draw[->,thick] (0,0) -- (1.72072930905,2.45745613287); %\psi_2
+\draw[gray,dashed] (-0.99619469809,-0.08715574274) -- (3.98477879237,0.34862297099)
+node[above right] {$\ket{\psi}$};
+% ângulos retos
+\draw[gray] (2.12132034356,0) rectangle ++(0.2,0.2);
+\draw[->] (-1,0) -- (4,0);
+\draw[rotate around={5:(1.92102482631,0.16806789465)},gray] (1.92102482631,0.16806789465) rectangle ++(-0.2,0.2);
+% ângulos
+\draw[gray]  (3,0) arc (0:5:3);
+\draw[thick][black!70]  (1.41421356237,1.41421356237) arc (45:55:2);
+% rótulos
+\draw[black!70] (2.12132034356,2.12132034356) node[right] {$\ \ket{\psi_{2(l-1)}}$};
+\draw[black!70] (2.12132034356,-2.12132034356) node[below right] {$\ket{\psi_{2l-1}}$};
+\draw (1.72072930905,2.45745613287) node[above right] {$\ket{\psi_{2l}} = G \ket{\psi_{2(l-1)}}$};
+\draw[black!70] (1.34985398034,1.60869333055) node[above right,inner sep=1pt] {$\theta$};
+\draw[gray]  (3.05,0) node[above right,fill=white,inner sep=1pt] {$\theta/2$};
+\end{tikzpicture}
+\caption{Aplicação $l$-ésima do operador $G$. O efeito continua correspondendo à rotação do vetor por um ângulo $\theta$ no sentido anti-horário.}
+  \end{figure}
+   
+   O operador $G$ é aplicado por $k$ vezes até que o vetor resultante esteja o mais próximo possível do eixo $\ket{\beta}$.
+   
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}[>=stealth]
+\draw[->] (-1,0) -- (4,0)
+node[below right] {$\ket{\alpha}$};
+\draw[->] (0,-1) -- (0,4)
+node[left] {$\ket{\beta}$};
+\draw[gray,dashed] (2.954,-0.5209) arc (-10:100:3);
+\draw[->,thick][black!70] (0,0) -- (2.9885,0.26146); %\psi_0
+\draw[->,thick][black!70] (0,0) -- (2.89777747887,0.7764571353); %\psi_2
+\draw[rotate around={25:(0,0)},->,thick][black!70] (0,0) -- (3,0); %\psi_4
+\draw[rotate around={35:(0,0)},->,thick][black!70] (0,0) -- (3,0); %\psi_6
+\draw[rotate around={45:(0,0)},->,thick][black!70] (0,0) -- (3,0); %\psi_8
+\draw[rotate around={65:(0,0)},->,thick][black!70] (0,0) -- (3,0); %\psi_{2(k-2)}
+\draw[rotate around={75:(0,0)},->,thick][black!70] (0,0) -- (3,0); %\psi_{2(k-1)}
+\draw[rotate around={85:(0,0)},->,thick] (0,0) -- (3,0); %\psi_{2k}
+%\draw[thick,black!70,->] (2,0) arc (0:5:2);
+\draw[rotate around={5:(0,0)},thick,black!70,->] (2,0) arc (0:10:2);
+\draw[rotate around={15:(0,0)},thick,black!70,->] (2,0) arc (0:10:2);
+\draw[rotate around={25:(0,0)},thick,black!70,->] (2,0) arc (0:10:2);
+\draw[rotate around={35:(0,0)},thick,black!70,->] (2,0) arc (0:10:2);
+\draw[rotate around={65:(0,0)},thick,black!70,->] (2,0) arc (0:10:2);
+\draw[rotate around={75:(0,0)},thick,black!70,->] (2,0) arc (0:10:2);
+% rótulos
+\draw[black!70] (2.9885,0.26146) node[right] {$\ket{\psi_0} = \ket{\psi}$};
+\draw[black!70] (2.89777747887,0.7764571353) node[right] {$\ket{\psi_2} = G \ket{\psi}$};
+\draw[black!70] (2.71892336111,1.26785478522) node[right] {$\ket{\psi_4} = G^2 \ket{\psi}$};
+\draw[black!70] (2.45745613287,1.72072930905) node[right] {$\ket{\psi_6} = G^3 \ket{\psi}$};
+\draw[rotate around={85:(0,0)}] (3,0) node[above right] {$\!\!\!\!\!\ket{\psi_{2k}} = G^k \ket{\psi}$};
+\draw (1.3,2) node {$\ddots$};
+%\draw[black!70] (2.1,-0.1) node[right,fill=white,inner sep=1pt] {\small $\theta/2$};
+\draw[black!70]  (2.05,0.39) node[right,fill=white,inner sep=1pt] {\small $\theta$};
+\draw[rotate around={10:(0,0)},thick,black!70] (2.2,0.39) node[inner sep=1pt] {\small $\theta$};
+\draw[rotate around={20:(0,0)},thick,black!70] (2.2,0.39) node[inner sep=1pt] {\small $\theta$};
+\draw[rotate around={30:(0,0)},thick,black!70] (2.2,0.39) node[inner sep=1pt] {\small $\theta$};
+\draw[rotate around={60:(0,0)},thick,black!70] (2.2,0.39) node[inner sep=1pt] {\small $\theta$};
+\draw[rotate around={70:(0,0)},thick,black!70] (2.2,0.39) node[inner sep=1pt] {\small $\theta$};
+\end{tikzpicture}
+\caption{Aplicações sucessivas do operador $G$.}
+  \end{figure}
+   
+   No livro \cite{book:icq_portugal}, seção 3.3, demonstra-se algebricamente que uma aplicação de $G$ produz uma rotação em sentido horário de um mesmo ângulo $\theta$. 
+   
+ \subsubsection*{Número necessário de aplicações de $G$}
+ 
+   O número de aplicações $k$ necessário é dado por 
+   \[ k \theta + \frac{\theta}{2} = \frac{\pi}{2} \implies k = \frac{\pi - \theta}{2\theta} \ , \]
+   em que se arredonda $k$ para o inteiro mais próximo. 
+   
+   O ângulo $\theta$ (em radianos) é o ângulo que $G\ket{\psi}$ faz com $\ket{\psi}$. Pode ser obtido por (ver figura \ref{cap5:fig_aplicacao_G_em_psi}):
+  \[ \begin{split}
+      \cos \frac{\theta}{2} 
+      &= \braket{\beta}{\psi} = \frac{\sqrt{N-1}}{\sqrt{N}} \qquad \text{usando ($\psi$)} \\
+      \sin \frac{\theta}{2} 
+      &= \sqrt{1 - \abs{\braket{\beta}{\psi}}^2} = \frac{1}{\sqrt{N}} 
+     \end{split} \]
+      
+   Fazendo-se a seguinte manipulação algébrica, pode-se encontrar outra expressão equivalente para o ângulo. 
+   \[ \begin{split} 
+       \ket{\psi_1} 
+   &=  \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} - \frac{1}{\sqrt{N}} \ket{\beta}  \\
+   &=  \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta} -  \frac{2}{\sqrt{N}} \ket{\beta} \\
+   &= \ket{\psi} - \frac{2}{\sqrt{N}} \ket{\beta}   \qquad \text{usando ($\psi$)} \phantom{xxxxxxxxxxxxxxxxx}
+      \end{split} \] \vspace{3pt}
+   \[ \begin{split}
+       \ket{\psi_2} 
+       &= G \ket{\psi} \\
+       &= \big( 2 \op{\psi}{\psi} - I \big)\ket{\psi_1} \\
+       &= \big( 2 \op{\psi}{\psi} - I \big)\left( \ket{\psi} - \frac{2}{\sqrt{N}}\ket{\beta} \right) \\
+       &= 2\ket{\psi}\braket{\psi}{\psi} - \ket{\psi} - \frac{4}{\sqrt{N}}\ket{\psi}\braket{\psi}{\beta} + \frac{2}{\sqrt{N}}\ket{\beta} \\
+       &= 2\ket{\psi} - \ket{\psi} - \frac{4}{\sqrt{N}} \frac{1}{\sqrt{N}}\ket{\psi} + \frac{2}{\sqrt{N}}\ket{\beta}  \qquad \text{usando ($\psi$)} \\
+       &= \frac{N-4}{N} \ket{\psi} + \frac{2}{\sqrt{N}}\ket{\beta}  \\
+ %      &= \frac{N-4}{N} \left( \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta} \right)  + \frac{2}{\sqrt{N}}\ket{\beta} \\
+ %      &=  \frac{(N-4)\sqrt{N-1}}{N\sqrt{N}}\ket{\alpha} + \frac{N-2}{N\sqrt{N}} \ket{\beta}
+      \end{split} \]  \vspace{3pt}
+    \[ \begin{split}
+       \cos \theta 
+       &= \braket{\psi}{G\psi} \\
+       &= \bra{\psi}  \left(\frac{N-4}{N} \ket{\psi} + \frac{2}{\sqrt{N}}\ket{\beta} \right) \\
+   %    & \qquad \qquad \qquad \text{usando ($\ast$)} \\
+       &= \frac{N-4}{N} \braket{\psi}{\psi} + \frac{2}{\sqrt{N}}\braket{\psi}{\beta} \\
+       &= \frac{N-4}{N} + \frac{2}{\sqrt{N}}\frac{1}{\sqrt{N}} \qquad \text{usando ($\psi$)} \\
+       &= \frac{N-2}{N} \ . % \phantom{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxi}
+      \end{split}  \]
+   
+   Portanto, pode-se escrever
+   \[ \theta = 2\acos(\frac{\sqrt{N-1}}{\sqrt{N}}) = 2\asin(\frac{1}{\sqrt{N}}) = \acos(\frac{N-2}{N}) \ , \]
+   e o valor de $k$ é dado por
+   \[ k = \frac{\pi - \theta}{2\theta} = \frac{\pi - \acos(\frac{N-2}{N})}{2\acos(\frac{N-2}{N})} \]
+   ou por 
+   \[ k = \frac{\frac{\pi}{2} - \frac{\theta}{2}}{\theta} = \frac{\frac{\pi}{2} - \asin(\frac{1}{\sqrt{N}})}{\acos(\frac{N-2}{N}) } = \frac{\acos(\frac{1}{\sqrt{N}})}{\acos(\frac{N-2}{N})} \ .  \]
+   
+   É possível verificar que o número $k$ é da ordem de $\sqrt{N}$. De acordo com \cite{book:icq_portugal}, p.56, tem-se
+   \[ \lim_{N\to +\infty} k = +\infty \]
+   \[ \lim_{N\to +\infty} \frac{k}{\sqrt{N}} = \frac{\pi}{4} \]
+   \[ \lim_{N\to +\infty} \frac{k}{N} = 0 \ .  \]
+    
+   \subsubsection*{Probabilidade de acerto}
+   
+   Ao aplicar a subrotina $G$ por um número $k$ de vezes especificado anteriormente, obtém-se o estado final o mais próximo possível de $\ket{\beta} = \ket{x_0}$, o item desejado. A projeção na direção desse vetor permite encontrar a probabilidade de acerto do algoritmo. O estado final $G^k \ket{\psi}$ faz um ângulo com o estado $\ket{x_0}$ menor que $\theta/2$, pois se fosse maior ou igual, seria possível aplicar novamente o operador $G$ para reduzi-lo. Portanto, o ângulo $\cos \theta\big(\ket{x_0},G^k\ket{\psi}\big)$ entre o estado desejado e o estado final é menor que $\theta/2$, o que significa que seu cosseno é maior que $\cos (\theta/2)$. 
+   
+   \begin{figure}[H]
+  \centering
+\begin{tikzpicture}[>=stealth]
+\draw[rotate around={82:(0,0)},thick,gray,fill=gray] (0,0) -- (3,0) arc (0:16:3) -- (0,0);
+\draw[->] (-2,0) -- (2,0)
+node[below right] {$\ket{\alpha}$};
+\draw[->] (0,-1) -- (0,4)
+node[left] {$\ket{\beta}$};
+\draw[rotate around={45:(0,0)},gray,dashed] (3,0) arc (0:90:3);
+% ângulo
+\draw[rotate around={82:(0,0)}][thick,black!70,->] (2,0) arc (0:16:2);
+\draw[rotate around={82:(0,0)},thick,black!70] (2,-0.2) node[inner sep=1pt] {\small $\theta$};
+% vetor
+\draw[rotate around={86:(0,0)},->,thick] (0,0) -- (3,0); %G^k \ket{\psi}
+\draw[rotate around={86:(0,0)}] (3,0) node[above right] {$\!\!\!\!\!G^k \ket{\psi}$};
+\draw[rotate around={70:(0,0)},->,thick,black!70] (0,0) -- (3,0); %G^{k-1} \ket{\psi}
+\draw[rotate around={65:(0,0)},black!70] (3,0) node[above right] {$\!\!\!\!\!G^{k-1} \ket{\psi}$};
+\draw[rotate around={102:(0,0)},->,thick,black!70] (0,0) -- (3,0); %G^{k+1} \ket{\psi}
+\draw[rotate around={102:(0,0)},black!70] (3,0) node[above left] {$\!\!\!\!\!G^{k+1} \ket{\psi}$};
+\end{tikzpicture}
+\caption{Projeção do estado final $G^k\ket{\psi}$ na direção do estado desejado $\ket{\beta} = \ket{x_0}$. Aplicar o operador $G$ mais uma vez faz com que a projeção na direção desejada fique menor. O mesmo vale se o operador $G$ for aplicado por menos de $k$ vezes.}
+  \end{figure}
+  
+   Com isso, tem-se a probabilidade de acerto estimada em
+   \[ \begin{split}
+        P_a 
+        &= \norm{\op{x_0}{x_0}G^k \ket{\psi}}^2 \\
+        &= \abs{\braket{x_0}{G^k\ket{\psi}}}^2  \\
+        &= \abs{\cos \theta\big(\ket{x_0},G^k\ket{\psi}\big)}^2 \\
+        &> \abs{\cos \theta/2}^2 \\
+        &= \left(\frac{\sqrt{N-1}}{\sqrt{N}}\right)^2 \\
+        &= \frac{N-1}{N} \ , \ \ N = 2^n \ .
+      \end{split} \]
+
+   \subsubsection*{Generalização}
+   
+   O algoritmo de Grover também funciona para o caso em que há mais de um elemento marcado, isto é, há $x_0$, $x_1$, $\ldots$, $x_{m-1}$ elementos tais que $f(x_0) = f(x_1) = \ldots = f(x_{m-1})$ e os demais valores anulam $f$. É possível adaptar a análise do algoritmo para esse caso. A interpretação geométrica continua valendo, mas desta vez, tem-se
+   \[ \ket{\alpha} = \frac{1}{\sqrt{N-m}} \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ f(x) = 0 \end{array} } \ket{x} \]
+   \[ \ket{\beta} = \frac{1}{\sqrt{m}} \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ f(x) = 1 \end{array} } \ket{x} \ . \]
+   
+ \end{subsection}
+
+ \begin{subsection}{Algoritmo Clássico}
+ 
+ \subsubsection*{Algoritmo Clássico Determinístico}
+ 
+   Classicamente, se o teste é dado como uma caixa preta, em que não se sabe a estrutura interna de $f$, a maneira de se encontrar $x_0$ é por busca exaustiva.
+   Para garantir que o item $x_0$ seja encontrado, deve-se, no pior caso, olhar todas as $N = 2^n$ entradas possíveis. Portanto são necessários $N$ aplicações do teste $f$. 
+   
+ \subsubsection*{Algoritmo Clássico Probabilístico}
+   
+   Considere um algoritmo que sorteie aleatoriamente as entradas a serem testadas (e sem repetir entradas). Após o teste de $k$ entradas, a probabilidade de que se tenha localizado o item desejado $x_0$ é de 
+   \[ P = \frac{k}{N} \ . \]
+   Para que haja probabilidade de encontrar a resposta seja maior que $1/2$, deve-se testar pelo menos por um número de vezes 
+   \[ k > \frac{N}{2} \ . \]
+   Desse modo, ainda deve-se aplicar o teste $f$ da ordem de $N$ vezes. 
+   
+ \end{subsection}
+
+ \begin{subsection}{Comparação de Desempenho}
+  
+  
+   O desempenho dos algoritmos são comparados na tabela abaixo.
+ 
+ \begin{table}[H]
+  \centering
+  \begin{tabular}{l|l}
+  \bigstrut Algoritmo  &  Desempenho (\# aplicações de $f$) \\ \hline
+ \bigstrut[t] Class. Det. & da ordem de $N = 2^{n}$ aplicações \\
+  Class. Prob. & da ordem de $N/2 = 2^{n}/2$ aplicações \\
+  Quântico & da ordem de $\sqrt{N} = 2^{n/2}$ aplicações
+  \end{tabular}
+  \caption{Comparação de desempenho entre os algoritmos quântico, clássico determinístico e clássico probabilístico (com probabilidade de erro $<50\%$) para o Problema de Grover. No algoritmo de Grover, o número de aplicações de $f$ coincide com o número de aplicações da subrotina $G$.}
+ \end{table}
+  
+  Dessa forma, o algoritmo de Grover apresentaria ganho quadrático de desempenho em relação aos algoritmos clássicos, se a aplicação de $f$ nos casos clássico e quântico forem equivalentes em termos de custos computacionais. 
+  
+ \end{subsection}
+
+
+\end{section}
+
+%%%%%%%%%%%%%
+% ESCREVER
+%%%%%%%%%%%%%
+\begin{section}{Algoritmo de Bernstein-Vazirani}
+ 
+ Há duas versões do algoritmo de Bernstein-Vazirani, ambas formuladas para resolver o problema de mesmo nome.  Este problema, como os outros problemas abordados, não tem perspectivas de aplicações, no entanto, ajuda a entender em que situações a computação quântica pode apresentar vantagens. 
+ 
+ Neste texto, as duas versões do algoritmo são denominadas ``versão XOR'' e ``versão fase''. Duas referências úteis para esses algoritmos são  \cite{site:lpn_ibmqx} (XOR) e \cite{book:lecture_notes_scott_aaronson} (fase). Ambas apresentam um ganho exponencial em relação à computação possível classicamente, com a versão fase mais eficiente que a versão XOR. 
+
+ 
+ \begin{subsection}{Problema de Bernstein-Vazirani}
+  
+  O objeto desta seção também é um problema de caixa preta, como nos outros algoritmos apresentados até então. Portanto é fornecida uma função booleana $f$, com determinada propriedade; neste caso, $f$ é da forma $f(x) = a \cdot x$, com $x$ e $a$ vetores de bits, e o produto corresponde àquele análogo a um produto interno apresentado na observação \ref{cap5:rmk_notacao_analoga_a_produto_interno_de_vetores_de_bits} e reforçado a seguir.  Neste problema, não se conhece a estrutura interna de $f$, ou seja, $a$ é uma incógnita e só se conhece que a função $f$ admite um $a$ e que pode ser escrita como $f(x) = a \cdot x$. A demanda do problema é encontrar $a$ com o menor número possível de aplicações de $f$.
+
+  \begin{problem*}{de Bernstein-Vazirani}
+     Seja  $f \colon \{ 0,1 \}^n \to \{0,1\}$  uma função booleana da forma
+  \[ f(x_1 \ldots x_n) = a_1 \cdot x_1 \oplus \ldots \oplus a_n \cdot x_n \ , \]
+  que também poderia ser denotada\footnote{Fazendo uma analogia com o produto interno em $\mathbb{C}^n$} por
+  \[ f(x) = a \cdot x \ . \]
+  A função $f$ é dada por uma caixa preta, sua estrutura interna não é conhecida.
+  O problema pede para encontrar o vetor de bits $a = a_1 \ldots a_n$.
+  \end{problem*}
+
+  Os algoritmos quânticos, bem como o procedimento clássico, são apresentados a seguir.
+ \end{subsection}
+ 
+ \begin{subsection}{Algoritmo de Bernstein-Vazirani (versão XOR)}
+
+ O algoritmo quântico apresentado aqui conta com $f$ representado como um oráculo XOR. Uma referência para o algoritmo a ser apresentado é \cite{site:lpn_ibmqx}. Apesar de menos eficiente que a versão fase, esse algoritmo é abordado para ilustrar a técnica de \emph{pós-seleção}, presente em outros algoritmos quânticos ainda não apresentados, como o algoritmo (quântico) HHL para resolução de sistemas lineares \cite{article:hhl_algorithm_for_lin_sys_of_eq}. 
+ 
+
+ \subsubsection*{Algoritmo de Bernstein-Vazirani (versão XOR)}
+  \noindent \textbf{Entrada:} $O_\text{XOR}(f)$ \ \ (oráculo XOR associado à função booleana $f$)
+  \vspace{6pt} \\
+  \noindent \textbf{Procedimento:} \vspace{4pt} \\
+  $\begin{array}{lll}
+   \text{etapa 0:} & \ket{0}^{\otimes n}\ket{0} & \text{\small{preparação do estado inicial}} \\
+   \text{etapa 1:} & \sum_{x} \ket{x}\ket{0} & \text{\small{superposição de estados com $H^{\otimes n}$ no reg.1}} \\
+   \text{etapa 2:} & \sum_{x} \ket{x}\ket{f(x)} & \text{\small{aplicação de $f$ (oráculo XOR)}} \\
+   \text{etapa 3:} & \sum_{x} \ket{x}H\ket{a \cdot x} & \text{\small{aplicação de $H$ no reg.2}} \\
+   \text{etapa 4:} & \ket{0}\ket{0} + \ket{a}\ket{1}& \text{\small{aplicação de $H^{\otimes n}$ no reg.1}} \\
+  \end{array} $
+  \vspace{6pt} \\
+  \textbf{Saída:} Mede-se o último qubit (reg.2). Caso o resultado seja 1, o reg.1 carregará o valor de $a$. Se o resultado da medição no reg.2 for 0, o algoritmo deve ser repetido até que se obtenha 1 nesse registrador. 
+   \subsubsection*{Circuito}
+    \begin{figure}[H]
+   Notação compacta:
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{0}^{\otimes n}} &  \ustick{\ n}\qw  & {/} \qw & \qw & \gate{H^{\otimes n}} & \ctrl{1}               & \gate{H^{\otimes n}} & \qw & \qw &\meter \\
+   \lstick{\ket{0}\quad} &  \qw              &       \qw & \qw & \gate{H}             & \gate{O_\text{XOR}(f)} & \gate{H}             & \qw & \qw &\meter}
+   \]
+   \\ 
+   Notação expandida:
+ \small{
+   \[ 
+    \Qcircuit @C=5pt @R=4pt %@!R 
+    {
+    & & & \lstick{\ket{0}}  & \qw \gategroup{1}{1}{4}{1}{1.2em}{\{}& \qw & \gate{H} & \ctrl{1}                       & \gate{H} & \qw & \qw &\meter \\
+     & & & \lstick{\ket{0}}  & \qw & \qw & \gate{H} & \ctrl{2}                       & \gate{H} & \qw & \qw &\meter \\
+        \ustick{\text{reg.1}\quad \quad \quad \quad \ \ }  & & & &\vdots&        &          &                                &          &     &\vdots&   \\
+     & & & \lstick{\ket{0}}  & \qw & \qw & \gate{H} & \ctrl{2}                       & \gate{H} & \qw & \qw &\meter  \\
+              & & &          &     &     &          &                                &          &     &     &       \\
+    \lstick{\text{reg.2} \, \ \ }& \text{ \Large \{ \ \quad} & &  \lstick{\ket{0}}  & \qw & \qw & \qw      & \gate{O_\text{XOR}(f)} & \gate{H} & \qw & \qw &\meter  
+   }
+   \]}
+   \label{cap5:circuito_bernstein-vazirani_xor}
+  \end{figure}
+  
+  
+  \subsubsection*{Análise detalhada do algoritmo}
+  
+    Nesta explanação, utiliza-se diversas vezes a proposição \ref{cap5:prop_expressao_para_hadamard_aplicada_a_vetor_na_base_comp}, que fornece a expressão
+  \[ H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y} \ ,  \]
+  com $\ket{x}$ vetor da base computacional. Utiliza-se também a notação $\ket{\text{reg.1}}\ket{\text{reg.2}}$ para distinguir os dois conjuntos de qubits.
+  
+  A primeira etapa do algoritmo resulta no estado
+  \[\begin{split}
+ \ket{\psi_1} 
+ &= \big( H^{\otimes n} \ket{0} \big) \ket{0}  \\
+ &=  \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} \ket{x}\ket{0} \ .
+    \end{split} \]
+  Obtém-se, ao aplicar $f$,
+  \[ \begin{split}
+      \ket{\psi_2} 
+      &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} O_\text{XOR}(f)\ket{x}\ket{0} \\
+      &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} \ket{x}\ket{f(x)} \\
+      &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} \ket{x}\ket{a\cdot x} \ .
+     \end{split} \]
+  Na etapa 3, aplica-se a porta Hadamard ao registrador 2:
+   \[ \begin{split}
+      \ket{\psi_3} 
+      &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} \ket{x}\big( H\ket{a\cdot x} \big) \\
+      &=  \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} \ket{x} \left( \frac{\ket{0} + (-1)^{a \cdot x} \ket{1}}{\sqrt{2}} \right) \\
+      &= \frac{1}{\sqrt{2^n}\sqrt{2}} \sum_{x \in \mathbb{B}^n} \ket{x}\ket{0} + \frac{1}{\sqrt{2^n}\sqrt{2}} \sum_{x \in \mathbb{B}^n} (-1)^{a \cdot x} \ket{x} \ket{1} \\
+      &= \frac{1}{\sqrt{2}}  \big( H^{\otimes n} \ket{0} \big) \ket{0}    +   \frac{1}{\sqrt{2}} \big( H^{\otimes n} \ket{a} \big) \ket{1} \ . 
+      \end{split} \]    
+  Assim, ao aplicar-se a as portas Hadamard ao registrador 1, na etapa 4, obtém-se que
+  \[ \begin{split}
+      \ket{\psi_4} 
+      &= \frac{1}{\sqrt{2}}  \big( H^{\otimes n} \ket{0} \big) \ket{0}    +   \frac{1}{\sqrt{2}} \big( H^{\otimes n} \ket{a} \big) \ket{1} \\
+      &= \frac{1}{\sqrt{2}}  \big( H^{\otimes n} H^{\otimes n} \ket{0} \big) \ket{0}    +   \frac{1}{\sqrt{2}} \big(H^{\otimes n} H^{\otimes n} \ket{a} \big) \ket{1} \\
+      &=  \frac{1}{\sqrt{2}}  \ket{0} \ket{0}    +   \frac{1}{\sqrt{2}}  \ket{a} \ket{1} \ . 
+      \end{split} \] 
+  Dessa forma, ao se fazer uma medida nos registradores 1 e 2, obtém-se, com probabilidade $\abs{\frac{1}{\sqrt{2}}}^2 = \frac{1}{2}$ o resultado $\ket{a} \ket{1}$. Faz-se uma \emph{pós-seleção} no segundo registrador, e quando este resultado for 1, o outro registrador carregará consigo a resposta $a$ do problema. 
+ \end{subsection}
+ 
+  \begin{subsection}{Algoritmo de Bernstein-Vazirani (versão fase)}
+ 
+O algoritmo de Bernstein-Vazirani, em sua versão fase, possui desempenho ligeiramente melhor que o da versão XOR, e não necessita de pós-seleção. O algoritmo a ser apresentado consta na referência \cite{book:lecture_notes_scott_aaronson}, e resolve o problema objeto desta seção de maneira exata, sem probabilidade de falha, com apenas uma aplicação do oráculo de fase representando $f$. 
+ 
+ \subsubsection*{Algoritmo de Bernstein-Vazirani (versão fase)}
+  \noindent \textbf{Entrada:} $O_\text{F}(f)$ \ \ (oráculo de fase associado à função booleana $f$)
+  \vspace{6pt} \\
+  \noindent \textbf{Procedimento:} \vspace{4pt} \\
+  $\begin{array}{lll}
+   \text{etapa 0:} & \ket{0}^{\otimes n} = \ket{0}  & \text{\small{preparação do estado inicial}} \\
+   \text{etapa 1:} & H^{\otimes n}  \ket{0} = \sum_{x} \ket{x}  & \text{\small{superposição de estados com $H^{\otimes n}$ }} \\
+   \text{etapa 2:} & \sum_{x} (-1)^{a \cdot x} \ket{x} =  H^{\otimes n} \ket{a} & \text{\small{aplicação de $f$ (oráculo de fase)}} \\
+   \text{etapa 3:} & H^{\otimes n}H^{\otimes n} \ket{a} = \ket{a} & \text{\small{aplicação de $H$}} \\
+  \end{array} $
+  \vspace{6pt} \\
+  \textbf{Saída:} Mede-se o último qubit (reg.2). Caso o resultado seja 1, o reg.1 carregará o valor de $a$. Se o resultado da medição no reg.2 for 0, o algoritmo deve ser repetido até que se obtenha 1 nesse registrador. 
+   \subsubsection*{Circuito}
+    \begin{figure}[H]
+   Notação compacta:
+   \[ 
+    \Qcircuit @C=5pt @R=10pt @!R 
+    {
+   \lstick{\ket{0}^{\otimes n}} &  \ustick{\ n}\qw  & {/} \qw & \qw & \gate{H^{\otimes n}} & \gate{O_{\text{F}}(f)} & \gate{H^{\otimes n}} & \qw & \qw &\meter  
+   } \]
+   \\ 
+   Notação expandida:
+ \small{
+   \[ 
+    \Qcircuit @C=5pt @R=4pt %@!R 
+    {
+    \lstick{\ket{0}}  & \qw    & \qw & \gate{H} & \multigate{3}{O_\text{F}(f)}       & \gate{H} & \qw & \qw    &\meter \\
+    \lstick{\ket{0}}  & \qw    & \qw & \gate{H} & \ghost{O_\text{F}(f)}              & \gate{H} & \qw & \qw    &\meter \\
+                      & \vdots &     &          & \ghostnoqw{O_\text{F}(f)}          &          &     & \vdots &       \\
+    \lstick{\ket{0}}  & \qw    & \qw & \gate{H} & \ghost{O_\text{F}(f)}              & \gate{H} & \qw & \qw    &\meter 
+    }
+   \]}
+   \label{cap5:circuito_bernstein-vazirani_xor}
+  \end{figure}
+  
+  
+  \subsubsection*{Análise detalhada do algoritmo}
+  
+  Nesta explanação, utiliza-se diversas vezes a proposição \ref{cap5:prop_expressao_para_hadamard_aplicada_a_vetor_na_base_comp}, que fornece a expressão
+  \[ H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y} \ ,  \]
+  com $\ket{x}$ vetor da base computacional.
+  
+  A primeira etapa do algoritmo resulta em
+  \[\begin{split}
+ \ket{\psi_1} 
+ &=   H^{\otimes n} \ket{0} =  \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} \ket{x}  \ .
+    \end{split} \]
+  Obtém-se, ao aplicar o oráculo de fase, que
+  \[ \begin{split}
+      \ket{\psi_2} 
+      &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} O_\text{F}(f)\ket{x}  \\
+      &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} (-1)^{f(x)} \ket{x} \\
+      &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}^n} (-1)^{a\cdot x}\ket{x} \\
+      &= H^{\otimes n} \ket{a} \ .
+     \end{split} \]
+  Finalmente, aplicam-se as portas Hadamard, o que retorna
+   \[ \begin{split}
+      \ket{\psi_3} 
+      &=  H^{\otimes n}  H^{\otimes n} \ket{a}  =  \ket{a} 
+      \end{split} \]    
+  Assim, uma medição no registrador fornecerá a incógnita $a$ do problema. 
+  
+  \end{subsection}
+ 
+ \begin{subsection}{Algoritmo Clássico}
+  
+  \subsubsection*{Algoritmo Clássico Determinístico}
+  
+  Na computação clássica, é possível resolver o problema de Bernstein-Vazirani aplicando-se a função booleana $f$ aos $n$ vetores de bits\footnote{Os vetores de bits referidos são os com peso de Hamming 1. O peso de Hamming de um vetor de bits é o número de bits com valor igual a 1. Isso equivale à soma dos bits, considerando-os como números inteiros. O peso de Hamming de um vetor de $n$ bits está entre $0$ e $n$.} 
+  \[ x = x_1 x_2 \ldots x_n = 100\ldots0 \ , \ \ 010\ldots0 \ , \ \ \ldots \ , \ \ 0 \ldots 01 \ . \]
+  
+  De fato, se $f(x) = a \cdot x$, com $a$ vetor de bits fixo, mas desconhecido, pode-se descobrir $a = a_1 a_2 \ldots a_n$ fazendo\footnote{Para lembrar, as operações $\cdot$ e $\oplus$ se referem à AND e XOR. O ``produto interno'' $a\cdot x$ refere-se a $(a_1 AND x_1) XOR \ldots XOR (a_n AND x_n) = a_1 \cdot x_1 \oplus \ldots \oplus a_n \cdot x_n$.}
+   \[\begin{array}{llll}
+      f(100\ldots0) 
+      \!\!\!\! &= \ \ a_1 \cdot 1 \oplus  a_2 \cdot 0 \oplus \ldots \oplus a_n \cdot 0 
+      \!\!\!\! &= a_1 \oplus 0 \oplus \ldots \oplus 0 
+      \!\!\!\! &= a_1   \\
+      f(010\ldots0) 
+      \!\!\!\! &= \ \ a_1 \cdot 0 \oplus a_2 \cdot 1  \oplus \ldots \oplus a_n \cdot 0 
+      \!\!\!\! &= 0 \oplus a_2 \oplus \ldots \oplus 0 
+      \!\!\!\! &= a_2   \\
+      \quad \vdots 
+      & \qquad \vdots   \\
+      f(0\ldots001) 
+      \!\!\!\! &= a_1 \cdot 0   \oplus  \ldots \oplus a_{n-1} \cdot 0  \oplus  a_n \cdot 1 
+      \!\!\!\! &= 0 \oplus \ldots \oplus 0 \oplus a_n 
+      \!\!\!\! &= a_n
+     \end{array} \]
+
+     Com isso, são necessárias $n$ aplicações de $f$ para se descobrir o vetor de bits $a$.
+     
+  \subsubsection*{Algoritmo Clássico Probabilístico}
+  
+  Parece não ser possível melhorar o algoritmo clássico prescrito acima, pois cada aplicação de $f$ nos fornece uma equação envolvendo $a_1, \ldots , a_n$. Para encontrar todos os $a_i$s são necessárias $n$ equações.
+  
+ \end{subsection}
+
+ \begin{subsection}{Comparação de Desempenho}
+  
+   Como nas outras seções, apresenta-se uma comparação de desempenho na tabela abaixo.
+ \begin{table}[H]
+  \centering
+  \begin{tabular}{l|l}
+  \bigstrut Algoritmo  &  Desempenho (\# aplicações de $f$) \\ \hline
+ \bigstrut[t] Class. Det. &  $n$ aplicações \\
+ % Class. Prob. & da ordem de $2^{n/2}$ aplicações COMPLETAR \\
+  Quântico (XOR) & da ordem de $2$ aplicações \\
+   Quântico (fase) & 1 aplicação
+  \end{tabular}
+  \caption{Comparação de desempenho entre os algoritmos quântico, clássico determinístico e clássico probabilístico (com probabilidade de erro $<50\%$) para o Problema de Bernstein-Vazirani.}
+ \end{table}
+ 
+  
+ \end{subsection}
+
+ 
+\end{section}
+
+%%%%%%%%%%%%%
+% ESCREVER
+%%%%%%%%%%%%%
+\begin{section}{Transformada de Fourier Quântica - QFT}
+ 
+ \begin{subsection}{Transformada Discreta de Fourier - DFT}
+  EXPLICAR o que é e fazer comparação?
+  
+ \end{subsection}
+ 
+ \begin{subsection}{Definição e Exemplos}
+  
+ \end{subsection}
+
+ \begin{subsection}{Propriedades da QFT}
+  
+  \begin{subsubsection}{A QFT é unitária} (fazer como proposição)
+   
+  \end{subsubsection}
+  
+  
+ \end{subsection}
+ 
+ \begin{subsection}{Circuito para QFT}
+  
+  \begin{subsubsection}{QFT para $n=1$ qubit}
+   
+  \end{subsubsection}
+
+    \begin{subsubsection}{QFT para $n=2$ qubits}
+   
+  \end{subsubsection}
+  
+    \begin{subsubsection}{QFT para $n$ qubits}
+   
+  \end{subsubsection}
+  
+ \end{subsection}
+
+
+ \begin{subsection}{Algumas aplicações}
+  
+ \end{subsection}
+
+
+\end{section}
+
+%%%%%%%%%%%%%
+% ESCREVER
+%%%%%%%%%%%%%
+\begin{section}{Algoritmo de Shor}
+ 
+\end{section}
+

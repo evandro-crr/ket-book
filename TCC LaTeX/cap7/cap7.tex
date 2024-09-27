@@ -1,0 +1,362 @@
+
+\chapter{\nohyphens{Computação Quântica com IBM Quantum Experience}}\label{cap7:CQ_no_IBMQE}
+
+\begin{section}{IBM Quantum Experience}
+ 
+  A IBM Research disponibiliza um computador de 5 qubits e um de 16 qubits acessíveis pela nuvem (IBM cloud). O acesso aos computadores se dá por meio do QISKit -- Quantum Information Software Kit -- um pacote de software para python. É possível também acessar o computador de 5 qubits por uma interface gráfica no navegador (Composer). Os detalhes serão vistos na seção \ref{cap6:sec_como_programar}.
+  \\
+  
+\begin{subsection}{Computadores Disponíveis}
+
+Os computadores quânticos disponíveis para acesso na nuvem são listados abaixo.
+\begin{table}[H]
+ \centering
+ \begin{tabular}{l|l|l}
+  \bigstrut     Nome & \# qubits & Status \\ \hline
+  \bigstrut[t] \small IBM Q 5 Yorktown (ibmqx2) &\small 5 qubits &\small manutenção \\
+               \small IBM Q 5 Tenerife (ibmqx4) &\small 5 qubits &\small disponível (Composer/QISKit) \\
+               \small IBM Q 16 Rueschlikon (ibmqx5) & \small16 qubits &\small disponível (QISKit) \normalsize
+ \end{tabular}
+ \caption{Processadores quânticos da IBM disponíveis para uso pela nuvem. Informação sobre o status dos computadores visualizada em maio de 2018.}
+\end{table}
+
+ Pode-se consultar informações sobre esses processadores no GitHub. Os links são disponibilizados abaixo.
+  \vspace{5pt} \\
+  \noindent Informação sobre os processadores: \\
+  \footnotesize
+  \texttt{https://github.com/QISKit/qiskit-backend-information/tree/master/backends}
+  \normalsize 
+   \vspace{5pt} \\
+  \noindent IBM Q 5 Yorktown (ibmqx2): \\
+  \footnotesize
+   \texttt{https://github.com/QISKit/qiskit-backend-information/tree/master/backends/\\yorktown/V1}
+  \normalsize
+   \vspace{5pt} \\
+  \noindent IBM Q 5 Tenerife (ibmqx4): \\
+  \footnotesize
+  \texttt{https://github.com/QISKit/qiskit-backend-information/tree/master/backends/\\tenerife/V1}
+  \normalsize
+   \vspace{5pt} \\
+  \noindent IBM Q 16 Rueschlikon (ibmqx5): \\
+  \footnotesize
+   \texttt{https://github.com/QISKit/qiskit-backend-information/tree/master/backends/\\rueschlikon/V1}
+  \normalsize
+
+ 
+\end{subsection}
+
+
+
+\begin{subsection}{Como Programar}\label{cap6:sec_como_programar}
+ 
+ A programação é feita por uma interface gráfica, como ilustrado na figura \ref{cap7:fig_interface_grafica_ibmqx}. Além disso, é possível realizar a programação em modo texto (figura \ref{cap7:fig_interface_texto_ibmqx}) por código OpenQASM -- Open Quantum Assembly Language. Há opções de simular e de executar o algoritmo no computador quântico. A página do editor de algoritmos da IBM Quantum Experience é acessível pelo link: \vspace{2mm} \\
+  \texttt{https://quantumexperience.ng.bluemix.net/qx/editor}
+  
+
+ 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.25]{cap6/figuras/ibmqe.png}
+\caption{Interface gráfica para programação quântica no IBM Quantum Experience.}
+\label{cap7:fig_interface_grafica_ibmqx}
+\end{figure}
+ 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.25]{cap6/figuras/ibmqe_qasm.png}
+ \vspace{-5pt}
+\caption{Interface para programação em OpenQASM (modo texto) na IBM Quantum Experience.}
+\label{cap7:fig_interface_texto_ibmqx}
+\end{figure}
+
+ No IBM Quantum Experience, os qubits são dispostos de acordo com a convenção apresentada na figura \label{cap7:fig_convencao_ibmqx}. 
+
+ \begin{figure}[H]
+\centering
+  \[ \Qcircuit @C=12pt @R=12pt @!R 
+  {
+  \lstick{q[0]} & \qw & \qw \\
+  \lstick{q[1]} & \qw & \qw \\
+  \lstick{q[2]} & \qw & \qw \\
+  \lstick{q[3]} & \qw & \qw \\
+  \lstick{q[4]} & \qw & \qw
+  } \quad \quad \quad
+  \begin{array}{c} \\ \\ \\ \text{estado} = q[4]\, q[3]\, q[2]\, q[1]\, q[0]  \end{array}
+  \]
+ \vspace{-8pt}
+\caption{Notação utilizada pelo IBM Quantum Experience.}
+\label{cap7:fig_convencao_ibmqx}
+\end{figure}
+
+As portas lógicas quânticas disponíveis para uso são apresentadas na figura \ref{cap7:fig_portas_logicas_no_ibmqx}. É possível utilizar as portas $X, Y, Z$ de Pauli, a porta de Hadamard $H$, as portas de fase $S, S^\dag, T, T^\dag$. A única porta de dois qubits disponível é a CNOT.  
+ \vspace{-8pt}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.35]{cap6/figuras/quantum_gates.png}
+ \vspace{-8pt}
+\caption{Portas lógicas quânticas disponíveis para uso no IBM Quantum Experience.}
+\label{cap7:fig_portas_logicas_no_ibmqx}
+\end{figure}
+
+A porta CNOT não admite controle e alvo em qualquer par de qubits. As combinações possíveis são aquelas em que os dois qubits estão conectados por barramentos supercondutores. As opções são expostas na figura \ref{cap6:fig_cnot_gates}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.35]{cap6/figuras/cnot_gates.png}\ \ \ 
+\includegraphics[scale=0.35]{cap6/figuras/ibmqx4_tenerife_connections.png}
+\caption{Portas CNOT que podem ser implementadas diretamente no IBM Q 5 Tenerife (ibmqx4).}
+\label{cap6:fig_cnot_gates}
+\end{figure}
+
+É possível realizar outras portas CNOT em função das CNOTs nativas. Para tanto, faz-se uso das identidades de circuito contidas na seção \ref{cap4:sec_id_circuitos}. Em especial, são úteis as proposições \ref{cap4:prop_cnot_troca_controle_alvo} e \ref{cap4:prop_cnot_controle_qubits_distantes}. 
+
+\begin{figure}[H]
+\vspace{-15pt}
+\centering
+%\includegraphics[scale=0.35]{cap6/figuras/using_cnot_gates.png}
+ \[ 
+ \Qcircuit @C=10pt @R=4pt {& \targ    & \qw  & &   & & & \gate{H}  & \ctrl{2}  & \gate{H}  & \qw\\
+                           &          &      & & = & & &           &           &           &    \\
+                           & \ctrl{-2}& \qw  & &   & & & \gate{H}  & \targ     & \gate{H}  & \qw  }
+      \]
+   \vspace{4pt}
+ \[ \Qcircuit @C=10pt @R=10pt {
+   &  \ctrl{2} & \qw & &   & & & \qw      & \ctrl{1} & \qw      & \ctrl{1} & \qw \\
+   &   \qw     & \qw & & = & & & \ctrl{1} & \targ    & \ctrl{1} & \targ    & \qw \\
+   & \targ     &\qw  & &   & & & \targ    & \qw      & \targ    & \qw      & \qw  }
+      \]
+ \vspace{-10pt}
+\caption{Maneiras de se obter CNOTs não nativas no computador IBM Q 5 Tenerife (ibmqx4).}
+\label{cap6:fig_cnot_tecnicas}
+\end{figure} 
+  
+ A porta SWAP também pode ser realizada em função de CNOTs nativas. Usam-se as proposições \ref{cap4:prop_cnot_troca_controle_alvo} e \ref{cap4:prop_SWAP_CNOT} da seção \ref{cap4:sec_id_circuitos} sobre identidade de circuitos.
+ 
+\begin{figure}[H]
+\vspace{-15pt}
+\centering  
+\[ 
+ \Qcircuit @C=10pt @R=4pt {& \qswap      & \qw  & &   & & & \ctrl{2} & \targ     & \ctrl{2} & \qw  & &   & & & \ctrl{2} & \gate{H}  & \ctrl{2}  & \gate{H}  & \ctrl{2} & \qw  \\
+                           &  \qwx       &      & & = & & &          &           &          &      & & = & & &          &           &           &           &          &      \\
+                           & \qswap \qwx & \qw  & &   & & & \targ    & \ctrl{-2} & \targ    & \qw  & &   & & & \targ    & \gate{H}  & \targ     & \gate{H}  & \targ    & \qw   }
+      \]
+\vspace{-10pt}
+\caption{Maneira de se obter SWAP em função de CNOTs nativas no computador IBM Q 5 Tenerife (ibmqx4).}
+\label{cap6:fig_swap_tecnicas}
+\end{figure} 
+
+A porta Toffoli não é nativa no computador IBM Q 5 Tenerife (ibmqx4). Para realizá-la, pode-se aplicar a proposição \ref{cap4:prop_constr_porta_toffoli}. Essa proposição fornece a seguinte construção.
+  
+  \begin{figure}[H]
+\vspace{-15pt}
+\centering  
+\[
+\Qcircuit @C=6pt @R=4pt 
+{& \ctrl{2}  &\qw & &   & & & \qw      & \qw      & \qw           & \ctrl{4} & \qw      & \qw      & \qw           & \ctrl{4} & \qw           & \ctrl{2} & \qw           & \ctrl{2} & \gate{T}& \qw   \\
+ &           &    & &   & & &          &          &               &          &          &          &               &          &               &          &               &          &         &       \\
+ & \ctrl{2}  &\qw & & = & & & \qw      & \ctrl{2} & \qw           &  \qw     & \qw      & \ctrl{2} & \qw           & \qw      & \gate{T^\dag} & \targ    & \gate{T^\dag} & \targ    & \gate{S}& \qw   \\
+ &           &    & &   & & &          &          &               &          &          &          &               &          &               &          &               &          &         &       \\
+ & \targ     &\qw & &   & & & \gate{H} & \targ    & \gate{T^\dag} &   \targ  & \gate{T} & \targ    & \gate{T^\dag} & \targ    & \gate{T}      & \gate{H} & \qw           & \qw      & \qw     & \qw   }
+      \]
+\vspace{-10pt}
+\caption{Maneira de se obter a porta Toffoli em função de operações nativas no computador IBM Q 5 Tenerife (ibmqx4).}
+\label{cap6:fig_toffoli_tecnicas}
+\end{figure} 
+  
+A programação nos computadores quânticos também pode ser feita em python por meio dos pacotes QISKit. O acesso ao computador IBM Q 16 Rueschlikon, de 16 qubits, é feito apenas dessa forma. Um tutorial de QISKit pode ser encontrado no link abaixo.\vspace{4pt} \\
+\footnotesize
+\noindent \texttt{https://developer.ibm.com/open/videos/qiskit-quantum-computing-tech-talk/}
+\normalsize
+
+\end{subsection}
+
+\begin{subsection}{Informativos e Guias de Usuário}
+ 
+ \subsubsection*{User Guides}
+ 
+ A página do IBM Quantum Experience fornece guias para usuários. Os links estão dispostos a seguir.
+ 
+    \ \\
+ \noindent Beginner's Guide:\\
+ \footnotesize
+ \texttt{https://quantumexperience.ng.bluemix.net/qx/tutorial?sectionId=beginners-\\guide\&page=introduction}
+ \normalsize
+ 
+    \ \\
+ \noindent Full User Guide: \\
+ \footnotesize
+ \texttt{https://quantumexperience.ng.bluemix.net/qx/tutorial?sectionId=full-user-\\guide\&page=introduction}
+ \normalsize
+
+    \ \\
+ \noindent User Guides no GitHub: \\
+ \footnotesize
+ \texttt{https://github.com/QISKit/ibmqx-user-guides}
+ \normalsize
+
+ \subsubsection*{Informativos}
+ 
+ A página da IBM também fornece material informativo contendo palestras e vídeos curtos sobre Computação Quântica.
+ 
+ \small
+ \noindent \texttt{http://www.research.ibm.com/ibm-q/learn/what-is-quantum-computing/}
+ \normalsize
+ 
+\end{subsection}
+
+ 
+\end{section}
+
+
+\begin{comment}
+\begin{section}{Software}
+ 
+ pacotes, bibliotecas, 
+ 
+ QISkit, OpenQASM, ...
+ 
+ OpenQASM https://github.com/QISKit/openqasm
+ 
+ MQDK, Q\# https://cloudblogs.microsoft.com/quantum/2017/12/11/announcing-microsoft-quantum-development-kit/
+ 
+ pyquil: http://pyquil.readthedocs.io/en/latest/
+ 
+ pré-requisitos de programação
+ 
+ 
+\end{section}
+\end{comment}
+
+\begin{section}{Circuito Quantum Half Adder}
+ 
+ Nesta seção é apresentado um projeto de somador quântico análogo ao somador clássico \emph{half adder}, apresentado no apêndice \ref{cap1:fig_circuito_half_adder}. Após o projeto, procedeu-se à simulação no IBM Quantum Experience e à execução no computador IBM Q 5 Tenerife (ibmqx4).
+ 
+ \begin{subsection}{Projeto do Circuito}
+ 
+  O circuito deve realizar um somador half adder para entradas na base computacional. A tabela verdade do half adder é apresentada a seguir.
+  \begin{table}[H]
+  \centering
+   \begin{tabular}{cc|cc}
+    $a$ & $b$ & $s$ & $c$ \\ \hline
+    0 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 0 \\
+    1 & 0 & 1 & 0 \\
+    1 & 1 & 0 & 1
+   \end{tabular}
+  \caption{Tabela verdade para o meio somador clássico (half adder). As entradas são simbolizadas por $a$ e $b$ e as saídas são $s$ (sum) e $c$ (carry out).}
+  \label{cap6:tab_verdade_half_adder}
+  \end{table}
+  
+  As equações booleanas para o bit de soma e o bit ``vai um'' (carry) são
+  \[ \begin{split}
+      s &= a \oplus b \\
+      c &= a \cdot b \ , 
+     \end{split}  \]
+  em que $\oplus$ é a operação XOR (ou exclusivo) e $\cdot$ é a operação AND. 
+  
+  Já que há 2 entradas e 2 saídas, é possível tentar realizar esse circuito com apenas 2 qubits. No entanto, há duas entradas distintas $ab = 10$ e $ba = 01$ que fornecem o mesmo resultado $sc = 10$, de forma que a função booleana não é reversível. É necessário, então, usar pelo menos um qubit de trabalho.
+  Um circuito quântico capaz de realizar as operações desejadas é dado na figura \ref{cap6:fig_quantum_half_adder}. 
+  
+  \begin{figure}[H]
+  \centering
+  \[ \Qcircuit @C=12pt @R=10pt @!R 
+  {
+  \lstick{\ket{a}} & \ctrl{1} & \ctrl{1} & \rstick{\ket{a}} \qw \\
+  \lstick{\ket{b}} & \ctrl{1} & \targ    & \rstick{\ket{a \oplus b} = \ket{s}}\qw \\
+  \lstick{\ket{0}} & \targ    & \qw      & \rstick{\ket{a \cdot b} \ \, = \ket{c}}\qw
+  }
+  \]
+   \caption{Esquemático do quantum half adder, circuito quântico que se comporta, na base computacional, como o Half Adder clássico.}
+   \label{cap6:fig_quantum_half_adder}
+  \end{figure}
+ 
+ O circuito da figura \ref{cap6:fig_quantum_half_adder} foi adaptado para implementação na plataforma IBM Quantum Experience. A porta Toffoli não é nativa no sistema, e deve ser realizada com as outras portas lógicas quânticas; uma maneira de se fazer isso é por meio da identidade de circuitos apresentada na proposição \ref{cap4:prop_constr_porta_toffoli}. 
+ 
+ %modificar?
+ Há uma limitação com relação ao uso das portas CNOT. As maneiras possíveis de se incluir uma porta CNOT no circuito são mostradas na figura \ref{cap6:fig_cnot_gates}. Portanto, deve-se utilizar técnicas para construir outras portas CNOT em função das portas nativas. Algumas técnicas são apresentadas na figura \ref{cap6:fig_cnot_tecnicas}. Alternativamente, pode-se tentar mapear os qubits de forma a conseguir realizar o circuito utilizando as CNOTs nativas. 
+ 
+ Outro detalhe é que o sistema inicializa os qubits no estado $\ket{0}$, portanto para aplicar outras entradas é necessário modificar esses estados $\ket{0}$ com portas lógicas. Para inicializar com o estado $\ket{1}$, por exemplo, deve-se aplicar uma porta $X$ ao $\ket{0}$.
+ 
+ Assim, o circuito implementado na plataforma IBM Quantum Experience ficou como disposto na figura \ref{cap6:fig_quantum_half_adder_ibmqe}.
+ 
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{cap6/figuras/quantum_half_adder_ibmqe.png}
+\vspace{-5pt}
+\caption{Circuito Quantum Half-Adder implementado na plataforma IBM Quantum Experience. (a) Preparação do estado inicial (substituir Id por $X$ para preparar estados $\ket{1}$). (b) Circuito adaptado. Mapeamento de qubits: $q[0] = \ket{c}$ (ancilla), $q[1] = \ket{b}$ e $q[2] = \ket{a}$.}
+\label{cap6:fig_quantum_half_adder_ibmqe}
+\end{figure}
+
+
+ \end{subsection} 
+ 
+\begin{subsection}{Simulação do Circuito no IBM QX}
+ 
+ Foram realizadas simulações do circuito \ref{cap6:fig_quantum_half_adder_ibmqe} para todas as 4 combinações de entradas na base computacional. Para cada entrada, a simulação consiste na execução do circuito por 100 vezes, obtendo-se um gráfico de barras com a contagem dos resultados na base computacional. O número de disparos padrão é 100, mas outras configurações são possíveis.
+ 
+ O resultado das simulações encontra-se na figura \ref{cap6:fig_quantum_half_adder_simulation}. 
+ \vspace{-5pt}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.35]{cap6/figuras/quantum_half_adder_simulation.png}
+\vspace{-20pt}
+\caption{Simulação do circuito Quantum Half Adder na plataforma IBM Quantum Experience. Número de disparos para cada entrada: 100.}
+\label{cap6:fig_quantum_half_adder_simulation}
+\end{figure}
+ 
+ Portanto, os resultados da simulação podem ser reescritos na tabela abaixo. Pode-se perceber que esses resultados correspondem ao disposto na tabela verdade \ref{cap6:tab_verdade_half_adder}.
+ \vspace{-5pt}
+  \begin{table}[H]
+  \centering
+   \begin{tabular}{c|c}
+    Entrada & Saída \\ 
+    $\ket{\text{xx}ab0}$ & $\ket{\text{xx}asc}$ \\ \hline
+    000 &  000 \\
+    010 &  010 \\
+    100 &  110 \\
+    110 &  101
+   \end{tabular}   
+  \caption{Resultados da simulação do circuito quantum half adder.}
+  \label{cap6:tab_simulacao_quantum_half_adder}
+  \end{table}
+ 
+\end{subsection}
+
+\begin{subsection}{Execução do Circuito no IBM QX}
+ 
+ O circuito foi importado para o computador IBM Q 5 Tenerife (ibmqx4) por meio da interface IBM Quantum Experience. Foi realizada uma execução para cada entrada diferente, e cada execução consiste em 1024 disparos do circuito (esse número é configurável, podendo-se escolher entre as opções: 1, 1024, 4098 e 8192). Os resultados encontram-se na figura \ref{cap6:fig_quantum_half_adder_ibmqx4}.
+ 
+ \vspace{-5pt}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.35]{cap6/figuras/quantum_half_adder_ibmqx4.png}
+\vspace{-20pt}
+\caption{Execução do circuito quantum half adder no computador IBM Q 5 Tenerife (ibmqx4). Número de disparos em cada execução: 1024.}
+\label{cap6:fig_quantum_half_adder_ibmqx4}
+\end{figure}
+
+Percebe-se que os estados com maior número de contagens correspondem aos estados esperados como resposta para o circuito. Esses estados estão resumidos na tabela \ref{cap6:tab_ibmqx4_quantum_half_adder}.
+ 
+  \begin{table}[H]
+  \centering
+   \begin{tabular}{c|c|c}
+    Entrada & Saída & Concordância com simulação${}^{(\ast)}$ \bigstrut[t]\\ 
+    $\ket{\text{xx}ab0}$ & $\ket{\text{xx}asc}$ & \bigstrut[b]\\ \hline
+    00000 &  00000 & $\tfrac{404}{1024} = 39,\!5\%$ \bigstrut\\
+    00010 &  00010 & $\tfrac{285}{1024} = 27,\!8\%$ \bigstrut\\
+    00100 &  00110 & $\tfrac{258}{1024} = 25,\!2\%$ \bigstrut\\
+    00110 &  00101 & $\tfrac{287}{1024} = 28,\!0\%$ \bigstrut
+   \end{tabular}
+  \caption{Execução do circuito quantum half adder no computador IBM Q 5 Tenerife (ibmqx4). $(\ast)$ Percentual de disparos em que o circuito se comporta como projetado.}
+  \label{cap6:tab_ibmqx4_quantum_half_adder}
+  \end{table}
+  
+  Apesar de o estado esperado aparecer com maior frequência, a quantidade de resultados espúrios impede que o algoritmo se comporte como projetado de maneira satisfatória. 
+  Esses resultados indicam que é necessário, para a tecnologia atual, utilizar correção de erros no projeto de algoritmos quânticos. 
+% [[COMENTÁRIO SOBRE NECESSIDADE DE UTILIZAÇÃO DE CÓDIGOS CORRETORES DE ERROS ? ]]
+ 
+ 
+\end{subsection}
+
+\end{section}
+

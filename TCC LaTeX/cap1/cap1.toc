@@ -1,0 +1,32 @@
+\select@language {brazilian}
+\contentsline {section}{\numberline {1}\IeC {\'A}lgebras}{2}
+\contentsline {subsection}{\numberline {1.1}Defini\IeC {\c c}\IeC {\~a}o e exemplos}{2}
+\contentsline {subsection}{\numberline {1.2}Sub\IeC {\'a}lgebras, ideais e morfismos}{4}
+\contentsline {subsection}{\numberline {1.3}\IeC {\'A}lgebra oposta}{5}
+\contentsline {subsection}{\numberline {1.4}\IeC {\'A}lgebra quociente}{6}
+\contentsline {subsection}{\numberline {1.5}\IeC {\'A}lgebra do produto tensorial}{8}
+\contentsline {subsection}{\numberline {1.6}\IeC {\'A}lgebra livre}{9}
+\contentsline {subsection}{\numberline {1.7}\IeC {\'A}lgebra tensorial}{11}
+\contentsline {section}{\numberline {2}Co\IeC {\'a}lgebras}{14}
+\contentsline {subsection}{\numberline {2.1}Defini\IeC {\c c}\IeC {\~a}o e exemplos}{14}
+\contentsline {subsection}{\numberline {2.2}Nota\IeC {\c c}\IeC {\~a}o de Sweedler}{17}
+\contentsline {subsection}{\numberline {2.3}Subco\IeC {\'a}lgebras, codeais e morfismos}{20}
+\contentsline {subsection}{\numberline {2.4}Teorema fundamental das co\IeC {\'a}lgebras}{22}
+\contentsline {subsection}{\numberline {2.5}Co\IeC {\'a}lgebra co-oposta}{23}
+\contentsline {subsection}{\numberline {2.6}Co\IeC {\'a}lgebra do produto tensorial}{24}
+\contentsline {subsection}{\numberline {2.7}Co\IeC {\'a}lgebra quociente}{25}
+\contentsline {section}{\numberline {3}Duais de \IeC {\'a}lgebras e co\IeC {\'a}lgebras}{28}
+\contentsline {subsection}{\numberline {3.1}Estrutura de \IeC {\'a}lgebra para $\ensuremath {{}_{\mathbb {K}}\textnormal {Hom} }(C,A)$}{30}
+\contentsline {subsection}{\numberline {3.2}Estrutura de \IeC {\'a}lgebra para o dual de uma co\IeC {\'a}lgebra}{31}
+\contentsline {subsection}{\numberline {3.3}Estrutura de co\IeC {\'a}lgebra para o dual de uma \IeC {\'a}lgebra}{33}
+\contentsline {subsubsection}{\numberline {3.3.1}Dimens\IeC {\~a}o finita}{33}
+\contentsline {subsubsection}{\numberline {3.3.2}Dual finito}{38}
+\contentsline {section}{\numberline {4}Bi\IeC {\'a}lgebras}{44}
+\contentsline {subsection}{\numberline {4.1}Defini\IeC {\c c}\IeC {\~a}o e exemplos}{44}
+\contentsline {subsection}{\numberline {4.2}Sub-Bi\IeC {\'a}lgebras, bi-ideais e morfismos}{46}
+\contentsline {subsection}{\numberline {4.3}Bi\IeC {\'a}lgebras oposta, co-oposta, e oposta-co-oposta}{47}
+\contentsline {subsection}{\numberline {4.4}Bi\IeC {\'a}lgebra do produto tensorial}{49}
+\contentsline {subsection}{\numberline {4.5}Bi\IeC {\'a}lgebra quociente}{51}
+\contentsline {subsection}{\numberline {4.6}Bi\IeC {\'a}lgebra dual}{52}
+\contentsline {subsubsection}{\numberline {4.6.1}Dimens\IeC {\~a}o finita}{52}
+\contentsline {subsubsection}{\numberline {4.6.2}Dual finito}{54}

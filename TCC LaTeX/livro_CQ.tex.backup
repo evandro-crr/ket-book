@@ -1,0 +1,265 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a5paper,twoside,final]{book}
+\usepackage[portugues,brazil]{babel}
+\usepackage[latin1]{inputenc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% pacotes padrão, não sei o que fazem especificamente
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{indentfirst}
+\usepackage{ae}
+% \usepackage{harvard} %não parece fazer diferença; conflita com ambiente \begin{thebibliography} \end{thebibliography}
+
+\usepackage{fancyhdr,fancybox,epsfig,psfrag,tabularx}
+%\usepackage[paperwidth=210mm,paperheight=297mm,hmargin={25mm,20mm},vmargin={20mm,20mm}]{geometry} % tamanho a4
+\usepackage[paperwidth=148mm,paperheight=210mm,hmargin={20mm,15mm},vmargin={15mm,15mm}]{geometry} % tamanho a5
+
+
+
+% TAMANHO A5
+% \documentclass[a5paper,10pt,twoside,final]{book}
+% \evensidemargin -1.5cm
+% \oddsidemargin -0.8 cm
+% \setlength{\topmargin}{-1.8cm}
+% \setlength{\textwidth}{12cm}
+% \setlength{\textheight}{17cm}
+
+\usepackage[color]{showkeys}
+\definecolor{refkey}{rgb}{0.39,0.58,1}
+\definecolor{labeled}{rgb}{1,0,0}
+\usepackage[Lenny]{fncychap}
+\setlength{\headheight}{15pt}
+
+\usepackage[title, titletoc]{appendix}
+
+
+\usepackage{hyperref}
+
+
+
+%===== Headers ======
+
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter. \ #1}{ }}
+\renewcommand{\sectionmark}[1]{\markright{\thesection. \ #1}}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+%=====================
+
+\input{macros/macros} % também não sei o que faz
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{secnumdepth}{3} % define numeração de subsubsection e faz estes aparecerem no sumário
+
+\usepackage{verbatim} % para usar ambiente \begin{comment} \end{comment}
+
+\usepackage{hyphenat} % para usar comando \nohyphens{texto texto}
+                      % permite definir trecho do texto sem separação de palavras com hífen
+
+\usepackage{slashed} % para usar comando \slashed{texto em modo matemático}
+
+\usepackage{float}   % para posicionar figuras com mais precisão: opção [H] no ambiente 
+                     % \begin{figure}[H]  \end{figure}
+                     
+\usepackage{xcolor}  % colorir texto e equações
+                     % comando \textcolor{cor}{texto}
+                     
+\usepackage{cite} % citar bibliografia em BibTex
+
+    
+\usepackage{bigstrut} % ajusta espaçamento horizontal e vertical em tabelas
+                      % introduzir \bigstrut nas células delimitadas acima e abaixo  por \hline 
+                      %            \bigstrut[t] nas células delimitadas acima por \hline
+                      %            \bigstrut[b] nas células delimitadas abaixo por \hline
+                      
+\usepackage{multirow} % define \multirow{}{}{}
+                      % mesclar células em uma tabela
+                         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% pacotes de matemática e física muito usados
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{physics} % permite usar notação de Dirac
+
+\usepackage{cancel} % comando \cancel{ Texto} 
+                    % risca texto
+
+\usepackage{tikz} %gráficos no ambiente \begin{tikzpicture} \end{tikzpicture}
+\usepackage{tkz-euclide}
+
+\usepackage{circuitikzgit} % desenho de circuitos digitais
+%\usetikzlibrary{arrows, shapes.gates.logic.US, calc} % desenho de circuitos digitais
+
+\usepackage{qcircuit} % permite inserir diagramas de circuitos quânticos
+                      % define comandos \multigatenoqw \ghostnoqw (versão sem \qw na frente do componente) no ambiente Qcircuit
+\newcommand{\multigatenoqw}[2]{*+<1em,.9em>{\hphantom{#2}} \POS [0,0]="i",[0,0].[#1,0]="e",!C *{#2},"e"+UR;"e"+UL **\dir{-};"e"+DL **\dir{-};"e"+DR **\dir{-};"e"+UR **\dir{-},"i"}
+\newcommand{\ghostnoqw}[1]{*+<1em,.9em>{\hphantom{#1}} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% definindo ambientes  theorem, proposition, lemma, example,
+%                      definition, remark, corollary, etc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Theorem Styles
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposição}
+\newtheorem{corollary}[theorem]{Corolário}
+\newtheorem{postulate}{Postulado}[]
+\newtheorem{claim}{Afirmação}[]
+
+% permite criar ambientes theorem com contador customizável
+\newtheorem{innercustomgeneric}{\customgenericname}
+\providecommand{\customgenericname}{}
+\newcommand{\newcustomtheorem}[2]{%
+  \newenvironment{#1}[1]
+  {%
+   \renewcommand\customgenericname{#2}%
+   \renewcommand\theinnercustomgeneric{##1}%
+   \innercustomgeneric
+  }
+  {\endinnercustomgeneric}
+}
+
+\newcustomtheorem{postulate*}{Postulado}
+\newcustomtheorem{claim*}{Afirmação}
+\newcustomtheorem{problem*}{Problema}
+
+% Definition Styles
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definição}
+\newtheorem{example}[theorem]{Exemplo}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Observação}
+
+
+% define ambiente \begin{proofclaim}   \end{proofclaim}
+\newcommand*{\myproofname}{Prova da afirmação}
+\newenvironment{proofclaim}[1][\myproofname]{\begin{proof}[#1]\renewcommand*{\qedsymbol}{$\lrcorner$}}{\end{proof}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Atalhos úteis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newcommand{\id}[0]
+% {\ensuremath{\mathbf{1}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMEÇO DO DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+
+\pagenumbering{roman}
+\pagestyle{plain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Retirar comentários para a versão final
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+ %===================== Capa, dedicatória, agradecimento e epígrafe ==================
+\input{capa/capa}
+
+\input{ficha_catalografica/ficha_catalografica}
+
+\input{folha_assinatura/folha_assinatura}
+ 
+%\input{dedicatoria/dedicatoria}
+ 
+\input{agradecimento/agradecimento}
+ 
+%\input{epigrafe/epigrafe}
+ 
+ 
+ \baselineskip 1.1 \baselineskip
+ 
+ 
+ \input{res_abstract/res_abstract}
+
+ %=============================== Lista de tabelas e figuras ==========================
+  \listoffigures
+  \newpage
+  
+  
+  \listoftables
+  \newpage
+ 
+ \end{comment}
+ %============================ Acrônimos, símbolos e notações ========================
+ % \input{acro_notacao/acro_notacao.tex}
+ 
+ %=============================== Sumário =============================================
+
+ \tableofcontents
+ 
+ 
+ \newpage
+ %caso o sumário acabe em uma página ímpar, o verso será em branco
+ \null \vfill
+ \newpage
+ 
+ %Agora muda para o estilo fancy
+ \pagestyle{fancy}
+ 
+  %=============================== Introdução =============================================
+ %\markboth{Introdu\c{c}\~{a}o}{Introdu\c{c}\~{a}o}
+ \mainmatter
+ \include{introducao/introducao}
+ 
+  %=============================== Capítulos =============================================
+  
+% \include{cap1/cap1}
+ \include{cap2/cap2}
+ \include{cap3/cap3}
+ \include{cap4/cap4}
+ \include{cap5/cap5}
+ \include{cap6/cap6}
+ \include{cap7/cap7}
+ 
+ 
+
+
+ 
+  %=============================== Conclusão =============================================
+ \include{conclusao/conclusao}
+ 
+ 
+ %=============================== Bibliografia ==============================================
+ \addcontentsline{toc}{chapter}{Bibliografia} % faz bibliografia aparecer no sumário
+ \renewcommand{\bibname}{Bibliografia}
+ \markboth{Bibliografia}{Bibliografia}
+  
+ % Bibliografia com BIBTEX
+ \bibliographystyle{plain}
+ \bibliography{bibliografia/biblio.bib}
+ 
+ % Se for usar BIBTEX, comentar linha abaixo
+ % \include{bibliografia/bibliografia}
+
+ 
+\appendix
+ \include{apA/apA}
+ 
+ 
+\end{document}

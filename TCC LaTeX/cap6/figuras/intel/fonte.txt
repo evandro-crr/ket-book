@@ -1,0 +1,9 @@
+Intel-Quantum-chips
+https://simplecore.intel.com/newsroom/wp-content/uploads/sites/11/2018/01/Intel-Quantum-chips.jpg
+Intel Corporation is making fast progress scaling superconducting quantum computing test chips to higher qubit counts -- from 7, to 17 and now 49 qubits (left to right). Multiple gold connectors are required to control and operate each qubit. (Credit: Walden Kirsch/Intel Corporation)
+
+https://newsroom.intel.com/news/intel-delivers-17-qubit-superconducting-chip-advanced-packaging-qutech/
+
+
+
+

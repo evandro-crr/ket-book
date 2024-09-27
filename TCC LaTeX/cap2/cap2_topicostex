@@ -1,0 +1,140 @@
+
+\chapter{Álgebra Linear}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap2/figures/dirac_notation.png}
+\caption{Notação de Dirac. Fonte: [Quantum Computation and Quantum Information, Chuang, p. 62]}
+\end{figure}
+ 
+
+
+\begin{section}{Espaço Vetorial}
+ 
+ axiomas do espaço vetorial
+ 
+ comentário sobre Espaços de Hilbert
+ 
+ propriedades dos espaços vetoriais
+      lei do cancelamento
+      unicidade do elemento neutro
+      unicidade do elemento simétrico
+      multiplicação por zero
+      multiplicação por -1
+      
+ 
+\end{section}
+
+\begin{section}{Subespaços Vetoriais}
+
+ definição de subespaços vetoriais
+ 
+ união de subespaços
+ 
+ intersecção de subespaços
+ 
+ espaço gerado
+ 
+\end{section}
+
+\begin{section}{Combinação Linear, Vetores LD e LI}
+ 
+ combinação linear
+ 
+ dependência linear
+ 
+ independência linear
+ 
+\end{section}
+
+\begin{section}{Base e Dimensão}
+ 
+ definição de base
+ 
+ definição de dimensão 
+ 
+ relação de completeza
+ 
+\end{section}
+
+\begin{section}{Operadores Lineares}
+
+ ponto de vista matricial
+ 
+ ponto de vista abstrato (operadores)
+ 
+ exemplo obtenção de matriz de um operador
+ 
+ matrizes de Pauli (deixar para capítulo de MQ ou CQ?) (fazer uma seção reunindo várias propriedades e informações envolvendo essas matrizes?)
+ 
+  \end{section}
+
+\begin{section}{Produto Interno}
+ 
+definição de produto interno
+
+definição de norma induzida por produto interno
+
+comentário sobre Espaços de Hilbert
+
+desigualdade de Cauchy-Schwarz
+
+vetores ortogonais e ortonormais
+
+projeção ortogonal e projetores
+
+processo de ortogonalização de Gram-Schmidt
+
+\end{section}
+
+\begin{section}{Autovalores e autovetores}
+ 
+ definição de autovalores e autovetores
+ 
+ Teorema da Decomposição Espectral
+ (operadores normais equivalem a operadores diagonalizáveis)
+ (caso particular: todos os operadores autoadjuntos/hermitianos são diagonalizáveis)
+ 
+ 
+ autovalores de operadores hermitianos
+      matriz normal é hermitiana se e somente se possui autovalores reais
+      
+ autovalores de operadores unitários
+      todos os autovalores de operadores unitários têm módulo 1
+      
+ autovalores dos operadores de projeção
+      os autovalores dos operadores de projeção são 0 ou 1
+      
+ 
+ 
+\end{section}
+
+\begin{section}{Outros tópicos}
+ 
+ traço
+ 
+ comutador e anticomutador
+ 
+ determinante
+ 
+ diagonalização simultânea
+ 
+ decomposição polar
+      decompõe matriz em matriz unitária e positiva
+      decomposição polar direita
+      decomposição polar esquerda
+      
+      
+ decomposição de valores singulares
+      consequência da decomposição polar
+      
+ 
+ 
+\end{section}
+
+
+\begin{section}{Produto Tensorial}
+ 
+\end{section}
+
+

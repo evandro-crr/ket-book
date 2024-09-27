@@ -1,0 +1,5 @@
+rigetti_19q
+https://medium.com/rigetti/unsupervised-machine-learning-on-rigetti-19q-with-forest-1-2-39021339699
+
+rigetti_8q
+https://medium.com/rigetti/introducing-forest-f2c806537c6d

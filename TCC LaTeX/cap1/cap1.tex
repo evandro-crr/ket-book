@@ -1,0 +1,765 @@
+
+
+\chapter{Computação Clássica}\label{cap1_comp_classica}
+
+
+
+\begin{section}{Introdução}
+
+\indent Um computador digital é um sistema que pode seguir uma sequência de instruções, chamada programa, e que opera em um conjunto de informações. Os computadores digitais modernos são compostos de milhões a bilhões de transistores, que se agrupam em circuitos digitais. Para lidar com a complexidade desses sistemas, os circuitos são subdivididos em circuitos menores, que realizam funções específicas. Esses circuitos são considerados ``caixas pretas'', em que se ignoram os detalhes internos, e são agrupados de forma a realizar funções mais sofisticadas. 
+
+A engenharia trabalha com \emph{níveis de abstração}; cada nível corresponde a omitir detalhes internos dos subsistemas constituíntes, ou da camada de abstração anterior. Uma discussão mais detalhada sobre as camadas de abstração do computador será realizada na seção seguinte. 
+
+Para que o computador consiga operar em um conjunto de informações, é necessário que essa informação seja traduzida, ou, codificada, de forma conveniente. O projeto dos computadores digitais se baseia em que as informações de entrada do sistema, e mesmo as instruções a serem seguidas, são codificadas em \emph{bits}. 
+
+Os bits são variáveis que podem assumir apenas dois valores, rotulados de 0/1 ou Verdadeiro/Falso, por exemplo. No computador digital, a tensão elétrica é utilizada como bit; as tensões próximas a $0V$ são consideradas como bit 0 e as tensões próximas à tensão de alimentação do circuito (normalmente $5V$ ou $3,\!3V$), como bit 1. 
+
+Nas seções seguintes esses tópicos serão detalhados. A ênfase será nas ideias vinculadas aos sistemas digitais, no manejo da complexidade por meio das camadas de abstração e nos detalhes das camadas mais próximas da camada física, com o objetivo de passar a ideia de como um computador digital clássico funciona. A finalidade é, também, comparar esse paradigma de computação com as ideias que estão surgindo na área da Computação Quântica. As principais referências dessa seção são os livros \cite{book:lcdf_mkm}, \cite{book:ds_tocci} e \cite{book:dd_vahid} de Sistemas Digitais e o livro \cite{book:cod_patterson} de Organização de Computadores. 
+
+ 
+\end{section}
+
+\begin{comment}
+\indent \indent Os computadores clássicos têm seu funcionamento fundamentado na lógica booleana. Os circuitos transistorizados que compõem o computador clássico conseguem imitar o comportamento das variáveis booleanas e das operações que é possível fazer envolvendo essas variáveis. As variáveis booleanas são representadas por sistemas que podem assumir dois estados\footnote{Ou variáveis físicas, como tensão elétrica, que podem assumir valores que são interpretados como associados a dois estados diferentes: Low/High, $0V$/$5V$,0/1, Verdadeiro/Falso.} -- os \emph{bits} -- e as operações entre essas variáveis são representadas por sistemas que, em função dos bits de entrada, disponibilizam bits à saída -- as \emph{portas lógicas}. 
+\end{comment}
+
+\begin{comment}
+\indent Nos computadores atuais, os sinais de tensão fazem o papel das variáveis booleanas (bits) e circuitos transistorizados fazem o papel das funções booleanas (portas lógicas). O agrupamento desses sistemas forma sistemas mais complexos, e para se conseguir manejar essa complexidade crescente, os sistemas são organizados em vários níveis de abstração.
+\end{comment}
+
+\begin{section}{Níveis de Abstração}
+
+\indent Na engenharia, uma maneira de lidar com a complexidade de sistemas muito grandes é subdividí-los em subsistemas que possam ser descritos de maneira mais simples, omitindo detalhes internos. Componentes mais básicos são usados para projetar blocos que realizam funções simples. Esses blocos passam a ser descritos apenas pela sua função (como as saídas se comportam em relação às entradas), e passa-se a ignorar sua estrutura interna. Sistemas mais complexos podem ser projetados por meio desses blocos. A cada vez que se agrupa os sistemas em blocos e passa-se a ignorar sua estrutura interna, sobe-se um nível nas \emph{camadas de abstração}. Quando se ``abre'' um sistema para analisar sua estrutura interna, passa-se à camada de abstração inferior. 
+
+Essa divisão em camadas de abstração permite que o os diversos blocos do sistema sejam projetados de forma paralela. Além disso, o projeto de um bloco pode ser reaproveitado em outros momentos, no mesmo projeto ou em outros. Outra vantagem é que o sistema passa a ser visto como composto de uma quantidade relativamente pequena de subsistemas, e não mais de milhões de transistores, cujo funcionamento em conjunto seria virtualmente impossível de descrever diretamente. 
+
+A figura a seguir ilustra as camadas de abstração presentes no computador digital. Dependendo do autor, as camadas de abstração são nomeadas de maneira ligeiramente diferente ou são consideradas algumas subcamadas extra. Neste trabalho, a nomenclatura e as camadas de abstração consideradas seguirão a referência \cite{book:lcdf_mkm}. 
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{c}
+  Camadas de Abstração \bigstrut \\ \hline
+  Linguagens de Programação \\
+  Sistemas Operacionais \\
+  Instruction Set Architecture \\
+  Microarquitetura \\
+  Transferência de Registrador \\
+  Portas Lógicas \\
+  Circuitos Transistorizados \\
+  Nível Físico
+ \end{tabular}
+\caption{Níveis de abstração -- um método útil para lidar com a complexidade de sistemas. As camadas de baixo são mais próximas do nível físico e as de cima são mais abstratas. Fonte: \cite{book:lcdf_mkm}}
+\end{table}
+
+
+\begin{comment}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/tabela_niveis_abstracao.png}
+\caption{Fonte: [Logic and Computer Design Fundamentals}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/niveis_abstracao_2.png}
+\caption{Fonte: [Digital Design and Computer Architecture]}
+\end{figure}
+\end{comment}
+
+Na sequência, esses níveis de abstração serão analisados brevemente. No estudo ou projeto em cada nível de abstração, é útil ter em mente os níveis imediatamente acima e abaixo do mesmo.
+
+
+\begin{comment}
+\indent \indent Os sistemas digitais são organizados em diversos níveis de abstração, quais sejam: 
+\begin{itemize}
+ \item \textbf{Nível de dispositivo}: É o nível mais próximo da descrição física do sistema. Nessa camada, são exibidos os transistores que compõem as portas lógicas, que por sua vez, compõem sistemas mais complexos.
+ \item \textbf{Nível lógico}: Nesse nível de abstração, as portas lógicas são considerados os blocos fundamentais do sistema, e sua constituição interna não é explicitada -- são consideradas como ``caixas pretas''.
+ \item \textbf{Nível RT}: Nível de transferência de registradores. Nesse nível de abstração, as portas lógicas formam componentes mais complexos, como somadores, subtratores, multiplexadores, demultiplexadores, entre outros. Os conjuntos de bits, nesse nível, podem ser interpretados como representando números inteiros com ou sem sinal, ou outros tipos de dados. 
+ \item \textbf{Nível de sistema}: 
+\end{itemize}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{cap1/niveis_abstracao.png}
+\caption{Colocar figura melhor!}
+\end{figure}
+\end{comment}
+
+
+\end{section}
+
+\begin{section}{Nível de Transistores}
+\indent Essa camada de abstração é a mais próxima do nível físico. Nessa camada os elementos básicos são os transistores, e atualmente é possível fabricar circuitos integrados contendo milhões a bilhões de transistores num mesmo chip. Com os transistores é possível implementar circuitos que se comportam como portas lógicas, que serão vistas na próxima camada de abstração. 
+
+\begin{subsection}{Circuitos transistorizados}
+A informação dos sistemas digitais está codificada em bits, representados por sinais de tensão. Os circuitos digitais são circuitos com transistores que são projetados para fornecer saídas próximas a $0V$ ou a $V_{DD}$ para tensões de entrada próximas a $0V$ ou a $V_{DD}$, em que $V_{DD}$ é a tensão de alimentação do circuito digital. As entradas não devem assumir outros valores de tensão, e caso isso aconteça, o sistema se comportaria de forma imprevisível, saindo da situação para a qual fora projetado. 
+
+Os transistores largamente utilizados em circuitos digitais são da tecnologia CMOS. Esses transistores, quando submetidos a tensões $0V$ ou $V_{DD}$, se comportam como chaves controladas por tensão, conforme ilustrado na figura abaixo. Essa característica é fundamental para que a saída dos circuitos seja também $0V$ ou $V_{DD}$, e portanto, passível de se interpretar como um bit. 
+
+\begin{figure}[H]\label{fig_mosfet_switch_model}
+\centering
+\includegraphics[scale=0.7]{cap1/mosfet_switch_model.png}
+\caption{Fonte: [Logic and Computer Design Fundamentals]}
+\end{figure}
+
+\end{subsection}
+
+\begin{subsection}{Transistores MOS}
+
+Os MOSFETs são transistores largamente utilizados em circuitos digitais, embora também sejam aplicados em circuitos analógicos [CMOS Analog Design Using All-Region MOSFET Modeling, p.1-2]. A sigla FET refere-se a \emph{Field Effect Transistor}.
+
+A estrutura básica do MOSFET é um empilhamento de três camadas: Metal, Óxido e Semicondutor. A camada de metal atualmente é substituída por polissilício. A camada de óxido é composta por dióxido de silício, mas também pode ser substituída por outros isolantes, e nesse caso, costuma-se chamar o dispositivo pelo nome mais geral IGFET -- Insulated-Gate FET. 
+
+A camada semicondutora é dopada, formando semicondutor do tipo p \footnote{Semicondutor tipo p: a maioria dos portadores de cargas (móveis) é formada por lacunas na banda de valência, que se comportam como cargas positivas.} ou do tipo n \footnote{Semicondutor tipo n: a maioria dos portadores de carga é formada por elétrons.}, e dependendo da natureza dessa camada, o transistor é classificado como NMOS ou PMOS.
+
+[figura NMOS e PMOS]
+
+O transistor MOS é um dispositivo de quatro terminais: \emph{gate} (porta), \emph{source} (fonte), \emph{drain} (dreno) e \emph{bulk} (substrato). O substrato é normalmente conectado à fonte, resultando em um dispositivo de três terminais. O funcionamento do NMOS e do PMOS como chave, no contexto de circuitos digitais, é comentado brevemente a seguir. 
+
+[figura NMOS e PMOS ligado e desligado]
+
+Para o NMOS, ao se aplicar uma tensão positiva na porta (em relação ao substrato), acumulam-se cargas positivas na camada de metal (ou de polissilício), induzindo o acúmulo de elétrons no semicondutor tipo p. Forma-se um canal tipo n entre a fonte e o dreno -- por isso a designação NMOS, ou MOSFET canal n -- e forma-se um contato elétrico entre esses terminais. Quando a tensão na porta é nula em relação ao substrato, os terminais da fonte e o dreno ficam isolados eletricamente pelas barreiras de potencial formadas nas junções pn.
+
+Para o PMOS, deve-se aplicar uma tensão negativa na porta (em relação ao substrato), para que se acumulem cargas positivas, lacunas, na camada semicondutora tipo n. Forma-se um canal tipo p entre a fonte e o dreno, conectando eletricamente esses terminais. Isso justifica o nome PMOS, ou MOSFET canal p. Quando a tensão na porta é nula em relação ao substrato, os terminais, a fonte e o dreno ficam isolados eletricamente. 
+
+Dessa forma, os transistores NMOS e PMOS operam como chave controlada pela tensão na porta, como ilustrado na figura \ref{fig_mosfet_switch_model}.
+ 
+\end{subsection}
+
+\begin{subsection}{Fabricação}
+
+\indent Nesta subseção serão feitos alguns comentários acerca do processo de fabricação dos circuitos integrados, de que, em particular, são constituídos os sistemas digitais. Uma referência para fabricação de circuitos integrados é o livro [Fabrication Engineering at the Micro and Nanoscale, Campbell].
+
+Para a fabricação de circuitos integrados é necessária a obtenção de silício policristalino, ou polissilício, com alto grau de pureza. Por meio de processos de destilação, e a partir do $\text{SiO}_2$, é possível obter-se polissilício com pureza de 99.999999999\%. [Fabrication Engineering at the Micro and Nanoscale, Campbell, p. 22]
+
+Os circuitos integrados são fabricados sobre silício monocristalino. Esse substrato é obtido a partir de um fragmento de silício monocristalino que é mergulhado em um cadinho com polissilício derretido e puxado, de modo a formar um cristal com estruruta cristalina bastante regular. Conforme o fragmento é puxado, o silício se cristaliza junto ao fragmento, formando \emph{tarugo} de silício monocristalino. Este método de obtenção de silício monocristalino é conhecido por \emph{processo de Czochralsky} [Fabrication Engineering at the Micro and Nanoscale, Campbell, p. 22]. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/czochralsky.png}
+\caption{Fonte: [Fabrication Engineering at the Micro and Nanoscale, Campbell, p. 24]}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/czochralsky_machine.png}
+\caption{Fonte: [Fabrication Engineering at the Micro and Nanoscale, Campbell, p. 23]}
+\end{figure}
+
+O tarugo de silício monocristalino é, então, cortado em fatias conhecidas por \emph{wafers} de silício. Sobre os wafers são inseridas impurezas para formar os semicondutores do tipo n ou p, por processos de difusão ou de implantação iônica. Camadas metálicas são obtidas por meio de litografia, ou mais especificamente, fotolitografia. Camadas de óxido $\text{SiO}_2$ são obtidas por difusão de oxigênio no silício e reação de oxidação. 
+
+A tecnologia de fabricação de circuitos integrados depende também de processos de crescimentos de filmes finos sobre o silício, o \emph{crescimento epitaxial}. Alguns desses processos são o \emph{CVD} -- \emph{Chemical Vapour Deposition} -- e a \emph{MBE} -- \emph{Molecular Beam Epitaxy}.
+
+
+\end{subsection}
+
+ 
+\end{section}
+
+\begin{section}{Nível Lógico}\label{cap1:sec_nivel_logico}
+\indent O nível lógico refere-se à camada de abstração imediatamente acima da dos transistores. Os transistores são reunidos em \emph{portas lógicas}. Nessa camada de abstração, os sinais de tensão na entrada e na saída são interpretados como bits, e as portas lógicas que operam esses bits simulam as funções lógicas como OR, AND, NOT, entre outras
+
+Nesse agrupamento em blocos os detalhes internos do circuito são ignorados. 
+
+\begin{subsection}{Álgebra Booleana}
+ \indent As \emph{variáveis booleanas} são variáveis que podem assumir apenas dois valores, rotulados como 0/1 ou Falso/Verdadeiro. Os bits são sinônimos de variáveis booleanas. As funções $f\colon \{0,1\}^n \to \{0,1\}^m \,$, que levam um conjunto de $n$ bits em um conjunto de $m$ bits, são chamadas \emph{funções booleanas}. As funções booleanas podem ser especificadas por expressões matemáticas ou por uma tabela  -- a \emph{tabela verdade} -- listando todos os possíveis valores de entrada e a saída atribuída a cada valor de entrada. 
+ 
+ Algumas funções booleanas elementares são chamadas de portas lógicas, ilustradas no tópico \ref{cap1:portas_logicas} subsequente. As três operações básicas da Álgebra Booleana são $+ \colon \{0,1\}^2 \to \{0,1\}$, $\cdot\, \colon \{0,1\}^2 \to \{0,1\}$ e $\overline{\phantom{a}} \colon \{0,1\} \to \{0,1\}$, também chamadas de operações OR, AND e NOT, respectivamente. 
+ 
+ A Álgebra Booleana pode ser interpretada como descrição de um sistema lógico em que há apenas dois valores lógicos -- Falso/Verdadeiro ou 0/1 -- e às proposições lógicas pode ser atribuído um e apenas um desses valores. 
+ % [Fonte: ftp://vm1-dca.fee.unicamp.br/pub/docs/vonzuben/ia861_1s10/notas_de_aula/topico3_IA861_1s10.pdf]
+ 
+ Neste trabalho, o enfoque será mais voltado às aplicações em sistemas digitais. Um enfoque mais formal da álgebra booleana pode ser encontrado em \cite{book:iba_halmos}, capítulo 2, em que se define uma álgebra booleana de forma axiomática.
+ 
+ 
+\end{subsection}
+
+\begin{subsection}{Portas Lógicas}\label{cap1:portas_logicas}
+ As portas lógicas são funções booleanas simples, blocos fundamentais dos circuitos digitais. As portas lógicas mais importantes são descritas resumidamente nas figuras a seguir. 
+ 
+ \begin{comment}
+Os símbolos que descrevem as portas lógicas, além de outros símbolos usados em sistemas digitais, são padronizados e especificados em detalhes no IEEE Standard 91-1984 [Institute of Electrical and Electronics Engineers'(IEEE) Standard Symbols for Logic Functions].
+% Fonte: http://ieeexplore.ieee.org/servlet/opac?punumber=2405
+ \end{comment}
+ 
+ \begin{comment}
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/identity_gate.png}
+\caption{Porta Identidade. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+ 
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/not_gate.png}
+\caption{Porta NOT. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/and_gate.png}
+\caption{Porta AND. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+ 
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/or_gate.png}
+\caption{Porta OR. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/nand_gate.png}
+\caption{Porta NAND. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+ 
+  \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/nor_gate.png}
+\caption{Porta NOR. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/xor_gate.png}
+\caption{Porta XOR. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/fanout_copy_gate.png}
+\caption{Porta FANOUT ou COPY. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/crossover_swap_gate.png}
+\caption{Porta CROSSOVER ou SWAP. Fonte: [Principles of Quantum Computation and Information, Vol 1. Basic Concepts, Benenti]}
+\end{figure}
+
+\end{comment}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{cap1/gates.png}
+\caption{Portas lógicas. Fonte: [Logic and Computer Design Fundamentals]}
+\end{figure}
+
+Qualquer sistema físico que se comporte de maneira a fornecer uma tabela verdade como as apresentadas acima pode ser considerado uma porta lógica. 
+
+\end{subsection}
+
+\begin{subsection}{Portas Lógicas - transistores CMOS} 
+ As portas lógicas são implementadas com as redes complementares PMOS e NMOS como nas figuras abaixo. É possível perceber que esses circuitos seguem o comportamento desejado para as portas lógicas, uma vez que os transistores MOS se comportam como chaves controladas por tensão. 
+
+[figuras portas lógicas transistores NOT OR AND NOR NAND etc]
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/portas_logicas_cmos.png}
+\caption{Portas lógicas. Fonte: [Logic and Computer Design Fundamentals]}
+\end{figure}
+[COMPLETAR TEXTO]
+
+\end{subsection}
+
+\begin{subsection}{Teoremas da Álgebra Booleana}
+ 
+ [COMPLETAR TEXTO]
+ 
+ \begin{theorem}[Teoremas da Álgebra Booleana para uma variável]
+  
+   \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/teoremas_algebra_booleana_uma_variavel.png}
+\caption{Teoremas da Álgebra Booleana para uma variável.}
+\end{figure}
+  
+ \end{theorem}
+
+
+\begin{theorem}[Teoremas da Álgebra Booleana para várias variáveis]
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{cap1/teoremas_algebra_booleana_varias_variaveis.png}
+\caption{Teoremas da Álgebra Booleana para várias variáveis.}
+\end{figure}
+
+\end{theorem}
+
+
+ \begin{theorem}[Teoremas DeMorgan]
+ 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{cap1/teoremas_de_morgan.png}
+\caption{Teoremas de DeMorgan.}
+\end{figure}
+
+ \end{theorem}
+
+ 
+
+
+
+\end{subsection}
+
+\begin{subsection}{Universalidade das portas lógicas}\ref{cap1:universalidade_portas_logicas_classicas}
+
+ Com apenas algumas das portas lógicas apresentadas em \ref{cap1:portas_logicas} pode-se compor qualquer função booleana. 
+ 
+ \begin{theorem}[Universalidade das portas OR, AND e NOT]\label{teorema_universalidade_or_and_not}
+   \ 
+   
+   Uma função booleana $f \colon \{0,1\}^m \to \{0,1\}^n$ qualquer pode ser implementada por uma composição das portas lógicas OR, AND e NOT (além das portas SWAP e FANOUT).
+ \end{theorem}
+
+ \begin{proof}
+
+  
+  Considere uma função booleana $f \colon \{0,1\}^m \to \{0,1\}^n$ qualquer. Basta fazer a demonstração para $n=1$. Considerando que esse caso já esteja demonstrado, e visto que pode-se usar a porta FANOUT para copiar cada uma das $m$ entradas o número de vezes que for necessário, pode-se implementar todas as $n$ funções que retornam apenas 1 bit: $f_i \colon\{0,1\}^m \to \{0,1\}$, $i=1, 2 \ldots, n$. O caso analisado será, então, o de uma função que retorna apenas $n=1$ bit na saída.
+
+   Considere a seguinte notação. O vetor de bits $(A_0 , A_1 , \dots , A_{m-1})$, que se pode representar pela justaposição $A_0 A_1 \dots A_{m-1}$, pode assumir os $2^m$ valores $0\dots 00$, $0\dots 01$, até $1 \dots 11$. Esses vetores podem ser identificados com a representação de números inteiros sem sinal na base $2$ conforme ilustra a tabela abaixo.
+   
+   \begin{table}[h]
+    \centering
+    \begin{tabular}{r|r}
+    $A_0 A_1 \dots A_{m-1}$ & Número inteiro   \\ 
+    \hline                           
+    $0 \dots 00$ & $0\cdot 2^{m-1} + \dots + 0 \cdot 2^1 + 0 \cdot 2^0 = \phantom{2^m -}  \ 0 $   \\
+    $0 \dots 01$ & $0\cdot 2^{m-1} + \dots + 0 \cdot 2^1 + 1 \cdot 2^0 = \phantom{2^m -}  \ 1 $   \\
+    $0 \dots 10$ & $0\cdot 2^{m-1} + \dots + 1 \cdot 2^1 + 0 \cdot 2^0 =  \phantom{2^m -} \ 2$   \\
+    $0 \dots 11$ & $0\cdot 2^{m-1} + \dots + 1 \cdot 2^1 + 1 \cdot 2^0 =  \phantom{2^m -} \  3$   \\
+    $\vdots \quad  $ & $\vdots \quad \quad \quad \  $ \\
+    $1 \dots 11$ & $1\cdot 2^{m-1} + \dots + 1 \cdot 2^1 + 1 \cdot 2^0 = 2^m -1$ 
+    \end{tabular}
+    \caption{Correspondência entre vetor de bits $A_0 A_1 \dots A_{m-1}$ e o subconjunto de números inteiros sem sinal $\{ 0, 1, 2, \dots, 2^m-1\}$. }
+    \end{table}
+   
+   Com essa correspondência, passa-se a identificar o vetor de bits com o número inteiro sem sinal associado. Dessa forma, pode-se denotar $f(0 \dots 1 1)$ por $f(3)$, por exemplo. 
+   
+   Seja $m_i \colon \{0,1\}^m \to \{0,1\}$, com $i=0, 1, \dots, (2^n-1)$, dada por $m_i (i) = 1$ e $m_i(j) = 0$ se $i\neq j$. Essas funções são chamadas \emph{minitermos}, e assumem o valor $1$ para exatamente um vetor de bits de entrada. 
+   
+   Seja $I = \{ i \colon f(i) = 1 \}$ o conjunto de entradas em que $f$ assume o valor $1$. Pode-se decompor $f$ como a soma (OR) abaixo:
+   \[ f = \sum_{i \in I} m_i \, .\]
+   Essa soma adquire valor 1 exatamente quando algum dos minitermos $m_i$ assume 1. Como os minitermos considerados são os associados às entradas em que $f$ assume o valor 1, a soma assume 1 exatamente nas mesmas entradas em que $f$ assume o valor 1.
+   
+     \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.2]{cap1/tabela_exemplo_1.png}
+    \caption{Exemplo: $m=3$ bits e decomposição de $f$.}
+    \end{figure}
+    
+    Mas cada minitermo $m_i$ pode, por sua vez, ser implementado com portas AND e NOT da seguinte forma. Considere $i$ fixo e seja $i = A_0 A_1 \dots A_{m-1}$, conforme a notação adotada. Alguns desses $m$ bits assumem valor $0$ e o restante, o valor $1$. Denote por $A_k$ os bits que assumem valor $0$ e $A_l$ os bits que assumem o valor $1$, para certos conjuntos de índices $K$ e $L$. 
+    
+    Agora seja $j = B_0 B_1 \dots B_{m-1}$, que fará papel da entrada da função $m_i$. Considere o produto (AND) abaixo:
+    \[ \prod_{k \in K} \overline{B_k}  \cdot \prod_{l \in L} B_l \]
+    Essa função assume o valor 1 apenas quando todos os termos do produto (AND) valem 1. Isso ocorre apenas para $j=i$, isto é, para $A_0 = B_0, \ldots, A_{m-1}=B_{m-1}$. Portanto:
+    \[ \prod_{k \in K} \overline{B_k}  \cdot \prod_{l \in L} B_l = m_i(B_0\ldots B_{m-1}) \, . \]
+    
+     \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.2]{cap1/tabela_exemplo_2.png}
+    \caption{Exemplo: $m=3$ bits e obtenção do minitermo $m_2$.}
+    \end{figure}
+    
+   Dessa maneira, os minitermos $m_i$ e a função $f$ podem ser realizados com portas OR, AND e NOT.
+ 
+ \end{proof}
+
+ \begin{remark}
+  Pelas leis DeMorgan, é possível escrever a porta OR em termos das portas NOT e AND 
+  \[ x+y = \overline{\overline{x+y}} = \overline{\overline{x} \cdot \overline{y}} \]
+  e é possível escrever a porta AND em termos das portas NOT e OR fazendo
+  \[ x\cdot y = \overline{\overline{x\cdot y}} = \overline{\overline{x}+\overline{y}} \ . \]
+  Dessa forma, pode-se excluir a porta OR ou a AND no teorema \ref{teorema_universalidade_or_and_not} e continua-se obtendo um conjunto de portas universal.
+ \end{remark}
+
+ 
+ \begin{theorem}[Universalidade da porta NAND]
+  \ 
+  
+   Uma função booleana $f \colon \{0,1\}^m \to \{0,1\}^n$ qualquer pode ser implementada por uma composição de portas lógicas NAND (além das portas SWAP e FANOUT).
+ \end{theorem}
+ 
+ \begin{proof}
+  Pelo teorema \ref{teorema_universalidade_or_and_not}, qualquer função booleana $f$ pode ser implementada por portas lógicas OR, AND e NOT. Basta então mostrar que é possível obter as portas OR, AND e NOT a partir da porta NAND. Isso é possível, como se pode observar a seguir:
+  
+  \noindent Porta NOT:
+  \[ \text{NOT}(A)  =  \overline{A} = \overline{A\cdot A} = \text{NAND}(A,A)\]
+  
+  \noindent Porta AND:
+  \[ \text{AND}(A,B) = A \cdot B = \overline{\overline{A\cdot B}} = \text{NOT}\Big(\text{NAND}(A,B)\Big) \]
+  
+  \noindent Porta OR:
+  \[ \text{OR}(A,B) = A + B = \overline{\overline{A+B}} = \overline{\overline{A} \cdot \overline{B}} = \text{NAND}\Big(\text{NOT}(A) , \text{NOT}(B) \Big) \]
+  
+  
+  
+  
+ \end{proof}
+
+
+ 
+\end{subsection}
+
+\end{section}
+
+\begin{section}{Nível de Transferência de Registradores}
+ 
+ \indent O nível de \emph{Transferência de Registradores}, ou \emph{nível RT}, é a camada de abstração acima da camada lógica. As portas lógicas são agrupadas em sistemas que realizam funções mais complexas. As entradas desses sistemas são conjuntos de bits, que podem ser abstraídos para representar outros tipos de dados, como números inteiros com/sem sinal, bits de controle, números \emph{float}, entre outros. Há nessa camada de abstração estruturas que armazenam bits, os registradores, e estruturas de controle capazes de direcionar o fluxo dos dados. Dessa forma, é possível executar operações em sequência. Os circuitos nesse nível de abstração chamam-se \emph{circuitos sequenciais}.
+ 
+\begin{subsection}{Elementos de Memória}
+
+Sistemas capazes de armazenar o conteúdo de um bit são chamados de \emph{elementos de memória}. Para armazenar um bit é necessário um sistema biestável, isto é, que seja capaz de manter dois estados estáveis, como ilustrado na figura abaixo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{cap1/memoria_exemplo.png}
+\caption{Fonte: [Logic and Computer Design Fundamentals, p. 199]}
+\end{figure}
+
+Além disso, é necessário que se possa configurar qual estado ficará armazenado nesse sistema. Os \emph{latches} são sistemas capazes de realizar essas funções.
+
+\begin{subsubsection}{Latches}
+ Os \emph{latches} são elementos de memória em que se pode armazenar o conteúdo de um bit, 0 ou 1, e que muda seu conteúdo imediatamente (a menos do tempo de propagação das portas lógicas) após determinada mudança na entrada. Na figura abaixo, apresenta-se o latch SR (set-reset). 
+ 
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap1/latch_sr_nor.png}
+\caption{Fonte: [Logic and Computer Design Fundamentals, p. 199]}
+\end{figure}
+ 
+ Se a entrada SET é ativada com o valor 1, o conteúdo do latch passa a ser 1. Se a entrada RESET é ativada, o latch passa a armazenar 0. As entradas SET e RESET desativadas fazem com que o conteúdo anterior do latch permaneça. E a ativação simultânea de SET e RESET é uma entrada proibida; nessa condição, o circuito se comporta de maneira imprevisível.
+ 
+ Há variações desse latch, em que as entradas são ativadas em 0 em vez de 1, como o latch implementado com portas NAND ilustrado a seguir.
+ 
+  
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap1/latch_sr_nand.png}
+\caption{Fonte: [Logic and Computer Design Fundamentals, p. 203]}
+\end{figure}
+ 
+ Outra variação bastante importante é o \emph{latch D}, que armazena o conteúdo da entrada D (dado) se a entrada C (controle) for ativada, e que mantém o conteúdo armazenado se o controle for desativado.
+ 
+  \begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap1/latch_d.png}
+\caption{Fonte: [Logic and Computer Design Fundamentals, p. 204]}
+\end{figure}
+
+
+ 
+\end{subsubsection}
+
+\begin{subsubsection}{Flip-flops}
+ Os \emph{flip-flops} são elementos de memória similares aos latches. A diferença é que a mudança de estado fica condicionada a um controle, e só ocorre a ``escrita'' na transição do sinal de controle. O flip-flop pode ser ativado transição $0 \rightarrow 1$ (positive going transition) ou na transição $1 \rightarrow 0$ (negative going transition). 
+ 
+ Nas figuras a seguir, ilustram-se alguns tipos de flip-flops com suas respectivas tabelas verdade. 
+ \\
+ 
+ \noindent \textbf{Flip-flop SR:}
+ 
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/flip-flop_sr_pgt.png}
+\includegraphics[scale=0.4]{cap1/flip-flop_sr_ngt.png}
+\caption{Fonte: [Digital Systems, Tocci, p. 255-256]}
+\end{figure}
+
+\noindent \textbf{Flip-flop JK:}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/flip-flop_jk_pgt.png}
+\includegraphics[scale=0.4]{cap1/flip-flop_jk_ngt.png}
+\caption{Fonte: [Digital Systems, Tocci, p. 258-259]}
+\end{figure}
+
+\noindent \textbf{Flip-flop D:}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/flip-flop_d_pgt.png}
+\caption{Fonte: [Digital Systems, Tocci, p. 261]}
+\end{figure}
+ 
+ Os flip-flops são construídos usando-se latches e detectores de transição  [Digital Systems, Tocci, p. 258-259], ou conectando-se latches no modo ``master-slave''  [Logic and Computer Design Fundamentals, p. 205]. 
+ 
+  \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/flip-flop_d_master-slave.png}
+\caption{Implementação do flip-flop D Master-Slave. O primeiro latch D fica transparente para o dado de entrada enquanto o sinal de CLK é 0, e na transição $0 \rightarrow 1$, o segundo latch D passa a ser transparente para o dado, enquanto o primeiro passa a reter o dado. Desse modo, o efeito é de leitura do dado na borda de subida do CLK. Fonte: [Digital Design and Computer Architecture, p. 114]}
+\end{figure}
+ 
+  \begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{cap1/flip-flop_sr_internal_circuit.png}
+\caption{Flip-flop SR implementado por detecção de borda. Fonte: [Digital Systems, Tocci, p. 256]}
+\end{figure}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/clk_edge_detector.png}
+\caption{Detector de borda de transição positiva e detector de borda de transição negativa. Fonte: [Digital Systems, Tocci, p. 257]}
+\end{figure}
+
+
+\end{subsubsection}
+
+\begin{subsubsection}{Registradores}
+ Os \emph{registradores} são componentes de memória formados por flip-flops e capazes de armazenar um vetor de bits. 
+ 
+ O registrador paralelo é constituído por flip-flops conectados em paralelo. A escrita de um vetor de bits no registrador leva um pulso de clock; nos pulsos seguintes, o dado já está disponível à saída. 
+ 
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{cap1/parallel_register.png}
+\caption{Registrador paralelo.}
+\end{figure}
+ 
+ O registrador de deslocamento é constituído por flip-flops conectados em série. Se o registrador é de $N$ bits, a escrita de um vetor de bits demora $N$ pulsos de clock. O dado é fornecido bit a bit na entrada, e é deslocado através dos flip-flops até chegar à sua devida posição. 
+ 
+  \begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{cap1/shift_register.png}
+\caption{Registrador de deslocamento.}
+\end{figure}
+ 
+\end{subsubsection}
+
+ 
+\end{subsection}
+
+\begin{subsection}{Fluxo de Dados}
+ 
+ Além da capacidade de armazenar bits, há necessidade de se controlar o fluxo de dados. Esse direcionamento é feito pelos \emph{multiplexadores} e \emph{demultiplexadores}. 
+ \\
+ 
+ \noindent \textbf{Multiplexadores:}
+ 
+ Os multiplexadores são seletores de dados; recebem vários sinais de entrada e de acordo com uma entrada seletora, ou de controle, define qual desses dados será direcionado para a saída. [Digital Systems, Tocci, p. 662-664]
+ 
+   \begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap1/mux.png}
+\caption{Multiplexador, ou MUX. [Digital Systems, Tocci, p. 662]}
+\end{figure}
+
+A figura abaixo mostra uma possível implementação para um multiplexador de 4 entradas (de 1 bit). Dependendo da entrada seletora, um dos quatro dados de entrada será direcionado à saída. 
+
+  \begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap1/mux_gates.png}
+\caption{Multiplexador de 4 entradas (de 1 bit). [Digital Systems, Tocci, p. 664]}
+\end{figure}
+ 
+ Um multiplexador para entradas com mais bits pode ser implementado usando vários multiplexadores para entradas de 1 bit em paralelo. 
+  \\
+  
+ \noindent \textbf{Demultiplexadores:}
+ 
+ Os demultiplexadores são distribuidores de dados; direcionam um dado para alguma das várias saídas disponíveis de acordo com o valor de uma entrada seletora. [Digital Systems, Tocci, p. 673-674]
+ 
+    \begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap1/demux.png}
+\caption{Demultiplexador, ou DEMUX. [Digital Systems, Tocci, p. 673]}
+\end{figure}
+
+Abaixo ilustra-se uma implementação possível para um demultiplexador de 8 saídas (de 1 bit). Dependendo da entrada seletora, o dado de entrada é direcionado para uma das saídas, enquanto as outras disponibilizam 0. 
+
+    \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/demux_gates.png}
+\caption{Demultiplexador de 8 saídas (de 1 bit). [Digital Systems, Tocci, p. 674]}
+\end{figure}
+
+Da mesma forma que com multiplexadores, é possível fazer demultiplexadores com dados de mais de 1 bit utilizando demultiplexadores de 1 bit em paralelo. 
+
+ 
+\end{subsection}
+
+\begin{subsection}{Demais componentes}
+ 
+ Com portas lógicas é possível implementar diversos componentes que realizam funções mais complexas. Alguns exemplos são somadores, subtratores, comparadores de igualdade, entre outros. Muitos desses componentes possuem entradas de controle, que definem que tipo de operação será realizada ou não de acordo com os bits de controle recebidos. 
+ \\
+ 
+ \noindent \textbf{Full adder}
+ 
+ Será mostrada a estrutura de um somador de $n$ bits para ilustrar. O somador pode ser implementado de forma paralela, implementando-se o somador completo de 1 bit, também chamado \emph{full adder}. Esse componente recebe duas entradas de 1 bit, $A$ e $B$. É interessante ter uma entrada \emph{carry in} ($C_{\text{in}}$), a ser somada com $A$ e $B$ para modelar o ``vai um'' que entra na casa binária em questão. A saída é o resultado da soma, $S$ e o ``vai um'' para a próxima casa binária é denotado por \emph{carry out} ($C_{\text{out}}$). A tabela verdade desejada para esse sistema é dada na figura abaixo.
+ 
+     \begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap1/full_adder_truth_table.png}
+\caption{Tabela verdade do \emph{full adder}. [Digital Systems, Tocci, p. 674]}
+\end{figure}
+ 
+ Para implementar o somador completo, podemos extrair as equações booleanas para as saídas $S$ e $C_{\text{out}}$ em função das entradas $A$, $B$ e $C_{\text{in}}$. Escrevendo as entradas como soma de minitermos (como feito no Teorema \ref{teorema_universalidade_or_and_not}), obtemos:
+ \[
+ \begin{split}
+    S &= \overline{A}\, \overline{B} \, C_{\text{in}} + \overline{A}\,  B \, \overline{C_{\text{in}}} + A \, \overline{B}\, \overline{C_{\text{in}}} + A \, B \, C_{\text{in}} \\
+    &= \overline{A} \Big( \overline{B} \, C_{\text{in}} + B \, \overline{C_{\text{in}}} \Big) + A \Big( \overline{B} \,\overline{C_{\text{in}}} + B \, C_{\text{in}} \Big) \\
+    &= \overline{A} \Big( B \oplus C_{\text{in}} \Big) + A \Big( \overline{B \oplus C_{\text{in}}} \Big) \\
+    &= A \oplus B \oplus C_{\text{in}}
+ \end{split}
+ \]
+\[ 
+ \begin{split}
+  C_{\text{out}} &= \overline{A} \, B \,  C_{\text{in}} + A \, \overline{B} \,  C_{\text{in}} + A \, B\, \overline{ C_{\text{in}}} + A\, B\,  C_{\text{in}} \\
+  &= \Big( \overline{A} \, B \,   + A \, \overline{B} \Big) C_{\text{in}} + A \, B \Big( C_{\text{in}}  + \overline{C_{\text{in}} } \Big) \\
+  &= \big(A \oplus B\big)  C_{\text{in}} + A \, B \\
+ \end{split}
+\]
+
+ Portanto, pode-se implementar o full adder com o circuito abaixo. Aproveita-se uma porta XOR no cálculo das duas expressões. 
+ 
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/full_adder_gates.png}
+\caption{Uma realização do \emph{full adder}.}
+\end{figure}
+ 
+  \noindent \textbf{Somador de $n$ bits}
+  
+ Com o full adder, é possível implementar um somador de $n$ bits. Esse componente realiza a soma de $n$ bits, interpretados como números inteiros sem sinal (da mesma forma que no teorema \ref{teorema_universalidade_or_and_not}) e disponibiliza o resultado da soma em $n$ bits e um bit carry out, que indica se houve \emph{overflow}, isto é, se a soma ultrapassou o valor máximo possível de ser representado pelos $n$ bits (que seria $2^n-1$ no caso de inteiros sem sinal). A figura abaixo mostra o símbolo para um somador de $n$ bits e uma implementação usando full adders.
+ 
+  \begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap1/parallel_adder.png}
+\caption{Símbolo para somador de $n$ bits. Implementação de um somador de $4$ bits usando 4 full adders. Fonte: [Digital Design and Computer Architecture, p. 240]}
+\end{figure}
+ 
+ Com algumas modificações, o somador de $n$ bits pode realizar subtrações também. Para tanto, as entradas devem ser interpretadas como inteiros com sinal. A representação de inteiros com sinal se dá por \emph{complemento de 2}. Essa representação não será abordada neste trabalho, podendo ser encontrada em mais detalhes nas referências [Digital Design and Computer Architecture, p. 16-19] e [Digital Systems, Tocci, p. 343-355].
+ \\
+ 
+  \noindent \textbf{Unidade Lógica/Aritmética}
+ 
+ Usando-se multiplexadores e demultiplexadores para direcionar os dados, é possível implementar sistemas que realizam diversas funções a depender de um conjunto de entradas de controle. Para fins de ilustração, segue o esquema de uma \emph{Unidade Lógica/Aritmética}, ou ULA (ALU em inglês). Há diversas variações de ALUs que implementam mais ou menos funções lógicas/aritméticas. Essas unidades são parte essencial dos processadores [Digital Design and Computer Architecture, p. 248].
+ 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap1/alu.png}
+\caption{Esquema de uma ALU. Fonte: [Digital Design and Computer Architecture, p. 248-249]}
+\end{figure}
+ 
+ 
+\end{subsection}
+
+
+\end{section}
+
+\begin{section}{Interface Hardware-Software}
+
+ 
+ 5 componentes do computador: controle, datapath, (c+d = processador) ,memória, input, output
+ 
+
+ 
+
+ \begin{figure}[H]\label{fig_mips_assembly_language}
+\centering
+\includegraphics[scale=0.4]{cap1/mips_assembly_language.png}
+\caption{Algumas instruções compatíveis com o processador MIPS. Fonte: [Computer Organization and Design, p. 64]}
+\end{figure}
+
+ \begin{subsection}{Processador e Memória}
+  O processador é composto por dois subsistemas: o \emph{bloco de controle} e o \emph{bloco operativo}. O bloco operativo também é conhecido como \emph{datapath}. 
+  
+  O bloco operativo encerra o hardware que realiza as operações desejadas nos dados. Esse bloco contém registradores de entrada, que armazenam os operandos, multiplexadores e demultiplexadores, que direcionam os dados de entrada a outros subsistemas (somadores, ALUs, entre outros componentes), de modo a realizar essas operações. 
+  
+  O bloco de controle envia bits de controle que selecionam as operações a serem realizadas em função da instrução a ser executada. A instrução é codificada em bits, e esse conjunto de bits é interpretado pelo hardware do bloco de controle de forma a produzir os bits de controle necessários à operação. 
+  
+  O processador também abrange um \emph{banco de registradores} -- ou \emph{register file} -- que armazena variáveis (conjuntos de bits) para uso imediato em operações. Algumas operações do processador consistem em carregar dados da memória principal (uma memória externa ao processador) para um registrador do banco de registradores ou guardar dados de um registrador na memória principal (ver, por exemplo operações \emph{load word} e \emph{store word} na tabela da figura \ref{fig_mips_assembly_language}).
+  
+  Para fins de ilustração, um esquema simplificado do processador MIPS é apresentado na figura \label{fig_mips_processor_basic_scheme}. Não é o objetivo deste texto entrar em detalhes do funcionamento desse processador. Pode-se encontrar discussões detalhadas em [Computer Organization and Design].
+  
+\begin{figure}[H]\label{fig_mips_processor_basic_scheme}
+\centering
+\includegraphics[scale=0.3]{cap1/mips_processor_basic_scheme.png}
+\caption{Esquema básico de um processador MIPS. Consiste no bloco operativo (em preto) e no bloco de controle (em azul). O esquema não contempla a implementação real do processador (há componentes extra para executar multiplicações, divisões e operações de ponto flutuante, além de modificações para implementar uma técnica de paralelismo chamada \emph{pipeline}).  Fonte: [Computer Organization and Design, p. 247]}.
+\end{figure}
+ 
+ \end{subsection}
+  
+\begin{subsection}{Memória}
+
+  A memória é um sistema capaz de armazenar bits. Nas tecnologias atuais, memórias com maior capacidade de armazenamento são, normalmente, mais lentas (menor latência). Por causa dessas características das tecnologias atuais, há um sistema de \emph{hierarquia de memórias}, para que se consiga combinar as vantagens das memórias grandes (alta capacidade de armazenamento e menor custo) com a velocidade das memórias pequenas.
+  
+  Classificam-se as memórias em \emph{voláteis} ou \emph{não voláteis} se perdem ou não seus dados após interrupção na energização do circuito.
+  
+  A memória principal é a memória volátil de maior capacidade do computador e é conhecida apenas por ``memória'' nos computadores pessoais. Entre a memória principal e o processador há várias ``camadas'' de memória, chamadas \emph{memórias cache}, mais próximas fisicamente do processador e construídas com tecnologias de menor latência (e mais caras). As memórias cache fazem interface entre o processador e a memória principal, e com o sistema de caches, o processador consegue acessar os dados em grande parte das vezes sem ter que recorrer diretamente à memória principal, mais lenta. A memória mais rápida consiste no banco de registradores, que está disponível imediatamente para uso do processador. 
+
+  A memória secundária, nos computadores pessoais, é a memória não volátil com alta capacidade de armazenamento e que contém os dados que precisam ser armazenados de forma resistente ao desligamento do computador, como o sistema operacional e outros programas a serem executados, além de arquivos pessoais. Exemplos de memórias secundárias são os discos rígidos (HD), solid-state drives (SSD), DVDs e memórias flash.
+ 
+  Referência: [Computer Organization and Design, p. 19-23]
+    
+ \end{subsection}
+
+ \begin{subsection}{Linguagem de Máquina, de Montagem e Compilador}
+ 
+  A linguagem entendida pelo processador é a \emph{linguagem de máquina}, que consiste em instruções codificadas em bits e que são compatíveis com o hardware. O processador interpreta, via hardware, o conjunto de bits, de forma a gerar sinais de controle, que selecionam quais registradores serão lidos, quais operações serão realizadas nos dados desses registradores e em que registrador será direcionado o resultado desse processamento. 
+ 
+  A \emph{linguagem de montagem (assembly)} é uma tradução das instruções em linguagem de máquina de uma forma mais fácil de ser lida ou escrita por programadores. A linguagem assembly, bem como a linguagem de máquina, é específica para determinado processador, tendo em vista que faz referência direta às instruções que o processador admite. Exemplos de operações escritas em assembly para processador MIPS constam na tabela \ref{fig_mips_assembly_language}.
+  
+  As linguagens de programação de alto nível, como C e Java, possuem compiladores para diversas arquiteturas de processadores. Um programa em C, ao ser compilado, é transformado em linguagem assembly e, posteriormente, é montado em linguagem de máquina. A figura \ref{fig_compiled_program} mostra um exemplo de programa em C compilado e montado para um processador MIPS.
+  
+ \begin{figure}[H]\label{fig_compiled_program}
+\centering
+\includegraphics[scale=0.4]{cap1/compiled_program.png}
+\caption{Programa em C compilado e montado para um processador MIPS. Fonte: [Computer Organization and Design, p. 15]}
+\end{figure}
+ 
+  Por estarem vinculadas ao hardware, as linguagens de montagem e de máquina são diferentes dependendo da arquitetura do processador. O uso de linguagens de programação de alto nível permite que um mesmo programa seja compatível com diversas arquiteturas, funcionando como uma nova camada de abstração. A interface com as camadas mais próximas ao hardware é realizada pelo compilador e montador. 
+  
+  
+ \end{subsection}
+ 
+ \begin{subsection}{Arquitetura de Computador}
+   
+ O processador é projetado para executar determinado conjunto de instruções básicas. O conjunto de instruções que o hardware do processador é capaz de realizar é chamado por \emph{Conjunto de Instruções}, ou \emph{Instruction Set Arquitecture (ISA)}. Esse conjunto de instruções é abstraído da implementação particular, constituindo uma nova camada de abstração mais próxima do software.
+ 
+ A implementação é o hardware capaz de executar o conjunto de instruções da arquitetura em questão. Essa implementação específica do conjunto de instruções é chamada de \emph{microarquitetura}. Dessa forma, a microarquitetura é a camada de abstração mais próxima do nível de transferência de registradores. 
+ 
+ O projeto de processadores envolve selecionar um conjunto de instruções suficientemente simples, mas completo. A simplicidade das instruções favorece a simplicidade e velocidade do hardware. Mas é necessário que qualquer instrução mais complexa desejada possa ser realizada em termos do conjunto de instruções.
+ 
+ Referências: [Computer Organization and Design, p. 22] [Logic and Computer Design Fundamentals, p. 485-486]
+
+ 
+ \end{subsection}
+ 
+ 
+ \begin{subsection}{Arquiteturas RISC e CISC}
+
+ Existem dois paradigmas principais para os conjuntos de instruções e a relação hardware-software:
+ \begin{itemize}
+  \item \emph{RISC - Reduced Instruction Set Computer}. Segundo esse paradigma, o conjunto de instruções (ISA) é reduzido a instruções mais básicas. O hardware é capaz de executar apenas essas instruções básicas. As instruções complexas são implementadas via software, isto é, são formadas por sequências de instruções mais básicas e compatíveis com o hardware. 
+  \item \emph{CISC - Complex Instruction Set Computer}. O conjunto de instruções, nesse paradigma, abrange instruções mais complexas. O hardware é pensado de forma a executar diretamente instruções mais complexas, e diz-se que essas instruções são implementadas via hardware. Nas arquiteturas CISC, as instruções capazes de ser executadas aproximam-se às instruções das linguagens de programação. 
+ \end{itemize}
+
+ Nas tecnologias atuais, as arquiteturas RISC são mais rápidas que as CISC. Isso se deve pois a simplicidade das instruções RISC favorece a simplicidade de hardware, o que costuma resultar em menores tempos de propagação de sinais elétricos. Além disso, a simplicidade do hardware permite o uso de uma técnica de paralelismo chamada \emph{pipeline}, que permitem que o clock do processador atinja frequências da ordem de $GHz$. [CONFERIR]
+ 
+ Referência: [Logic and Computer Design Fundamentals, p. 501-502, 561]
+  \end{subsection}
+  
+   \begin{subsection}{Exemplos de Arquiteturas}
+
+ A arquitetura MIPS, usada desde a década de 1980, é uma arqui
+
+  exemplos MIPS, x86, ARMv7, ARMv8
+  
+  [ESCREVENDO]
+ 
+  \end{subsection}
+  
+\end{section}
+
+\begin{section}{MÁQUINA DE TURING?}
+ 
+\end{section}
+
+
+

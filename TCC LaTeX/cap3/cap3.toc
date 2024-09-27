@@ -1,0 +1,16 @@
+\select@language {brazilian}
+\contentsline {section}{\numberline {1}\IeC {\'A}lgebras de Lie}{1}
+\contentsline {subsection}{\numberline {1.1}Defini\IeC {\c c}\IeC {\~a}o e exemplos}{2}
+\contentsline {subsection}{\numberline {1.2}Sub\IeC {\'a}lgebra de Lie, ideal de Lie e morfismos}{3}
+\contentsline {subsection}{\numberline {1.3}Exemplos cl\IeC {\'a}ssicos de \IeC {\'a}lgebras de Lie}{4}
+\contentsline {subsection}{\numberline {1.4}\IeC {\'A}lgebra de Lie oposta}{6}
+\contentsline {subsection}{\numberline {1.5}\IeC {\'A}lgebra de Lie da soma direta}{6}
+\contentsline {subsection}{\numberline {1.6}\IeC {\'A}lgebra de Lie quociente}{6}
+\contentsline {subsection}{\numberline {1.7}Estrutura de \IeC {\'a}lgebra de Lie para uma \IeC {\'a}lgebra associativa}{8}
+\contentsline {subsection}{\numberline {1.8}Estrutura de \IeC {\'a}lgebra de Lie para os elementos primitivos de uma bi\IeC {\'a}lgebra}{8}
+\contentsline {subsection}{\numberline {1.9}Estrutura de \IeC {\'a}lgebra de Lie para as deriva\IeC {\c c}\IeC {\~o}es em uma \IeC {\'a}lgebra de Hopf}{9}
+\contentsline {section}{\numberline {2}\IeC {\'A}lgebra envolvente universal}{10}
+\contentsline {subsection}{\numberline {2.1}Propriedade universal}{10}
+\contentsline {subsection}{\numberline {2.2}$\ensuremath {\mathcal {U}(\mathfrak {g})}$ \IeC {\'e} uma \IeC {\'a}lgebra de Hopf}{12}
+\contentsline {subsection}{\numberline {2.3}Extens\IeC {\~a}o de morfismos de Lie para o recobrimento universal}{13}
+\contentsline {section}{\numberline {3}Teorema de Poincar\IeC {\`e}-Birkhoff-Witt}{14}

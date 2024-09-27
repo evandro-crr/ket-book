@@ -1,0 +1,209 @@
+% %================================================================================================
+% %================================= PRIMEIRA FOLHA INTERNA  ======================================
+% %================================================================================================
+% \vspace*{2.0cm}
+% \begin{center}
+% \large Fulano de Tal
+% \end{center}
+% 
+% 
+% \vspace*{6.8cm}
+% 
+% \begin{center}
+% {\sc \Large  Coloque aqui }
+% \end{center}
+% 
+% \vspace*{3.25cm}
+% 
+% 
+% \null \vfill
+% 
+% \begin{center}
+% Campinas\\2012
+% \end{center}
+% \newpage
+% % parte de trás da primeira folha interna fica em branco
+% 
+% \null \vfill
+% \newpage
+% 
+% %================================================================================================
+% %====================================== FOLHA DE ROSTO ==========================================
+% %================================================================================================
+% \begin{center}
+% \large Universidade Estadual de Campinas\\
+% Faculdade de Engenharia Elétrica e de Computação
+% \end{center}
+% 
+% \vspace*{1.5cm}
+% \begin{center}
+% \large Fulano de Tal
+% \end{center}
+% 
+% 
+% \vspace*{2.3cm}
+% 
+% \begin{center}
+% {\sc  Coloque aqui o título da tese; Coloque aqui o título da tese;  \\ 
+% Coloque aqui o título da tese;  Coloque aqui o título da tese;}
+% \end{center}
+% 
+% \vspace*{3.0cm}
+% 
+% \begin{flushright}
+% \begin{minipage}{9.0cm}
+% Tese de doutorado apresentada à Faculdade de Engenharia Elétrica e de Computação como  parte dos
+% requisitos exigidos para a obtenção do título de Doutor em Engenharia Elétrica. Área de
+% concentração: Automação. 
+% 
+% \vspace*{0.5cm}
+% Orientador: Pedro Luis Dias Peres
+% 
+% \end{minipage}
+% \end{flushright}
+% 
+% \null \vfill
+% \begin{minipage}{7cm}
+% \small
+% Este exemplar corresponde à versão final da tese defendida pelo
+% aluno, e orientada pelo Prof. Dr. Pedro Luis Dias Peres\\[4mm]
+% \rule{7.0cm}{0.2mm} \hfill 
+% \end{minipage}
+% 
+% \vspace*{0.5cm}
+% 
+% \begin{center}
+% Campinas\\2012
+% \end{center}
+% 
+% %================================================================================================
+% %============================== Ficha (Somente na versão final) =================================
+% %================================================================================================
+% \newpage
+% 
+% \begin{center}
+% \vspace*{10cm}
+% Insira nesta página a sua ficha catalográfica (somente versão final). Obs. É conveniente
+% converter o documento fornecido pela BAE (normalmente .doc) em um arquivo .ps. Para a versão
+% preliminar da tese (antes da defesa), simplesmente remova essa página.
+% \end{center}
+% % Observação: a ficha fornecida pela BAE normalmente é fornecida em formato .doc. Existem diversas
+% % maneiras de converter .doc em .ps. 
+% 
+% % Descomente as duas próximas linhas (e comente acima desde o begin{center} até o end{center}) para inserir a ficha catalográfica caso a mesma já  tenha sido convertida para .ps (no caso ficha.ps)
+% 
+% %\epsfxsize=0.925\columnwidth
+% %\epsffile{ficha.ps}
+% 
+% \null \vfill
+% \newpage
+% 
+% %================================================================================================
+% %============================== Folha de aprovação (Somente na versão final) ====================
+% %================================================================================================
+% 
+% 
+% \begin{center}
+% \vspace*{10cm}
+% Insira nesta página a folha de aprovação fornecida pelo seu programa de pós-graduação (somente versão final). 
+% Obs. É conveniente scanear o documento e convertê-lo para o formato .ps. Para a versão
+% preliminar da tese (antes da defesa), simplesmente remova essa página.
+% \end{center}
+% 
+% % Escanear a folha de aprovação fornecida pela CPG e converter para .ps ou .eps. A idéia
+% % é inserir como uma figura. É muito provável que será necessário fazer ajustes no
+% % tamanho, mexendo no comando \epsfxsize
+% 
+% % Descomente as duas próximas linhas (e comente acima desde o \begin{center} até o \end{center})
+% %\epsfxsize=0.985\columnwidth
+% %\hspace*{-1.25cm}\epsffile{aprov.eps}
+% 
+% \newpage
+% % verso da folha de aprovação em branco
+% \null \vfill
+% \newpage
+
+
+%%%%%%%%%%%%%%% CAPA%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\begin{center}
+ {\bf UNIVERSIDADE FEDERAL DE SANTA CATARINA \\
+DEPARTAMENTO DE ENGENHARIA ELÉTRICA E ELETRÔNICA
+}\end{center}
+
+\vspace*{4cm}
+
+\begin{center}
+ \Large{\bf Computação Quântica para Engenharia}
+\end{center}
+\vskip 1.6 true cm
+\begin{center}
+ { Giovani Goraiebe Pollachini}
+ \end{center}
+ \vskip 1.6 true cm
+ \begin{center}
+ { Orientador: Prof. Dr. Eduardo Inacio Duzzioni }
+\end{center}
+
+%\vskip 1.6 true cm
+\vfill
+\begin{center}
+  {Florian\'opolis \\
+         2018}
+\end{center}
+
+
+
+\newpage
+\textcolor{white}{\ }
+\newpage
+
+
+%%%%%%%%%%%%%% FOLHA DE ROSTO%%%%%%%%%%%%%%%%%%%%%
+
+\pagenumbering{roman}
+
+ \thispagestyle{empty}
+\begin{center}
+ { Giovani Goraiebe Pollachini
+ \\ \textcolor{white}{\ } \\ \textcolor{white}{\ }
+}\end{center}
+
+\vspace*{4cm}
+
+\begin{center}
+   \Large{\bf Computação Quântica para Engenharia}
+\end{center}
+
+\vskip 1.6 true cm
+\begin{flushright}
+\begin{minipage}{6cm}
+{ \nohyphens{
+Trabalho de Conclusão de Curso submetido ao Departamento de Engenharia Elétrica e Eletrônica da Universidade Federal de Santa Catarina para a obtenção do título de Bacharel em Engenharia Eletrônica. \vspace{3pt}
+\\Orientador: Prof. Dr. Eduardo Inacio Duzzioni
+}}
+\end{minipage}
+\end{flushright}
+
+
+%\vskip 1.4 true cm
+\vfill
+\begin{center}
+{\vskip 0.8 true cm 
+ Florian\'opolis\\
+ 2018}
+ \end{center}
+\newpage
+
+
+%%%%%%%%%%%%%% FICHA CATALOGRÁFICA %%%%%%%%%%%%%%%%%%%%%
+\textcolor{white}{\ }
+
+
+% INSERINDO FICHA CATALOGRÁFICA
+\begin{center}
+\includegraphics[scale=0.4]{ficha_catalografica/Ficha_Catalografica.pdf}
+\end{center}
+
+\newpage

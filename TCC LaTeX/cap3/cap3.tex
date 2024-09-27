@@ -1,0 +1,529 @@
+
+\chapter{Introdução à Mecânica Quântica}\label{cap3_MQ}
+
+ % resumo histórico
+ A partir do final do século XIX e início do século XX, diversos fenômenos desafiavam a capacidade de explicação das teorias físicas vigentes. Dentre esses fenômenos, pode-se citar a radiação de corpo negro, o efeito fotoelétrico, as características ondulatórias do elétron em experimento de dupla fenda e o experimento de Stern-Gerlach. A Mecânica Quântica é produto das tentativas de se explicar esses fenômenos de modo compatível com o que se observa experimentalmente. 
+ % A maneira como a teoria foi se estabelecendo e como diversos pontos foram motivados pelos experimentos não pode ser resumida em poucas linhas. 
+
+ A apresentação da Mecânica Quântica, neste capítulo, é feita de maneira axiomática. Para manter o texto mais conciso e restrito ao objetivo de se estudar Computação Quântica, não são apresentadas motivações para os axiomas ou discussões a respeito dos experimentos. Uma discussão dos experimentos de fenda dupla e de Stern-Gerlach encontra-se em \cite{book:pqci_benenti}, seções 2.1 e 2.2, e em \cite{book:qcqi_nc}, seção 1.5.1.
+ 
+ % referências utilizadas 
+ As principais referências para este capítulo são os livros \cite{book:qcqi_nc}, seção 2.2 e \cite{book:pqci_benenti}, seção 2.4.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\begin{section}{Breve Histórico}
+\end{section}
+
+\begin{section}{Principais Experimentos}
+
+  \begin{subsection}{Dupla Fenda de Young}
+  \end{subsection}
+  
+  \begin{subsection}{Experimento de Stern-Gerlach}
+  \end{subsection}
+
+\end{section}
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\begin{section}{Postulados da Mecânica Quântica}
+
+\begin{subsection}{Descrição de um Sistema Físico}
+ 
+ O primeiro postulado prescreve como um sistema físico isolado pode ser descrito pela Mecânica Quântica. Um sistema \emph{isolado} é um sistema no qual não ocorrem trocas de energia ou matéria com o ambiente. 
+ 
+ \begin{postulate}
+  Um \textbf{sistema físico isolado} é descrito por um espaço de Hilbert $\mathcal{H}$ com escalares complexos. Esse espaço vetorial é chamado \emph{espaço de estados}. Um estado do sistema é descrito pelo chamado \emph{vetor de estado}, um vetor unitário no espaço de estados do sistema.
+ \end{postulate}
+
+ A Mecânica Quântica não descreve qual espaço de Hilbert deve ser usado para descrever o sistema. Descobrir qual espaço de estados descreve adequadamente um dado sistema físico isolado é tarefa dos cientistas, que recorrem a teorias específicas ou propõem modelos para o sistema em questão. A Mecânica Quântica traz apenas a estrutura matemática e conceitual na qual espera-se que os sistemas físicos se encaixem.
+ 
+ No presente trabalho, apenas os espaços vetoriais de dimensão finita serão considerados. Nesse caso, um espaço de Hilbert é equivale a um espaço vetorial com produto interno.
+ 
+ \begin{example}[Qubit]\label{cap3:ex_qubit}
+  Um \emph{qubit} é um sistema quântico descrito matematicamente por um espaço de Hilbert $\mathcal{H} = \mathbb{C}^2$ com $\dim \mathcal{H} = 2$. Qualquer base do espaço do sistema tem exatamente dois vetores. Uma base para o sistema é a base computacional  $\big\{ \ket{0} , \ket{1} \big\} $. O vetor nulo é costumeiramente denotado apenas por $0$ para não ser confundido com o vetor da base $\ket{0}$.
+  
+  Esse sistema é um análogo quântico ao bit clássico, um sistema que pode assumir os valores 0 ou 1 e que assume apenas um dos valores em cada instante. O sistema pode encontrar-se em qualquer estado $\ket{\psi} \in \mathcal{H}$ com $\norm{\ket{\psi}} = 1 $. Isto é, todo vetor $\ket{\psi} = a \ket{0} + b \ket{1}$ com $\abs{a}^2 + \abs{b}^2 = 1$ é capaz de descrever um estado do sistema. 
+  
+  Por exemplo, o qubit pode encontrar-se no estado $\ket{0}$ ou $\ket{1}$, de forma parecida com o bit clássico. A novidade agora é que ele pode se encontrar numa superposição desses estados, como $\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}$, pois este é um vetor unitário em $\mathcal{H}$.
+ \end{example}
+
+ 
+\end{subsection}
+
+\begin{subsection}{Evolução Temporal de um Sistema Físico}
+ 
+ O estado de um sistema físico está sujeito a alterações com o tempo. A estrutura geral para essa evolução temporal do estado é dada pelo postulado a seguir.
+ 
+ \begin{postulate}\label{cap3:postulado_evol_temp}
+  A evolução temporal de um \textbf{sistema físico fechado} é dada por um operador linear unitário no seu espaço de estados $\mathcal{H}$. Em símbolos:
+  \[ \ket{\psi_f} = U \ket{\psi_i} \ . \]
+ \end{postulate}
+ 
+ Por ser um operador unitário, $U$ preserva o tamanho dos vetores, de modo que o vetor $\ket{\phi_f}$ tem norma 1 e corresponde a um estado do sistema. 
+ 
+ O enunciado do postulado 2 pode ser reescrito em termos de operadores Hermitianos. 
+ 
+ \begin{postulate*}{2'}
+  A evolução temporal de um \textbf{sistema físico fechado} é dada pela \emph{equação de Schroedinger}
+  \[ i \hbar \frac{d}{dt} \ket{\psi(t)} = H \ket{\psi(t)} \ , \]
+  em que $H$ é um operador Hermitiano no espaço de estados do sistema.
+ \end{postulate*}
+ 
+ Neste postulado tem-se $\hbar = \frac{h}{2\pi}$, em que $h = 6,\!626 \cdot 10^{-34} \, J \cdot s$ é a constante de Plank, determinada experimentalmente. 
+ 
+ A equivalência entre esses dois postulados é dada por um teorema da Análise Funcional chamado Teorema de Stone\footnote{Hall, B.C. (2013), Quantum Theory for Mathematicians, Graduate Texts in Mathematics, 267, Springer.}. Para se ter uma ideia dessa equivalência entre os postulados, é mostrada uma argumentação não formal de que (2') implica (2) a seguir. 
+ 
+ \begin{claim*}{\!}
+  O enunciado (2') implica (2).
+ \end{claim*}
+
+ \begin{proofclaim}
+ Supõe-se que valha o enunciado em (2'). Seja $H$ um operador hermitiano. Então $H = H^{\dag}$. Considere inicialmente um intervalo de tempo $dt$ infinitesimal. Pode-se escrever
+ \begin{eqnarray}
+ \ket{\psi(t+dt)} &\cong &
+ \ket{\psi(t)} + \frac{d}{dt} \ket{\psi(t)} dt + \frac{1}{2!} \frac{d^2}{dt^2} \ket{\psi(t)} dt^2 + \ldots \nonumber \\
+ &\cong & \ket{\psi(t)} + \frac{d}{dt} \ket{\psi(t)} dt \ ,\nonumber % \label{eq:post2_1}
+ \end{eqnarray}
+ realizando a expansão em série de Taylor e retendo os termos até primeira ordem apenas. Pelo enunciado de (2'), tem-se que
+ \[ \frac{d}{dt} \ket{\psi(t)} = - \frac{i H}{\hbar} \ket{\psi(t)} \]
+ Substituindo na equação anterior, tem-se que
+ \[ \ket{\psi(t+dt)} \cong \left( I - \frac{i H dt}{\hbar}   \right) \ket{\psi(t)} \ . \]
+ Definindo $U_{dt} = I - \frac{i H dt}{\hbar}$, tem-se que $U_{dt}$ é unitária se desprezarmos os termos de ordem maior ou igual a 2 em $dt$. Efetivamente, tem-se:
+ \begin{eqnarray}
+ U_{dt} U_{dt}^{\dag} 
+ &=& 
+ \left( I - \frac{i H dt }{\hbar}   \right) \left( I + \frac{i H^{\dag} dt}{\hbar}   \right) \nonumber \\
+  &=& 
+  I - \frac{i H dt}{\hbar} +\frac{i H dt}{\hbar} -  \frac{i^2 H^2 dt^2}{\hbar^2} \nonumber \\
+  &\cong& I  \nonumber \\
+   U_{dt}^{\dag}  U_{dt}
+ &=& 
+ \left( I + \frac{i H^{\dag} dt }{\hbar}   \right) \left( I - \frac{i H dt}{\hbar}   \right) \nonumber \\
+  &=& 
+  I + \frac{i H dt}{\hbar} - \frac{i H dt}{\hbar} -  \frac{i^2 H^2 dt^2}{\hbar^2} \nonumber \\
+  &\cong& I \ . \nonumber 
+ \end{eqnarray} 
+ 
+ Para um intervalo de tempo finito de $t_i$ a $t_f$, divida o intervalo de tempo em pedaços iguais $dt = \frac{t_f - t_i}{n} $ , com $n \rightarrow \infty$. A evolução temporal entre $t$ e $t+dt$ nesse intervalo de tempo é dada pelo operador $U_{dt}$. Dessa forma, tem-se que
+ \[ t_f = t_i + n \cdot dt\] 
+ e que
+ \begin{eqnarray*}
+  \ket{\psi(t_f)} 
+  &=& U_{dt} \ket{\psi(t_f - dt)} \\ 
+  &=&  U_{dt}  U_{dt}  \ket{\psi(t_f - 2dt)} \\
+  &=& \ldots \\
+  &=& \underbrace{U_{dt} \ldots U_{dt}}_{\text{$n$ vezes}} \ket{\psi(t_i)} 
+ \end{eqnarray*}
+ 
+ Seja  $U = (U_{dt})^{n}$. Com isso\footnote{Perceba que o limite $n\to \infty$ que surge é análogo ao limite fundamental \[e^{a} = \lim_{n\to \infty} \left( 1 - \frac{a}{n} \right)^n \ . \]}, 
+ \begin{eqnarray*}
+  U \! \! \! \! \! \!  \!
+  & &= \  (U_{dt})^{n}   =  \left( I - \frac{i H dt }{\hbar}   \right)^n  \\
+  & &= \  \left( I - \frac{\frac{i H (t_f-t_i)}{\hbar}}{n}   \right)^n \\
+  & &\xrightarrow[n \to \infty]{} \exp\left(\frac{i H (t_f-t_i)}{\hbar} \right)
+ \end{eqnarray*}
+ 
+ Portanto tem-se 
+ \[ \ket{ \psi(t_f)} = U \ket{\psi(t_i)} \ . \]
+ Além disso, $U$ é um operador unitário pois é produto de operadores unitários, conforme seção \ref{cap2:operadores_unitarios}. Assim, chegou-se ao enunciado (2). 
+ \end{proofclaim}
+ 
+ \begin{example}
+  As matrizes de Pauli $X$, $Y$ e $Z$ apresentadas no exemplo \ref{cap2:ex_matrizes_de_pauli} representam operadores lineares unitários em 1 qubit na base computacional e podem, portanto, representar a evolução temporal de um qubit. 
+ \end{example}
+  
+  \begin{example}
+  A matriz de Hadamard $H$ representa um operador linear unitário na base computacional, e pode, portanto, ser uma operação de evolução temporal de um sistema físico de 1 qubit. 
+   
+  Se o qubit se encontra no estado 
+  \[ \ket{\psi_i} = \frac{1}{\sqrt{2}} \big( \ket{0} + \ket{1} \big) \ , \]
+  após a aplicação de $H$, o estado final passa a ser 
+  \begin{eqnarray*}
+    \ket{\psi_f} 
+    &=& H\frac{1}{\sqrt{2}} \big( \ket{0} + \ket{1} \big) \\
+    &=& \frac{1}{\sqrt{2}}\big( H \ket{0} + H\ket{1} \big) \\
+    &=& \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}  + \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1} \right) \\
+    &=& \ket{0}
+  \end{eqnarray*}
+
+ \end{example}
+
+ \end{subsection}
+
+\begin{subsection}{Medidas em Sistemas Físicos}
+ 
+ Um fenômeno muito particular da Mecânica Quântica é a medida de um observável em um sistema físico. Em geral, não é possível obter com certeza o resultado de uma medida. O que a teoria fornece são probabilidades de se obter cada possível resultado da medida. 
+ 
+ Esse caráter probabilístico está atrelado aos fundamentos da Mecânica Quântica\footnote{Uma discussão interessante sobre o colapso da função de onda do sistema devido à medida é feita em \cite{book:iqm_griffiths}, p. 2-5.}. 
+ Isso significa que a Mecânica Quântica é uma teoria fundamentalmente probabilística.
+ 
+ Matematicamente, um observável é descrito por um operador Hermitiano e seus autovalores correspondem aos possíveis resultados da medida. Imediatamente após a medida, o estado é projetado no autoespaço associado ao valor obtido. 
+ 
+ \begin{postulate}
+  A cada observável físico associa-se um operador Hermitiano $A$ no espaço de Hilbert do sistema. O operador $A$ admite decomposição espectral e seus autovalores são reais (conforme seção \ref{cap2:op_hermitianos}). Seja
+  \[ A = \sum_k a_k P_k \]
+  a sua decomposição espectral, com $a_k$ autovalores distintos e $P_k$ as projeções ortogonais nos autoespaços correspondentes. 
+  
+  Os valores $a_k$ correspondem aos possíveis resultados da medida do observável $A$.
+  Se o sistema está no estado $\ket{\psi}$ antes da medida, a probabilidade de o resultado ser $a_k$ é dada por 
+  \[ p(a_k) = \norm{P_k \ket{\psi}}^2 \ . \]
+  O estado do sistema após a medida, dado que se obteve o resultado $a_k$, é dado por 
+  \[ \frac{P_k \ket{\psi}}{\norm{P_k \ket{\psi}}} \ . \]
+ \end{postulate} 
+
+  Caso o observável seja descrito por um operador $A$ com todos os autovalores distintos, é possível escrever
+  \[ A = \sum_k a_k \op{k}{k} \ , \]
+  com os $a_k$s todos distintos e $P_k = \op{k}{k}$. A probabilidade de se obter o valor $a_k$ é 
+  \[ p(a_k) = \abs{\braket{k}{\psi}}^2 \ , \]
+  e, dado que o resultado da medida tenha sido $a_k$, o estado do sistema passa a ser 
+  \[ \frac{\braket{k}{\psi}}{\abs{\braket{k}{\psi}}} \ket{k} \sim \ket{k} \ \text{(a menos de uma fase global)} . \]
+  
+ \begin{example}[Qubit]
+  Seja $\ket{\psi} = a\ket{0} + b\ket{1}$ o estado de um qubit, com $a, b \neq 0$. A medição desse qubit na base computacional, isto é, em relação ao observável 
+  \[ Z = 1\cdot \op{0}{0} -1 \cdot \op{1}{1} \ , \] tem dois possíveis resultados mutuamente excludentes: $1$ ou $-1$. As probabilidades de se obter esses resultados são dadas a seguir.
+  
+  O resultado $1$ ocorre com probabilidade 
+  \[ p(1) =  \norm{\op{0}{0}\ket{\psi}}^2 = \norm{\ket{0} a}^2 = \abs{a}^2 \ , \]
+  e o estado do sistema após a medida é
+  \[ \ket{\psi'} = \frac{\op{0}{0} \ket{\psi}}{\norm{\op{0}{0} \ket{\psi}}} = \frac{a}{\abs{a}} \ket{0} \ . \]
+  
+  O resultado $-1$ ocorre com probabilidade 
+  \[ p(-1) =  \norm{\op{1}{1}\ket{\psi}}^2 = \norm{\ket{1} b}^2 = \abs{b}^2 \ , \]
+  e o estado do sistema após a medida é
+  \[ \ket{\psi'} = \frac{\op{1}{1} \ket{\psi}}{\norm{\op{1}{1} \ket{\psi}}} = \frac{b}{\abs{b}} \ket{1} \ . \]
+  
+  Se o qubit estava no estado $\ket{\psi} = \ket{0}$, a probabilidade de se obter o resultado $1$ na medição é $p(1) = 1 = 100\%$, e o estado após a medição é $\ket{\psi'} = \ket{0}$. Subsequentes medições continuarão fornecendo o resultado $1$ e mantendo o estado final em $\ket{0}$. 
+  
+   Da mesma forma, se o qubit estava no estado $\ket{\psi} = \ket{1}$, a probabilidade de se obter o resultado $-1$ na medição é $p(-1) = 1 = 100\%$; o estado após a medição é $\ket{\psi'} = \ket{1}$ e subsequentes medições continuarão fornecendo o resultado $-1$ e mantendo o estado final em $\ket{1}$. 
+   
+ \end{example}
+ 
+ 
+
+\end{subsection}
+
+\begin{subsection}{Valor esperado de um Observável}
+ 
+ Um \emph{ensemble} é uma coleção suficientemente grande de sistemas preparados no mesmo estado. Se realizarmos a medida de um observável em um ensemble, cada sistema tem um resultado possivelmente diferente, com probabilidades de acordo com o postulado 3. Pode-se extrair o valor esperado desse resultado, ou seja, a média dos resultados das medidas desses sistemas idênticos. 
+
+ \begin{definition}[Valor esperado de um observável]\label{cap3:def_valor_esperado}
+  Seja $A$ um observável, isto é, um operador hermitiano no espaço de estados do sistema. O \emph{valor esperado} de $A$ para esse enum ensemble preparado no estado $\ket{\psi}$, é dado pelo número real 
+  \[ \expval{A}  = \expval{A}{\psi} \ . \]
+ \end{definition}
+
+ \begin{remark}
+  O valor esperado do observável depende do estado em que é preparado o ensemble. Por isso, pode-se usar algum rótulo para lembrar qual é o estado do ensemble:
+  \[\expval{A} = \expval{A}_\psi \ . \]
+  É comum também explicitar o estado do ensemble denotando o valor esperado simplesmente por $\expval{A}{\psi}$. 
+ \end{remark}
+ 
+ \begin{remark}
+  O valor esperado dado na definição \ref{cap3:def_valor_esperado} corresponde à média dos resultados das medidas dos sistemas, como dito anteriormente. Sejam $A = \sum_k a_k P_k$ o referido observável e sua decomposição espectral. Sejam $\ket{\psi}$ o estado de todos os sistemas do ensemble e $N$ é o número de sistemas do ensemble. O valor esperado do observável $A$, denotado por $\expval{A}$, depende do estado $\ket{\psi}$ em que os sistemas se encontram e é dado pela média dos resultados das medidas. Como a probabilidade de se obter $a_k$ na medição é $p(a_k) = \norm{P_k \ket{\psi}}^2$, como informado no postulado 3, o número de sistemas com resultado $a_k$ é $N p(a_k)$, e a média dos resultados é
+ \[ \begin{split}
+      \expval{A} 
+      &= \frac{1}{N}\sum_k a_k \cdot N p(a_k) \\
+      &= \sum_k a_k p(a_k) \\
+      &= \sum_k a_k \norm{P_k \ket{\psi}}^2 \\
+      &= \sum_k a_k \bra{\psi}P_k^\dag P_k \ket{\psi}  \\
+      &= \sum_k a_k  \bra{\psi} P_k \ket{\psi} \\
+      &= \mel{\psi}{\sum_k a_k P_k }{\psi} \\
+      &= \expval{A}{\psi} \ ,
+    \end{split} \]
+  lembrando que $P_k$, o operador projeção, é hermitiano ($P_k^\dag = P_k$) e vale que $P_k^2 = P_k$. 
+ \end{remark}
+
+
+
+\end{subsection}
+
+\begin{subsection}{Sistemas Compostos}\label{cap3:sec_sistemas_compostos}
+ O último postulado refere-se à união de dois ou mais sistemas em um único sistema composto. A ferramenta matemática que descreve adequadamente essa composição é o produto tensorial.
+ 
+ \begin{postulate}
+  A composição de sistemas dados por $\mathcal{H}_1$, $\mathcal{H}_2$, $\ldots$, $\mathcal{H}_N$ é descrita pelo produto tensorial 
+  \[\mathcal{H}_1 \otimes \mathcal{H}_2 \otimes \ldots \otimes \mathcal{H}_N \ . \] 
+  Se o estado de cada sistema é $\ket{\psi_1} \in \mathcal{H}_1$ , $\ket{\psi_2} \in \mathcal{H}_2$, $\ldots$ , $\ket{\psi_N} \in \mathcal{H}_N$, então o estado do sistema composto é dado pelo produto tensorial 
+  \[\ket{\psi_1} \otimes \ldots \otimes \ket{\psi_N} \in \mathcal{H}_1 \otimes \ldots \otimes \mathcal{H}_N \]
+  dos estados dos sistemas componentes. 
+ \end{postulate}
+
+ \begin{example}[Qubit]
+  Suponha que se tenha dois qubits $\mathcal{H}_1 = \mathbb{C}^2$ e $\mathcal{H}_2 = \mathbb{C}^2$, preparados nos estados
+  \begin{eqnarray*}
+   \ket{\psi_1} &=& \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1} \\ 
+   \ket{\psi_2} &=& \ket{0} \ .
+  \end{eqnarray*}
+  A composição dos dois qubits é modelada pelo espaço de Hilbert $\mathcal{H} = \mathcal{H}_1 \otimes \mathcal{H}_2 = \mathbb{C}^2 \otimes \mathbb{C}^2$, e o estado do sistema composto é descrito por
+  \begin{eqnarray*}
+   \ket{\psi}_{1,2} 
+   &=&
+   \ket{\psi_1}_1 \otimes \ket{\psi_2}_2 \\
+   &=& 
+   \left( \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1}  \right)_1 \otimes \ket{0}_2 \\
+   &=&
+   \frac{1}{\sqrt{2}} \ket{0}_1 \otimes \ket{0}_2 + \frac{1}{\sqrt{2}} \ket{1}_1 \otimes \ket{0}_2 \\
+   &=&
+   \frac{1}{\sqrt{2}} \ket{0}_1 \ket{0}_2 + \frac{1}{\sqrt{2}} \ket{1}_1 \ket{0}_2 \\
+   &=&
+   \frac{1}{\sqrt{2}} \ket{00}_{1,2} + \frac{1}{\sqrt{2}} \ket{10}_{1,2} \\
+   &=&
+   \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{10} \ .
+  \end{eqnarray*}
+  As últimas 4 igualdades trazem diferentes notações para o mesmo vetor de estado. É comum omitir o símbolo $\otimes$ e escrever as entradas tensoriais justapostas, ou ainda, dentro do mesmo ket. Para não haver confusão, pode-se usar índices para rotular os qubits (como os índices 1 e 2 usados acima). Caso não sejam utilizados os índices, a ordem em que os vetores são escritos na justaposição nos mostra a qual entrada tensorial cada vetor pertence, e um cuidado extra deve ser observado para não trocar a ordem das entradas. Por exemplo, $\ket{10} \neq \ket{01}$. Mais detalhes sobre a notação podem ser vistos na seção \ref{cap2:produto_tensorial_notacao}.
+  
+ \end{example}
+
+ 
+  O produto tensorial permite que o sistema composto tenha uma propriedade muito importante: o \emph{emaranhamento}. 
+  
+  \begin{definition}[Estado Emaranhado / Estado Separável]
+   Um sistema composto está em um \emph{estado emaranhado} quando não é possível escrever o estado composto como um produto tensorial de estados individuais dos qubits:
+   \[ \ket{\psi} \neq \ket{\psi_1} \otimes \ldots \otimes \ket{\psi_n} \ . \]
+   Se o estado do sistema puder ser escrito dessa forma fatorada, diz-se que é um \emph{estado separável}, ou \emph{fatorável}, ou ainda, \emph{estado produto}.
+  \end{definition}
+  
+  Para um sistema composto por 2 qubits, um estado $\ket{\psi}$ é separável se e somente se puder ser escrito na forma
+  \begin{eqnarray*}
+    \ket{\psi} 
+    &=& \big( a \ket{0} + b \ket{1} \big) \big( c\ket{0} + d \ket{1} \big) \\
+    &=& ac \ket{00} + ad \ket{01} + bc \ket{10} + bd \ket{11} 
+  \end{eqnarray*}
+  
+
+ \begin{example}[Qubit]\label{cap3:ex_estado_emaranhado}
+  Num sistema composto por 2 qubits, o estado
+  \[ \ket{\beta_{00}} =  \frac{\ket{00} + \ket{11}}{\sqrt{2}} \]
+  é um estado emaranhado. De fato, se fosse um estado separável, poderia ser escrito como
+  \[ \frac{\ket{00} + \ket{11}}{\sqrt{2}} = ac \ket{00} + ad \ket{01} + bc \ket{10} + bd \ket{11} \ . \]
+  Se isso ocorresse, então
+ \[ \begin{cases}
+   ac = \tfrac{1}{\sqrt{2}} & (1) \\
+   ad = 0  & (2) \\
+   bc = 0 & (3) \\
+   bd =  \tfrac{1}{\sqrt{2}}  \ .  & (4)
+  \end{cases} 
+  \]
+  O sistema não tem solução, pois as equações (1) e (4) implicam $a,b,c,d \neq 0$ e a equação (2) implica $a=0$ ou $d=0$, levando a uma contradição.
+  
+  Se tentarmos medir apenas o primeiro qubit de $\ket{\beta_{00}}_{1,2}$ (na base computacional), teremos o resultado $\ket{0}_{1}$ com probabilidade $\tfrac{1}{2}$ e $\ket{1}_{1}$ com probabilidade também $\tfrac{1}{2}$. Se o resultado da medição for $\ket{0}_1$, então o estado do sistema composto será $\ket{00}_{1,2}$, e portanto o segundo qubit também colapsará para o estado $\ket{0}_2$. Da mesma forma, se o resultado da medição for $\ket{1}_1$, o estado do sistema composto ficará $\ket{11}_{1,2}$, e o segundo qubit colapsará para o estado $\ket{1}_2$. Medir o estado do qubit 1 afeta o qubit 2, se ambos estiverem emaranhados, mesmo que estejam muito distantes!
+  %Esta é uma consequência surpreendente ds postulados da Mecânica Quântica e que tem corroboração experimental (REFERÊNCIA?).
+  \end{example}
+  
+ 
+ 
+\end{subsection}
+
+\end{section}
+
+%falta
+\begin{section}{Matrizes de Pauli}
+ As matrizes de Pauli são algumas das ferramentas mais corriqueiras em Computação Quântica. Essas matrizes já foram introduzidas no capítulo de Álgebra Linear, no exemplo \ref{cap2:ex_matrizes_de_pauli}, e algumas propriedades já foram abordadas nos exemplos \ref{cap2:ex_autovalores_z}, \ref{cap2:ex_autovetores_X} e \ref{cap2:ex_diagonalizacao_X}. As principais informações a respeito dessas matrizes são reunidas nesta seção por conveniência. 
+ 
+ 
+ 
+ \begin{subsection}{Definição}
+  
+  As matrizes de Pauli são reproduzidas na tabela a seguir. 
+  \begin{center}
+  \small
+   \begin{tabular}{c|l|c}
+    Notação & Ação na base $\ket{0} , \, \ket{1}$ & Matriz na base $\ket{0} , \, \ket{1}$ \\
+    \hline
+    & & \\
+    $X = \sigma_x = \sigma_1 $ & \ \ 
+    $ \begin{array}{l} X\ket{0} = \ket{1} \\ X \ket{1} = \ket{0} \end{array}$ & 
+    $ \mqty[  0 & \phantom{-}1  \\  1 & \phantom{-}0 ] $
+    \\ & & \\
+    $Y  = \sigma_y = \sigma_2 $ & \ \ 
+     $ \begin{array}{l} Y\ket{0} = \phantom{-}i\ket{1} \\ Y \ket{1} = -i\ket{0} \end{array}$ & 
+    $ \mqty[ 0 & -i \\ i & \phantom{-}0 ] $
+    \\ & & \\
+    $Z  = \sigma_z = \sigma_3 $ & \ \ 
+     $ \begin{array}{l} Z\ket{0} = \phantom{-}\ket{0} \\ Z \ket{1} = -\ket{1} \end{array}$ & 
+    $ \mqty[ 1 & \phantom{-}0 \\ 0 & -1 ] $
+     \\ & & \\
+   \end{tabular}
+  \end{center}
+  
+ \end{subsection}
+ 
+ \begin{subsection}{Propriedades}
+ 
+  As matrizes de Pauli são \emph{hermitianas} e \emph{unitárias}. Para verificar isso, basta perceber que cada matriz é igual à sua adjunta (conjugada transposta) e que suas colunas são ortonormais. Portanto vale que
+  \[ \begin{split}
+      X^\dag &= X \\
+      Y^\dag &= Y \\
+      Z^\dag &= Z
+     \end{split}  
+     \quad \quad \quad
+       \begin{split}
+        X^\dag &= X^{-1} \\
+        Y^\dag &= Y^{-1} \\
+        Z^\dag &= Z^{-1} \ .
+       \end{split} \]
+  
+  Dessas igualdades segue que cada matriz de Pauli é igual à sua inversa, e que portanto, o seu quadrado é a matriz identidade. 
+ \[ \begin{split}
+        X^2 &= I \\
+        Y^2 &= I \\
+        Z^2 &= I \ .
+       \end{split} \]
+ 
+ Há outras identidades envolvendo o produto de duas matrizes de Pauli diferentes, e que podem ser obtidas por cálculo direto. 
+  \[   \begin{split}
+        XY &= iZ \\
+        YZ &= iX \\
+        ZX &= iY
+       \end{split}
+       \quad \quad \quad
+       \begin{split}
+        YX &= -iZ \\
+        ZY &= -iX \\
+        XZ &= -iY \ .
+       \end{split} 
+  \]
+ As identidades da coluna à direita podem ser obtidas fazendo-se o hermitiano das igualdades da coluna à esquerda. 
+ 
+ 
+ \end{subsection}
+ 
+ \begin{subsection}{Autovalores, Autovetores e Diagonalização}\label{cap3:sec_autoval_autovet_diag_matrizes_pauli}
+ 
+  Por serem matrizes hermitianas e unitárias, são matrizes normais (isto é, comutam com sua adjunta). São, pois, diagonalizáveis pelo teorema espectral \ref{cap2:teorema_espectral_op_normal}, têm autovalores reais por serem hermitianas e seus autovalores devem ter módulo 1 por serem matrizes unitárias.
+  Um cálculo explícito fornece os autovalores $1$ e $-1$. Cada matriz possui uma base de autovetores diferente, denotada por $\mathcal{X}$, $\mathcal{Y}$ e $\mathcal{Z}$ e apresentadas no exemplo \ref{cap2:bases_1qubit}. O cálculo dos autovalores e autovetores segue as diretrizes do exemplo  \ref{cap2:ex_autovetores_X} e \ref{cap2:ex_diagonalizacao_X}, em que são encontrados os autovalores, autovetores e a forma diagonal da matriz $X$. 
+  
+    \begin{table}[H]
+    \centering
+    \small
+   \begin{tabular}{c|c|l|l}
+    Matriz & Autovalores & Base de Autovetores & Forma diagonal \\
+    \hline
+    & & & \\
+    \bigstrut $X $ & 1 , -1 & $\mathcal{X} = \big\{ \ket{+} , \ket{-} \big\} $               & $X = \op{+}{+} - \op{-}{-}$ \\
+    \bigstrut $Y $ & 1 , -1 & $\mathcal{Y} = \big\{ \ket{+i} , \ket{-i} \big\} $             & $Y = \op{+i}{+i} - \op{-i}{-i}$ \\
+    \bigstrut $Z $ & 1 , -1 & $\mathcal{Z} = \big\{ \ket{0} , \ket{1} \big\} = \mathcal{I} $ & $Z = \op{0}{0} - \op{1}{1}$
+   \end{tabular}
+   \normalsize
+   \caption{Autovalores, base de autovetores e forma diagonal dos operadores $X$, $Y$ e $Z$ de Pauli.}
+  \end{table}
+   
+   Os vetores $\ket{+}$, $\ket{-}$, $\ket{+i}$ e $\ket{-i}$ são dados por:
+   \[ \begin{array}{lll}
+       \bigstrut \ket{+} = \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1} 
+       & & 
+       \ket{+i} = \frac{1}{\sqrt{2}} \ket{0} + i \frac{1}{\sqrt{2}} \ket{1}
+       \\
+       \bigstrut \ket{-} = \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1}
+       & & 
+       \ket{-i} = \frac{1}{\sqrt{2}} \ket{0} -i \frac{1}{\sqrt{2}} \ket{1} \ .
+      \end{array} \]
+
+  
+ \end{subsection}
+ 
+\begin{comment}
+% INSERIR:
+% comutador e anticomutador
+% propriedades da matriz $\overrightarrow{n} \cdot \overrightarrow{\sigma}$
+% etc 
+\end{comment}
+ 
+\end{section}
+
+%falta
+\begin{section}{Estados de Bell}\label{cap3:sec_estados_bell}
+ 
+ Os \emph{estados de Bell} são estados emaranhados que formam uma base ortonormal $\mathcal{B}$ para o espaço de estados de 2 qubits. Um deles já foi visto no exemplo \ref{cap3:ex_estado_emaranhado}. Os 4 estados de Bell estão dispostos a seguir.
+  \[ \begin{split}
+   \ket{\beta_{00}} &=  \ket{\Phi^+} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11} \\
+   \ket{\beta_{01}} &=  \ket{\Phi^-} = \frac{1}{\sqrt{2}}\ket{00} - \frac{1}{\sqrt{2}}\ket{11} \\
+   \ket{\beta_{10}} &=  \ket{\Psi^+} =\frac{1}{\sqrt{2}}\ket{01} + \frac{1}{\sqrt{2}}\ket{10} \\
+   \ket{\beta_{11}} &=  \ket{\Psi^-} =\frac{1}{\sqrt{2}}\ket{01} - \frac{1}{\sqrt{2}}\ket{10}
+  \end{split} \]
+  Na literatura encontram-se os dois tipos de notação.
+
+  \begin{proposition}
+   Os estados de Bell formam uma base ortonormal para o espaço de estados de 2 qubits $\mathbb{C}^2 \otimes \mathbb{C}^2$.
+  \end{proposition}
+
+  \begin{proof}
+   \ \\
+   \noindent  $\mathcal{B}$ é base de  $\mathbb{C}^2 \otimes \mathbb{C}^2$: \\
+   A dimensão de  $\mathbb{C}^2 \otimes \mathbb{C}^2$ é 4, portanto basta mostrar que os 4 estados de Bell são LI.  Seja
+   \[  a_0 \ket{\beta_{00}} + a_1 \ket{\beta_{01}} + a_2 \ket{\beta_{10}} + a_3 \ket{\beta_{11}} = 0 \]
+   uma combinação linear nula dos elementos de $\mathcal{B}$. Tem-se que:
+   \[ \begin{split}
+       a_0 \ket{\beta_{00}} + a_1 \ket{\beta_{01}} + a_2 \ket{\beta_{10}} + a_3 \ket{\beta_{11}} 
+       &= 0 \\
+       a_0 \frac{\ket{00} + \ket{11}}{\sqrt{2}}  + a_1  \frac{\ket{00} - \ket{11}}{\sqrt{2}} + a_2 \frac{\ket{01} + \ket{10}}{\sqrt{2}}  + a_3 \frac{\ket{01} - \ket{10}}{\sqrt{2}} 
+       &= 0  \\
+       \frac{a_0 + a_1}{\sqrt{2}} \ket{00} + \frac{a_2 + a_3}{\sqrt{2}} \ket{01} + \frac{a_2 - a_3}{\sqrt{2}} \ket{10} + \frac{a_0 1 a_1}{\sqrt{2}} \ket{11} 
+       &= 0
+      \end{split} \]
+   Portanto
+   \small{\[ \begin{cases}
+       a_0 + a_1 = 0 \\
+       a_0 - a_1 = 0 \\
+       a_2 + a_3 = 0 \\
+       a_2 - a_3 = 0 
+      \end{cases}
+      \implies
+      \begin{cases}
+       a_0  = 0 \\
+       a_1 = 0 \\
+       a_2 = 0 \\
+       a_3 = 0  \ , 
+      \end{cases}
+      \]}
+      e como a única solução para os coeficientes é a solução nula, os vetores são LI. Formam, em consequência, uma base do espaço de 2 qubits.
+      \\ 
+      
+      \noindent $\mathcal{B}$ é ortonormal: \\
+      Os vetores têm norma 1 pois
+      \small{\[ \begin{split}
+          \braket{\beta_{00}}{\beta_{00}} 
+          &= \frac{\bra{00} + \bra{11}}{\sqrt{2}} \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \frac{1+0+0+1}{2} = 1 \\
+          \braket{\beta_{01}}{\beta_{01}} 
+          &= \frac{\bra{00} - \bra{11}}{\sqrt{2}} \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \frac{1-0-0+1}{2} = 1 \\
+          \braket{\beta_{10}}{\beta_{10}} 
+          &= \frac{\bra{01} + \bra{10}}{\sqrt{2}} \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \frac{1+0+0+1}{2} = 1 \\
+          \braket{\beta_{11}}{\beta_{11}} 
+          &= \frac{\bra{01} - \bra{10}}{\sqrt{2}} \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \frac{1-0-0+1}{2} = 1 \ , 
+         \end{split} \]}
+       e são ortogonais porque
+       \small{\[ \begin{split}
+          \braket{\beta_{00}}{\beta_{01}} 
+          &=\frac{\bra{00} + \bra{11}}{\sqrt{2}} \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \frac{1-0+0-1}{2} = 0
+          \\
+          \braket{\beta_{00}}{\beta_{10}} 
+          &=\frac{\bra{00} + \bra{11}}{\sqrt{2}} \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \frac{0+0+0+0}{2} = 0
+          \\
+          \braket{\beta_{00}}{\beta_{11}} 
+          &=\frac{\bra{00} + \bra{11}}{\sqrt{2}} \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \frac{0-0+0-0}{2} = 0
+          \\
+          \braket{\beta_{01}}{\beta_{10}} 
+          &=\frac{\bra{00} - \bra{11}}{\sqrt{2}} \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \frac{0+0-0-0}{2} = 0
+          \\
+          \braket{\beta_{01}}{\beta_{11}} 
+          &=\frac{\bra{00} - \bra{11}}{\sqrt{2}} \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \frac{0-0-0+0}{2} = 0
+          \\
+          \braket{\beta_{10}}{\beta_{11}} 
+          &=\frac{\bra{01} + \bra{10}}{\sqrt{2}} \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \frac{1-0+0-1}{2} = 0 \ .
+          \end{split}\] }
+          Logo a base é ortonormal.
+  \end{proof}
+
+  \begin{proposition}
+   Os estados de Bell são emaranhados (isto é, não podem ser escritos como o produto tensorial de estados de 1 qubit).
+  \end{proposition}
+ 
+  \begin{proof}
+   As contas são análogas às do exemplo \ref{cap3:ex_estado_emaranhado}, que mostra que o estado $\ket{\beta_{00}}$ é emaranhado.
+  \end{proof}
+
+   Os estados de Bell são muito utilizados pelo fato de formarem uma base de estados emaranhados. Algumas aplicações mais elementares ocorrem no circuito de teletransporte e na codificação superdensa, que serão vistos no capítulo \ref{cap5:Alg_Q}, seções \ref{cap5:sd_coding} e \ref{cap5:telep_circ}, respectivamente. 
+ 
+\end{section}
+

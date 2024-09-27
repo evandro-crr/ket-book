@@ -1,0 +1,1608 @@
+
+\chapter{Computação Quântica}\label{cap4:CQ}
+ 
+ 
+ A \emph{Computação Quântica} é um novo paradigma de computação em que utilizam-se sistemas quânticos -- os \emph{qubits}, análogos dos bits clássicos -- para se realizar processamento de informação. Lançam-se mão de alguns recursos não existentes na Computação Clássica, como \emph{superposição} e \emph{emaranhamento}. 
+ 
+ Há uma variedade de modelos de Computação Quântica, dentre os quais pode-se citar: 
+ \begin{itemize}
+  \item \textbf{Computação Quântica de Circuitos} -- computação realizada com portas lógicas quânticas, análogas às portas lógicas dos sistemas digitais clássicos;
+  \item \textbf{Computação Quântica Adiabática} -- o sistema é preparado no estado fundamental e sofre a ação de um hamiltoniano que depende continuamente do tempo e que é projetado de forma que o estado fundamental, após a aplicação do hamiltoniano, contenha a solução do problema codificada (\!\!\cite{book:diss_vanessa}, p.23);
+  \item \textbf{Máquina de Turing Quântica} -- uma versão quântica da Máquina de Turing Clássica;
+  \item \textbf{Caminhada Aleatória Quântica} -- versão quântica da caminhada aleatória clássica; é possível realizar computação quântica universal com esse modelo de computação.
+ \end{itemize}
+  O presente trabalho aborda apenas a Computação Quântica de Circuitos. 
+
+ 
+%referências ao cap1 arrumar
+\begin{section}{Computação Quântica de Circuitos}
+ Este modelo de Computação Quântica guarda analogia com a Computação Clássica com Portas Lógicas, apresentada no apêndice \ref{cap1_comp_classica} (principalmente seção \ref{cap1:sec_nivel_logico}). A informação é codificada em qubits, e o processamento é feito por evolução temporal do sistema segundo operações unitárias (conforme postulado \ref{cap3:postulado_evol_temp}). 
+ 
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap4/figuras/esquema_comp_quantico.png}
+\caption{Esquema geral de um computador quântico no modelo de circuitos. Os qubits são preparados em estados iniciais e são submetidos a operações unitárias simbolizadas pela caixa de rótulo $U$. Após a sequência de operações, os qubits são lidos (ocorre a medição dos qubits na base computacional), fornecendo uma sequência de bits clássicos com o resultado da computação. Fonte: \cite{book:icq_portugal}, p. 24.}
+\end{figure}
+ 
+ \noindent \textbf{Número de entradas e saídas}
+ 
+ Os circuitos quânticos devem ter o mesmo número de entradas e saídas, pois qubits não são introduzidos ou removidos durante o processamento e as portas lógicas quânticas são operadores, o que significa que preservam o número de qubits em que atuam. Diferentemente do que ocorre com os circuitos clássicos, nos quais há portas com diferentes números de bits à entrada e à saída (como as portas AND e NOT, por exemplo). 
+ \\ \\
+ 
+ \noindent \textbf{Reversibilidade da Computação Quântica}
+ 
+ Outra diferença é os circuitos quânticos são essencialmente \emph{reversíveis}, ou seja, existe um circuito quântico inverso que consegue retornar as entradas originais do circuito a partir das saídas do mesmo. Isso ocorre porque o processamento se dá por operadores unitários, que são reversíveis, com inversos também dados por operadores unitários. Apesar de a maior parte da Computação Quântica ser reversível, há uma etapa irreversível: a medição dos qubits.
+ 
+ Nos circuitos clássicos, a maioria das portas lógicas não são reversíveis. A porta AND, por exemplo, fornece resultado 1 se ambas as entradas forem 1 e fornece 0 caso contrário; no caso de a saída ser 0, não sabemos qual/quais das entradas é 0. 
+ 
+ Não há um impedimento absoluto para a Computação Clássica ser reversível. De fato, há investigações relacionadas a circuitos clássicos reversíveis, constituídos apenas por portas lógicas reversíveis. 
+ 
+ Há uma expectativa de que a computação reversível seja mais eficiente em termos energéticos que a computação irreversível. Isso se deve ao \emph{princípio de Landauer}, que diz que o apagamento de 1 bit de informação está associado a uma dissipação de energia para o ambiente de, no mínimo, $kT \ln 2$ (ver referência \cite{book:pqci_benenti}, p. 37). Em tese, se forem evitados os apagamentos de informação, a computação poderia ser feita sem gasto energético apreciável. Uma discussão interessante sobre o consumo energético e computação pode ser encontrada em \cite{book:qcqi_nc}, na seção 3.2.5, e em \cite{book:pqci_benenti}, seção 1.5.
+ 
+\end{section}
+ 
+\begin{section}{O Qubit}
+
+\begin{subsection}{Descrição Matemática do Qubit}
+ O qubit é um sistema físico que pode ser descrito por um espaço de Hilbert de dimensão 2. O qubit já foi apresentado no capítulo anterior, exemplo \ref{cap3:ex_qubit}. Os estados da base canônica são rotulados por $\ket{0}$ e $\ket{1}$, e um estado geral para o qubit é o vetor unitário
+\[ \ket{\psi} = a \ket{0} + b\ket{1} \ , \]
+em que $\abs{a}^2 + \abs{b}^2 = 1$ e $a,b \in \mathbb{C}$. 
+\end{subsection}
+ 
+\begin{comment}
+\begin{subsection}{Realizações Físicas de um Qubit}
+ 
+\end{subsection}
+\end{comment}
+
+\begin{subsection}{Fase Relativa e Fase Global}
+ 
+ \subsubsection*{Fase Global}
+ Chama-se \emph{fase global} uma fase complexa multiplicando o estado de um qubit: $e^{i\alpha}\ket{\psi}$. Dois estados $\ket{\psi_1}$ e $\ket{\psi_2} = e^{i\alpha}\ket{\psi_1}$, iguais a menos de uma fase global, não podem ser distinguidos fisicamente. De fato, dado um observável $A = \sum_k a_k P_k$, a probabilidade de o resultado de uma medida ser $a_k$, nos dois casos, é igual:
+\[ p_2(a_k) =  \norm{P_k e^{i\alpha}\ket{\psi_1} }^2 = \abs{e^{i\alpha}}^2 \norm{\ket{\psi_1}}^2 =  p_1(a_k) \ . \]
+A evolução temporal nos dois estados também é idêntica, a menos do fator $e^{i\alpha}$, devido à linearidade dos operadores de evolução:
+\[ U\ket{\psi_2} = Ue^{i\alpha}\ket{\psi_1} = e^{i\alpha}U\ket{\psi_1}  \ , \]
+e uma subsequente medição não conseguiria distinguir esses dois estados que diferem apenas por uma fase global.
+Na formação de um sistema composto, os vetores $\ket{\psi_1}$ e $\ket{\psi_2} = e^{i\alpha}\ket{\psi}$ produzem resultados idênticos, a menos da fase global $\alpha$, dada a multilinearidade do produto tensorial:
+\[ \ket{\psi_2} \otimes \ket{\phi} = \big(e^{i\alpha}\ket{\psi_1}\big) \otimes \ket{\phi} = e^{i\alpha} \big( \ket{\psi_1} \otimes \ket{\phi} \ . \]
+Do mesmo modo, uma medida posterior não conseguiria distinguir esses dois estados. 
+
+Dessa forma, a fase global não tem relevância física, e um sistema descrito por um vetor de estado $\ket{\psi}$ também pode ser descrito pelo vetor $e^{i\alpha}\ket{\psi}$. 
+
+\subsubsection*{Fase Relativa}
+A \emph{fase relativa} em um qubit é a diferença de fase entre os coeficientes que multiplicam o $\ket{1}$. Por exemplo, os vetores  
+\[ \ket{+} =  \frac{\ket{0} +i \ket{1}}{\sqrt{2}} \ \ \text{e} \ \  \ket{-} =  \frac{\ket{0} - \ket{1}}{\sqrt{2}}  \]
+têm mesmo coeficiente multiplicando $\ket{0}$ e diferem apenas por um fator $-1 = e^{i \pi}$ multiplicando $\ket{1}$, isto é, por uma fase relativa de $\pi$. 
+ 
+De forma geral, os estados 
+\[ \ket{\psi_1} = a\ket{0} + b\ket{1} \ \ \text{e} \ \  \ket{\psi_2} = a\ket{0} + b e^{i\varphi}\ket{1} \]
+diferem por fase relativa $\varphi$. Esses estados apresentam mesmas probabilidades em uma medida na base computacional:
+\[\begin{split}
+   p_2(\ket{0}) = \abs{a}^2 = p_1(\ket{0})
+  \end{split}  \]
+\[ p_2(\ket{1}) = \abs{b e^{i\varphi}}^2 = \abs{b}^2  \abs{e^{i\varphi}}^2 =  \abs{b}^2 =  p_1(\ket{1}) \ , \]
+ no entanto, em bases diferentes, podem apresentar probabilidades diferentes. Exemplificando, os estados $\ket{+}$ e $\ket{-}$ diferem por uma fase relativa, no entanto formam uma base. E a medida nessa base fornece resultados distintos. A evolução por transformações unitárias também apresenta resultados diferentes. Por exemplo, a aplicação do operador unitário $H$ fornece $H\ket{+} = \ket{0}$ e $H\ket{-} = \ket{1}$.
+ 
+Assim, ao contrário da fase global, a fase relativa apresenta relevância física.
+
+
+\end{subsection}
+
+\begin{subsection}{Representação de um Qubit na Esfera de Bloch}
+
+\subsubsection*{A Esfera de Bloch}
+O estado $\ket{\psi} = a \ket{0} + b\ket{1}$ de um qubit pode ser reescrito, a menos de uma fase global, como 
+\[ \ket{\psi} = \cos(\theta/2)\ket{0} + e^{i\varphi} \sin(\theta/2) \ket{1} \ , \ \ \theta \in [0,\pi] , \varphi \in [0,2\pi) \ .  \]
+Isso será justificado na seção \ref{cap4:sec_justificativa_esf_bloch}. Pode-se multiplicar o estado por uma fase global para que o termo multiplicando $\ket{0}$ seja real e positivo. Fazendo-se essa identificação em relação à fase global, tem-se o estado de um qubit descrito por dois parâmetros $\theta$ e $\varphi$. Utilizando esses dois parâmetros no sistema de coordenadas esféricas, pode-se corresponder os estados de um qubit com os pontos na superfície de uma esfera de raio unitário, a chamada \emph{Esfera de Bloch}. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{cap4/figuras/blochsphere3.png}
+\vspace{-5pt}
+\caption{Representação de um qubit na esfera de Bloch. Fonte: \cite{book:qcqi_nc}, p.15}
+\label{cap4:fig_repr_qubit_esfera_bloch}
+\end{figure}
+ 
+ \subsubsection*{Pontos na Esfera de Bloch}
+Os polos norte da esfera corresponde ao estado $\ket{0}$ e o polo sul, ao $\ket{1}$. No equador, situam-se os estados da forma $\frac{1}{\sqrt{2}} \ket{0} + \frac{e^{i\varphi}}{\sqrt{2}} \ket{1}$, isto é, superposições dos estados $\ket{0}$ e $\ket{1}$ com o mesmo peso e com alguma fase relativa.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cc|c}
+ \multicolumn{2}{c|}{Ponto da esfera de Bloch} & Estado $\ket{\psi}$\\ \hline
+ $\begin{array}{l} \phantom{-}\hat{x} = (1,0,0) \\ -\hat{x} = (-1,0,0) \\ \phantom{-}\hat{y} = (0,1,0) \\ -\hat{y} = (0,-1,0) \\ \phantom{-} \hat{z} = (0,0,1) \\ -\hat{z} = (0,0,-1) \end{array}$
+ &
+ $\begin{array}{ll} \theta = \pi/2 & \varphi = 0 \\ \theta = \pi/2 & \varphi = \pi \\ \theta = \pi/2 & \varphi = \pi/2 \\ \theta = \pi/2 & \varphi = 3\pi/2
+ \\ \theta = 0 & \\ \theta = \pi & \end{array} $
+ &
+ $\begin{array}{l} \ket{+} \\ \ket{-} \\ \ket{+i} \\ \ket{-i} \\ \ket{0} \\ \ket{1} \end{array} $
+\end{tabular}
+\caption{Intersecção da esfera de Bloch com os eixos coordenados.}
+\end{table}
+
+Observe que os vetores da base $\mathcal{X}$ correspondem às intersecções da esfera com o eixo $x$. De forma similar, isso vale para as bases $\mathcal{Y}$ e $\mathcal{Z}$, que correspondem às intersecções da esfera com os eixos $y$ e $z$, respectivamente. Essas bases foram abordadas na seção \ref{cap3:sec_autoval_autovet_diag_matrizes_pauli}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{cap4/figuras/blochsphere4.png}
+\vspace{-5pt}
+\caption{Pontos destacados na esfera de Bloch.}
+\label{cap4:fig_pontos_esfera_bloch}
+\end{figure}
+
+\subsubsection*{Projeções nos eixos coordenados}
+As projeções nos eixos $x$, $y$ e $x$ de um ponto $\vectorarrow{r}$ na superfície da esfera de Bloch são dadas pelas coordenadas esféricas:
+\[ \begin{split}
+    \vectorarrow{r} 
+    &= r_x \, \vectorunit{x} + r_y \, \vectorunit{y} + r_z \, \vectorunit{z}  \\
+    &= \sin \theta \cos \varphi \, \vectorunit{x} + \sin \theta \sin \varphi \, \vectorunit{y} + \cos \theta \, \vectorunit{z} \ , \ \ \theta \in [0,\pi] , \varphi \in [0,2\pi) \ .
+   \end{split}  \]
+Essas projeções correspondem aos valores esperados dos operadores hermitianos $X$, $Y$ e $Z$ de Pauli:
+\[ \begin{split}
+    r_x &= \sin \theta \cos \varphi = \expval{X} \\
+    r_y &= \sin \theta \sin \varphi = \expval{Y} \\
+    r_z &= \ \ \   \cos \theta \ \ \ \, = \expval{Z} \ . 
+   \end{split} \]
+
+
+\end{subsection}
+
+\begin{subsection}{Justificativas para a seção anterior}\label{cap4:sec_justificativa_esf_bloch}
+ 
+ \begin{proposition}
+  O estado de um qubit pode ser escrito, a menos de uma fase global, como   
+\[ \ket{\psi} = \cos(\theta/2)\ket{0} + e^{i\varphi} \sin(\theta/2) \ket{1} \ , \ \ \theta \in [0,\pi] , \varphi \in [0,2\pi) \ .  \]
+ \end{proposition}
+
+ \begin{proof}
+  Seja $\ket{\psi} = a \ket{0} + b \ket{1}$ com $a,b \in \mathbb{C}$ e $\abs{a}^2 + \abs{b}^2 = 1$. Os coeficientes $a$ e $b$ são números complexos, portanto admitem módulo e fase complexa, podendo ser escritos na forma polar como
+\[ a = \rho_a e^{i\theta_a} \ , \ \ b = \rho_b e^{i\theta_b} \ , \]
+com $\rho_a , \rho_b \geq 0$. Tem-se
+\[ \abs{a}^2 + \abs{b}^2 = 1 \implies \rho_a^2 + \rho_b^2 = 1 \implies 
+\begin{cases}
+ \rho_a = \cos(\theta/2) \\
+ \rho_b = \sin(\theta/2) 
+\end{cases}
+\theta \in [0,\pi] \ .
+\]
+Portanto, pode-se escrever
+\[ \begin{split}
+    \ket{\psi} 
+    &= \cos(\theta/2) e^{i\theta_a} \ket{0} +  \sin(\theta/2) e^{i\theta_b} \ket{1} \\
+    &= e^{i\theta_a} \left( \cos(\theta/2) \ket{0} +  \sin(\theta/2) e^{i(\theta_b - \theta_a)} \ket{1} \right) \ .
+   \end{split}
+ \]
+Como a fase global não tem efeito físico, pode-se multiplicar por um fator $ e^{-i\theta_a} \ket{0}$ para que o coeficiente de $\ket{0}$ se torne um número real positivo. Definindo $\varphi = \theta_b - \theta_a$, pode-se dizer, sem prejuízo, que $\varphi \in [0,2\pi)$. Dessa forma, o estado $\ket{\psi}$ fica
+\[ \ket{\psi} = \cos(\theta/2)\ket{0} + e^{i\varphi} \sin(\theta/2) \ket{1} \ , \ \ \theta \in [0,\pi] , \varphi \in [0,2\pi) \ . \qedhere \]
+ \end{proof}
+
+\begin{proposition}
+ Seja $\vectorarrow{r}$ um vetor na superfície da esfera de Bloch correspondendo ao estado $\ket{\psi}$. As coordenadas $x$, $y$ e $z$ desse vetor correspondem aos valores esperados dos operadores $X$, $Y$ e $Z$ de Pauli referentes ao estado $\ket{\psi}$:
+ \[ \begin{split}
+    r_x &= \sin \theta \cos \varphi = \expval{X} \\
+    r_y &= \sin \theta \sin \varphi = \expval{Y} \\
+    r_z &= \ \ \   \cos \theta \ \ \ \, = \expval{Z} \ . 
+   \end{split} \]
+\end{proposition}
+
+\begin{proof}
+ Seja $\ket{\psi} = \cos(\theta/2)\ket{0} + e^{i\varphi} \sin(\theta/2) \ket{1}$. Calculando o valor esperado dos operadores $X$, $Y$ e $Z$ para esse estado, tem-se:
+ \[ \begin{split}
+      \expval{X}
+      &=  \expval{X}{\psi} \\
+      &= \big( \cos(\theta/2)\bra{0} + e^{-i\varphi} \sin(\theta/2) \bra{1}\big) X\big( \cos(\theta/2)\ket{0} + e^{i\varphi} \sin(\theta/2)  \ket{1} \big) \\
+      &= \big( \cos(\theta/2)\bra{0} + e^{-i\varphi} \sin(\theta/2) \bra{1}\big) \big( \cos(\theta/2)\ket{1} + e^{i\varphi} \sin(\theta/2)  \ket{0} \big)  \\
+      &= 0 + \cos(\theta/2) e^{i\varphi}  \sin(\theta/2) + 0 +  e^{-i\varphi} \sin(\theta/2)\cos(\theta/2) \\
+      &= \big(e^{i\varphi} + e^{-i\varphi}  \big)\sin(\theta/2)\cos(\theta/2) \\
+      &= 2 \cos \varphi \sin(\theta/2)\cos(\theta/2) \\
+      &= \sin \theta \cos \varphi \\
+      &= r_x
+    \end{split} \]
+ \[ \begin{split}
+      \expval{Y}
+      &=  \expval{Y}{\psi} \\
+      &= \big( \cos(\theta/2)\bra{0} + e^{-i\varphi} \sin(\theta/2) \bra{1}\big) Y\big( \cos(\theta/2)\ket{0} + e^{i\varphi} \sin(\theta/2)  \ket{1} \big) \\
+      &= \big( \cos(\theta/2)\bra{0} + e^{-i\varphi} \sin(\theta/2) \bra{1}\big) \big( i\cos(\theta/2)\ket{1} - i e^{i\varphi} \sin(\theta/2)  \ket{0} \big)  \\
+      &= 0 -i \cos(\theta/2) e^{i\varphi}  \sin(\theta/2) + 0 + i e^{-i\varphi} \sin(\theta/2)\cos(\theta/2) \\
+      &= -i \big(e^{i\varphi} - e^{-i\varphi}  \big)\sin(\theta/2)\cos(\theta/2) \\
+      &= -i (2 i \sin \varphi )\sin(\theta/2)\cos(\theta/2) \\
+      &= \sin \theta \sin \varphi \\
+      &= r_y
+    \end{split} \]
+     \[ \begin{split}
+      \expval{Z}
+      &=  \expval{Z}{\psi} \\
+      &= \big( \cos(\theta/2)\bra{0} + e^{-i\varphi} \sin(\theta/2) \bra{1}\big) Z\big( \cos(\theta/2)\ket{0} + e^{i\varphi} \sin(\theta/2)  \ket{1} \big) \\
+      &= \big( \cos(\theta/2)\bra{0} + e^{-i\varphi} \sin(\theta/2) \bra{1}\big) \big( \cos(\theta/2)\ket{0}  - e^{i\varphi} \sin(\theta/2)  \ket{1} \big)  \\
+      &= \cos(\theta/2) \cos(\theta/2) + 0 + 0 -  e^{-i\varphi} \sin(\theta/2)e^{i\varphi} \sin(\theta/2)  \\
+      &=  \cos^2(\theta/2) - \sin^2(\theta/2)\\
+      &= \sin \theta \\
+      &= r_z
+    \end{split} \]
+  Nas contas, foram usadas as seguintes identidades complexas:
+  \[ \cos \varphi = \frac{  e^{i\varphi} +  e^{-i\varphi}}{2} \ , \ \   \sin \varphi = \frac{  e^{i\varphi} -  e^{-i\varphi}}{2i} \ . \qedhere \]
+\end{proof}
+
+
+\end{subsection}
+
+
+ 
+\end{section}
+
+\begin{section}{Notação de Circuitos}
+ Os detalhes da notação utilizada para representar circuitos quânticos serão vistos nesta seção. A referência utilizada nesta parte é o capítulo 2 do livro \cite{book:icq_portugal}.
+ 
+ Um circuito quântico é ilustrado na figura \ref{{cap4:fig_exemplo_circuito_quantico}} disposta abaixo. Alguns detalhes pertinentes são abordados na sequência.
+ 
+  \begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{cap4/figuras/exemplo_circuito_quantico_teletransporte.png}
+\caption{Exemplo de circuito quântico. Fonte: \cite{book:qcqi_nc}, p. 27.}
+\label{cap4:fig_exemplo_circuito_quantico}
+\end{figure}
+ 
+ \noindent \textbf{Entradas e saídas} \\
+ O circuito deve conter o mesmo número de entradas e saídas (às vezes podem estar omitidas quando não utilizadas). Cada qubit é representado por uma linha horizontal, e linhas duplas representam bits clássicos. Pode-se pôr rótulos nos qubits para indicar em que estado se encontram na entrada.
+ \begin{figure}[H]
+  \centering
+  $  \begin{array}{ccccc}
+  \text{(a)} & & \text{(b)} & & \text{(c)} \\ & & & & \\
+  \Qcircuit @C=1em @R=.7em {\lstick{\ket{\psi}} & \qw & \qw & \qw }
+  & &
+  \quad \phantom{\text{$\ket{\psi}$}}  
+  \Qcircuit @C=1em @R=1.5em { \lstick{ \begin{array}{c} \\ \ket{\beta_{00}} \end{array} \hspace{5pt}} & \qw & \qw & \qw \\
+                     & \qw \gategroup{1}{1}{2}{1}{1.5em}{\{} & \qw & \qw }
+  & &
+  \phantom{0 ou 1 \ \ }\Qcircuit @C=1em @R=.7em {\lstick{\text{0 ou 1}}& \cw & \cw & \cw}
+ \end{array} $
+  \caption{(a) Linhas horizontais simples representam 1 qubit. (b) Representação de 2 qubits com o rótulo representando o estado de Bell $\ket{\beta_{00}} = \tfrac{1}{\sqrt{2}} (\ket{00} + \ket{11})$; a notação com chave é útil para representar entradas compostas por estados emaranhados. (c) Linhas horizontais duplas representam 1 bit clássico, ou um cbit.}
+ \end{figure}
+\noindent Os qubits de entrada podem se encontrar em estados $\ket{0}$, $\ket{1}$ ou em superposições desses estados. Também podem encontrar-se em estados emaranhados, não possíveis de se exprimir como produto tensorial de estados de 1 qubit. 
+ \\ 
+ 
+  \noindent \textbf{Sequência de operações} \\
+  A passagem do tempo, e portanto a sequência de operações, é representada da esquerda para a direita. Ocasionalmente pode-se representar o circuito na forma vertical, e a passagem do tempo é representada de cima para baixo.
+  \\
+  
+ \noindent \textbf{Símbolos para Portas Lógicas Quânticas} \\
+ As portas lógicas quânticas são representadas por caixas contendo o mesmo número de entradas e saídas. As portas lógicas controladas são portas lógicas de mais de 1 qubit em que pelo menos um dos qubits age como controle; o qubit de controle é representado por um círculo (mais detalhes serão vistos posteriormente). 
+ \begin{figure}[H]
+  \centering
+$  \begin{array}{ccc}
+  \text{(a)} & \text{(b)} & \text{(c)} \\ & & \\
+  \Qcircuit @C=1em @R=.7em { &          & \\ 
+                             & \gate{U} & \qw }
+  &
+  \centering \Qcircuit @C=1em @R=.7em { & \ctrl{1} & \qw \\
+                                        & \gate{U} & \qw }
+  &
+  \Qcircuit @C=1em @R=.7em {
+& \multigate{2}{U} & \qw \\
+& \ghost{U}& \qw \\
+& \ghost{U} & \qw
+}
+ \end{array} $
+  \caption{Exemplos de portas lógicas quânticas. (a) Porta lógica de 1 qubit. (b) Porta lógica controlada de 2 qubits. (c) Porta lógica de 3 qubits.}
+ \end{figure}
+
+ \noindent \textbf{Medições de qubits} \\
+ As medições são as únicas operações potencialmente irreversíveis de um circuito quântico. Em geral são realizadas na base computacional $\ket{0}$ e $\ket{1}$. A notação para medições é ilustrada abaixo, em que, novamente, fica implícito que a base de medidas é a computacional. Após a medição na base computacional, o resultado é um bit clássico.
+ \begin{figure}[H]
+  \centering
+  $  \begin{array}{ccc}
+  \text{(a)} &  \text{(b)}  & \text{(c)} \\ & & \\
+  \Qcircuit @C=1em @R=.7em { & \qw & \meter & \cw & \cw}
+  &  
+  \Qcircuit @C=1em @R=.7em { & \qw & \measureD{} & \cw & \cw} 
+  &
+  \Qcircuit @C=1em @R=.7em { & \qw & \measureD{\mathcal{O}} &  & }
+ \end{array} $
+ \caption{Notações possíveis para medição de qubits. Após a medição na base canônica, o resultado é um cbit. (a) e (b) Medição na base canônica. (c) Medição de um observável $\mathcal{O}$ especificado.}
+ \end{figure}
+
+\end{section}
+
+\begin{section}{Portas Lógicas Quânticas}
+ 
+ As portas lógicas quânticas são operações unitárias aplicadas em um ou mais qubits. Nesta seção, essas portas lógicas são apresentadas em detalhes.  
+ 
+ \begin{subsection}{Portas Lógicas de 1 Qubit}
+  Estas portas lógicas atuam em 1 qubit apenas. São descritas por matrizes unitárias $2 \times 2$. As portas lógicas apresentadas nesse tópico são as portas $X$, $Y$ e $Z$ de Pauli (também denotadas por $\sigma_x$, $\sigma_y$ e $\sigma_z$, respectivamente), a porta $H$ de Hadamard, a porta de fase ou porta $S$ e a porta $\tfrac{\pi}{8}$ ou porta $T$.
+  
+  \subsubsection*{Porta X de Pauli ou NOT Quântica}
+   
+   A porta $X$ de Pauli é a operação unitária de 1 qubit que, na base computacional, é representada pela matriz de Pauli $X = \sigma_x$. Algumas informações dessa porta estão resumidas na figura abaixo.
+   
+   \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=.7em {& \gate{X} & \qw }
+       \\ \\
+       \Qcircuit @C=1em @R=1em {& \targ & \qw }
+      \end{array}$
+     & & 
+      $\begin{array}{c}
+     X = \mqty[ 0 & 1 \\ 1 & 0 ]
+     \\
+     \\ \\
+     \text{Notação alternativa}\\ \\
+     X = \sigma_x
+     \end{array} $
+
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        X \ket{0} = \ket{1} \\
+        X \ket{1} = \ket{0} \\
+       \end{array}
+       \\ \\ 
+       \begin{array}{l}
+        X \ket{b} = \ket{\overline{b}} \\
+         \ \ \ \scriptstyle{b = 0,1 \ ; \ \overline{b} = \text{NOT}(b)}
+       \end{array}
+       \\ \\ 
+       \begin{array}{l}
+        X \ket{+} = \ket{+} \\
+        X \ket{-} = -\ket{-}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta $X$ ou NOT quântica.}
+   \end{figure}
+
+   
+ \subsubsection*{Porta Y de Pauli}
+  
+    A porta $Y$ de Pauli é a operação unitária de 1 qubit que, na base computacional, é representada pela matriz de Pauli $Y = \sigma_y$. Algumas informações dessa porta estão dispostas abaixo.
+     \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=.7em {& \gate{Y} & \qw }
+      \end{array}$
+     & & 
+     $\begin{array}{c}
+     Y = \mqty[ 0 & -i \\ i & \phantom{-}0 ] \\
+     \\ \\
+     \text{Notação alternativa}\\ \\
+     Y = \sigma_y
+     \end{array} $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        Y \ket{0} = i \ket{1} \\
+        Y \ket{1} = -i \ket{0}
+       \end{array}
+        \\ \\ 
+       \begin{array}{l}
+        Y \ket{b} = (-1)^b i\ket{\overline{b}} \\
+         \ \ \ \scriptstyle{b = 0,1 \ ; \ \overline{b} = \text{NOT}(b)}
+       \end{array}
+       \\ \\  
+       \begin{array}{l}
+        Y \ket{+} = -i \ket{-} \\
+        Y \ket{-} = i \ket{+}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta $Y$.}
+   \end{figure}
+   
+   
+ 
+ \subsubsection*{Porta Z de Pauli}
+  
+    A porta $Z$ de Pauli é a operação unitária de 1 qubit que é representada na base computacional pela matriz de Pauli $Z = \sigma_z$. Essa porta introduz uma fase relativa de $\pi$, o que corresponde a multiplicar o $\ket{1}$ por $-1 = e^{i\pi}$, como se pode observar no quadro a seguir.
+    
+     \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=.7em {& \gate{Z} & \qw }
+      \end{array}$
+     & & 
+     $\begin{array}{c}
+     Z = \mqty[ 1 & \phantom{-}0 \\ 0 & -1 ] 
+     \\
+     \\
+     \\
+     \text{Notação alternativa}
+     \\ \\
+     Z = \sigma_z
+     \end{array} $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        Z \ket{0} = \ket{0} \\
+        Z \ket{1} = -\ket{1} 
+       \end{array}
+       \\ \\ 
+       \begin{array}{l}
+        Z \ket{b} = (-1)^b \ket{b} \\
+         \ \ \ \scriptstyle{b = 0,1 }
+       \end{array}
+       \\ \\  
+       \begin{array}{l}
+        Z \ket{+} = \ket{-} \\
+        Z \ket{-} = \ket{+}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta $Z$.}
+   \end{figure}
+   
+   
+ 
+ \subsubsection*{Porta Hadamard}
+  
+  A porta de Hadamard é uma operação unitária de 1 qubit representada na base computacional pela matriz de Hadamard $H$. Essa matriz, definida abaixo, também realiza mudança de base de $\mathcal{I} = \big\lbrace \ket{0}, \ket{1}\big\rbrace$ para $\mathcal{X} = \big\lbrace \ket{+}, \ket{-}\big\rbrace$ e vice-versa, como visto no exemplo \ref{cap2:ex_matrix_mudança_de_base}. 
+  
+     \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=.7em {& \gate{H} & \qw }
+      \end{array}$
+     & & 
+     $H =\frac{1}{\sqrt{2}} \mqty[ 1 & \phantom{-}1 \\ 1 & -1 ] $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        H \ket{0} = \ket{+} \\
+        H \ket{1} = \ket{-}
+       \end{array}
+       \\ \\ 
+       \begin{array}{l}
+        H \ket{+} = \ket{0} \\
+        H \ket{-} = \ket{1}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta de Hadamard.}
+   \end{figure}
+   
+   
+   
+ 
+ \subsubsection*{Porta de Fase ou Porta S}
+  
+  A porta $S$ introduz uma fase relativa de $\frac{\pi}{2}$ no qubit em que atua, levando um estado $a \ket{0} + b \ket{1}$ em um estado $a \ket{0} + i b \ket{1}$, já que $i = e^{i\frac{\pi}{2}}$. Os detalhes pertinentes a essa porta lógica estão dispostos abaixo. 
+     \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=.7em {& \gate{S} & \qw }
+      \end{array}$
+     & & 
+     $S = \mqty[ 1 & 0 \\ 0 & i ] $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        S \ket{0} = \ket{0} \\
+        S \ket{1} = i\ket{1}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta de fase ou porta $S$.}
+   \end{figure}
+   
+ 
+ 
+  \subsubsection*{Porta T ou Porta $\frac{\pi}{8}$}
+  
+   A porta $T$, também conhecida como porta $\frac{\pi}{8}$, é uma porta lógica que introduz uma fase relativa de $\frac{\pi}{4}$, levando um estado $a\ket{0} + b \ket{1}$ em $a\ket{0} + e^{i\frac{\pi}{4}} b \ket{1}$. 
+   
+    O nome $\frac{\pi}{8}$ dessa porta se deve ao fato de poder ser escrita na forma
+   \[ T = e^{i\frac{\pi}{8}} \mqty[ e^{-i\frac{\pi}{8}} & 0 \\ 0 & e^{i\frac{\pi}{8}} ] \ . \]
+   Isso significa que, a menos de uma fase global, essa operação realiza uma mudança de fase de $+\frac{\pi}{8}$ no estado $\ket{0}$ e de $-\frac{\pi}{8}$ no estado $\ket{1}$.  
+ 
+     \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=.7em {& \gate{T} & \qw }
+      \end{array}$
+     & & 
+     $T = \mqty[ 1 & 0 \\ 0 & e^{i \frac{\pi}{4}} ] $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        T \ket{0} = \ket{0} \\
+        T \ket{1} = e^{i \frac{\pi}{4}}\ket{1}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta $\frac{\pi}{8}$ ou porta $T$.}
+   \end{figure}
+   
+   \subsubsection*{Porta de Fase $\theta$}
+   
+   A porta de fase pode ser generalizada para uma fase arbitrária $\theta$.  Nesse caso, a aplicação dessa porta, denotada por $S(\theta)$ leva um estado $a\ket{0} + b\ket{1}$ em $a\ket{0} + e^{i\theta} b\ket{1}$. A matriz que realiza isso é mostrada a seguir. 
+  
+       \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=.7em {& \gate{S} & \qw }
+      \end{array}$
+     & & 
+     $S(\theta) = \mqty[ 1 & 0 \\ 0 & e^{i\theta}  ] $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        S \ket{0} = \ket{0} \\
+        S \ket{1} = e^{i\theta} \ket{1}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta de fase $S(\theta)$.}
+   \end{figure}
+   
+   Como casos particulares, tem-se
+   \[ Z = S(\pi) \ , \ \ S = S(\tfrac{\pi}{2}) \ \text{e} \ \ T = S(\tfrac{\pi}{4}) \ . \]
+   
+ \end{subsection}
+
+ \begin{subsection}{Portas Lógicas de 2 Qubits}
+ 
+ As portas lógicas de 2 qubits são realizadas por matrizes unitárias $4\times 4$. As principais operações são CNOT (NOT controlada), $Z$ controlada e SWAP, descritas abaixo. 
+ 
+ \subsubsection*{Porta CNOT}
+  
+  A porta CNOT, ou NOT controlada, é uma porta de 2 qubits em que um deles exerce a função de controle e o outro, a de alvo. Em geral, quando não especificado, o primeiro qubit é o controle e o segundo, o alvo. Se o qubit de controle for $\ket{0}$, nada acontece com o qubit alvo. Se o controle for $\ket{1}$, a porta NOT quântica (porta $X$ de Pauli) é aplicada ao alvo:
+  \[ \text{CNOT} \ket{0}_1\ket{1}_2 = \ket{0}_1\ket{1}_2 \ , \ \ \text{CNOT}\ket{1}_1\ket{0}_2 = X_2 \ket{1}_1 \ket{0}_2 = \ket{1}_1 \ket{1}_2 \ . \]
+  
+  Esse comportamento é análogo à entrada ``enable'' em circuitos digitais clássicos, que permite a ação do circuito se está habilitada em 1, ou nada acontece, se o enable é 0. A novidade na Computação Quântica é que a entrada de controle é um qubit e pode, portanto, se encontrar em uma superposição de estados, como $\frac{\ket{0}+\ket{1}}{\sqrt{2}}$. A aplicação da porta CNOT, em casos como esse, ficaria
+  
+  \[ \begin{split}
+      \text{CNOT}\frac{\ket{0}_1+\ket{1}_1}{\sqrt{2}}\ket{1}_2 
+      &= \frac{1}{\sqrt{2}} \big( \text{CNOT}\ket{0}_1 \ket{1}_2 + \text{CNOT}\ket{1}_1 \ket{1}_2 \big) \\
+      &= \frac{1}{\sqrt{2}} \big( \ket{0}_1 \ket{1}_2 + \ket{1}_1 \ket{0}_2 \big) \ .
+     \end{split} \]
+  
+  A porta CNOT tem suas informações resumidas no quadro abaixo. 
+  
+     \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=1em {& \ctrl{1} & \qw \\
+                                 & \targ & \qw }
+       \\ \\
+       \Qcircuit @C=1em @R=1em {& \ctrl{1} & \qw \\
+                                 & \gate{X} & \qw }
+      \end{array}$
+     & & 
+     $\text{CNOT} = \mqty[ 1 & \textcolor{gray}{0}  & \textcolor{gray}{0} & \textcolor{gray}{0}  \\\textcolor{gray}{0}  & 1 & \textcolor{gray}{0}  & \textcolor{gray}{0} \\\textcolor{gray}{0}  &\textcolor{gray}{0}  & \textcolor{gray}{0} & 1 \\\textcolor{gray}{0}  &\textcolor{gray}{0}  & 1 &\textcolor{gray}{0}  ] $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        \text{CNOT} \ket{00} = \ket{00} \\
+        \text{CNOT} \ket{01} = \ket{01} \\
+        \text{CNOT} \ket{10} = \ket{11} \\
+        \text{CNOT} \ket{11} = \ket{10} 
+       \end{array}
+       \\ \\ 
+       \begin{array}{l}
+        \text{CNOT} \ket{0b} = \ket{0b} \\
+        \text{CNOT} \ket{1b} = \ket{1\overline{b}} \\
+         \ \ \ \scriptstyle{b = 0,1 \ ; \ \overline{b} = \text{NOT}(b)}
+       \end{array}
+       \\ \\ 
+        \begin{array}{l}
+        \text{CNOT} \ket{a,b} = \ket{a,a\oplus b} \\
+         \ \ \ \scriptstyle{a,b = 0,1 } \\
+         \ \ \ \scriptstyle{ \oplus = \text{XOR} = \text{adição mod 2}}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta CNOT.}
+   \end{figure}
+  
+  A porta CNOT também pode aparecer com o controle no segundo qubit e alvo no primeiro qubit. Nesse caso, podem ser usados índices no símbolo CNOT para especificar o controle e o alvo em situações mais específicas. Por exemplo:
+  \[\begin{array}{lll}
+ \begin{array}{l}  \\ \\ \text{CNOT}_{1,2} \\ (= \text{\footnotesize{CNOT}}) \end{array}
+ & & 
+\Qcircuit @C=10pt @R=10pt {
+ & \ctrl{1} & \qw \\
+ & \targ    & \qw }
+\\ \\
+\begin{array}{l}  \\ \text{CNOT}_{2,1} \end{array}
+ & & 
+\Qcircuit @C=10pt @R=10pt {
+& \targ     & \qw \\
+& \ctrl{-1} & \qw }
+    \end{array}  \]
+  Uma notação semelhante pode ser usada em outras portas controladas para especificar o qubit de controle e o de alvo. 
+  
+ \subsubsection*{Porta Z Controlada}
+ 
+ A porta $Z$ controlada também atua em 2 qubits, um deles com função de controle e o outro, de alvo. Se o controle (o primeiro qubit) for $\ket{0}$, o alvo (segundo qubit) não se modifica, e se o controle for $\ket{1}$, aplica-se uma porta $Z$ de Pauli ao alvo, como se pode ver no quadro a seguir. Se os qubits estiverem em superposição, basta usar a linearidade do operador CZ e atuar em cada estado da base computacional isoladamente: 
+ \[ \begin{split}
+     \text{CZ} \frac{\ket{0}_1+\ket{1}_1}{\sqrt{2}}\ket{1}_2 
+     &= \frac{1}{\sqrt{2}} \big( \text{CZ}\ket{0}_1 \ket{1}_2 + \text{CZ}\ket{1}_1 \ket{1}_2 \big) \\
+     &= \frac{1}{\sqrt{2}} \big( \ket{0}_1 \ket{1}_2 - \ket{1}_1 \ket{1}_2 \big) \ .
+    \end{split}  \] 
+ 
+       \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=1em {& \ctrl{1} & \qw \\
+                                 & \gate{Z} & \qw }
+      \end{array}$
+     & & 
+     $\text{CZ} = \mqty[ 1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}   \\\textcolor{gray}{0}  & 1 &\textcolor{gray}{0}   &\textcolor{gray}{0}  \\\textcolor{gray}{0}  &\textcolor{gray}{0}  & 1 &\textcolor{gray}{0}   \\\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  & -1 ] $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        \text{CZ} \ket{00} = \ket{00} \\
+        \text{CZ} \ket{01} = \ket{01} \\
+        \text{CZ} \ket{10} = \ket{10} \\
+        \text{CZ} \ket{11} = -\ket{11} 
+       \end{array}
+       \\ \\ 
+       \begin{array}{l}
+        \text{CZ} \ket{0b} = \ket{0b} \\
+        \text{CZ} \ket{1b} = Z_2 \ket{1b} = \ket{1}(Z\ket{b}) \\
+         \ \ \ \scriptstyle{b = 0,1}
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta Z controlada.}
+   \end{figure}
+ 
+ \subsubsection*{Porta SWAP}
+ 
+ A porta SWAP troca o estado de dois qubits, levando $\ket{\phi}\ket{\psi}$ em $\ket{\psi}\ket{\phi}$. 
+ 
+  \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=1.5em {& \qswap & \qw \\
+                                 & \qswap \qwx & \qw }
+      \end{array}$
+     & & 
+     $\text{SWAP} = \mqty[ 1 &\textcolor{gray}{0}   &\textcolor{gray}{0}  &\textcolor{gray}{0}   \\\textcolor{gray}{0}  &\textcolor{gray}{0}   & 1 &\textcolor{gray}{0}  \\\textcolor{gray}{0}  & 1  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}   & 1 ] $
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        \text{SWAP} \ket{00} = \ket{00} \\
+        \text{SWAP} \ket{01} = \ket{10} \\
+        \text{SWAP} \ket{10} = \ket{01} \\
+        \text{SWAP} \ket{11} = \ket{11} 
+       \end{array}
+       \\ \\ 
+        \begin{array}{l}
+        \text{SWAP} \ket{ab} = \ket{ba} \\
+         \ \ \ \scriptstyle{a,b = 0,1 } 
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta SWAP.}
+   \end{figure}
+
+   
+ 
+ \end{subsection}
+
+ \begin{subsection}{Portas Lógicas de 3 Qubits}
+ 
+ As principais operações em 3 qubits são as portas Toffoli, também conhecida por CCNOT (CNOT controlada), e Fredkin, ou CSWAP (SWAP controlada). 
+ 
+ \subsubsection*{Porta Toffoli ou CCNOT}
+  A porta Toffoli é uma operação linear que envolve 3 qubits. Dois deles funcionam como controle e um, como alvo. O alvo só é modificado (pela aplicação da porta $X$) se o estado dos dois controles for $\ket{1}\ket{1}$. 
+  
+  
+    \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=1em {& \ctrl{1} & \qw \\
+                                 & \ctrl{1} & \qw \\
+                                 & \targ & \qw }
+      \end{array}$
+     & & 
+     \small{$\bmqty{ 1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0} } $}
+     & &
+     $
+     \begin{array}{l}
+       \begin{array}{l}
+        \text{CCNOT} \ket{00c} = \ket{00c} \\
+        \text{CCNOT} \ket{01c} = \ket{01c} \\
+        \text{CCNOT} \ket{10c} = \ket{10c} \\
+        \text{CCNOT} \ket{11c} = \ket{11\overline{c}} \\
+         \ \ \ \scriptstyle{c = 0,1 \ ; \ \overline{c} = \text{NOT}(c)}
+       \end{array}
+       \\ \\ 
+        \begin{array}{l}
+        \text{CCNOT} \ket{a,b,c} \\
+        \ \ \ \ \ = \ket{a,b,(a\cdot b)\oplus c} \\
+         \ \ \ \scriptstyle{a,b,c = 0,1 } \\
+         \ \ \ \scriptstyle{ \cdot \ = \text{AND} } \\
+         \ \ \ \scriptstyle{ \oplus = \text{XOR} = \text{adição mod 2}}
+   
+       \end{array}
+       \end{array}$
+    \end{tabular}
+    \caption{Porta Toffoli ou CCNOT (CNOT controlada).}
+   \end{figure}
+  
+  Novamente, quando não houver outra indicação, os qubits de controle são o primeiro e o segundo, e o alvo é o terceiro qubit. Pode-se especificar os qubits de controle e de alvo por meio de índices, como por exemplo:
+  \[\begin{array}{lll}
+ \begin{array}{l}  \\ \\ \\ \text{CCNOT}_{1,2,3} \\ (= \text{\footnotesize{CCNOT}}) \end{array}
+ & & 
+\Qcircuit @C=10pt @R=10pt {
+ & \ctrl{1} & \qw \\
+ & \ctrl{1} & \qw \\
+ & \targ    & \qw }
+\\ \\
+\begin{array}{l}  \\ \\ \text{CCNOT}_{1,3,2} \end{array}
+ & & 
+\Qcircuit @C=10pt @R=10pt {
+& \ctrl{1}  & \qw \\
+& \targ     & \qw \\
+& \ctrl{-1} & \qw }
+    \end{array}  \]
+ 
+ \subsubsection*{Porta Fredkin ou CSWAP}
+  
+  A porta de Fredkin possui um qubit de controle e dois alvos. Se o controle for $\ket{1}$, uma porta SWAP atua nos alvos.
+   \begin{figure}[H]
+    \centering
+    \begin{tabular}{ccccc}
+    Símbolo
+    & &
+    Matriz
+    & &
+    Comportamento
+    \\ & & & & \\
+     $\begin{array}{c}
+       \Qcircuit @C=1em @R=1.5em { & \ctrl{1} & \qw \\
+                                 & \qswap & \qw     \\
+                                 & \qswap \qwx & \qw }
+      \end{array}$
+     & & 
+      \small{$\bmqty{ 1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 &\textcolor{gray}{0}  &\textcolor{gray}{0}  \\
+               \textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &\textcolor{gray}{0}  &1 } $}           
+     & &
+     $
+     \begin{array}{l}
+        \text{CSWAP} \ket{0bc} = \ket{0bc} \\
+        \text{CSWAP} \ket{1bc} = \ket{1cb} \\
+         \ \ \ \scriptstyle{b,c = 0,1 } 
+       \end{array}$
+    \end{tabular}
+    \caption{Porta Fredkin ou CSWAP (SWAP controlada).}
+   \end{figure}
+ 
+ \end{subsection}
+ 
+ 
+\end{section}
+
+\begin{section}{Identidades de Circuitos}\label{cap4:sec_id_circuitos}
+ 
+ Esta seção reúne algumas propriedades das portas lógicas quânticas vistas anteriormente. Também são apresentadas identidades úteis para se manipular circuitos quânticos.
+ 
+ %cópia
+ \begin{proposition}[Identidades para as matrizes de Pauli]\label{cap4:id_para_matr_pauli}
+  Valem as seguintes relações para as matrizes de Pauli $X$, $Y$ e $Z$.
+  \[   \begin{split}
+        X^2 &= I \\
+        Y^2 &= I \\
+        Z^2 &= I
+       \end{split}
+       \quad \quad \quad
+       \begin{split}
+        XY &= iZ \\
+        YZ &= iX \\
+        ZX &= iY
+       \end{split}
+\]
+ \end{proposition}
+
+ \begin{proof}
+  A prova se dá por cálculo direto. 
+  \[ \begin{split}
+      XX &=  \ \sbmqty{ 0 & 1 \\ 1 & 0} \ \sbmqty{ 0 & 1 \\ 1 & 0} \ \ \ = \sbmqty{ 1 & 0 \\ 0 & 1} = I    \\
+      YY &= \sbmqty{ 0 & -i \\ i & 0} \sbmqty{ 0 & -i \\ i & 0} = \sbmqty{ 1 & 0 \\ 0 & 1} = I  \\
+      ZZ &= \sbmqty{ 1 & 0 \\ 0 & -1} \sbmqty{ 1 & 0 \\ 0 & -1} = \sbmqty{ 1 & 0 \\ 0 & 1} = I 
+      \end{split}
+      \quad \quad \quad
+      \begin{split}
+       XY &= \sbmqty{ 0 & 1 \\ 1 & 0} \sbmqty{ 0 & -i \\ i & 0} = \sbmqty{ i &  0 \\ 0 & -i} = i Z \\
+       YZ &= \sbmqty{ 0 & -i \\ i & 0} \sbmqty{ 1 & 0 \\ 0 & -1} = \sbmqty{ 0 & i \\ i & 0} = iX   \\
+       ZX &= \sbmqty{ 1 & 0 \\ 0 & -1} \sbmqty{ 0 & 1 \\ 1 & 0} = \sbmqty{ 0 & 1 \\ -1 & 0} = iY
+      \end{split} \]
+ \end{proof}
+ 
+ %cópia
+\begin{proposition}[Matrizes de Pauli na base $\ket{+},\ket{-}$]\label{cap4:prop_matr_pauli_e_hadamard}
+  Fazendo-se a mudança de base de $\ket{0},\ket{1}$ para $\ket{+},\ket{-}$ por meio da matriz $H$, obtém-se para as matrizes de Pauli:
+  \[ \begin{split}
+   HXH &= Z \\
+   HYH &= -Y \\
+   HZH &= X
+  \end{split} \]
+  Portanto, na nova base $\ket{+},\ket{-}$, a matriz do operador $X$ é $Z$, a matriz de $Y$ é $-Y$ e a matriz de $Z$ é $X$.  
+ \end{proposition}
+
+\begin{proof}
+ \[ \begin{split}
+     HXH &= \tfrac{1}{\sqrt{2}}\sbmqty{1 & 1 \\ 1 & -1}\sbmqty{ 0 & 1 \\ 1 & 0}\tfrac{1}{\sqrt{2}}\sbmqty{ 1 & 1 \\ 1 & -1} 
+          = \tfrac{1}{2} \sbmqty{1 & 1 \\ 1 & -1} \sbmqty{1 & -1 \\ 1 & 1} \\
+          &= \tfrac{1}{2} \sbmqty{2 & 0 \\ 0 & -2} = \sbmqty{1 & 0 \\ 0 & -1} = Z \\
+     HYH &= \tfrac{1}{\sqrt{2}}\sbmqty{1 & 1 \\ 1 & -1}\sbmqty{ 0 & -i \\ i & 0}\tfrac{1}{\sqrt{2}}\sbmqty{ 1 & 1 \\ 1 & -1} 
+          = \tfrac{1}{2} \sbmqty{1 & 1 \\ 1 & -1} \sbmqty{-i & i \\ i & i} \\
+         &= \tfrac{1}{2} \sbmqty{0 & 2i \\ -2i & 0} = -\sbmqty{0 & -i \\ i & 0} = -Y \\
+     HZH &= \tfrac{1}{\sqrt{2}}\sbmqty{1 & 1 \\ 1 & -1}\sbmqty{ 1 & 0 \\ 0 & -1}\tfrac{1}{\sqrt{2}}\sbmqty{ 1 & 1 \\ 1 & -1} 
+          = \tfrac{1}{2} \sbmqty{1 & 1 \\ 1 & -1} \sbmqty{1 & 1 \\ -1 & 1} \\
+         &= \tfrac{1}{2} \sbmqty{0 & 2 \\ 2 & 0} = \sbmqty{0 & 1 \\ 1 & 0} = X 
+    \end{split} \]
+
+\end{proof}
+
+\begin{proposition}\label{cap4:prop_inversa_hadamard}
+ A porta de Hadamard é sua própria inversa.
+ \[ H^2 = I \]
+\end{proposition}
+
+\begin{proof}
+ Pode-se verificar fazendo a conta com matrizes diretamente.
+ \[ \begin{split}
+     HH &=   \tfrac{1}{\sqrt{2}}\sbmqty{1 & 1 \\ 1 & -1} \tfrac{1}{\sqrt{2}}\sbmqty{1 & 1 \\ 1 & -1} 
+         =  \tfrac{1}{2}\sbmqty{2 & 0 \\ 0 & 2} = I \\
+    \end{split} \]
+    Outra maneira de se verificar isso é perceber que $H$ é hermitiana ($H^\dag = H$) e unitária ($H^{-1} = H^\dag$), de forma que 
+    $H^{-1} = H^\dag = H$.
+
+\end{proof}
+
+\begin{proposition}[Relação entre as portas $S$ e $T$]
+ Vale que:
+ \[ T^2 = S \]
+\end{proposition}
+
+\begin{proof}
+ $ T^2 =  \sbmqty{ 1 & 0 \\ 1 & e^{i\frac{\pi}{4}}} \sbmqty{ 1 & 0 \\ 1 & e^{i\frac{\pi}{4}}} 
+        = \sbmqty{ 1 & 0 \\ 1 & e^{i\frac{\pi}{2}}} = 
+        = \sbmqty{ 1 & 0 \\ 1 & i} = S $
+\end{proof}
+
+\begin{proposition}\label{cap4:prop_inversas_cnot_swap}
+ As portas CNOT e SWAP são suas próprias inversas.
+ \[ \text{\normalfont CNOT}^2 = I \quad \quad \quad \text{\normalfont SWAP}^2 = I \]
+\end{proposition}
+
+\begin{proof}
+ Ambas operações são hermitianas (em particular, são matrizes de coeficientes reais e simétricas) e unitárias (as colunas são vetores ortonormais), portanto vale o mesmo argumento dado para $H$: 
+ \small{\[ 
+  \begin{split}
+   &\text{CNOT}^{\dag} = \text{CNOT} \ , \ \text{CNOT}^{-1} = \text{CNOT}^{\dag} \\
+   &\text{SWAP}^{\dag} = \text{SWAP} \ , \ \text{SWAP}^{-1} = \text{SWAP}^{\dag}
+  \end{split}
+  \implies
+  \begin{split}
+   \text{CNOT}^{-1} &= \text{CNOT}^{\dag} = \text{CNOT} \\
+   \text{SWAP}^{-1} &= \text{SWAP}^{\dag} = \text{SWAP}
+  \end{split}
+ \]}
+
+\end{proof}
+
+\begin{proposition}
+ É possível intercambiar alvo e controle na porta $Z$ controlada.
+ \[ 
+\Qcircuit @C=10pt @R=10pt { & \ctrl{2} & \qw      & &   & & & \gate{Z}    & \qw \\
+                            &          &          & & = & & &             &     \\
+                            & \gate{Z} & \qw      & &   & & & \ctrl{-2}   & \qw } \]
+\end{proposition}
+
+\begin{proof}
+ Para mostrar que dois operadores são iguais, basta verificar que fornecem mesmo resultado nos vetores da base computacional.
+ \[ \begin{array}{lll}
+     \ket{00} & \xrightarrow{CZ_{1,2}} & \ket{00} \\
+     \ket{01} & \xrightarrow{CZ_{1,2}} & \ket{01} \\
+     \ket{10} & \xrightarrow{CZ_{1,2}} & Z_2\ket{10} = \ket{10} \\
+     \ket{11} & \xrightarrow{CZ_{1,2}} & Z_2\ket{11} = - \ket{11} \ ,
+    \end{array} \]
+  \[ \begin{array}{lll}
+     \ket{00} & \xrightarrow{CZ_{2,1}} & \ket{00} \\
+     \ket{01} & \xrightarrow{CZ_{2,1}} & Z_1 \ket{01} = \ket{01} \\
+     \ket{10} & \xrightarrow{CZ_{2,1}} & \ket{10} \\
+     \ket{11} & \xrightarrow{CZ_{2,1}} & Z_1\ket{11} = -\ket{11} \ . 
+    \end{array} \]
+Isso implica igualdade entre os operadores $CZ_{1,2}$ e $CZ_{2,1}$.
+\end{proof}
+
+\begin{proposition}
+ A porta CNOT pode ser obtida usando-se uma porta $Z$ controlada:
+  \[ 
+\Qcircuit @C=10pt @R=10pt {&  \qw      & \ctrl{2} & \qw      & \qw & &   & & & \ctrl{2}    & \qw \\
+                           &           &          &          &     & & = & & &             &   \\
+                           &  \gate{H} & \gate{Z} & \gate{H} & \qw & &   & & & \targ       & \qw }
+      \]
+\end{proposition}
+
+\begin{proof}
+ Os dois circuitos representam operadores lineares em 2 qubits. É suficiente, pois, verificar que o comportamento dos dois circuitos é o mesmo na base computacional, pois as transformações lineares são especificadas de forma única por seu resultado em uma base qualquer (ver seção \ref{cap2:sec_def_tl_nos_elementos_da_base}). Nesta demonstração, também serão usadas as propriedades $HH=I$ e $HZH = X$, verificadas nas proposições \ref{cap4:prop_matr_pauli_e_hadamard} e \ref{cap4:prop_inversa_hadamard}.
+ 
+ De fato, analisando o efeito do circuito para os vetores da base computacional, obtém-se o seguinte. Seja $b = 0,1$. Se o primeiro qubit for $\ket{0}$, a porta $Z$ controlada não surtirá efeito no segundo qubit, de forma que
+ \[ \ket{\psi_f}_{1,2} = H_2 H_2 \ket{0b} = I_2\ket{0b} = \ket{0b} \ . \]
+ Se o primeiro qubit for $\ket{1}$, a porta $Z$ controlada atuará, resultando em
+ \[ \ket{\psi_f}_{1,2} = H_2 Z_2 H_2 \ket{1b} = X_2 \ket{1b} = \ket{1\overline{b}} \ . \]
+ O efeito final para esses vetores da base é o mesmo que o de uma porta CNOT, dessa forma, os dois circuitos do enunciado são equivalentes. 
+ \end{proof}
+ 
+ \begin{proposition}\label{cap4:prop_SWAP_CNOT}
+  A porta SWAP pode ser construída por 3 portas CNOT:
+  \[ 
+\Qcircuit @C=10pt @R=10pt {& \ctrl{2} & \targ     & \ctrl{2} & \qw & &   & & & \qswap      & \qw  & &   & & & \targ    & \ctrl{2}  & \targ    & \qw \\
+                           &           &          &          &     & & = & & &   \qwx      &      & & = & & &          &           &          &     \\
+                           & \targ    & \ctrl{-2} & \targ    & \qw & &   & & & \qswap \qwx & \qw  & &   & & & \ctrl{-2}& \targ     & \ctrl{-2}& \qw  }
+      \]
+ \end{proposition}
+
+ \begin{proof}
+  Verificando a primeira igualdade nos vetores da base computacional:
+  \[ \begin{array}{ccccccc}
+      \ket{00} & \xrightarrow{\text{CNOT}_{1,2}} & \ket{00} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{00} 
+               & \xrightarrow{\text{CNOT}_{1,2}}  & \ket{00} \\
+      \ket{01} & \xrightarrow{\text{CNOT}_{1,2}} & \ket{01} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{11} 
+               & \xrightarrow{\text{CNOT}_{1,2}}  & \ket{10} \\
+      \ket{10} & \xrightarrow{\text{CNOT}_{1,2}} & \ket{11} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{01} 
+               & \xrightarrow{\text{CNOT}_{1,2}}  & \ket{01} \\
+      \ket{11} & \xrightarrow{\text{CNOT}_{1,2}} & \ket{10} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{10} 
+               & \xrightarrow{\text{CNOT}_{1,2}}  & \ket{11} \\
+     \end{array} \]
+   Verificando a segunda igualdade nos vetores da base computacional:
+  \[ \begin{array}{ccccccc}
+      \ket{00} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{00} & \xrightarrow{\text{CNOT}_{1,2}} & \ket{00} 
+               & \xrightarrow{\text{CNOT}_{2,1}}  & \ket{00} \\
+      \ket{01} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{11} & \xrightarrow{\text{CNOT}_{1,2}} & \ket{10} 
+               & \xrightarrow{\text{CNOT}_{2,1}}  & \ket{10} \\
+      \ket{10} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{10} & \xrightarrow{\text{CNOT}_{1,2}} & \ket{11} 
+               & \xrightarrow{\text{CNOT}_{2,1}}  & \ket{01} \\
+      \ket{11} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{01} & \xrightarrow{\text{CNOT}_{1,2}} & \ket{01} 
+               & \xrightarrow{\text{CNOT}_{2,1}}  & \ket{11} \\
+     \end{array} \]
+  Percebe-se, então, que o efeito dessas sequências de portas CNOT é o mesmo de uma porta SWAP.
+ \end{proof}
+
+ \begin{proposition}\label{cap4:prop_cnot_troca_controle_alvo}
+  Dependendo da base considerada, os papeis de controle e alvo da porta CNOT se invertem. Mais precisamente, vale a seguinte igualdade de circuitos: 
+  \[ 
+\Qcircuit @C=10pt @R=10pt {& \gate{H}  & \targ     & \gate{H}  & \qw & &   & & & \ctrl{2} & \qw \\
+                           &           &           &           &     & & = & & &          &   \\
+                           & \gate{H}  & \ctrl{-2} & \gate{H}  & \qw & &   & & & \targ    & \qw }
+      \]
+ \end{proposition}
+
+ \begin{proof}
+  Primeiramente, perceba que o efeito da porta Hadamard é de mudança de base saindo de $\mathcal{I} = \big\{ \ket{0},\ket{1}\big\}$ para $\mathcal{X} = \big\{ \ket{+},\ket{-} \big\}$ e vice versa, portanto para 2 qubits vale:
+  \[\tag{$\ast$}\label{cap4:eq_mudanca_de_base_HH}
+     \begin{array}{ccccl}
+      \ket{00} & \xrightarrow{H_1 H_2} & \ket{++} & \xrightarrow{H_1 H_2} & \ket{00} \\
+      \ket{01} & \xrightarrow{H_1 H_2} & \ket{+-} & \xrightarrow{H_1 H_2} & \ket{01} \\
+      \ket{10} & \xrightarrow{H_1 H_2} & \ket{-+} & \xrightarrow{H_1 H_2} & \ket{10} \\
+      \ket{11} & \xrightarrow{H_1 H_2} & \ket{--} & \xrightarrow{H_1 H_2} & \ket{11} \ . \\
+     \end{array}
+     \]
+     
+     
+  Aplicando-se $\text{CNOT}_{2,1}$ à base $\mathcal{X}\otimes \mathcal{X} = \big\{ \ket{++},\ket{+-},\ket{-+},\ket{--}\big\}$, obtém-se que:
+ \small \[ \begin{split}
+      \text{CNOT}_{2,1}\ket{++} 
+      &= \text{CNOT}_{2,1} \frac{1}{2} \big( \ket{00} + \ket{01} + \ket{10} + \ket{11} \big) \\
+      &=  \frac{1}{2} \big( \text{CNOT}_{2,1}\ket{00} + \text{CNOT}_{2,1}\ket{01} + \text{CNOT}_{2,1}\ket{10} + \text{CNOT}_{2,1}\ket{11} \big) \\
+      &= \frac{1}{2} \big(\ket{00} + \ket{11} + \ket{10} + \ket{01} \big) \\
+      &= \frac{1}{2} \big(\ket{0}(\ket{0}+\ket{1}) + \ket{1}(\ket{0} + \ket{1} \big) \\
+      &= \frac{1}{2} (\ket{0} + \ket{1})(\ket{0}+\ket{1}) = \ket{++} \ ,
+     \end{split} \] \normalsize
+ \small \[ \begin{split}
+      \text{CNOT}_{2,1}\ket{+-} 
+      &= \text{CNOT}_{2,1} \frac{1}{2} \big( \ket{00} - \ket{01} + \ket{10} - \ket{11} \big) \\
+      &=  \frac{1}{2} \big( \text{CNOT}_{2,1}\ket{00} - \text{CNOT}_{2,1}\ket{01} + \text{CNOT}_{2,1}\ket{10} - \text{CNOT}_{2,1}\ket{11} \big) \\
+      &= \frac{1}{2} \big(\ket{00} - \ket{11} + \ket{10} - \ket{01} \big) \\
+      &= \frac{1}{2} \big(\ket{0}(\ket{0}-\ket{1}) + \ket{1}(\ket{0} - \ket{1} \big) \\
+      &= \frac{1}{2} (\ket{0} + \ket{1})(\ket{0}-\ket{1}) = \ket{+-} \ ,
+     \end{split} \] \normalsize
+ \small \[ \begin{split}
+      \text{CNOT}_{2,1}\ket{-+} 
+      &= \text{CNOT}_{2,1} \frac{1}{2} \big( \ket{00} + \ket{01} - \ket{10} - \ket{11} \big) \\
+      &=  \frac{1}{2} \big( \text{CNOT}_{2,1}\ket{00} + \text{CNOT}_{2,1}\ket{01} - \text{CNOT}_{2,1}\ket{10} - \text{CNOT}_{2,1}\ket{11} \big) \\
+      &= \frac{1}{2} \big(\ket{00} + \ket{11} - \ket{10} - \ket{01} \big) \\
+      &= \frac{1}{2} \big(\ket{0}(\ket{0}-\ket{1}) - \ket{1}(\ket{0} - \ket{1} \big) \\
+      &= \frac{1}{2} (\ket{0} - \ket{1})(\ket{0}-\ket{1}) = \ket{--} \ ,
+     \end{split} \] \normalsize
+ \small \[ \begin{split}
+      \text{CNOT}_{2,1}\ket{--} 
+      &= \text{CNOT}_{2,1} \frac{1}{2} \big( \ket{00} - \ket{01} - \ket{10} + \ket{11} \big) \\
+      &=  \frac{1}{2} \big( \text{CNOT}_{2,1}\ket{00} - \text{CNOT}_{2,1}\ket{01} - \text{CNOT}_{2,1}\ket{10} + \text{CNOT}_{2,1}\ket{11} \big) \\
+      &= \frac{1}{2} \big(\ket{00} - \ket{11} - \ket{10} + \ket{01} \big) \\
+      &= \frac{1}{2} \big(\ket{0}(\ket{0}+\ket{1}) - \ket{1}(\ket{0} + \ket{1} \big) \\
+      &= \frac{1}{2} (\ket{0} - \ket{1})(\ket{0}+\ket{1}) = \ket{-+} \ .
+     \end{split} \] \normalsize
+     
+  Pode-se resumir o resultado dessas contas na seguinte expressão:
+  \[\tag{$\ast \ast$}\label{cap4:eq_cnot_in_basis_xx}
+    \begin{array}{ccc}
+      \ket{+b} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{+b}            \\
+      \ket{-b} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{+\overline{b}} 
+     \end{array}
+     \quad \quad
+     \scriptstyle{
+     \begin{array}{l}
+      b \in \{ +,- \} \\
+      \overline{+} := -  \\
+      \overline{-} := +
+     \end{array} }
+     \]
+ Isto é, a porta $\text{CNOT}_{2,1}$ atuando na base $\mathcal{X} \otimes \mathcal{X}$ tem o mesmo efeito da porta  $\text{CNOT}_{1,2}$ atuando na base $\mathcal{I}\otimes \mathcal{I}$, substituindo-se $0$ por $+$ e $1$ por $-$. 
+ 
+ Portanto, usando-se \eqref{cap4:eq_mudanca_de_base_HH} e \eqref{cap4:eq_cnot_in_basis_xx}, o circuito da esquerda do enunciado da proposição fornece
+ \[
+    \begin{array}{ccccccl}
+      \ket{00} & \xrightarrow{H_1 H_2} & \ket{++} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{++}  & \xrightarrow{H_1 H_2} & \ket{00} \\
+      \ket{01} & \xrightarrow{H_1 H_2} & \ket{+-} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{+-}  & \xrightarrow{H_1 H_2} & \ket{01} \\
+      \ket{10} & \xrightarrow{H_1 H_2} & \ket{-+} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{--}  & \xrightarrow{H_1 H_2} & \ket{11} \\
+      \ket{11} & \xrightarrow{H_1 H_2} & \ket{--} & \xrightarrow{\text{CNOT}_{2,1}} & \ket{-+}  & \xrightarrow{H_1 H_2} & \ket{10} \ , \\
+     \end{array}
+ \]
+ resultando no mesmo efeito de uma $\text{CNOT}_{1,2}$.
+ \end{proof}
+%falta
+ \begin{proposition}\label{cap4:prop_cnot_controle_qubits_distantes}
+  É possível implementar uma CNOT com alvo e controle distantes com CNOTs entre qubits adjacentes. 
+   \[ \Qcircuit @C=10pt @R=10pt {
+   & \qw      & \ctrl{1} & \qw      & \ctrl{1} & \qw  & &   & & & \ctrl{2} & \qw \\
+   & \ctrl{1} & \targ    & \ctrl{1} & \targ    & \qw  & & = & & &  \qw     & \qw \\
+   & \targ    & \qw      & \targ    & \qw      & \qw  & &   & & & \targ    & \qw }
+      \]
+ \end{proposition}
+%falta
+ \begin{proof}
+  Sejam $a,b,c = 0,1$. Aplicando a sequência de CNOTs adjacentes mostradas no enunciado da proposição, obtém-se:
+  \[ \begin{split}
+      \ket{a,b,c}
+      &\xrightarrow{\text{CNOT}_{2,3}} \ket{a,b,b\oplus c} \\
+      &\xrightarrow{\text{CNOT}_{1,2}} \ket{a,a\oplus b,b\oplus c} \\
+      &\xrightarrow{\text{CNOT}_{2,3}} \ket{a,a\oplus b,a\oplus b\oplus b\oplus c} \\
+      &\phantom{\xrightarrow{\text{CNOT}_{2,3}}}\ = \ \ket{a,a\oplus b,a\oplus c} \\
+      &\xrightarrow{\text{CNOT}_{1,2}} \ket{a,a\oplus a\oplus b,a\oplus c} \\
+      & \phantom{\xrightarrow{\text{CNOT}_{1,2}} } \ = \ \ket{a,a\oplus a\oplus b,a\oplus c}  = \text{CNOT}_{1,3} \ket{a,b,c} \ .
+     \end{split} \]
+ Isso prova a igualdade de circuitos apresentada no enunciado. 
+ \end{proof}
+
+ \begin{proposition}[Identidades envolvendo CNOT e matrizes de Pauli]
+Considere a porta CNOT com controle no qubit 1 e alvo no qubit 2. Valem as seguintes identidades de circuitos:
+\[ \begin{split}
+    \text{\normalfont CNOT\,\,} X_1 \, \text{\normalfont CNOT\,} &= X_1 X_2 \\
+    \text{\normalfont CNOT\,\,} Y_1 \, \text{\normalfont CNOT\,} &= Y_1 X_2 \\
+    \text{\normalfont CNOT\,\,} Z_1 \, \text{\normalfont CNOT\,} &= Z_1 \\
+    \text{\normalfont CNOT\,\,} X_2 \, \text{\normalfont CNOT\,} &= X_2 \\
+    \text{\normalfont CNOT\,\,} Y_2 \, \text{\normalfont CNOT\,} &= Z_1 Y_2 \\
+    \text{\normalfont CNOT\,\,} Z_2 \, \text{\normalfont CNOT\,} &= Z_1 Z_2  \ . 
+   \end{split} \]
+ Graficamente, as igualdades ficam:
+ \[ \begin{array}{c}
+\Qcircuit @C=5pt @R=3pt 
+{& \ctrl{2}  & \gate{X} & \ctrl{2}  & \qw & &   & & & \gate{X} & \qw & & & & & & & \ctrl{2}  & \qw      & \ctrl{2}  & \qw & &   & & & \qw      & \qw \\
+ &           &          &           &     & & = & & &          &     & & & & & & &           &          &           &     & & = & & &          &   \\
+ & \targ     & \qw      & \targ     & \qw & &   & & & \gate{X} & \qw & & & & & & & \targ     & \gate{X} & \targ     & \qw & &   & & & \gate{X} & \qw } 
+ \\ \\
+\Qcircuit @C=5pt @R=3pt 
+{& \ctrl{2}  & \gate{Y} & \ctrl{2}  & \qw & &   & & & \gate{Y} & \qw & & & & & & & \ctrl{2}  & \qw      & \ctrl{2}  & \qw & &   & & & \gate{Z} & \qw \\
+ &           &          &           &     & & = & & &          &     & & & & & & &           &          &           &     & & = & & &          &   \\
+ & \targ     & \qw      & \targ     & \qw & &   & & & \gate{X} & \qw & & & & & & & \targ     & \gate{Y} & \targ     & \qw & &   & & & \gate{Y} & \qw } 
+ \\ \\
+\Qcircuit @C=5pt @R=3pt 
+{& \ctrl{2}  & \gate{Z} & \ctrl{2}  & \qw & &   & & & \gate{Z} & \qw & & & & & & & \ctrl{2}  & \qw      & \ctrl{2}  & \qw & &   & & & \gate{Z} & \qw \\
+ &           &          &           &     & & = & & &          &     & & & & & & &           &          &           &     & & = & & &          &   \\
+ & \targ     & \qw      & \targ     & \qw & &   & & & \qw      & \qw & & & & & & & \targ     & \gate{Z} & \targ     & \qw & &   & & & \gate{Z} & \qw } 
+    \end{array} \]
+
+ \end{proposition}
+
+ \begin{proof}
+  A prova dessas igualdades é essencialmente verificar que os circuitos têm o mesmo efeito na base computacional. 
+  \\
+  
+  \vspace{5pt} \noindent $\text{\normalfont CNOT\,\,} X_1 \, \text{\normalfont CNOT\,} = X_1 X_2$  \\  \vspace{-5pt} 
+  \[ \begin{array}{ccccccc}
+      \ket{0b} & \xrightarrow{\text{CNOT}} & \ket{0b} & \xrightarrow{X_1} & \ket{1b} 
+               & \xrightarrow{\text{CNOT}}  & \ket{1\overline{b}} = X_1 X_2 \ket{0b} \\
+      \ket{1b} & \xrightarrow{\text{CNOT}} & \ket{1\overline{b}} & \xrightarrow{X_1} & \ket{0\overline{b}} 
+               & \xrightarrow{\text{CNOT}}  & \ket{0\overline{b}} = X_1 X_2 \ket{1b} \\
+     \end{array} \]
+     
+  \vspace{5pt} \noindent $\text{\normalfont CNOT\,\,} X_2 \, \text{\normalfont CNOT\,} = X_2$ \\ \vspace{-5pt} 
+  \[ \begin{array}{ccccccc}
+      \ket{0b} & \xrightarrow{\text{CNOT}} & \ket{0b} & \xrightarrow{X_2} & \ket{0\overline{b}} 
+               & \xrightarrow{\text{CNOT}}  & \ket{0\overline{b}} =  X_2 \ket{0b} \\
+      \ket{1b} & \xrightarrow{\text{CNOT}} & \ket{1\overline{b}} & \xrightarrow{X_2} & \ket{1b} 
+               & \xrightarrow{\text{CNOT}}  & \ket{1\overline{b}} = X_2 \ket{1b} \\
+     \end{array} \]
+  
+  \vspace{5pt} \noindent $\text{\normalfont CNOT\,\,} Y_1 \, \text{\normalfont CNOT\,} = Y_1 X_2$  \\ \vspace{-5pt} 
+  \[ \begin{array}{ccccccc}
+      \ket{0b} & \xrightarrow{\text{CNOT}} & \ket{0b} & \xrightarrow{Y_1} & i \ket{1b} 
+               & \xrightarrow{\text{CNOT}}  & i \ket{1\overline{b}} = Y_1 X_2 \ket{0b} \\
+      \ket{1b} & \xrightarrow{\text{CNOT}} & \ket{1\overline{b}} & \xrightarrow{Y_1} & -i\ket{0\overline{b}} 
+               & \xrightarrow{\text{CNOT}}  & -i \ket{0\overline{b}} = Y_1 X_2 \ket{1b} \\
+     \end{array} \]
+     
+  \vspace{5pt} \noindent $\text{\normalfont CNOT\,\,} Y_2 \, \text{\normalfont CNOT\,} = Z_1 Y_2$ \\ \vspace{-5pt} 
+  \[ \begin{array}{ccccccc}
+      \ket{0b} & \xrightarrow{\text{CNOT}} & \ket{0b} & \xrightarrow{Y_2} & (-1)^b i \ket{0\overline{b}} 
+               & \xrightarrow{\text{CNOT}}  & (-1)^b i \ket{0\overline{b}} = Z_1 Y_2 \ket{0b} \\
+      \ket{1b} & \xrightarrow{\text{CNOT}} & \ket{1\overline{b}} & \xrightarrow{Y_2} & -(-1)^{b} i\ket{1b} 
+               & \xrightarrow{\text{CNOT}}  & -(-1)^{b} i\ket{1\overline{b}} = Z_1 Y_2 \ket{1b} \\
+     \end{array} \]
+     Observação: pode-se escrever $Y\ket{b} = (-1)^b i \ket{\overline{b}}$ e $Y\ket{\overline{b}} = -(-1)^b i \ket{b}$.
+     
+  \vspace{5pt} \noindent $\text{\normalfont CNOT\,\,} Z_1 \, \text{\normalfont CNOT\,} = Z_1 $  \\ \vspace{-5pt} 
+  \[ \begin{array}{ccccccc}
+      \ket{0b} & \xrightarrow{\text{CNOT}} & \ket{0b} & \xrightarrow{Z_1} & \ket{0b}
+               & \xrightarrow{\text{CNOT}}  & \ket{0b} = Z_1 \ket{0b} \\
+      \ket{1b} & \xrightarrow{\text{CNOT}} & \ket{1\overline{b}} & \xrightarrow{Z_1} & -\ket{1\overline{b}} 
+               & \xrightarrow{\text{CNOT}}  & -\ket{1b} = Z_1 \ket{1b} \\
+     \end{array} \]
+     
+  \vspace{5pt} \noindent $\text{\normalfont CNOT\,\,} Z_2 \, \text{\normalfont CNOT\,} = Z_1 Z_2$ \\ \vspace{-5pt} 
+  \[ \begin{array}{ccccccc}
+      \ket{0b} & \xrightarrow{\text{CNOT}} & \ket{0b} & \xrightarrow{Z_2} & (-1)^b \ket{0b} 
+               & \xrightarrow{\text{CNOT}}  & (-1)^b \ket{0b} =  Z_1 Z_2 \ket{0b} \\
+      \ket{1b} & \xrightarrow{\text{CNOT}} & \ket{1\overline{b}} & \xrightarrow{Z_2} & -(-1)^b \ket{1\overline{b}} 
+               & \xrightarrow{\text{CNOT}}  & -(-1)^b \ket{1b}  = Z_1 Z_2\ket{1b} \\
+     \end{array} \]
+  Observação: pode-se escrever $Z\ket{b} = (-1)^b \ket{b}$ e $Z\ket{\overline{b}} = -(-1)^b  \ket{\overline{b}}$.
+  
+  \vspace{5pt}
+  Dessa forma, os circuitos do enunciado têm o mesmo resultado na base computacional, e, portanto, são equivalentes. 
+ \end{proof}
+ 
+\begin{proposition}
+ As portas Toffoli e Fredkin são suas próprias inversas.
+ \[ \text{\normalfont CCNOT }^2 = I \quad \quad \quad \text{\normalfont CSWAP}^2 = I \]
+\end{proposition}
+
+\begin{proof}
+ Análoga à prova da proposição \ref{cap4:prop_inversas_cnot_swap}.
+\end{proof}
+ 
+ \begin{proposition}
+  A porta Fredkin pode ser obtida com 3 portas Toffoli:
+  \[ 
+\Qcircuit @C=20pt @R=10pt {& \ctrl{2}  &  \ctrl{2} & \ctrl{2}  & \qw & &   & & & \ctrl{2}    & \qw \\
+                           &           &           &           &     & &   & & &             &     \\
+                           & \ctrl{2}  & \targ     & \ctrl{2}  & \qw & & = & & & \qswap      & \qw \\
+                           &           &           &           &     & &   & & &   \qwx      &     \\
+                           & \targ     & \ctrl{-2} & \targ     & \qw & &   & & & \qswap \qwx & \qw  }
+      \]
+ \end{proposition}
+
+ \begin{proof}
+   Basta verificar a igualdade para os vetores da base computacional. Sejam $b,c = 0,1$. 
+ 
+   Para os vetores da forma $\ket{0bc}$, a sequência de portas Toffoli não afeta o vetor. O resultado continua sendo $\ket{0bc}$ pois só há modificação quando o AND dos controles for 1 (o que não ocorre em nenhuma das portas Toffoli nesse caso). 
+   
+   Já para os vetores da forma $\ket{1bc}$, as portas Toffoli se ativam dependendo do valor de $b$ e $c$. O comportamento das portas Toffoli fica semelhante ao das portas CNOT da proposição \ref{cap4:prop_SWAP_CNOT} nesse caso em que o primeiro qubit se encontra no estado $\ket{1}$. E esse comportamento, pela referida proposição, é o mesmo de uma porta SWAP.
+   
+   É possível perceber, portanto, que o conjunto de portas Toffoli no enunciado funcionam como um SWAP controlado (isto é, uma porta Fredkin): quando o primeiro qubit é $\ket{0}$, nada acontece, e quando o primeiro qubit é $\ket{1}$, os dois últimos sofrem um efeito igual à aplicação de uma porta SWAP. Logo, verifica-se a equivalência dos circuitos no enunciado da proposição.
+ \end{proof}
+
+ \begin{proposition}[Construção da porta Toffoli]\label{cap4:prop_constr_porta_toffoli}
+ A porta Toffoli pode ser obtida pela seguinte combinação de portas lógicas de 1 e 2 qubits:
+\[
+\Qcircuit @C=6pt @R=8pt 
+{& \ctrl{2}  &\qw & &   & & & \qw      & \qw      & \qw           & \ctrl{4} & \qw      & \qw      & \qw           & \ctrl{4} & \qw           & \ctrl{2} & \qw           & \ctrl{2} & \gate{T}& \qw   \\
+ &           &    & &   & & &          &          &               &          &          &          &               &          &               &          &               &          &         &       \\
+ & \ctrl{2}  &\qw & & = & & & \qw      & \ctrl{2} & \qw           &  \qw     & \qw      & \ctrl{2} & \qw           & \qw      & \gate{T^\dag} & \targ    & \gate{T^\dag} & \targ    & \gate{S}& \qw   \\
+ &           &    & &   & & &          &          &               &          &          &          &               &          &               &          &               &          &         &       \\
+ & \targ     &\qw & &   & & & \gate{H} & \targ    & \gate{T^\dag} &   \targ  & \gate{T} & \targ    & \gate{T^\dag} & \targ    & \gate{T}      & \gate{H} & \qw           & \qw      & \qw     & \qw   }
+      \]
+ \end{proposition}
+
+ \begin{proof}
+  Pode-se verificar essa construção avaliando o efeito nos elementos da base computacional. Sejam $b,c = 0,1$. 
+  
+  Caso o primeiro qubit seja $\ket{0}$, o circuito simplifica-se para:                                                                                                                                                                                                                                                                                                                       
+  \footnotesize
+  \[  \Qcircuit @C=3pt @R=2pt                                                                                                                                                                                                                                                                                            
+{\lstick{\ket{0}} & \qw      & \qw      & \qw            & \qw                                     & \qw      & \qw            & \qw            & \qw           & \gate{T}\gategroup{1}{10}{1}{10}{4pt}{--} & \qw &  &  &   &  &  &        & \qw    & \qw    & \qw                                    & \qw         & \qw                                       & \qw                                       & \qw &  &  &   &  &  &  & \qw  & \qw & \qw & \rstick{\ket{0}}  \\
+                  &          &          &                &                                         &          &                &                &               &                                           &     &  &  &   &  &  &        &        &        &                                        &             &                                           &                                           &     &  &  &   &  &  &  &      &     &     &                   \\
+ \lstick{\ket{b}} & \qw      & \ctrl{2} & \qw            & \qw                                     & \ctrl{2} & \qw            & \gate{T^\dag}  & \gate{T^\dag} & \gate{S}                                  & \qw &  &  & = &  &  &        & \qw    &\ctrl{2}&\ctrl{2}                                &\gate{T^\dag}&\gate{T^\dag}                              &\gate{S} \gategroup{3}{21}{3}{23}{4pt}{--} & \qw &  &  & = &  &  &  & \qw  & \qw & \qw & \rstick{\ket{b}}  \\
+                  &          &          &                &                                         &          &                &                &               &                                           &     &  &  &   &  &  &        &        &        &                                        &             &                                           &                                           &     &  &  &   &  &  &  &      &     &     &                   \\
+ \lstick{\ket{c}} & \gate{H} & \targ    & \gate{T^\dag}  & \gate{T}\gategroup{5}{4}{5}{5}{4pt}{--} & \targ    & \gate{T^\dag}  & \gate{T}       & \gate{H}      & \qw                                       & \qw &  &  &   &  &  &        &\gate{H}&\targ   &\targ \gategroup{3}{19}{5}{20}{4pt}{--} &\gate{T^\dag}&\gate{T} \gategroup{5}{21}{5}{22}{4pt}{--} &\gate{H}                                   & \qw &  &  &   &  &  &  & \qw  & \qw & \qw & \rstick{\ket{c}}  }
+          %   1   &    2     &    3     &   4            &                    5                    &     6    &    7           &      8         &      9        &   10                                      & 11  &12&13&14 %15&16&   17   &  18    &    19  & 20                                     &  21         &  22                                       &  23                                       &  24 &  &  &   &  &  &  &                                         
+  \]                                                                                                                                                                                                                                                                                                                                                                                                                                     
+ \normalsize
+ Algumas simplificações estão destacadas nas figuras e correspondem a:
+ \small
+  \[ T\ket{0} = \ket{0} \ , \ \ \text{CNOT}^2 = I \ , \ \ T T^\dag = I \ , \ \ T^\dag T^\dag S = \big( T^\dag \big)^2 T^2 = I \ , \ \ HH = I \ . \]
+ \normalsize
+ 
+ Agora será checado o caso em que os dois primeiros qubits são $\ket{10}$. Nesse caso, o circuito original reduz-se a:
+   \footnotesize
+   \[  \Qcircuit @C=3pt @R=2pt                                                                                                                                                                                                                                                                                            
+{\lstick{\ket{1}} & \qw      & \qw          & \qw      & \qw      & \qw           & \qw       & \qw            & \qw                                       & \gate{T} \gategroup{1}{10}{1}{10}{4pt}{--} & \qw &  &  &   &  &  &  &     \qw  & \gate{T}  & \qw  &  &  &   &  &  &  & \qw  & \qw  & \qw  & \rstick{e^{i\frac{\pi}{4}}\ket{1}}  \\
+                  &          &              &          &          &               &           &                &                                           &                                            &     &  &  &   &  &  &  &          &                             &      &  &  &   &  &  &  &      &      &      &  \\
+ \lstick{\ket{0}} & \qw      & \qw          & \qw      & \qw      & \gate{T^\dag} & \gate{X}  & \gate{T^\dag}  & \gate{X} \gategroup{3}{6}{3}{10}{4pt}{--} & \gate{S}                                   & \qw &  &  & = &  &  &  &     \qw  & \gate{e^{-i\frac{\pi}{4}}S} & \qw  &  &  & = &  &  &  & \qw  & \qw  & \qw  & \rstick{e^{-i\frac{\pi}{4}}\ket{0}} \\
+                  &          &              &          &          &               &           &                &                                           &                                            &     &  &  &   &  &  &  &          &                             &      &  &  &   &  &  &  &      &      &      &  \\
+ \lstick{\ket{c}} & \gate{H} & \gate{T^\dag}& \gate{X} & \gate{T} & \gate{T^\dag} & \gate{X}  & \gate{T}       & \gate{H} \gategroup{5}{2}{5}{9}{4pt}{--}  & \qw                                        & \qw &  &  &   &  &  &  &     \qw  & \qw                         & \qw  &  &  &   &  &  &  & \qw  & \qw  & \qw  & \rstick{\ket{c}}   }
+          %   1   &    2     &    3         &   4      &    5     &     6         &    7      &      8         &      9                                    &   10                                       & 11  &12&13&14 %15&16&   17   &  18    &    19  & 20                                     &  21         &  22                                       &  23                                       &  24 &  &  &   &  &  &  &                                         
+  \]
+ \normalsize
+ As simplificações utilizadas foram:
+ \footnotesize
+ \[ \begin{split}
+ T\ket{1} 
+     &= e^{i\frac{\pi}{4}}\ket{1}  \\
+ S X T^\dag X T^\dag 
+     &= \mqty[ 1 & 0 \\ 0 & i ] \mqty[ 0 & 1 \\ 1 & 0 ] \mqty[ 1 & 0 \\ 0 & e^{-i\frac{\pi}{4}} ] \mqty[ 0 & 1 \\ 1 & 0 ] \mqty[ 1 & 0 \\ 0 & e^{-i\frac{\pi}{4}} ] \\
+     &= \mqty[ 1 & 0 \\ 0 & i ] \mqty[ 0 & e^{-i\frac{\pi}{4}} \\ 1 & 0 ] \mqty[ 0 & e^{-i\frac{\pi}{4}} \\ 1 & 0 ] \\
+     &= \mqty[ 1 & 0 \\ 0 & i ] \mqty[ e^{-i\frac{\pi}{4}} & 0 \\ 0 & e^{-i\frac{\pi}{4}} ] 
+      = e^{-i\frac{\pi}{4}} S \\
+ H T X T^\dag T X T^\dag H 
+     &= H T X  X T^\dag H = H T T^\dag H = H H = I \ .
+    \end{split} \]
+ \normalsize
+ O estado ao final do circuito é
+ \[ \big(e^{i\frac{\pi}{4}}\ket{1}\big) \otimes \big( e^{-i\frac{\pi}{4}}\ket{0} \big) \otimes \ket{c} = \ket{10c} \ . \]
+ 
+ Resta verificar o caso em que os dois primeiros qubits são $\ket{11}$. Nesse caso, o circuito se reduz a:
+    \footnotesize
+   \[  \Qcircuit @C=3pt @R=2pt                                                                                                                                                                                                                                                                                            
+{\lstick{\ket{1}} & \qw      & \qw      & \qw          & \qw      & \qw      & \qw           & \qw           & \qw            & \qw                                       & \gate{T} \gategroup{1}{11}{1}{11}{4pt}{--} & \qw &  &  &   &  &  &  &     \qw  & \gate{T}  & \qw  &  &  &   &  &  &  & \qw  & \qw  & \qw  & \rstick{e^{i\frac{\pi}{4}}\ket{1}}  \\
+                  &          &          &              &          &          &               &               &                &                                           &                                            &     &  &  &   &  &  &  &          &                             &      &  &  &   &  &  &  &      &      &      &  \\
+ \lstick{\ket{1}} & \qw      & \qw      & \qw          & \qw      & \qw      & \gate{T^\dag} & \gate{X}      & \gate{T^\dag}  & \gate{X} \gategroup{3}{7}{3}{11}{4pt}{--} & \gate{S}                                   & \qw &  &  & = &  &  &  &     \qw  & \gate{e^{-i\frac{\pi}{4}}S} & \qw  &  &  & = &  &  &  & \qw  & \qw  & \qw  & \rstick{ie^{-i\frac{\pi}{4}}\ket{1}} \\
+                  &          &          &              &          &          &               &               &                &                                           &                                            &     &  &  &   &  &  &  &          &                             &      &  &  &   &  &  &  &      &      &      &  \\
+ \lstick{\ket{c}} & \gate{H} & \gate{X} & \gate{T^\dag}& \gate{X} & \gate{T} & \gate{X}      & \gate{T^\dag} & \gate{X}       & \gate{T}                                  & \gate{H} \gategroup{5}{2}{5}{11}{4pt}{--}  & \qw &  &  &   &  &  &  &     \qw  & \gate{-iX}                    & \qw  &  &  &   &  &  &  & \qw  & \qw  & \qw  & \rstick{-i\ket{\overline{c}}}   }
+          %   1   &    2     &    3     &   4          &    5     &     6    &    7          &      8        &      9         &   10                                      & 11                                         & 12                                         &13&14 %15&16&   17   &  18    &    19  & 20                                     &  21         &  22                                       &  23                                       &  24 &  &  &   &  &  &  &                                         
+  \]
+ \normalsize
+ Novamente, as simplificações realizadas são:
+ \footnotesize
+ \[ \begin{split}
+ T\ket{1} 
+     &= e^{i\frac{\pi}{4}}\ket{1}  \\
+ S X T^\dag X T^\dag \ket{1} 
+     &=  e^{-i\frac{\pi}{4}} S \ket{1} = i e^{-i\frac{\pi}{4}} \ket{1} \\
+ T X T^\dag X
+     &= \mqty[ 1 & 0 \\ 0 & e^{i\frac{\pi}{4}} ] \mqty[ 0 & 1 \\ 1 & 0 ] \mqty[ 1 & 0 \\ 0 & e^{-i\frac{\pi}{4}} ] \mqty[ 0 & 1 \\ 1 & 0 ]  \\
+     &= \mqty[ e^{-i\frac{\pi}{4}} &  0 \\ 0  & e^{i\frac{\pi}{4}} ]  \\
+ H \big(T X T^\dag  X \big) \big( T X T^\dag  X\big) H 
+     &= \frac{1}{2} \mqty[ 1 & 1 \\ 1 & -1 ] \mqty[ e^{-i\frac{\pi}{4}} &  0 \\ 0  & e^{i\frac{\pi}{4}} ] 
+        \mqty[ e^{-i\frac{\pi}{4}} &  0 \\ 0  & e^{i\frac{\pi}{4}} ] \mqty[ 1 & 1 \\ 1 & -1 ] \\
+     &=  \frac{1}{2} \mqty[ 1 & 1 \\ 1 & -1 ] \mqty[ -i &  0 \\ 0  & i ] 
+          \mqty[ 1 & 1 \\ 1 & -1 ] \\
+     &= H (-iZ) H = -i H Z H = -i X \ ,
+     \end{split} \]
+  \normalsize
+  e o estado final é
+  \[ \big( e^{i\frac{\pi}{4}}\ket{1} \big) \otimes \big( ie^{-i\frac{\pi}{4}}\ket{1} \big) \otimes \big( -i\ket{\overline{c}} \big) 
+     = \ket{11\overline{c}} \ . \]
+ 
+ Termina, portanto, a verificação de que o circuito do enunciado realiza uma porta Toffoli.
+ \end{proof}
+
+ 
+\end{section}
+
+%arrumar referências a seções
+\begin{section}{\nohyphens{Universalidade das Portas Lógicas \\Quânticas}}
+
+ É útil saber se que conjuntos de portas lógicas quânticas permite reproduzir qualquer operação unitária $U$ em $n$ qubits. Essa questão é conhecida como \emph{universalidade} de um conjunto de portas lógicas quânticas. A universalidade pode ter um sentido estrito -- isto é, uma operação $U$ qualquer pode ser implementada exatamente com um número finito portas lógicas -- ou um sentido amplo -- isto é, a operação $U$ pode ser aproximada, permitindo-se um erro $\varepsilon$ arbitrado, por uma sequência finita de portas lógicas (cujo número é função do erro $\varepsilon$ máximo estipulado). 
+ 
+ 
+ \begin{subsection}{\nohyphens{Universalidade de Portas Lógicas na \\Computação Clássica Reversível}}\label{cap4:sec_univ_portas_log_na_comp_rev}
+  
+  A universalidade na Computação Clássica Não-Reversível está essencialmente decidida nos teoremas \ref{cap1:teorema_universalidade_or_and_not} e \ref{cap1:teorema_universalidade_nand} da seção \ref{cap1:universalidade_portas_logicas_classicas}. Esses teoremas dizem que qualquer função booleana $f \colon \{0,1\}^m \to \{0,1\}^n$ pode ser realizada por portas NOT e AND, por portas NOT e OR ou apenas por portas NAND (e em todos os casos, acrescenta-se implicitamente as portas SWAP e FANOUT/COPY). 
+  
+  Na Computação Clássica Reversível, em que as funções booleanas têm o mesmo número de bits na entrada e saída, e as portas lógicas são reversíveis (isto é, conhecendo-se a saída, é possível determinar a entrada que a originou). As portas lógicas NOT, CNOT, SWAP, Toffoli e Fredkin, quando trabalhando apenas com bits e não qubits, são exemplos de portas lógicas clássicas reversíveis. 
+  
+  
+  
+  \begin{theorem}
+   A porta Toffoli é universal para a Computação Clássica. 
+  \end{theorem}
+
+  \begin{proof}
+  É possível realizar as portas NOT e AND utilizando a porta Toffoli e acrescentando alquns bits de trabalho (bits com valor fixado em 0 ou 1 dependendo da necessidade). 
+  \small{ \[ \begin{array}{ccccccc}
+   \text{AND} \phantom{x\cdot y} \quad \quad \quad
+   & & 
+   \text{NOT} \phantom{x} \quad \quad \quad
+   & & 
+   \text{COPY/FANOUT}
+   & & 
+   \text{SWAP}
+   \\ & & & & & & \\
+           \Qcircuit @C=4pt @R=6pt @!R {
+  \lstick{x} & \ctrl{1} & \qw & \\
+  \lstick{y} & \ctrl{1} & \qw & \\
+  \lstick{0} & \targ    & \qw &\rstick{x \cdot y} }
+  \phantom{x\cdot y} \quad \quad \quad
+  & &
+      \Qcircuit @C=4pt @R=6pt @!R {
+  \lstick{x} & \ctrl{1} & \qw & \rstick{x}\\
+  \lstick{1} & \ctrl{1} & \qw & \\
+  \lstick{1} & \targ    & \qw &\rstick{\overline{x}} }
+   \phantom{x} \quad \quad 
+  & &
+   \Qcircuit @C=4pt @R=6pt @!R {
+  \lstick{x} & \ctrl{1} & \qw & \rstick{x}\\
+  \lstick{1} & \ctrl{1} & \qw & \\
+  \lstick{0} & \targ    & \qw &\rstick{x} }
+  & & 
+  \Qcircuit @C=4pt @R=6pt @!R {
+  \lstick{1} & \ctrl{1} & \ctrl{1} & \ctrl{1} & \qw & &   & & & \ctrl{1}    & \qw & \\
+  \lstick{x} & \ctrl{1} & \targ    & \ctrl{1} & \qw & & = & & & \qswap      & \qw & \rstick{y}\\
+  \lstick{y} & \targ    & \ctrl{-1}& \targ    & \qw & &   & & & \qswap \qwx & \qw & \rstick{x} }
+   \end{array}
+   \]}
+  Com isso, um circuito booleano qualquer pode ser realizado apenas com portas Toffoli ignorando-se bits extra (``lixo'').
+  \end{proof}
+
+  \begin{theorem}
+   A porta Fredkin é universal para a Computação Clássica.
+  \end{theorem}
+
+  \begin{proof}
+  Da mesma forma como para a porta Toffoli, é possível realizar as portas NOT e AND utilizando a porta Fredkin e acrescentando alquns bits de trabalho. 
+  \small{ \[ \begin{array}{ccccccc}
+   \text{AND} \phantom{x\cdot y} \quad \quad \quad
+   & & 
+   \text{NOT} \phantom{x} \quad \quad \quad
+   & & 
+   \text{COPY/FANOUT}
+   & & 
+   \text{SWAP}
+   \\ & & & & & & \\
+           \Qcircuit @C=4pt @R=10pt @!R {
+  \lstick{x} & \ctrl{1} & \qw & \\
+  \lstick{y} & \qswap   & \qw & \\
+  \lstick{0} &\qswap\qwx& \qw &\rstick{x \cdot y} }
+  \phantom{x\cdot y} \quad \quad \quad
+  & &
+      \Qcircuit @C=4pt @R=10pt @!R {
+  \lstick{x} & \ctrl{1} & \qw & \\
+  \lstick{1} & \qswap   & \qw & \rstick{\overline{x}} \\
+  \lstick{0} &\qswap\qwx& \qw &  }
+   \phantom{x} \quad \quad 
+  & &
+ \Qcircuit @C=4pt @R=10pt @!R {
+  \lstick{x} & \ctrl{1} & \qw & \rstick{x}\\
+  \lstick{1} & \qswap   & \qw &  \\
+  \lstick{0} &\qswap\qwx& \qw & \rstick{x} }
+  & & 
+\Qcircuit @C=4pt @R=10pt @!R {
+  \lstick{1} & \ctrl{1} & \qw & \\
+  \lstick{x} & \qswap   & \qw & \rstick{y} \\
+  \lstick{y} &\qswap\qwx& \qw & \rstick{x} }
+   \end{array}
+   \]}
+  Com isso, um circuito booleano qualquer pode ser realizado apenas com portas Fredkin ignorando-se bits extra (``lixo'').
+  \end{proof}
+  
+  \begin{remark}
+   O preço a se pagar, na Computação Clássica, para que a computação seja reversível é o uso de bits de trabalho (\emph{ancilla bits}) e produção de bits ``lixo'' (\emph{garbage bits}). Em \cite{book:lecture_notes_preskill} (capítulo\footnote{Disponível no link:\\ \texttt{http://www.theory.caltech.edu/people/preskill/ph229/notes/chap6.pdf} \label{cap4:footnote1}} 6, p.12-15) verifica-se a universalidade do conjunto de portas reversíveis Toffoli e NOT para a Computação Clássica Reversível usando-se apenas 1 bit de trabalho. 
+  \end{remark}
+
+  \begin{remark}\label{cap4:obs_portas_class_1_2_qubit_nao_universal}
+   Na referência \cite{book:lecture_notes_preskill} (capítulo\textsuperscript{\ref{cap4:footnote1}} 6, p.11-12) encontra-se uma demonstração de que as portas clássicas reversíveis de 1 e 2 bits não podem formar um conjunto universal.
+  \end{remark}
+
+  
+  
+ \end{subsection}
+
+ \begin{subsection}{\nohyphens{Universalidade de Portas Lógicas na \\Computação Quântica}}
+ 
+ 
+  Como as portas Toffoli e Fredkin da Computação Clássica têm análogos quânticos, e tendo em vista a universalidade dessas portas na Computação Clássica, tem-se que a Computação Quântica engloba a Computação Clássica quando lança-se mão de qubits de trabalho e ignoram-se os qubits ``lixo'' (\!\!\cite{book:pqci_benenti}, p.122).
+
+  É possível verificar que, para a Computação Quântica, todas as portas lógicas de 1 qubit e a porta CNOT formam um conjunto universal no sentido estrito (ou seja, capaz de produzir exatamente, em princípio, qualquer transformação unitária) (\!\!\cite{book:pqci_benenti}, p.119-124), o que já não ocorre com a Computação Clássica Reversível (conforme final da seção \ref{cap4:sec_univ_portas_log_na_comp_rev}, observação \ref{cap4:obs_portas_class_1_2_qubit_nao_universal}). 
+  
+  O conjunto finito de operações $X$, $Y$, $Z$, $H$, $T$, $S$, e CNOT também é universal, agora no sentido amplo (isto é, capaz apenas de aproximar uma operação unitária geral dentro de uma faixa de erro pré-determinada). Esse conjunto não é mínimo, pois  algumas dessas portas de 1 qubit podem ser obtidas das demais. Por exemplo: $S = T^2$, $Z=HXH = S^2$, $Y = -iZX$. 
+  
+  As portas lógicas quânticas Toffoli e Hadamard formam um conjunto universal capaz de aproximar qualquer matriz unitária com coeficientes reais. Com o uso de um qubit extra, de trabalho, é possível realizar operações unitárias gerais em função de matrizes unitárias com coeficientes reais (conforme artigo \cite{article:toff_had_quantum_universal_dorit}, p.2-3).
+  
+  O assunto de universalidade de portas lógicas quânticas está em desenvolvimento. Não se conhece um algoritmo ou método eficiente capaz de decompor uma matriz unitária $U$ em fatores de um dado conjunto universal. A maioria dos conjuntos finitos que foram provados universais têm suas demonstrações baseadas em argumentos de existência: mostra-se que existe uma sequência de portas que aproxima dentro de um erro dado a porta $U$, mas não se sabe como encontrar essa aproximação. Para a universalidade de todas as portas de 1 qubit mais a CNOT, a prova é construtiva  (\!\!\cite{book:pqci_benenti}, p.119-124), mas recorre à disponibilidade de qualquer porta de 1 qubit, além de não ser eficiente em geral (isto é, requerer um número de portas lógicas exponencial no número de qubits $n$).
+  
+  % Essas demonstrações utilizam conceitos de Álgebra (álgebras de Lie\footnote{$U(n)$ é a álgebra de Lie das matrizes unitárias $n\times n$ e $SU(n)$ é a álgebra de Lie das matrizes unitárias $n\times n$ com determinante 1.} $U(n)$ e $SU(n)$, álgebras geradas, ) e Topologia (densidade 
+  
+ \end{subsection}
+
+%  seth lloyd (artigo)
+
+
+
+\end{section}
+
+\begin{section}{Teorema da Não-Clonagem}
+
+ Um bit clássico pode ser copiado para servir como entrada em diversas partes de um circuito digital clássico.
+ \vspace{-12pt}
+ \begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.25]{cap4/figuras/full_adder_gates.png}
+  \vspace{-15pt}
+  \caption{Exemplo de como um bit clássico pode ser usado em mais de uma porta lógica. As ramificações, simbolizadas por $\bullet$, significam criação de cópias do bit.}
+  \end{figure}
+  
+ Pode-se pensar nesse comportamento em termos da porta lógica clássica COPY que devolve à saída duas (ou mais) cópias do bit de entrada. 
+  \begin{figure}[H]
+  \centering
+   \[ \Qcircuit @C=10pt @R=10pt @!R {
+            &     & \multigatenoqw{2}{\text{COPY}} & \qw &  \rstick{b} \qw \\
+ \lstick{b} & \qw &  \ghost{\text{COPY}}            & \qw &  \rstick{b} \qw \\
+            &     &  \ghostnoqw{\text{COPY}}        & \qw &  \rstick{b} \qw  }
+  \]
+  \caption{Exemplo de função booleana $f(b) = (b,b,b)$, que transforma 1 bit de entrada $b$ em 3 cópias de $b$ à saída. }
+  \end{figure}
+ 
+ Como na Computação Quântica, o análogo das portas lógicas seriam as operações unitárias sobre qubits, poderia-se cogitar a existência de uma porta lógica quântica de 2 qubits que tivesse como entrada um qubit num estado $\ket{\psi}$ qualquer, a ser copiado, (e outra entrada $\ket{0}$ para completar 2 entradas) e devolvesse 2 qubits no estado $\ket{\psi}$, como ilustrado na figura a seguir.
+ 
+  \begin{figure}[H]
+  \centering
+  \[ \Qcircuit @C=10pt @R=10pt @!R {
+ \lstick{\ket{\psi}} & \qw &  \multigate{1}{\text{COPY}} & \qw & \rstick{\ket{\psi}} \qw \\
+ \lstick{\ket{0}}    & \qw &  \ghost{\text{COPY}}        & \qw & \rstick{\ket{\psi}} \qw }
+  \]
+  \caption{Proposta de porta lógica quântica que copiaria o estado do qubit $\ket{\psi}$ e devolveria 2 qubits no mesmo estado.}
+  \end{figure}
+ 
+ No entanto, o chamado \emph{Teorema da Não Clonagem} informa que não existe uma operação unitária capaz de efetuar essa operação para qualquer estado $\ket{\psi}$ de entrada. Desse modo, a cópia de bits não possui análogo na Computação Quântica.
+ 
+ \begin{theorem}[Teorema da Não Clonagem]
+  Não existe uma operação unitária que permita copiar o estado de 1 qubit em 2 (ou mais) qubits. Isto é, não existe operação unitária $U$ que satisfaça, para todo estado $\ket{\psi}$ de 1 qubit, o seguinte:
+  \[ 
+\Qcircuit @C=10pt @R=10pt @!R {
+ \lstick{\ket{\psi}} & \multigate{1}{U} &  \rstick{\ket{\psi}} \qw\\
+ \lstick{\ket{0}}    & \ghost{U}        &  \rstick{\ket{\psi}} \qw}
+  \]\vspace{3pt}
+ \end{theorem}
+
+ \begin{proof}
+  A prova se dá por redução ao absurdo. Seja $U$ uma tal operação unitária, satisfazendo $U\ket{\psi}\ket{0} = \ket{\psi}\ket{\psi}$ para todo estado $\ket{\psi}$ com $\norm{\ket{\psi}} = 1$. 
+  
+  Considere os estados de 1 qubit $\ket{1}$ e $\ket{+}$. Tem-se que
+  \[\tag{$\ast$}
+  \begin{split}
+   \braket{10}{+0}_{1,2} 
+   &= \braket{1}{+}_1 \braket{0}{0}_2 \\
+   &= \braket{1}{+} \cdot 1 \\
+   &= \bra{1} \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \\
+   &= \frac{1}{\sqrt{2}} \ .
+  \end{split}
+ \] 
+  Por outro lado, como $U$ é unitária, também vale que
+  \[ \tag{$\ast \ast$}
+   \begin{split}
+    \braket{10}{+0}_{1,2} 
+    &= \bra{10}_{1,2} U^\dag U \ket{+0}_{1,2} \\
+    &= \bra{11}_{1,2} \ket{++}_{1,2} \\
+    &= \braket{1}{+} \braket{1}{+} \\ 
+    &=  \frac{1}{\sqrt{2}} \cdot  \frac{1}{\sqrt{2}} \ .
+   \end{split}
+  \]
+  Comparando ($\ast$) e ($\ast \ast$), tem-se que 
+  $\frac{1}{\sqrt{2}} =  \frac{1}{\sqrt{2}} \cdot  \frac{1}{\sqrt{2}} $, 
+  o que não pode ocorrer. Portanto a hipótese de que existe $U$ como descrito acima é falsa.  
+ \end{proof}
+
+ É possível generalizar essa demonstração para mostrar que não existe operação unitária $U$ tal que $U\ket{\psi}\ket{s} = \ket{\psi}\ket{\psi}$ para todo estado $\ket{\psi}$, e com $\ket{s}$ um estado fixo qualquer (\!\!\cite{book:qcqi_nc}, p.532).
+ 
+ Apesar de não ser possível clonar um estado arbitrário, é possível copiar estados na base computacional. De fato, uma porta CNOT é suficiente para realizar isso.
+ 
+ \begin{proposition}[Clonagem de estados $\ket{0},\ket{1}$]
+  O circuito abaixo realiza a clonagem de estados da base computacional. Se $a = 0,1$, tem-se:
+  \[ \Qcircuit @C=10pt @R=10pt @!R {
+ \lstick{\ket{a}} & \ctrl{1} &  \rstick{\ket{a}} \qw \\
+ \lstick{\ket{0}} & \targ    &  \rstick{\ket{a}} \qw }
+  \]
+ \end{proposition}
+ 
+ \begin{proof}
+  Segue do comportamento da porta CNOT nos vetores da base computacional:
+  \[ \ket{a}\ket{0} \ \  \xrightarrow{\text{CNOT}} \ \  \ket{a}\ket{0\oplus a} = \ket{a} \ket{a} \ . \qedhere\]
+ \end{proof}
+
+
+\end{section}

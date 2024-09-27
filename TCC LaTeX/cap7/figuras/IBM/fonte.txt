@@ -1,0 +1,20 @@
+ibm_qc
+http://research.ibm.com/images/carousel-background-13-large.jpg
+
+experiment_ibmqe
+
+
+ibm_50q_cooling
+CHOMPING AT THE QUBIT  IBM announced two new advances to its quantum computing hardware (cooling system and other infrastructure shown): a 20-qubit processor that will be available commercially and a 50-qubit prototype currently undergoing testing.
+https://www.sciencenews.org/blog/science-ticker/quantum-computers-take-step-forward-50-qubit-prototype?mode=topic&context=43
+
+
+
+ibmqx2
+https://github.com/QISKit/qiskit-backend-information/tree/master/backends/yorktown/V1
+
+ibmqx3
+https://github.com/QISKit/qiskit-backend-information/tree/master/backends/rueschlikon/V1
+
+ibmqx4
+https://github.com/QISKit/qiskit-backend-information/tree/master/backends/tenerife/V1
