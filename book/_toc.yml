@@ -8,7 +8,7 @@ chapters:
 - file: algebra
 - file: postulados
 - file: kettutorial
-#- file: algoritmos
+- file: algoritmos
 #  sections:
 #  - file: algoritmos/grover
 - file: referencias
