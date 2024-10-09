@@ -9,6 +9,8 @@ chapters:
 - file: postulados
 - file: kettutorial
 - file: algoritmos
+- url: https://qubox.ufsc.br/index.html
+  title: Qubox UFSC
 #  sections:
 #  - file: algoritmos/grover
 - file: referencias

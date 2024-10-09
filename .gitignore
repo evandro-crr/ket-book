@@ -1,2 +1,5 @@
 book/_build
 book/.xdp-references.bib*
+public/*
+venv/*
+virtualenv/*
