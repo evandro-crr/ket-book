@@ -26,14 +26,12 @@ jobs:
           pipx ensurepath
           pipx install black[jupyter]
           pipx install ghp-import
-          pip install poetry
-          poetry install
 
       - name: Format code
         run: pipx run black[jupyter] book
 
       - name: Build the book
-        run: poetry run jupyter-book build book
+        run: jupyter-book build book
 
       - name: Add redirect
         run: pipx run ghp-import -n -p -f book/_build/html -c aprenda.quantumket.org
