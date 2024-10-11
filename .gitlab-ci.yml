@@ -6,6 +6,7 @@ pages:
     - jupyter-book clean book
     - jupyter-book build book
     - mv book/_build/html public
+    - pipx run ghp-import -n -p -f public -c aprenda.quantumket.org
   artifacts:
     paths:
       - public
