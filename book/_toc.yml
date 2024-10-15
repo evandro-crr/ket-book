@@ -12,6 +12,7 @@ chapters:
 sections:
   - file: algoritmos/grover
   - file: algoritmos/deutsch-jozsa
+  - file: algoritmos/simon
 - url: https://qubox.ufsc.br/index.html
   title: Qubox UFSC
 - file: referencias
