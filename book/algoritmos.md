@@ -29,23 +29,7 @@ Assim, o primeiro qubit está com Alice e o segundo, com Bob. Alice pode realiza
 O circuito completo para a codificação superdensa é representado abaixo. Seu funcionamento detalhado será abordado a seguir.
 
 
-```{math}
-\begin{figure}[H]
- \[\Qcircuit @C=10pt @R=6pt @!R  
-{ % Alice
-                &  \mbox{Alice} &     &     &               &              &      &      &     &                                & & \\
- \lstick{b_0}             &\cw  & \cw & \cw   & \control \cw         &      &      &     &                                &     & & \\
- \lstick{b_1}             & \cw & \cw & \control \cw   &   \cwx &      &      &     &                                &     & & \\
-                          & \qw & \qw & \gate{X} \cwx & \gate{Z}\cwx &  \qw & \qw  &     &                                &     & & \\
-  % Bob                                                                                                           
-\lstick{\ket{\beta_{00}} \quad} &     &     &               &              &      & \qwx & \qw & \multimeasureD{1}{\mathcal{B}} & \cw & \cw & \rstick{\!\!\!\!b_0} \\
-                          &\qw  & \qw & \qw           & \qw          &  \qw & \qw  & \qw & \ghost{\mathcal{B}}    & \cw & \cw & \rstick{\!\!\!\!b_1} 
-  \gategroup{2}{2}{4}{10}{1.6em}{--} \gategroup{5}{2}{6}{10}{1.5em}{--} \gategroup{4}{1}{6}{1}{1.5em}{\{}  \\
-   &  \mbox{Bob}    &     &               &              &      &      &     &                                &     &  &  } 
-  \] 
- \caption{Circuito completo para Codificação Superdensa. A medição na base de Bell pode ser realizada pelo circuito da figura \ref{cap5:fig_med_base_bell}.}
- \end{figure}
-```
+![{9FE67697-1DBC-45DF-AA5E-6DD689222F5F}](https://github.com/user-attachments/assets/b0f8fbe6-e8a4-4de3-94ac-6e06fc90ad94)
 
 ### Funcionamento detalhado
 
@@ -61,33 +45,13 @@ Usamos os rótulos $A$ para o primeiro qubit (da Alice) e $B$ para o segundo qub
 
 Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.
 
-```{math}
-\begin{table}[H]
-  \[ \begin{array}{ccc}
-  \text{Mensagem} & \text{Operação} & \text{Resultado} \bigstrut[b] \\ \hline 
-\bigstrut[t]   00 & I_A & \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \ket{\beta_{00}} \\
-  01 & Z_A & \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \ket{\beta_{01}}  \\
-  10 & X_A & \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \ket{\beta_{10}}  \\
-  11 & iY_A = Z_A X_A & \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \ket{\beta_{11}} 
- \end{array} \]
- \caption{Tabela de codificação da mensagem para a Codificação Superdensa.}
- \label{cap5:tab_operacoes_cod_superdensa}
- \end{table}
-```
+![{041ADE65-B0BC-4A86-B263-7EAC822CCE49}](https://github.com/user-attachments/assets/c6d030fa-af18-4c6e-aa31-2861415601ff)
+
 
 Observa-se que $ZX = iY$ pela identidade de circuitos. Os estados de Bell $\ket{\beta_{00}}$, $\ket{\beta_{01}}$, $\ket{\beta_{10}}$ e $\ket{\beta_{11}}$ formam uma base para o espaço de 2 qubits. Observa-se também que, se a mensagem é $b_0 b_1$, então quando $b_1 = 1$ aplica-se $X_A$ e quando $b_0 = 1$, aplica-se $Z_A$. Dessa forma, para todos os valores da mensagem $b_0 b_1$, pode-se escrever a operação no qubit $A$ por $Z_A^{\,\, b_0} X_A^{\,\, b_1}$. Portanto, a operação que Alice deve fazer em seu qubit pode ser representada pelo seguinte circuito controlado por cbits:
 
-```{math}
-\begin{figure}[H]
-  \[\Qcircuit @C=10pt @R=6pt @!R 
-  {
- \lstick{b_0} &\cw  & \cw & \cw            & \control \cw &      &    \\
- \lstick{b_1} & \cw & \cw & \control \cw   &   \cwx       &      &    \\
-              & \qw & \qw & \gate{X} \cwx  & \gate{Z}\cwx &  \qw &  \rstick{\!\!\!\!\text{enviar para Bob}}  }
- \]
-\caption{Operações que Alice deve fazer em seu qubit antes de enviá-lo para Bob. O circuito realiza a operação $Z_A^{\,\, b_0} X_A^{\,\, b_1}$. }
-\end{figure} 
-```
+![{0DB064B6-9072-4F59-AFC5-E6268C111679}](https://github.com/user-attachments/assets/db51fdf8-2c42-48d7-93f5-f41934506b2e)
+
 
 **Decodificação - Bob**
 
@@ -95,28 +59,8 @@ Alice envia, então, seu qubit a Bob, que realiza uma medida na base de Bell. Bo
  
 A medição na base de Bell pode ser realizada em função da medição na base computacional pelo seguinte circuito:
 
-```{math}
-\begin{figure}[H]
-  \[
-  \phantom{\ket{\beta_{b_0b_1}}}
-  \Qcircuit @C=10pt @R=10pt @!R  
-   { 
-   \dstick{\ket{\beta_{b_0b_1}} \quad \quad \quad \quad \quad } & \multimeasureD{1}{\mathcal{B}} & \cw & \rstick{\!\!\!\!\!\!b_0}  \\
-                                                                & \ghost{\mathcal{B}}            & \cw & \rstick{\!\!\!\!\!\!b_1}
-    \gategroup{1}{1}{2}{1}{1.2em}{\{}
-     }
-  \quad  \quad \begin{array}{c} \\ \\ = \end{array}\quad \quad  \phantom{\ket{\beta_{b_0b_1}}}
-   \Qcircuit @C=10pt @R=6pt @!R  
-   { 
-   \dstick{\ket{\beta_{b_0b_1}} \quad \quad \quad \quad \quad } &  \gate{H} & \ctrl{1} & \meter & \cw & \rstick{\!\!\!\!\!\!b_0} \\
-                                                                &   \qw     &   \targ  & \meter & \cw & \rstick{\!\!\!\!\!\!b_1}
-   \gategroup{1}{1}{2}{1}{1.2em}{\{} 
-   }
-  \]
-  \caption{Circuito para medição na base de Bell $\mathcal{B}$. Esta é a ação que Bob deve tomar ao receber o qubit de Alice.}
-  \label{cap5:fig_med_base_bell} % \label MUST BE HERE !
-  \end{figure}
-```
+![{64755C3E-9DC7-4F4A-8C55-F3E59752CFAF}](https://github.com/user-attachments/assets/3466614c-66fc-4da7-8d42-f90e5c81ab26)
+
 
 ## Circuito de teletransporte
 
@@ -124,7 +68,7 @@ A medição na base de Bell pode ser realizada em função da medição na base 
  
  Aparentemente não seria possível realizar essa tarefa, pois o estado de um qubit $\ket{\psi} = a\ket{0} + b \ket{1}$ é definido por dois números complexos $a$ e $b$, que demandariam muitos bits para serem representados de maneira satisfatória (mas aproximada apenas). Além disso, Alice não tem conhecimento sobre o estado do seu qubit, e uma medida não seria suficiente para conseguir encontrar os coeficientes $a$ e $b$. Seriam necessárias muitas medidas de cópias do sistema em bases diferentes para se conseguir obter estimativas das probabilidades de o resultado ser $\ket{0}$ ou $\ket{1}$, e isso não é possível de se fazer quando não se tem cópias do sistema.  
  
- No entanto, se Alice e Bob estiverem compartilhando um par de qubits emaranhados, a situação torna-se mais favorável. O par emaranhado $ \ket{\beta_{00}} $ pode ter sido distribuído previamente, e não depende do qubit $\ket{\psi}$ de Alice. O \emph{circuito de teletransporte} faz uso desse par emaranhado para realizar essa tarefa de enviar o estado de um qubit (não conhecido) fazendo-se uso apenas de um canal clássico. O nome ``teletransporte'' tornou-se popular para fazer referência ao circuito, mas não é muito adequado. Esse circuito envia apenas a informação sobre o estado, não ocorrendo deslocamento físico do qubit em questão.
+ No entanto, se Alice e Bob estiverem compartilhando um par de qubits emaranhados, a situação torna-se mais favorável. O par emaranhado $ \ket{\beta_{00}} $ pode ter sido distribuído previamente, e não depende do qubit $\ket{\psi}$ de Alice. O circuito de teletransporte faz uso desse par emaranhado para realizar essa tarefa de enviar o estado de um qubit (não conhecido) fazendo-se uso apenas de um canal clássico. O nome ``teletransporte'' tornou-se popular para fazer referência ao circuito, mas não é muito adequado. Esse circuito envia apenas a informação sobre o estado, não ocorrendo deslocamento físico do qubit em questão.
  
 Uma referência para esse circuito pode ser encontrado em {cite}`nielsen_quantum_2010`
 
@@ -142,23 +86,8 @@ Nesse processo, o qubit $\ket{\psi}$ de Alice tem seu estado destruído pela med
 
 O circuito abaixo realiza o teletransporte do estado de 1 qubit de Alice para Bob utilizando apenas o envio de 2 cbits. O funcionamento detalhado do Circuito de Teletransporte será visto adiante. 
 
-```{math}
-\begin{figure}[H]
-    \[\Qcircuit @C=12pt @R=10pt @!R  
-{ % Alice
-                               &                                                & \mbox{Alice} \gategroup{2}{3}{3}{10}{3em}{--}     &         &          &        &                  &                      &                      &     &   &          \\
- \lstick{\ket{\psi}}           & \qw                                            & \qw                                               &\ctrl{1} & \gate{H} & \meter & \ustick{b_0} \cw & \cw                  & \control \cw \cwx[3] &     &   &          \\
-                               & \qw                                            &                                               \qw &\targ    & \qw      & \meter & \ustick{b_1} \cw & \control \cw \cwx[2] &                      &     &   &          \\
- \lstick{\ket{\beta_{00}}\quad}&                                                &                                                   &         &          &        &                  &                      &                      &     &   &          \\
-  % Bob                                                                                                                          
-                               & \qw     \gategroup{3}{1}{5}{1}{1.5em}{\{}      &\qw                                                &\qw      & \qw      & \qw    & \qw              & \gate{X}             & \gate{Z}             & \qw &\qw& \rstick{\ket{\psi}} \qw  \\
-                               &                                                &  \mbox{Bob}  \gategroup{5}{3}{5}{10}{3em}{--}     &         &          &        &                  &                      &                      &     &   &   
- %           1                 %            2                                   % 3                                                 %   4     %   5      % 6      % 7                %  8                   %  9                   % 10  % 11                                 
-           }
-  \] 
-  \caption{Circuito de Teletransporte completo.}
- \end{figure}
-```
+![{7C4CCA84-E2B9-4131-AB9B-AAECA106290F}](https://github.com/user-attachments/assets/870304af-2659-4923-9b63-20d58022a4c0)
+
 
 ### Funcionamento detalhado
 
@@ -223,27 +152,15 @@ Alice realiza, então, a medida dos seus dois qubits na base computacional. Essa
 
 em que o resultado da medida é $b_0 b_1$. O qubit que está com Bob passa a ficar no estado $\ket{\psi_3}_B$, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.
 
-```{math}
-\begin{table}[H]
-   \[ \begin{array}{cc}
-     \bigstrut \text{Resultado da medida} & \text{Estado do qubit $B$} \\ \hline
-      00 & \phantom{-}a \ket{0} + b \ket{1} \bigstrut[t] \\
-      01 & \phantom{-}b \ket{0} + a \ket{1} \\
-      10 & \phantom{-}a \ket{0} - b \ket{1} \\
-      11 & -b \ket{0} + a \ket{1} 
-      \end{array} \]
-    \caption{Possíveis resultados da medição de Alice para o Circuito de Teletransporte.}
-    \label{cap5:tab_result_med_circ_teletr}
-    \end{table}
-```
+![{7D2AFD7A-FEC6-4509-8586-3B14E45B3850}](https://github.com/user-attachments/assets/2422b667-d22b-47a4-b84b-6b70cf142db2)
 
-Caso o resultado da medida tenha sido $00$, o estado do sistema total $\ket{\psi_3}$ é obtido pela projeção $ \op{00}{00}_{A_1 A_2} $ seguida de uma normalização do vetor resultante. É conveniente lembrar que $\abs{a}^2 + \abs{b}^2 = 1$ pela normalização do estado $\ket{\psi} = a\ket{0} + b\ket{1}$ do início do algoritmo.
+Caso o resultado da medida tenha sido $00$, o estado do sistema total $\ket{\psi_3}$ é obtido pela projeção $\ket{00}\bra{00}_{A_1A_2}$ seguida de uma normalização do vetor resultante. É conveniente lembrar que $|a|^2 + |b|^2 = 1$ pela normalização do estado $\ket{\psi} = a\ket{0} + b\ket{1}$ do início do algoritmo.
 
 ```{math}
 \begin{split}
       \ket{\psi_2} 
-      &= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \sqrt{\abs{\tfrac{a}{2}}^2 + \abs{\tfrac{b}{2}}^2 } }  \\
-      &= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \tfrac{1}{2} \sqrt{\abs{a}^2 + \abs{b}^2 } }  \\
+      &= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \sqrt{|\tfrac{a}{2}|}^2 + |\tfrac{b}{2}|^2 } }  \\
+      &= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \tfrac{1}{2} \sqrt{|a|^2 + |b|^2 } }  \\
       &= \ket{00}_{A_1A_2}\left( a \ket{0}_B + b \ket{1}_B \right) \ .
     \end{split}
 ```
@@ -255,33 +172,12 @@ Para recuperar o estado $a\ket{0} + b\ket{1}$, Bob deve fazer algumas operaçõe
   
 Se a medida for $00$, seu qubit está em $ a\ket{0} + b\ket{1}$ e nada precisa ser feito. Se a medida resultou em $01$, seu qubit está em $b\ket{0} + a\ket{1}$; nesse caso, é possível perceber que a porta $X$ fornece novamente o estado desejado $b\ket{1} + a\ket{0}$. Considerando-se todos os resultados possíveis da medida, monta-se a correção necessária para cada caso.
 
-```{math}
-\begin{table}[H]
-   \[ \begin{array}{cccc}
-    \bigstrut   \text{Medida} & \text{Estado do qubit $B$} & \text{Aplicar operações} & \text{Estado final} \\ \hline
-      00 & \phantom{-}a \ket{0} + b \ket{1} &  I_B  &  a \ket{0} + b \ket{1} = \ket{\psi} \bigstrut[t] \\
-      01 & \phantom{-}b \ket{0} + a \ket{1} & X_B   &  a \ket{0} + b \ket{1} = \ket{\psi}\\
-      10 & \phantom{-}a \ket{0} - b \ket{1} & Z_B   &  a \ket{0} + b \ket{1} = \ket{\psi}\\
-      11 & -b \ket{0} + a \ket{1}           & Z_B X_B &  a \ket{0} + b \ket{1} = \ket{\psi}     
-      \end{array}  \]
-   \caption{Correções aplicadas por Bob para obter o estado original do qubit de Alice no Circuito de Teletransporte.}
-  \label{cap5:tab_operacoes_circ_teletransporte}
-  \end{table}
-```
+![{190AEEBE-803A-4A27-B46F-2D8269EAA29A}](https://github.com/user-attachments/assets/c64f7bc3-c0e8-407a-8f0e-d8ec780a7cbc)
 
 Essas operações, como na codificação superdensa, podem ser resumidas na operação controlada classicamente $Z_B^{\, b_0} X_B^{\, b_1}$, em que $b_0b_1$ é o resultado da medida. Dessa forma, pode-se representar o processamento de Bob pelo circuito a seguir.
 
-```{math}
-\begin{figure}[H]
-   \[\Qcircuit @C=12pt @R=4pt @!R  
-{
- \lstick{b_0}     & \cw                  & \control \cw \cwx[2] &     &   &          \\
- \lstick{b_1}     & \control \cw \cwx[1] &                      &     &   &          \\
-                  & \gate{X}             & \gate{Z}             & \qw &\qw& \rstick{\ket{\psi}} \qw  
-           } \]
-  \caption{Bob recebe os bits enviados por Alice e, em função dos valores recebidos, realiza um processamento final em seu qubit, recuperando o estado $\ket{\psi}$ que Alice tinha e que pretendia enviar.}
-  \end{figure}
-```
+![{278424D5-75B0-4E42-A78B-0EED9164551F}](https://github.com/user-attachments/assets/e675cc9d-6912-44f1-aacc-005c66b7befc)
+
 
 Com isso, independente do resultado da medida, Bob tem, ao final, o estado $\ket{\psi}$ que Alice queria transmitir. 
 
@@ -295,18 +191,8 @@ Com isso, independente do resultado da medida, Bob tem, ao final, o estado $\ket
 
 O oráculo XOR é uma operação unitária que realiza a função booleana $f$ por meio de um bit extra, que sinaliza as entradas em que $f$ vale 1. 
 
-```{math}
-\begin{figure}[H]
-   \[ 
-    \Qcircuit @C=5pt @R=10pt @!R 
-    {
-   \lstick{\ket{x}} &  \ustick{\ n}\qw  & {/} \qw & \qw & \gate{O} & \qw &  \rstick{(-1)^{f(x)}\ket{x}}   \qw     \\
-    }
-   \]
-   \vspace{-15pt}
-   \caption{Oráculo quântico de fase. O comportamento na base computacional está descrito no circuito. O rótulo $n$ no primeiro fio representa $n$ qubits. A fase da entrada $\ket{x}$ fica invertida quando $f(x) = 1$.}
-  \end{figure}
-```
+![{032A007E-722B-4850-89B8-71ED9F516546}](https://github.com/user-attachments/assets/3f84cade-5c0f-400c-9bb9-db9fc71d8afe)
+
 
 ### Construção do Oráculo de Fase usando o Oráculo XOR
 
@@ -315,7 +201,7 @@ Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alv
 ```{math}
 \ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
   \begin{cases}
-   \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &\text{se $f(x)=0$} \vspace{5pt} \\
+   \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &\text{se $f(x)=0$}  \\
    \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &\text{se $f(x)=1$} \ ,
   \end{cases}
 ```
@@ -323,20 +209,9 @@ Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alv
   o que pode ser resumido por $\ket{x}\big((-1)^{f(x)}\ket{-} \big)$. Além disso, o fator multiplicativo $(-1)^{f(x)}$ pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:
 
 ```{math}
-ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}
+\ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}
 ```
 
 A figura a seguir ilustra a construção do oráculo de fase.
 
-```{math}
-\begin{figure}[H]
-   \[ 
-    \Qcircuit @C=5pt @R=10pt @!R 
-    {
-   \lstick{\ket{x}} &  \ustick{\ n}\qw  & {/} \qw & \qw &\ctrl{1}              & \qw & \qw &  \push{\ket{x}}            \qw  & \dstick{=} & & \rstick{(-1)^{f(x)}\ket{x}}  \\
-   \lstick{\ket{-}} & \qw               &\qw      & \qw & \gate{O_{\text{XOR}}}& \qw & \qw &  \push{(-1)^{f(x)} \ket{-}} \qw &            & & \rstick{\ket{-}} 
-    }
-   \]
-   \caption{Construção do oráculo de fase a partir do oráculo XOR. $\ket{x}$ representa um estado da base computacional.}
-  \end{figure}
-```
+![{1F4AC80C-FF1C-463E-8CE4-5CD827F22020}](https://github.com/user-attachments/assets/04b12d92-fdd9-4e98-b9b3-a79a18e80045)
