@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Panorama Atual da Computação Quântica &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'panorama';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="Referencias" href="referencias.html" />
+    <link rel="prev" title="Algoritmo de Simon" href="algoritmos/simon.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">Álgebra Linear para Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kettutorial.html">Programação Quântica com Ket</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/grover.html">Algoritmo de Grover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/deutsch-jozsa.html">Algoritmo de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/simon.html">Algoritmo de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Panorama Atual da Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/panorama.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Panorama Atual da Computação Quântica</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breve-historico">Breve histórico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao-para-computacao-quantica">Motivação para Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectativas-de-mercado">Expectativas de mercado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empresas-e-desenvolvimentos-atuais">Empresas e Desenvolvimentos Atuais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm">IBM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google">Google</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intel">Intel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#microsoft">Microsoft</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riggeti">Riggeti</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outras-startups-e-empresas">Outras Startups e Empresas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outras-empresas">Outras empresas</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="panorama-atual-da-computacao-quantica">
+<h1>Panorama Atual da Computação Quântica<a class="headerlink" href="#panorama-atual-da-computacao-quantica" title="Link permanente para este cabeçalho">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
+</div>
+<section id="breve-historico">
+<h2>Breve histórico<a class="headerlink" href="#breve-historico" title="Link permanente para este cabeçalho">#</a></h2>
+<p>No início do século XX, a Física Clássica enfrentava dificuldades em descrever alguns fenômenos observados à época, como, por exemplo, o espectro de radiação de corpo negro ou o efeito fotoelétrico. Essa crise culminou na criação da Mecânica Quântica, que se consolidou por volta da década de 1920, e tem sido aplicada com sucesso em diversos fenômenos.</p>
+<p>O desenvolvimento tecnológico na década de 1970 permitiu o controle de sistemas quânticos individuais permitindo-se aprisionar átomos individuais em armadilhas (traps), isolando-os do restante do ambiente, e medindo seus diversos aspectos com precisão notável. Nesse contexto, passou-se a considerar a possibilidade de se usar sistemas quânticos para realizar processamento e transmissão de informação, fazendo uso de fundamentos da Mecânica Quântica, como superposição e emaranhamento. Esses sistemas guardam analogia com os bits clássicos, e são chamados de qubits.</p>
+<p>O físico R. Feynman, na década de 1980, sugeriu o uso de computadores quânticos para simular sistemas quânticos. E em 1994, o matemático P. Shor propôs um algoritmo quântico capaz de resolver o problema de fatoração de números em fatores primos de forma mais eficiente que os algoritmos clássicos conhecidos. Há uma expectativa de que um tal algoritmo possa ameaçar alguns protocolos de criptografia, como o RSA, usado largamente na atualidade. O cientista da computação Lov Grover também elaborou um algoritmo quântico de busca em uma base de dados não estruturada, que possui ganho quadrático de desempenho em comparação ao melhor algoritmo clássico conhecido.</p>
+<p>Atualmente, a Computação Quântica e a Informação Quântica estão se consolidam como áreas de pesquisa com desenvolvimento acelerado nas últimas décadas. Empresas de tecnologia como IBM, Google, Intel e Microsoft têm projetos e pesquisas nessa área, e diversas Startups têm surgido nesse contexto.</p>
+</section>
+<section id="motivacao-para-computacao-quantica">
+<h2>Motivação para Computação Quântica<a class="headerlink" href="#motivacao-para-computacao-quantica" title="Link permanente para este cabeçalho">#</a></h2>
+<p>A lei de Moore, formulada em 1965, previu que a capacidade computacional dos sistemas digitais dobraria a cada dois
+anos. Surpreendentemente, os avanços computacionais se mantiveram aproximadamente nesse ritmo até a atualidade. No entanto, à medida que a escala dos transistores se reduz, aproxima-se de limites físicos fundamentais, e aparentemente insuperáveis. Os efeitos quânticos, em alguns aspectos indesejáveis,
+passam a interferir intensamente no funcionamento ideal do transistor. Para que o ritmo ditado pela lei de Moore continue, tem-se
+apostado, entre outras abordagens, na Computação Quântica.</p>
+<p>Outro ponto refere-se ao consumo de energia. O princípio
+de Landauer afirma que para cada bit de informação apagado,
+dissipa-se no ambiente a energia correspondente a pelo menos. Pelas características da Mecânica Quântica, as portas
+lógicas quânticas precisam ser reversíveis. Isso corresponderia,
+em princípio, à não necessidade de se apagar informação e à
+possibilidade de se ter um computador que não dissipa energia
+no processamento.</p>
+<p>Um terceiro ponto motivador das pesquisas em Computação Quântica é que a investigação nessa área pode elucidar aspectos da Mecânica Quântica, frequentemente contra intuitivos
+em relação à Física Clássica, ou mesmo, apontar fenômenos
+ainda não explorados.</p>
+<p>Por fim, a Computação Quântica apresenta desafios em
+diversas áreas, com manipulação de sistemas quânticos, novas
+técnicas experimentais, desenvolvimento de algoritmos, teoria da
+informação, entre outros, o que torna a área multidisciplinar.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>A Computação Quântica é uma tecnologia ainda em estágio inicial, e tem se mostrado uma área de pesquisa estratégica no cenário internacional.
+Neste capítulo, faz-se um breve estudo das expectativas de mercado em relação à Computação Quântica, em grande parte baseado na Gartner, uma consultoria em Tecnologia da Informação. Apresenta-se também algumas das principais empresas com pesquisas em Computação Quântica, e mostra-se um resumo dos desenvolvimentos realizados nessas empresas tanto em hardware como em software.</p>
+</div>
+</section>
+<section id="expectativas-de-mercado">
+<h2>Expectativas de mercado<a class="headerlink" href="#expectativas-de-mercado" title="Link permanente para este cabeçalho">#</a></h2>
+<p>A Gartner estima que a Computação Quântica será uma realidade no mercado dentro de 5 a 10 anos. Espera-se que essa tecnologia se torne mais rápida e escalável, de forma a tratar problemas reais que a computação atual não conseguiria abordar satisfatoriamente. A curva da figura, chamada hype-cicle, mostra as tecnologias em alta no mercado e as que já atingiram maturidade. A posição da Computação Quântica é de subida na curva de expectativas.</p>
+<p><img alt="hype_cicle_gartner" src="https://github.com/user-attachments/assets/c8e76d63-a52d-441f-8c32-2f3c6fadd072" /></p>
+<p>Há uma percepção no mercado que a Computação Quântica gere uma disrupção algo similar às ocorridas na Revoluções Industrial, Tecnológica e Digital. O panorama atual da Computação Quântica é comparável, nessa percepção, ao computador ENIAC da decada de 1950. À época, não havia como prever o desenvolvimento tecnológico subsequente, e a capacidade de processamento que se conseguiria obter nas décadas seguintes.</p>
+<p><img alt="eniac" src="https://github.com/user-attachments/assets/53f10d93-0118-4b7d-a724-d81affdaadf4" /></p>
+<p>A expectativa é que um modelo híbrido entre Computação Clássica e Quântica seja a tecnologia emergente no cenário atual. A computação seria realizada em um processador quântico para problemas nos quais há vantagens no uso da Computação Quântica, como espera-se que ocorra com os problemas chamados NP-difíceis.</p>
+<p>Dentre as principais aplicações previstas para a Computação Quântica, destaca-se resolução de problemas de otimização, machine learning, desenvolvimento de novos materiais, fármacos e processos químicos. Outra aplicação de destaque é em criptografia.</p>
+<p>mostra aplicações em que se espera utilizar processamento quântico.</p>
+<p><img alt="qc_applications" src="https://github.com/user-attachments/assets/c06c9038-afe8-4c84-a9fe-cbed87688c07" /></p>
+<p><img alt="qc_applications_2" src="https://github.com/user-attachments/assets/748eed13-633c-4e7c-ae29-ca30f1ad3517" /></p>
+<p>O impacto da Computação Quântica em sistemas de segurança é considerado certo dentro de poucos anos. Algumas tecnologias atuais como a criptografia RSA e o blockchain (do qual o bitcoin faz uso, em particular) seriam vulneráveis à Computação Quântica. Há demanda por protocolos de criptografia que levem em conta a existência da Computação Quântica, isto é, por criptografia pós-quântica (post-quantum/quantum-safe/quantum-proof cryptography).</p>
+</section>
+<section id="empresas-e-desenvolvimentos-atuais">
+<h2>Empresas e Desenvolvimentos Atuais<a class="headerlink" href="#empresas-e-desenvolvimentos-atuais" title="Link permanente para este cabeçalho">#</a></h2>
+<p>A Computação Quântica encontra-se em um estágio de desenvolvimento acelerado. Empresas como IBM, Google, Intel e Microsoft, e Startups como Rigetti, têm pesquisas para desenvolvimento de processadores quânticos. Algumas dessas empresas, como a IBM e Rigetti, disponibilizam protótipos de computadores quânticos para acesso pela nuvem ao público. Também há desenvolvimento de simuladores, linguagens de programação para Computação Quântica e kits de softwares por essas empresas. Alguns comentários são desenvolvidos no que segue.</p>
+<section id="ibm">
+<h3>IBM<a class="headerlink" href="#ibm" title="Link permanente para este cabeçalho">#</a></h3>
+<p>A IBM utiliza tecnologia de qubits supercondutores, compostos por junções de Josephson. Em 10 de novembro de 2017, foram anunciados protótipos de 50 e de 20 qubits, em uma iniciativa de tornar a computação quântica comercialmente disponível em um futuro próximo.</p>
+<p>No projeto IBM Quantum Experience, um computador quântico de 5 qubits está disponível para uso através da nuvem. A programação é feita por uma interface gráfica, que permite realizar simulação e/ou enviar o algoritmo para execução no computador quântico. A programação pode ser realizada em modo texto, com a linguagem OpenQASM (Open Quantum Assembly Language). Em relação à simulação, a IBM também colabora no projeto open source QISKit (Quantum Information Software Kit), uma biblioteca python para Computação e Informação Quântica que funciona em conjunto com OpenQASM.</p>
+</section>
+<section id="google">
+<h3>Google<a class="headerlink" href="#google" title="Link permanente para este cabeçalho">#</a></h3>
+<p>O processador quântico Bristlecone, de 72 qubits, foi apresentado em 5 de março de 2018. A tecnologia de qubits da Google é baseada em filmes supercondutores de alumínio em substrato de safira. Para simulação de computadores quânticos, a empresa tem um projeto open source chamado Quantum Playground, em que é possível simular um computador quântico de até 22 qubtis.</p>
+</section>
+<section id="intel">
+<h3>Intel<a class="headerlink" href="#intel" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Em 8 de janeiro de 2018 foi anunciado pela Intel a fabricação de um processador quântico, em fase de teste, de 49 qubits supercondutores. A tecnologia utilizada atualmente para realizar os qubits são as junções de Josephson, consistindo em uma camada fina de óxido entre dois fios de alumínio.
+A Intel também pesquisa qubits de spin em silício.</p>
+</section>
+<section id="microsoft">
+<h3>Microsoft<a class="headerlink" href="#microsoft" title="Link permanente para este cabeçalho">#</a></h3>
+<p>A Microsoft vem empregando esforços na elaboração de qubits topológicos por meio de férmions de Majorana. Além disso, foi lançado em 11 de dezembro de 2017 o Microsoft Quantum Development Kit, contendo a linguagem de programação Q# dedicada para Computação Quântica, e acompanhada de simuladores.</p>
+</section>
+<section id="riggeti">
+<h3>Riggeti<a class="headerlink" href="#riggeti" title="Link permanente para este cabeçalho">#</a></h3>
+<p>A Startup Rigetti disponibiliza um processador quântico de 19 qubits e um ambiente de desenvolvimento, chamado Forest, para programação quântica. A empresa também disponibiliza um simulador, chamado Quantum Virtual Machine, de 26 qubits. A Rigetti também desenvolveu a linguagem open source Quil, que baseia-se em um modelo computacional clássico/quântico com memória compartilhada, e trabalha em uma biblioteca python para programação quântica, a pyQuil.</p>
+</section>
+<section id="outras-startups-e-empresas">
+<h3>Outras Startups e Empresas<a class="headerlink" href="#outras-startups-e-empresas" title="Link permanente para este cabeçalho">#</a></h3>
+<p><img alt="early_pioneers_in_qc" src="https://github.com/user-attachments/assets/a1507703-32c5-45c2-b183-34e03801e920" /></p>
+</section>
+<section id="outras-empresas">
+<h3>Outras empresas<a class="headerlink" href="#outras-empresas" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Empresas como Baidu e Alibaba entraram no cenário da Computação Quântica. Em 23 de fevereiro de 2018, a empresa Alibaba lança um serviço de computação quântica na nuvem com 11 qubits. Em 8 de março de 2018, a Baidu, que domina o mercado chinês de mecanismos de busca na internet, anuncia o Instituto de Computação Quântica Baidu.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="algoritmos/simon.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Algoritmo de Simon</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencias.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Referencias</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breve-historico">Breve histórico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao-para-computacao-quantica">Motivação para Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectativas-de-mercado">Expectativas de mercado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empresas-e-desenvolvimentos-atuais">Empresas e Desenvolvimentos Atuais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm">IBM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google">Google</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intel">Intel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#microsoft">Microsoft</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riggeti">Riggeti</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outras-startups-e-empresas">Outras Startups e Empresas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outras-empresas">Outras empresas</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

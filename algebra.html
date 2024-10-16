@@ -1,0 +1,1867 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Álgebra Linear para Computação Quântica &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algebra';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="Postulados da Mecânica Quântica" href="postulados.html" />
+    <link rel="prev" title="Tutorial de Python" href="pytutorial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Álgebra Linear para Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kettutorial.html">Programação Quântica com Ket</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/grover.html">Algoritmo de Grover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/deutsch-jozsa.html">Algoritmo de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/simon.html">Algoritmo de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="panorama.html">Panorama Atual da Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/algebra.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Álgebra Linear para Computação Quântica</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-base-e-dimensao">Espaço Vetorial, Base e Dimensão</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial">Espaço Vetorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-e-dimensao">Base e Dimensão</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-mudanca-de-base">Matriz de Mudança de base</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno-norma-e-produto-exterior">Produto Interno, Norma e Produto Exterior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno">Produto Interno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norma">Norma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ortogonalidade">Ortogonalidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-ortonormal">Base Ortonormal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desigualdade-de-cauchy-schwarz">Desigualdade de Cauchy-Schwarz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-mudanca-de-base-entre-bases-ortonormais">Matriz de Mudança de Base entre Bases Ortonormais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-exterior">Produto Exterior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacoes-lineares">Transformações Lineares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-linear-e-operador-linear">Transformação Linear e Operador Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-linear">Funcional Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projecao-e-relacao-de-completude">Projeção e Relação de Completude</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao-de-uma-transformacao-linear-nos-elementos-da-base">Definição de uma Transformação Linear nos Elementos da Base</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-uma-transformacao-linear">Matriz de uma Transformação Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-da-composicao-de-transformacoes-lineares">Matriz da Composição de Transformações Lineares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mudanca-de-base">Mudança de Base</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-autovetores-e-decomposicao-espectral">Autovalores, Autovetores e Decomposição Espectral</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-e-autovetores">Autovalores e Autovetores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-autovalores">Cálculo de Autovalores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-autovetores">Cálculo de Autovetores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonalizacao-de-operadores">Diagonalização de Operadores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-especiais-de-operadores">Tipos Especiais de Operadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operador-adjunto">Operador Adjunto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-normais">Operadores Normais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-hermitianos-ou-autoadjuntos">Operadores Hermitianos ou Autoadjuntos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-unitarios">Operadores Unitários</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-positivos">Operadores Positivos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-projecao">Operadores de Projeção</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumo">Resumo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial">Produto Tensorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-do-produto-tensorial">Espaço Vetorial do Produto Tensorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano">Comparação do Produto Tensorial com o Produto Cartesiano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Produto Interno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-de-kronecker">Produto de Kronecker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial-de-varios-espacos-vetoriais">Produto Tensorial de Vários Espaços Vetoriais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao">Notação</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="algebra-linear-para-computacao-quantica">
+<h1>Álgebra Linear para Computação Quântica<a class="headerlink" href="#algebra-linear-para-computacao-quantica" title="Link permanente para este cabeçalho">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
+</div>
+<p>Neste capítulo, um resumo de Álgebra Linear voltado para Computação Quântica é apresentado. A teoria é apresentada usando-se a <em>notação de Dirac</em>, ou, <em>notação de braket</em>, uma notação utilizada largamente em Mecânica Quântica e que será necessária para o restante do trabalho. Essa notação é conveniente para se fazer contas e faz com que as diversas operações possíveis se encaixem naturalmente.</p>
+<p>Na Álgebra Linear abstrata, pode-se considerar espaços vetoriais sobre diversos corpos (ou escalares), que são estruturas algébricas com propriedades semelhantes aos números reais e complexos. Os espaços vetoriais podem ter dimensão finita ou infinita.</p>
+<p>Na Computação Quântica o interesse é voltado a espaços vetoriais de <strong>dimensão finita</strong> sobre o corpo dos números complexos. Isso permite a identificação do espaço com as <span class="math notranslate nohighlight">\(n\)</span>-uplas de números complexos, o que simplifica grandemente a teoria. Os resultados resumidos neste capítulo estão situados nesse contexto.</p>
+<p>A principal referência para esse capítulo é <span id="id1">[<a class="reference internal" href="referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span>. Outra referência muito útil é <span id="id2">[<a class="reference internal" href="referencias.html#id3" title="Elon Lages Lima. Álgebra Linear: uma introdução moderna. Associação Instituto Nacional de Matemática Pura e Aplicada, Rio de Janeiro, RJ, September 2021. ISBN 978-85-244-0089-6.">Lim21</a>]</span>, que possui um capítulo voltado a espaços vetoriais complexos. Livros texto clássicos de Álgebra Linear, como <span id="id3">[<a class="reference internal" href="referencias.html#id4" title="Alfredo Steinbruch and Paulo Winterle. Algebra linear. Pearson Makron Books, São Paulo (SP), 2. ed edition, 2009. ISBN 978-0-07-450412-3. OCLC: 817074083.">SW09</a>]</span> também são úteis. Embora tenham ênfase em espaços vetoriais reais, a maioria das definições, resultados e demonstrações se transporta integralmente para os espaços vetoriais complexos.</p>
+<p>Será considerado um pré-requisito a este texto um curso de Álgebra Linear ao nível de graduação abordando-se os seguintes itens: espaços vetoriais, base e dimensão, transformações lineares, autovalores e autovetores. Por ter um caráter de resumo, os resultados apresentados, via de regra, não são acompanhados de suas demonstrações, as quais podem ser encontradas nos livros mencionados no parágrafo anterior.</p>
+<section id="espaco-vetorial-base-e-dimensao">
+<h2>Espaço Vetorial, Base e Dimensão<a class="headerlink" href="#espaco-vetorial-base-e-dimensao" title="Link permanente para este cabeçalho">#</a></h2>
+<section id="espaco-vetorial">
+<h3>Espaço Vetorial<a class="headerlink" href="#espaco-vetorial" title="Link permanente para este cabeçalho">#</a></h3>
+<p>O conjunto das <span class="math notranslate nohighlight">\(n\)</span>-uplas <span class="math notranslate nohighlight">\((z_0, \ldots, z_{n-1})\)</span> de números complexos com a soma e o produto por escalar definidos entrada a entrada é um <em>Espaço Vetorial Complexo</em> e é denotado por <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span>. É conveniente representar esses elementos por vetores coluna. Tem-se então:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}z_0 \\ z_{1} \\ \vdots \\ z_{n-1}\end{bmatrix} + \begin{bmatrix}w_0 \\ w_{1} \\ \vdots \\ w_{n-1}\end{bmatrix} = \begin{bmatrix}z_0 + w_0\\ z_{1} + w_1 \\ \vdots \\ z_{n-1} + w_{n-1}\end{bmatrix}  \ \ \ \text{ e } \ \ \   z \cdot \begin{bmatrix}z_0 \\ z_{1} \\ \vdots \\ z_{n-1}\end{bmatrix} = \begin{bmatrix}z \cdot z_0 \\ z\cdot z_{1} \\ \vdots \\ z \cdot z_{n-1}\end{bmatrix} \ .\end{split}\]</div>
+<p>Em Mecânica Quântica, os vetores de <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> costumam ser usados na <em>notação de Dirac</em>, ou <em>notação de braket</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{\psi} = (z_0 , z_{1} , \ldots , z_{n-1} ) =  \begin{bmatrix}z_0 \\ z_{1} \\ \vdots \\ z_{n-1}\end{bmatrix}   \ \ .\end{split}\]</div>
+<p>Um vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é chamado <em>ket</em> (em contraponto com <span class="math notranslate nohighlight">\(\bra{\psi}\)</span>, que será definido posteriormente, e será chamado  <em>bra</em>).</p>
+<p>Os vetores se comportam de maneira semelhante aos números no que diz respeito à soma e subtração. Em particular, a soma comuta <span class="math notranslate nohighlight">\(\ket{\phi} + \ket{\psi} = \ket{\psi} + \ket{\phi}\)</span>, há um vetor nulo, denotado por <span class="math notranslate nohighlight">\(0\)</span> ou <span class="math notranslate nohighlight">\(\ket{\varnothing} = (0, \ldots , 0)\)</span> de tal forma que <span class="math notranslate nohighlight">\(\ket{\psi} + 0 = \ket{\psi}\)</span> e, ainda, vale <span class="math notranslate nohighlight">\(-\ket{\psi} = (-z_0, \dots , -z_{n-1}) = -1 \cdot \ket{\psi}\)</span>. O produto por escalar também se comporta de maneira semelhante ao produto numérico, e valem as propriedades distributivas <span class="math notranslate nohighlight">\(z(\ket{\phi} + \ket{\psi}) = z \ket{\phi} + z \ket{\psi}\)</span> e <span class="math notranslate nohighlight">\((z+w)\ket{\psi} = z\ket{\psi} + w \ket{\psi}\)</span>, por exemplo.</p>
+<div class="tip admonition">
+<p class="admonition-title">Espaço de estados de 1 qubit</p>
+<p>O conjunto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbb{C}^2 = \left\{ \ket{\psi} = \begin{bmatrix} a \\ b \end{bmatrix} : a,b \in \mathbb{C}\right\}\end{split}\]</div>
+<p>é um espaço vetorial com soma e produto por escalar dados por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} a_1 \\ b_1 \end{bmatrix} + \begin{bmatrix} a_2 \\ b_2 \end{bmatrix} = \begin{bmatrix} a_1 + a_2 \\ b_1 + b_2 \end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}z \cdot \begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} za \\ zb \end{bmatrix} \ .\end{split}\]</div>
+<p>Esse espaço vetorial será largamente utilizado nos capítulos seguintes e descreve o espaço de estados de 1 <em>qubit</em>, o análogo do bit clássico.</p>
+</div>
+</section>
+<section id="base-e-dimensao">
+<h3>Base e Dimensão<a class="headerlink" href="#base-e-dimensao" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Uma base para o espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> é um conjunto de vetores <em>linearmente independentes</em> (LI) e que <em>geram o espaço</em>.  Demonstra-se que todas as bases de um espaço vetorial têm o mesmo número de elementos, e define-se a <em>dimensão</em> do espaço vetorial pelo número de elementos de uma base.</p>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> tem dimensão <span class="math notranslate nohighlight">\(n\)</span>, isto é, todas as suas bases têm <span class="math notranslate nohighlight">\(n\)</span> vetores. Uma base muito útil é a chamada <em>base computacional</em>, ou base canônica`(O adjetivo “canônico”, na Matemática, tem um sentido de “padrão”, como na expressão “configuração padrão”):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{0} = \begin{bmatrix}1 \\ 0 \\ \vdots \\ 0\end{bmatrix} \ \ , \ \ \ket{1} = \begin{bmatrix}0 \\ 1 \\ \vdots \\ 0 \end{bmatrix}  \ \ , \ \ \cdots \ \ , \ \ \ket{n-1}^= \begin{bmatrix}0 \\ 0 \\ \vdots \\ 1\end{bmatrix}  \ \ .\end{split}\]</div>
+<p>Na base computacional, um vetor <span class="math notranslate nohighlight">\(\ket{\psi} = (z_0 , z_{1} , \ldots , z_{n-1} )\)</span> é escrito como</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi} = z_0 \ket{0} + z_1 \ket{1} + \ldots + z_{n-1} \ket{n-1} \ \ .\]</div>
+<p>Numa base qualquer <span class="math notranslate nohighlight">\(\beta = \big\{\ket{b_0}, \ldots, \ket{b_{n-1}} \big\}\)</span>, qualquer vetor <span class="math notranslate nohighlight">\(\psi\)</span> pode ser escrito como combinação linear dos vetores dessa base. Os coeficientes da combinação linear, colocados em um vetor coluna, representam o vetor <span class="math notranslate nohighlight">\(\psi\)</span> escrito na base <span class="math notranslate nohighlight">\(\beta\)</span>, conforme o esquema abaixo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{\psi} = a_0 \ket{b_0} + \ldots + a_{n-1} \ket{b_{n-1}} \ \  \Leftrightarrow \ \ \big[ \ket{\psi} \big]_\beta = \begin{bmatrix} a_0 \\ \vdots \\ a_{n-1} \end{bmatrix}_\beta \ .\end{split}\]</div>
+<p>O subscrito <span class="math notranslate nohighlight">\(\beta\)</span> pode ser omitido se não houver risco de confusão. Normalmente omite-se esse subscrito quando se trata da base computacional.</p>
+<div class="tip admonition" id="base-para-1-qubit">
+<p class="admonition-title">Bases para 1 qubit</p>
+<p>Há especial interesse no espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>. Este espaço modela um <em>qubit</em> — o análogo quântico do bit — a ser discutido em mais detalhes posteriormente. O espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span> tem dimensão <span class="math notranslate nohighlight">\(2\)</span> e admite, entre outras, as seguintes bases:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  \mathcal{I} = \mathcal{Z} &amp;=&amp; \big\{ \ket{0} \  , \  \ket{1} \big\} \\
+  \mathcal{X} &amp;=&amp; \left\{ \ket{+} = \tfrac{1}{\sqrt{2}}( \ket{0} + \ket{1}) \ , \  \ket{-} = \tfrac{1}{\sqrt{2}}( \ket{0} - \ket{1})  \right\} \\
+  \mathcal{Y} &amp;=&amp; \left\{ \ket{+i} = \tfrac{1}{\sqrt{2}}( \ket{0} + i\ket{1}) , \ket{-i} = \tfrac{1}{\sqrt{2}}( \ket{0} -i \ket{1}) \right\} \ \ .
+\end{eqnarray*}\end{split}\]</div>
+<p>Essa notação para as bases será justificada <em>a posteriori</em>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title"><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é base para 1 qubit</p>
+<p>Para mostrar que</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{X} = \left\{ \ket{+} = \tfrac{1}{\sqrt{2}}( \ket{0} + \ket{1}) \ , \  \ket{-} = \tfrac{1}{\sqrt{2}}( \ket{0} - \ket{1})  \right\}\]</div>
+<p>é base do espaço de estados de 1 qubit, deve-se mostrar que os vetores são LI (Linearmente Independentes) e geram o espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> <strong>é LI</strong>: Considere a combinação linear nula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+a_0 \ket{+} + a_1 \ket{-} = 0 \\
+a_0 \frac{1}{\sqrt{2}}( \ket{0} + \ket{1}) + a_1 \frac{1}{\sqrt{2}}( \ket{0} - \ket{1}) = 0 \\
+\frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0 - a_1}{\sqrt{2}} \ket{1} = 0
+\end{eqnarray*}\end{split}\]</div>
+<p>Tem-se que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+  \frac{a_0 + a_1}{\sqrt{2}} = 0 \\
+  \frac{a_0 - a_1}{\sqrt{2}} = 0
+\end{cases}
+\implies
+\begin{cases}
+  a_0 + a_1 = 0 \\
+  a_0 - a_1 = 0
+\end{cases}
+\implies
+\begin{cases}
+  a_0 = 0 \\
+  a_1 = 0 \ .
+\end{cases}\end{split}\]</div>
+<p>Portanto os coeficientes da combinação linear nula devem ser todos nulos, e isso significa que os vetores <span class="math notranslate nohighlight">\(\ket{+}\)</span> e <span class="math notranslate nohighlight">\(\ket{-}\)</span> são LI.</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> <strong>gera o espaço</strong>: Seja <span class="math notranslate nohighlight">\(\ket{\psi} = z_0 \ket{0} + z_1 \ket{1}\)</span> um vetor qualquer de <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>. Tenta-se escrever <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como combinação linear de <span class="math notranslate nohighlight">\(\ket{+}\)</span> e <span class="math notranslate nohighlight">\(\ket{-}\)</span>. Se for possível, esses vetores geram o espaço.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  z_0 \ket{0} + z_1 \ket{1}
+  &amp;=&amp; a_0 \ket{+} + a_1 \ket{-} \\
+  &amp;=&amp; a_0 \frac{1}{\sqrt{2}}( \ket{0} + \ket{1}) + a_1 \frac{1}{\sqrt{2}}( \ket{0} - \ket{1}) \\
+  &amp;=&amp;  \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0 - a_1}{\sqrt{2}} \ket{1}
+\end{eqnarray*}\end{split}\]</div>
+<p>Assim,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+\frac{a_0 + a_1}{\sqrt{2}} = z_0 \\
+\frac{a_0 - a_1}{\sqrt{2}} = z_1
+\end{cases}
+\implies
+\begin{cases}
+a_0 = \frac{z_0 + z_1}{\sqrt{2}} \\
+a_1 = \frac{z_0 - z_1}{\sqrt{2}}
+\end{cases}\end{split}\]</div>
+<p>Dessa forma, <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> gera o espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span> e é base desse espaço.</p>
+<p><strong>Comentário</strong>: Quando se sabe previamente que a dimensão do espaço é <span class="math notranslate nohighlight">\(n\)</span> e se a lista de vetores candidatos a base tem <span class="math notranslate nohighlight">\(n\)</span> elementos, então as condições de ser LI e gerar o espaço são equivalentes. Em consequência, basta verificar uma das condições para mostrar que os vetores formam uma base. Por exemplo, se sabemos que a dimensão de <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span> é <span class="math notranslate nohighlight">\(\dim \mathbb{C}^2 = 2\)</span>, e temos que <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> tem dois elementos, então bastaria verificar uma das duas condições: <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é LI ou <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> gera o espaço.</p>
+</div>
+</section>
+<section id="matriz-de-mudanca-de-base">
+<span id="cap2matriz-de-mudanca-de-base"></span><h3>Matriz de Mudança de base<a class="headerlink" href="#matriz-de-mudanca-de-base" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Por vezes é conveniente expressar um vetor em outra base que não a base computacional. Essa mudança de base pode trazer novo <em>insight</em> em algumas situações, bem como tornar os cálculos mais simples e factíveis.</p>
+<p>A matriz de mudança de base de <span class="math notranslate nohighlight">\(\beta_{\text{old}} = \big\{\ket{u_0}, \ldots, \ket{u_{n-1}} \big\}\)</span> para <span class="math notranslate nohighlight">\(\beta_{\text{new}} = \big\{ \ket{v_0}, \ldots, \ket{v_{n-1}} \big\}\)</span> é dada por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[I]^{\beta_{\text{old}}}_{\beta_{\text{new}} } = \left[ \begin{matrix} | &amp; &amp; | \\ \big[\ket{v_0}\big]_{\beta_{\text{old}}} &amp; \cdots &amp; \big[\ket{v_{n-1}}\big]_{\beta_{\text{old}}} \\  | &amp; &amp; | \end{matrix} \right] \ .\end{split}\]</div>
+<p>Isto é, para montar a matriz de mudança de base, os vetores da base nova devem ser escritos como combinação linear dos vetores da base antiga, obtendo vetores coluna. Esses vetores serão as colunas da matriz de mudança de base. Dessa forma, tem-se</p>
+<div class="math notranslate nohighlight">
+\[[v]_{\beta_{\text{new}}} = [I]^{\beta_{\text{old}}}_{\beta_{\text{new}} } [v]_{\beta_{\text{old}}} \ .\]</div>
+<p>A matriz de mudança de base admite matriz inversa, que corresponde à mudança de base da base nova de volta para a base antiga:</p>
+<div class="math notranslate nohighlight">
+\[[I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }\phantom{\big{|}}^{-1} = [I]^{\beta_{\text{new}}}_{\beta_{\text{old}} } \ .\]</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O símbolo <span class="math notranslate nohighlight">\(I\)</span> na matriz de mudança de base <span class="math notranslate nohighlight">\([I]^{\beta_{\text{old}}}_{\beta_{\text{new}}}\)</span> refere-se ao operador identidade.
+A matriz de mudança de base corresponde à matriz do operador identidade nas bases <span class="math notranslate nohighlight">\(\beta_{\text{old}}\)</span> e <span class="math notranslate nohighlight">\(\beta_{\text{new}}\)</span>.
+As matrizes referente a operadores lineares serão vistas na seção <a class="reference internal" href="#cap2sec-matriz-tl"><span class="std std-ref">Matriz de uma Transformação Linear</span></a>.</p>
+</div>
+<div class="tip admonition" id="cap2ex-matrix-mudanca-de-base">
+<p class="admonition-title">Exemplo</p>
+<p>Considere as bases <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> apresentadas no exemplo [Base para 1 qubit]. A matriz de mudança de base da base computacional <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> para a base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é obtida escrevendo os vetores da base nova (<span class="math notranslate nohighlight">\(\mathcal{X}\)</span>) como combinação linear dos vetores na base antiga (<span class="math notranslate nohighlight">\(\mathcal{I}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+\ket{+}
+&amp;=&amp; \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}}  \ket{1}  = \begin{bmatrix} \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}} \end{bmatrix}_{\mathcal{I}}\\
+\ket{-}
+&amp;=&amp; \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1} = \begin{bmatrix} \phantom{-} \frac{1}{\sqrt{2}}\\  - \frac{1}{\sqrt{2}} \end{bmatrix}_{\mathcal{I}}
+\end{eqnarray*}\end{split}\]</div>
+<p>Colocam-se as os vetores coluna na ordem em que aparecem na lista:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[I]^\mathcal{I}_\mathcal{X} = \begin{bmatrix}  \begin{bmatrix} \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}} \end{bmatrix}_{\mathcal{I}} &amp; \begin{bmatrix} \phantom{-} \frac{1}{\sqrt{2}}\\  - \frac{1}{\sqrt{2}} \end{bmatrix}_{\mathcal{I}} \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1  \end{bmatrix} \ .\end{split}\]</div>
+<p>Essa matriz é conhecida em Computação Quântica como <em>matriz de Hadamard</em>, e costuma ser denotada por <span class="math notranslate nohighlight">\(H\)</span>. Portanto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H = [I]^\mathcal{I}_\mathcal{X} = \frac{1}{\sqrt{2}} \begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1  \end{bmatrix} \ .\end{split}\]</div>
+<p>Também vale que a matriz de mudança de base de <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> para <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> é <span class="math notranslate nohighlight">\(H\)</span>, visto que</p>
+<div class="math notranslate nohighlight">
+\[HH = I  \implies H^{-1} = H \implies [I]_\mathcal{I}^\mathcal{X} = \big([I]^\mathcal{I}_\mathcal{X} \big)^{-1} = H^{-1} = H \ .\]</div>
+<p>Então:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+  H\ket{0} = \ket{+} \\
+  H\ket{1} = \ket{-}
+  \end{array}
+  \quad \quad
+  \begin{array}{l}
+  H\ket{+} = \ket{0} \\
+  H\ket{-} = \ket{1}
+\end{array} \ .\end{split}\]</div>
+</div>
+</section>
+</section>
+<section id="produto-interno-norma-e-produto-exterior">
+<h2>Produto Interno, Norma e Produto Exterior<a class="headerlink" href="#produto-interno-norma-e-produto-exterior" title="Link permanente para este cabeçalho">#</a></h2>
+<section id="produto-interno">
+<h3>Produto Interno<a class="headerlink" href="#produto-interno" title="Link permanente para este cabeçalho">#</a></h3>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> admite o seguinte <em>produto interno</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\big( \ket{\phi} , \ket{\psi} \big) = \braket{\phi | \psi} = \begin{bmatrix}w_0^{\ *} &amp; w_1^{\ *} &amp; \cdots &amp; w_{n-1}^{\ *}\end{bmatrix} \cdot \begin{bmatrix}z_0 \\ z_1 \\ \vdots \\ z_{n-1}\end{bmatrix} = \sum_{k=0}^{n-1} w_k^{\ *} z_k \ \ \ ,\end{split}\]</div>
+<p>para <span class="math notranslate nohighlight">\(\ket{\phi} = \begin{bmatrix}w_0 \\ \vdots \\ w_{n-1}\end{bmatrix}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi} = \begin{bmatrix}z_0 \\ \vdots \\ z_{n-1}\end{bmatrix}\)</span>. Pode-se considerar o símbolo <span class="math notranslate nohighlight">\(\bra{\phi}\)</span> de maneira independente, definindo-o como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bra{\phi} = \ket{\phi}^\dagger = \begin{bmatrix}w_0 \\ \vdots \\ w_{n-1}\end{bmatrix}^\dagger =  \begin{bmatrix}w_0^{\ *} &amp; w_1^{\ *} &amp; \cdots &amp; w_{n-1}^{\ *}\end{bmatrix} \ \ ,\end{split}\]</div>
+<p>em que o símbolo <span class="math notranslate nohighlight">\(\dagger\)</span> denota transposição e conjugação do vetor. Essa notação também será justificada posteriormente.</p>
+<p>A operação definida acima satisfaz as propriedades que definem um produto interno de maneira geral:</p>
+<ul>
+<li><p><strong>(PI1)</strong> Linearidade no segundo argumento:</p>
+<div class="math notranslate nohighlight">
+\[\big( \ket{\phi} , z_1\ket{\psi_1} + z_2 \ket{\psi_2} \big) = z_1 \big( \ket{\phi} , \ket{\psi_1} \big) + z_2 \big( \ket{\phi} , \ket{\psi_2} \big)\]</div>
+</li>
+<li><p><strong>(PI2)</strong> Antilinearidade no primeiro argumento:</p>
+<div class="math notranslate nohighlight">
+\[\big( z_1 \ket{\phi_1} + z_2 \ket{\phi_2} , \ket{\psi} \big) = z_1^{\ *} \big( \ket{\phi_1} , \ket{\psi} \big) + z_2^{\ *} \big( \ket{\phi_2} , \ket{\psi} \big)\]</div>
+</li>
+<li><p><strong>(PI3)</strong> Simetria hermitiana:</p>
+<div class="math notranslate nohighlight">
+\[\big( \ket{\phi} , \ket{\psi} \big)^* = \big( \ket{\psi} , \ket{\phi} \big)\]</div>
+</li>
+<li><p><strong>(PI4)</strong> Positividade:</p>
+<div class="math notranslate nohighlight">
+\[\big( \ket{\phi} , \ket{\phi} \big) \geq 0 \ \ \  \text{e} \ \ \ \big( \ket{\phi} , \ket{\phi} \big) = 0  \Leftrightarrow \ket{\psi} = 0\]</div>
+</li>
+</ul>
+<p>A propriedade (PI2) decorre de (PI1) e de (PI3), mas foi incluída na lista por completeza. Por causa das propriedades (PI1) e (PI2), o produto interno é dito ser <em>sesquilinear</em> (O prefixo <em>sesqui</em> significa “um e meio”).</p>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> é, pois, dito ser um emph{espaço vetorial com produto interno}, ou ainda, um <em>espaço de Hilbert</em>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Um espaço de Hilbert é definido como sendo um espaço vetorial com produto interno e com uma propriedade adicional chamada <em>completude</em>. Essa propriedade é automática para espaços de dimensão finita.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O produto interno dos vetores</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{\phi} = \frac{i}{2} \ket{0} + \frac{\sqrt{3}}{2} \ket{1} = \begin{bmatrix} \frac{i}{2}\\ \frac{\sqrt{3}}{2}\end{bmatrix}  \ \text{ e } \  \ket{\psi} = \frac{1}{\sqrt{2}} \ket{0} + \frac{-i}{\sqrt{2}} \ket{1} = \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix}\end{split}\]</div>
+<p>é dado por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  \braket{\phi | \psi}
+  &amp;=&amp; \left( \frac{-i}{2} \bra{0} + \frac{\sqrt{3}}{2} \bra{1} \right) \left( \frac{1}{\sqrt{2}} \ket{0} + \frac{-i}{\sqrt{2}} \ket{1} \right)  \\
+  &amp;=&amp;
+  \frac{-i}{2\sqrt{2}} \braket{0 | 0} + \frac{-i^2}{2\sqrt{2}} \braket{0 | 1} + \frac{\sqrt{3}}{2\sqrt{2}} \braket{1 | 0} + \frac{-i\sqrt{3}}{2\sqrt{2}} \braket{0 | 0} \\
+  &amp;=&amp;
+  \frac{-i}{2\sqrt{2}} + 0 + 0 + \frac{-i\sqrt{3}}{2\sqrt{2}} = -i\frac{1+\sqrt{3}}{2\sqrt{2}} \ .
+\end{eqnarray*}\end{split}\]</div>
+<p>Esse produto interno também pode ser calculado de maneira matricial:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  \braket{\phi | \psi}
+  &amp;=&amp;  \begin{bmatrix} \frac{i}{2}\\ \frac{\sqrt{3}}{2}\end{bmatrix}^\dagger \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix} \\
+  &amp;=&amp;   \begin{bmatrix} \frac{i}{2}^{*}  &amp; \frac{\sqrt{3}}{2}^{*}\end{bmatrix} \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix}   \\
+  &amp;=&amp; \begin{bmatrix} \frac{-i}{2}  &amp; \frac{\sqrt{3}}{2}\end{bmatrix} \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix}   \\
+  &amp;=&amp;  \frac{-i}{2\sqrt{2}} + \frac{-i\sqrt{3}}{2\sqrt{2}}
+\end{eqnarray*}\end{split}\]</div>
+</div>
+</section>
+<section id="norma">
+<h3>Norma<a class="headerlink" href="#norma" title="Link permanente para este cabeçalho">#</a></h3>
+<p>A <em>norma</em>, ou <em>tamanho</em>, de um vetor é definida por</p>
+<div class="math notranslate nohighlight">
+\[||{\ket\psi}|| = \sqrt{\braket{\psi}} \geq 0,\]</div>
+<p>operação bem definida pois <span class="math notranslate nohighlight">\(\braket{\psi}\)</span> é real e não-negativo. Por consequência da propriedade (P4), tem-se <span class="math notranslate nohighlight">\(||{\ket{\psi}}|| = 0 \Leftrightarrow \ket{\psi} = 0\)</span>. Um vetor <em>normalizado</em> é um vetor de tamanho unitário, e a operação de <em>normalização</em> consiste em multiplicar o vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> por <span class="math notranslate nohighlight">\(\frac{1}{||{\ket{\psi}}||}\)</span> para que o vetor resultante <span class="math notranslate nohighlight">\(\frac{\ket{\psi}}{||{\ket{\psi}}||}\)</span> tenha norma 1.</p>
+<div class="tip admonition" id="cap2ex-base-comp-norma-1">
+<p class="admonition-title">Exemplo</p>
+<p>Os vetores <span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span>, <span class="math notranslate nohighlight">\(\ket{+}\)</span> e <span class="math notranslate nohighlight">\(\ket{-}\)</span> têm norma 1.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A norma do vetor <span class="math notranslate nohighlight">\(\ket{\psi} = \frac{i}{2} \ket{0} + \frac{\sqrt{3}}{2} \ket{1}\)</span> é</p>
+<div class="math notranslate nohighlight">
+\[||{\ket{\psi}}|| =  \sqrt{|{\frac{i}|{2}}^2 + |{\frac{\sqrt{3}|}{2}}^2}  = \sqrt{\frac{1}{4} + \frac{3}{4}} = 1 \ .\]</div>
+</div>
+</section>
+<section id="ortogonalidade">
+<h3>Ortogonalidade<a class="headerlink" href="#ortogonalidade" title="Link permanente para este cabeçalho">#</a></h3>
+<p>De forma análoga com o que se passa com vetores no <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>, dois vetores <span class="math notranslate nohighlight">\(\ket{\phi}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> são ditos <em>ortogonais</em> se o produto interno entre eles é nulo. Em símbolos, <span class="math notranslate nohighlight">\(\ket{\phi} \perp \ket{\psi} \ \Leftrightarrow \ \braket{\phi | \psi} = 0\)</span>.</p>
+<div class="tip admonition" id="cap2ex-ortogonalidade-base-comp">
+<p class="admonition-title">Exemplo</p>
+<p>Os vetores <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span> são ortogonais:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\braket{0 | 1} = \begin{bmatrix}1 &amp; 0 \end{bmatrix} \cdot \begin{bmatrix}0 \\ 1\end{bmatrix} = 0 \ .\end{split}\]</div>
+</div>
+<div class="tip admonition" id="cap2ex-ortogonalidade-base-x">
+<p class="admonition-title">Exemplo</p>
+<p>Os vetores <span class="math notranslate nohighlight">\(\ket{+} =  \frac{1}{\sqrt{2}} \ket{0} +  \frac{1}{\sqrt{2}} \ket{1}\)</span> e <span class="math notranslate nohighlight">\(\ket{-} =  \frac{1}{\sqrt{2}} \ket{0} -  \frac{1}{\sqrt{2}} \ket{1}\)</span> são ortogonais:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+\braket{+ | -}
+&amp;=&amp; \left( \frac{1}{\sqrt{2}} \bra{0} +  \frac{1}{\sqrt{2}} \bra{1} \right) \left( \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1} \right) \\
+&amp;=&amp; \frac{1}{2} \braket{0 | 0} - \frac{1}{2} \braket{0 | 1} + \frac{1}{2} \braket{1 | 0}  - \frac{1}{2} \braket{1 | 1} \\
+&amp;=&amp; \frac{1}{2} - 0 + 0 - \frac{1}{2} = 0 \ .
+\end{eqnarray*}\end{split}\]</div>
+</div>
+</section>
+<section id="base-ortonormal">
+<span id="cap2base-ortonormal"></span><h3>Base Ortonormal<a class="headerlink" href="#base-ortonormal" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Uma base em que todos os vetores são ortogonais dois a dois e têm tamanho 1 é dita ser <em>base ortonormal</em>. Se <span class="math notranslate nohighlight">\(\beta = \{\ket{b_0}, \ldots, \ket{b_{n-1}} \}\)</span> é uma tal base, vale a chamada <em>relação de ortogonalidade</em></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\braket{b_k | b_l} = \delta_{k,l} = \left\lbrace \begin{matrix} 1 \ , \text{ se } k=l \\ 0 \ , \text{ se } k\neq l \end{matrix}\right. \ \ ,\end{split}\]</div>
+<p>em que <span class="math notranslate nohighlight">\(\delta_{k,l}\)</span> é conhecido como <em>delta de Kronecker</em>, e vale 1 se e somente se os seus dois índices são iguais; se forem diferentes, vale 0.</p>
+<p>Um vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> pode ser escrito como combinação linear dos vetores da base <span class="math notranslate nohighlight">\(\beta\)</span> por <span class="math notranslate nohighlight">\(\ket{\psi} = \sum_k a_k \ket{b_k}\)</span>. Os coeficientes <span class="math notranslate nohighlight">\(a_k\)</span> podem ser encontrados de maneira simples quando a base é ortonormal. Aplicando-se o produto interno em ambos os lados, tem-se</p>
+<div class="math notranslate nohighlight">
+\[\braket{b_l | \psi} = \bra{b_l} \left( \sum_k a_k \ket{b_k} \right) = \sum_k a_k \braket{b_l | b_k} = \sum_k a_k \delta_{l,k} = a_l \ .\]</div>
+<p>Percebe-se que isso é análogo à decomposição de um vetor <span class="math notranslate nohighlight">\(\vec{v} \in \mathbb{R}^3\)</span> nas suas componentes <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(z\)</span> na base canônica. Nesse caso, as componentes do vetor são dadas por <span class="math notranslate nohighlight">\(v_x = \hat{x} \cdot \vec{v}\)</span>, <span class="math notranslate nohighlight">\(v_y = \hat{y} \cdot \vec{v}\)</span> e <span class="math notranslate nohighlight">\(v_z = \hat{z} \cdot \vec{v}\)</span>, em que <span class="math notranslate nohighlight">\(\cdot\)</span> denota o produto interno no <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.</p>
+<p>Portanto, os coeficientes do vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> na base ortonormal são obtidos realizando-se projeções de  <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> na direção dos vetores unitários <span class="math notranslate nohighlight">\(\ket{b_l}\)</span> da base ortonormal. Assim:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{\psi} = \sum_k \braket{b_k | \psi} \ket{b_k} \ \  \Leftrightarrow \ \ \big[ \ket{\psi} \big]_\beta = \begin{bmatrix} \braket{b_0 | \psi}\\ \vdots \\ \braket{b_{n-1}}{\psi}\end{bmatrix}_\beta \ .\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A base <span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span> é ortonormal, em consequência dos exemplos <a class="reference internal" href="#cap2ex-base-comp-norma-1"><span class="std std-ref">Normal 1</span></a> e <a class="reference internal" href="#cap2ex-ortogonalidade-base-comp"><span class="std std-ref">Ortogonalidade da Base Computacional</span></a>. As projeções de um vetor <span class="math notranslate nohighlight">\(\ket{\psi} = a_0 \ket{0} + a_1 \ket{1}\)</span> na base computacional são dadas por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+a_0 &amp;=&amp; \braket{0 | \psi} \\
+a_1 &amp;=&amp; \braket{1 | \psi}
+\end{eqnarray*}\end{split}\]</div>
+<p>e o vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> pode ser escrito como</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi} = \braket{0 | \psi} \ket{0} + \braket{1 | \psi} \ket{1} \ .\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A base <span class="math notranslate nohighlight">\(\ket{+}\)</span>, <span class="math notranslate nohighlight">\(\ket{-}\)</span> é ortonormal em consequência dos exemplos <a class="reference internal" href="#cap2ex-base-comp-norma-1"><span class="std std-ref">Norma 1</span></a> e <a class="reference internal" href="#cap2ex-ortogonalidade-base-x"><span class="std std-ref">Ortogonalidade da Base X</span></a>. Os coeficientes do vetor <span class="math notranslate nohighlight">\(\ket{\psi} = \frac{1}{2} \left( \ket{0} + i \sqrt{3} \ket{1} \right)\)</span> na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> são dados por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  a_0
+  &amp;=&amp; \braket{+ | \psi} \\
+  &amp;=&amp; \frac{1}{\sqrt{2}} \ \frac{1}{2} \left( \bra{0} + \bra{1} \right) \left(  \ket{0} + i \sqrt{3} \ket{1} \right) \\
+  &amp;=&amp; \frac{1}{2\sqrt{2}} (1 + i\sqrt{3} )
+\end{eqnarray*}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  a_1
+  &amp;=&amp; \braket{- | \psi} \\
+  &amp;=&amp; \frac{1}{\sqrt{2}} \ \frac{1}{2} \left( \bra{0} - \bra{1} \right) \left(  \ket{0} + i \sqrt{3} \ket{1} \right) \\
+  &amp;=&amp; \frac{1}{2\sqrt{2}} (1 - i\sqrt{3} )
+\end{eqnarray*}\end{split}\]</div>
+<p>Portanto,</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi} = \braket{+ | \psi} \ket{+} + \braket{- | \psi} \ket{-} = \frac{1 + i\sqrt{3}}{2\sqrt{2}} \ket{+} + \frac{1 - i\sqrt{3}}{2\sqrt{2}} \ket{-} \ .\]</div>
+</div>
+</section>
+<section id="desigualdade-de-cauchy-schwarz">
+<h3>Desigualdade de Cauchy-Schwarz<a class="headerlink" href="#desigualdade-de-cauchy-schwarz" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Há uma desigualdade envolvendo normas de vetores que é válida de maneira geral, para quaisquer espaços vetoriais equipados com produto interno e norma. É conhecida por <em>desigualdade de Cauchy-Schwarz</em>.</p>
+<div class="seealso admonition">
+<p class="admonition-title">Desigualdade de Cauchy-Schwarz</p>
+<p>Dados <span class="math notranslate nohighlight">\(\ket{u}, \ket{v} \in V\)</span>, com <span class="math notranslate nohighlight">\(V\)</span> um espaço vetorial qualquer munido de produto interno e norma, vale que</p>
+<div class="math notranslate nohighlight">
+\[|{\braket{u | v}}| \leq ||{\ket{u}}|| ||{\ket{v}}|| \ .\]</div>
+<p>A igualdade ocorre se e somente se os vetores <span class="math notranslate nohighlight">\(\ket{u}\)</span> e <span class="math notranslate nohighlight">\(\ket{v}\)</span> forem múltiplos um do outro.</p>
+<p><strong>Demonstração.</strong> Considere o vetor <span class="math notranslate nohighlight">\(a\ket{u} - b\ket{v}\)</span>. O produto interno desse vetor consigo mesmo deve ser real e não-negativo, por propriedade do produto interno, portanto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+ 0
+ &amp;\leq \big( a^{*}\bra{u} - b^{*}\bra{v} \big) \big(a \ket{u} - b \ket{v} \big) \\
+ &amp;= |{a}|^2\braket{u | u} - a^{*}b\braket{u | v} - a b^{*} \braket{v | u} + |{b}|^2\braket{v | v} \ . \\
+\end{split}\end{split}\]</div>
+<p>Escolhendo <span class="math notranslate nohighlight">\(a = \braket{v | v}\)</span> e <span class="math notranslate nohighlight">\(b = \braket{v | u}\)</span>, tem-se</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+  0
+  &amp;\leq  |{a}|^2\braket{u | u} - a^{*}b\braket{u | v} - a b^{*} \braket{v | u}  + |{b}|^2\braket{v | v} \\
+  &amp;=   |{\braket{v | v}}|^2\braket{u | u} - \braket{v | v} \braket{v | u} \braket{u | v} - \braket{v | v} \braket{u | v} \braket{v | u}  + |{\braket{v | u}}|^2\braket{v | v} \\
+  &amp;=   \braket{v | v}^2\braket{u | u} - 2 \braket{v | v} \braket{u | v} \braket{v | u}  + |{\braket{u | v}}|^2\braket{v | v} \\
+  &amp;=   \braket{v | v}^2\braket{u | u} - 2 \braket{v | v} |{ \braket{u | v}}|^2   + |{\braket{u | v}}|^2 \braket{v | v}
+\end{split}\end{split}\]</div>
+<p>Logo, obtém-se</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+    &amp;0
+    \leq
+    \braket{u | u} \braket{v | v} -  |{ \braket{u | v}}|^2 \\
+  &amp;\implies  |{ \braket{u | v}}| \leq \sqrt{\braket{u | u} \braket{v | v}} \\
+  &amp; \implies |{ \braket{u | v}}| \leq ||{\ket{u}}|| ||{\ket{v}}|| \ ,
+\end{split}\end{split}\]</div>
+<p>e fica provada a desigualdade.</p>
+<p>Ocorre igualdade se e somente se ocorrer igualdade em <span class="math notranslate nohighlight">\(0 \leq \big( a^{*}\bra{u} - b^{*}\bra{v} \big) \big(a \ket{u} - b \ket{v} \big)\)</span>, isto é, se e somente se o vetor <span class="math notranslate nohighlight">\(a \ket{u} - b \ket{v}\)</span> for nulofootnote{Isso é devido à propriedade (PI4) do produto interno.}. Portanto deve-se ter um dos vetores <span class="math notranslate nohighlight">\(\ket{u}\)</span>, <span class="math notranslate nohighlight">\(\ket{v}\)</span> múltiplo do outro.</p>
+</div>
+<p>No espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> essa desigualdade permite definir o conceito de ângulo entre dois vetores por meio da relação <span class="math notranslate nohighlight">\(\cos \theta = \frac{\overrightarrow{u} \cdot \overrightarrow{v}}{||{\overrightarrow{u}||} ||{\overrightarrow{v}}}||\)</span>. No caso de interesse para o presente trabalho, o do espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span>, essa interpretação não é possível pois o produto interno pode assumir um valor complexo.</p>
+</section>
+<section id="matriz-de-mudanca-de-base-entre-bases-ortonormais">
+<h3>Matriz de Mudança de Base entre Bases Ortonormais<a class="headerlink" href="#matriz-de-mudanca-de-base-entre-bases-ortonormais" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Da mesma forma que em <a class="reference internal" href="#cap2matriz-de-mudanca-de-base"><span class="std std-ref">Matriz de Mudança de Base</span></a>, é possível escrever uma matriz que faz a mudança de base entre duas bases ortonormais <span class="math notranslate nohighlight">\(\beta_{\text{old}} = \big\{\ket{u_0}, \ldots, \ket{u_{n-1}} \big\}\)</span> e <span class="math notranslate nohighlight">\(\beta_{\text{new}} = \big\{ \ket{v_0}, \ldots, \ket{v_{n-1}} \big\}\)</span>. As colunas da matriz de mudança de base são os vetores da base nova escritos como combinação linear dos vetores da base antiga. Como as bases são ortonormais, esses coeficientes podem ser obtidos pela projeção na direção dos vetores da base, como descrito na seção <a class="reference internal" href="#cap2base-ortonormal"><span class="std std-ref">Base Ortonormal</span></a>.</p>
+<p>A matriz de mudança de base, nesse caso, é dada por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+[I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }
+&amp;=&amp;
+      \begin{bmatrix} \Big{|} &amp; \Big{|} &amp; &amp; \Big{|}
+      \\ \big[\ket{v_0}\big]_{\beta_{\text{old}}} &amp;  \big[\ket{v_1}\big]_{\beta_{\text{old}}} &amp; \cdots &amp; \big[\ket{v_{n-1}}\big]_{\beta_{\text{old}}} \\
+        \Big{|} &amp; \Big{|} &amp; &amp; \Big{|} \end{bmatrix} \\ \\
+&amp;=&amp;
+\begin{bmatrix} \braket{u_0 | v_0} &amp; \braket{u_0 | v_1}&amp; \ \cdots \  &amp; \braket{u_0 | v_{n-1}} \\
+      \braket{u_1 | v_0} &amp; \braket{u_1 | v_1}&amp; \cdots &amp; \braket{u_1 | v_{n-1}} \\
+      \vdots &amp; \vdots &amp; \ddots  &amp; \vdots \\
+      \braket{u_{n-1}}{v_0} &amp; \braket{u_{n-1}}{v_1}&amp; \cdots &amp; \braket{u_{n-1}}{v_{n-1}}   \end{bmatrix}
+\ .
+\end{eqnarray*}\end{split}\]</div>
+<p>A matriz de mudança de base satisfaz <span class="math notranslate nohighlight">\([I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }\phantom{\big{|}}^{-1} = [I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }\phantom{\big{|}}^{\dagger} = [I]^{\beta_{\text{new}}}_{\beta_{\text{old}} }\)</span>.</p>
+<p>Isso significa que a matriz de mudança de base é <em>unitária</em>, um assunto que será visto na seção <a class="reference internal" href="#cap2operadores-unitarios"><span class="std std-ref">Operadores Unitários</span></a>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Sabendo que as bases <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> são ortonormais, pode-se encontrar a matriz de mudança de base fazendo as seguintes contas.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+\braket{0 | +} &amp;=&amp; \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\
+\braket{1 | +} &amp;=&amp; \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\ \\
+\braket{0 | -} &amp;=&amp; \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\
+\braket{1 | -} &amp;=&amp; \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{0} \right) = - \frac{1}{\sqrt{2}} \\
+\end{eqnarray*}\end{split}\]</div>
+<p>Portanto, a matriz de mudança de base de <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> para <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é dada por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[I]^\mathcal{I}_\mathcal{X} = \begin{bmatrix} \braket{0 | +} &amp; \braket{0 | -} \\ \braket{1 | +} &amp; \braket{1 | -} \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}  = H \ .\end{split}\]</div>
+<p>Esse é o mesmo resultado obtido no exemplo <a class="reference internal" href="#cap2ex-matrix-mudanca-de-base"><span class="std std-ref">Matrix Mudança de Base</span></a>.</p>
+</div>
+</section>
+<section id="produto-exterior">
+<h3>Produto Exterior<a class="headerlink" href="#produto-exterior" title="Link permanente para este cabeçalho">#</a></h3>
+<p>É possível dar um significado ao símbolo <span class="math notranslate nohighlight">\(\bra{\phi}\)</span> como sendo um vetor linha. Isso permite, pois, considerar-se o produto matricial <span class="math notranslate nohighlight">\(\ket{\psi} \cdot \bra{\phi} = \ket{\psi}\bra{\phi}\)</span> de um vetor linha <span class="math notranslate nohighlight">\(n\times 1\)</span> por um vetor coluna <span class="math notranslate nohighlight">\(1 \times n\)</span>, resultando em uma matriz <span class="math notranslate nohighlight">\(n \times n\)</span>. Essa operação é chamada de <em>produto exterior</em>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>No espaço vetorial de 1 qubit, alguns exemplos de produto exterior são:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  \ket{0}\bra{0} &amp;=&amp; \begin{bmatrix} 1 \\ 0 \end{bmatrix} \cdot \begin{bmatrix} 1 &amp; 0 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{bmatrix}  \\
+  \ket{0}\bra{1} &amp;=&amp; \begin{bmatrix} 1 \\ 0 \end{bmatrix} \cdot \begin{bmatrix} 0 &amp; 1 \end{bmatrix} = \begin{bmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{bmatrix}  \\
+  \ket{1}\bra{0} &amp;=&amp; \begin{bmatrix} 0 \\ 1 \end{bmatrix} \cdot \begin{bmatrix} 1 &amp; 0 \end{bmatrix} = \begin{bmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{bmatrix}  \\
+  \ket{1}\bra{1} &amp;=&amp; \begin{bmatrix} 0 \\ 1 \end{bmatrix} \cdot \begin{bmatrix} 0 &amp; 1 \end{bmatrix} = \begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
+\end{eqnarray*}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  \ket{+}\bra{0} &amp;=&amp; \begin{bmatrix} \tfrac{1}{\sqrt{2}} \\ \tfrac{1}{\sqrt{2}} \end{bmatrix} \cdot \begin{bmatrix} 1 &amp; 0 \end{bmatrix} = \begin{bmatrix} \tfrac{1}{\sqrt{2}} &amp; 0 \\ \tfrac{1}{\sqrt{2}} &amp; 0 \end{bmatrix}  \\
+  \ket{+}\bra{-} &amp;=&amp; \begin{bmatrix} \tfrac{1}{\sqrt{2}} \\ \tfrac{1}{\sqrt{2}} \end{bmatrix} \cdot \begin{bmatrix} \tfrac{1}{\sqrt{2}} &amp; -\tfrac{1}{\sqrt{2}} \end{bmatrix} = \begin{bmatrix} \tfrac{1}{2} &amp; -\tfrac{1}{2} \\ \tfrac{1}{2}  &amp; -\tfrac{1}{2}  \end{bmatrix}
+\end{eqnarray*}\end{split}\]</div>
+</div>
+</section>
+</section>
+<section id="transformacoes-lineares">
+<h2>Transformações Lineares<a class="headerlink" href="#transformacoes-lineares" title="Link permanente para este cabeçalho">#</a></h2>
+<section id="transformacao-linear-e-operador-linear">
+<h3>Transformação Linear e Operador Linear<a class="headerlink" href="#transformacao-linear-e-operador-linear" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Uma <em>transformação linear</em> é uma aplicação <span class="math notranslate nohighlight">\(T \colon \mathbb{C}^n \to \mathbb{C}^m\)</span> que respeita a soma e a multiplicação por escalar, ou seja, tal que valem:</p>
+<ul>
+<li><p><strong>(TL1)</strong> Preservação da soma:</p>
+<div class="math notranslate nohighlight">
+\[T(\ket{\phi} + \ket{\psi}) = T\ket{\phi} + T\ket{\psi}\]</div>
+</li>
+<li><p><strong>(TL2)</strong> Preservação do produto por escalar:</p>
+<div class="math notranslate nohighlight">
+\[T( z\ket{\psi} ) = z \cdot T\ket{\psi} \ .\]</div>
+</li>
+</ul>
+<p>Um <em>operador linear</em> é uma transformação linear <span class="math notranslate nohighlight">\(A \colon \mathbb{C}^n \to \mathbb{C}^n\)</span> (<span class="math notranslate nohighlight">\(m=n\)</span>).</p>
+<div class="tip admonition" id="cap2ex-verificar-transformacao-linear">
+<p class="admonition-title">Exemplo</p>
+<p>A função <span class="math notranslate nohighlight">\(H \colon \mathbb{C}^2 \to \mathbb{C}^2\)</span> dada por</p>
+<div class="math notranslate nohighlight">
+\[H \left( a_0 \ket{0} + a_1 \ket{1} \right) = \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0-a_1}{\sqrt{2}}\]</div>
+<p>é uma transformação linear. De fato, as propriedades de transformação linear se verificam para <span class="math notranslate nohighlight">\(H\)</span>.</p>
+<ul>
+<li><p><strong>Preservação da soma:</strong> Sejam <span class="math notranslate nohighlight">\(\ket{\phi} = a_0 \ket{0} + a_1 \ket{1}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi} = b_0 \ket{0} + b_1 \ket{1}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  H(\ket{\phi} + \ket{\psi})
+  &amp;=&amp; H \left( a_0 \ket{0} + a_1 \ket{1} + b_0 \ket{0} + b_1 \ket{1} \right)  \\
+  &amp;=&amp; H\left( (a_0 + b_0) \ket{0} + (a_1 + b_1) \ket{1} \right) \\
+  &amp;=&amp; \frac{(a_0 + b_0) + (a_1 + b_1)}{\sqrt{2}} \ket{0} + \frac{(a_0 + b_0) - (a_1 + b_1)}{\sqrt{2}}   \\
+  &amp;=&amp; \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0-a_1}{\sqrt{2}} + \frac{b_0 + b_1}{\sqrt{2}} \ket{0} + \frac{b_0-b_1}{\sqrt{2}}  \\
+  &amp;=&amp; H \ket{\phi} + H \ket{\psi}
+\end{eqnarray*}\end{split}\]</div>
+</li>
+<li><p><strong>Preservação do produto por escalar:</strong> Sejam <span class="math notranslate nohighlight">\(z \in \mathbb{C}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi} = a_0 \ket{0} + a_1 \ket{1}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  H(z \ket{\psi})
+  &amp;=&amp; H \big( z(a_0 \ket{0} + a_1 \ket{1}) \big) \\
+  &amp;=&amp;  H \left( za_0 \ket{0} + za_1 \ket{1}) \right) \\
+  &amp;=&amp; \frac{za_0 + za_1}{\sqrt{2}} \ket{0} + \frac{za_0-za_1}{\sqrt{2}} \\
+  &amp;=&amp; z \left( \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0-a_1}{\sqrt{2}} \right) \\
+&amp;=&amp; z\cdot  H \ket{\psi}
+\end{eqnarray*}\end{split}\]</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="funcional-linear">
+<h3>Funcional Linear<a class="headerlink" href="#funcional-linear" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Um <em>funcional linear</em> é uma transformação linear <span class="math notranslate nohighlight">\(f \colon \mathbb{C}^n \to \mathbb{C}\)</span> (<span class="math notranslate nohighlight">\(m=1\)</span>). O bra <span class="math notranslate nohighlight">\(\bra{\phi}\)</span> pode ser pensado como um funcional linear que pode atuar em um vetor coluna <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> para resultar no número complexo <span class="math notranslate nohighlight">\(\braket{\phi | \psi}\)</span>. Pode-se verificar que todo funcional linear é da forma <span class="math notranslate nohighlight">\(\bra{\phi} = \braket{\phi | \cdot}\)</span> para algum <span class="math notranslate nohighlight">\(\ket{\phi}\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O bra <span class="math notranslate nohighlight">\(\bra{0}\)</span> é um funcional linear que leva <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> no coeficiente <span class="math notranslate nohighlight">\(\braket{0 | \psi}\)</span> da projeção na direção <span class="math notranslate nohighlight">\(\ket{0}\)</span>. Igualmente, o bra <span class="math notranslate nohighlight">\(\bra{1}\)</span> é um funcional linear que leva <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> no coeficiente <span class="math notranslate nohighlight">\(\braket{1 | \psi}\)</span> da projeção na direção <span class="math notranslate nohighlight">\(\ket{1}\)</span>.</p>
+</div>
+</section>
+<section id="projecao-e-relacao-de-completude">
+<h3>Projeção e Relação de Completude<a class="headerlink" href="#projecao-e-relacao-de-completude" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Se <span class="math notranslate nohighlight">\(\ket{u}\)</span> for unitário, o funcional linear <span class="math notranslate nohighlight">\(\bra{u}\)</span> leva um ket <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> em <span class="math notranslate nohighlight">\(\braket{u | \psi}\)</span>, que corresponde ao coeficiente da projeção de <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> na direção de <span class="math notranslate nohighlight">\(\ket{u}\)</span>.</p>
+<p>O vetor <span class="math notranslate nohighlight">\(\braket{u | \psi}\ket{u}\)</span> é a projeção de <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> na direção do vetor unitário <span class="math notranslate nohighlight">\(\ket{u}\)</span>. Movendo-se o número <span class="math notranslate nohighlight">\(\braket{u | \psi}\)</span> para a direita, pode-se escrever essa projeção como <span class="math notranslate nohighlight">\(\text{proj}_{\ket{u}} \ket{\psi} = \ket{u}\bra{u}\ket{\psi}\)</span>. O operador <span class="math notranslate nohighlight">\(\ket{u}\bra{u}\)</span> é, então, chamado operador projeção na direção de <span class="math notranslate nohighlight">\(\ket{u}\)</span></p>
+<p>Se <span class="math notranslate nohighlight">\(\beta = \{\ket{b_0}, \ldots, \ket{b_{n-1}} \}\)</span> é uma base ortonormal, pode-se escrever qualquer vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como soma das suas projeções ortogonais sobre as direções definidas pelos vetores da base. Dessa forma, tem-se</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi} = \sum_{k=0}^{n-1} \braket{b_k | \psi} \ket{b_k} =  \sum_{k=0}^{n-1} \ket{b_k}\bra{b_k} \ket{\psi}  \ \ .\]</div>
+<p>Segue que</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k=0}^{n-1} \ket{b_k}\bra{b_k} = I  \ ,\]</div>
+<p>expressão conhecida como <em>relação de completude</em>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A projeção ortogonal da direção do vetor <span class="math notranslate nohighlight">\(\ket{0}\)</span> é o operador <span class="math notranslate nohighlight">\(\ket{0}\bra{0}\)</span>, visto que sua ação em um ket <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é dada por <span class="math notranslate nohighlight">\(\ket{0}\bra{0} \ket{\psi} = \braket{0 | \psi} \ket{0}\)</span> e a projeção ortogonal na direção de <span class="math notranslate nohighlight">\(\ket{1}\)</span> é o operador de projeção <span class="math notranslate nohighlight">\(\ket{1}\bra{1}\)</span>, pois <span class="math notranslate nohighlight">\(\ket{1}\bra{1} \ket{\psi} = \braket{1 | \psi} \ket{1}\)</span>.</p>
+<p>A relação de completude no espaço vetorial dos estados de 1 qubit, <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>, é dada por</p>
+<div class="math notranslate nohighlight">
+\[I = \ket{0}\bra{0} + \ket{1}\bra{1} \ .\]</div>
+</div>
+</section>
+<section id="definicao-de-uma-transformacao-linear-nos-elementos-da-base">
+<span id="cap2sec-def-tl-nos-elementos-da-base"></span><h3>Definição de uma Transformação Linear nos Elementos da Base<a class="headerlink" href="#definicao-de-uma-transformacao-linear-nos-elementos-da-base" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Para definir uma transformação linear, basta que se forneça como ela atua nos elementos de uma base. Isto é, dada <span class="math notranslate nohighlight">\(\beta = \{\ket{b_0}, \ldots, \ket{b_{n-1}} \}\)</span> base de <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span>, pode-se obter <span class="math notranslate nohighlight">\(T\ket{\psi}\)</span> conhecendo-se <span class="math notranslate nohighlight">\(T\ket{b_k}\)</span> para todo <span class="math notranslate nohighlight">\(k\)</span>. De fato, como <span class="math notranslate nohighlight">\(\beta\)</span> base, pode-se escrever <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como combinação linear</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi} = \sum_k a_k \ket{b_k} \ \ .\]</div>
+<p>Aplicando-se a transformação <span class="math notranslate nohighlight">\(T\)</span> e usando a linearidade, obtém-se</p>
+<div class="math notranslate nohighlight">
+\[T\ket{\psi} = \sum_k a_k T\ket{b_k}  \ \ ,\]</div>
+<p>e dessa forma, <span class="math notranslate nohighlight">\(T\ket{\psi}\)</span> pode ser obtido a partir dos <span class="math notranslate nohighlight">\(T\ket{b_k}\)</span>’s.</p>
+<div class="tip admonition" id="cap2ex-transformacao-linear-nos-elementos-da-base">
+<p class="admonition-title">Exemplo</p>
+<p>Considere o operador linear em 1 qubit <span class="math notranslate nohighlight">\(X \colon \mathbb{C}^2 \to \mathbb{C}^2\)</span> definido nos vetores da base computacional por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+  X\ket{0} = \ket{1} \\
+  X \ket{1} = \ket{0}
+\end{array}\end{split}\]</div>
+<p>O operador <span class="math notranslate nohighlight">\(X\)</span> está bem definido em todo <span class="math notranslate nohighlight">\(\ket{\psi} = a \ket{0} + b \ket{1}\)</span> graças à sua linearidade:</p>
+<div class="math notranslate nohighlight">
+\[X\ket{\psi} = X\big(a \ket{0} + b \ket{1}\big) = a X\ket{0} + b X \ket{1} = a \ket{1} + b \ket{0} \ .\]</div>
+</div>
+</section>
+<section id="matriz-de-uma-transformacao-linear">
+<span id="cap2sec-matriz-tl"></span><h3>Matriz de uma Transformação Linear<a class="headerlink" href="#matriz-de-uma-transformacao-linear" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Seja <span class="math notranslate nohighlight">\(T  \colon U= \mathbb{C}^n \to V=\mathbb{C}^m\)</span>  uma transformação linear. Sejam <span class="math notranslate nohighlight">\(\beta_U = \{\ket{u_0}, \ldots, \ket{u_{n-1}} \}\)</span> base de <span class="math notranslate nohighlight">\(U\)</span> e <span class="math notranslate nohighlight">\(\beta_V = \{ \ket{v_0} , \ldots , \ket{v_{n-1}} \}\)</span> base de <span class="math notranslate nohighlight">\(V\)</span>. Quando fixadas bases para os espaços vetoriais do domínio e do contradomínio de <span class="math notranslate nohighlight">\(T\)</span>, é possível representar a transformação <span class="math notranslate nohighlight">\(T\)</span> por uma matriz, de forma que a atuação de <span class="math notranslate nohighlight">\(T\)</span> sobre um vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é equivalente ao produto matriz-vetor coluna.</p>
+<p>A matriz da transformação linear <span class="math notranslate nohighlight">\(T\)</span> nas bases <span class="math notranslate nohighlight">\(\beta_U\)</span> e <span class="math notranslate nohighlight">\(\beta_V\)</span> é dada por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[T]^{\beta_U}_{\beta_V} = \left[ \begin{matrix} | &amp; &amp; | \\ [T(u_0)]_{\beta_V} &amp; \cdots &amp; [T(u_{n-1})]_{\beta_V} \\  | &amp; &amp; | \end{matrix} \right]  \in M(m,n)\end{split}\]</div>
+<p>Definida dessa forma, vale que:</p>
+<div class="math notranslate nohighlight">
+\[[T\ket{\psi}]_{\beta_V} = [T]^{\beta_U}_{\beta_V} \cdot [\ket{\psi}]_{\beta_U} \ \ ,\]</div>
+<p>portanto, a atuação da matriz de <span class="math notranslate nohighlight">\(T\)</span> sobre um ket é equivalente à multiplicação matriz-vetor coluna levando-se em consideração as bases previamente fixadas.</p>
+<p>Considere que as bases <span class="math notranslate nohighlight">\(\beta_U\)</span> e <span class="math notranslate nohighlight">\(\beta_V\)</span> sejam ortonormais. Cada vetor <span class="math notranslate nohighlight">\(T\ket{u_k}\)</span> pode ser escrito na base <span class="math notranslate nohighlight">\(\beta_V\)</span> da seguinte forma:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[T\ket{u_k}]_{\beta_V} = \begin{bmatrix} \braket{v_0 | Tu_k} \\  \braket{v_1 | Tu_k} \\ \vdots \\  \braket{v_{m-1}}{Tu_k} \end{bmatrix}_{\beta_V} \ ,\end{split}\]</div>
+<p>tendo em vista que a <span class="math notranslate nohighlight">\(l\)</span>-ésima entrada do vetor é o coeficiente da projeção de <span class="math notranslate nohighlight">\(\ket{Tu_k}\)</span> na direção do <span class="math notranslate nohighlight">\(l\)</span>-ésimo vetor da base em <span class="math notranslate nohighlight">\(V\)</span>. Assim, a entrada de linha <span class="math notranslate nohighlight">\(l\)</span> e coluna <span class="math notranslate nohighlight">\(k\)</span> da matriz <span class="math notranslate nohighlight">\([T]^{\beta_U}_{\beta_V}\)</span> é <span class="math notranslate nohighlight">\(\braket{v_l | Tu_k}\)</span>, com <span class="math notranslate nohighlight">\(l = 0, \ldots , m-1\)</span> e <span class="math notranslate nohighlight">\(k=0, \ldots , n-1\)</span> e consequentemente</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[T]^{\beta_U}_{\beta_V} =
+\begin{bmatrix} \braket{v_0 | Tu_0} &amp; \braket{v_0 | Tu_1} &amp; \ldots &amp; \braket{v_0 | Tu_{n-1}} \\
+        \braket{v_1 | Tu_0} &amp; \braket{v_1 | Tu_1} &amp; \ldots &amp; \braket{v_1 | Tu_{n-1}} \\
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+        \braket{v_{m-1}}{Tu_0} &amp; \braket{v_{m-1}}{Tu_1} &amp; \ldots &amp; \braket{v_{m-1}}{Tu_{n-1}} \end{bmatrix} \ .\end{split}\]</div>
+<p>No caso de um operador linear, tem-se <span class="math notranslate nohighlight">\(U=V\)</span> (<span class="math notranslate nohighlight">\(m=n\)</span>), e é possível escolher a mesma base <span class="math notranslate nohighlight">\(\beta = \{\ket{b_0}, \ldots, \ket{b_{n-1}} \}\)</span> para o domínio e o contradomínio da transformação. Essa é uma situação bastante frequente, e a matriz associada ao operador linear é montada da seguinte forma: as colunas da matriz são os vetores <span class="math notranslate nohighlight">\(\ket{Tb_k}\)</span> escritos como vetores coluna na base <span class="math notranslate nohighlight">\(\beta\)</span>. Portanto:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[T]_{\beta} = [T]^{\beta}_{\beta} = \left[ \begin{matrix} | &amp; &amp; | \\ \big[\ket{Tb_0}\big]_{\beta} &amp; \cdots &amp; \big[\ket{Tb_{n-1}}\big]_{\beta} \\  | &amp; &amp; | \end{matrix} \right]\end{split}\]</div>
+<p>Se a base <span class="math notranslate nohighlight">\(\beta\)</span> for ortonormal, obtém-se que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[T]_{\beta} =
+\begin{bmatrix} \braket{b_0 | Tb_0} &amp; \braket{b_0 | Tb_1} &amp; \ldots &amp; \braket{b_0 | Tb_{n-1}} \\
+        \braket{b_1 | Tb_0} &amp; \braket{b_1 | Tb_1} &amp; \ldots &amp; \braket{b_1 | Tb_{n-1}} \\
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+        \braket{b_{n-1}}{Tb_0} &amp; \braket{b_{n-1}}{Tb_1} &amp; \ldots &amp; \braket{b_{n-1}}{Tb_{n-1}} \end{bmatrix} \ .\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Um operador linear <span class="math notranslate nohighlight">\(A\)</span> sobre um qubit pode ser escrito como uma matriz (na base computacional) <span class="math notranslate nohighlight">\(2\times2\)</span> com coeficientes complexos da seguinte forma:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[A] = \left[ \begin{matrix} | &amp; | \\ \big[ A\ket{0}\big]  &amp; \big[ A\ket{1}\big] \\  | &amp; | \end{matrix} \right] =
+\begin{bmatrix} \phantom{\Big(} \! \! \! \bra{0}A\ket{0} &amp; \bra{0}A\ket{1} \ \ \\
+        \phantom{\Big(}\! \! \! \bra{1}A\ket{0} &amp; \bra{1}A\ket{1} \ \  \end{bmatrix}
+      \ \ ,\end{split}\]</div>
+<p>com <span class="math notranslate nohighlight">\([\cdot]\)</span> significando que os vetores em questão estão escritos como vetores coluna na base computacional. É frequente denotar a matriz do operador <span class="math notranslate nohighlight">\(A\)</span> pelo mesmo símbolo <span class="math notranslate nohighlight">\(A\)</span>, quando está implícito qual base é considerada.</p>
+</div>
+<div class="tip admonition" id="cap2ex-matriz-da-transformacao-linear">
+<p class="admonition-title">Exemplo</p>
+<p>A matriz da transformação linear do exemplo <a class="reference internal" href="#cap2ex-transformacao-linear-nos-elementos-da-base"><span class="std std-ref">Transformação Linear nos Elementos da Base</span></a>, na base computacional, é obtida escrevendo-se a ação de <span class="math notranslate nohighlight">\(X\)</span> sobre os vetores da base.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+  X\ket{0} = \ket{1} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\ \\
+  X \ket{1} = \ket{0} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \ .
+\end{array}\end{split}\]</div>
+<p>Em seguida, monta-se a matriz fazendo</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \left[ \begin{matrix} | &amp; | \\  X\ket{0}  &amp;  X\ket{1} \\  | &amp; | \end{matrix} \right] = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ .\end{split}\]</div>
+</div>
+<div class="tip admonition" id="cap2ex-matrizes-de-pauli">
+<p class="admonition-title">Matrizes de Pauli</p>
+<p>As matrizes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{bmatrix}0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ \ , \ \ \ Y = \begin{bmatrix} 0 &amp; -i \\ i &amp; \phantom{-}0 \end{bmatrix} \ \ \text{e} \ \ \ Z =  \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix}\end{split}\]</div>
+<p>são conhecidas como <em>matrizes de Pauli</em>. Essas são representações na base computacional dos operadores <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(Z\)</span>. Usa-se, costumeiramente, a mesma notação para se referir ao operador e à sua matriz na base computacional.</p>
+<p>Em determinadas situações, a matriz identidade <span class="math notranslate nohighlight">\(I\)</span> também é chamada matriz de Pauli, e usa-se a notação alternativa</p>
+<div class="math notranslate nohighlight">
+\[I = \sigma_0 \ \ , \ \ \ X = \sigma_x = \sigma_1 \ \ , \ \ \ Y = \sigma_y = \sigma_2 \ \ \text{e} \ \ \ Z = \sigma_z = \sigma_3 \ .\]</div>
+</div>
+</section>
+<section id="matriz-da-composicao-de-transformacoes-lineares">
+<h3>Matriz da Composição de Transformações Lineares<a class="headerlink" href="#matriz-da-composicao-de-transformacoes-lineares" title="Link permanente para este cabeçalho">#</a></h3>
+<p>A composição de transformações lineares <span class="math notranslate nohighlight">\(T \colon U \to V\)</span> e <span class="math notranslate nohighlight">\(R \colon V \to W\)</span> é a transformação linear denotada por <span class="math notranslate nohighlight">\(R T = R \circ T \colon U \to W\)</span> e tal que <span class="math notranslate nohighlight">\(RT(\ket{\psi}) = R \Big( T\big(\ket{\psi}\big) \Big)\)</span> para todo <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>. A matriz dessa transformação linear pode ser obtida pela multiplicação matricial das matrizes de <span class="math notranslate nohighlight">\(R\)</span> e de <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[[RT]^{\beta_U}_{\beta_W} = [R]^{\beta_U}_{\beta_V} \cdot [T]^{\beta_V}_{\beta_W} \ ,\]</div>
+<p>em que <span class="math notranslate nohighlight">\(\beta_U\)</span>, <span class="math notranslate nohighlight">\(\beta_V\)</span> e <span class="math notranslate nohighlight">\(\beta_W\)</span> são bases de <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, respectivamente.</p>
+</section>
+<section id="mudanca-de-base">
+<h3>Mudança de Base<a class="headerlink" href="#mudanca-de-base" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Para escrever a matriz de uma transformação linear <span class="math notranslate nohighlight">\(T\colon U \to V\)</span> em novas bases <span class="math notranslate nohighlight">\(\beta_U^\prime\)</span> e <span class="math notranslate nohighlight">\(\beta_V^\prime\)</span> basta aplicar matrizes de mudança de base de maneira apropriada.</p>
+<div class="math notranslate nohighlight">
+\[[T]^{\beta_U^\prime}_{\beta_V^\prime} = [I]^{\beta_U^\prime}_{\beta_U} [T]^{\beta_U}_{\beta_V} [I]^{\beta_V}_{\beta_V^\prime} \ .\]</div>
+<p>No caso de um operador linear <span class="math notranslate nohighlight">\(A \colon V \to V\)</span>, pode-se usar a mesma base nos espaços vetoriais do domínio e do contradomínio da função. A mudança de base nesse caso fica:</p>
+<div class="math notranslate nohighlight">
+\[[A]^{\beta_U^\prime}_{\beta_U^\prime} = [I]^{\beta_U^\prime}_{\beta_U} [A]^{\beta_U}_{\beta_U} [I]^{\beta_U}_{\beta_U^\prime}
+  = \big( [I]^{\beta_U}_{\beta_U^\prime} \big)^{-1} [A]^{\beta_U}_{\beta_U} \big( [I]^{\beta_U}_{\beta_U^\prime} \big) \ .\]</div>
+<p>A transformação matricial <span class="math notranslate nohighlight">\([A] \to [A]^\prime = [M]^{-1} [A] [M]\)</span> é conhecida como <em>transformação de similaridade</em>. Duas transformações conectadas dessa forma são ditas <em>matrizes semelhantes</em>. As matrizes semelhantes são representantes de um mesmo operador linear escrito em bases diferentes.</p>
+<p>Se as bases <span class="math notranslate nohighlight">\(\beta_U\)</span> e <span class="math notranslate nohighlight">\(\beta_U^\prime\)</span> forem ortonormais, a fórmula para mudança de base fica:</p>
+<div class="math notranslate nohighlight">
+\[[A]^{\beta_U^\prime}_{\beta_U^\prime} = [I]^{\beta_U^\prime}_{\beta_U} [A]^{\beta_U}_{\beta_U} [I]^{\beta_U}_{\beta_U^\prime}
+  = \big( [I]^{\beta_U}_{\beta_U^\prime} \big)^{\dagger} [A]^{\beta_U}_{\beta_U} \big( [I]^{\beta_U}_{\beta_U^\prime} \big) \ ,\]</div>
+<p>em que a operação simbolizada por <span class="math notranslate nohighlight">\(\dagger\)</span> é a transposição e conjugação da matriz. Essa operação será introduzida formalmente na seção <a class="reference internal" href="#cap2operador-adjunto"><span class="std std-ref">Operador Adjunto</span></a>.</p>
+<div class="tip admonition" id="cap2ex-matriz-hadamard-mudanca-base-x">
+<p class="admonition-title">Matrizes de Pauli</p>
+<p>Considere as bases <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> apresentadas no exemplo [Base para 1 qubit].
+A matriz de mudança de base de <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> para <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> e vice-versa é a matriz de Hadamard <span class="math notranslate nohighlight">\(H\)</span>, como visto no exemplo <a class="reference internal" href="#cap2ex-matrix-mudanca-de-base"><span class="std std-ref">Matrix Mudança de Base</span></a>. O operador <span class="math notranslate nohighlight">\(X\)</span>, visto no exemplo <a class="reference internal" href="#cap2ex-matrizes-de-pauli"><span class="std std-ref">Matrizes de Pauli</span></a>, cuja matriz na base computacional é</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = [X]_{\mathcal{I}} =  \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}\end{split}\]</div>
+<p>pode ser representado na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+  [X]_{\mathcal{X}}
+  &amp;= [I]^{\mathcal{I}}_{\mathcal{X}} [X]_\mathcal{I} [I]^{\mathcal{X}}_{\mathcal{I}} \\
+  &amp;= H X H \\
+  &amp;= \frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix} \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}  \\
+  &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix} \\
+  &amp;= Z \ .
+\end{split}\end{split}\]</div>
+</div>
+</section>
+</section>
+<section id="autovalores-autovetores-e-decomposicao-espectral">
+<h2>Autovalores, Autovetores e Decomposição Espectral<a class="headerlink" href="#autovalores-autovetores-e-decomposicao-espectral" title="Link permanente para este cabeçalho">#</a></h2>
+<section id="autovalores-e-autovetores">
+<h3>Autovalores e Autovetores<a class="headerlink" href="#autovalores-e-autovetores" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Seja <span class="math notranslate nohighlight">\(A\)</span> um operador linear, com matriz na base computacional também representada por <span class="math notranslate nohighlight">\(A\)</span>. Os <em>autovalores</em> de <span class="math notranslate nohighlight">\(A\)</span> são os números complexos <span class="math notranslate nohighlight">\(\lambda\)</span> que satisfazem</p>
+<div class="math notranslate nohighlight">
+\[A \ket{v} = \lambda \ket{v} \ \  \text{para algum $\ket{v} \neq 0$ .}\]</div>
+<p>Os vetores não nulos <span class="math notranslate nohighlight">\(\ket{v}\)</span> que satisfazem a equação acima são chamados <em>autovetores</em> de <span class="math notranslate nohighlight">\(A\)</span> associados ao autovalor <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<div class="tip admonition" id="cap2ex-autovalores-z">
+<p class="admonition-title">Exemplo</p>
+<p>O operador linear em 1 qubit <span class="math notranslate nohighlight">\(Z\)</span> definido pela matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Z = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}\end{split}\]</div>
+<p>possui:</p>
+<ul class="simple">
+<li><p>autovalor <span class="math notranslate nohighlight">\(1\)</span>, pois o vetor não nulo <span class="math notranslate nohighlight">\(\ket{0}\)</span> é tal que <span class="math notranslate nohighlight">\(Z \ket{0} = 1 \cdot \ket{0}\)</span>;</p></li>
+<li><p>autovalor <span class="math notranslate nohighlight">\(-1\)</span>, pois o vetor não nulo <span class="math notranslate nohighlight">\(\ket{1}\)</span> satisfaz <span class="math notranslate nohighlight">\(Z \ket{1} = -1 \cdot \ket{1}\)</span>.</p></li>
+</ul>
+</div>
+</section>
+<section id="calculo-de-autovalores">
+<h3>Cálculo de Autovalores<a class="headerlink" href="#calculo-de-autovalores" title="Link permanente para este cabeçalho">#</a></h3>
+<p>A equação de autovalores <span class="math notranslate nohighlight">\(A \ket{v} = \lambda \ket{v}\)</span> é equivalente a <span class="math notranslate nohighlight">\(\big(A-\lambda I \big) \ket{v} = 0\)</span>, com <span class="math notranslate nohighlight">\(\ket{v} \neq 0\)</span>, e isso é equivalente a dizer que a matriz de <span class="math notranslate nohighlight">\(A-\lambda I\)</span> é singular. Por sua vez, isso equivale à equação</p>
+<div class="math notranslate nohighlight">
+\[\det (A-\lambda I ) = 0 \  .\]</div>
+<p>Com a equação acima, consegue-se encontrar os autovalores <span class="math notranslate nohighlight">\(\lambda\)</span> do operador <span class="math notranslate nohighlight">\(A\)</span> encontrando-se as raízes do <em>polinômio característico</em> <span class="math notranslate nohighlight">\((A-\lambda I)\)</span>. Esse polinômio têm grau <span class="math notranslate nohighlight">\(n\)</span> e, como estamos buscando raízes nos números complexos, admite <span class="math notranslate nohighlight">\(n\)</span> raízes (pode acontecer que sejam repetidas). Dessa forma, todo operador admite um autovalor (isso não é necessariamente válido para espaços vetoriais reais).</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Os autovalores da matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix} 0 &amp; 2 \\ -1 &amp; i \end{bmatrix}\end{split}\]</div>
+<p>podem ser obtidos por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+&amp; &amp; \det (A-\lambda I ) = 0 \\
+&amp; &amp; \det \begin{bmatrix} 0 - \lambda &amp; 2 \\ -1 &amp; i-\lambda \end{bmatrix} = 0 \\
+&amp; &amp; -\lambda(i-\lambda) - 2 \cdot -1 = 0\\
+&amp; &amp; \lambda^2 - i \lambda + 2 = 0 \\
+&amp; &amp; \lambda = \dfrac{i \pm \sqrt{i^2 - 4 \cdot 1 \cdot 2}}{2\cdot 1} \\
+&amp; &amp; \lambda = -i \ \text{ ou } \  \lambda = 2i \ .
+\end{eqnarray*}\end{split}\]</div>
+<p>Os autovalores podem ser números complexos. Como a matriz é <span class="math notranslate nohighlight">\(2\times2\)</span>, foi obtido um polinômio característico de grau 2 e foram obtidas 2 raízes.</p>
+</div>
+</section>
+<section id="calculo-de-autovetores">
+<h3>Cálculo de Autovetores<a class="headerlink" href="#calculo-de-autovetores" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Uma vez descobertos os autovalores <span class="math notranslate nohighlight">\(\lambda\)</span>, retorna-se à equação <span class="math notranslate nohighlight">\(A \ket{v} = \lambda \ket{v}\)</span>, ou melhor, à equação</p>
+<div class="math notranslate nohighlight">
+\[\big(A-\lambda I \big) \ket{v} = 0\]</div>
+<p>para encontrar todos os autovetores <span class="math notranslate nohighlight">\(\ket{v} \neq 0\)</span> satisfazendo essa equação. Como a matriz <span class="math notranslate nohighlight">\(A-\lambda I\)</span> é singular (essa é a condição para se encontrar <span class="math notranslate nohighlight">\(\lambda\)</span>), a equação em questão admite infinitas soluções <span class="math notranslate nohighlight">\(\ket{v}\)</span>, formando um sistema linear possível e indeterminado.</p>
+<p>Em algumas situações é possível montar uma base para o espaço composta por autovetores do operador <span class="math notranslate nohighlight">\(A\)</span>. Há condições sobre o operador que revelam se é possível obter uma base ortonormal de autovetores. Isso será visto na seção <a class="reference internal" href="#cap2tipos-especiais-de-operadores"><span class="std std-ref">Tipos Especiais de Operadores</span></a>. A obtenção de uma base de autovetores permite escrever a matriz <span class="math notranslate nohighlight">\(A\)</span> nessa base como uma matriz diagonal, o que se prova útil em diversas circunstâncias.</p>
+<div class="tip admonition" id="cap2ex-autovetores-x">
+<p class="admonition-title">Exemplo</p>
+<p>Dada a matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ ,\end{split}\]</div>
+<p>os autovalores e autovetores são encontrados a seguir.</p>
+<ul>
+<li><p><strong>Autovalores:</strong> Resolvendo <span class="math notranslate nohighlight">\(\det(X - \lambda I) = 0\)</span>, obtém-se:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+&amp; &amp; \det(X - \lambda I) = 0 \\
+&amp; &amp;  \det \begin{bmatrix} -\lambda &amp; 1 \\ 1 &amp; -\lambda \end{bmatrix} = 0 \\
+&amp; &amp;  \lambda^2 - 1 = 0  \\
+&amp; &amp;  \lambda = \pm 1 \ .
+\end{eqnarray*}\end{split}\]</div>
+</li>
+<li><p><strong>Autovetores:</strong> Para cada autovalor <span class="math notranslate nohighlight">\(\lambda\)</span>, deve-se resolver</p>
+<div class="math notranslate nohighlight">
+\[\big(X-\lambda I \big) \ket{v} = 0 \ ,\]</div>
+<p>obtendo-se o vetor <span class="math notranslate nohighlight">\(\ket{v}\)</span>.</p>
+<p>Para <span class="math notranslate nohighlight">\(\lambda = -1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+\big(X-\lambda I \big) \ket{v} &amp;=&amp; 0 \\
+\begin{bmatrix} -1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix} \begin{bmatrix} a_0 \\ a_1\end{bmatrix} &amp;=&amp; \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\end{eqnarray*}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+  -a_0 + a_1 = 0 \\ \phantom{-}a_0 - a_1 = 0
+\end{cases}\end{split}\]</div>
+<p>O sistema resultante, como esperado, é possível e indeterminado. Resolvendo o sistema, tem-se:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+a_0 = a_1 \\
+a_1 \in \mathbb{C} \ .
+\end{cases}\end{split}\]</div>
+<p>Os autovetores associados ao autovalor <span class="math notranslate nohighlight">\(\lambda = -1\)</span> são:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{v} = \begin{bmatrix} a_1 \\ a_1 \end{bmatrix} = a_1 \begin{bmatrix} 1 \\ 1 \end{bmatrix}  \ \ \text{ com } a_1 \in \mathbb{C}, a_1 \neq 0\end{split}\]</div>
+<p>O autoespaço associado a <span class="math notranslate nohighlight">\(\lambda = -1\)</span> é o subespaço vetorial:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}V_{-1} = \left\lbrace a_1 \begin{bmatrix} 1 \\ 1 \end{bmatrix}  \colon a_1 \in \mathbb{C} \right\rbrace \ = \text{span}\left\lbrace \begin{bmatrix} 1 \\ 1 \end{bmatrix} \right\rbrace .\end{split}\]</div>
+</li>
+</ul>
+<p>Para <span class="math notranslate nohighlight">\(\lambda = 1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  \big(X-\lambda I \big) \ket{v} &amp;=&amp; 0 \\
+  \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{bmatrix} \begin{bmatrix} a_0 \\ a_1\end{bmatrix} &amp;=&amp; \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\end{eqnarray*}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+  a_0 + a_1 = 0 \\ a_0 + a_1 = 0
+\end{cases}\end{split}\]</div>
+<p>O sistema é possível e indeterminado, e, resolvendo o sistema, tem-se:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+a_0 \in \mathbb{C}  \\
+a_1 = - a_0 \ .
+\end{cases}\end{split}\]</div>
+<p>Os autovetores associados ao autovalor <span class="math notranslate nohighlight">\(\lambda = 1\)</span> são:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{v} = \begin{bmatrix} a_0 \\ - a_0 \end{bmatrix} = a_0 \begin{bmatrix}\phantom{-} 1 \\ - 1 \end{bmatrix}  \ \ \text{ com } a_0 \in \mathbb{C}, a_0 \neq 0\end{split}\]</div>
+<p>O autoespaço associado a <span class="math notranslate nohighlight">\(\lambda = 1\)</span> é o subespaço vetorial:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}V_{1} = \left\lbrace a_0 \begin{bmatrix} \phantom{-}1 \\ -1 \end{bmatrix}  \colon a_0 \in \mathbb{C} \right\rbrace \ = \text{span}\left\lbrace \begin{bmatrix} \phantom{-}1 \\ -1 \end{bmatrix} \right\rbrace .\end{split}\]</div>
+</div>
+</section>
+<section id="diagonalizacao-de-operadores">
+<h3>Diagonalização de Operadores<a class="headerlink" href="#diagonalizacao-de-operadores" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Uma vez encontrados os autovalores <span class="math notranslate nohighlight">\(\lambda_j\)</span> e uma base de autovetores <span class="math notranslate nohighlight">\(\mathcal{V} = \{ \ket{v_j} , j=0, \ldots , n-1 \}\)</span>, com <span class="math notranslate nohighlight">\(\ket{v_j}\)</span> associado ao autovalor <span class="math notranslate nohighlight">\(\lambda_j\)</span>, o operador linear <span class="math notranslate nohighlight">\(A\)</span> pode ser escrito na base <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> como uma matriz diagonal. Defina as matrizes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  D &amp;=&amp; \begin{bmatrix}  \ \lambda_0 \  &amp; &amp; \\  &amp; \ \ddots \ &amp; \\ &amp; &amp; \ \lambda_{n-1}  \, \, \end{bmatrix} \text{(matriz diagonal dos autovalores)} \\
+  M &amp;=&amp; \begin{bmatrix} | &amp; &amp; | \\ \ket{v_0} &amp; \cdots &amp; \ket{v_{n-1}} \\  | &amp; &amp; |  \end{bmatrix}  \text{(matriz de mudança de base: $mathcal{I} \ \rightarrow  \ \mathcal{V}$)} \ .
+\end{eqnarray*}\end{split}\]</div>
+<p>A matriz de <span class="math notranslate nohighlight">\(A\)</span> na base <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> é dada por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+    [A]_{\mathcal{V}}
+    &amp;=&amp;
+    \begin{bmatrix} | &amp; &amp; | \\ {[A\ket{v_0}]_{\mathcal{V}}} \ \  &amp; \cdots &amp; \ \ \ \  {[A\ket{v_{n-1}}]_{\mathcal{V}}}\,  \\ | &amp;  &amp; | \end{bmatrix} \\
+    &amp;=&amp;
+  \begin{bmatrix} | &amp; &amp; | \\ {[\lambda_0\ket{v_0}]_{\mathcal{V}}}  &amp; \cdots &amp; {[\lambda_{n-1}\ket{v_{n-1}}]_{\mathcal{V}}} \\ | &amp;  &amp; | \end{bmatrix} \\
+    &amp;=&amp;
+  \begin{bmatrix}  \lambda_0  &amp; &amp; \\  &amp; \ddots &amp; \\ &amp; &amp; \lambda_{n-1} \end{bmatrix} = D
+\end{eqnarray*}\end{split}\]</div>
+<p>A matriz <span class="math notranslate nohighlight">\(M\)</span> nada mais é que a matriz de mudança de base <span class="math notranslate nohighlight">\(M=[I]^{\mathcal{I}}_{\mathcal{V}}\)</span>. Conforme a seção <a class="reference internal" href="#cap2matriz-de-mudanca-de-base"><span class="std std-ref">Matriz de Mudança de Base</span></a> , pode-se escrever:</p>
+<div class="math notranslate nohighlight">
+\[D = [A]_\mathcal{V} = [I]^{\mathcal{V}}_{\mathcal{I}} [A] [I]_{\mathcal{V}}^{\mathcal{I}} = M^{-1} A M \ .\]</div>
+<p>Ainda, se a base <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> for ortonormal, conforme <a class="reference internal" href="#cap2base-ortonormal"><span class="std std-ref">Base Ortonormal</span></a>, pode-se escrever</p>
+<div class="math notranslate nohighlight">
+\[D = M^\dagger A M \ .\]</div>
+<p>Nessas expressões, usa-se <span class="math notranslate nohighlight">\(A\)</span> para denotar a matriz <span class="math notranslate nohighlight">\([A]\)</span> do operador <span class="math notranslate nohighlight">\(A\)</span> na base computacional, o que simplifica a notação quando não houver risco de confusão.</p>
+<p>Portanto, de posse dos autovalores e de uma base ortonormal, é possível escrever o operador <span class="math notranslate nohighlight">\(A\)</span> como uma matriz diagonal.</p>
+<p>O operador <span class="math notranslate nohighlight">\(A\)</span> também pode ser representado na notação do produto exterior da seguinte forma. Como <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> forma uma base ortonormal, vale a relação de completude <span class="math notranslate nohighlight">\(I = \sum_k \ket{v_k}\bra{v_k}\)</span> para essa base. Aplicando-se essa relação a <span class="math notranslate nohighlight">\(A\)</span>, obtém-se</p>
+<div class="math notranslate nohighlight">
+\[A = AI = \sum_k A \ket{v_k}\bra{v_k} = \sum_k \lambda_k \ket{v_k}\bra{v_k} \ .\]</div>
+<div class="tip admonition" id="cap2ex-diagonalizacao-x">
+<p class="admonition-title">Exemplo</p>
+<p>No exemplo <a class="reference internal" href="#cap2ex-autovetores-x"><span class="std std-ref">Autovetores X</span></a> foram calculados os autovalores e autovetores da matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ ,\end{split}\]</div>
+<p>obtendo-se:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda = 1\phantom{-}\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> <span class="math notranslate nohighlight">\(\phantom{-}\)</span>(`a \in \mathbb{C}, a \neq 0$)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda = -1\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}\)</span> (<span class="math notranslate nohighlight">\(a \in \mathbb{C}, a \neq 0\)</span>)</p></li>
+</ul>
+<p>Pretende-se extrair uma base ortonormal de autovetores para escrever <span class="math notranslate nohighlight">\(X\)</span> na forma diagonal. Nesse casofootnote{Todos os autoespaços de dimensão 1.}, basta normalizar os autovetores obtidos.</p>
+<ul>
+<li><p>Para <span class="math notranslate nohighlight">\(\lambda = -1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}||{a \begin{bmatrix} 1 \\ 1 \end{bmatrix} }|| = 1 \implies |{a}| \sqrt{1^2 + 1^2} = 1 \implies |{a}| = \frac{1}{\sqrt{2}} \ .\end{split}\]</div>
+<p>Há várias opções para <span class="math notranslate nohighlight">\(a\)</span> que satisfazem essa condição. Pode-se escolher apenas uma delas para fazer a diagonalização, por exemplo: <span class="math notranslate nohighlight">\(a = \frac{1}{\sqrt{2}}\)</span>. O autovetor normalizado é, portanto,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{v} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1} \ .\end{split}\]</div>
+</li>
+<li><p>Para <span class="math notranslate nohighlight">\(\lambda = 1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}||{a \begin{bmatrix} \phantom{-}1 \\ -1 \end{bmatrix} }|| = 1 \implies |{a}| \sqrt{1^2 + (-1)^2} = 1 \implies |{a}| = \frac{1}{\sqrt{2}} \ .\end{split}\]</div>
+<p>Do mesmo modo, pode-se escolher <span class="math notranslate nohighlight">\(a = \frac{1}{\sqrt{2}}\)</span>, e o autovetor normalizado é:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{v} = \frac{1}{\sqrt{2}} \begin{bmatrix}\phantom{-} 1 \\ -1 \end{bmatrix} = \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1} \ .\end{split}\]</div>
+</li>
+<li><p><strong>Base ortonormal de autovetores:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\underbrace{\ket{v_0} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \end{bmatrix}}_{\lambda = 1} \ \ , \ \ \underbrace{\ket{v_1} = \frac{1}{\sqrt{2}} \begin{bmatrix}\phantom{-} 1 \\ -1 \end{bmatrix}}_{\lambda = -1}\end{split}\]</div>
+</li>
+<li><p><strong>Diagonalização da matriz:</strong></p>
+<p>Matriz de <span class="math notranslate nohighlight">\(X\)</span> na forma diagonal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X_D = \begin{bmatrix}\lambda_0 &amp; \\ &amp; \lambda_1\end{bmatrix} =  \begin{bmatrix}1 &amp; \\ &amp; -1 \end{bmatrix}\end{split}\]</div>
+<p>Matriz de mudança de base:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}M = \begin{bmatrix} | &amp; | \\ \ket{v_0}  &amp; \ket{v_{1}} \\ | &amp; | \end{bmatrix} = \begin{bmatrix} \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \\ &amp; \\ \phantom{-}\frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}\end{split}\]</div>
+</li>
+<li><p><strong>Operador na forma diagonal:</strong> Na notação de produto exterior, tem-se:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X = \sum_k \lambda_k \ket{v_k}\bra{v_k} = 1 \cdot \ket{v_0}\bra{v_0} - 1 \cdot \ket{v_1}\bra{v_1}\]</div>
+</div>
+</section>
+</section>
+<section id="tipos-especiais-de-operadores">
+<span id="cap2tipos-especiais-de-operadores"></span><h2>Tipos Especiais de Operadores<a class="headerlink" href="#tipos-especiais-de-operadores" title="Link permanente para este cabeçalho">#</a></h2>
+<p>Nesta seção, alguns operadores com propriedades especiais serão apresentados. Os operadores normais, hermitianos, unitários, positivos e projetivos participam da base da Mecânica Quântica.</p>
+<section id="operador-adjunto">
+<span id="cap2operador-adjunto"></span><h3>Operador Adjunto<a class="headerlink" href="#operador-adjunto" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Seja <span class="math notranslate nohighlight">\(A\)</span> um operador linear. Em Álgebra Linear, é possível demonstrar que existe um único operador linear, denotado por <span class="math notranslate nohighlight">\(A^{\dagger}\)</span> e chamado <em>operador adjunto</em> de <span class="math notranslate nohighlight">\(A\)</span>, que satisfaz a seguinte propriedade:</p>
+<ul class="simple">
+<li><p><strong>(OA1)</strong> <span class="math notranslate nohighlight">\(\big( \ket{\phi} , A\ket{\psi} \big) = \big( A^{\dagger}\ket{\phi} , \ket{\psi} \big)\)</span>
+Para qualquer base <span class="math notranslate nohighlight">\(\beta\)</span>, a matriz do operador <span class="math notranslate nohighlight">\(A^{\dagger}\)</span> está relacionada com a matriz de <span class="math notranslate nohighlight">\(A\)</span> por</p></li>
+<li><p><strong>(OA2)</strong> <span class="math notranslate nohighlight">\([A^\dagger ]_\beta = [A]_\beta^{\ \dagger} = \big( [A]_\beta^{\ *}\big)^{T}\)</span>
+isto é, a matriz <span class="math notranslate nohighlight">\([A]_\beta^{\ \dagger}\)</span> é obtida de <span class="math notranslate nohighlight">\([A]_\beta\)</span> conjugando suas entradas e tomando a transposta.</p></li>
+</ul>
+<p>Algumas propriedades da adjunta estão dispostas na seguinte lista:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\big( A^\dagger \big)^\dagger = A\)</span> (Involução)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \left( \sum_k a_k A_k \right)^{\dagger} = \sum_k a_k^{\ *} A_k^{\ \dagger}\)</span>  (Antilinearidade)</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A matriz adjunta de</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix} 2 &amp; 1+i \\ -1 &amp; 5i \end{bmatrix}\end{split}\]</div>
+<p>é a matriz conjugada transposta</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^\dagger = \begin{bmatrix} 2 &amp; -1 \\ 1-i &amp; -5i\end{bmatrix} \ .\end{split}\]</div>
+</div>
+</section>
+<section id="operadores-normais">
+<h3>Operadores Normais<a class="headerlink" href="#operadores-normais" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Um operador é dito <em>normal</em> se comuta com seu operador adjunto:</p>
+<ul class="simple">
+<li><p><strong>(ON)</strong> <span class="math notranslate nohighlight">\(A \cdot A^{\dagger} = A^{\dagger} \cdot A\)</span></p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O operador definido pela matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix} 1+i &amp; -1 \\ 1 &amp; 1-i \end{bmatrix}\end{split}\]</div>
+</div>
+<p>é normal, pois satisfaz <span class="math notranslate nohighlight">\(A A^\dagger = A^\dagger A\)</span>. De fato,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^\dagger = \begin{bmatrix} 1-i &amp; 1 \\ -1 &amp; 1+i \end{bmatrix}\end{split}\]</div>
+<p>e tem-se que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A A^\dagger = \begin{bmatrix} 1+i &amp; -1 \\ 1 &amp; 1-i \end{bmatrix} \begin{bmatrix} 1-i &amp; 1 \\ -1 &amp; 1+i \end{bmatrix} = \begin{bmatrix} 3 &amp; 0 \\ 0 &amp; 3 \end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^\dagger A = \begin{bmatrix} 1-i &amp; 1 \\ -1 &amp; 1+i \end{bmatrix} \begin{bmatrix} 1+i &amp; -1 \\ 1 &amp; 1-i \end{bmatrix} = \begin{bmatrix}3 &amp; 0 \\ 0 &amp; 3 \end{bmatrix}\end{split}\]</div>
+<p>A importância do operador normal decorre do seguinte teorema:</p>
+<div class="seealso admonition" id="cap2teorema-espectral-op-normal">
+<p class="admonition-title">Teorema Espectral</p>
+<p>Um operador é normal se, e somente se, for diagonalizável.</p>
+</div>
+<p>Dessa forma, basta checar se um operador é normal para se saber se ele admite uma base de autovetores e uma representação por matriz diagonal.</p>
+</section>
+<section id="operadores-hermitianos-ou-autoadjuntos">
+<span id="cap2op-hermitianos"></span><h3>Operadores Hermitianos ou Autoadjuntos<a class="headerlink" href="#operadores-hermitianos-ou-autoadjuntos" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Um operador <span class="math notranslate nohighlight">\(H\)</span> é dito <em>hermitiano</em>, ou <em>autoadjunto</em> se valer a seguinte propriedade:</p>
+<ul class="simple">
+<li><p><strong>(OH)</strong>  <span class="math notranslate nohighlight">\(H^{\dagger} =  H\)</span></p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O operador dado por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix}1 &amp; -i \\ i &amp; 1 \end{bmatrix}\end{split}\]</div>
+<p>é autoadjunto, pois</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^\dagger = \begin{bmatrix}1 &amp; -i \\ i &amp; 1\end{bmatrix} = A \ .\end{split}\]</div>
+</div>
+<p>Os operadores hermitianos estão relacionados com a evolução no tempo de um sistema quântico fechado e com a medida de um observável.</p>
+<p>Um operador hermitiano é, automaticamente, um operador normal, tendo em vista que <span class="math notranslate nohighlight">\(H H^\dagger = H^2 = H^\dagger H\)</span>. Conforme o teorema <a class="reference internal" href="#cap2teorema-espectral-op-normal"><span class="std std-ref">Teorema Espectral: Operador Normal</span></a>, todo operador hermitiano é, pois, diagonalizável. Além disso, há um teorema que permite tirar conclusões a respeito dos autovalores de uma matriz hermitiana.</p>
+<div class="seealso admonition" id="cap2teorema-espectral-op-hermitiano">
+<p class="admonition-title">Teorema Espectral para Matrizes Hermitianas</p>
+<p>Um operador normal é hermitiano se, e somente se, todos os seus autovalores são reais.</p>
+</div>
+</section>
+<section id="operadores-unitarios">
+<span id="cap2operadores-unitarios"></span><h3>Operadores Unitários<a class="headerlink" href="#operadores-unitarios" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Um operador <span class="math notranslate nohighlight">\(U\)</span> é dito <em>unitário</em> se satisfizer alguma das condições equivalentes:</p>
+<ul class="simple">
+<li><p><strong>(OU1)</strong> <span class="math notranslate nohighlight">\(U^{\dagger} =  U^{-1}\)</span>.</p></li>
+<li><p><strong>(OU2)</strong> As linhas ou as colunas de <span class="math notranslate nohighlight">\([U]_\beta\)</span> são vetores ortonormais em <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span>, para alguma base <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
+<li><p><strong>(OU3)</strong> <span class="math notranslate nohighlight">\(U\)</span> é uma isometria, isto é, preserva o produto interno entre vetores (e em consequência, preserva também a distância entre vetores): <span class="math notranslate nohighlight">\(\big( U\ket{\phi} , U\ket{\psi} \big) = \big( \ket{\phi} , \ket{\psi} \big)\)</span>.</p></li>
+</ul>
+<div class="tip admonition" id="cap2ex-operador-unitario">
+<p class="admonition-title">Exemplo</p>
+<p>O operador definido pela matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}\end{split}\]</div>
+<p>é unitário, pois as colunas <span class="math notranslate nohighlight">\(\ket{c_0} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}\)</span> e <span class="math notranslate nohighlight">\(\ket{c_1} = \frac{1}{\sqrt{2}} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}\)</span> são vetores ortonormais:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+||{\ket{c_0}||} &amp;=&amp; ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
+||{\ket{c_0}||} &amp;=&amp; ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
+\braket{c_0 | c_1} &amp;=&amp; \begin{bmatrix} 1 &amp; 1 \end{bmatrix} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix} = 1 - 1 = 0
+\end{eqnarray*}\end{split}\]</div>
+</div>
+<p>O produto de dois operadores unitários é unitário:</p>
+<div class="math notranslate nohighlight">
+\[(U_1 U_2)^\dagger = U_2^\dagger U_1^\dagger = U_2^{-1} U_1^{-1} = (U_1 U_2)^{-1} \ .\]</div>
+<p>A condição de um operador ser unitário também implica normalidade, visto que <span class="math notranslate nohighlight">\(U U^\dagger = I = U^\dagger U\)</span>. De acordo com o teorema <a class="reference internal" href="#cap2teorema-espectral-op-normal"><span class="std std-ref">Teorema Espectral: Operador Normal</span></a>, todo operador unitário é, então, diagonalizável. Pode-se mostrar o seguinte teorema.</p>
+<div class="seealso admonition" id="cap2teorema-espectral-op-unitario">
+<p class="admonition-title">Teorema Espectral para Operadores Unitários</p>
+<p>Seja <span class="math notranslate nohighlight">\(U\)</span> uma matriz normal. <span class="math notranslate nohighlight">\(U\)</span> é uma matriz unitária se, e somente se, os seus autovalores são números complexos de módulo 1, logo exprimíveis na forma <span class="math notranslate nohighlight">\(\lambda = e^{i\theta}\)</span> para algum <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span>.</p>
+</div>
+</section>
+<section id="operadores-positivos">
+<h3>Operadores Positivos<a class="headerlink" href="#operadores-positivos" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Um operador é dito <em>positivo</em> quando satisfaz a seguinte propriedade:</p>
+<ul>
+<li><p><strong>(OPos)</strong>  <span class="math notranslate nohighlight">\(\bra{\psi}P\ket{\psi} \geq 0 \ , \ \ \forall \ket{\psi}\)</span>.</p>
+<p>É possível demonstrar que um operador positivo é, automaticamente, hermitiano, e, portanto, todos os seus autovalores são reais. Além disso, a propriedade (OPos) é equivalente a dizer que todos os autovetores de <span class="math notranslate nohighlight">\(P\)</span> são números reais não-negativos <span class="math notranslate nohighlight">\(\lambda \geq 0\)</span>.</p>
+</li>
+</ul>
+<p>Diz-se que um operador é <em>positivo definido</em> quando satisfaz a condição seguinte, mais rigorosas que (OPos):</p>
+<ul>
+<li><p><strong>(OPosDef)</strong> <span class="math notranslate nohighlight">\(\bra{\psi}P\ket{\psi} &gt; 0 \ , \ \ \forall \ket{\psi}\neq 0\)</span></p>
+<p>Essa condição é equivalente a afirmar que todos os autovalores de <span class="math notranslate nohighlight">\(P\)</span> são números reais positivos <span class="math notranslate nohighlight">\(\lambda &gt;0\)</span>.</p>
+</li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O operador definido pela matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix} 1 &amp; -2 \\ 0 &amp; 2 \end{bmatrix}\end{split}\]</div>
+<p>é positivo. De fato, por se tratar de uma matriz triangular, os autovalores podem ser obtidos diretamente da diagonal: <span class="math notranslate nohighlight">\(\lambda = 1\)</span> e <span class="math notranslate nohighlight">\(\lambda = 2\)</span>. Seus autovalores são todos não negativos, do que decorre que <span class="math notranslate nohighlight">\(A\)</span> é positivo. Como nenhum autovalor é nulo, o operador é também positivo definido.</p>
+</div>
+</section>
+<section id="operadores-de-projecao">
+<h3>Operadores de Projeção<a class="headerlink" href="#operadores-de-projecao" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Um <em>operador de projeção</em> é um operador <span class="math notranslate nohighlight">\(P\)</span> que satisfaz:</p>
+<ul class="simple">
+<li><p><strong>(OProj)</strong> <span class="math notranslate nohighlight">\(P^2 =  P\)</span>.</p></li>
+</ul>
+<p>Os autovalores de <span class="math notranslate nohighlight">\(P\)</span> podem assumir os valores <span class="math notranslate nohighlight">\(\lambda = 0\)</span> ou <span class="math notranslate nohighlight">\(\lambda = 1\)</span>. De fato, se <span class="math notranslate nohighlight">\(\lambda\)</span> é um autovalor com autovetor <span class="math notranslate nohighlight">\(\ket{v}\neq 0\)</span> associado, tem-se <span class="math notranslate nohighlight">\(P\ket{v} = \lambda \ket{v} \implies \lambda \ket{v} = P\ket{v} = PP\ket{v} = \lambda P\ket{v} = \lambda^2 \ket{v}\)</span>, logo, <span class="math notranslate nohighlight">\((\lambda^2 - \lambda)\ket{v} = 0\)</span> e, como <span class="math notranslate nohighlight">\(\ket{v} \neq 0\)</span>, tem-se <span class="math notranslate nohighlight">\(\lambda^2 - \lambda = 0\)</span> e, por fim, <span class="math notranslate nohighlight">\(\lambda = 0\)</span> ou <span class="math notranslate nohighlight">\(\lambda = 1\)</span>. Isso prova, em virtude dos teoremas <a class="reference internal" href="#cap2teorema-espectral-op-hermitiano"><span class="std std-ref">Teorema Espectral: Operador Hermitiano</span></a> e <a class="reference internal" href="#cap2teorema-espectral-op-unitario"><span class="std std-ref">Teorema Espectral: Operador Unitário</span></a>, que todo operador de projeção é hermitiano e positivo.</p>
+<p>Considere o subspaço vetorial de dimensão finita <span class="math notranslate nohighlight">\(W = P(V)\)</span> (imagem de <span class="math notranslate nohighlight">\(P\)</span>). Seja <span class="math notranslate nohighlight">\(k=\dim W\)</span> e tome uma base ortonormal <span class="math notranslate nohighlight">\(\big\{ \ket{v_0}, \ldots , \ket{v_{k-1}} \big\}\)</span> de <span class="math notranslate nohighlight">\(P(V)\)</span>. Estendendo-se a <span class="math notranslate nohighlight">\(\big\{ \ket{v_0}, \ldots , \ket{v_{k-1}}, \ket{v_k} , \ldots , \ket{v_{n-1}} \big\}\)</span> base ortonormal do espaço <span class="math notranslate nohighlight">\(V\)</span>, é possível escrever o operador <span class="math notranslate nohighlight">\(P\)</span> como</p>
+<div class="math notranslate nohighlight">
+\[P = \text{Proj}_W = \sum_{j=0}^{k-1} \ket{v_j}\bra{v_j} \ .\]</div>
+<p>O operador</p>
+<div class="math notranslate nohighlight">
+\[Q = I - P = \text{Proj}_{W^\perp} =  \sum_{j=k}^{n-1} \ket{v_j}\bra{v_j}\]</div>
+<p>é um operador de projeção no subespaço <span class="math notranslate nohighlight">\(W^{\perp}\)</span>.</p>
+<p>Tem-se que <span class="math notranslate nohighlight">\(\text{Proj}_W + \text{Proj}_{W^\perp} = I\)</span> e portanto, todo vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> pode ser decomposto na soma de projeções em <span class="math notranslate nohighlight">\(W\)</span> e em <span class="math notranslate nohighlight">\(W^{\perp}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi} = \underbrace{\text{Proj}_W(\ket{\psi})}_{\in W} + \underbrace{\text{Proj}_{W^\perp}(\ket{\psi})}_{\in W^{\perp}} \ .\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Os operadores no espaço de estados de 1 qubit</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  \ket{0}\bra{0} &amp;=&amp; \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 0 \end{bmatrix} \\
+  \ket{1}\bra{1} &amp;=&amp; \begin{bmatrix}0 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}  \ ,
+\end{eqnarray*}\end{split}\]</div>
+<p>são as projeções na direção dos vetores <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span>, respectivamente. Tem-se que</p>
+<div class="math notranslate nohighlight">
+\[I =  \ket{0}\bra{0} + \ket{1}\bra{1} \ ,\]</div>
+<p>que é a relação de completude.</p>
+<p>Se denotarmos por <span class="math notranslate nohighlight">\(W = \text{span}\{\ket{0} \}\)</span> o subespaço gerado por <span class="math notranslate nohighlight">\(\ket{0}\)</span>, tem-se que <span class="math notranslate nohighlight">\(W^\perp = \text{span}\{ \ket{1} \}\)</span>, <span class="math notranslate nohighlight">\(\ket{0}\bra{0} = \text{Proj}_W\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\bra{1} = I - \ket{0}\bra{0} = \text{Proj}_{W^\perp}\)</span> e qualquer vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> pode ser escrito como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+  \ket{\psi}
+  &amp;=&amp; I \ket{\psi} = (\ket{0}\bra{0} + \ket{1}\bra{1}) \ket{\psi} \\
+  &amp;=&amp; \ \ket{0}\bra{0} \ket{\psi} \ + \  \ket{1}\bra{1}\ket{\psi} \\
+  &amp;=&amp; \text{Proj}_W \ket{\psi} + \text{Proj}_{W^\perp} \ket{\psi} \ .
+\end{eqnarray*}\end{split}\]</div>
+<p>Se <span class="math notranslate nohighlight">\(\ket{\psi} = a \ket{0} + b \ket{1}\)</span>, então</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+\text{Proj}_W\ket{\psi}
+&amp;=&amp; \ket{0}\bra{0}(a \ket{0} + b \ket{1}) = \ket{0}a\underbrace{\braket{0 | 0}}_{=1} + \ket{0}b\underbrace{\braket{0 | 1}}_{=0} = a \ket{0} \\
+\text{Proj}_{W^\perp}\ket{\psi}
+&amp;=&amp; \ket{1}\bra{1}(a \ket{0} + b \ket{1}) = \ket{1}a\underbrace{\braket{1 | 0}}_{=0} + \ket{1}b\underbrace{\braket{1 | 1}}_{=1} = b \ket{1} \ . \\
+\end{eqnarray*}\end{split}\]</div>
+</div>
+</section>
+<section id="resumo">
+<h3>Resumo<a class="headerlink" href="#resumo" title="Link permanente para este cabeçalho">#</a></h3>
+<p>A figura abaixo traz um quadro resumo dos operadores especiais abordados neste capítulo.</p>
+<figure class="align-default" id="id6">
+<img alt="_images/operators.png" class="no-scaled-link" src="_images/operators.png" style="width: 100%;" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Relação entre os operadores especiais estudados neste capítulo. Fonte: <a class="reference external" href="https://sites.google.com/site/jonasmaziero/home/edu/topicos-em-ciencia-da-informacao-quantica">Slides de Álgebra Linear, UFSM</a>.</span><a class="headerlink" href="#id6" title="Link Permanente para essa imagem">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table" id="id7">
+<caption><span class="caption-number">Tabela 1 </span><span class="caption-text">Resumo das propriedades dos operadores especiais estudados neste capítulo</span><a class="headerlink" href="#id7" title="Link Permanente para essa tabela">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operador</p></th>
+<th class="head"><p>Propriedade</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Normal</p></td>
+<td><p><span class="math notranslate nohighlight">\(N N^\dagger = N^\dagger N\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Autoadjunto ou Hermitiano</p></td>
+<td><p><span class="math notranslate nohighlight">\(H^\dagger = H\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Unitário</p></td>
+<td><p><span class="math notranslate nohighlight">\(U^{-1} = U^\dagger\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Projetor</p></td>
+<td><p><span class="math notranslate nohighlight">\(P^2 = P\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Positivo</p></td>
+<td><p><span class="math notranslate nohighlight">\(\bra{\psi}P\ket{\psi} \geq 0 \ , \ \ \forall \ket{\psi}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Positivo definido</p></td>
+<td><p><span class="math notranslate nohighlight">\(\bra{\psi}P\ket{\psi} &gt; 0 \ , \ \ \forall \ket{\psi}\neq 0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="produto-tensorial">
+<span id="id4"></span><h2>Produto Tensorial<a class="headerlink" href="#produto-tensorial" title="Link permanente para este cabeçalho">#</a></h2>
+<p>É possível compor dois espaços vetoriais para formar um terceiro espaço. Uma maneira de fazer isso é por meio do <em>produto tensorial</em>. Em Computação Quântica, essa construção é fundamental para se trabalhar com sistemas compostos por mais de um qubit. Um sistema de dois qubits será o produto tensorial de dois espaços <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>, que modelam um qubit.</p>
+<section id="espaco-vetorial-do-produto-tensorial">
+<h3>Espaço Vetorial do Produto Tensorial<a class="headerlink" href="#espaco-vetorial-do-produto-tensorial" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Dados dois espaços vetorias <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, com bases <span class="math notranslate nohighlight">\(\beta_V = \{ \ket{v_k} \}\)</span> e <span class="math notranslate nohighlight">\(\beta_W = \{ \ket{w_l} \}\)</span>, o <em>produto tensorial</em> de <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, denotado por <span class="math notranslate nohighlight">\(V\otimes W\)</span>, é definido como o espaço vetorial gerado pela base:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}v_k \otimes w_l \ , \ \ \begin{matrix} k=0 , \ldots , \dim V - 1 \\  l=0 , \ldots , \dim W - 1 \end{matrix} \ .\end{split}\]</div>
+<p>A dimensão do espaço vetorial do produto tensorial é, portanto,</p>
+<div class="math notranslate nohighlight">
+\[\dim V\otimes W = \dim V \cdot \dim W \ .\]</div>
+<p>O produto tensorial <span class="math notranslate nohighlight">\(\otimes\)</span> forma uma dupla ordenada com propriedades diferentes das do produto cartesiano. Essas propriedades, listadas abaixos, são chamadas conjuntamente de <em>bilinearidade</em>:</p>
+<ul>
+<li><p>Para todos <span class="math notranslate nohighlight">\(z \in \mathbb{C}\)</span>, <span class="math notranslate nohighlight">\(\ket{v}\in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w} \in W\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[z \cdot (\ket{v} \otimes \ket{w}) = (z\ket{v}) \otimes \ket{w} = \ket{v} \otimes(z\ket{w}) \ .\]</div>
+</li>
+<li><p>Para todos  <span class="math notranslate nohighlight">\(\ket{v^1},\ket{v^2}\in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w} \in W\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[(\ket{v^1}+ \ket{v^2}) \otimes \ket{w} = \ket{v^1} \otimes \ket{w} + \ket{v^2} \otimes \ket{w} \ .\]</div>
+</li>
+<li><p>Para todos <span class="math notranslate nohighlight">\(\ket{v}\in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w^1},\ket{w^2} \in W\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\ket{v} \otimes (\ket{w^1} + \ket{w^2}) = \ket{v} \otimes \ket{w^1} + \ket{v} \otimes \ket{w^2} \ .\]</div>
+</li>
+</ul>
+<p>Um elemento genérico do espaço <span class="math notranslate nohighlight">\(V\otimes W\)</span> é uma combinação linear dos vetores da base <span class="math notranslate nohighlight">\(\ket{v_k} \otimes \ket{w_l}\)</span>. Em geral, essa combinação não pode ser escrita da forma fatorada <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w}\)</span>.</p>
+<div class="tip admonition" id="cap2ex-espaco-vet-2qubits">
+<p class="admonition-title">Exemplo</p>
+<p>O sistema composto por 2 qubits é dado pelo produto tensorial de dois espaços vetoriais de 1 qubit (isto será visto com mais detalhes na seção [cap3sec_sistemas_compostos]). Esse espaço vetorial é denotado por <span class="math notranslate nohighlight">\(\mathbb{C}^2 \otimes \mathbb{C}^2\)</span>. A base desse espaço é formada pelos 4 vetores</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+\ket{00} &amp;=&amp; \ket{0} \ket{0} = \ket{0} \otimes \ket{0} \\
+\ket{01} &amp;=&amp; \ket{0} \ket{1} = \ket{0} \otimes \ket{1} \\
+\ket{10} &amp;=&amp; \ket{1} \ket{0} = \ket{1} \otimes \ket{0} \\
+\ket{11} &amp;=&amp; \ket{1} \ket{1} = \ket{1} \otimes \ket{1} \ ,
+\end{eqnarray*}\end{split}\]</div>
+<p>e as igualdades apresentadas acima apenas referem-se a notações alternativas e mais compactas. A ordem em que as entradas aparecem no produto tensorial é importante, de forma que <span class="math notranslate nohighlight">\(\ket{01} \neq \ket{10}\)</span>, por exemplo.</p>
+<p>Um vetor qualquer <span class="math notranslate nohighlight">\(\ket{\psi} \in \mathbb{C}^2 \otimes \mathbb{C}^2\)</span> pode ser escrito como</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi} = a \ket{00} + b\ket{01} + c \ket{10} + d\ket{11} \ ,\]</div>
+<p>com <span class="math notranslate nohighlight">\(a,b,c,d \in \mathbb{C}\)</span>. Alguns exemplos de vetores pertencentes ao espaço em questão são:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\ket{00} + \ket{11}}{\sqrt{2}}\]</div>
+<div class="math notranslate nohighlight">
+\[\ket{0} \otimes \left(\ket{0} + 2\ket{1} \right) = \ket{00} + 2 \ket{01}\]</div>
+<div class="math notranslate nohighlight">
+\[\left( 5\ket{1}\right)   \ket{1}  =  5 \ket{11}\]</div>
+<div class="math notranslate nohighlight">
+\[\left(\frac{1}{\sqrt{2}}\ket{0} - \frac{i}{\sqrt{2}} \right) \ket{0} = \frac{1}{\sqrt{2}}\ket{00} - \frac{i}{\sqrt{2}}\ket{10} \ .\]</div>
+<p>As igualdades acima são exemplos da bilinearidade do produto tensorial.</p>
+</div>
+</section>
+<section id="comparacao-do-produto-tensorial-com-o-produto-cartesiano">
+<h3>Comparação do Produto Tensorial com o Produto Cartesiano<a class="headerlink" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano" title="Link permanente para este cabeçalho">#</a></h3>
+<p>O <em>produto cartesiano</em>, às vezes chamado <em>soma direta</em> é outra maneira de se compor dois espaços vetoriais em um espaço “maior”, denotado por <span class="math notranslate nohighlight">\(V \times W\)</span> ou por <span class="math notranslate nohighlight">\(V \oplus W\)</span>. O produto cartesiano é formado por duplas <span class="math notranslate nohighlight">\(\big( \ket{v} , \ket{w} \big)\)</span>, com <span class="math notranslate nohighlight">\(\ket{v} \in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w} \in W\)</span>. Nesta subseção, a notação <span class="math notranslate nohighlight">\(( \cdot \, , \cdot )\)</span> refere-se a par ordenado em vez de produto interno como no restante do texto.</p>
+<p>As diferenças entre essas duas operações estão dispostas no que segue:</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id8">
+<caption><span class="caption-number">Tabela 2 </span><span class="caption-text">Tabela comparativa entre produto tensorial e produto cartesiano (também chamado soma direta)</span><a class="headerlink" href="#id8" title="Link Permanente para essa tabela">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Produto Tensorial</p></th>
+<th class="head"><p>Produto Cartesiano ou Soma Direta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notação:</p></td>
+<td><p><span class="math notranslate nohighlight">\(V \otimes W\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(V \times W = V \oplus W\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Base:</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ket{v_k} \otimes \ket{w_l}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\big( \ket{v_k} , 0 \big) \ , \ \big( 0 , \ket{w_l} \big)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Dimensão:</p></td>
+<td><p><span class="math notranslate nohighlight">\(\dim V \otimes W = \dim V \cdot \dim W\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dim V \oplus W = \dim V + \dim W\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Outra diferença é que a soma, no produto cartesiano, é uma soma entrada a entrada</p>
+<div class="math notranslate nohighlight">
+\[\big( \ket{v^1} , \ket{w^1} \big) + \big( \ket{v^2} , \ket{w^2} \big) = \big( \ket{v^1} + \ket{v^2} , \ket{w^1} + \ket{w^2} \big) \ ,\]</div>
+<p>enquanto que a soma no produto tensorial, de modo geral, não se reduz</p>
+<div class="math notranslate nohighlight">
+\[\ket{v^1} \otimes \ket{w^1}  +  \ket{v^2} \otimes \ket{w^2}  \ ,\]</div>
+<p>a não ser que, por exemplo, <span class="math notranslate nohighlight">\(\ket{v^1} = \ket{v^2}\)</span>, de modo que</p>
+<div class="math notranslate nohighlight">
+\[\ket{v^1} \otimes \ket{w^1}  +  \ket{v^1} \otimes \ket{w^2} = \ket{v^1} \otimes \big( \ket{w^1}  + \ket{w^2} \big) \ .\]</div>
+<p>A multiplicação por escalar no produto cartesiano também é entrada a entrada</p>
+<div class="math notranslate nohighlight">
+\[z \cdot \big( \ket{v} , \ket{w} \big) = \big( z\ket{v} , z\ket{w} \big) \ ,\]</div>
+<p>enquanto que, no produto tensorial, o escalar pode ser incorporado a qualquer das duas entradas, mas deve ir para apenas uma delas</p>
+<div class="math notranslate nohighlight">
+\[z \cdot \big(\ket{v} \otimes \ket{w}\big) = \big(z\ket{v}\big) \otimes \ket{w} = \ket{v} \otimes \big(z\ket{w} \big) \ .\]</div>
+</section>
+<section id="id5">
+<h3>Produto Interno<a class="headerlink" href="#id5" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Sejam <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span> espaços de Hilbert, isto é, espaços munidos de produto interno. O produto tensorial <span class="math notranslate nohighlight">\(V\otimes W\)</span> pode ser munido com um produto interno derivado dos produtos internos de <span class="math notranslate nohighlight">\(V\)</span> e de <span class="math notranslate nohighlight">\(W\)</span>. Defina:</p>
+<div class="math notranslate nohighlight" id="cap2def-produto-interno-vetores-da-base">
+\[\begin{split}\begin{eqnarray}
+  \Big( \ket{v_k}\otimes \ket{w_l} , \ket{v_{k^\prime}}\otimes \ket{w_{l^\prime}} \Big)
+&amp;=&amp;  \Big( \ket{v_k} , \ket{v_{k^\prime}} \Big)_V \cdot \Big( \ket{w_l} , \ket{w_{l^\prime}} \Big)_W  \nonumber \\
+&amp;=&amp; \braket{v_k | v_{k^\prime}}  \cdot \braket{w_l | w_{l^\prime}} =  \delta_{k,k\prime} \delta_{l,l^\prime} \ , \quad \quad \quad
+\end{eqnarray}\end{split}\]</div>
+<p>estendendo a definição para elementos arbitrários do produto tensorial por linearidade na segunda entrada e antilinearidade na primeira.</p>
+<p>Para dois vetores da forma <span class="math notranslate nohighlight">\(\ket{v^1}\otimes \ket{w^1}\)</span> e <span class="math notranslate nohighlight">\(\ket{v^2}\otimes \ket{w^2}\)</span> do produto tensorial, pode-se denotar</p>
+<div class="math notranslate nohighlight">
+\[\Big( \ket{v^1}\otimes \ket{w^1} ,   \ket{v^2}\otimes \ket{w^2} \Big) = \big( \bra{v^1}\otimes \bra{w^1} \big) \big(  \ket{v^2}\otimes \ket{w^2} \big) \ ,\]</div>
+<p>e decorre da definição de produto interno que</p>
+<div class="math notranslate nohighlight">
+\[\big( \bra{v^1}\otimes \bra{w^1} \big) \big(  \ket{v^2}\otimes \ket{w^2} \big) = \braket{v^1 | v^2}_V  \cdot \braket{w^1 | w^2}_W \ .\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^2 \otimes \mathbb{C}^2\)</span> que descreve 2 qubits foi apresentado no exemplo <a class="reference internal" href="#cap2ex-espaco-vet-2qubits"><span class="std std-ref">Espaço Vetorial de 2 Qubits</span></a>. O produto interno nesse espaço é explicitado no que segue.
+Use os índices <span class="math notranslate nohighlight">\(A\)</span> e <span class="math notranslate nohighlight">\(B\)</span> para fazer referência à primeira e à segunda entrada tensorial, respectivamente.</p>
+<p>O produto interno dos vetores da base é dado pela equação <a class="reference internal" href="#cap2def-produto-interno-vetores-da-base"><span class="std std-ref">Produto Interno de Vetores da Base</span></a>, que se traduz em</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+\braket{jk | pq}_{AB}
+&amp;=&amp; \big( \ket{jk} , \ket{pq} \big)_{AB} \\
+&amp;=&amp; \big(\ket{j},\ket{p} \big)_A \cdot \big( \ket{k},\ket{q} \big)_B \\
+&amp;=&amp; \braket{j | p}_A \cdot \braket{k | q}_B \\
+&amp;=&amp; \delta_{j,p} \cdot \delta_{k,q}  = \delta_{jk,pq} \ ,
+\end{eqnarray*}\end{split}\]</div>
+<p>em que <span class="math notranslate nohighlight">\(j,k,p,q = 0,1\)</span>. Por exemplo,</p>
+<div class="math notranslate nohighlight">
+\[\text{$\braket{01 | 01} = 1$, $\braket{11 | 10} = 0$ e $\braket{10 | 01} = 0$ .}\]</div>
+<p>Sejam</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+    \ket{\phi} &amp;=&amp; a_1 \ket{00} + b_1 \ket{01} + c_1 \ket{10} + d_1 \ket{11} \\
+    \ket{\psi} &amp;=&amp; a_2 \ket{00} + b_2 \ket{01} + c_2 \ket{10} + d_2 \ket{11} \ .
+\end{eqnarray*}\end{split}\]</div>
+<p>O produto interno de <span class="math notranslate nohighlight">\(\ket{\phi}\)</span> com <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é dado por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray*}
+\braket{\phi | \psi}
+&amp;=&amp; \big(a_1^{\ *} \bra{00} + b_1^{\ *} \bra{01} + c_1^{\ *} \bra{10} + d_1^{\ *} \bra{11}\big) \big(a_2 \ket{00} + b_2 \ket{01} + c_2 \ket{10} + d_2 \ket{11} \big) \\
+&amp; =&amp;  a_1^{\ *} a_2 + b_1^{\ *} b_2 + c_1^{\ *} c_2 + d_1^{\ *} d_2 \ .
+\end{eqnarray*}\end{split}\]</div>
+<p>A norma de <span class="math notranslate nohighlight">\(\ket{\phi}\)</span> é dada por</p>
+<div class="math notranslate nohighlight">
+\[||{\ket{\phi}||} = \sqrt{|{a_1}|^2 + |{b_1}|^2 + |{c_1}|^2 + |{d_1}|^2}\  \ .\]</div>
+<p>Exemplos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+&amp; \left( \frac{\bra{0} + \bra{1}}{\sqrt{2}} \right)_{A} \bra{1}_{B}\  \ket{0}_A \left(\frac{\ket{0}-i\ket{1}}{\sqrt{2}} \right)_B \\
+&amp;\ = \ \  \left( \frac{\braket{0 | 0} + \braket{1 | 0}}{\sqrt{2}} \right)_A \left( \frac{\braket{1 | 0} -i \braket{1 | 1}}{\sqrt{2}} \right)_B \\
+&amp;\ = \ \  \frac{1+0}{\sqrt{2}} \cdot \frac{0 - i}{\sqrt{2}} = \frac{-i}{2}
+\end{split}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[||{\ket{01}|| + i \ket{10}} = \sqrt{|{1}|^2 + |{i}|^2} = \sqrt{2} \ .\]</div>
+</div>
+</section>
+<section id="operadores">
+<h3>Operadores<a class="headerlink" href="#operadores" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Sejam <span class="math notranslate nohighlight">\(A\)</span> um operador em <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(B\)</span> um operador em <span class="math notranslate nohighlight">\(W\)</span>. É possível definir um operador em <span class="math notranslate nohighlight">\(V\otimes W\)</span>, denotado por <span class="math notranslate nohighlight">\(A\otimes B\)</span> de forma que</p>
+<div class="math notranslate nohighlight">
+\[(A \otimes B) (\ket{v} \otimes \ket{w}) = A\ket{v} \otimes B\ket{w} \ .\]</div>
+<p>Todo operador em <span class="math notranslate nohighlight">\(V \otimes W\)</span> pode ser decomposto em uma combinação linear de operadores da forma apresentada anteriormente.</p>
+<p>Pode-se mostrar que a composição, ou produto, de dois operadores <span class="math notranslate nohighlight">\(A \otimes B\)</span> e <span class="math notranslate nohighlight">\(A' \otimes B'\)</span> é dada por:</p>
+<div class="math notranslate nohighlight">
+\[(A \otimes B) (A' \otimes B') = AA' \otimes BB' \ .\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Sejam <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(H\)</span> operadores no espaço de 1 qubit dados por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{ll}
+  \begin{matrix}
+  X\ket{0} = \ket{1} \\
+  X\ket{1} = \ket{0}
+\end{matrix}
+&amp;
+X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
+\\ &amp; \\
+  \begin{matrix}
+  H\ket{0} = \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1} \\
+  H\ket{1} = \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1}
+\end{matrix}
+&amp;
+H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix} \ .
+\end{array}\end{split}\]</div>
+<p>Esses operadores foram utilizados em vários dentre os exemplos anteriores.</p>
+<p>O operador <span class="math notranslate nohighlight">\(H \otimes X\)</span> atua no espaço de 2 qubits como no exemplo abaixo.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+  &amp;H\otimes X \big(\ket{0} \otimes (\ket{0} + i \ket{1} ) \big) \\
+  &amp;\ \ = H\ket{0} \otimes \big(X(\ket{0} + i \ket{1} ) \big) \\
+  &amp;\ \ = \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \otimes \big( \ket{1} + i \ket{0} \big) \\
+  &amp;\ \ = \frac{i}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{01} + \frac{i}{\sqrt{2}}\ket{10} + \frac{1}{\sqrt{2}}\ket{11} \ .
+\end{split}\end{split}\]</div>
+<p>Se forem usados rótulos <span class="math notranslate nohighlight">\(1\)</span> e <span class="math notranslate nohighlight">\(2\)</span> para as entradas tensoriais, a conta do exemplo acima poderia ser reescrita como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+  &amp;H_1 X_2 \ket{0}_1  (\ket{0} + i \ket{1} )_2  \\
+  &amp;\ \ = H_1 \ket{0}_1  X_2(\ket{0} + i \ket{1} )_2 \\
+  &amp;\ \ = \left(\frac{\ket{0}_1 + \ket{1}_1}{\sqrt{2}} \right) \big( \ket{1}_2 + i \ket{0}_2 \big) \\
+  &amp;\ \ = \frac{i}{\sqrt{2}}\ket{00}_{12} + \frac{1}{\sqrt{2}}\ket{01}_{12} + \frac{i}{\sqrt{2}}\ket{10}_{12} + \frac{1}{\sqrt{2}}\ket{11}_{12} \ .
+\end{split}\end{split}\]</div>
+<p>Mais detalhes sobre a notação encontram-se na seção <a class="reference internal" href="#cap2produto-tensorial-notacao"><span class="std std-ref">Produto Tensorial: Notação</span></a>.</p>
+</div>
+</section>
+<section id="produto-de-kronecker">
+<h3>Produto de Kronecker<a class="headerlink" href="#produto-de-kronecker" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Até então, o conceito de produto tensorial foi apresentado de maneira abstrata. É possível abordar esse conceito de maneira matricial também. Fixadas bases para <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, os vetores <span class="math notranslate nohighlight">\(\ket{v}\)</span> e <span class="math notranslate nohighlight">\(\ket{w}\)</span> desses espaços podem ser representados como vetores coluna.
+O vetor <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w}\)</span> também pode ser representado como vetor coluna fazendo-se o <em>produto de Kronecker</em>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{v} \otimes \ket{w} = \begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_{n-1} \end{bmatrix} \otimes \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_{m-1} \end{bmatrix} =  \begin{bmatrix} a_0 \ket{w} \\ a_1 \ket{w} \\ \vdots \\ a_{n-1} \ket{w} \end{bmatrix}  = \begin{bmatrix} a_0 b_0 \\ a_0 b_1 \\ \vdots \\ a_0 b_{m-1} \\ a_1 b_0 \\ a_1 b_1 \\ \vdots \\ a_{n-1} b_{m-1} \end{bmatrix}\end{split}\]</div>
+<p>Essa operação é mais facilmente compreendida por meio de um exemplo.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} 1 \\ 2 \end{bmatrix} \otimes \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix} = \begin{bmatrix} 1 \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix} \\ \\ 2 \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix} \end{bmatrix} = \begin{bmatrix} 3 \\ 4 \\ 5 \\ 6 \\ 8 \\ 10 \end{bmatrix}\end{split}\]</div>
+</div>
+<p>O produto tensorial de operadores em <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span> também pode ser obtido matricialmente por meio do produto de Kronecker.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A \otimes B = \begin{bmatrix} a_{0,0} &amp; \cdots &amp; a_{0,n-1} \\ a_{1,1} &amp; &amp; a_{1,n-1} \\ \vdots &amp; &amp; \vdots \\ a_{n-1,0} &amp; \cdots &amp; a_{n-1,n-1} \end{bmatrix}  \otimes B = \begin{bmatrix} a_{0,0}B &amp; \cdots &amp; a_{0,n-1}B \\ a_{1,1}B &amp; &amp; a_{1,n-1}B \\ \vdots &amp; &amp; \vdots \\ a_{n-1,0}B &amp; \cdots &amp; a_{n-1,n-1}B \end{bmatrix}\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \otimes \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} = \begin{bmatrix} 0 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} &amp; 1 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} \\ \\ 1 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}  &amp; 0 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}  \end{bmatrix} = \begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; 2 \\ 0 &amp; 0 &amp; 3 &amp; 4 \\ 1 &amp; 2 &amp; 0 &amp; 0 \\ 3 &amp; 4 &amp; 0 &amp; 0 \end{bmatrix}\end{split}\]</div>
+</div>
+<p>O produto de Kronecker, em geral, não é comutativo.</p>
+<p>Se <span class="math notranslate nohighlight">\(A \in M(m_A,n_A)\)</span> e <span class="math notranslate nohighlight">\(B \in M(m_B, n_B)\)</span>, então a matriz <span class="math notranslate nohighlight">\(A \otimes B\)</span> tem <span class="math notranslate nohighlight">\(m_Am_B\)</span> linhas e <span class="math notranslate nohighlight">\(n_An_B\)</span> colunas, ou seja, <span class="math notranslate nohighlight">\(A\otimes B \in M(m_Am_B,n_An_B)\)</span>. Uma forma geral de escrever o elemento <span class="math notranslate nohighlight">\(j,k\)</span> da matriz <span class="math notranslate nohighlight">\(A\otimes B\)</span> é</p>
+<div class="math notranslate nohighlight">
+\[( A\otimes B )_{j,k} = a_{\text{quoc}(j,m_B),\text{quoc}(k,n_B)}\  b_{\text{resto}(j,m_B),\text{resto}(k,n_B)} \ \ ,\]</div>
+<p>em que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+  j &amp;= 0 , 1 , \ldots , m_A m_B - 1 \\
+  k &amp;= 0 , 1 , \ldots , n_A n_B - 1
+\end{split}\end{split}\]</div>
+<p>e, para <span class="math notranslate nohighlight">\(x,y\)</span> inteiros,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+    \text{quoc}(x,y) \ \ &amp;\text{é o quociente da divisão $x / y$} \\
+    \text{resto}(x,y) \ \ &amp;\text{é o resto da divisão $x / y$} \ .
+\end{split}\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p><span class="math notranslate nohighlight">\(A_{2\times2}\)</span> , <span class="math notranslate nohighlight">\(B_{3\times2}\)</span>. O elemento <span class="math notranslate nohighlight">\(4,2\)</span> da matriz <span class="math notranslate nohighlight">\(A\otimes B\)</span> pode ser obtido por:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}   (A \otimes B)_{4,2} = a_{\text{quoc}(4,3),\text{quoc}(2,2)}\  b_{\text{resto}(4,3),\text{resto}(2,2)} = a_{1,1} b_{1,0} \ .\\A matriz $A\otimes B* está representada abaixo, destacando-se o elemento $4,2*:\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}A \otimes B = \begin{bmatrix} a_{0,0} B &amp; a_{0,1} B \\ a_{1,0} B &amp; a_{1,1} B \end{bmatrix} =   \begin{bmatrix} a_{0,0} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} &amp; a_{0,1} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} \\ &amp; \\ a_{1,0} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} &amp; \boxed{a_{1,1}} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ \boxed{b_{1,0}} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} \end{bmatrix}   \ .\end{split}\]</div>
+</div>
+</section>
+<section id="produto-tensorial-de-varios-espacos-vetoriais">
+<h3>Produto Tensorial de Vários Espaços Vetoriais<a class="headerlink" href="#produto-tensorial-de-varios-espacos-vetoriais" title="Link permanente para este cabeçalho">#</a></h3>
+<p>O produto tensorial de vários espaços vetoriais segue a mesma ideia do caso de dois espaços, apresentado anteriormente. A dimensão será o produto das dimensões de cada espaço. O produto tensorial é associativo, então não é necessário usar parênteses num produto tensorial de vários espaços. Não é possível comutar os fatores do produto tensorial.</p>
+</section>
+<section id="notacao">
+<span id="cap2produto-tensorial-notacao"></span><h3>Notação<a class="headerlink" href="#notacao" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Em situações práticas, costuma-se usar índices em cada fator do produto tensorial para evitar confusões. Também há variantes que deixam a notação mais curta. Alguns comentários a respeito dessas variantes são abordados nesta seção. Para tratar disso, considere um exemplo em <span class="math notranslate nohighlight">\(V\otimes W \otimes U\)</span>.</p>
+<p>Pode-se denotar um elemento da forma <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w} \otimes \ket{u}\)</span> omitindo-se o símbolo <span class="math notranslate nohighlight">\(\otimes\)</span>: <span class="math notranslate nohighlight">\(\ket{v}  \ket{w}  \ket{u}\)</span>. Nesse caso, deve-se tomar cuidado para não confundir essa justaposição com o produto matricial; nas situações de interesse, normalmente o produto matricial não será possível e há menos risco de confusão.</p>
+<p>Costuma-se atribuir índices aos fatores: <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w} \otimes \ket{u} = \ket{v}_V \otimes \ket{w}_W \otimes \ket{u}_U  =  \ket{v}_V \ket{w}_W  \ket{u}_U\)</span>. Ainda, pode-se escrever esse elemento como: <span class="math notranslate nohighlight">\(\ket{v}_1 \ket{w}_2 \ket{u}_3\)</span>, ou <span class="math notranslate nohighlight">\(\ket{v \, w \, u}_{VWU}\)</span>, ou, ainda, qualquer notação equivalente, que evidencie a que espaço cada ket pertence. Com a identificação por índices, é possível até trocar a ordem em que são escritos; não deve ser confundido com a comutatividade dos fatores, que não é permitida em geral. Assim, pode-se escrever: <span class="math notranslate nohighlight">\(\ket{u}_3 \ket{w}_2 \ket{v}_1\)</span>.</p>
+<p>Os bras também podem ser rotulados com índices. Por exemplo, escreve-se <span class="math notranslate nohighlight">\(\big( \ket{v}_1 \ket{w}_2 \ket{u}_3\big)^\dagger =  {}_1\bra{v} {}_2\bra{w} {}_3\bra{u}\)</span>, ou <span class="math notranslate nohighlight">\(\ket{v \, w \, u}_{VWU}^{\ \ \dagger} = {}_{VWU}\bra{v \, w \, u}\)</span>.</p>
+<p>Considere, agora, os operadores da forma <span class="math notranslate nohighlight">\(A\otimes B\otimes C\)</span>, com <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> e <span class="math notranslate nohighlight">\(C\)</span> operadores nos espaços <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(W\)</span> e <span class="math notranslate nohighlight">\(U\)</span>, respectivamente. É possível também atribuir índices nos operadores para lembrar em que espaço cada um deles atua. Por exemplo, pode-se denotar: <span class="math notranslate nohighlight">\(A_1\otimes B_2\otimes C_3\)</span>.</p>
+<p>Há situações em que se deseja operar apenas em uma das entradas do produto tensorial. Assim, por exemplo, <span class="math notranslate nohighlight">\(A\ket{v} \otimes \ket{w}\otimes \ket{u} = A_1 \big( \ket{v} \otimes \ket{w}\otimes \ket{u} \big)\)</span>. Formalmente, <span class="math notranslate nohighlight">\(A_1 = A \otimes I \otimes I\)</span>, nesse caso. O produto (ou composição) dos operadores <span class="math notranslate nohighlight">\(A_1 B_2 C_3\)</span> significa <span class="math notranslate nohighlight">\((A\otimes I \otimes I) (I \otimes B \otimes I)(I \otimes I \otimes C) = AII \otimes IBI \otimes IIC = A\otimes B \otimes C\)</span>. Dessa forma, com os índices, pode-se escrever <span class="math notranslate nohighlight">\(A_1 B_2 C_3 = A \otimes B \otimes C\)</span> sem perigo de confusão com o produto matricial de <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> e <span class="math notranslate nohighlight">\(C\)</span>; Pode-se até mesmo trocar a ordem de como são escritos:
+<span class="math notranslate nohighlight">\(B_2 A_1 C_3 = A\otimes B \otimes C\)</span>.</p>
+<p>Outra notação bastante utilizada é quando se deseja realizar o produto tensorial entre <span class="math notranslate nohighlight">\(n\)</span> cópias de um vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>. Define-se</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi}^{\otimes n} = \underbrace{\ket{\psi} \otimes \ket{\psi}}_{\text{$n$ vezes}} \ .\]</div>
+<p>Essa notação pode ser utilizada para bras e para operadores: <span class="math notranslate nohighlight">\(\bra{\psi}^{\otimes n}\)</span>, <span class="math notranslate nohighlight">\(A^{\otimes n }\)</span>. Também é possível usar uma notação análoga ao produtório para denotar, por exemplo,</p>
+<div class="math notranslate nohighlight">
+\[\bigotimes_{i=1}^{n} A_i \ket{0}_i = A_1 \ket{0}_1 \otimes \ldots \otimes A_n \ket{0}_n = A_1 \ldots A_n \ket{0\ldots 0} \ .\]</div>
+<p>Há, pois, diversas maneiras de se denotar os mesmos vetores ou operadores. Essa variedade é útil para permitir a escrita de expressões compactas em diversas situações em que o produto tensorial aparece.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pytutorial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Tutorial de Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="postulados.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Postulados da Mecânica Quântica</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-base-e-dimensao">Espaço Vetorial, Base e Dimensão</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial">Espaço Vetorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-e-dimensao">Base e Dimensão</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-mudanca-de-base">Matriz de Mudança de base</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno-norma-e-produto-exterior">Produto Interno, Norma e Produto Exterior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno">Produto Interno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norma">Norma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ortogonalidade">Ortogonalidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-ortonormal">Base Ortonormal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desigualdade-de-cauchy-schwarz">Desigualdade de Cauchy-Schwarz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-mudanca-de-base-entre-bases-ortonormais">Matriz de Mudança de Base entre Bases Ortonormais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-exterior">Produto Exterior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacoes-lineares">Transformações Lineares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-linear-e-operador-linear">Transformação Linear e Operador Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-linear">Funcional Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projecao-e-relacao-de-completude">Projeção e Relação de Completude</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao-de-uma-transformacao-linear-nos-elementos-da-base">Definição de uma Transformação Linear nos Elementos da Base</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-uma-transformacao-linear">Matriz de uma Transformação Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-da-composicao-de-transformacoes-lineares">Matriz da Composição de Transformações Lineares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mudanca-de-base">Mudança de Base</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-autovetores-e-decomposicao-espectral">Autovalores, Autovetores e Decomposição Espectral</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalores-e-autovetores">Autovalores e Autovetores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-autovalores">Cálculo de Autovalores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-autovetores">Cálculo de Autovetores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonalizacao-de-operadores">Diagonalização de Operadores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-especiais-de-operadores">Tipos Especiais de Operadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operador-adjunto">Operador Adjunto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-normais">Operadores Normais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-hermitianos-ou-autoadjuntos">Operadores Hermitianos ou Autoadjuntos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-unitarios">Operadores Unitários</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-positivos">Operadores Positivos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-projecao">Operadores de Projeção</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumo">Resumo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial">Produto Tensorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-do-produto-tensorial">Espaço Vetorial do Produto Tensorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano">Comparação do Produto Tensorial com o Produto Cartesiano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Produto Interno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-de-kronecker">Produto de Kronecker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial-de-varios-espacos-vetoriais">Produto Tensorial de Vários Espaços Vetoriais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao">Notação</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
