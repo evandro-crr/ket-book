@@ -28,7 +28,7 @@ A função $f$ é dita balanceada se admite o valor $0$ em metade das suas entra
 - Denote $x \in \{ 0,1 \}^n $ por $x = x_{n-1} \ldots x_1 x_0$. A função booleana $f(x) = x_0$ é balanceada, pois para exatamente metade das entradas $x$ tem-se $x_0 = 0$ e para a outra metade, tem-se $x_0 = 1$.
 - Considere a função booleana com entradas de $n=2$ bits dada por $f(a,b) = a\cdot b$, em que, lembrando, $\cdot$ representa a porta AND. A tabela verdade dessa função é representada abaixo.
   ```{math}
-  begin{array}{cc|c}
+  \begin{array}
     a & b & f(a,b) = a \cdot b \\ \hline
     0 & 0 & 0 \\
     0 & 1 & 0 \\
@@ -51,12 +51,12 @@ Para resolver o problema de Deutsch-Jozsa com um algoritmo quântico, é necess�
 
 Considere que $f$ seja dada por meio do oráculo de fase. O algoritmo de Deutsch-Jozsa para decidir se $f$ é constante ou balanceada é dado pelo procedimento abaixo.
 
-```{math}
-\textbf{Entrada:} $O_\text{F}(f) = O$ \ \ (oráculo de fase associado à função booleana $f$)
-```
+
+$\textbf{Entrada:}$ $O_\text{F}(f) = O$ \ \ (oráculo de fase associado à função booleana $f$)
+
 **Procedimento:**
 ```{math}
-begin{array}
+\begin{array}
    \text{etapa 0:} & \ket{0}^{\otimes n} & \text{\small{preparação do estado inicial}} \\
    \text{etapa 1:} & \ket{+}^{\otimes n} & \text{\small{superposição de estados com $H^{\otimes n}$}} \\
    \text{etapa 2:} & O_\text{F}\ket{+}^{\otimes n} & \text{\small{aplicação de $f$ (oráculo de fase)}} \\
@@ -76,11 +76,15 @@ Portanto, se o estado após a medida na base $\mathcal{X}$ for $\ket{+}^{\otimes
 
 **Circuito**
 Notação compacta:
+
 ![{44A4A864-E882-4CC9-A64A-5F926C88E3D6}](https://github.com/user-attachments/assets/27b78420-4a80-4f28-8d0c-76e1c4f179b3)
+
 Notação expandida:
+
 ![{26E4FB30-9E37-4131-9E45-0D199BE9C138}](https://github.com/user-attachments/assets/3bf948e0-b22d-40b3-951c-1edaf62fe098)
 
-Observação: A porção destacada na figura corresponde à medição na base $\mathcal{X}$ feita a partir da medição na base computacional. De fato, o operador de Hadamard realiza mudança de base de $\mathcal{X}$ (base girada) para $\mathcal{I}$ (base computacional), conforme exemplo \ref{cap2:ex_matriz_hadamard_mudança_base_x}, de forma que o resultado medido na base computacional corresponde a uma medição na base $\mathcal{X}$. A figura \ref{cap5:fig_med_base_girada_x} ilustra a medição na base girada feita em função da medição na base computacional.  \vspace{4pt}
+Observação: A porção destacada na figura corresponde à medição na base $\mathcal{X}$ feita a partir da medição na base computacional. De fato, o operador de Hadamard realiza mudança de base de $\mathcal{X}$ (base girada) para $\mathcal{I}$ (base computacional), de forma que o resultado medido na base computacional corresponde a uma medição na base $\mathcal{X}$. A figura ilustra a medição na base girada feita em função da medição na base computacional.  
+
 ![{ED83D85F-D319-4706-8B62-FE0667156688}](https://github.com/user-attachments/assets/f92ded73-52b1-4753-b3c5-f847b1f920e1)
 
 Análise detalhada do algoritmo:
@@ -99,7 +103,7 @@ Na etapa 1, aplica-se $H$ para cada qubit de entrada, resultando em:
 em que $\mathbb{B}_n$ representa o conjunto de todas as palavras de $n$ bits. Isto é, 
 
 ```{math}
-begin{split}
+\begin{split}
        \mathbb{B}_n 
        &= \{ 0\ldots 00 \, , \, \, 0 \ldots 01 \, , \, \, 0\ldots 10 \, , \, \, 0 \ldots 11 \, , \, \, \ldots \, , \, \, 1 \ldots 11 \}  \\
        &= \{ 0, 1, 2, 3, \ldots, 2^n-1 \}  \ .
@@ -117,9 +121,9 @@ A aplicação do oráculo na etapa 2 fornece:
     &= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} (-1)^{f(x)} \ket{x} \ .
     \end{split} 
 ```
- Se a função for constante, o fator $(-1)^{f(x)} $ se tornará um sinal global $+$ ou $-$, que essencialmente não altera o estado anterior. 
+ Se a função for constante, o fator $(-1)^{f(x)}$ se tornará um sinal global $+$ ou $-$, que essencialmente não altera o estado anterior. 
     
-A última etapa consiste na medição na base girada $\mathcal{X}$. Para realizar essa medida, pode-se aplicar $H$ a todos os qubits e medir na base computacional, como ilustrado na figura \ref{cap5:circuito_deutsch_jozsa}. Calculando a probabilidade de se obter $\ket{+}^{\otimes n}$, consegue-se:
+A última etapa consiste na medição na base girada $\mathcal{X}$. Para realizar essa medida, pode-se aplicar $H$ a todos os qubits e medir na base computacional. Calculando a probabilidade de se obter $\ket{+}^{\otimes n}$, consegue-se:
 
 ```{math}
 \begin{split}
@@ -133,15 +137,15 @@ A última etapa consiste na medição na base girada $\mathcal{X}$. Para realiza
 
 Caso a função seja constante, a última equação fornece
 ```{math}
-frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} =   \pm \frac{1}{2^n} 2^n = \pm 1
+\frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} =   \pm \frac{1}{2^n} 2^n = \pm 1
 ```
 E caso a função seja balanceada, metade das parcelas contribui com $1$ e a outra metade com $-1$, portanto
 ```{math}
-frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} =    \frac{1}{2^n} 0 = 0
+\frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} =    \frac{1}{2^n} 0 = 0
 ```
 A probabilidade $P$ de se obter $\ket{+}^{\otimes n}$ é dada pelo módulo ao quadrado do resultado obtido, logo
 ```{math}
-P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = begin{cases}
+P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
    1 & \text{se $f$ é constante} \\
    0 & \text{se $f$ é balanceada} \ .
    \end{cases}
@@ -154,7 +158,7 @@ Agora considere o problema de Deutsch-Jozsa no contexto clássico. Tem-se $f$ da
 
 ### Algoritmo Clássico Determinístico
 
-A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar aplicações sucessivas de $f$ para diversas entradas até se ter certeza de qual opção é válida (se $f$ é constante ou balanceada). Por exemplo\footnote{Nesta parte, usou-se a notação que confunde uma palavra de bits com sua representação por número inteiro sem sinal. Ver observação \ref{cap5:rmk_notacao_vetor_bits_nro_inteiro}.}, calcula-se $f(0)$, $f(1)$, $f(2)$, $\ldots$ e se verifica se $f(1) = f(0)$, $f(2) = f(1)$, $\ldots$ ou não. Caso ocorra $f(j) \neq f(i)$, então a opção certa é ``$f$ é balanceada'', e caso isso não ocorra, a opção correta é ``$f$ é constante''. 
+A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar aplicações sucessivas de $f$ para diversas entradas até se ter certeza de qual opção é válida (se $f$ é constante ou balanceada). Por exemplo\footnote{Nesta parte, usou-se a notação que confunde uma palavra de bits com sua representação por número inteiro sem sinal. Ver observação \ref{cap5:rmk_notacao_vetor_bits_nro_inteiro}.}, calcula-se $f(0)$, $f(1)$, $f(2)$, $\ldots$ e se verifica se $f(1) = f(0)$, $f(2) = f(1)$, $\ldots$ ou não. Caso ocorra $f(j) \neq f(i)$, então a opção certa é `$f$ é balanceada', e caso isso não ocorra, a opção correta é ``$f$ é constante''. 
   
 Para se distinguir com certeza as duas opções, deve-se aplicar $f$ a metade das entradas possíveis mais uma, ou seja, a $2^n/2 + 1$ entradas. Isso porque, na pior das hipóteses, a função era balanceada e, obteve-se um mesmo resultado, por azar, para as $2^n/2$ entradas testadas, impedindo que se faça a escolha com certeza.
   
@@ -168,173 +172,27 @@ Nesse contexto, se for permitida uma probabilidade de erro $\varepsilon$ na deci
   
 Primeiramente, permite-se que as entradas $i$ sejam tiradas aleatoriamente, cada uma com mesma probabilidade $p(i) = 1/2^n$. Por exemplo, se $f$ for constante $1$ ($f(i) = 1 \forall j$), a probabilidade de resultar $1$ é $1 = 100\%$ e a de resultar $0$ é $0 = 0\%$. Se $f$ for balanceada, a probabilidade de resultar $1$ é $0,\!5 = 50\%$ e o mesmo vale para o resultado $0$. Supõe-se, para simplificar a discussão, que o sorteio das entradas é feito sem memória\footnote{Para um número de bits $n$ grande, esse caso é semelhante ao caso com memória, em que não se permite repetir as entradas no sorteio.}, isto é, com chance de se sortear duas entradas iguais.
 
-```{math}
-begin{array}
-       \bigstrut \text{$f$ constante} & & & \text{$f$ balanceada}  \vspace{8 pt} \\ 
-       \begin{array}{lc} 
-       f=0\colon & \begin{array}{c} \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} 
-                                 \\ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \end{array}\\
-                         & \text{\footnotesize $p(f(i)=0) = 1$} \\
-                         & \text{\footnotesize $p(f(i)=1) = 0$}
-                         \\ \\
-       f=1\colon & \begin{array}{c} \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
-                                 \\ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \\ \end{array}\\
-                         &  \text{\footnotesize $p(f(i)=0) = 0$} \\
-                          & \text{\footnotesize $p(f(i)=1) = 1$}
-                         \end{array}
-        & & &
-        \begin{array}{c} 
-                    \begin{array}{c} \text{\Large $\bullet$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
-                                  \\ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\circ$}  \\ 
-       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
-       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
-       \end{array} \\ \\ \\
-       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \end{array}
-      \end{array} 
-      \end{array}
-```
+![{51848742-F6AD-43EB-81A7-A9BADDAD83AC}](https://github.com/user-attachments/assets/656dee64-1e77-4bb6-a3f7-bef9173ac4b6)
 
 A primeira avaliação $f(i_1)$ não traz mais informação para distinguir entre constante e balanceada. 
-```{math}
-\begin{array}
-       \bigstrut \text{$f$ constante} & & & \text{$f$ balanceada}  \vspace{8 pt} \\ 
-       \begin{array}{lc} 
-       f=0\colon & \begin{array}{c} \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} 
-                                 \\ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \end{array}\\
-       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
-       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
-                         \\ \\
-       \cancel{f=1\colon} & \begin{array}{c} \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
-                                 \\ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \\ \end{array}\\
-       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
-       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
-                        \\ \end{array}
-        & & &
-        \begin{array}{c} \\
-                    \begin{array}{c} \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
-                                  \\ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\circ$}  \\ 
-       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
-       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
-       \end{array} \\ \\ 
-       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
-       \text{Caso: $f(i_1) = 0$ ($i_1= 1$)} \end{array}
-      \end{array} 
-      \end{array}
-```
+
+![{31EC5EAE-3FBD-40C6-BD46-8539B971C4EA}](https://github.com/user-attachments/assets/d6db95e0-98aa-431b-8599-36ece6c66f57)
 
 A segunda aplicação, se resultar $f(i_2) \neq f(i_1)$, já resolve com certeza que $f$ é balanceada. 
 
-```{math}
-\begin{array}
-       \bigstrut \cancel{\text{$f$ constante}} & & & \text{$f$ balanceada}  \vspace{8 pt} \\ 
-       \begin{array}{lc} 
-       \cancel{f=0\colon} & \begin{array}{c} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} 
-                                 \\ \ \text{\Large $\circ$}  \ \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \end{array}\\
-       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
-       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
-                         \\ \\
-       \cancel{f=1\colon} & \begin{array}{c} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
-                                 \\ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \\ \end{array}\\
-       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
-       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
-                       \\  \end{array}
-        & & &
-        \begin{array}{c} \\
-                    \begin{array}{c} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
-                                  \\ \ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\circ$}  \\ 
-       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
-       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
-       \end{array} \\ \\ 
-       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
-       \text{Caso: $f(i_1) = 0$ ($i_1 = 1$)} \\ \text{\phantom{Caso: }$f(i_2)=1$ ($i_2 = 6$)} \end{array}
-      \end{array} 
-      \end{array}
-```
+![{CC3EBCD4-7FF8-425E-ACAD-8C62119603C4}](https://github.com/user-attachments/assets/8e69b580-6396-421a-b1c3-e3ba28a5005b)
 
 Se o resultado for $f(i_2) = f(i_1)$, tende-se a pensar que $f$ seria constante e a probabilidade de se estar errado é a probabilidade de tirar duas saídas iguais aleatoriamente numa função balanceada, ou seja, $P_e = 1 \cdot 0,\!5 = 0,\!5$. 
 
-```{math}
-begin{array}
-       \bigstrut \text{$f$ constante} & & & \text{$f$ balanceada}  \vspace{8 pt} \\ 
-       \begin{array}{lc} 
-       f=0\colon & \begin{array}{l} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ 
-                                 \\ \ \text{\Large $\circ$}  \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \end{array}\\
-       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
-       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
-                         \\ \\
-       \cancel{f=1\colon} & \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$}\ 
-                                 \\ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \\ \end{array}\\
-       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
-       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
-                       \\  \end{array}
-        & & &
-        \begin{array}{c} \\
-                    \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ 
-                                  \\ \ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$}   \\ 
-       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
-       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
-       \end{array} \\ \\ 
-       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
-       \text{Caso: $f(i_1) = 0$ ($i_1 = 1$)} \\ \text{\phantom{Caso: }$f(i_2)=0$ ($i_2 = 7$)} \end{array}
-      \end{array} 
-      \end{array}
-```
+![{4633C8C3-2DA7-4EED-A8C4-4AE990F76995}](https://github.com/user-attachments/assets/53305309-f9d7-4e7e-925e-efe699004db7)
+
 
 Na terceira etapa, caso $f(i_3) \neq f(i_2)$, resolve-se com certeza que $f$ é balanceada e caso $f(i_3) = f(i_2)$, conclui-se pela opção constante com probabilidade de erro igual a $P_e = 1 \cdot 0,\!5 \cdot 0,\!5 = 0,\!25$, correspondente à probabilidade de que, numa função balanceada, tenha-se o mesmo resultado para 3 entradas sorteadas aleatoriamente com igual probabilidade. 
 
-```{math}
-begin{array}
-       \bigstrut \cancel{\text{$f$ constante}} & & & \text{$f$ balanceada}  \\ 
-       \begin{array}{lc} 
-       \cancel{f=0\colon} & \begin{array}{l} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} 
-                                 \\ \ \text{\Large $\circ$}  \ \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \end{array}\\
-       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
-       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
-                         \\ \\
-       \cancel{f=1\colon} & \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} 
-                                 \\ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \\ \end{array}\\
-       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
-       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
-                       \\  \end{array}
-        & & &
-        \begin{array}{c} \\
-                    \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$}  \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} 
-                                  \\ \ \text{\Large $\circ$}   \ \ \text{\Large $\circ$} \ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$}  \\ 
-       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
-       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
-       \end{array} \\ \\ 
-       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
-       \text{Caso: $f(i_1) = 0$ ($i_1 = 1$)} \\ \text{\phantom{Caso: }$f(i_2)=0$ ($i_2 = 7$)} \\ \text{\phantom{Caso: }$f(i_3)=1$ ($i_3 = 2$)} \end{array}
-      \end{array} 
-      \end{array}
-```
+![{4D135D3E-A02B-4884-91D0-8A76253BE722}](https://github.com/user-attachments/assets/ba0152c8-e887-4d2e-a6a8-1edac3e0a880)
 
-```{math}
-begin{array}
-       \bigstrut  \text{$f$ constante} & & & \text{$f$ balanceada}  \\ 
-       \begin{array}{lc} 
-       f=0\colon & \begin{array}{l} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \ \text{\Large $\circ$} 
-                                 \\ \ \text{\Large $\circ$}  \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\circ$} \ \text{\Large $\boxed{\circ}$} \end{array}\\
-       %                  & \text{\footnotesize $p(f(i)=0) = 1$} \\
-       %                  & \text{\footnotesize $p(f(i)=1) = 0$}
-                         \\ \\
-       \cancel{f=1\colon} & \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
-                                 \\ \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\bullet}$} \\ \end{array}\\
-       %                  &  \text{\footnotesize $p(f(i)=0) = 0$} \\
-       %                   & \text{\footnotesize $p(f(i)=1) = 1$}
-                       \\  \end{array}
-        & & &
-        \begin{array}{c} \\
-                    \begin{array}{l} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$} \  \text{\Large $\bullet$} \ \ \text{\Large $\bullet$} 
-                                  \\ \ \text{\Large $\circ$}   \ \text{\Large $\boxed{\circ}$} \ \text{\Large $\bullet$} \ \text{\Large $\boxed{\circ}$}  \\ 
-       %                       \text{\footnotesize $p(f(i)=0) = 0,\!5$} \\
-       %                       \text{\footnotesize $p(f(i)=1) = 0,\!5$}
-       \end{array} \\ \\ 
-       \begin{array}{l} \text{Legenda:} \\ \text{\Large $\circ$} \text{\footnotesize : entrada $i$ tal que $f(i) = 0$} \\ \text{\Large $\bullet$} \text{\footnotesize : entrada $i$ tal que $f(i) = 1$} \\ \\ 
-       \text{Caso: $f(i_1) = 0$ ($i_1 = 1$)} \\ \text{\phantom{Caso: }$f(i_2)=0$ ($i_2 = 7$)} \\ \text{\phantom{Caso: }$f(i_3)=0$ ($i_3 = 5$)} \end{array}
-      \end{array} 
-      \end{array}
-```
+![{3F99A070-CF73-487A-851A-2AC22B81282F}](https://github.com/user-attachments/assets/1b118ae3-435f-4fc4-8e62-27f88a835a54)
+
 
 Seguindo essa ideia, na $m$-ésima aplicação de $f$, se ocorrer $f(i_m) \neq f(i_{m-1})$, conclui-se com certeza a opção `$f$ é balanceada' e se $f(i_m) = f(i_{m-1})$, pode-se concluir que ``$f$ é constante'' com probabilidade de erro 
 
@@ -345,7 +203,7 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
 Para uma probabilidade de erro  $P_e < 1/2$ na decisão, deve-se repetir o algoritmo até que a probabilidade de erro $P_{e,m} = 1/2^{m-1}$ satisfaça
 
 ```{math}
-frac{1}{2^{m-1}} < \frac{1}{2} \implies 2^m > 2^2 \implies m >2 \implies m \geq 3
+\frac{1}{2^{m-1}} < \frac{1}{2} \implies 2^m > 2^2 \implies m >2 \implies m \geq 3
 ```
 
 Se forem $m=3$ aplicações, a probabilidade de erro será limitada por $\varepsilon = 1/2^{m-1} = 0,\!25 < 0,\!5$, como visto anteriormente.
