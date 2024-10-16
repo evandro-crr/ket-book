@@ -259,7 +259,7 @@ H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y \in \mathbb{B}_n} (-1)^{x \cdot y
 Usando as proposições do produto tenosrial de H1 e a do produto tensorial entre estados, temos que:
 
 ```{math}
-H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \ket{\tilde{y}}\bra{y} = \sum_{y \in \mathbb{B}_n} \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}\ket{x}\bra{y} \ . \qedhere
+H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \ket{\tilde{y}}\bra{y} = \sum_{y \in \mathbb{B}_n} \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}\ket{x}\bra{y} 
 ```
 
 **Proposição 4:**
@@ -353,7 +353,7 @@ Caso $c \neq 0$, o coeficiente multiplicando o estado $\ket{y}\ket{z}$ em ($\ast
   ```{math}
    \begin{split}
       p_{y,z} 
-      &= \abs{a_{y,z}}^2 = \begin{cases} 
+      &= |a_{y,z}|^2 = \begin{cases} 
          0 & \ \ \  c\cdot y = 1 \\
          \frac{2^2}{2^{2n}} & \ \ \  c \cdot y = 0
         \end{cases}
