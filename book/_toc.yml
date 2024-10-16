@@ -9,10 +9,10 @@ chapters:
 - file: postulados
 - file: kettutorial
 - file: algoritmos
-sections:
-  - file: algoritmos/grover
-  - file: algoritmos/deutsch-jozsa
-  - file: algoritmos/simon
+  sections:
+    - file: algoritmos/grover
+    - file: algoritmos/deutsch-jozsa
+    - file: algoritmos/simon
 - file: panorama
 - url: https://qubox.ufsc.br/index.html
   title: Qubox UFSC
