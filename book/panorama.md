@@ -8,9 +8,9 @@ Material extraído do TCC [*Computação Quântica: Uma abordagem para estudante
 
 No início do século XX, a Física Clássica enfrentava dificuldades em descrever alguns fenômenos observados à época, como, por exemplo, o espectro de radiação de corpo negro ou o efeito fotoelétrico. Essa crise culminou na criação da Mecânica Quântica, que se consolidou por volta da década de 1920, e tem sido aplicada com sucesso em diversos fenômenos.
 
-O desenvolvimento tecnológico na década de 1970 permitiu o controle de sistemas quânticos individuais permitindo-se aprisionar átomos individuais em armadilhas (traps), isolando-os do restante do ambiente, e medindo seus diversos aspectos com precisão notável. Nesse contexto, passou-se a considerar a possibilidade de se usar sistemas quânticos para realizar processamento e transmissão de informação, fazendo uso de fundamentos da Mecânica Quântica, como superposição e emaranhamento. Esses sistemas guardam analogia com os bits clássicos, e são chamados de qubits. (\!\!\cite{book:qcqi_nc} p.3-4).
+O desenvolvimento tecnológico na década de 1970 permitiu o controle de sistemas quânticos individuais permitindo-se aprisionar átomos individuais em armadilhas (traps), isolando-os do restante do ambiente, e medindo seus diversos aspectos com precisão notável. Nesse contexto, passou-se a considerar a possibilidade de se usar sistemas quânticos para realizar processamento e transmissão de informação, fazendo uso de fundamentos da Mecânica Quântica, como superposição e emaranhamento. Esses sistemas guardam analogia com os bits clássicos, e são chamados de qubits.
 
-O físico R. Feynman, na década de 1980, sugeriu o uso de computadores quânticos para simular sistemas quânticos. E em 1994, o matemático P. Shor propôs um algoritmo quântico capaz de resolver o problema de fatoração de números em fatores primos de forma mais eficiente que os algoritmos clássicos conhecidos. Há uma expectativa de que um tal algoritmo possa ameaçar alguns protocolos de criptografia, como o RSA, usado largamente na atualidade. O cientista da computação Lov Grover também elaborou um algoritmo quântico de busca em uma base de dados não estruturada, que possui ganho quadrático de desempenho em comparação ao melhor algoritmo clássico conhecido. (\!\! \cite{book:pqci_benenti}, p.3).
+O físico R. Feynman, na década de 1980, sugeriu o uso de computadores quânticos para simular sistemas quânticos. E em 1994, o matemático P. Shor propôs um algoritmo quântico capaz de resolver o problema de fatoração de números em fatores primos de forma mais eficiente que os algoritmos clássicos conhecidos. Há uma expectativa de que um tal algoritmo possa ameaçar alguns protocolos de criptografia, como o RSA, usado largamente na atualidade. O cientista da computação Lov Grover também elaborou um algoritmo quântico de busca em uma base de dados não estruturada, que possui ganho quadrático de desempenho em comparação ao melhor algoritmo clássico conhecido.
 
  Atualmente, a Computação Quântica e a Informação Quântica estão se consolidam como áreas de pesquisa com desenvolvimento acelerado nas últimas décadas. Empresas de tecnologia como IBM, Google, Intel e Microsoft têm projetos e pesquisas nessa área, e diversas Startups têm surgido nesse contexto. 
 
@@ -40,22 +40,22 @@ informação, entre outros, o que torna a área multidisciplinar.
 
 ```{note}
 A Computação Quântica é uma tecnologia ainda em estágio inicial, e tem se mostrado uma área de pesquisa estratégica no cenário internacional. 
-Neste capítulo, faz-se um breve estudo das expectativas de mercado em relação à Computação Quântica, em grande parte baseado na Gartner, uma consultoria em Tecnologia da Informação \cite{webinar:gartner}. Apresenta-se também algumas das principais empresas com pesquisas em Computação Quântica, e mostra-se um resumo dos desenvolvimentos realizados nessas empresas tanto em hardware como em software.
+Neste capítulo, faz-se um breve estudo das expectativas de mercado em relação à Computação Quântica, em grande parte baseado na Gartner, uma consultoria em Tecnologia da Informação. Apresenta-se também algumas das principais empresas com pesquisas em Computação Quântica, e mostra-se um resumo dos desenvolvimentos realizados nessas empresas tanto em hardware como em software.
 ```
 
 ## Expectativas de mercado
 
-A Gartner estima que a Computação Quântica será uma realidade no mercado dentro de 5 a 10 anos. Espera-se que essa tecnologia se torne mais rápida e escalável, de forma a tratar problemas reais que a computação atual não conseguiria abordar satisfatoriamente. A curva da figura \ref{cap6:fig_hype_cicle}, chamada \emph{hype-cicle}, mostra as tecnologias em alta no mercado e as que já atingiram maturidade. A posição da Computação Quântica é de subida na curva de expectativas. 
+A Gartner estima que a Computação Quântica será uma realidade no mercado dentro de 5 a 10 anos. Espera-se que essa tecnologia se torne mais rápida e escalável, de forma a tratar problemas reais que a computação atual não conseguiria abordar satisfatoriamente. A curva da figura, chamada hype-cicle, mostra as tecnologias em alta no mercado e as que já atingiram maturidade. A posição da Computação Quântica é de subida na curva de expectativas. 
 
 ![hype_cicle_gartner](https://github.com/user-attachments/assets/c8e76d63-a52d-441f-8c32-2f3c6fadd072)
 
-Há uma percepção no mercado que a Computação Quântica gere uma disrupção algo similar às ocorridas na Revoluções Industrial, Tecnológica e Digital. O panorama atual da Computação Quântica é comparável, nessa percepção, ao computador ENIAC da decada de 1950 (para comparar, ver figura \ref{cap6:fig_eniac}). À época, não havia como prever o desenvolvimento tecnológico subsequente, e a capacidade de processamento que se conseguiria obter nas décadas seguintes. 
+Há uma percepção no mercado que a Computação Quântica gere uma disrupção algo similar às ocorridas na Revoluções Industrial, Tecnológica e Digital. O panorama atual da Computação Quântica é comparável, nessa percepção, ao computador ENIAC da decada de 1950. À época, não havia como prever o desenvolvimento tecnológico subsequente, e a capacidade de processamento que se conseguiria obter nas décadas seguintes. 
 
 ![eniac](https://github.com/user-attachments/assets/53f10d93-0118-4b7d-a724-d81affdaadf4)
 
  A expectativa é que um modelo híbrido entre Computação Clássica e Quântica seja a tecnologia emergente no cenário atual. A computação seria realizada em um processador quântico para problemas nos quais há vantagens no uso da Computação Quântica, como espera-se que ocorra com os problemas chamados NP-difíceis. 
  
- Dentre as principais aplicações previstas para a Computação Quântica, destaca-se resolução de problemas de otimização, machine learning, desenvolvimento de novos materiais, fármacos e processos químicos. Outra aplicação de destaque é em criptografia. A figura \ref{cap6:fig_aplic_cq_1} 
+ Dentre as principais aplicações previstas para a Computação Quântica, destaca-se resolução de problemas de otimização, machine learning, desenvolvimento de novos materiais, fármacos e processos químicos. Outra aplicação de destaque é em criptografia.
 
  mostra aplicações em que se espera utilizar processamento quântico.
 
@@ -63,7 +63,7 @@ Há uma percepção no mercado que a Computação Quântica gere uma disrupção
 
 ![qc_applications_2](https://github.com/user-attachments/assets/748eed13-633c-4e7c-ae29-ca30f1ad3517)
 
-O impacto da Computação Quântica em sistemas de segurança é considerado certo dentro de poucos anos. Algumas tecnologias atuais como a \emph{criptografia RSA} e o \emph{blockchain} (do qual o \emph{bitcoin} faz uso, em particular) seriam vulneráveis à Computação Quântica. Há demanda por protocolos de criptografia que levem em conta a existência da Computação Quântica, isto é, por criptografia \emph{pós-quântica} (\emph{post-quantum}/\emph{quantum-safe}/\emph{quantum-proof cryptography}). 
+O impacto da Computação Quântica em sistemas de segurança é considerado certo dentro de poucos anos. Algumas tecnologias atuais como a criptografia RSA e o blockchain (do qual o bitcoin faz uso, em particular) seriam vulneráveis à Computação Quântica. Há demanda por protocolos de criptografia que levem em conta a existência da Computação Quântica, isto é, por criptografia pós-quântica (post-quantum/quantum-safe/quantum-proof cryptography). 
 
 ## Empresas e Desenvolvimentos Atuais
 
@@ -99,13 +99,3 @@ A Startup Rigetti disponibiliza um processador quântico de 19 qubits e um ambie
 ### Outras empresas 
 
 Empresas como Baidu e Alibaba entraram no cenário da Computação Quântica. Em 23 de fevereiro de 2018, a empresa Alibaba lança um serviço de computação quântica na nuvem com 11 qubits. Em 8 de março de 2018, a Baidu, que domina o mercado chinês de mecanismos de busca na internet, anuncia o Instituto de Computação Quântica Baidu.
-
-## Comentários
-
-comentar que a computação quântica ainda está na fase de protótipos 
- 
- erros nos qubits e nas portas ainda é alto
- 
- é necessário utilizar códigos corretores de erros
- 
- qubits lógicos: conjunto de qubits físicos, o que significa que a quantidade de qubits na prática será menor que a informada pelas empresas
