@@ -57,7 +57,7 @@ em que a operação $\oplus$ é a XOR (ou seja, adição módulo 2) realizada bi
 Essa função também satisfaz a propriedade de Simon com $c = 10$. De fato, 
 
 ```{math}
-begin{array}{lll}
+\begin{array}{lll}
         10 = 00 \oplus 10 & & f(00) = f(10) = 10  \\
         11 = 01 \oplus 10 & & f(01) = f(11) = 01 \ .
        \end{array} 
@@ -67,7 +67,7 @@ Observação 1: Nem toda função booleana 2-para-1 satisfaz a propriedade de Si
 
 ```{math}
 \begin{array}{c|cccc|c}
-     x    & f(x) & & & x & f(x) \\ \cline{1-2} \cline{5-6}
+     x    & f(x) & & & x & f(x) \\ -  1-2  - 5-6
      000  & 2 & & & 100  & 2 \\
      001  & 5 & & & 101  & 3 \\
      010  & 1 & & & 110  & 1 \\
@@ -107,9 +107,9 @@ O algoritmo a ser apresentado pressupõe que a função booleana $f$ seja dada c
    \text{etapa 1:} &\displaystyle \tfrac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{0} & \text{\small{$H^{\otimes n}$ no registrador 1}} \vspace{2pt} \\ 
    \text{etapa 2:} &\displaystyle \tfrac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{f(x)} & \text{\small{aplicação de $f$ (oráculo XOR)}} \vspace{2pt} \\ 
    \text{etapa 3:} &\displaystyle \tfrac{1}{2^n} \sum_{x\in\mathbb{B}_n}\sum_{y\in\mathbb{B}_n} \ket{y}\ket{f(x)} & \text{\small{$H^{\otimes n}$ no registrador 1}} \vspace{2pt} \\ 
-   \text{etapa 4:} &\text{\small{Medição}}    & \text{\small{obtém informação sobre a resposta}} \vspace{2pt} \\ 
-   \text{etapa 5:} &\multicolumn{2}{l}{\text{\small{Repetir etapas 0-4 }} \text{\small{da ordem de $n$ vezes}} } \vspace{2pt} \\ 
-   \text{etapa 6:} &\multicolumn{2}{l}{\text{\small{Computar a resposta }} \text{\small{classicamente com as }} \text{\small{informações obtidas}}  } 
+   \text{etapa 4:} \text{Medição. Obtém informação sobre a resposta} \\ 
+   \text{etapa 5:} \text{Repetir etapas 0-4 da ordem de n vezes} \\ 
+   \text{etapa 6:} \text{Computar a resposta classicamente com as informações obtidas} 
   \end{array}
 ```
 
@@ -139,14 +139,14 @@ Notação expandida:
 Dado um vetor de bits $x \in \mathbb{B}_n$, escreve-se $\ket{\tilde{x}} = \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} }$ para designar um produto tensorial de estados $\ket{+}$ e $\ket{-}$. Por exemplo,
 
 ```{math}
-ket{x} = \ket{0110} \Longleftrightarrow \ket{\tilde{x}} = \ket{+--+}
+\ket{x} = \ket{0110} \Longleftrightarrow \ket{\tilde{x}} = \ket{+--+}
 ```
 
 **Definição 4:** $\mathbb{B}_n$ é o conjunto de todos os vetores de $n$ bits. 
 
 **Proposição 1:** Vale que 
 ```{math}
-H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \op{\tilde{y}}{y}
+H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \ket{\tilde{y}}\bra{y}
 ```
 
 **Demonstração:**
@@ -154,7 +154,7 @@ Prova-se por indução em $n$.
     
 Vale para $n=1$ qubit, já que $H$ pode ser escrito como
 ```{math} 
-H = \op{+}{0} + \op{-}{1}
+H = \ket{+}\bra{0} + \ket{-}\bra{1}
 ```
     
 Vale para $n=2$ qubits, pois
@@ -162,9 +162,9 @@ Vale para $n=2$ qubits, pois
 \begin{split} 
        H^{\otimes 2} 
        &= H \otimes H \\
-       &= \big( \op{+}{0} + \op{-}{1} \big) \otimes  \big( \op{+}{0} + \op{-}{1} \big) \\
-       &= \op{++}{00} + \op{+-}{01} + \op{-+}{10} + \op{--}{11} \\
-       &= \sum_{y \in \mathbb{B}_2}\op{\tilde{y}}{y} \ . 
+       &=  \ket{+}\bra{0} + \ket{-}\bra{1} \otimes \ket{+}\bra{0} + \ket{-}\bra{1}  \\
+       &= \ket{++}\bra{00} + \ket{+-}\bra{01} + \ket{-+}\bra{10} + \ket{--}\bra{11} \\
+       &= \sum_{y \in \mathbb{B}_2}\ket{\tilde{y}}\bra{y} \ . 
        \end{split}
 ```
     
@@ -173,10 +173,10 @@ Supõe-se, então, que seja válido para $n$ qubits. Verifica-se o caso $n+1$:
 \begin{split} 
        H^{\otimes n+1} 
        &= H^{\otimes n} \otimes H \\
-       &= \left( \sum_{y \in \mathbb{B}_n}\op{\tilde{y}}{y} \right) \otimes \big( \op{+}{0} + \op{-}{1} \big) \\
-       &= \left( \sum_{y \in \mathbb{B}_n}\op{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1}}{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\op{+}{0}}_{y_n = 0} + \underbrace{\op{-}{1}}_{y_n = 1} \big) \\
-       &= \sum_{y \in \mathbb{B}_{n+1}} \op{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1} \tilde{y}_n}{y_0 y_1 \ldots y_{n-1} y_n} \\
-       &= \sum_{y \in \mathbb{B}_{n+1}} \op{\tilde{y}}{y} \ .
+       &= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}}\bra{y} \right) \otimes \ket{+}\bra{0} + \ket{-}\bra{1} \\
+       &= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}_0} \bra{\tilde{y}_1} \ldots \tilde{y}_{n-1}}{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\ket{+}\bra{0}}_{y_n = 0} + \underbrace{\ket{-}\bra{1}}_{y_n = 1} \big) \\
+       &= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}_0} \ket{\tilde{y}_1} \ldots \tilde{y}_{n-1} \tilde{y}_n}{y_0 y_1 \ldots y_{n-1} y_n} \\
+       &= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}}\bra{y} \ .
        \end{split}
 ```
 Isso conclui a indução em $n$.
@@ -217,7 +217,7 @@ Para $n=1$ qubit, tem-se que
    
    Assume-se que o enunciado seja válido para $n$ qubits. O caso $n+1$ fica como a seguir.
    ```{math}
-   \[ \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} \tilde{x}_n } = \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{\tilde{x}_n } \]
+    \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} \tilde{x}_n } = \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{\tilde{x}_n }
 ```
    Caso $\tilde{x}_n = +$, tem-se
    ```{math}
@@ -227,8 +227,8 @@ Para $n=1$ qubit, tem-se que
        &=  \left(\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y} \right) \otimes \ket{+}  \\
        &=  \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y_0 \ldots y_{n-1}}  \otimes \frac{1}{\sqrt{2}} \big( \ket{0} + \ket{1} \big) \\
        &=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \big( \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} +  \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \big) \\
-       &=  \frac{1}{\sqrt{2^{n+1}}} \Biggg( \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
-       & \qquad \qquad \qquad \qquad \qquad +\ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \Biggg) \\
+       &=  \frac{1}{\sqrt{2^{n+1}}} ( \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
+       & \qquad \qquad \qquad \qquad \qquad +\ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} ) \\
        &= \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_{n+1}} (-1)^{(x_0 \ldots x_{n-1}0)\cdot y} \ket{y_0 \ldots y_{n-1} y_n } \ .
       \end{split}
 ```
@@ -240,8 +240,8 @@ Para $n=1$ qubit, tem-se que
        &=  \left(\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y} \right) \otimes \ket{-}  \\
        &=  \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y_0 \ldots y_{n-1}}  \otimes \frac{1}{\sqrt{2}} \big( \ket{0} - \ket{1} \big) \\
        &=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \big( \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} -  \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \big) \\
-       &=  \frac{1}{\sqrt{2^{n+1}}} \Biggg( \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
-       & \qquad \qquad \qquad \qquad \qquad + \ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \Biggg) \\
+       &=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
+       & \qquad \qquad \qquad \qquad \qquad + \ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \\
        &= \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_{n+1}} (-1)^{(x_0 \ldots x_{n-1}1)\cdot y} \ket{y_0 \ldots y_{n-1} y_n } \ .
       \end{split}
 ```
@@ -251,7 +251,7 @@ Isso conclui a demonstração.
 **Proposição 3:** O produto tensorial de $n$ operadores de Hadamard é dado por
 
 ```{math}
-H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y \in \mathbb{B}_n} (-1)^{x \cdot y} \op{x}{y}
+H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y \in \mathbb{B}_n} (-1)^{x \cdot y} \ket{x}\bra{y}
 ```
 
 **Demonstração:**
@@ -259,7 +259,7 @@ H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y \in \mathbb{B}_n} (-1)^{x \cdot y
 Usando as proposições do produto tenosrial de H1 e a do produto tensorial entre estados, temos que:
 
 ```{math}
-H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \op{\tilde{y}}{y} = \sum_{y \in \mathbb{B}_n} \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}\op{x}{y} \ . \qedhere
+H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \ket{\tilde{y}}\bra{y} = \sum_{y \in \mathbb{B}_n} \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}\ket{x}\bra{y} \ . \qedhere
 ```
 
 **Proposição 4:**
@@ -316,7 +316,7 @@ A aplicação do oráculo na etapa 2 mantém o primeiro registrador e faz a XOR 
        &= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \big(H^{\otimes n}\ket{x}\big)\ket{f(x)} \\
        &= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n}\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \\
        &= \frac{1}{2^n} \sum_{x\in\mathbb{B}_n} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \ . 
-      \end{split} \tag{$\ast$}
+      \end{split} 
 ```
       
   É conveniente passar o somatório em $x$ para o segundo registrador, ficando com:
@@ -357,7 +357,7 @@ Caso $c \neq 0$, o coeficiente multiplicando o estado $\ket{y}\ket{z}$ em ($\ast
          0 & \ \ \  c\cdot y = 1 \\
          \frac{2^2}{2^{2n}} & \ \ \  c \cdot y = 0
         \end{cases}
-     \end{split} \tag{p1}
+     \end{split}
 ```
  Assim, a medida só fornece vetores de bits $y$ perpendiculares a $c$. A informação que se ganha para encontrar $c$ é a equação
  ```{math}
@@ -372,7 +372,7 @@ Caso $c \neq 0$, o coeficiente multiplicando o estado $\ket{y}\ket{z}$ em ($\ast
  e a probabilidade de se encontrar o sistema em $\ket{y}\ket{z}$ é
 ```{math}
      p_{y,z}
-     =  \abs{a_{y,z}}^2 = 2^{-2n} \ . \tag{p2}
+     =  |a_{y,z}|^2 = 2^{-2n}
 ```
 Logo, qualquer vetor de bits $y$ pode sair como resultado da medição.
 
@@ -390,9 +390,9 @@ Continua-se aplicando a subrotina até se obter $n-1 = 3$ equações LI.
       
 A segunda iteração fornece $y^{(2)} = 1001$. Esse resultado corresponde à equação
 ```{math}
-       y^{(2)} \cdot c = 0 \implies c_1 \oplus c_4 = 0  \ , \]
-      e o sistema, após simplificação, fica
-      \[ \begin{cases}
+       y^{(2)} \cdot c = 0 \implies c_1 \oplus c_4 = 0  \ 
+      \text{e o sistema, após simplificação, fica}
+       \begin{cases}
            c_2 = c_3 \oplus c_4 \\
            c_1 = c_4 \ .
          \end{cases}
@@ -413,9 +413,9 @@ e essa equação não fornece informação útil. O sistema continua sendo de 2 
          
 Na quarta iteração obtém-se $y^{(4)} = 0001$, e a equação que esse resultado gera é
 ```{math}
- y^{(4)} \cdot c = 0 \implies c_4 = 0  \ . \]
-     O sistema fica
-     \[ \begin{cases}
+ y^{(4)} \cdot c = 0 \implies c_4 = 0  
+     \text{O sistema fica}
+      \begin{cases}
            c_2 = c_3 \\
            c_1 = 0  \\
            c_4 = 0  \ .
@@ -441,7 +441,7 @@ Terminando o algoritmo na iteração 5, tem-se que $f$ é 2-para-1 e que o perí
 A título de curiosidade, a $f$ utilizada neste exemplo é disposta na tabela abaixo, em que $A, B, C, D, E, F, G$ e $H$ denotam 8 palavras distintas de 4 bits.
 ```{math}
     \begin{array}{c|cccc|c}
-     x    & f(x) & & & x & f(x) \\ \cline{1-2} \cline{5-6}
+     x    & f(x) & & & x & f(x) \\ 1-2 - 5-6
      0000  & A & & & 1000  & E \\
      0001  & B & & & 1001  & F \\
      0010  & C & & & 1010  & G \\
@@ -463,7 +463,7 @@ Repetindo a subrotina $m$ vezes, obtém-se os resultados $y^{(1)}, \ldots, y^{(m
    \ y^{(2)} \cdot c = 0\\
    \ \phantom{y^{(1)} \cdot c} \vdots \\
    \ y^{(m)} \cdot c = 0
-  \end{cases} \tag{s}
+  \end{cases} 
 ```
 Esse sistema sempre admite a solução $c = 0$. Supõe-se que se tenha obtido, após a aplicação da subrotina por um número suficiente de vezes, um sistema linear com um número suficiente de equações linearmente independentes (ficará mais claro o que significaria ``suficiente'' nesse contexto). 
 
@@ -478,7 +478,7 @@ Se $f$ for 1-para-1, espera-se que o sistema admita apenas a solução trivial $
 
 Por outro lado, se $f$ for 2-para-1, espera-se que o sistema tenha duas soluções: $0$ e $c\neq 0$. Nesse caso, os valores $y^{(1)}, \ldots, y^{(m)}$ são, obrigatoriamente, perpendiculares ao vetor $c$. Se $W$ é o subespaço gerado por $c$, tem-se que  $y^{(1)}, \ldots, y^{(m)} \in W^\perp$ e que $\dim W = 1$ e $\dim W^\perp = n-1$, de forma que $\dim W + \dim W^\perp = \dim \mathbb{B}_n$. Assim, há no máximo $n-1$ vetores LI e perpendiculares a $c$. O sistema (s) é equivalente a um sistema de $n-1$ equações LI, e apresenta uma variável livre $c_j$, que pode assumir os valores 0 ou 1, gerando as soluções $0$ e $c\neq 0$, como era esperado. 
 
-Resumindo, se as $m$ repetições da subrotina quântica do algoritmo de Simon produzirem um sistema de equações com o máximo possível de equações LI, a solução do sistema fornecerá $c$ e, dependendo se há apenas a solução nula ou se, além dessa, há uma solução $c \neq 0$, pode-se distinguir os casos ``$f$ é 1-para-1'' ou ``$f$ é 2-para-1''. O número de repetições $m$ requerido é proporcional a $n$.
+Resumindo, se as $m$ repetições da subrotina quântica do algoritmo de Simon produzirem um sistema de equações com o máximo possível de equações LI, a solução do sistema fornecerá $c$ e, dependendo se há apenas a solução nula ou se, além dessa, há uma solução $c \neq 0$, pode-se distinguir os casos `$f$ é 1-para-1' ou ``$f$ é 2-para-1''. O número de repetições $m$ requerido é proporcional a $n$.
 
 ```{note}
 Na primeira iteração, o número de vetores que acrescentam informação é $2^n - 1$ dentre os $2^n$ possíveis (apenas o vetor nulo seria útil). Após obter um vetor não nulo, a próxima iteração tem a chance de $2^{n-1} - 1$ entre $2^n$ de resultar num vetor que seja LI com o anterior. 
@@ -502,7 +502,7 @@ Supondo que seja possível armazenar todas as entradas testadas e seus resultado
 
 ### Algoritmo Clássico Probabilístico
 
- Para melhorar o desempenho do algoritmo determinístico acima, pode-se relaxar o desempenho, permitindo-se uma probabilidade de erro $\varepsilon$ na escolha. Sorteia-se aleatoriamente $x$ dentre o conjunto de entradas não testadas ainda, calcula-se $f(x)$ e compara-se o valor obtido com o fornecido pelas entradas já testadas. Repete-se por um número suficiente de tentativas ou até algum par ser encontrado; se nenhum par foi encontrado, decide-se por ``$f$ é 1-para-1'' e se for encontrado, decide-se por ``$f$ é 2-para-1'' e utiliza-se o par $x_{(1)}, x_{(2)}$ encontrado para calcular $c = x_{(1)}\oplus x_{(2)}$.
+ Para melhorar o desempenho do algoritmo determinístico acima, pode-se relaxar o desempenho, permitindo-se uma probabilidade de erro $\varepsilon$ na escolha. Sorteia-se aleatoriamente $x$ dentre o conjunto de entradas não testadas ainda, calcula-se $f(x)$ e compara-se o valor obtido com o fornecido pelas entradas já testadas. Repete-se por um número suficiente de tentativas ou até algum par ser encontrado; se nenhum par foi encontrado, decide-se por `$f$ é 1-para-1' e se for encontrado, decide-se por ``$f$ é 2-para-1'' e utiliza-se o par $x_{(1)}, x_{(2)}$ encontrado para calcular $c = x_{(1)}\oplus x_{(2)}$.
       
 Após $m$ iterações, o número de pares já testados é $N_{\text{ob}}$, em que
 ```{math}
