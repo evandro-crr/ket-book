@@ -173,9 +173,9 @@ Supõe-se, então, que seja válido para $n$ qubits. Verifica-se o caso $n+1$:
 \begin{split} 
        H^{\otimes n+1} 
        &= H^{\otimes n} \otimes H \\
-       &= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}}\bra{y} \right) \otimes \ket{+}\bra{0} + \ket{-}\bra{1} \\
-       &= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}_0} \bra{\tilde{y}_1} \ldots \tilde{y}_{n-1}{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\ket{+}\bra{0}}_{y_n = 0} + \underbrace{\ket{-}\bra{1}}_{y_n = 1} \big) \\
-       &= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}_0} \ket{\tilde{y}_1} \ldots \tilde{y}_{n-1} \tilde{y}_n}{y_0 y_1 \ldots y_{n-1} y_n} \\
+       &= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}}\bra{y} \right) \otimes \big( \ket{+}\bra{0} + \ket{-}\bra{1} \big) \\
+       &= \left( \sum_{y \in \mathbb{B}_n}\{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1}}\bra{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\ket{+}\bra{0}}_{y_n = 0} +         \underbrace{\ket{-}\bra{1}}_{y_n = 1} \big) \\
+       &= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1} \tilde{y}_n}\bra{y_0 y_1 \ldots y_{n-1} y_n} \\
        &= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}}\bra{y} \ .
        \end{split}
 ```
