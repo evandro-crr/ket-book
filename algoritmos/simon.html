@@ -487,9 +487,9 @@ Prova-se por indução em <span class="math notranslate nohighlight">\(n\)</span
 \[\begin{split}\begin{split} 
        H^{\otimes n+1} 
        &amp;= H^{\otimes n} \otimes H \\
-       &amp;= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}}\bra{y} \right) \otimes \ket{+}\bra{0} + \ket{-}\bra{1} \\
-       &amp;= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}_0} \bra{\tilde{y}_1} \ldots \tilde{y}_{n-1}{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\ket{+}\bra{0}}_{y_n = 0} + \underbrace{\ket{-}\bra{1}}_{y_n = 1} \big) \\
-       &amp;= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}_0} \ket{\tilde{y}_1} \ldots \tilde{y}_{n-1} \tilde{y}_n}{y_0 y_1 \ldots y_{n-1} y_n} \\
+       &amp;= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}}\bra{y} \right) \otimes \big( \ket{+}\bra{0} + \ket{-}\bra{1} \big) \\
+       &amp;= \left( \sum_{y \in \mathbb{B}_n}\{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1}}\bra{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\ket{+}\bra{0}}_{y_n = 0} +         \underbrace{\ket{-}\bra{1}}_{y_n = 1} \big) \\
+       &amp;= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1} \tilde{y}_n}\bra{y_0 y_1 \ldots y_{n-1} y_n} \\
        &amp;= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}}\bra{y} \ .
        \end{split}\end{split}\]</div>
 <p>Isso conclui a indução em <span class="math notranslate nohighlight">\(n\)</span>.</p>
