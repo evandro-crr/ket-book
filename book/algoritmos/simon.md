@@ -119,11 +119,11 @@ O algoritmo a ser apresentado pressupõe que a função booleana $f$ seja dada c
 
 Notação compacta:
 
-![{AC3F91E4-6F9E-466A-AF4E-9D83FCC1BA3E}](https://github.com/user-attachments/assets/6f73051c-eef0-4d5a-9f4f-9667ac370663)
+![Screenshot 2024-10-22 at 18-39-26 tcc-giovani pdf](https://github.com/user-attachments/assets/c73a022d-14cc-43e8-8b37-5af760d98348)
 
 Notação expandida:
 
-![{13D5F36A-5F7C-4007-B607-F1E40D583A55}](https://github.com/user-attachments/assets/ae7c7181-fabf-4522-a959-09d23fe4daff)
+![Screenshot 2024-10-22 at 18-40-22 tcc-giovani pdf](https://github.com/user-attachments/assets/28886f3d-3a48-4970-a909-30b4e7ab1306)
 
 **Contas auxiliares**
 
@@ -169,16 +169,9 @@ Vale para $n=2$ qubits, pois
 ```
     
 Supõe-se, então, que seja válido para $n$ qubits. Verifica-se o caso $n+1$:
-```{math}
-\begin{split} 
-       H^{\otimes n+1} 
-       &= H^{\otimes n} \otimes H \\
-       &= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}}\bra{y} \right) \otimes \big( \ket{+}\bra{0} + \ket{-}\bra{1} \big) \\
-       &= \left( \sum_{y \in \mathbb{B}_n}\{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1}}\bra{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\ket{+}\bra{0}}_{y_n = 0} +         \underbrace{\ket{-}\bra{1}}_{y_n = 1} \big) \\
-       &= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1} \tilde{y}_n}\bra{y_0 y_1 \ldots y_{n-1} y_n} \\
-       &= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}}\bra{y} \ .
-       \end{split}
-```
+
+![Screenshot 2024-10-22 at 18-43-09 tcc-giovani pdf](https://github.com/user-attachments/assets/258c5cd4-b3ca-4c41-bf50-23874f87a522)
+
 Isso conclui a indução em $n$.
 
 **Proposição 2:**
@@ -537,7 +530,7 @@ logo $m$ deve ser da ordem de $2^{n/2}$ iterações.
 ## Comparação de Desempenho
 O desempenho dos algoritmos clássico determinístico, clássico probabilístico e quântico são resumidos na tabela abaixo.
 
-![{0C9CAB54-DF20-43BA-92D5-F685885C6685}](https://github.com/user-attachments/assets/c99cf5a3-8a52-4945-bf09-e49df4202576)
+![Screenshot 2024-10-22 at 18-43-52 tcc-giovani pdf](https://github.com/user-attachments/assets/14e9865f-639c-4561-b967-053d35203acc)
 
 Da mesma forma como no problema de Deutsch-Jozsa, essa comparação tem limitações, mas serve como laboratório para testar em que situações a Computação Quântica pode trazer vantagem computacional em relação à Computação Clássica. Em particular, esse é um exemplo em que o algoritmo quântico apresenta ganho exponencial em desempenho em relação aos algoritmos clássicos existentes. 
 
