@@ -77,15 +77,16 @@ Portanto, se o estado após a medida na base $\mathcal{X}$ for $\ket{+}^{\otimes
 **Circuito**
 Notação compacta:
 
-![{44A4A864-E882-4CC9-A64A-5F926C88E3D6}](https://github.com/user-attachments/assets/27b78420-4a80-4f28-8d0c-76e1c4f179b3)
+![Screenshot 2024-10-21 at 21-36-58 tcc-giovani pdf](https://github.com/user-attachments/assets/c87b9623-6b93-42f4-8d8b-e0523541e220)
 
 Notação expandida:
 
-![{26E4FB30-9E37-4131-9E45-0D199BE9C138}](https://github.com/user-attachments/assets/3bf948e0-b22d-40b3-951c-1edaf62fe098)
+![Screenshot 2024-10-21 at 21-39-14 tcc-giovani pdf](https://github.com/user-attachments/assets/40deec9d-429e-4905-a41b-25602d6257f8)
 
 Observação: A porção destacada na figura corresponde à medição na base $\mathcal{X}$ feita a partir da medição na base computacional. De fato, o operador de Hadamard realiza mudança de base de $\mathcal{X}$ (base girada) para $\mathcal{I}$ (base computacional), de forma que o resultado medido na base computacional corresponde a uma medição na base $\mathcal{X}$. A figura ilustra a medição na base girada feita em função da medição na base computacional.  
 
-![{ED83D85F-D319-4706-8B62-FE0667156688}](https://github.com/user-attachments/assets/f92ded73-52b1-4753-b3c5-f847b1f920e1)
+![Screenshot 2024-10-21 at 21-40-04 tcc-giovani pdf](https://github.com/user-attachments/assets/1725d836-df4b-41c7-886a-f4c0273d5178)
+
 
 Análise detalhada do algoritmo:
 
@@ -172,27 +173,26 @@ Nesse contexto, se for permitida uma probabilidade de erro $\varepsilon$ na deci
   
 Primeiramente, permite-se que as entradas $i$ sejam tiradas aleatoriamente, cada uma com mesma probabilidade $p(i) = 1/2^n$. Por exemplo, se $f$ for constante $1$ ($f(i) = 1 \forall j$), a probabilidade de resultar $1$ é $1 = 100\%$ e a de resultar $0$ é $0 = 0\%$. Se $f$ for balanceada, a probabilidade de resultar $1$ é $0,\!5 = 50\%$ e o mesmo vale para o resultado $0$. Supõe-se, para simplificar a discussão, que o sorteio das entradas é feito sem memória\footnote{Para um número de bits $n$ grande, esse caso é semelhante ao caso com memória, em que não se permite repetir as entradas no sorteio.}, isto é, com chance de se sortear duas entradas iguais.
 
-![{51848742-F6AD-43EB-81A7-A9BADDAD83AC}](https://github.com/user-attachments/assets/656dee64-1e77-4bb6-a3f7-bef9173ac4b6)
+![Screenshot 2024-10-21 at 21-41-59 tcc-giovani pdf](https://github.com/user-attachments/assets/db2e48e7-6a00-41a1-8905-aa12cfd7a000)
 
 A primeira avaliação $f(i_1)$ não traz mais informação para distinguir entre constante e balanceada. 
 
-![{31EC5EAE-3FBD-40C6-BD46-8539B971C4EA}](https://github.com/user-attachments/assets/d6db95e0-98aa-431b-8599-36ece6c66f57)
+![Screenshot 2024-10-21 at 21-42-54 tcc-giovani pdf](https://github.com/user-attachments/assets/b84e214a-ce17-42ac-a00a-5210411439f1)
 
 A segunda aplicação, se resultar $f(i_2) \neq f(i_1)$, já resolve com certeza que $f$ é balanceada. 
 
-![{CC3EBCD4-7FF8-425E-ACAD-8C62119603C4}](https://github.com/user-attachments/assets/8e69b580-6396-421a-b1c3-e3ba28a5005b)
+![Screenshot 2024-10-21 at 21-43-27 tcc-giovani pdf](https://github.com/user-attachments/assets/0d8acb32-9101-4791-a3b7-d0d791d49616)
 
 Se o resultado for $f(i_2) = f(i_1)$, tende-se a pensar que $f$ seria constante e a probabilidade de se estar errado é a probabilidade de tirar duas saídas iguais aleatoriamente numa função balanceada, ou seja, $P_e = 1 \cdot 0,\!5 = 0,\!5$. 
 
-![{4633C8C3-2DA7-4EED-A8C4-4AE990F76995}](https://github.com/user-attachments/assets/53305309-f9d7-4e7e-925e-efe699004db7)
+![Screenshot 2024-10-21 at 21-43-57 tcc-giovani pdf](https://github.com/user-attachments/assets/747d0bce-4668-4868-ad81-ef6920f350a6)
 
 
 Na terceira etapa, caso $f(i_3) \neq f(i_2)$, resolve-se com certeza que $f$ é balanceada e caso $f(i_3) = f(i_2)$, conclui-se pela opção constante com probabilidade de erro igual a $P_e = 1 \cdot 0,\!5 \cdot 0,\!5 = 0,\!25$, correspondente à probabilidade de que, numa função balanceada, tenha-se o mesmo resultado para 3 entradas sorteadas aleatoriamente com igual probabilidade. 
 
-![{4D135D3E-A02B-4884-91D0-8A76253BE722}](https://github.com/user-attachments/assets/ba0152c8-e887-4d2e-a6a8-1edac3e0a880)
+![Screenshot 2024-10-21 at 21-45-05 tcc-giovani pdf](https://github.com/user-attachments/assets/a6fd247c-5616-4402-bc15-1c66f27633e0)
 
-![{3F99A070-CF73-487A-851A-2AC22B81282F}](https://github.com/user-attachments/assets/1b118ae3-435f-4fc4-8e62-27f88a835a54)
-
+![Screenshot 2024-10-21 at 21-45-29 tcc-giovani pdf](https://github.com/user-attachments/assets/2d7eee0d-5c3c-4535-a1fc-77ad08208010)
 
 Seguindo essa ideia, na $m$-ésima aplicação de $f$, se ocorrer $f(i_m) \neq f(i_{m-1})$, conclui-se com certeza a opção `$f$ é balanceada' e se $f(i_m) = f(i_{m-1})$, pode-se concluir que ``$f$ é constante'' com probabilidade de erro 
 
@@ -212,7 +212,7 @@ Se forem $m=3$ aplicações, a probabilidade de erro será limitada por $\vareps
 
 A tabela abaixo traz a comparação entre o desempenho dos algoritmos clássico determinístico, clássico probabilístico e quântico. 
 
-![{D247F07A-582C-4C50-B7B6-E6A0B9E1259F}](https://github.com/user-attachments/assets/ea5d535e-c062-4b3e-8569-3f02e487a20e)
+![Screenshot 2024-10-21 at 21-46-13 tcc-giovani pdf](https://github.com/user-attachments/assets/ddbc9d1b-c6fd-44aa-b022-9df9fa7db288)
 
 Essa comparação entre o desempenho clássico e quântico, no entanto, não pode ser considerada muito seriamente. Há que se levar em conta que são arquiteturas diferentes: aplicar uma operação $f$ clássica (correspondente a chamar uma subrotina ``caixa preta'') e aplicar o oráculo de fase $O_\text{F}(f)$ em um circuito quântico são coisas distintas. Não é claro que essas operações têm custo computacional equivalente para que sejam comparadas diretamente como na tabela apresentada. Por outro lado, como comparação simplificada, essa análise serve para se ter uma noção dos ganhos que a Computação Quântica poderia trazer em relação a Computação Clássica. 
 
