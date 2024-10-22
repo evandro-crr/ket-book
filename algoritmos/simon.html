@@ -451,9 +451,9 @@ Seja <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to  \{ 0
 <p><strong>Saída:</strong> Após processamento clássico final, valor do período <span class="math notranslate nohighlight">\(c\)</span> e decisão se <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1 ou 2-para-1.</p>
 <p><strong>Circuito</strong></p>
 <p>Notação compacta:</p>
-<p><img alt="{AC3F91E4-6F9E-466A-AF4E-9D83FCC1BA3E}" src="https://github.com/user-attachments/assets/6f73051c-eef0-4d5a-9f4f-9667ac370663" /></p>
+<p><img alt="Screenshot 2024-10-22 at 18-39-26 tcc-giovani pdf" src="https://github.com/user-attachments/assets/c73a022d-14cc-43e8-8b37-5af760d98348" /></p>
 <p>Notação expandida:</p>
-<p><img alt="{13D5F36A-5F7C-4007-B607-F1E40D583A55}" src="https://github.com/user-attachments/assets/ae7c7181-fabf-4522-a959-09d23fe4daff" /></p>
+<p><img alt="Screenshot 2024-10-22 at 18-40-22 tcc-giovani pdf" src="https://github.com/user-attachments/assets/28886f3d-3a48-4970-a909-30b4e7ab1306" /></p>
 <p><strong>Contas auxiliares</strong></p>
 <p><strong>Definição 3:</strong> Usa-se a seguinte notação, com o intuito de simplificar algumas expressões:</p>
 <div class="math notranslate nohighlight">
@@ -483,15 +483,7 @@ Prova-se por indução em <span class="math notranslate nohighlight">\(n\)</span
        &amp;= \sum_{y \in \mathbb{B}_2}\ket{\tilde{y}}\bra{y} \ . 
        \end{split}\end{split}\]</div>
 <p>Supõe-se, então, que seja válido para <span class="math notranslate nohighlight">\(n\)</span> qubits. Verifica-se o caso <span class="math notranslate nohighlight">\(n+1\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{split} 
-       H^{\otimes n+1} 
-       &amp;= H^{\otimes n} \otimes H \\
-       &amp;= \left( \sum_{y \in \mathbb{B}_n}\ket{\tilde{y}}\bra{y} \right) \otimes \big( \ket{+}\bra{0} + \ket{-}\bra{1} \big) \\
-       &amp;= \left( \sum_{y \in \mathbb{B}_n}\{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1}}\bra{y_0 y_1 \ldots y_{n-1}} \right) \otimes \big( \underbrace{\ket{+}\bra{0}}_{y_n = 0} +         \underbrace{\ket{-}\bra{1}}_{y_n = 1} \big) \\
-       &amp;= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}_0 \tilde{y}_1 \ldots \tilde{y}_{n-1} \tilde{y}_n}\bra{y_0 y_1 \ldots y_{n-1} y_n} \\
-       &amp;= \sum_{y \in \mathbb{B}_{n+1}} \ket{\tilde{y}}\bra{y} \ .
-       \end{split}\end{split}\]</div>
+<p><img alt="Screenshot 2024-10-22 at 18-43-09 tcc-giovani pdf" src="https://github.com/user-attachments/assets/258c5cd4-b3ca-4c41-bf50-23874f87a522" /></p>
 <p>Isso conclui a indução em <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p><strong>Proposição 2:</strong>
 Vale que:</p>
@@ -769,7 +761,7 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
 <section id="comparacao-de-desempenho">
 <h2>Comparação de Desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link permanente para este cabeçalho">#</a></h2>
 <p>O desempenho dos algoritmos clássico determinístico, clássico probabilístico e quântico são resumidos na tabela abaixo.</p>
-<p><img alt="{0C9CAB54-DF20-43BA-92D5-F685885C6685}" src="https://github.com/user-attachments/assets/c99cf5a3-8a52-4945-bf09-e49df4202576" /></p>
+<p><img alt="Screenshot 2024-10-22 at 18-43-52 tcc-giovani pdf" src="https://github.com/user-attachments/assets/14e9865f-639c-4561-b967-053d35203acc" /></p>
 <p>Da mesma forma como no problema de Deutsch-Jozsa, essa comparação tem limitações, mas serve como laboratório para testar em que situações a Computação Quântica pode trazer vantagem computacional em relação à Computação Clássica. Em particular, esse é um exemplo em que o algoritmo quântico apresenta ganho exponencial em desempenho em relação aos algoritmos clássicos existentes.</p>
 </section>
 </section>
