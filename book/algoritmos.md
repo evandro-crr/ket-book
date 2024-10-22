@@ -28,8 +28,8 @@ Assim, o primeiro qubit está com Alice e o segundo, com Bob. Alice pode realiza
 
 O circuito completo para a codificação superdensa é representado abaixo. Seu funcionamento detalhado será abordado a seguir.
 
+![Screenshot 2024-10-21 at 21-02-07 tcc-giovani pdf](https://github.com/user-attachments/assets/afc12264-f877-421c-a43c-4e6ee3d8b910)
 
-![{9FE67697-1DBC-45DF-AA5E-6DD689222F5F}](https://github.com/user-attachments/assets/b0f8fbe6-e8a4-4de3-94ac-6e06fc90ad94)
 
 ### Funcionamento detalhado
 
@@ -45,13 +45,11 @@ Usamos os rótulos $A$ para o primeiro qubit (da Alice) e $B$ para o segundo qub
 
 Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.
 
-![{041ADE65-B0BC-4A86-B263-7EAC822CCE49}](https://github.com/user-attachments/assets/c6d030fa-af18-4c6e-aa31-2861415601ff)
-
+![Screenshot 2024-10-21 at 21-02-52 tcc-giovani pdf](https://github.com/user-attachments/assets/b3227509-480c-4c0d-bd91-5e1779240568)
 
 Observa-se que $ZX = iY$ pela identidade de circuitos. Os estados de Bell $\ket{\beta_{00}}$, $\ket{\beta_{01}}$, $\ket{\beta_{10}}$ e $\ket{\beta_{11}}$ formam uma base para o espaço de 2 qubits. Observa-se também que, se a mensagem é $b_0 b_1$, então quando $b_1 = 1$ aplica-se $X_A$ e quando $b_0 = 1$, aplica-se $Z_A$. Dessa forma, para todos os valores da mensagem $b_0 b_1$, pode-se escrever a operação no qubit $A$ por $Z_A^{\,\, b_0} X_A^{\,\, b_1}$. Portanto, a operação que Alice deve fazer em seu qubit pode ser representada pelo seguinte circuito controlado por cbits:
 
-![{0DB064B6-9072-4F59-AFC5-E6268C111679}](https://github.com/user-attachments/assets/db51fdf8-2c42-48d7-93f5-f41934506b2e)
-
+![Screenshot 2024-10-21 at 21-03-50 tcc-giovani pdf](https://github.com/user-attachments/assets/5e3afea8-bf5a-485f-a22f-8a5f640b2b86)
 
 **Decodificação - Bob**
 
@@ -59,8 +57,7 @@ Alice envia, então, seu qubit a Bob, que realiza uma medida na base de Bell. Bo
  
 A medição na base de Bell pode ser realizada em função da medição na base computacional pelo seguinte circuito:
 
-![{64755C3E-9DC7-4F4A-8C55-F3E59752CFAF}](https://github.com/user-attachments/assets/3466614c-66fc-4da7-8d42-f90e5c81ab26)
-
+![Screenshot 2024-10-21 at 21-04-49 tcc-giovani pdf](https://github.com/user-attachments/assets/edcd3cc1-56aa-4ee3-81e0-142c27e5b579)
 
 ## Circuito de teletransporte
 
@@ -86,8 +83,7 @@ Nesse processo, o qubit $\ket{\psi}$ de Alice tem seu estado destruído pela med
 
 O circuito abaixo realiza o teletransporte do estado de 1 qubit de Alice para Bob utilizando apenas o envio de 2 cbits. O funcionamento detalhado do Circuito de Teletransporte será visto adiante. 
 
-![{7C4CCA84-E2B9-4131-AB9B-AAECA106290F}](https://github.com/user-attachments/assets/870304af-2659-4923-9b63-20d58022a4c0)
-
+![Screenshot 2024-10-21 at 21-05-52 tcc-giovani pdf](https://github.com/user-attachments/assets/79cd53bd-3a6c-4b8c-bbd9-98b19874162e)
 
 ### Funcionamento detalhado
 
@@ -152,7 +148,7 @@ Alice realiza, então, a medida dos seus dois qubits na base computacional. Essa
 
 em que o resultado da medida é $b_0 b_1$. O qubit que está com Bob passa a ficar no estado $\ket{\psi_3}_B$, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.
 
-![{7D2AFD7A-FEC6-4509-8586-3B14E45B3850}](https://github.com/user-attachments/assets/2422b667-d22b-47a4-b84b-6b70cf142db2)
+![Screenshot 2024-10-21 at 21-06-47 tcc-giovani pdf](https://github.com/user-attachments/assets/9bdb83b6-c876-40f4-b59e-70c53db502df)
 
 Caso o resultado da medida tenha sido $00$, o estado do sistema total $\ket{\psi_3}$ é obtido pela projeção $\ket{00}\bra{00}_{A_1A_2}$ seguida de uma normalização do vetor resultante. É conveniente lembrar que $|a|^2 + |b|^2 = 1$ pela normalização do estado $\ket{\psi} = a\ket{0} + b\ket{1}$ do início do algoritmo.
 
@@ -172,12 +168,11 @@ Para recuperar o estado $a\ket{0} + b\ket{1}$, Bob deve fazer algumas operaçõe
   
 Se a medida for $00$, seu qubit está em $ a\ket{0} + b\ket{1}$ e nada precisa ser feito. Se a medida resultou em $01$, seu qubit está em $b\ket{0} + a\ket{1}$; nesse caso, é possível perceber que a porta $X$ fornece novamente o estado desejado $b\ket{1} + a\ket{0}$. Considerando-se todos os resultados possíveis da medida, monta-se a correção necessária para cada caso.
 
-![{190AEEBE-803A-4A27-B46F-2D8269EAA29A}](https://github.com/user-attachments/assets/c64f7bc3-c0e8-407a-8f0e-d8ec780a7cbc)
+![Screenshot 2024-10-21 at 21-10-35 tcc-giovani pdf](https://github.com/user-attachments/assets/ea738175-2216-4443-a823-e790ae555cad)
 
 Essas operações, como na codificação superdensa, podem ser resumidas na operação controlada classicamente $Z_B^{\, b_0} X_B^{\, b_1}$, em que $b_0b_1$ é o resultado da medida. Dessa forma, pode-se representar o processamento de Bob pelo circuito a seguir.
 
-![{278424D5-75B0-4E42-A78B-0EED9164551F}](https://github.com/user-attachments/assets/e675cc9d-6912-44f1-aacc-005c66b7befc)
-
+![Screenshot 2024-10-21 at 21-11-09 tcc-giovani pdf](https://github.com/user-attachments/assets/cbcc21aa-648c-43f8-8d6c-f6454a75dc28)
 
 Com isso, independente do resultado da medida, Bob tem, ao final, o estado $\ket{\psi}$ que Alice queria transmitir. 
 
@@ -191,8 +186,7 @@ Com isso, independente do resultado da medida, Bob tem, ao final, o estado $\ket
 
 O oráculo XOR é uma operação unitária que realiza a função booleana $f$ por meio de um bit extra, que sinaliza as entradas em que $f$ vale 1. 
 
-![{032A007E-722B-4850-89B8-71ED9F516546}](https://github.com/user-attachments/assets/3f84cade-5c0f-400c-9bb9-db9fc71d8afe)
-
+![Screenshot 2024-10-21 at 21-11-56 tcc-giovani pdf](https://github.com/user-attachments/assets/f59d7db1-1357-4a13-bc54-2bbc503b22c0)
 
 ### Construção do Oráculo de Fase usando o Oráculo XOR
 
@@ -214,4 +208,4 @@ Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alv
 
 A figura a seguir ilustra a construção do oráculo de fase.
 
-![{1F4AC80C-FF1C-463E-8CE4-5CD827F22020}](https://github.com/user-attachments/assets/04b12d92-fdd9-4e98-b9b3-a79a18e80045)
+![Screenshot 2024-10-21 at 21-14-09 tcc-giovani pdf](https://github.com/user-attachments/assets/d74c7a8c-6064-4fd3-999a-000d9ed12a95)
