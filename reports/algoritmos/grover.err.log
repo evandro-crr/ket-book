@@ -38,7 +38,7 @@ The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
 !pip install -U pip -q
-!-m pip install ket-lang
+!pip install ket-lang
 !pip install -U pandas==2.1.0 plotly==5.18.0 -q
 
 import ket
