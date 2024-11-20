@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Algoritmo de Simon &#8212; Computação Quântica com Ket</title>
+    <title>Problema de Simon &#8212; Computação Quântica com Ket</title>
   
   
   
@@ -189,7 +189,16 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Algoritmo de Simon</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Problema de Simon</a></li>
+
+
+
+
+
+
+
+
+
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
@@ -240,6 +249,73 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/algoritmos/simon.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/algoritmos/simon.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
     <i class="fas fa-download"></i>
@@ -248,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/algoritmos/simon.md" target="_blank"
+      <li><a href="../_sources/algoritmos/simon.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Baixar arquivo fonte"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -258,7 +334,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -332,7 +408,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Algoritmo de Simon</h1>
+    <h1>Problema de Simon</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -342,20 +418,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-de-simon">Problema de Simon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algorítmo de Simon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapas-da-subrotina-de-simon">Etapas da subrotina de Simon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidades-nas-medicoes">Probabilidades nas medições</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-exemplo">Encontrando o valor do período c – exemplo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-caso-geral">Encontrando o valor do período c – caso geral</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidade-de-erro">Probabilidade de erro</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algorítmo clássico determinístico</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Problema de Simon</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-simon">Algorítmo de Simon</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#etapas-da-subrotina-de-simon">Etapas da subrotina de Simon</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidades-nas-medicoes">Probabilidades nas medições</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-exemplo">Encontrando o valor do período c – exemplo</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-caso-geral">Encontrando o valor do período c – caso geral</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidade-de-erro">Probabilidade de erro</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algorítmo clássico determinístico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-simon">Simulação do algorítimo de simon</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -366,15 +444,29 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="algoritmo-de-simon">
-<h1>Algoritmo de Simon<a class="headerlink" href="#algoritmo-de-simon" title="Link permanente para este cabeçalho">#</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>Material extraído do TCC <span class="xref myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span>, de Giovani Goraiebe Pollachini.</p>
+  <div class="cell tag_hide-input tag_thebe-init tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
+<span class="kn">from</span> <span class="nn">ket</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="admonition-referencias admonition">
+<p class="admonition-title">Referências</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](./tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
+</pre></div>
+</div>
 </div>
 <p>Assim como no caso do Algoritmo de Deutsch-Jozsa, o Algoritmo de Simon é um algoritmo quântico projetado para resolver o Problema de Simon. Esse problema também tem propósito de funcionar como laboratório de testes para a Computação Quântica, não apresentando aplicações conhecidas.</p>
 <section id="problema-de-simon">
-<h2>Problema de Simon<a class="headerlink" href="#problema-de-simon" title="Link permanente para este cabeçalho">#</a></h2>
+<h1>Problema de Simon<a class="headerlink" href="#problema-de-simon" title="Link permanente para este cabeçalho">#</a></h1>
 <p>O problema de Simon é um problema de promessa, em que é dada uma função booleana <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to  \{ 0,1 \}^n\)</span> que pode ser ou 1-para-1 ou 2-para-1. Esses termos serão definidos e acompanhados de exemplos para melhor entendimento. Em seguida, o enunciado do problema de Simon será escrito formalmente.</p>
 <p><strong>Definição 1: Função 1-para-1 e 2-para-1</strong>
 Seja <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to  \{ 0,1 \}^n\)</span> uma função booleana de <span class="math notranslate nohighlight">\(n\)</span> para <span class="math notranslate nohighlight">\(n\)</span> bits.</p>
@@ -385,72 +477,96 @@ Seja <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to  \{ 0
 <p>Sejam <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to  \{ 0,1 \}^n\)</span> uma função booleana de <span class="math notranslate nohighlight">\(n\)</span> para <span class="math notranslate nohighlight">\(n\)</span> bits e <span class="math notranslate nohighlight">\(c \in  \{ 0,1 \}^n\)</span>.</p>
 <p>Diz-se que <span class="math notranslate nohighlight">\(f\)</span> satisfaz a propriedade de Simon se</p>
 <div class="math notranslate nohighlight">
-\[f(x_1) = f(x_2) \Longleftrightarrow x_2 = x_1 \oplus c\]</div>
+\[
+f(x_1) = f(x_2) \Longleftrightarrow x_2 = x_1 \oplus c
+\]</div>
 <p>em que a operação <span class="math notranslate nohighlight">\(\oplus\)</span> é a XOR (ou seja, adição módulo 2) realizada bit a bit nos dois vetores de bits.</p>
 <p><strong>Exemplos:</strong></p>
 <ul class="simple">
 <li><p>A função booleana <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^2 \to  \{ 0,1 \}^2\)</span> definida pela tabela abaixo é 1-para-1.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{c|c}
+\[\begin{split}
+\begin{array}{c|c}
      x &amp; f(x) \\ \hline 
      00  &amp; 10 \\
      01  &amp; 11 \\
      10  &amp; 00 \\
      11  &amp; 01
-    \end{array}\end{split}\]</div>
+    \end{array}
+\end{split}\]</div>
 <ul class="simple">
 <li><p>A função booleana <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^2 \to  \{ 0,1 \}^2\)</span> definida pela tabela abaixo é 2-para-1.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{c|c}
+\[\begin{split}
+\begin{array}{c|c}
      x   &amp; f(x) \\ \hline 
      00  &amp; 10 \\
      01  &amp; 01 \\
      10  &amp; 10 \\
      11  &amp; 01
-    \end{array}\end{split}\]</div>
+    \end{array}
+\end{split}\]</div>
 <p>Essa função também satisfaz a propriedade de Simon com <span class="math notranslate nohighlight">\(c = 10\)</span>. De fato,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{lll}
+\[\begin{split}
+\begin{array}{lll}
         10 = 00 \oplus 10 &amp; &amp; f(00) = f(10) = 10  \\
         11 = 01 \oplus 10 &amp; &amp; f(01) = f(11) = 01 \ .
-       \end{array} \end{split}\]</div>
+       \end{array} 
+\end{split}\]</div>
 <p>Observação 1: Nem toda função booleana 2-para-1 satisfaz a propriedade de Simon. De fato, a função <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^3 \to  \{ 0,1 \}^3\)</span> dada por</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{c|cccc|c}
-     x    &amp; f(x) &amp; &amp; &amp; x &amp; f(x) \\ -  1-2  - 5-6
-     000  &amp; 2 &amp; &amp; &amp; 100  &amp; 2 \\
-     001  &amp; 5 &amp; &amp; &amp; 101  &amp; 3 \\
-     010  &amp; 1 &amp; &amp; &amp; 110  &amp; 1 \\
-     011  &amp; 5 &amp; &amp; &amp; 111  &amp; 3
-    \end{array}\end{split}\]</div>
+\[\begin{split}
+\begin{array}{c|c}
+x &amp; f(x) \\ \hline
+000 &amp; 2 \\
+001 &amp; 5 \\
+010 &amp; 1 \\
+011 &amp; 5
+\end{array}
+\qquad
+\begin{array}{c|c}
+x &amp; f(x) \\ \hline
+100 &amp; 2 \\
+101 &amp; 3 \\
+110 &amp; 1 \\
+111 &amp; 3
+\end{array}
+\end{split}\]</div>
 <p>Essa função é 2-para-1. Se satisfizesse a propriedade de Simon, existiria <span class="math notranslate nohighlight">\(c\)</span> satisfazendo <span class="math notranslate nohighlight">\(f(x\oplus c ) = f(x)\)</span> para todo <span class="math notranslate nohighlight">\(x\)</span>. No entanto,</p>
 <div class="math notranslate nohighlight">
-\[f(000) = f(100), 100 = 000 \oplus 100 \implies c = 100\]</div>
+\[
+f(000) = f(100), 100 = 000 \oplus 100 \implies c = 100
+\]</div>
 <p>E tem-se que</p>
 <div class="math notranslate nohighlight">
-\[f(000) = f(100), 100 = 000 \oplus 100 \implies c = 100\]</div>
+\[
+f(000) = f(100), 100 = 000 \oplus 100 \implies c = 100
+\]</div>
 <p>Essa contradição significa que a propriedade de Simon não é satisfeita.</p>
 <p>Observação 2: Se <span class="math notranslate nohighlight">\(f\)</span> satisfaz a propriedade de Simon com <span class="math notranslate nohighlight">\(c=0\ldots0\)</span>, então <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1. E se <span class="math notranslate nohighlight">\(f\)</span> satisfaz a propriedade de Simon com <span class="math notranslate nohighlight">\(c\neq 0\ldots0\)</span>, então <span class="math notranslate nohighlight">\(f\)</span> é 2-para-1.</p>
 <p>De posse dessas definições, o problema de Simon tem o seguinte enunciado.</p>
 <p><strong>Problema de Simon</strong></p>
 <p>Dada uma função booleana <span class="math notranslate nohighlight">\(f\colon \{ 0,1 \}^n \to  \{ 0,1 \}^n\)</span> satisfazendo a propriedade de Simon, distinguir se <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1 ou se é 2-para-1 e encontrar o período <span class="math notranslate nohighlight">\(c\)</span>.</p>
 </section>
-<section id="id1">
-<h2>Algorítmo de Simon<a class="headerlink" href="#id1" title="Link permanente para este cabeçalho">#</a></h2>
+<section id="algoritmo-de-simon">
+<h1>Algorítmo de Simon<a class="headerlink" href="#algoritmo-de-simon" title="Link permanente para este cabeçalho">#</a></h1>
 <p>O algoritmo a ser apresentado pressupõe que a função booleana <span class="math notranslate nohighlight">\(f\)</span> seja dada como um oráculo XOR. Também são necessários 2 registradores de <span class="math notranslate nohighlight">\(n\)</span> qubits. O algoritmo descreve uma subrotina a ser repetida da ordem de <span class="math notranslate nohighlight">\(n\)</span> vezes. Em cada iteração, obtém-se um pouco de informação, que será processada classicamente para obter como saída o valor de <span class="math notranslate nohighlight">\(c\)</span> e a decisão se <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1 ou 2-para-1.</p>
 <p><strong>Procedimento:</strong></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}
-   \text{etapa 0:} &amp; \ket{0}\ket{0} &amp; \text{\small{preparação do estado inicial}} \vspace{2pt} \\ 
-   \text{etapa 1:} &amp;\displaystyle \tfrac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{0} &amp; \text{\small{$H^{\otimes n}$ no registrador 1}} \vspace{2pt} \\ 
-   \text{etapa 2:} &amp;\displaystyle \tfrac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{f(x)} &amp; \text{\small{aplicação de $f$ (oráculo XOR)}} \vspace{2pt} \\ 
-   \text{etapa 3:} &amp;\displaystyle \tfrac{1}{2^n} \sum_{x\in\mathbb{B}_n}\sum_{y\in\mathbb{B}_n} \ket{y}\ket{f(x)} &amp; \text{\small{$H^{\otimes n}$ no registrador 1}} \vspace{2pt} \\ 
+\[\begin{split}
+\begin{array}
+   \text{etapa 0:} &amp; \ket{0}\ket{0} &amp; \text{\small{preparação do estado inicial}}  \\ 
+   \text{etapa 1:} &amp;\displaystyle \tfrac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{0} &amp; \text{\small{$H^{\otimes n}$ no registrador 1}}  \\ 
+   \text{etapa 2:} &amp;\displaystyle \tfrac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{f(x)} &amp; \text{\small{aplicação de $f$ (oráculo XOR)}}  \\ 
+   \text{etapa 3:} &amp;\displaystyle \tfrac{1}{2^n} \sum_{x\in\mathbb{B}_n}\sum_{y\in\mathbb{B}_n} \ket{y}\ket{f(x)} &amp; \text{\small{$H^{\otimes n}$ no registrador 1}}  \\ 
    \text{etapa 4:} \text{Medição. Obtém informação sobre a resposta} \\ 
    \text{etapa 5:} \text{Repetir etapas 0-4 da ordem de n vezes} \\ 
    \text{etapa 6:} \text{Computar a resposta classicamente com as informações obtidas} 
-  \end{array}\end{split}\]</div>
+  \end{array}
+\end{split}\]</div>
 <p><strong>Saída:</strong> Após processamento clássico final, valor do período <span class="math notranslate nohighlight">\(c\)</span> e decisão se <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1 ou 2-para-1.</p>
 <p><strong>Circuito</strong></p>
 <p>Notação compacta:</p>
@@ -460,152 +576,197 @@ Seja <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to  \{ 0
 <p><strong>Contas auxiliares</strong></p>
 <p><strong>Definição 3:</strong> Usa-se a seguinte notação, com o intuito de simplificar algumas expressões:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split} 
+\[\begin{split}
+\begin{split} 
        \tilde{0} &amp;= +  \\
        \tilde{1} &amp;= - \ . 
-       \end{split}\end{split}\]</div>
+       \end{split}
+\end{split}\]</div>
 <p>Dado um vetor de bits <span class="math notranslate nohighlight">\(x \in \mathbb{B}_n\)</span>, escreve-se <span class="math notranslate nohighlight">\(\ket{\tilde{x}} = \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} }\)</span> para designar um produto tensorial de estados <span class="math notranslate nohighlight">\(\ket{+}\)</span> e <span class="math notranslate nohighlight">\(\ket{-}\)</span>. Por exemplo,</p>
 <div class="math notranslate nohighlight">
-\[\ket{x} = \ket{0110} \Longleftrightarrow \ket{\tilde{x}} = \ket{+--+}\]</div>
+\[
+\ket{x} = \ket{0110} \Longleftrightarrow \ket{\tilde{x}} = \ket{+--+}
+\]</div>
 <p><strong>Definição 4:</strong> <span class="math notranslate nohighlight">\(\mathbb{B}_n\)</span> é o conjunto de todos os vetores de <span class="math notranslate nohighlight">\(n\)</span> bits.</p>
 <p><strong>Proposição 1:</strong> Vale que</p>
 <div class="math notranslate nohighlight">
-\[H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \ket{\tilde{y}}\bra{y}\]</div>
+\[
+H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \ket{\tilde{y}}\bra{y}
+\]</div>
 <p><strong>Demonstração:</strong>
 Prova-se por indução em <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>Vale para <span class="math notranslate nohighlight">\(n=1\)</span> qubit, já que <span class="math notranslate nohighlight">\(H\)</span> pode ser escrito como</p>
 <div class="math notranslate nohighlight">
-\[H = \ket{+}\bra{0} + \ket{-}\bra{1}\]</div>
+\[
+H = \ket{+}\bra{0} + \ket{-}\bra{1}
+\]</div>
 <p>Vale para <span class="math notranslate nohighlight">\(n=2\)</span> qubits, pois</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split} 
+\[\begin{split}
+\begin{split} 
        H^{\otimes 2} 
        &amp;= H \otimes H \\
        &amp;=  \ket{+}\bra{0} + \ket{-}\bra{1} \otimes \ket{+}\bra{0} + \ket{-}\bra{1}  \\
        &amp;= \ket{++}\bra{00} + \ket{+-}\bra{01} + \ket{-+}\bra{10} + \ket{--}\bra{11} \\
        &amp;= \sum_{y \in \mathbb{B}_2}\ket{\tilde{y}}\bra{y} \ . 
-       \end{split}\end{split}\]</div>
+       \end{split}
+\end{split}\]</div>
 <p>Supõe-se, então, que seja válido para <span class="math notranslate nohighlight">\(n\)</span> qubits. Verifica-se o caso <span class="math notranslate nohighlight">\(n+1\)</span>:</p>
 <p><img alt="Screenshot 2024-10-22 at 18-43-09 tcc-giovani pdf" src="https://github.com/user-attachments/assets/258c5cd4-b3ca-4c41-bf50-23874f87a522" /></p>
 <p>Isso conclui a indução em <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p><strong>Proposição 2:</strong>
 Vale que:</p>
 <div class="math notranslate nohighlight">
-\[\ket{\tilde{x}} = \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\]</div>
+\[
+\ket{\tilde{x}} = \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}
+\]</div>
 <p>em que <span class="math notranslate nohighlight">\(x \cdot y = x_0 y_0 + x_1 y_1 + \ldots + x_{n-1}y_{n-1}\)</span>.</p>
 <p>**Demonstração: **
 Mostra-se por indução em <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>Para <span class="math notranslate nohighlight">\(n=1\)</span> qubit, tem-se que</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}    \begin{split}
+\[\begin{split}
+    \begin{split}
         \ket{\tilde{0}} &amp;= \ket{+} = \frac{1}{\sqrt{2}} \big( \ket{0} + \ket{1} \big) \\
         \ket{\tilde{1}} &amp;= \ket{-} = \frac{1}{\sqrt{2}} \big( \ket{0} - \ket{1} \big) \ .
-       \end{split}\end{split}\]</div>
-<p>Para <span class="math notranslate nohighlight">\(n=2\)</span> qubits, tem-se que</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
-     \ket{\tilde{0} \tilde{0} } &amp;= \ket{++} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} + \ket{01} + \ket{10} + \ket{11} \big) \\
-     \ket{\tilde{0} \tilde{1} } &amp;= \ket{+-} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} - \ket{01} + \ket{10} - \ket{11}\big) \\ 
-     \ket{\tilde{1} \tilde{0} } &amp;= \ket{-+} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} + \ket{01} - \ket{10} - \ket{11} \big) \\ 
-     \ket{\tilde{1} \tilde{1} } &amp;= \ket{--} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} - \ket{01} - \ket{10} + \ket{11} \big) \ ,
-    \end{split}\end{split}\]</div>
+       \end{split}
+\end{split}\]</div>
+<p>Para <span class="math notranslate nohighlight">\(n=2\)</span> qubits, tem-se que
+$<span class="math notranslate nohighlight">\(
+   \begin{split}
+        \ket{\tilde{0} \tilde{0} } &amp;= \ket{++} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} + \ket{01} + \ket{10} + \ket{11} \big) \\
+        \ket{\tilde{0} \tilde{1} } &amp;= \ket{+-} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} - \ket{01} + \ket{10} - \ket{11}\big) \\ 
+        \ket{\tilde{1} \tilde{0} } &amp;= \ket{-+} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} + \ket{01} - \ket{10} - \ket{11} \big) \\ 
+        \ket{\tilde{1} \tilde{1} } &amp;= \ket{--} =  \frac{1}{\sqrt{2^2}} \big( \ket{00} - \ket{01} - \ket{10} + \ket{11} \big) \ ,
+       \end{split}
+\)</span>$</p>
 <p>que pode ser resumido em</p>
 <div class="math notranslate nohighlight">
-\[ \ket{\tilde{x}} = \frac{1}{\sqrt{2^2}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\]</div>
+\[
+    \ket{\tilde{x}} = \frac{1}{\sqrt{2^2}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}
+\]</div>
 <p>Assume-se que o enunciado seja válido para <span class="math notranslate nohighlight">\(n\)</span> qubits. O caso <span class="math notranslate nohighlight">\(n+1\)</span> fica como a seguir.</p>
 <div class="math notranslate nohighlight">
-\[ \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} \tilde{x}_n } = \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{\tilde{x}_n }\]</div>
+\[
+    \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} \tilde{x}_n } = \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{\tilde{x}_n }
+\]</div>
 <p>Caso <span class="math notranslate nohighlight">\(\tilde{x}_n = +\)</span>, tem-se</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} \begin{split}
-   &amp;\ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} + } \\
-   \phantom{x}  &amp;= \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{+} \\
-    &amp;=  \left(\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y} \right) \otimes \ket{+}  \\
-    &amp;=  \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y_0 \ldots y_{n-1}}  \otimes \frac{1}{\sqrt{2}} \big( \ket{0} + \ket{1} \big) \\
-    &amp;=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \big( \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} +  \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \big) \\
-    &amp;=  \frac{1}{\sqrt{2^{n+1}}} ( \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
-    &amp; \qquad \qquad \qquad \qquad \qquad +\ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} ) \\
-    &amp;= \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_{n+1}} (-1)^{(x_0 \ldots x_{n-1}0)\cdot y} \ket{y_0 \ldots y_{n-1} y_n } \ .
-   \end{split}\end{split}\]</div>
-<p>No caso <span class="math notranslate nohighlight">\(\tilde{x}_n = -\)</span>, tem-se</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} \begin{split}
-   &amp;\ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} - } \\
-   \phantom{x}  &amp;= \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{-} \\
-    &amp;=  \left(\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y} \right) \otimes \ket{-}  \\
-    &amp;=  \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y_0 \ldots y_{n-1}}  \otimes \frac{1}{\sqrt{2}} \big( \ket{0} - \ket{1} \big) \\
-    &amp;=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \big( \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} -  \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \big) \\
-    &amp;=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
-    &amp; \qquad \qquad \qquad \qquad \qquad + \ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \\
-    &amp;= \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_{n+1}} (-1)^{(x_0 \ldots x_{n-1}1)\cdot y} \ket{y_0 \ldots y_{n-1} y_n } \ .
-   \end{split}\end{split}\]</div>
+\[\begin{split}
+    \begin{split}
+      &amp;\ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} + } \\
+      \phantom{x}  &amp;= \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{+} \\
+       &amp;=  \left(\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y} \right) \otimes \ket{+}  \\
+       &amp;=  \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y_0 \ldots y_{n-1}}  \otimes \frac{1}{\sqrt{2}} \big( \ket{0} + \ket{1} \big) \\
+       &amp;=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \big( \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} +  \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \big) \\
+       &amp;=  \frac{1}{\sqrt{2^{n+1}}} ( \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
+       &amp; \qquad \qquad \qquad \qquad \qquad +\ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 0 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} ) \\
+       &amp;= \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_{n+1}} (-1)^{(x_0 \ldots x_{n-1}0)\cdot y} \ket{y_0 \ldots y_{n-1} y_n } \ .
+      \end{split}
+\end{split}\]</div>
+<p>No caso <span class="math notranslate nohighlight">\(\tilde{x}_n = -\)</span>, tem-se
+$<span class="math notranslate nohighlight">\(
+    \begin{split}
+      &amp;\ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1} - } \\
+      \phantom{x}  &amp;= \ket{\tilde{x}_0 \tilde{x}_1 \ldots \tilde{x}_{n-1}} \otimes \ket{-} \\
+       &amp;=  \left(\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y} \right) \otimes \ket{-}  \\
+       &amp;=  \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \ket{y_0 \ldots y_{n-1}}  \otimes \frac{1}{\sqrt{2}} \big( \ket{0} - \ket{1} \big) \\
+       &amp;=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y} \big( \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} -  \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \big) \\
+       &amp;=  \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_n} (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 0} \underbrace{\ket{y_0 \ldots y_{n-1} 0}}_{y_n = 0} \ + \\
+       &amp; \qquad \qquad \qquad \qquad \qquad + \ (-1)^{(x_0 \ldots x_{n-1})\cdot y + 1 \cdot 1} \underbrace{\ket{y_0 \ldots y_{n-1} 1}}_{y_n = 1} \\
+       &amp;= \frac{1}{\sqrt{2^{n+1}}} \sum_{y\in\mathbb{B}_{n+1}} (-1)^{(x_0 \ldots x_{n-1}1)\cdot y} \ket{y_0 \ldots y_{n-1} y_n } \ .
+      \end{split}
+\)</span>$</p>
 <p>Isso conclui a demonstração.</p>
 <p><strong>Proposição 3:</strong> O produto tensorial de <span class="math notranslate nohighlight">\(n\)</span> operadores de Hadamard é dado por</p>
 <div class="math notranslate nohighlight">
-\[H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y \in \mathbb{B}_n} (-1)^{x \cdot y} \ket{x}\bra{y}\]</div>
+\[
+H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y \in \mathbb{B}_n} (-1)^{x \cdot y} \ket{x}\bra{y}
+\]</div>
 <p><strong>Demonstração:</strong></p>
 <p>Usando as proposições do produto tenosrial de H1 e a do produto tensorial entre estados, temos que:</p>
 <div class="math notranslate nohighlight">
-\[H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \ket{\tilde{y}}\bra{y} = \sum_{y \in \mathbb{B}_n} \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}\ket{x}\bra{y} \]</div>
+\[
+H^{\otimes n} = \sum_{y \in \mathbb{B}_n} \ket{\tilde{y}}\bra{y} = \sum_{y \in \mathbb{B}_n} \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}\ket{x}\bra{y} 
+\]</div>
 <p><strong>Proposição 4:</strong>
 A aplicação de <span class="math notranslate nohighlight">\(H^{\otimes n}\)</span> a um estado <span class="math notranslate nohighlight">\(\ket{x} = \ket{x_{0} x_1 \ldots x_{n-1}}\)</span> na base computacional é dada por</p>
 <div class="math notranslate nohighlight">
-\[H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\]</div>
+\[
+H^{\otimes n} \ket{x} = \frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}
+\]</div>
 <p>em que <span class="math notranslate nohighlight">\(x \cdot y = x_0 y_0 + x_1 y_1 + \ldots + x_{n-1}y_{n-1}\)</span></p>
 <p><strong>Demonstração:</strong>
 Usando proposições vistas anteriormente temos que:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
+\[\begin{split}
+\begin{split}
         H^{\otimes n} \ket{x} 
         &amp;= \frac{1}{\sqrt{2^n}} \sum_{y,z\in\mathbb{B}_n} (-1)^{y\cdot z} \ket{y}\bra{z} \ket{x} \\
         &amp;= \frac{1}{\sqrt{2^n}} \sum_{y,z\in\mathbb{B}_n} (-1)^{y\cdot z} \ket{y} \delta_{z,x} \\
         &amp;= \frac{1}{\sqrt{2^n}} \sum_{y \in\mathbb{B}_n} (-1)^{y\cdot x} \ket{y} \ . 
-       \end{split}\end{split}\]</div>
+       \end{split}
+\end{split}\]</div>
 <p>Observação: A soma e o produto em</p>
 <div class="math notranslate nohighlight">
-\[ x \cdot y = x_0 y_0 + x_1 y_1 + \ldots + x_{n-1}y_{n-1} \tag{int}\]</div>
+\[
+   x \cdot y = x_0 y_0 + x_1 y_1 + \ldots + x_{n-1}y_{n-1} \tag{int}
+\]</div>
 <p>podem ser entendidos como operações com números ou como operações com bits</p>
 <div class="math notranslate nohighlight">
-\[  x \cdot y = x_0 y_0 \oplus x_1 y_1 \oplus \ldots \oplus x_{n-1}y_{n-1} \tag{bit}\]</div>
+\[
+    x \cdot y = x_0 y_0 \oplus x_1 y_1 \oplus \ldots \oplus x_{n-1}y_{n-1} \tag{bit}
+\]</div>
 <p>em que o produto é dado pela AND e a soma <span class="math notranslate nohighlight">\(\oplus\)</span> é dada pela XOR. Ambas as expressões resultam no mesmo sinal <span class="math notranslate nohighlight">\((-1)^{x\cdot y}\)</span>, pois a expressão (bit) corresponde a (int) módulo 2, visto que a AND se comporta como um produto e a XOR, como uma adição módulo 2.</p>
 </section>
 <section id="etapas-da-subrotina-de-simon">
-<h2>Etapas da subrotina de Simon<a class="headerlink" href="#etapas-da-subrotina-de-simon" title="Link permanente para este cabeçalho">#</a></h2>
+<h1>Etapas da subrotina de Simon<a class="headerlink" href="#etapas-da-subrotina-de-simon" title="Link permanente para este cabeçalho">#</a></h1>
 <p>As etapas da subrotina quântica são mostradas em detalhes no texto que segue. Inicialmente, aplica-se <span class="math notranslate nohighlight">\(H^{\otimes n}\)</span> ao primeiro registrador, obtendo-se</p>
 <div class="math notranslate nohighlight">
-\[   \ket{\psi_1} = \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{0}\]</div>
+\[
+   \ket{\psi_1} = \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{0}
+\]</div>
 <p>em que o primeiro ket engloba <span class="math notranslate nohighlight">\(n\)</span> qubits e representa o primeiro registrador, e o segundo ket contém <span class="math notranslate nohighlight">\(n\)</span> bits e representa o segundo registrador.</p>
 <p>A aplicação do oráculo na etapa 2 mantém o primeiro registrador e faz a XOR bit a bit de <span class="math notranslate nohighlight">\(0\)</span> com <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} \begin{split}
-    \ket{\psi_2} 
-    &amp;= O_{\text{XOR}} \ket{\psi_1} \\
-    &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} O_{\text{XOR}} \ket{x}\ket{0} \\
-    &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{f(x)} \ .
-   \end{split}\end{split}\]</div>
+\[\begin{split}
+    \begin{split}
+       \ket{\psi_2} 
+       &amp;= O_{\text{XOR}} \ket{\psi_1} \\
+       &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} O_{\text{XOR}} \ket{x}\ket{0} \\
+       &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{f(x)} \ .
+      \end{split}
+\end{split}\]</div>
 <p>Na etapa 3, aplica-se novamente <span class="math notranslate nohighlight">\(H^{\otimes n}\)</span> ao primeiro registrador:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split} 
-    \ket{\psi_3} 
-    &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \big(H^{\otimes n}\ket{x}\big)\ket{f(x)} \\
-    &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n}\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \\
-    &amp;= \frac{1}{2^n} \sum_{x\in\mathbb{B}_n} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \ . 
-   \end{split} \end{split}\]</div>
+\[\begin{split}
+   \begin{split} 
+       \ket{\psi_3} 
+       &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \big(H^{\otimes n}\ket{x}\big)\ket{f(x)} \\
+       &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n}\frac{1}{\sqrt{2^n}} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \\
+       &amp;= \frac{1}{2^n} \sum_{x\in\mathbb{B}_n} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \ . 
+      \end{split} 
+\end{split}\]</div>
 <p>É conveniente passar o somatório em <span class="math notranslate nohighlight">\(x\)</span> para o segundo registrador, ficando com:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-     \ket{\psi_3} 
-     &amp;= \frac{1}{2^n} \sum_{y\in\mathbb{B}_n} \ket{y}\left( \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}  \ket{f(x)} \right) \ .
-     \end{split}\]</div>
+\[
+  \begin{split}
+       \ket{\psi_3} 
+       &amp;= \frac{1}{2^n} \sum_{y\in\mathbb{B}_n} \ket{y}\left( \sum_{x\in\mathbb{B}_n} (-1)^{x\cdot y}  \ket{f(x)} \right) \ .
+       \end{split}
+\]</div>
 <p>A medida na base computacional, na etapa 4, faz o estado do sistema colapsar em <span class="math notranslate nohighlight">\(\ket{y}\ket{z}\)</span>, com <span class="math notranslate nohighlight">\(z=f(x)\)</span>. Como <span class="math notranslate nohighlight">\(f\)</span> tem a propriedade de Simon, os únicos valores que resultam em <span class="math notranslate nohighlight">\(z\)</span> pela aplicação de <span class="math notranslate nohighlight">\(f\)</span> são</p>
 <div class="math notranslate nohighlight">
-\[z = f(x_1) = f(x_2) \ , \ \ x_2 = x_1 \oplus c\]</div>
+\[
+ z = f(x_1) = f(x_2) \ , \ \ x_2 = x_1 \oplus c
+\]</div>
 </section>
 <section id="probabilidades-nas-medicoes">
-<h2>Probabilidades nas medições<a class="headerlink" href="#probabilidades-nas-medicoes" title="Link permanente para este cabeçalho">#</a></h2>
+<h1>Probabilidades nas medições<a class="headerlink" href="#probabilidades-nas-medicoes" title="Link permanente para este cabeçalho">#</a></h1>
 <p>Caso <span class="math notranslate nohighlight">\(c \neq 0\)</span>, o coeficiente multiplicando o estado <span class="math notranslate nohighlight">\(\ket{y}\ket{z}\)</span> em (<span class="math notranslate nohighlight">\(\ast\)</span>) é dado por</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} \begin{split} 
+\[\begin{split}
+ \begin{split} 
      a_{y,z}
      &amp;= \frac{1}{2^n} \big( (-1)^{x_1 \cdot y} + (-1)^{x_2 \cdot y} \big) \\
      &amp;= \frac{1}{2^n} \big( (-1)^{x_1 \cdot y} + (-1)^{(x_1 \oplus c) \cdot y} \big) \\
@@ -616,99 +777,140 @@ Usando proposições vistas anteriormente temos que:</p>
          0 &amp; \ \ \   c\cdot y = 1 \ , \\
          (-1)^{(x_1 \cdot y)} \frac{2}{2^n} &amp; \ \ \   c \cdot y = 0 \ .
         \end{cases}
-     \end{split}\end{split}\]</div>
+     \end{split}
+\end{split}\]</div>
 <p>A probabilidade de se encontrar o sistema no estado <span class="math notranslate nohighlight">\(\ket{y}\ket{z}\)</span> é, então,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} \begin{split}
-    p_{y,z} 
-    &amp;= |a_{y,z}|^2 = \begin{cases} 
-       0 &amp; \ \ \  c\cdot y = 1 \\
-       \frac{2^2}{2^{2n}} &amp; \ \ \  c \cdot y = 0
-      \end{cases}
-   \end{split}\end{split}\]</div>
+\[\begin{split}
+   \begin{split}
+      p_{y,z} 
+      &amp;= |a_{y,z}|^2 = \begin{cases} 
+         0 &amp; \ \ \  c\cdot y = 1 \\
+         \frac{2^2}{2^{2n}} &amp; \ \ \  c \cdot y = 0
+        \end{cases}
+     \end{split}
+\end{split}\]</div>
 <p>Assim, a medida só fornece vetores de bits <span class="math notranslate nohighlight">\(y\)</span> perpendiculares a <span class="math notranslate nohighlight">\(c\)</span>. A informação que se ganha para encontrar <span class="math notranslate nohighlight">\(c\)</span> é a equação</p>
 <div class="math notranslate nohighlight">
-\[ c \cdot y = c_1 y_1 \oplus c_1 y_1 \oplus \ldots \oplus c_n y_n = 0\]</div>
+\[
+  c \cdot y = c_1 y_1 \oplus c_1 y_1 \oplus \ldots \oplus c_n y_n = 0
+\]</div>
 <p>Caso <span class="math notranslate nohighlight">\(c = 0\)</span>, o coeficiente em (<span class="math notranslate nohighlight">\(\ast\)</span>) fica apenas</p>
 <div class="math notranslate nohighlight">
-\[    a_{y,z}
-      = \frac{1}{2^n} (-1)^{x_1 \cdot y}\]</div>
+\[
+    a_{y,z}
+      = \frac{1}{2^n} (-1)^{x_1 \cdot y}
+\]</div>
 <p>e a probabilidade de se encontrar o sistema em <span class="math notranslate nohighlight">\(\ket{y}\ket{z}\)</span> é</p>
 <div class="math notranslate nohighlight">
-\[     p_{y,z}
-     =  |a_{y,z}|^2 = 2^{-2n}\]</div>
+\[
+     p_{y,z}
+     =  |a_{y,z}|^2 = 2^{-2n}
+\]</div>
 <p>Logo, qualquer vetor de bits <span class="math notranslate nohighlight">\(y\)</span> pode sair como resultado da medição.</p>
 </section>
 <section id="encontrando-o-valor-do-periodo-c-exemplo">
-<h2>Encontrando o valor do período c – exemplo<a class="headerlink" href="#encontrando-o-valor-do-periodo-c-exemplo" title="Link permanente para este cabeçalho">#</a></h2>
+<h1>Encontrando o valor do período c – exemplo<a class="headerlink" href="#encontrando-o-valor-do-periodo-c-exemplo" title="Link permanente para este cabeçalho">#</a></h1>
 <p>Primeiramente, apresenta-se o processamento para encontrar o período <span class="math notranslate nohighlight">\(c\)</span> em um exemplo, com o objetivo de facilitar a compreensão do método no caso geral.</p>
 <p>Encontrando período <span class="math notranslate nohighlight">\(c\)</span> com o algoritmo de Simon</p>
 <p>Seja <span class="math notranslate nohighlight">\(n = 4\)</span> bits. Aplica-se a primeira iteração da subrotina quântica do algoritmo de Simon. Suponha que se obteve o resultado <span class="math notranslate nohighlight">\(y^{(1)} = 0111\)</span>. Esse resultado gera a equação</p>
 <div class="math notranslate nohighlight">
-\[y^{(1)} \cdot c = 0 \implies c_2 \oplus c_3 \oplus c_4 = 0 \implies c_2 = c_3 \oplus c_4\]</div>
+\[    
+y^{(1)} \cdot c = 0 \implies c_2 \oplus c_3 \oplus c_4 = 0 \implies c_2 = c_3 \oplus c_4
+\]</div>
 <p>Continua-se aplicando a subrotina até se obter <span class="math notranslate nohighlight">\(n-1 = 3\)</span> equações LI.</p>
 <p>A segunda iteração fornece <span class="math notranslate nohighlight">\(y^{(2)} = 1001\)</span>. Esse resultado corresponde à equação</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}       y^{(2)} \cdot c = 0 \implies c_1 \oplus c_4 = 0  \ 
+\[\begin{split}
+       y^{(2)} \cdot c = 0 \implies c_1 \oplus c_4 = 0  \ 
       \text{e o sistema, após simplificação, fica}
        \begin{cases}
            c_2 = c_3 \oplus c_4 \\
            c_1 = c_4 \ .
-         \end{cases}\end{split}\]</div>
+         \end{cases}
+\end{split}\]</div>
 <p>Como ainda não são 3 equações LI, continua-se a iteração.</p>
 <p>Na terceira iteração, o resultado é <span class="math notranslate nohighlight">\(y^{(3)} = 1110\)</span>. A equação correspondente é</p>
 <div class="math notranslate nohighlight">
-\[       y^{(3)} \cdot c = 0 \implies c_1 \oplus c_2 \oplus c_3 = 0  \implies c_4 \oplus (c_3 \oplus c_4)\oplus c_3 = 0 \implies 0 = 0\]</div>
+\[
+       y^{(3)} \cdot c = 0 \implies c_1 \oplus c_2 \oplus c_3 = 0  \implies c_4 \oplus (c_3 \oplus c_4)\oplus c_3 = 0 \implies 0 = 0
+\]</div>
 <p>e essa equação não fornece informação útil. O sistema continua sendo de 2 equações LI:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}        \begin{cases}
+\[\begin{split}
+        \begin{cases}
            c_2 = c_3 \oplus c_4 \\
            c_1 = c_4 \ .
-         \end{cases}\end{split}\]</div>
+         \end{cases}
+\end{split}\]</div>
 <p>Na quarta iteração obtém-se <span class="math notranslate nohighlight">\(y^{(4)} = 0001\)</span>, e a equação que esse resultado gera é</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} y^{(4)} \cdot c = 0 \implies c_4 = 0  
+\[\begin{split}
+ y^{(4)} \cdot c = 0 \implies c_4 = 0  
      \text{O sistema fica}
       \begin{cases}
            c_2 = c_3 \\
            c_1 = 0  \\
            c_4 = 0  \ .
-         \end{cases}\end{split}\]</div>
+         \end{cases}
+\end{split}\]</div>
 <p>Agora são <span class="math notranslate nohighlight">\(3 = n-1\)</span> equações LI. As soluções são <span class="math notranslate nohighlight">\(c' = 0000\)</span> e <span class="math notranslate nohighlight">\(c'' = 0110\)</span>. Poder-se-ia concluir que <span class="math notranslate nohighlight">\(f\)</span> é 2-para-1 com período <span class="math notranslate nohighlight">\(c=0110\)</span>. No entanto, a probabilidade de se estar errado nesse caso é a probabilidade de se obter 4 resultados no mesmo subespaço de dimensão 3, sendo que <span class="math notranslate nohighlight">\(f\)</span> seria 1-para-1 e os <span class="math notranslate nohighlight">\(2^n = 2^4\)</span> resultados seriam equiprováveis:</p>
 <div class="math notranslate nohighlight">
-\[ \varepsilon_4 \lesssim 1 \cdot 1 \cdot 1 \cdot \frac{2^3}{2^4} = \frac{1}{2}\]</div>
+\[
+ \varepsilon_4 \lesssim 1 \cdot 1 \cdot 1 \cdot \frac{2^3}{2^4} = \frac{1}{2}
+\]</div>
 <p>Para reduzir a probabilidade de erro, aplica-se a subrotina novamente. Suponha que obtém-se <span class="math notranslate nohighlight">\(y^{(5)} = 1111\)</span>. Verifica-se se  <span class="math notranslate nohighlight">\(y^{(5)} \perp c''\)</span> ou não. Caso não fosse, concluir-se-ia que haveria mais uma equação independente e o sistema só teria solução <span class="math notranslate nohighlight">\(c'=0\)</span>. Não é esse o caso aqui, pois</p>
 <div class="math notranslate nohighlight">
-\[ y^{(5)} \cdot c'' = 1111 \cdot 0110 = 0 \oplus 1 \oplus 1 \oplus 0 = 0 \implies y^{(5)} \perp c\]</div>
+\[
+ y^{(5)} \cdot c'' = 1111 \cdot 0110 = 0 \oplus 1 \oplus 1 \oplus 0 = 0 \implies y^{(5)} \perp c
+\]</div>
 <p>Poderia concluir-se, nessa etapa, que <span class="math notranslate nohighlight">\(f\)</span> é 2-para-1 com probabilidade de erro igual à probabilidade de se sortear aleatoriamente 5 vetores e todos cairem no mesmo subespaço vetorial de dimensão 3:</p>
 <div class="math notranslate nohighlight">
-\[\varepsilon_5 \lesssim 1 \cdot 1 \cdot 1 \cdot \frac{2^3}{2^4}\cdot \frac{2^3}{2^4} = \frac{1}{4}\]</div>
+\[
+\varepsilon_5 \lesssim 1 \cdot 1 \cdot 1 \cdot \frac{2^3}{2^4}\cdot \frac{2^3}{2^4} = \frac{1}{4}
+\]</div>
 <p>Terminando o algoritmo na iteração 5, tem-se que <span class="math notranslate nohighlight">\(f\)</span> é 2-para-1 e que o período é <span class="math notranslate nohighlight">\(c = 0110\)</span>.</p>
 <p>A título de curiosidade, a <span class="math notranslate nohighlight">\(f\)</span> utilizada neste exemplo é disposta na tabela abaixo, em que <span class="math notranslate nohighlight">\(A, B, C, D, E, F, G\)</span> e <span class="math notranslate nohighlight">\(H\)</span> denotam 8 palavras distintas de 4 bits.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}    \begin{array}{c|cccc|c}
-     x    &amp; f(x) &amp; &amp; &amp; x &amp; f(x) \\ 1-2 - 5-6
-     0000  &amp; A &amp; &amp; &amp; 1000  &amp; E \\
-     0001  &amp; B &amp; &amp; &amp; 1001  &amp; F \\
-     0010  &amp; C &amp; &amp; &amp; 1010  &amp; G \\
-     0011  &amp; D &amp; &amp; &amp; 1011  &amp; H \\
-     0100  &amp; C &amp; &amp; &amp; 1100  &amp; G \\
-     0101  &amp; D &amp; &amp; &amp; 1101  &amp; H \\
-     0110  &amp; A &amp; &amp; &amp; 1110  &amp; E \\
-     0111  &amp; B &amp; &amp; &amp; 1111  &amp; F
-    \end{array}\end{split}\]</div>
+\[\begin{split}
+\begin{array}{c|c}
+x &amp; f(x) \\ \hline
+0000 &amp; A \\
+0001 &amp; B \\
+0010 &amp; C \\
+0011 &amp; D \\
+0100 &amp; C \\
+0101 &amp; D \\
+0110 &amp; A \\
+0111 &amp; B
+\end{array}
+\qquad
+\begin{array}{c|c}
+x &amp; f(x) \\ \hline
+1000 &amp; E \\
+1001 &amp; F \\
+1010 &amp; G \\
+1011 &amp; H \\
+1100 &amp; G \\
+1101 &amp; H \\
+1110 &amp; E \\
+1111 &amp; F
+\end{array}
+\end{split}\]</div>
 <p>Repare que, de fato, <span class="math notranslate nohighlight">\(f\)</span> é 2-para-1 com <span class="math notranslate nohighlight">\(c = 0110\)</span>.</p>
 </section>
 <section id="encontrando-o-valor-do-periodo-c-caso-geral">
-<h2>Encontrando o valor do período c – caso geral<a class="headerlink" href="#encontrando-o-valor-do-periodo-c-caso-geral" title="Link permanente para este cabeçalho">#</a></h2>
+<h1>Encontrando o valor do período c – caso geral<a class="headerlink" href="#encontrando-o-valor-do-periodo-c-caso-geral" title="Link permanente para este cabeçalho">#</a></h1>
 <p>Repetindo a subrotina <span class="math notranslate nohighlight">\(m\)</span> vezes, obtém-se os resultados <span class="math notranslate nohighlight">\(y^{(1)}, \ldots, y^{(m)}\)</span> das medidas no registrador 1 e o sistema de equações lineares na incógnita <span class="math notranslate nohighlight">\(c = c_1 c_2 \ldots c_n\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{cases}
+\[\begin{split}
+\begin{cases}
    \ y^{(1)} \cdot c = 0\\
    \ y^{(2)} \cdot c = 0\\
    \ \phantom{y^{(1)} \cdot c} \vdots \\
    \ y^{(m)} \cdot c = 0
-  \end{cases} \end{split}\]</div>
+  \end{cases} 
+\end{split}\]</div>
 <p>Esse sistema sempre admite a solução <span class="math notranslate nohighlight">\(c = 0\)</span>. Supõe-se que se tenha obtido, após a aplicação da subrotina por um número suficiente de vezes, um sistema linear com um número suficiente de equações linearmente independentes (ficará mais claro o que significaria ``suficiente’’ nesse contexto).</p>
 <p>Observaçaõ
 Para analisar esse sistema, é interessante considerar <span class="math notranslate nohighlight">\(\mathbb{B}_n\)</span> como espaço vetorial sobre os escalares <span class="math notranslate nohighlight">\(\mathbb{B} = \{ 0,1 \}\)</span> e com a soma de vetores dada pela XOR bit a bit <span class="math notranslate nohighlight">\(\oplus\)</span>. É possível verificar que esse espaço satisfaz os axiomas de espaço vetorial. Além disso, é possível imitar o produto interno em <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> ou <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> com a operação <span class="math notranslate nohighlight">\(r\cdot s = r_1 s_1 \oplus \ldots \oplus r_n s_n\)</span>.</p>
@@ -719,54 +921,94 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
 <p>Resumindo, se as <span class="math notranslate nohighlight">\(m\)</span> repetições da subrotina quântica do algoritmo de Simon produzirem um sistema de equações com o máximo possível de equações LI, a solução do sistema fornecerá <span class="math notranslate nohighlight">\(c\)</span> e, dependendo se há apenas a solução nula ou se, além dessa, há uma solução <span class="math notranslate nohighlight">\(c \neq 0\)</span>, pode-se distinguir os casos `<span class="math notranslate nohighlight">\(f\)</span> é 1-para-1’ ou ``<span class="math notranslate nohighlight">\(f\)</span> é 2-para-1’’. O número de repetições <span class="math notranslate nohighlight">\(m\)</span> requerido é proporcional a <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Na primeira iteração, o número de vetores que acrescentam informação é <span class="math notranslate nohighlight">\(2^n - 1\)</span> dentre os <span class="math notranslate nohighlight">\(2^n\)</span> possíveis (apenas o vetor nulo seria útil). Após obter um vetor não nulo, a próxima iteração tem a chance de <span class="math notranslate nohighlight">\(2^{n-1} - 1\)</span> entre <span class="math notranslate nohighlight">\(2^n\)</span> de resultar num vetor que seja LI com o anterior.</p>
+<p>Na primeira iteração, o número de vetores que acrescentam informação é 2^n - 1 dentre os 2^n possíveis (apenas o vetor nulo seria útil). Após obter um vetor não nulo, a próxima iteração tem a chance de 2^(n-1) - 1 entre 2^n de resultar num vetor que seja LI com o anterior.</p>
 </div>
 </section>
 <section id="probabilidade-de-erro">
-<h2>Probabilidade de erro<a class="headerlink" href="#probabilidade-de-erro" title="Link permanente para este cabeçalho">#</a></h2>
+<h1>Probabilidade de erro<a class="headerlink" href="#probabilidade-de-erro" title="Link permanente para este cabeçalho">#</a></h1>
 <p>Em relação à probabilidade de erro no caso geral, tem-se o seguinte. A partir de um número de iterações suficientemente grande (da ordem de <span class="math notranslate nohighlight">\(n\)</span>), a cada nova iteração, ou se descobre que <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1 (resultado cada vez mais improvável) ou se escolhe que <span class="math notranslate nohighlight">\(f\)</span> é 2-para-1 com probabilidade de erro:</p>
 <div class="math notranslate nohighlight">
-\[\varepsilon_m \lesssim \underbrace{1  \ldots  1}_{n-1 \text{ vezes}} \cdot \underbrace{ \frac{2^{n-1}}{2^n} \ldots \frac{2^{n-1}}{2^n}}_{m-(n-1) \text{ vezes}} = \frac{1}{2^{m-n+1}}\]</div>
+\[
+\varepsilon_m \lesssim \underbrace{1  \ldots  1}_{n-1 \text{ vezes}} \cdot \underbrace{ \frac{2^{n-1}}{2^n} \ldots \frac{2^{n-1}}{2^n}}_{m-(n-1) \text{ vezes}} = \frac{1}{2^{m-n+1}}
+\]</div>
 <p>Essa estimativa não é exata, pois está considerando o caso em que <span class="math notranslate nohighlight">\(n-1\)</span> resultados forneceram vetores de bits não-nulos e LI, e os outros resultados cairam no subespaço gerado pelos <span class="math notranslate nohighlight">\(n-1\)</span> vetores LI. Poderia ter acontecido de se obter menos vetores LI e os outros cairem no subespaço gerado por eles, apesar de parecer menos provável. Essa estimativa, contudo, serve para dar uma pista quanto à quantidade de iterações do algoritmo quântico. Dessa forma, se o número de iterações <span class="math notranslate nohighlight">\(m\)</span> for da ordem de <span class="math notranslate nohighlight">\(n\)</span>, a probabilidade de erro pode ser feita menor que <span class="math notranslate nohighlight">\(1/2\)</span>.</p>
 </section>
 <section id="algoritmo-classico">
-<h2>Algoritmo Clássico<a class="headerlink" href="#algoritmo-classico" title="Link permanente para este cabeçalho">#</a></h2>
+<h1>Algoritmo Clássico<a class="headerlink" href="#algoritmo-classico" title="Link permanente para este cabeçalho">#</a></h1>
 <section id="algoritmo-classico-deterministico">
-<h3>Algorítmo clássico determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link permanente para este cabeçalho">#</a></h3>
+<h2>Algorítmo clássico determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link permanente para este cabeçalho">#</a></h2>
 <p>Um algoritmo clássico para o Problema de Simon consiste em escolher entradas <span class="math notranslate nohighlight">\(x\)</span> em <span class="math notranslate nohighlight">\(\mathbb{B}_n\)</span>, calcular <span class="math notranslate nohighlight">\(f(x)\)</span> e comparar com os outros valores já obtidos, até que se encontre um par de vetores distintos <span class="math notranslate nohighlight">\(x_{(1)}\)</span> e <span class="math notranslate nohighlight">\(x_{(2)}\)</span> com <span class="math notranslate nohighlight">\(f(x_{(1)}) = f(x_{(2)})\)</span> ou até que se possa concluir que <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1.</p>
 <p>Supondo que seja possível armazenar todas as entradas testadas e seus resultados pela aplicação da <span class="math notranslate nohighlight">\(f\)</span>, na pior das hipóteses, deve-se calcular <span class="math notranslate nohighlight">\(f\)</span> para metade das entradas mais uma, isto é, <span class="math notranslate nohighlight">\(2^{n}/2 + 1\)</span> vezes. Caso <span class="math notranslate nohighlight">\(f\)</span> seja 1-para-1, todos os resultados seriam distintos, e caso <span class="math notranslate nohighlight">\(f\)</span> seja 2-para-1, na pior das hipóteses, na tentativa de número <span class="math notranslate nohighlight">\(2^{n}/2 + 1\)</span> será obtido um valor repetido após aplicação da função.</p>
 </section>
 <section id="algoritmo-classico-probabilistico">
-<h3>Algoritmo Clássico Probabilístico<a class="headerlink" href="#algoritmo-classico-probabilistico" title="Link permanente para este cabeçalho">#</a></h3>
+<h2>Algoritmo Clássico Probabilístico<a class="headerlink" href="#algoritmo-classico-probabilistico" title="Link permanente para este cabeçalho">#</a></h2>
 <p>Para melhorar o desempenho do algoritmo determinístico acima, pode-se relaxar o desempenho, permitindo-se uma probabilidade de erro <span class="math notranslate nohighlight">\(\varepsilon\)</span> na escolha. Sorteia-se aleatoriamente <span class="math notranslate nohighlight">\(x\)</span> dentre o conjunto de entradas não testadas ainda, calcula-se <span class="math notranslate nohighlight">\(f(x)\)</span> e compara-se o valor obtido com o fornecido pelas entradas já testadas. Repete-se por um número suficiente de tentativas ou até algum par ser encontrado; se nenhum par foi encontrado, decide-se por `<span class="math notranslate nohighlight">\(f\)</span> é 1-para-1’ e se for encontrado, decide-se por ``<span class="math notranslate nohighlight">\(f\)</span> é 2-para-1’’ e utiliza-se o par <span class="math notranslate nohighlight">\(x_{(1)}, x_{(2)}\)</span> encontrado para calcular <span class="math notranslate nohighlight">\(c = x_{(1)}\oplus x_{(2)}\)</span>.</p>
 <p>Após <span class="math notranslate nohighlight">\(m\)</span> iterações, o número de pares já testados é <span class="math notranslate nohighlight">\(N_{\text{ob}}\)</span>, em que</p>
 <div class="math notranslate nohighlight">
-\[N_{\text{ob}} = \binom{m}{2} = \frac{m(m-1)}{2}\]</div>
+\[
+N_{\text{ob}} = \binom{m}{2} = \frac{m(m-1)}{2}
+\]</div>
 <p>isto é, o número de pares que se pode formar dentre <span class="math notranslate nohighlight">\(m\)</span> elementos distintos sem importar a ordem em que se encontram no par.</p>
 <p>Caso <span class="math notranslate nohighlight">\(f\)</span> seja 2-para-1, o número de pares desejado (ou seja, que resultam no mesmo valor após aplicação de <span class="math notranslate nohighlight">\(f\)</span>) é <span class="math notranslate nohighlight">\(N_{\text{des}}\)</span> dado por</p>
 <div class="math notranslate nohighlight">
-\[N_{\text{des}} = \frac{2^n}{2}\]</div>
+\[
+N_{\text{des}} = \frac{2^n}{2}
+\]</div>
 <p>A probabilidade de pelo menos um par desejado ter sido obtido após <span class="math notranslate nohighlight">\(k\)</span> iterações é</p>
 <div class="math notranslate nohighlight">
-\[p_m = \frac{N_{\text{ob}}}{N_{\text{des}}} = \frac{m(m-1)}{2^n}\]</div>
+\[
+p_m = \frac{N_{\text{ob}}}{N_{\text{des}}} = \frac{m(m-1)}{2^n}
+\]</div>
 <p>Caso nenhum par desejado tenha sido encontrado, opta-se por ``<span class="math notranslate nohighlight">\(f\)</span> é 1-para-1’’ com probabilidade de erro dada por</p>
 <div class="math notranslate nohighlight">
-\[\varepsilon_m = 1 - p_m = 1 - \frac{m(m-1)}{2^n}\]</div>
+\[ 
+\varepsilon_m = 1 - p_m = 1 - \frac{m(m-1)}{2^n}
+\]</div>
 <p>Para que a probabilidade de erro seja <span class="math notranslate nohighlight">\(\varepsilon &lt; 1/2\)</span>, deve-se ter</p>
 <div class="math notranslate nohighlight">
-\[\varepsilon_m &lt; \frac{1}{2} \implies  \frac{m(m-1)}{2^n} &gt; \frac{1}{2} \implies m^2 - m - 2^{n-1} &gt; 0\]</div>
+\[
+\varepsilon_m &lt; \frac{1}{2} \implies  \frac{m(m-1)}{2^n} &gt; \frac{1}{2} \implies m^2 - m - 2^{n-1} &gt; 0
+\]</div>
 <p>Resolvendo para <span class="math notranslate nohighlight">\(m &gt; 0\)</span>, deve-se ter</p>
 <div class="math notranslate nohighlight">
-\[m &gt; \frac{1 + \sqrt{1 + 2^{n+1}}}{2}\]</div>
+\[
+m &gt; \frac{1 + \sqrt{1 + 2^{n+1}}}{2}
+\]</div>
 <p>logo <span class="math notranslate nohighlight">\(m\)</span> deve ser da ordem de <span class="math notranslate nohighlight">\(2^{n/2}\)</span> iterações.</p>
 </section>
 </section>
 <section id="comparacao-de-desempenho">
-<h2>Comparação de Desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link permanente para este cabeçalho">#</a></h2>
+<h1>Comparação de Desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link permanente para este cabeçalho">#</a></h1>
 <p>O desempenho dos algoritmos clássico determinístico, clássico probabilístico e quântico são resumidos na tabela abaixo.</p>
 <p><img alt="Screenshot 2024-10-22 at 18-43-52 tcc-giovani pdf" src="https://github.com/user-attachments/assets/14e9865f-639c-4561-b967-053d35203acc" /></p>
 <p>Da mesma forma como no problema de Deutsch-Jozsa, essa comparação tem limitações, mas serve como laboratório para testar em que situações a Computação Quântica pode trazer vantagem computacional em relação à Computação Clássica. Em particular, esse é um exemplo em que o algoritmo quântico apresenta ganho exponencial em desempenho em relação aos algoritmos clássicos existentes.</p>
 </section>
+<section id="simulacao-do-algoritimo-de-simon">
+<h1>Simulação do algorítimo de simon<a class="headerlink" href="#simulacao-do-algoritimo-de-simon" title="Link permanente para este cabeçalho">#</a></h1>
+<p>Para simular o algorítimo de Simon usaremos a línguagem Ket de computação quântica, para isso precisamos ter a mesma instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se a mesma para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ket</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Primeiro devemos implementar o oráculo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">oracle</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">,</span> <span class="n">qubits_output</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="c1"># Implementa o oráculo U_f, baseado no vetor s (a periodicidade).</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">CNOT</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubits_output</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -833,20 +1075,22 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-de-simon">Problema de Simon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algorítmo de Simon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapas-da-subrotina-de-simon">Etapas da subrotina de Simon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidades-nas-medicoes">Probabilidades nas medições</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-exemplo">Encontrando o valor do período c – exemplo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-caso-geral">Encontrando o valor do período c – caso geral</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidade-de-erro">Probabilidade de erro</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algorítmo clássico determinístico</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Problema de Simon</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-simon">Algorítmo de Simon</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#etapas-da-subrotina-de-simon">Etapas da subrotina de Simon</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidades-nas-medicoes">Probabilidades nas medições</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-exemplo">Encontrando o valor do período c – exemplo</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-caso-geral">Encontrando o valor do período c – caso geral</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidade-de-erro">Probabilidade de erro</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algorítmo clássico determinístico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-simon">Simulação do algorítimo de simon</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
