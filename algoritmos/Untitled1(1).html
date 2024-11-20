@@ -1,0 +1,968 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Algoritmo de Busca de Grover &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algoritmos/Untitled1(1)';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algebra.html">Álgebra Linear para Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kettutorial.html">Programação Quântica com Ket</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="simon.html">Problema de Simon</a></li>
+
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/algoritmos/Untitled1(1).ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/algoritmos/Untitled1(1).ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/algoritmos/Untitled1(1).ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Algoritmo de Busca de Grover</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-de-grover">Problema de Grover</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-grover">Algoritmo de Grover</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algoritmo de Grover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-auxiliar">Notação auxiliar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contas-auxiliares">Contas auxiliares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primeira-aplicacao-do-operador-g">Primeira aplicação do operador <span class="math notranslate nohighlight">\(G\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes-subsequentes-do-operador-g">Aplicações subsequentes do operador <span class="math notranslate nohighlight">\(G\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numero-necessario-de-aplicacoes-de-g">Número necessário de aplicações de <span class="math notranslate nohighlight">\(G\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidade-de-acerto">Probabilidade de acerto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacao">Generalização</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo Clássico Determinístico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-grover">Simulação do algorítimo de Grover</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
+<span class="kn">from</span> <span class="nn">ket</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ket-lang
+  Downloading ket_lang-0.8.0-py3-none-manylinux_2_28_x86_64.whl.metadata (7.5 kB)
+Downloading ket_lang-0.8.0-py3-none-manylinux_2_28_x86_64.whl (1.1 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">54.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: ket-lang
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed ket-lang-0.8.0
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="algoritmo-de-busca-de-grover">
+<h1>Algoritmo de Busca de Grover<a class="headerlink" href="#algoritmo-de-busca-de-grover" title="Link permanente para este cabeçalho">#</a></h1>
+<p>Esta seção aborda o Algoritmo de Grover, um algoritmo quântico que permite encontrar um elemento em uma lista não ordenada. Uma descrição mais rigorosa desse problema, bem como as alternativas clássicas para o mesmo são apresentadas neste texto. As referências utilizadas nesta parte são o livro \cite{book:icq_portugal}, capítulo 3, e as videoaulas U2.6 da subunidade SU4 do curso \cite{videolecture:qisI_p2}.</p>
+<section id="problema-de-grover">
+<h2>Problema de Grover<a class="headerlink" href="#problema-de-grover" title="Link permanente para este cabeçalho">#</a></h2>
+<p>O problema de Grover consiste em encontrar um elemento específico em uma lista de <span class="math notranslate nohighlight">\(2^n\)</span> itens. A lista é formada por palavras binárias de <span class="math notranslate nohighlight">\(n\)</span> dígitos. Há uma função booleana <span class="math notranslate nohighlight">\(f\colon \{ 0,1 \}^n \to \{ 0,1 \}\)</span> que só sinaliza ‘1’ para uma entrada <span class="math notranslate nohighlight">\(x_0\)</span> em particular, que pode ser desconhecida. Em outras palavras, a função <span class="math notranslate nohighlight">\(f\)</span> pode ser descrita por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+             0 \ , \ x \neq x_0 \\
+             1 \ , \  x = x_0 \ .
+\end{split}\]</div>
+<p>A maneira de saber se o item <span class="math notranslate nohighlight">\(x\)</span> considerado corresponde ao desejado é por meio da aplicação de <span class="math notranslate nohighlight">\(f\)</span>. Essa função poderia ser chamada de ``teste’’, e caso se queira saber se o item <span class="math notranslate nohighlight">\(x\)</span> da lista é o desejado (em outras palavras, se <span class="math notranslate nohighlight">\(x = x_0\)</span>), deve-se fazer o teste em <span class="math notranslate nohighlight">\(x\)</span> e ver se o teste resulta em ‘1’ (item desejado foi encontrado) ou ‘0’ (o item testado não é o desejado).</p>
+<p><strong>Problema de Grover</strong></p>
+<p>Encontrar a única entrada <span class="math notranslate nohighlight">\(x_0 \in  \{ 0,1 \}^n\)</span> tal que o resultado do teste <span class="math notranslate nohighlight">\(f\)</span> sinaliza ‘1’. Ou seja, encontrar único <span class="math notranslate nohighlight">\(x_0\)</span> com</p>
+<div class="math notranslate nohighlight">
+\[f(x_0) = 1 \ . \]</div>
+<p>Em seguida, um algoritmo quântico é apresentado para resolver o problema de forma mais eficiente do que seria possível classicamente.</p>
+</section>
+<section id="algoritmo-de-grover">
+<h2>Algoritmo de Grover<a class="headerlink" href="#algoritmo-de-grover" title="Link permanente para este cabeçalho">#</a></h2>
+<p>O algoritmo de Grover é um algoritmo quântico para resolução do problema de Grover, que consiste em encontrar o elemento em uma lista por meio de um teste <span class="math notranslate nohighlight">\(f\)</span>, e o elemento desejado é o único <span class="math notranslate nohighlight">\(x_0\)</span> que faz com que o teste sinalize 1. O algoritmo quântico consiste em aplicar uma subrotina quântica, o operador de Grover, por um número de vezes da ordem de <span class="math notranslate nohighlight">\(\sqrt{N}\)</span>, em que <span class="math notranslate nohighlight">\(N=2^n\)</span> é o número de itens na lista, indexados por <span class="math notranslate nohighlight">\(n\)</span> bits.</p>
+<section id="id1">
+<h3>Algoritmo de Grover<a class="headerlink" href="#id1" title="Link permanente para este cabeçalho">#</a></h3>
+<p><strong>Entrada:</strong> <span class="math notranslate nohighlight">\(O_\text{F}(f) = O\)</span> \ \ (oráculo de fase associado à função booleana <span class="math notranslate nohighlight">\(f\)</span>)</p>
+<p><strong>Procedimento:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+   \text{etapa 0:} &amp; \ket{0}^{\otimes n} &amp; \text{\small{preparação do estado inicial}} \\
+   \text{etapa 1:} &amp; H^{\otimes n}\ket{0}^{\otimes n} &amp; \text{\small{superposição dos estados na base computacional}} \\
+   \text{etapa 2:} &amp; G &amp; \text{\small{aplicação do operador de Grover}} \\
+   \text{etapa 3:} &amp; \text{\small{repetir etapa 2  por $k$ vezes, com}}  \\
+                   &amp; k = \dfrac{acos(\frac{1}{\sqrt{N}})}{acos(\frac{N-2}{N})} \ , \ \ N = 2^n \ .
+   \end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+   \text{etapa 1:} &amp; O_\text{F}\ket{+}^{\otimes n} &amp; \text{\small{aplicação de $f$ (oráculo de fase)}}  \\ 
+   \text{etapa 2:} &amp; H^{\otimes n} &amp; \\
+   \text{etapa 3:} &amp;  2\ket{0}\bra{0} - I &amp;  \\
+   \text{etapa 4:} &amp; H^{\otimes n} &amp;  \\
+  \end{array}
+\end{split}\]</div>
+<p><strong>Saída:</strong> Leitura do registrador fornece o item <span class="math notranslate nohighlight">\(x_0\)</span> buscado, com probabilidade de acerto</p>
+<div class="math notranslate nohighlight">
+\[
+   P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
+   \]</div>
+</section>
+<section id="circuito">
+<h3>Circuito<a class="headerlink" href="#circuito" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Notação compacta</p>
+<p><img alt="image.png" src="algoritmos/attachment:9451a145-46ce-4c03-838a-96febfec3dc8.png" /></p>
+</section>
+<section id="notacao-auxiliar">
+<h3>Notação auxiliar<a class="headerlink" href="#notacao-auxiliar" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Para facilitar, lista-se abaixo a notação utilizada nesse algoritmo:</p>
+<div class="math notranslate nohighlight">
+\[ \ket{0} = \ket{0 \ldots 0} = \ket{0}^{\otimes n} \]</div>
+<div class="math notranslate nohighlight">
+\[[ \ket{\psi} := \ket{+}^{\otimes n}  \]</div>
+<div class="math notranslate nohighlight">
+\[\mathbb{B}_n : \text{ conjunto de todas as palavras de $n$ bits} \]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} N := 2^n \ \ \begin{cases}
+                    \text{$n$: número de qubits de cada item da lista} \\
+                    \text{$N$: número de itens na lista } 
+                   \end{cases} 
+    \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+   \ket{\alpha} := \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}} \frac{\ket{x}}{\sqrt{N-1}}
+   \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[ 
+   \ket{\beta} := \ket{x_0} \text{: item desejado na lista} 
+   \]</div>
+<div class="math notranslate nohighlight">
+\[
+   S := \text{span}_\mathbb{R} \{ \ket{\alpha} , \ket{\beta} \} \text{: espaço vetorial gerado por $\ket{\alpha}$, $\ket{\beta}$ com escalares reais} 
+   \]</div>
+</section>
+<section id="contas-auxiliares">
+<h3>Contas auxiliares<a class="headerlink" href="#contas-auxiliares" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Vale que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{split} 
+       \ket{\psi} 
+       &amp;= \ket{+}^{\otimes n} \\
+       &amp;= \sum_{x \in \mathbb{B}_n} \frac{\ket{x}}{\sqrt{N}} \\
+       &amp;= \frac{\sqrt{N-1}}{\sqrt{N}} \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}} \frac{\ket{x}}{\sqrt{N-1}} \ \   + \  \  \frac{\ket{x_0}}{\sqrt{N}} \\
+       &amp;= \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta}
+      \end{split} \tag{$\psi$}
+\end{split}\]</div>
+<p>A aplicação de <span class="math notranslate nohighlight">\(O_\text{F}\)</span> em <span class="math notranslate nohighlight">\(\ket{\alpha}\)</span> e <span class="math notranslate nohighlight">\(\ket{\beta}\)</span> fica:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{split}
+    O_\text{F} \ket{\alpha} 
+    &amp;=  O_\text{F}\sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}} \frac{\ket{x}}{\sqrt{N-1}}  \\
+    &amp;= \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}}\frac{1}{\sqrt{N-1}} O_\text{F}\ket{x} \\
+    &amp;= \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}}\frac{1}{\sqrt{N-1}} \ket{x} \\
+    &amp;= \ket{\alpha}  \ , 
+   \end{split} \tag{$\alpha$} 
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{split}
+        O_\text{F} \ket{\beta} 
+        &amp;=  O_\text{F} \ket{x_0}  \\
+        &amp;=  - \ket{x_0} \\
+        &amp;= - \ket{\beta} \ .
+      \end{split} \tag{$\beta$} 
+\end{split}\]</div>
+<p>O operador <span class="math notranslate nohighlight">\(G\)</span> pode ser escrito como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{split}
+        G 
+        &amp;= H^{\otimes n} (2\ket{0}\bra{0} - I) H^{\otimes n} O_\text{F} \\
+        &amp;= \big(2H^{\otimes n}\ket{0}\bra{0}H^{\otimes n} - H^{\otimes n}I H^{\otimes n}  \big)O_\text{F} \\
+        &amp;= \big(2H^{\otimes n}\ket{0}\bra{0}(H^{\otimes n})^\dagger - H^{\otimes n} H^{\otimes n}  \big)O_\text{F} \\
+        &amp;= (2\ket{\psi}\bra{\psi} - I) O_\text{F} \ ,
+       \end{split} \tag{$G$} 
+\end{split}\]</div>
+<p>em que foi definido <span class="math notranslate nohighlight">\(\ket{\psi} = \ket{+}^{\otimes n}\)</span>.</p>
+</section>
+<section id="primeira-aplicacao-do-operador-g">
+<h3>Primeira aplicação do operador <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#primeira-aplicacao-do-operador-g" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Antes de aplicar o operador <span class="math notranslate nohighlight">\(G\)</span> pela primeira vez, prepara-se o estado inicial fazendo uma superposição com pesos iguais em cada qubit:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_0} 
+    &amp;= H^{\otimes n} \ket{0}^{\otimes n} \\
+    &amp;= \ket{+}^{\otimes n} \\
+    &amp;= \ket{\psi} \\
+    &amp;=  \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta}  \ \ \text{usando ($\psi$)} \ . \\
+   \end{split} 
+\end{split}\]</div>
+<p>Nota-se que <span class="math notranslate nohighlight">\( \ket{\psi_0}\)</span> pertence ao subespaço vetorial <span class="math notranslate nohighlight">\(S\)</span> gerado por <span class="math notranslate nohighlight">\(\ket{\alpha},\ket{\beta}\)</span> e com escalares reais. Isso permitirá uma interpretação geométrica muito útil para o entendimento do algoritmo.</p>
+<p>Na etapa 1 de <span class="math notranslate nohighlight">\(G\)</span>, aplica-se o oráculo de fase ao estado inicial <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+       \ket{\psi_1} 
+       &amp;= O_\text{F} \ket{\psi_0} \\
+       &amp;= O_\text{F} \left( \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta}  \right) \ \ \text{usando ($\psi$)} \\
+       &amp;= \frac{\sqrt{N-1}}{\sqrt{N}} O_\text{F} \ket{\alpha} + \frac{1}{\sqrt{N}} O_\text{F} \ket{\beta} \\
+       &amp;= \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} - \frac{1}{\sqrt{N}} \ket{\beta}  \ \ \text{usando ($\alpha$) e ($\beta$)}
+      \end{split}  
+\end{split}\]</div>
+<p>O vetor <span class="math notranslate nohighlight">\(\ket{\psi_1}\)</span> continua no espaço <span class="math notranslate nohighlight">\(S\)</span>, e a aplicação do oráculo de fase pode ser visualizada como uma reflexão em torno do eixo <span class="math notranslate nohighlight">\(\ket{\alpha}\)</span>.</p>
+<p><img alt="image.png" src="algoritmos/attachment:5630332a-8c41-4fe8-a5df-786ffaca592d.png" /></p>
+<p>As etapas 2, 3 e 4 de <span class="math notranslate nohighlight">\(G\)</span> redundam em aplicar <span class="math notranslate nohighlight">\(2 \ket{\psi}\bra{\psi} - I\)</span> em <span class="math notranslate nohighlight">\( \ket{\psi_1} \)</span>, conforme equação (<span class="math notranslate nohighlight">\(G\)</span>). E a aplicação desse operador pode ser vista geometricamente de acordo com a figura abaixo.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{split}
+       \ket{\psi_2} 
+       &amp;= (2 \ket{\psi}\bra{\psi} - I) \ket{\psi_1} \\
+       &amp;= 2 \ket{\psi}\bra{\psi}\ket{\psi_1} - \ket{\psi_1}
+      \end{split}
+\end{split}\]</div>
+<p><img alt="image.png" src="algoritmos/attachment:91375200-3f52-4d4a-a34e-4fccab748a9d.png" /></p>
+<p>Dessa forma, a primeira aplicação do operador <span class="math notranslate nohighlight">\(G\)</span> fornece o seguinte.</p>
+<p><img alt="image.png" src="algoritmos/attachment:92e5d649-aad7-4c13-9059-742c8e4e82f0.png" /></p>
+</section>
+<section id="aplicacoes-subsequentes-do-operador-g">
+<h3>Aplicações subsequentes do operador <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#aplicacoes-subsequentes-do-operador-g" title="Link permanente para este cabeçalho">#</a></h3>
+<p>As aplicações sucessivas do operador de Grover têm o mesmo efeito descrito anteriormente. Cada aplicação de <span class="math notranslate nohighlight">\(G\)</span> corresponde a uma rotação no sentido anti-horário. A figura a seguir ilustra a <span class="math notranslate nohighlight">\(l\)</span>-ésima aplicação de <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p><img alt="image.png" src="algoritmos/attachment:d9498f2b-a72c-4178-acab-00dfce48012f.png" /></p>
+<p>O operador <span class="math notranslate nohighlight">\(G\)</span> é aplicado por <span class="math notranslate nohighlight">\(k\)</span> vezes até que o vetor resultante esteja o mais próximo possível do eixo <span class="math notranslate nohighlight">\(\ket{\beta}\)</span>.</p>
+<p><img alt="image.png" src="algoritmos/attachment:497bd303-cec6-43eb-af0c-fb78ed881688.png" /></p>
+<p>No livro \cite{book:icq_portugal}, seção 3.3, demonstra-se algebricamente que uma aplicação de <span class="math notranslate nohighlight">\(G\)</span> produz uma rotação em sentido horário de um mesmo ângulo <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+</section>
+<section id="numero-necessario-de-aplicacoes-de-g">
+<h3>Número necessário de aplicações de <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#numero-necessario-de-aplicacoes-de-g" title="Link permanente para este cabeçalho">#</a></h3>
+<p>O número de aplicações <span class="math notranslate nohighlight">\(k\)</span> necessário é dado por</p>
+<div class="math notranslate nohighlight">
+\[
+ k \theta + \frac{\theta}{2} = \frac{\pi}{2} \implies k = \frac{\pi - \theta}{2\theta} \ , 
+ \]</div>
+<p>em que se arredonda <span class="math notranslate nohighlight">\(k\)</span> para o inteiro mais próximo.</p>
+<p>O ângulo <span class="math notranslate nohighlight">\(\theta\)</span> (em radianos) é o ângulo que <span class="math notranslate nohighlight">\(G\ket{\psi}\)</span> faz com <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>. Pode ser obtido por (ver figura \ref{cap5:fig_aplicacao_G_em_psi}):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{split}
+      \cos \frac{\theta}{2} 
+      &amp;= \braket{\beta}{\psi} = \frac{\sqrt{N-1}}{\sqrt{N}} \qquad \text{usando ($\psi$)} \\
+      \sin \frac{\theta}{2} 
+      &amp;= \sqrt{1 - |\braket{\beta}{\psi}}^2| = \frac{1}{\sqrt{N}} 
+     \end{split} 
+\end{split}\]</div>
+<p>Fazendo-se a seguinte manipulação algébrica, pode-se encontrar outra expressão equivalente para o ângulo.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{split} 
+       \ket{\psi_1} 
+   &amp;=  \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} - \frac{1}{\sqrt{N}} \ket{\beta}  \\
+   &amp;=  \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta} -  \frac{2}{\sqrt{N}} \ket{\beta} \\
+   &amp;= \ket{\psi} - \frac{2}{\sqrt{N}} \ket{\beta}   \qquad \text{usando ($\psi$)} \phantom{xxxxxxxxxxxxxxxxx}
+      \end{split} 
+      \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+       \ket{\psi_2} 
+       &amp;= G \ket{\psi} \\
+       &amp;= \big( 2 \ket{\psi}\bra{\psi} - I \big)\ket{\psi_1} \\
+       &amp;= \big( 2 \ket{\psi}\bra{\psi} - I \big)\left( \ket{\psi} - \frac{2}{\sqrt{N}}\ket{\beta} \right) \\
+       &amp;= 2\ket{\psi}\braket{\psi}{\psi} - \ket{\psi} - \frac{4}{\sqrt{N}}\ket{\psi}\braket{\psi}{\beta} + \frac{2}{\sqrt{N}}\ket{\beta} \\
+       &amp;= 2\ket{\psi} - \ket{\psi} - \frac{4}{\sqrt{N}} \frac{1}{\sqrt{N}}\ket{\psi} + \frac{2}{\sqrt{N}}\ket{\beta}  \qquad \text{usando ($\psi$)} \\
+       &amp;= \frac{N-4}{N} \ket{\psi} + \frac{2}{\sqrt{N}}\ket{\beta}  \\
+ %      &amp;= \frac{N-4}{N} \left( \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta} \right)  + \frac{2}{\sqrt{N}}\ket{\beta} \\
+ %      &amp;=  \frac{(N-4)\sqrt{N-1}}{N\sqrt{N}}\ket{\alpha} + \frac{N-2}{N\sqrt{N}} \ket{\beta}
+      \end{split} 
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+       \cos \theta 
+       &amp;= \braket{\psi}{G\psi} \\
+       &amp;= \bra{\psi}  \left(\frac{N-4}{N} \ket{\psi} + \frac{2}{\sqrt{N}}\ket{\beta} \right) \\
+   %    &amp; \qquad \qquad \qquad \text{usando ($\ast$)} \\
+       &amp;= \frac{N-4}{N} \braket{\psi}{\psi} + \frac{2}{\sqrt{N}}\braket{\psi}{\beta} \\
+       &amp;= \frac{N-4}{N} + \frac{2}{\sqrt{N}}\frac{1}{\sqrt{N}} \qquad \text{usando ($\psi$)} \\
+       &amp;= \frac{N-2}{N} \ . % \phantom{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxi}
+      \end{split}
+\end{split}\]</div>
+<p>Portanto, pode-se escrever</p>
+<div class="math notranslate nohighlight">
+\[
+ \theta = 2acos(\frac{\sqrt{N-1}}{\sqrt{N}}) = 2asin(\frac{1}{\sqrt{N}}) = acos(\frac{N-2}{N}) \ ,
+ \]</div>
+<p>e o valor de <span class="math notranslate nohighlight">\(k\)</span> é dado por</p>
+<div class="math notranslate nohighlight">
+\[
+ k = \frac{\pi - \theta}{2\theta} = \frac{\pi - acos(\frac{N-2}{N})}{2acos(\frac{N-2}{N})}
+ \]</div>
+<p>ou por</p>
+<div class="math notranslate nohighlight">
+\[
+ k = \frac{\frac{\pi}{2} - \frac{\theta}{2}}{\theta} = \frac{\frac{\pi}{2} - asin(\frac{1}{\sqrt{N}})}{acos(\frac{N-2}{N}) } = \frac{acos(\frac{1}{\sqrt{N}})}{acos(\frac{N-2}{N})} \ .
+\]</div>
+<p>É possível verificar que o número <span class="math notranslate nohighlight">\(k\)</span> é da ordem de <span class="math notranslate nohighlight">\(\sqrt{N}\)</span>. De acordo com \cite{book:icq_portugal}, p.56, tem-se</p>
+<div class="math notranslate nohighlight">
+\[ 
+   \lim_{N\to +\infty} k = +\infty 
+   \]</div>
+<div class="math notranslate nohighlight">
+\[ 
+   \lim_{N\to +\infty} \frac{k}{\sqrt{N}} = \frac{\pi}{4} 
+   \]</div>
+<div class="math notranslate nohighlight">
+\[ 
+   \lim_{N\to +\infty} \frac{k}{N} = 0 \ . 
+   \]</div>
+</section>
+<section id="probabilidade-de-acerto">
+<h3>Probabilidade de acerto<a class="headerlink" href="#probabilidade-de-acerto" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Ao aplicar a subrotina <span class="math notranslate nohighlight">\(G\)</span> por um número <span class="math notranslate nohighlight">\(k\)</span> de vezes especificado anteriormente, obtém-se o estado final o mais próximo possível de <span class="math notranslate nohighlight">\(\ket{\beta} = \ket{x_0}\)</span>, o item desejado. A projeção na direção desse vetor permite encontrar a probabilidade de acerto do algoritmo. O estado final <span class="math notranslate nohighlight">\(G^k \ket{\psi}\)</span> faz um ângulo com o estado <span class="math notranslate nohighlight">\(\ket{x_0}\)</span> menor que <span class="math notranslate nohighlight">\(\theta/2\)</span>, pois se fosse maior ou igual, seria possível aplicar novamente o operador <span class="math notranslate nohighlight">\(G\)</span> para reduzi-lo. Portanto, o ângulo <span class="math notranslate nohighlight">\(\cos \theta\big(\ket{x_0},G^k\ket{\psi}\big)\)</span> entre o estado desejado e o estado final é menor que <span class="math notranslate nohighlight">\(\theta/2\)</span>, o que significa que seu cosseno é maior que <span class="math notranslate nohighlight">\(\cos (\theta/2)\)</span>.</p>
+<p><img alt="image.png" src="algoritmos/attachment:1fd09299-bd57-4c7d-8224-d2eb70b3ff94.png" /></p>
+<p>Com isso, tem-se a probabilidade de acerto estimada em</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+        P_a 
+        &amp;= ||\ket{x_0}\bra{x_0}G^k \ket{\psi}||^2 \\
+        &amp;= |\braket{x_0}{G^k\ket{\psi}}|^2  \\
+        &amp;= |\cos \theta\big(\ket{x_0},G^k\ket{\psi}\big)|^2 \\
+        &amp;&gt; |\cos \theta/2|^2 \\
+        &amp;= \left(\frac{\sqrt{N-1}}{\sqrt{N}}\right)^2 \\
+        &amp;= \frac{N-1}{N} \ , \ \ N = 2^n \ .
+      \end{split}
+\end{split}\]</div>
+</section>
+<section id="generalizacao">
+<h3>Generalização<a class="headerlink" href="#generalizacao" title="Link permanente para este cabeçalho">#</a></h3>
+<p>O algoritmo de Grover também funciona para o caso em que há mais de um elemento marcado, isto é, há <span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(x_{m-1}\)</span> elementos tais que <span class="math notranslate nohighlight">\(f(x_0) = f(x_1) = \ldots = f(x_{m-1})\)</span> e os demais valores anulam <span class="math notranslate nohighlight">\(f\)</span>. É possível adaptar a análise do algoritmo para esse caso. A interpretação geométrica continua valendo, mas desta vez, tem-se</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+  \ket{\alpha} = \frac{1}{\sqrt{N-m}} \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ f(x) = 0 \end{array} } \ket{x} 
+  \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+  \ket{\beta} = \frac{1}{\sqrt{m}} \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ f(x) = 1 \end{array} } \ket{x} \ . 
+  \end{split}\]</div>
+</section>
+</section>
+<section id="algoritmo-classico">
+<h2>Algoritmo Clássico<a class="headerlink" href="#algoritmo-classico" title="Link permanente para este cabeçalho">#</a></h2>
+<section id="algoritmo-classico-deterministico">
+<h3>Algoritmo Clássico Determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Classicamente, se o teste é dado como uma caixa preta, em que não se sabe a estrutura interna de <span class="math notranslate nohighlight">\(f\)</span>, a maneira de se encontrar <span class="math notranslate nohighlight">\(x_0\)</span> é por busca exaustiva.
+Para garantir que o item <span class="math notranslate nohighlight">\(x_0\)</span> seja encontrado, deve-se, no pior caso, olhar todas as <span class="math notranslate nohighlight">\(N = 2^n\)</span> entradas possíveis. Portanto são necessários <span class="math notranslate nohighlight">\(N\)</span> aplicações do teste <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</section>
+<section id="algoritmo-classico-probabilistico">
+<h3>Algoritmo Clássico Probabilístico<a class="headerlink" href="#algoritmo-classico-probabilistico" title="Link permanente para este cabeçalho">#</a></h3>
+<p>Considere um algoritmo que sorteie aleatoriamente as entradas a serem testadas (e sem repetir entradas). Após o teste de <span class="math notranslate nohighlight">\(k\)</span> entradas, a probabilidade de que se tenha localizado o item desejado <span class="math notranslate nohighlight">\(x_0\)</span> é de</p>
+<div class="math notranslate nohighlight">
+\[ 
+   P = \frac{k}{N} \ . 
+   \]</div>
+<p>Para que haja probabilidade de encontrar a resposta seja maior que <span class="math notranslate nohighlight">\(1/2\)</span>, deve-se testar pelo menos por um número de vezes</p>
+<div class="math notranslate nohighlight">
+\[
+  k &gt; \frac{N}{2} \ . 
+\]</div>
+<p>Desse modo, ainda deve-se aplicar o teste <span class="math notranslate nohighlight">\(f\)</span> da ordem de <span class="math notranslate nohighlight">\(N\)</span> vezes.</p>
+<p>\begin{subsection}{Comparação de Desempenho}<br />
+O desempenho dos algoritmos são comparados na tabela abaixo.</p>
+<p><img alt="image.png" src="algoritmos/attachment:ad730071-2d92-4229-8bff-2c65b7dc18dc.png" /></p>
+<p>Dessa forma, o algoritmo de Grover apresentaria ganho quadrático de desempenho em relação aos algoritmos clássicos, se a aplicação de <span class="math notranslate nohighlight">\(f\)</span> nos casos clássico e quântico forem equivalentes em termos de custos computacionais.</p>
+</section>
+</section>
+<section id="simulacao-do-algoritimo-de-grover">
+<h2>Simulação do algorítimo de Grover<a class="headerlink" href="#simulacao-do-algoritimo-de-grover" title="Link permanente para este cabeçalho">#</a></h2>
+<p>Para simular o algorítimo de Grover usaremos a línguagem Ket de computação quântica, para isso precisamos ter a mesma instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se a mesma para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ket</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Primeiro iremos inicializar o oráculo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Oráculo: inverte a amplitude do estado desejado.&quot;&quot;&quot;</span>
+    <span class="n">X</span><span class="p">(</span>
+        <span class="n">qubits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">target</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span>
+    <span class="p">)</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ctrl</span><span class="p">(</span><span class="n">qubits</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Controle multi-qubit</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">X</span><span class="p">(</span>
+        <span class="n">qubits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">target</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Em seguida o operador de difusão</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">diffusion_operator</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Operador de difusão: amplifica as amplitudes dos estados marcados.&quot;&quot;&quot;</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ctrl</span><span class="p">(</span><span class="n">qubits</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Controle multi-qubit</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por fim aplicamos o algorítimo de Grover utilizando-se das portas quânticas já conhecidas, do oráculo e do</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./algoritmos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-de-grover">Problema de Grover</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-grover">Algoritmo de Grover</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algoritmo de Grover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-auxiliar">Notação auxiliar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contas-auxiliares">Contas auxiliares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primeira-aplicacao-do-operador-g">Primeira aplicação do operador <span class="math notranslate nohighlight">\(G\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes-subsequentes-do-operador-g">Aplicações subsequentes do operador <span class="math notranslate nohighlight">\(G\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numero-necessario-de-aplicacoes-de-g">Número necessário de aplicações de <span class="math notranslate nohighlight">\(G\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidade-de-acerto">Probabilidade de acerto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacao">Generalização</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo Clássico Determinístico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-grover">Simulação do algorítimo de Grover</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
