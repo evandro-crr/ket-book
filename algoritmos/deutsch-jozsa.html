@@ -428,25 +428,34 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
+  <div class="cell tag_hide-input tag_thebe-init tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 <span class="kn">import</span> <span class="nn">ket</span>
 </pre></div>
 </div>
 </div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ket-lang
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ket_lang-0.8.0-py3-none-manylinux_2_28_x86_64.whl.metadata (7.5 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading ket_lang-0.8.0-py3-none-manylinux_2_28_x86_64.whl (1.1 MB)
+Downloading ket_lang-0.8.0-py3-none-manylinux_2_28_x86_64.whl (1.1 MB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">10.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">39.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -457,6 +466,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="admonition-referencias-class-note admonition">
 <p class="admonition-title">Referências :class: note</p>
@@ -598,7 +608,7 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
 <p>Agora considere o problema de Deutsch-Jozsa no contexto clássico. Tem-se <span class="math notranslate nohighlight">\(f\)</span> dada como uma caixa preta e se quer decidir se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada. A seguir serão vistas brevemente as abordagens clássicas determinística e aleatória para o problema.</p>
 <section id="algoritmo-classico-deterministico">
 <h2>Algoritmo Clássico Determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link permanente para este cabeçalho">#</a></h2>
-<p>A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar aplicações sucessivas de <span class="math notranslate nohighlight">\(f\)</span> para diversas entradas até se ter certeza de qual opção é válida (se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada). Por exemplo\footnote{Nesta parte, usou-se a notação que confunde uma palavra de bits com sua representação por número inteiro sem sinal. Ver observação \ref{cap5:rmk_notacao_vetor_bits_nro_inteiro}.}, calcula-se <span class="math notranslate nohighlight">\(f(0)\)</span>, <span class="math notranslate nohighlight">\(f(1)\)</span>, <span class="math notranslate nohighlight">\(f(2)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> e se verifica se <span class="math notranslate nohighlight">\(f(1) = f(0)\)</span>, <span class="math notranslate nohighlight">\(f(2) = f(1)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> ou não. Caso ocorra <span class="math notranslate nohighlight">\(f(j) \neq f(i)\)</span>, então a opção certa é `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’, e caso isso não ocorra, a opção correta é ``<span class="math notranslate nohighlight">\(f\)</span> é constante’’.</p>
+<p>A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar aplicações sucessivas de <span class="math notranslate nohighlight">\(f\)</span> para diversas entradas até se ter certeza de qual opção é válida (se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada) , calcula-se <span class="math notranslate nohighlight">\(f(0)\)</span>, <span class="math notranslate nohighlight">\(f(1)\)</span>, <span class="math notranslate nohighlight">\(f(2)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> e se verifica se <span class="math notranslate nohighlight">\(f(1) = f(0)\)</span>, <span class="math notranslate nohighlight">\(f(2) = f(1)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> ou não. Caso ocorra <span class="math notranslate nohighlight">\(f(j) \neq f(i)\)</span>, então a opção certa é `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’, e caso isso não ocorra, a opção correta é ``<span class="math notranslate nohighlight">\(f\)</span> é constante’’.</p>
 <p>Para se distinguir com certeza as duas opções, deve-se aplicar <span class="math notranslate nohighlight">\(f\)</span> a metade das entradas possíveis mais uma, ou seja, a <span class="math notranslate nohighlight">\(2^n/2 + 1\)</span> entradas. Isso porque, na pior das hipóteses, a função era balanceada e, obteve-se um mesmo resultado, por azar, para as <span class="math notranslate nohighlight">\(2^n/2\)</span> entradas testadas, impedindo que se faça a escolha com certeza.</p>
 <p>Dessa forma, o custo computacional desse algoritmo é de <span class="math notranslate nohighlight">\(2^n/2 + 1\)</span> aplicações de <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </section>
