@@ -407,66 +407,275 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell tag_thebe-init tag_hide-input docutils container">
+  <div class="cell tag_hide-input tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span>-q
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="nv">pandas</span><span class="o">==</span><span class="m">2</span>.1.0<span class="w"> </span><span class="nv">plotly</span><span class="o">==</span><span class="m">5</span>.18.0<span class="w"> </span>-q
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span>pip
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span>ket-lang<span class="w"> </span>numpy<span class="w"> </span>plotly<span class="w"> </span>matplotlib
 
-<span class="kn">import</span> <span class="nn">ket</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+
+
+<span class="k">def</span> <span class="nf">bloch_sphere</span><span class="p">(</span><span class="n">qubit</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">ket</span> <span class="kn">import</span> <span class="n">dump</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retorna a figura de uma esfera de Bloch com estado do qubit marcado na esfera.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        qubit (ket.Quant): Estado quântico para marcar na esfera.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        go.Figure: Figura com a esfera de Bloch para plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;bloch_sphere só pode ser usado com um qubit&quot;</span>
+
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+    <span class="n">sphere</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bloch Sphere&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">equator_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">equator_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">equator_theta</span><span class="p">)</span>
+    <span class="n">equator_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">equator_theta</span><span class="p">)</span>
+    <span class="n">equator_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">equator_theta</span><span class="p">)</span>
+
+    <span class="n">equator</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">equator_x</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">equator_y</span><span class="p">,</span>
+        <span class="n">z</span><span class="o">=</span><span class="n">equator_z</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+        <span class="n">opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Equator&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">z_line</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+        <span class="n">opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;z line&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">x_line</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+        <span class="n">opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x line&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">y_line</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+        <span class="n">opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y line&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">basis_points</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;|0⟩&quot;</span><span class="p">),</span>
+        <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;|1⟩&quot;</span><span class="p">),</span>
+        <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;|+⟩&quot;</span><span class="p">),</span>
+        <span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;|‒⟩&quot;</span><span class="p">),</span>
+        <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;|i+⟩&quot;</span><span class="p">),</span>
+        <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;|i‒⟩&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+            <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="n">text</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;middle center&quot;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">basis_points</span>
+    <span class="p">]</span>
+
+    <span class="n">qubit</span> <span class="o">=</span> <span class="n">dump</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+    <span class="n">ket</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="n">qubit</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">qubit</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="k">else</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">qubit</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">qubit</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="k">else</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">bra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">ket</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">exp_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">bra</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">ket</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">exp_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">bra</span> <span class="o">@</span> <span class="n">Y</span> <span class="o">@</span> <span class="n">ket</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">exp_z</span> <span class="o">=</span> <span class="p">(</span><span class="n">bra</span> <span class="o">@</span> <span class="n">Z</span> <span class="o">@</span> <span class="n">ket</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">.</span><span class="n">real</span>
+
+    <span class="n">qubit</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">exp_x</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">exp_y</span><span class="p">],</span>
+        <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="n">exp_z</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;markers&quot;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">),</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;qubit&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">line</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">exp_x</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">exp_y</span><span class="p">],</span>
+        <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">exp_z</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+        <span class="n">opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;qubit line&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">sphere</span><span class="p">,</span>
+            <span class="n">qubit</span><span class="p">,</span>
+            <span class="n">line</span><span class="p">,</span>
+            <span class="n">equator</span><span class="p">,</span>
+            <span class="n">x_line</span><span class="p">,</span>
+            <span class="n">y_line</span><span class="p">,</span>
+            <span class="n">z_line</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">basis</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">scene</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">showbackground</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">showbackground</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">zaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">showbackground</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">aspectmode</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+
+<span class="k">def</span> <span class="nf">print_state</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">qubits</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">]]</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Imprime o estado do sistema quântico.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        *qubits (Quant): Os qubits cujos estados serão impressos.</span>
+<span class="sd">        format (list[str] | str | None): O formato de impressão para cada qubit. Pode ser uma lista contendo</span>
+<span class="sd">            &quot;int&quot; ou &quot;bin&quot; para cada qubit, uma string &quot;int&quot; ou &quot;bin&quot; que será aplicada a todos os qubits,</span>
+<span class="sd">            ou None para usar o formato padrão &quot;bin&quot;.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AssertionError: Se o argumento `format` for uma string diferente de &quot;int&quot; ou &quot;bin&quot;, ou se o tamanho da</span>
+<span class="sd">            lista `format` não for igual ao número de qubits.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">accumulate</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+    <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
+    <span class="kn">import</span> <span class="nn">ket</span>
+    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">display</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">format</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">],</span> <span class="s2">&quot;format deve ser &#39;int&#39; ou &#39;bin&#39;&quot;</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="p">[</span><span class="nb">format</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">format</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">format</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">),</span> <span class="s2">&quot;format deve ter o mesmo tamanho que qubits&quot;</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span>
+            <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">format</span>
+        <span class="p">),</span> <span class="s2">&quot;format deve conter apenas &#39;int&#39; ou &#39;bin&#39;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bin&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+    <span class="n">qubit_len</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">qubits</span><span class="p">))</span>
+    <span class="n">split_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">accumulate</span><span class="p">(</span><span class="n">qubit_len</span><span class="p">))</span>
+
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">ket</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">math</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">amp</span> <span class="ow">in</span> <span class="n">qubits</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+        <span class="k">def</span> <span class="nf">float_to_math</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">is_complex</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">num_str</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-14</span><span class="p">:</span>
+
+                <span class="n">sqrt_dem_float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">num</span><span class="o">**</span><span class="mi">2</span>
+                <span class="n">sqrt_dem</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">sqrt_dem_float</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sqrt_dem</span> <span class="o">-</span> <span class="n">sqrt_dem_float</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-10</span> <span class="ow">and</span> <span class="n">sqrt_dem</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">num_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">frac</span><span class="se">{{</span><span class="si">{</span><span class="s1">&#39;-&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="s1">&#39;i&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">is_complex</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="si">}</span><span class="se">}}{{\\</span><span class="s2">sqrt</span><span class="se">{{</span><span class="si">{</span><span class="n">sqrt_dem</span><span class="si">}</span><span class="se">}}}}</span><span class="s2">&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">round_num</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">round_num</span> <span class="o">-</span> <span class="n">num</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-14</span><span class="p">:</span>
+                        <span class="n">num_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="s2">&quot;e&quot;</span> <span class="ow">in</span> <span class="n">num_str</span><span class="p">:</span>
+                            <span class="n">num_str</span> <span class="o">=</span> <span class="n">num_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">times10^{&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">num_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                    <span class="k">if</span> <span class="n">is_complex</span><span class="p">:</span>
+                        <span class="n">num_str</span> <span class="o">+=</span> <span class="s2">&quot;i&quot;</span>
+            <span class="k">return</span> <span class="n">num_str</span>
+
+        <span class="n">real_str</span> <span class="o">=</span> <span class="n">float_to_math</span><span class="p">(</span><span class="n">amp</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">imag_str</span> <span class="o">=</span> <span class="n">float_to_math</span><span class="p">(</span><span class="n">amp</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">state_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">state</span><span class="si">:</span><span class="s2">0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">b</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">state_str</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">left|</span><span class="si">{</span><span class="n">state_str</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">fmt</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;bin&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">state_str</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="se">\\</span><span class="s2">right&gt;&quot;</span>
+            <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">split_indices</span><span class="p">,</span> <span class="n">split_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="nb">format</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">state_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">state_str</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">real_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">imag_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">math</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">real_str</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">imag_str</span><span class="si">}</span><span class="s2">i) </span><span class="si">{</span><span class="n">state_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">math</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">real_str</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">real_str</span><span class="w"> </span><span class="ow">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="kc">None</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">imag_str</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">state_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">math</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ket-lang
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ket_lang-0.8.0-py3-none-manylinux_2_28_x86_64.whl.metadata (7.5 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading ket_lang-0.8.0-py3-none-manylinux_2_28_x86_64.whl (1.1 MB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">10.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: ket-lang
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed ket-lang-0.8.0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
-<span class=" -Color -Color-Red">ERROR: Operation cancelled by user</span>
-
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;pip install -U pandas==2.1.0 plotly==5.18.0 -q&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">ket</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;plotly&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="algoritmo-de-grover">
 <h1>Algoritmo de Grover<a class="headerlink" href="#algoritmo-de-grover" title="Link permanente para este cabeçalho">#</a></h1>
-<p>O algoritmo de Grover <span id="id1">[]</span> resolve o problema da busca em uma base de dados não estruturada. Esse é um algoritmo quantica que traz vatagem em ralação a sua contraparte classica. Enquanto computadores tradicionais tomam tempo <span class="math notranslate nohighlight">\(O(N)\)</span> para encontrar um elemento um uma lista de <span class="math notranslate nohighlight">\(N\)</span> elementos, o algoritmo de Grover consegue reduzir esse tempo para <span class="math notranslate nohighlight">\(O(\sqrt(N))\)</span>. Em ambos os casos, a complixidade é considera a melhor possivel para cada modelo de computação.</p>
+<p>O algoritmo de Grover <span id="id1">[]</span> resolve o problema da busca em uma base de dados não estruturada. Esse é um algoritmo quantica que traz vantagem em relação a sua contraparte classica. Enquanto computadores tradicionais tomam tempo <span class="math notranslate nohighlight">\(O(N)\)</span> para encontrar um elemento um uma lista de <span class="math notranslate nohighlight">\(N\)</span> elementos, o algoritmo de Grover consegue reduzir esse tempo para <span class="math notranslate nohighlight">\(O(\sqrt(N))\)</span>. Em ambos os casos, a complixidade é considera a melhor possivel para cada modelo de computação.</p>
 <p>Como o algoritmo de Grover tem uma complexidade computacional menor que o algoromo classicol, independente do qual eficiente seja o computado classico, sempre vai exeistir uma entrada grade o suficiente onde o algoritmo quantico vai ser mais rapido.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -516,6 +725,21 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">entrada</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1_000</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">classical_speedup</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="s2">&quot;Tempo&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Tempo de Computação Clássico vs. Quântico.&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 </section>
