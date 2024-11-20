@@ -556,7 +556,7 @@ document.write(`
        &amp;= \sum_{x \in \mathbb{B}_n} \frac{\ket{x}}{\sqrt{N}} \\
        &amp;= \frac{\sqrt{N-1}}{\sqrt{N}} \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}} \frac{\ket{x}}{\sqrt{N-1}} \ \   + \  \  \frac{\ket{x_0}}{\sqrt{N}} \\
        &amp;= \frac{\sqrt{N-1}}{\sqrt{N}} \ket{\alpha} + \frac{1}{\sqrt{N}} \ket{\beta}
-      \end{split} \tag{$\psi$}
+      \end{split}
 \end{split}\]</div>
 <p>A aplicação de <span class="math notranslate nohighlight">\(O_\text{F}\)</span> em <span class="math notranslate nohighlight">\(\ket{\alpha}\)</span> e <span class="math notranslate nohighlight">\(\ket{\beta}\)</span> fica:</p>
 <div class="math notranslate nohighlight">
@@ -567,7 +567,7 @@ document.write(`
     &amp;= \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}}\frac{1}{\sqrt{N-1}} O_\text{F}\ket{x} \\
     &amp;= \sum_{\scriptsize \begin{array}{c} x \in \mathbb{B}_n \\ x \neq x_0 \end{array}}\frac{1}{\sqrt{N-1}} \ket{x} \\
     &amp;= \ket{\alpha}  \ , 
-   \end{split} \tag{$\alpha$} 
+   \end{split}
 \end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
@@ -576,7 +576,7 @@ document.write(`
         &amp;=  O_\text{F} \ket{x_0}  \\
         &amp;=  - \ket{x_0} \\
         &amp;= - \ket{\beta} \ .
-      \end{split} \tag{$\beta$} 
+      \end{split}
 \end{split}\]</div>
 <p>O operador <span class="math notranslate nohighlight">\(G\)</span> pode ser escrito como:</p>
 <div class="math notranslate nohighlight">
@@ -587,7 +587,7 @@ document.write(`
         &amp;= \big(2H^{\otimes n}\ket{0}\bra{0}H^{\otimes n} - H^{\otimes n}I H^{\otimes n}  \big)O_\text{F} \\
         &amp;= \big(2H^{\otimes n}\ket{0}\bra{0}(H^{\otimes n})^\dagger - H^{\otimes n} H^{\otimes n}  \big)O_\text{F} \\
         &amp;= (2\ket{\psi}\bra{\psi} - I) O_\text{F} \ ,
-       \end{split} \tag{$G$} 
+       \end{split}
 \end{split}\]</div>
 <p>em que foi definido <span class="math notranslate nohighlight">\(\ket{\psi} = \ket{+}^{\otimes n}\)</span>.</p>
 </section>
@@ -617,7 +617,7 @@ document.write(`
       \end{split}  
 \end{split}\]</div>
 <p>O vetor <span class="math notranslate nohighlight">\(\ket{\psi_1}\)</span> continua no espaço <span class="math notranslate nohighlight">\(S\)</span>, e a aplicação do oráculo de fase pode ser visualizada como uma reflexão em torno do eixo <span class="math notranslate nohighlight">\(\ket{\alpha}\)</span>.</p>
-<p><img alt="image.png" src="algoritmos/attachment:5630332a-8c41-4fe8-a5df-786ffaca592d.png" /></p>
+<p><img alt="primeiraapl.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Aplicacao1deg.png" /></p>
 <p>As etapas 2, 3 e 4 de <span class="math notranslate nohighlight">\(G\)</span> redundam em aplicar <span class="math notranslate nohighlight">\(2 \ket{\psi}\bra{\psi} - I\)</span> em <span class="math notranslate nohighlight">\( \ket{\psi_1} \)</span>, conforme equação (<span class="math notranslate nohighlight">\(G\)</span>). E a aplicação desse operador pode ser vista geometricamente de acordo com a figura abaixo.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -627,16 +627,16 @@ document.write(`
        &amp;= 2 \ket{\psi}\bra{\psi}\ket{\psi_1} - \ket{\psi_1}
       \end{split}
 \end{split}\]</div>
-<p><img alt="image.png" src="algoritmos/attachment:91375200-3f52-4d4a-a34e-4fccab748a9d.png" /></p>
+<p><img alt="geometria.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Geometria_aplicacao.png" /></p>
 <p>Dessa forma, a primeira aplicação do operador <span class="math notranslate nohighlight">\(G\)</span> fornece o seguinte.</p>
-<p><img alt="image.png" src="algoritmos/attachment:92e5d649-aad7-4c13-9059-742c8e4e82f0.png" /></p>
+<p><img alt="primeira_aplicacao.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Duas_aplicacoesG.png" /></p>
 </section>
 <section id="aplicacoes-subsequentes-do-operador-g">
 <h3>Aplicações subsequentes do operador <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#aplicacoes-subsequentes-do-operador-g" title="Link permanente para este cabeçalho">#</a></h3>
 <p>As aplicações sucessivas do operador de Grover têm o mesmo efeito descrito anteriormente. Cada aplicação de <span class="math notranslate nohighlight">\(G\)</span> corresponde a uma rotação no sentido anti-horário. A figura a seguir ilustra a <span class="math notranslate nohighlight">\(l\)</span>-ésima aplicação de <span class="math notranslate nohighlight">\(G\)</span>.</p>
-<p><img alt="image.png" src="algoritmos/attachment:d9498f2b-a72c-4178-acab-00dfce48012f.png" /></p>
+<p><img alt="aplicacoessuce.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Aplicacoes_sucessivas.png" /></p>
 <p>O operador <span class="math notranslate nohighlight">\(G\)</span> é aplicado por <span class="math notranslate nohighlight">\(k\)</span> vezes até que o vetor resultante esteja o mais próximo possível do eixo <span class="math notranslate nohighlight">\(\ket{\beta}\)</span>.</p>
-<p><img alt="image.png" src="algoritmos/attachment:497bd303-cec6-43eb-af0c-fb78ed881688.png" /></p>
+<p><img alt="kapli.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/k_aplicacoes.png" /></p>
 <p>No livro \cite{book:icq_portugal}, seção 3.3, demonstra-se algebricamente que uma aplicação de <span class="math notranslate nohighlight">\(G\)</span> produz uma rotação em sentido horário de um mesmo ângulo <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 </section>
 <section id="numero-necessario-de-aplicacoes-de-g">
@@ -725,7 +725,7 @@ document.write(`
 <section id="probabilidade-de-acerto">
 <h3>Probabilidade de acerto<a class="headerlink" href="#probabilidade-de-acerto" title="Link permanente para este cabeçalho">#</a></h3>
 <p>Ao aplicar a subrotina <span class="math notranslate nohighlight">\(G\)</span> por um número <span class="math notranslate nohighlight">\(k\)</span> de vezes especificado anteriormente, obtém-se o estado final o mais próximo possível de <span class="math notranslate nohighlight">\(\ket{\beta} = \ket{x_0}\)</span>, o item desejado. A projeção na direção desse vetor permite encontrar a probabilidade de acerto do algoritmo. O estado final <span class="math notranslate nohighlight">\(G^k \ket{\psi}\)</span> faz um ângulo com o estado <span class="math notranslate nohighlight">\(\ket{x_0}\)</span> menor que <span class="math notranslate nohighlight">\(\theta/2\)</span>, pois se fosse maior ou igual, seria possível aplicar novamente o operador <span class="math notranslate nohighlight">\(G\)</span> para reduzi-lo. Portanto, o ângulo <span class="math notranslate nohighlight">\(\cos \theta\big(\ket{x_0},G^k\ket{\psi}\big)\)</span> entre o estado desejado e o estado final é menor que <span class="math notranslate nohighlight">\(\theta/2\)</span>, o que significa que seu cosseno é maior que <span class="math notranslate nohighlight">\(\cos (\theta/2)\)</span>.</p>
-<p><img alt="image.png" src="algoritmos/attachment:1fd09299-bd57-4c7d-8224-d2eb70b3ff94.png" /></p>
+<p><img alt="projec.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/projecao_de_g.png" /></p>
 <p>Com isso, tem-se a probabilidade de acerto estimada em</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -775,7 +775,7 @@ Para garantir que o item <span class="math notranslate nohighlight">\(x_0\)</spa
 <p>Desse modo, ainda deve-se aplicar o teste <span class="math notranslate nohighlight">\(f\)</span> da ordem de <span class="math notranslate nohighlight">\(N\)</span> vezes.</p>
 <p>\begin{subsection}{Comparação de Desempenho}<br />
 O desempenho dos algoritmos são comparados na tabela abaixo.</p>
-<p><img alt="image.png" src="algoritmos/attachment:ad730071-2d92-4229-8bff-2c65b7dc18dc.png" /></p>
+<p><img alt="desmepnho.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Desempenho.png" /></p>
 <p>Dessa forma, o algoritmo de Grover apresentaria ganho quadrático de desempenho em relação aos algoritmos clássicos, se a aplicação de <span class="math notranslate nohighlight">\(f\)</span> nos casos clássico e quântico forem equivalentes em termos de custos computacionais.</p>
 </section>
 </section>
