@@ -295,7 +295,7 @@ A operação definida acima satisfaz as propriedades que definem um produto inte
 
 A propriedade (PI2) decorre de (PI1) e de (PI3), mas foi incluída na lista por completeza. Por causa das propriedades (PI1) e (PI2), o produto interno é dito ser *sesquilinear* (O prefixo *sesqui* significa "um e meio").
 
-O espaço vetorial $\mathbb{C}^n$ é, pois, dito ser um emph{espaço vetorial com produto interno}, ou ainda, um *espaço de Hilbert*.
+O espaço vetorial $\mathbb{C}^n$ é, pois, dito ser um *espaço vetorial com produto interno*, ou ainda, um *espaço de Hilbert*.
 
 :::{tip}
 Um espaço de Hilbert é definido como sendo um espaço vetorial com produto interno e com uma propriedade adicional chamada *completude*. Essa propriedade é automática para espaços de dimensão finita.
@@ -1102,7 +1102,7 @@ Uma vez encontrados os autovalores $\lambda_j$ e uma base de autovetores $\mathc
 ```{math}
 \begin{eqnarray*}
   D &=& \begin{bmatrix}  \ \lambda_0 \  & & \\  & \ \ddots \ & \\ & & \ \lambda_{n-1}  \, \, \end{bmatrix} \text{(matriz diagonal dos autovalores)} \\
-  M &=& \begin{bmatrix} | & & | \\ \ket{v_0} & \cdots & \ket{v_{n-1}} \\  | & & |  \end{bmatrix}  \text{(matriz de mudança de base: $mathcal{I} \ \rightarrow  \ \mathcal{V}$)} \ .
+  M &=& \begin{bmatrix} | & & | \\ \ket{v_0} & \cdots & \ket{v_{n-1}} \\  | & & |  \end{bmatrix}  \text{(matriz de mudança de base: $\mathcal{I} \ \rightarrow  \ \mathcal{V}$)} \ .
 \end{eqnarray*}
 ```
 
@@ -1155,10 +1155,10 @@ X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \ ,
 
 obtendo-se:
 
-- $\lambda = 1\phantom{-}$ , $\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ $\phantom{-}$(`a \in \mathbb{C}, a \neq 0$)
+- $\lambda = 1\phantom{-}$ , $\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ $\phantom{-}$ $(`a \in \mathbb{C}, a \neq 0$)$
 - $\lambda = -1$ , $\ket{v} = a \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}$ ($a \in \mathbb{C}, a \neq 0$)
 
-Pretende-se extrair uma base ortonormal de autovetores para escrever $X$ na forma diagonal. Nesse casofootnote{Todos os autoespaços de dimensão 1.}, basta normalizar os autovetores obtidos.
+Pretende-se extrair uma base ortonormal de autovetores para escrever $X$ na forma diagonal. Nesse caso (Todos os autoespaços de dimensão 1.), basta normalizar os autovetores obtidos.
 
 - Para $\lambda = -1$:
 
@@ -1543,7 +1543,7 @@ Um elemento genérico do espaço $V\otimes W$ é uma combinação linear dos vet
 :::{admonition} Exemplo
 :class: tip
 
-O sistema composto por 2 qubits é dado pelo produto tensorial de dois espaços vetoriais de 1 qubit (isto será visto com mais detalhes na seção [cap3sec_sistemas_compostos]). Esse espaço vetorial é denotado por $\mathbb{C}^2 \otimes \mathbb{C}^2$. A base desse espaço é formada pelos 4 vetores
+O sistema composto por 2 qubits é dado pelo produto tensorial de dois espaços vetoriais de 1 qubit. Esse espaço vetorial é denotado por $\mathbb{C}^2 \otimes \mathbb{C}^2$. A base desse espaço é formada pelos 4 vetores
 
 ```{math}
 \begin{eqnarray*}
@@ -1853,7 +1853,7 @@ $A_{2\times2}$ , $B_{3\times2}$. O elemento $4,2$ da matriz $A\otimes B$ pode se
 ```{math}
    (A \otimes B)_{4,2} = a_{\text{quoc}(4,3),\text{quoc}(2,2)}\  b_{\text{resto}(4,3),\text{resto}(2,2)} = a_{1,1} b_{1,0} \ .
 
-A matriz $A\otimes B* está representada abaixo, destacando-se o elemento $4,2*:
+\text{A matriz $A\otimes B* está representada abaixo, destacando-se o elemento $4,2*:}
 ```
 
 ```{math}
