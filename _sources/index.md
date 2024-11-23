@@ -18,7 +18,7 @@ O desenvolvimento tecnológico na década de 1970 permitiu o controle de sistema
 
 O físico R. Feynman, na década de 1980, sugeriu o uso de computadores quânticos para simular sistemas quânticos. E em 1994, o matemático P. Shor propôs um algoritmo quântico capaz de resolver o problema de fatoração de números em fatores primos de forma mais eficiente que os algoritmos clássicos conhecidos. Há uma expectativa de que um tal algoritmo possa ameaçar alguns protocolos de criptografia, como o RSA, usado largamente na atualidade. O cientista da computação Lov Grover também elaborou um algoritmo quântico de busca em uma base de dados não estruturada, que possui ganho quadrático de desempenho em comparação ao melhor algoritmo clássico conhecido.
 
- Atualmente, a Computação Quântica e a Informação Quântica estão se consolidam como áreas de pesquisa com desenvolvimento acelerado nas últimas décadas. Empresas de tecnologia como IBM, Google, Intel e Microsoft têm projetos e pesquisas nessa área, e diversas Startups têm surgido nesse contexto. 
+ Atualmente, a Computação Quântica e a Informação Quântica estão se consolidando como áreas de pesquisa com desenvolvimento acelerado nas últimas décadas. Empresas de tecnologia como IBM, Google, Intel e Microsoft têm projetos e pesquisas nessa área, e diversas Startups têm surgido nesse contexto. 
 
 ## Motivação para Computação Quântica
 
@@ -29,13 +29,13 @@ apostado, entre outras abordagens, na Computação Quântica.
 
 Outro ponto refere-se ao consumo de energia. O princípio
 de Landauer afirma que para cada bit de informação apagado,
-dissipa-se no ambiente a energia correspondente a pelo menos. Pelas características da Mecânica Quântica, as portas
+dissipa-se no ambiente uma quantidade de energia proporcional a temperatura que o sistema está operando. Pelas características da Mecânica Quântica, as portas
 lógicas quânticas precisam ser reversíveis. Isso corresponderia,
 em princípio, à não necessidade de se apagar informação e à
 possibilidade de se ter um computador que não dissipa energia
 no processamento.
 
-Um terceiro ponto motivador das pesquisas em Computação Quântica é que a investigação nessa área pode elucidar aspectos da Mecânica Quântica, frequentemente contra intuitivos
+Um terceiro ponto motivador das pesquisas em Computação Quântica é que a investigação nessa área pode elucidar aspectos da Mecânica Quântica, frequentemente contraintuitivos
 em relação à Física Clássica, ou mesmo, apontar fenômenos
 ainda não explorados.
 
@@ -46,7 +46,7 @@ informação, entre outros, o que torna a área multidisciplinar.
 
 ```{note}
 A Computação Quântica é uma tecnologia ainda em estágio inicial, e tem se mostrado uma área de pesquisa estratégica no cenário internacional. 
-Neste capítulo, faz-se um breve estudo das expectativas de mercado em relação à Computação Quântica, em grande parte baseado na Gartner, uma consultoria em Tecnologia da Informação. Apresenta-se também algumas das principais empresas com pesquisas em Computação Quântica, e mostra-se um resumo dos desenvolvimentos realizados nessas empresas tanto em hardware como em software.
+Nessa página, faz-se um breve estudo das expectativas de mercado em relação à Computação Quântica, em grande parte baseado na Gartner, uma consultoria em Tecnologia da Informação. Apresenta-se também algumas das principais empresas com pesquisas em Computação Quântica, e mostra-se um resumo dos desenvolvimentos realizados nessas empresas tanto em hardware como em software.
 ```
 
 ## Site Interativo
