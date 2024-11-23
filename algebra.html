@@ -610,7 +610,7 @@ As matrizes referente a operadores lineares serão vistas na seção <a class="r
 </li>
 </ul>
 <p>A propriedade (PI2) decorre de (PI1) e de (PI3), mas foi incluída na lista por completeza. Por causa das propriedades (PI1) e (PI2), o produto interno é dito ser <em>sesquilinear</em> (O prefixo <em>sesqui</em> significa “um e meio”).</p>
-<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> é, pois, dito ser um emph{espaço vetorial com produto interno}, ou ainda, um <em>espaço de Hilbert</em>.</p>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> é, pois, dito ser um <em>espaço vetorial com produto interno</em>, ou ainda, um <em>espaço de Hilbert</em>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Dica</p>
 <p>Um espaço de Hilbert é definido como sendo um espaço vetorial com produto interno e com uma propriedade adicional chamada <em>completude</em>. Essa propriedade é automática para espaços de dimensão finita.</p>
@@ -1148,7 +1148,7 @@ a_1 = - a_0 \ .
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{eqnarray*}
   D &amp;=&amp; \begin{bmatrix}  \ \lambda_0 \  &amp; &amp; \\  &amp; \ \ddots \ &amp; \\ &amp; &amp; \ \lambda_{n-1}  \, \, \end{bmatrix} \text{(matriz diagonal dos autovalores)} \\
-  M &amp;=&amp; \begin{bmatrix} | &amp; &amp; | \\ \ket{v_0} &amp; \cdots &amp; \ket{v_{n-1}} \\  | &amp; &amp; |  \end{bmatrix}  \text{(matriz de mudança de base: $mathcal{I} \ \rightarrow  \ \mathcal{V}$)} \ .
+  M &amp;=&amp; \begin{bmatrix} | &amp; &amp; | \\ \ket{v_0} &amp; \cdots &amp; \ket{v_{n-1}} \\  | &amp; &amp; |  \end{bmatrix}  \text{(matriz de mudança de base: $\mathcal{I} \ \rightarrow  \ \mathcal{V}$)} \ .
 \end{eqnarray*}\end{split}\]</div>
 <p>A matriz de <span class="math notranslate nohighlight">\(A\)</span> na base <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> é dada por:</p>
 <div class="math notranslate nohighlight">
@@ -1179,10 +1179,10 @@ a_1 = - a_0 \ .
 \[\begin{split}X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ ,\end{split}\]</div>
 <p>obtendo-se:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\lambda = 1\phantom{-}\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> <span class="math notranslate nohighlight">\(\phantom{-}\)</span>(`a \in \mathbb{C}, a \neq 0$)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda = 1\phantom{-}\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> <span class="math notranslate nohighlight">\(\phantom{-}\)</span> <span class="math notranslate nohighlight">\((`a \in \mathbb{C}, a \neq 0\)</span>)$</p></li>
 <li><p><span class="math notranslate nohighlight">\(\lambda = -1\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}\)</span> (<span class="math notranslate nohighlight">\(a \in \mathbb{C}, a \neq 0\)</span>)</p></li>
 </ul>
-<p>Pretende-se extrair uma base ortonormal de autovetores para escrever <span class="math notranslate nohighlight">\(X\)</span> na forma diagonal. Nesse casofootnote{Todos os autoespaços de dimensão 1.}, basta normalizar os autovetores obtidos.</p>
+<p>Pretende-se extrair uma base ortonormal de autovetores para escrever <span class="math notranslate nohighlight">\(X\)</span> na forma diagonal. Nesse caso (Todos os autoespaços de dimensão 1.), basta normalizar os autovetores obtidos.</p>
 <ul>
 <li><p>Para <span class="math notranslate nohighlight">\(\lambda = -1\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -1461,7 +1461,7 @@ isto é, a matriz <span class="math notranslate nohighlight">\([A]_\beta^{\ \dag
 <p>Um elemento genérico do espaço <span class="math notranslate nohighlight">\(V\otimes W\)</span> é uma combinação linear dos vetores da base <span class="math notranslate nohighlight">\(\ket{v_k} \otimes \ket{w_l}\)</span>. Em geral, essa combinação não pode ser escrita da forma fatorada <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w}\)</span>.</p>
 <div class="tip admonition" id="cap2ex-espaco-vet-2qubits">
 <p class="admonition-title">Exemplo</p>
-<p>O sistema composto por 2 qubits é dado pelo produto tensorial de dois espaços vetoriais de 1 qubit (isto será visto com mais detalhes na seção [cap3sec_sistemas_compostos]). Esse espaço vetorial é denotado por <span class="math notranslate nohighlight">\(\mathbb{C}^2 \otimes \mathbb{C}^2\)</span>. A base desse espaço é formada pelos 4 vetores</p>
+<p>O sistema composto por 2 qubits é dado pelo produto tensorial de dois espaços vetoriais de 1 qubit. Esse espaço vetorial é denotado por <span class="math notranslate nohighlight">\(\mathbb{C}^2 \otimes \mathbb{C}^2\)</span>. A base desse espaço é formada pelos 4 vetores</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{eqnarray*}
 \ket{00} &amp;=&amp; \ket{0} \ket{0} = \ket{0} \otimes \ket{0} \\
@@ -1676,7 +1676,7 @@ O vetor <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w}\)</
 <p class="admonition-title">Exemplo</p>
 <p><span class="math notranslate nohighlight">\(A_{2\times2}\)</span> , <span class="math notranslate nohighlight">\(B_{3\times2}\)</span>. O elemento <span class="math notranslate nohighlight">\(4,2\)</span> da matriz <span class="math notranslate nohighlight">\(A\otimes B\)</span> pode ser obtido por:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}   (A \otimes B)_{4,2} = a_{\text{quoc}(4,3),\text{quoc}(2,2)}\  b_{\text{resto}(4,3),\text{resto}(2,2)} = a_{1,1} b_{1,0} \ .\\A matriz $A\otimes B* está representada abaixo, destacando-se o elemento $4,2*:\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}   (A \otimes B)_{4,2} = a_{\text{quoc}(4,3),\text{quoc}(2,2)}\  b_{\text{resto}(4,3),\text{resto}(2,2)} = a_{1,1} b_{1,0} \ .\\\text{A matriz $A\otimes B* está representada abaixo, destacando-se o elemento $4,2*:}\end{aligned}\end{align} \]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}A \otimes B = \begin{bmatrix} a_{0,0} B &amp; a_{0,1} B \\ a_{1,0} B &amp; a_{1,1} B \end{bmatrix} =   \begin{bmatrix} a_{0,0} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} &amp; a_{0,1} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} \\ &amp; \\ a_{1,0} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} &amp; \boxed{a_{1,1}} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ \boxed{b_{1,0}} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} \end{bmatrix}   \ .\end{split}\]</div>
 </div>
