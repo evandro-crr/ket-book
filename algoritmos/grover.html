@@ -420,7 +420,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-de-grover">Problema de Grover</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-grover">Algoritmo de Grover</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algoritmo de Grover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algoritmo de Grover</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-auxiliar">Notação auxiliar</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contas-auxiliares">Contas auxiliares</a></li>
@@ -464,7 +464,7 @@ document.write(`
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="algoritmo-de-busca-de-grover">
 <h1>Algoritmo de Busca de Grover<a class="headerlink" href="#algoritmo-de-busca-de-grover" title="Link permanente para este cabeçalho">#</a></h1>
-<p>Esta seção aborda o Algoritmo de Grover, um algoritmo quântico que permite encontrar um elemento em uma lista não ordenada. Uma descrição mais rigorosa desse problema, bem como as alternativas clássicas para o mesmo são apresentadas neste texto. As referências utilizadas nesta parte são o livro \cite{book:icq_portugal}, capítulo 3, e as videoaulas U2.6 da subunidade SU4 do curso \cite{videolecture:qisI_p2}.</p>
+<p>Esta seção aborda o Algoritmo de Grover, um algoritmo quântico que permite encontrar um elemento em uma lista não ordenada. Uma descrição mais rigorosa desse problema, bem como as alternativas clássicas para o mesmo são apresentadas neste texto. As referências utilizadas nesta parte são o livro <span id="id1">[]</span>videolecture:qisI_p2’.</p>
 <section id="problema-de-grover">
 <h2>Problema de Grover<a class="headerlink" href="#problema-de-grover" title="Link permanente para este cabeçalho">#</a></h2>
 <p>O problema de Grover consiste em encontrar um elemento específico em uma lista de <span class="math notranslate nohighlight">\(2^n\)</span> itens. A lista é formada por palavras binárias de <span class="math notranslate nohighlight">\(n\)</span> dígitos. Há uma função booleana <span class="math notranslate nohighlight">\(f\colon \{ 0,1 \}^n \to \{ 0,1 \}\)</span> que só sinaliza ‘1’ para uma entrada <span class="math notranslate nohighlight">\(x_0\)</span> em particular, que pode ser desconhecida. Em outras palavras, a função <span class="math notranslate nohighlight">\(f\)</span> pode ser descrita por</p>
@@ -483,8 +483,8 @@ document.write(`
 <section id="algoritmo-de-grover">
 <h2>Algoritmo de Grover<a class="headerlink" href="#algoritmo-de-grover" title="Link permanente para este cabeçalho">#</a></h2>
 <p>O algoritmo de Grover é um algoritmo quântico para resolução do problema de Grover, que consiste em encontrar o elemento em uma lista por meio de um teste <span class="math notranslate nohighlight">\(f\)</span>, e o elemento desejado é o único <span class="math notranslate nohighlight">\(x_0\)</span> que faz com que o teste sinalize 1. O algoritmo quântico consiste em aplicar uma subrotina quântica, o operador de Grover, por um número de vezes da ordem de <span class="math notranslate nohighlight">\(\sqrt{N}\)</span>, em que <span class="math notranslate nohighlight">\(N=2^n\)</span> é o número de itens na lista, indexados por <span class="math notranslate nohighlight">\(n\)</span> bits.</p>
-<section id="id1">
-<h3>Algoritmo de Grover<a class="headerlink" href="#id1" title="Link permanente para este cabeçalho">#</a></h3>
+<section id="id2">
+<h3>Algoritmo de Grover<a class="headerlink" href="#id2" title="Link permanente para este cabeçalho">#</a></h3>
 <p><strong>Entrada:</strong> <span class="math notranslate nohighlight">\(O_\text{F}(f) = O\)</span> \ \ (oráculo de fase associado à função booleana <span class="math notranslate nohighlight">\(f\)</span>)</p>
 <p><strong>Procedimento:</strong></p>
 <div class="math notranslate nohighlight">
@@ -929,7 +929,7 @@ O desempenho dos algoritmos são comparados na tabela abaixo.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-de-grover">Problema de Grover</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-grover">Algoritmo de Grover</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algoritmo de Grover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algoritmo de Grover</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-auxiliar">Notação auxiliar</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contas-auxiliares">Contas auxiliares</a></li>
