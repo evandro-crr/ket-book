@@ -537,6 +537,7 @@ Notação compacta:</p>
    \end{split}
 \end{split}\]</div>
 <p>em que <span class="math notranslate nohighlight">\(\mathbb{B}_n\)</span> representa o conjunto de todas as palavras de <span class="math notranslate nohighlight">\(n\)</span> bits. Isto é,</p>
+<p><strong>EXERCÍCIO</strong></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{split}
@@ -557,6 +558,7 @@ Notação compacta:</p>
     \end{split} 
 \end{split}\]</div>
 <p>Se a função for constante, o fator <span class="math notranslate nohighlight">\((-1)^{f(x)}\)</span> se tornará um sinal global <span class="math notranslate nohighlight">\(+\)</span> ou <span class="math notranslate nohighlight">\(-\)</span>, que essencialmente não altera o estado anterior.</p>
+<p><strong>EXERCÍCIO</strong></p>
 <p>A última etapa consiste na medição na base girada <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. Para realizar essa medida, pode-se aplicar <span class="math notranslate nohighlight">\(H\)</span> a todos os qubits e medir na base computacional. Calculando a probabilidade de se obter <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span>, consegue-se:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -596,6 +598,7 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
 <p>A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar aplicações sucessivas de <span class="math notranslate nohighlight">\(f\)</span> para diversas entradas até se ter certeza de qual opção é válida (se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada) , calcula-se <span class="math notranslate nohighlight">\(f(0)\)</span>, <span class="math notranslate nohighlight">\(f(1)\)</span>, <span class="math notranslate nohighlight">\(f(2)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> e se verifica se <span class="math notranslate nohighlight">\(f(1) = f(0)\)</span>, <span class="math notranslate nohighlight">\(f(2) = f(1)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> ou não. Caso ocorra <span class="math notranslate nohighlight">\(f(j) \neq f(i)\)</span>, então a opção certa é `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’, e caso isso não ocorra, a opção correta é ``<span class="math notranslate nohighlight">\(f\)</span> é constante’’.</p>
 <p>Para se distinguir com certeza as duas opções, deve-se aplicar <span class="math notranslate nohighlight">\(f\)</span> a metade das entradas possíveis mais uma, ou seja, a <span class="math notranslate nohighlight">\(2^n/2 + 1\)</span> entradas. Isso porque, na pior das hipóteses, a função era balanceada e, obteve-se um mesmo resultado, por azar, para as <span class="math notranslate nohighlight">\(2^n/2\)</span> entradas testadas, impedindo que se faça a escolha com certeza.</p>
 <p>Dessa forma, o custo computacional desse algoritmo é de <span class="math notranslate nohighlight">\(2^n/2 + 1\)</span> aplicações de <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p><strong>EXERCÍCIO</strong></p>
 </section>
 <section id="algoritmo-classico-probabilistico">
 <h2>Algoritmo Clássico Probabilístico<a class="headerlink" href="#algoritmo-classico-probabilistico" title="Link permanente para este cabeçalho">#</a></h2>
@@ -623,6 +626,7 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
 \frac{1}{2^{m-1}} &lt; \frac{1}{2} \implies 2^m &gt; 2^2 \implies m &gt;2 \implies m \geq 3
 \]</div>
 <p>Se forem <span class="math notranslate nohighlight">\(m=3\)</span> aplicações, a probabilidade de erro será limitada por <span class="math notranslate nohighlight">\(\varepsilon = 1/2^{m-1} = 0,\!25 &lt; 0,\!5\)</span>, como visto anteriormente.</p>
+<p><strong>EXERCÍCIO</strong></p>
 </section>
 </section>
 <section id="comparacao-de-desempenho">
