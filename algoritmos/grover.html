@@ -420,7 +420,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-de-grover">Problema de Grover</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-grover">Algoritmo de Grover</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algoritmo de Grover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algoritmo de Grover</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-auxiliar">Notação auxiliar</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contas-auxiliares">Contas auxiliares</a></li>
@@ -464,14 +464,14 @@ document.write(`
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="algoritmo-de-busca-de-grover">
 <h1>Algoritmo de Busca de Grover<a class="headerlink" href="#algoritmo-de-busca-de-grover" title="Link permanente para este cabeçalho">#</a></h1>
-<p>Esta seção aborda o Algoritmo de Grover, um algoritmo quântico que permite encontrar um elemento em uma lista não ordenada. Uma descrição mais rigorosa desse problema, bem como as alternativas clássicas para o mesmo são apresentadas neste texto. As referências utilizadas nesta parte são o livro <span id="id1">[]</span>videolecture:qisI_p2’.</p>
+<p>Esta seção aborda o Algoritmo de Grover, um algoritmo quântico que permite encontrar um elemento em uma lista não ordenada. Uma descrição mais rigorosa desse problema, bem como as alternativas clássicas para o mesmo são apresentadas neste texto.</p>
 <section id="problema-de-grover">
 <h2>Problema de Grover<a class="headerlink" href="#problema-de-grover" title="Link permanente para este cabeçalho">#</a></h2>
 <p>O problema de Grover consiste em encontrar um elemento específico em uma lista de <span class="math notranslate nohighlight">\(2^n\)</span> itens. A lista é formada por palavras binárias de <span class="math notranslate nohighlight">\(n\)</span> dígitos. Há uma função booleana <span class="math notranslate nohighlight">\(f\colon \{ 0,1 \}^n \to \{ 0,1 \}\)</span> que só sinaliza ‘1’ para uma entrada <span class="math notranslate nohighlight">\(x_0\)</span> em particular, que pode ser desconhecida. Em outras palavras, a função <span class="math notranslate nohighlight">\(f\)</span> pode ser descrita por</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
              0 \ , \ x \neq x_0 \\
-             1 \ , \  x = x_0 \ .
+             1 \ , \  x = x_0 \
 \end{split}\]</div>
 <p>A maneira de saber se o item <span class="math notranslate nohighlight">\(x\)</span> considerado corresponde ao desejado é por meio da aplicação de <span class="math notranslate nohighlight">\(f\)</span>. Essa função poderia ser chamada de ``teste’’, e caso se queira saber se o item <span class="math notranslate nohighlight">\(x\)</span> da lista é o desejado (em outras palavras, se <span class="math notranslate nohighlight">\(x = x_0\)</span>), deve-se fazer o teste em <span class="math notranslate nohighlight">\(x\)</span> e ver se o teste resulta em ‘1’ (item desejado foi encontrado) ou ‘0’ (o item testado não é o desejado).</p>
 <p><strong>Problema de Grover</strong></p>
@@ -483,8 +483,8 @@ document.write(`
 <section id="algoritmo-de-grover">
 <h2>Algoritmo de Grover<a class="headerlink" href="#algoritmo-de-grover" title="Link permanente para este cabeçalho">#</a></h2>
 <p>O algoritmo de Grover é um algoritmo quântico para resolução do problema de Grover, que consiste em encontrar o elemento em uma lista por meio de um teste <span class="math notranslate nohighlight">\(f\)</span>, e o elemento desejado é o único <span class="math notranslate nohighlight">\(x_0\)</span> que faz com que o teste sinalize 1. O algoritmo quântico consiste em aplicar uma subrotina quântica, o operador de Grover, por um número de vezes da ordem de <span class="math notranslate nohighlight">\(\sqrt{N}\)</span>, em que <span class="math notranslate nohighlight">\(N=2^n\)</span> é o número de itens na lista, indexados por <span class="math notranslate nohighlight">\(n\)</span> bits.</p>
-<section id="id2">
-<h3>Algoritmo de Grover<a class="headerlink" href="#id2" title="Link permanente para este cabeçalho">#</a></h3>
+<section id="id1">
+<h3>Algoritmo de Grover<a class="headerlink" href="#id1" title="Link permanente para este cabeçalho">#</a></h3>
 <p><strong>Entrada:</strong> <span class="math notranslate nohighlight">\(O_\text{F}(f) = O\)</span> \ \ (oráculo de fase associado à função booleana <span class="math notranslate nohighlight">\(f\)</span>)</p>
 <p><strong>Procedimento:</strong></p>
 <div class="math notranslate nohighlight">
@@ -637,7 +637,6 @@ document.write(`
 <p><img alt="aplicacoessuce.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Aplicacoes_sucessivas.png" /></p>
 <p>O operador <span class="math notranslate nohighlight">\(G\)</span> é aplicado por <span class="math notranslate nohighlight">\(k\)</span> vezes até que o vetor resultante esteja o mais próximo possível do eixo <span class="math notranslate nohighlight">\(\ket{\beta}\)</span>.</p>
 <p><img alt="kapli.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/k_aplicacoes.png" /></p>
-<p>No livro \cite{book:icq_portugal}, seção 3.3, demonstra-se algebricamente que uma aplicação de <span class="math notranslate nohighlight">\(G\)</span> produz uma rotação em sentido horário de um mesmo ângulo <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 </section>
 <section id="numero-necessario-de-aplicacoes-de-g">
 <h3>Número necessário de aplicações de <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#numero-necessario-de-aplicacoes-de-g" title="Link permanente para este cabeçalho">#</a></h3>
@@ -647,7 +646,7 @@ document.write(`
  k \theta + \frac{\theta}{2} = \frac{\pi}{2} \implies k = \frac{\pi - \theta}{2\theta} \ , 
  \]</div>
 <p>em que se arredonda <span class="math notranslate nohighlight">\(k\)</span> para o inteiro mais próximo.</p>
-<p>O ângulo <span class="math notranslate nohighlight">\(\theta\)</span> (em radianos) é o ângulo que <span class="math notranslate nohighlight">\(G\ket{\psi}\)</span> faz com <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>. Pode ser obtido por (ver figura \ref{cap5:fig_aplicacao_G_em_psi}):</p>
+<p>O ângulo <span class="math notranslate nohighlight">\(\theta\)</span> (em radianos) é o ângulo que <span class="math notranslate nohighlight">\(G\ket{\psi}\)</span> faz com <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>. Pode ser obtido por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
  \begin{split}
@@ -708,7 +707,7 @@ document.write(`
 \[
  k = \frac{\frac{\pi}{2} - \frac{\theta}{2}}{\theta} = \frac{\frac{\pi}{2} - asin(\frac{1}{\sqrt{N}})}{acos(\frac{N-2}{N}) } = \frac{acos(\frac{1}{\sqrt{N}})}{acos(\frac{N-2}{N})} \ .
 \]</div>
-<p>É possível verificar que o número <span class="math notranslate nohighlight">\(k\)</span> é da ordem de <span class="math notranslate nohighlight">\(\sqrt{N}\)</span>. De acordo com \cite{book:icq_portugal}, p.56, tem-se</p>
+<p>É possível verificar que o número <span class="math notranslate nohighlight">\(k\)</span> é da ordem de <span class="math notranslate nohighlight">\(\sqrt{N}\)</span>. Tem-se</p>
 <div class="math notranslate nohighlight">
 \[ 
    \lim_{N\to +\infty} k = +\infty 
@@ -929,7 +928,7 @@ O desempenho dos algoritmos são comparados na tabela abaixo.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-de-grover">Problema de Grover</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-grover">Algoritmo de Grover</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algoritmo de Grover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algoritmo de Grover</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-auxiliar">Notação auxiliar</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contas-auxiliares">Contas auxiliares</a></li>
