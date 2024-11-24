@@ -576,6 +576,7 @@ f(000) = f(100), 100 = 000 \oplus 100 \implies c = 100
 <p><img alt="Screenshot 2024-10-22 at 18-39-26 tcc-giovani pdf" src="https://github.com/user-attachments/assets/c73a022d-14cc-43e8-8b37-5af760d98348" /></p>
 <p>Notação expandida:</p>
 <p><img alt="Screenshot 2024-10-22 at 18-40-22 tcc-giovani pdf" src="https://github.com/user-attachments/assets/28886f3d-3a48-4970-a909-30b4e7ab1306" /></p>
+<p><strong>EXERCÍCIO</strong></p>
 <p><strong>Contas auxiliares</strong></p>
 <p><strong>Definição 3:</strong> Usa-se a seguinte notação, com o intuito de simplificar algumas expressões:</p>
 <div class="math notranslate nohighlight">
@@ -731,6 +732,7 @@ Usando proposições vistas anteriormente temos que:</p>
 \[
    \ket{\psi_1} = \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{0}
 \]</div>
+<p><strong>EXERCÍCIO</strong></p>
 <p>em que o primeiro ket engloba <span class="math notranslate nohighlight">\(n\)</span> qubits e representa o primeiro registrador, e o segundo ket contém <span class="math notranslate nohighlight">\(n\)</span> bits e representa o segundo registrador.</p>
 <p>A aplicação do oráculo na etapa 2 mantém o primeiro registrador e faz a XOR bit a bit de <span class="math notranslate nohighlight">\(0\)</span> com <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -742,6 +744,7 @@ Usando proposições vistas anteriormente temos que:</p>
        &amp;= \frac{1}{\sqrt{2^n}} \sum_{x\in\mathbb{B}_n} \ket{x}\ket{f(x)} \ .
       \end{split}
 \end{split}\]</div>
+<p><strong>EXERCÍCIO</strong></p>
 <p>Na etapa 3, aplica-se novamente <span class="math notranslate nohighlight">\(H^{\otimes n}\)</span> ao primeiro registrador:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -752,6 +755,7 @@ Usando proposições vistas anteriormente temos que:</p>
        &amp;= \frac{1}{2^n} \sum_{x\in\mathbb{B}_n} \sum_{y\in\mathbb{B}_n} (-1)^{x\cdot y} \ket{y}\ket{f(x)} \ . 
       \end{split} 
 \end{split}\]</div>
+<p><strong>EXERCÍCIO</strong></p>
 <p>É conveniente passar o somatório em <span class="math notranslate nohighlight">\(x\)</span> para o segundo registrador, ficando com:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -928,6 +932,7 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
 <p class="admonition-title">Nota</p>
 <p>Na primeira iteração, o número de vetores que acrescentam informação é 2^n - 1 dentre os 2^n possíveis (apenas o vetor nulo seria útil). Após obter um vetor não nulo, a próxima iteração tem a chance de 2^(n-1) - 1 entre 2^n de resultar num vetor que seja LI com o anterior.</p>
 </div>
+<p><strong>EXERCÍCIO</strong></p>
 </section>
 <section id="probabilidade-de-erro">
 <h1>Probabilidade de erro<a class="headerlink" href="#probabilidade-de-erro" title="Link permanente para este cabeçalho">#</a></h1>
