@@ -57,7 +57,7 @@ $\textbf{Entrada:}$ $O_\text{F}(f) = O$ \ \ (oráculo de fase associado à funç
 **Procedimento:**
 ```{math}
 \begin{array}
-   \text{etapa 0:} & \ket{0}^{\otimes n} & \text{preparação do estado inicial} \\
+   \text{etapa  0:} & \ket{0}^{\otimes n} & \text{preparação do estado inicial} \\
    \text{etapa 1:} & \ket{+}^{\otimes n} & \text{superposição de estados com $H^{\otimes n}$} \\
    \text{etapa 2:} & O_\text{F}\ket{+}^{\otimes n} & \text{aplicação de $f$ (oráculo de fase)} \\
    \text{etapa 3:} & \bra{+}^{\otimes n}O_\text{F}\ket{+}^{\otimes n} & \text{testar para $\ket{+}^{\otimes n}$ (base girada $\mathcal{X}$)} \\
