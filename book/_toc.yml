@@ -7,6 +7,7 @@ chapters:
 - file: pytutorial
 - file: algebra
 - file: postulados
+- file: computacao_classica_quantica
 - file: kettutorial
 - file: algoritmos
   sections:
