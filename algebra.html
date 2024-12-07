@@ -528,6 +528,17 @@ a_1 = \frac{z_0 - z_1}{\sqrt{2}}
 <p>Dessa forma, <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> gera o espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span> e é base desse espaço.</p>
 <p><strong>Comentário</strong>: Quando se sabe previamente que a dimensão do espaço é <span class="math notranslate nohighlight">\(n\)</span> e se a lista de vetores candidatos a base tem <span class="math notranslate nohighlight">\(n\)</span> elementos, então as condições de ser LI e gerar o espaço são equivalentes. Em consequência, basta verificar uma das condições para mostrar que os vetores formam uma base. Por exemplo, se sabemos que a dimensão de <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span> é <span class="math notranslate nohighlight">\(\dim \mathbb{C}^2 = 2\)</span>, e temos que <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> tem dois elementos, então bastaria verificar uma das duas condições: <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é LI ou <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> gera o espaço.</p>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Exercício</p>
+<p>Um Qubit se encontra em um estado:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2}\ket{0}-\frac{\sqrt{3}}{2}\ket{1}\]</div>
+<p>Escreva esse estado utilizando-se da notação de colunas</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercício</p>
+<p>Escreva uma função em Python que recebe uma matriz coluna dado por uma lista ou tuple e retorna ao usuário o a combinação linear dos vetores na notação de Dirac.</p>
+</div>
 </section>
 <section id="matriz-de-mudanca-de-base">
 <span id="cap2matriz-de-mudanca-de-base"></span><h3>Matriz de Mudança de base<a class="headerlink" href="#matriz-de-mudanca-de-base" title="Link permanente para este cabeçalho">#</a></h3>
@@ -640,6 +651,21 @@ As matrizes referente a operadores lineares serão vistas na seção <a class="r
   &amp;=&amp; \begin{bmatrix} \frac{-i}{2}  &amp; \frac{\sqrt{3}}{2}\end{bmatrix} \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix}   \\
   &amp;=&amp;  \frac{-i}{2\sqrt{2}} + \frac{-i\sqrt{3}}{2\sqrt{2}}
 \end{eqnarray*}\end{split}\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercício</p>
+<p>Considere:</p>
+<div class="math notranslate nohighlight">
+\[a = \frac{3+i\sqrt{3}}{4}\ket{0}+\frac{1}{2}\ket{1}\]</div>
+<div class="math notranslate nohighlight">
+\[b = \frac{1}{4}\ket{0}+\frac{\sqrt{15}}{4}\ket{1}\]</div>
+<p>(a) Encontre <span class="math notranslate nohighlight">\(\bra{a}\ket{b}\)</span></p>
+<p>(b) Encontre <span class="math notranslate nohighlight">\(\bra{b}\ket{a}\)</span></p>
+<p>(c) Qual a relação entre os resultados obtidos?</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercício</p>
+<p>Escreva uma função em Python que receba dois vetores dados por uma lista ou tuple e retorne o produto interno entre eles na notação de matriz coluna e na notação de Dirac</p>
 </div>
 </section>
 <section id="norma">
