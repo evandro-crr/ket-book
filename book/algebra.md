@@ -170,6 +170,25 @@ Dessa forma, $\mathcal{X}$ gera o espaço $\mathbb{C}^2$ e é base desse espaço
 **Comentário**: Quando se sabe previamente que a dimensão do espaço é $n$ e se a lista de vetores candidatos a base tem $n$ elementos, então as condições de ser LI e gerar o espaço são equivalentes. Em consequência, basta verificar uma das condições para mostrar que os vetores formam uma base. Por exemplo, se sabemos que a dimensão de $\mathbb{C}^2$ é $\dim \mathbb{C}^2 = 2$, e temos que $\mathcal{X}$ tem dois elementos, então bastaria verificar uma das duas condições: $\mathcal{X}$ é LI ou $\mathcal{X}$ gera o espaço.
 :::
 
+:::{admonition} Exercício
+:class: tip
+
+Um Qubit se encontra em um estado:
+```{math}
+\frac{1}{2}\ket{0}-\frac{\sqrt{3}}{2}\ket{1}
+```
+
+Escreva esse estado utilizando-se da notação de colunas
+
+:::
+
+:::{admonition} Exercício
+:class: tip
+
+Escreva uma função em Python que recebe uma matriz coluna dado por uma lista ou tuple e retorna ao usuário o a combinação linear dos vetores na notação de Dirac.
+
+:::
+
 (cap2matriz-de-mudanca-de-base)=
 
 ### Matriz de Mudança de base
@@ -334,6 +353,33 @@ Esse produto interno também pode ser calculado de maneira matricial:
   &=&  \frac{-i}{2\sqrt{2}} + \frac{-i\sqrt{3}}{2\sqrt{2}}
 \end{eqnarray*}
 ```
+:::
+
+:::{admonition} Exercício
+:class: tip
+
+Considere:
+
+```{math}
+a = \frac{3+i\sqrt{3}}{4}\ket{0}+\frac{1}{2}\ket{1}
+```
+
+```{math}
+b = \frac{1}{4}\ket{0}+\frac{\sqrt{15}}{4}\ket{1}
+```
+
+(a) Encontre $\bra{a}\ket{b}$
+
+(b) Encontre $\bra{b}\ket{a}$ 
+
+(c) Qual a relação entre os resultados obtidos?
+:::
+
+:::{admonition} Exercício
+:class: tip
+
+Escreva uma função em Python que receba dois vetores dados por uma lista ou tuple e retorne o produto interno entre eles na notação de matriz coluna e na notação de Dirac
+
 :::
 
 ### Norma
