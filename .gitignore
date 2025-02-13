@@ -3,3 +3,4 @@ book/.xdp-references.bib*
 public/*
 venv/*
 virtualenv/*
+**/.ipynb_checkpoints
