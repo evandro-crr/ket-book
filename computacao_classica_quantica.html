@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="pt-BR" data-content_root="" >
+<html lang="pt-BR" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Computação clássica e quãntica &#8212; Computação Quântica com Ket</title>
   
@@ -17,62 +16,62 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="_static/translations.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=daa5921a"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'computacao_classica_quantica';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="next" title="Programação Quântica com Ket" href="kettutorial.html" />
+    <link rel="next" title="Programacão Quântica com Ket" href="kettutorial.html" />
     <link rel="prev" title="Postulados da Mecânica Quântica" href="postulados.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -88,19 +87,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -108,7 +96,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -116,8 +103,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -133,7 +120,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -163,11 +151,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
-    <script>document.write(`<img src="_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+    <img src="_static/gcq.svg" class="logo__image only-dark pst-js-only" alt="Computação Quântica com Ket - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -182,7 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="algebra.html">Álgebra Linear para Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Computação clássica e quãntica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kettutorial.html">Programação Quântica com Ket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kettutorial.html">Programacão Quântica com Ket</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="algoritmos/grover.html">Algoritmo de Busca de Grover</a></li>
 <li class="toctree-l2"><a class="reference internal" href="algoritmos/deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
@@ -212,9 +207,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -233,9 +233,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -260,14 +260,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/computacao_classica_quantica.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -278,14 +278,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/computacao_classica_quantica.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_colab.png">
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -378,27 +378,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -491,31 +483,31 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="computacao-classica-e-quantica">
-<h1>Computação clássica e quãntica<a class="headerlink" href="#computacao-classica-e-quantica" title="Link permanente para este cabeçalho">#</a></h1>
+<h1>Computação clássica e quãntica<a class="headerlink" href="#computacao-classica-e-quantica" title="Link para este cabeçalho">#</a></h1>
 <div class="admonition-referencias admonition">
 <p class="admonition-title">Referências</p>
 <p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
 </div>
 <section id="computacao-classica">
-<h2>Computação clássica<a class="headerlink" href="#computacao-classica" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Computação clássica<a class="headerlink" href="#computacao-classica" title="Link para este cabeçalho">#</a></h2>
 <p>Um computador digital é um sistema que pode seguir uma sequência de instruções, chamada programa, e que opera em um conjunto de informações. Os computadores digitais modernos são compostos de milhões a bilhões de transistores, que se agrupam em circuitos digitais. Para lidar com a complexidade desses sistemas, os circuitos são subdivididos em circuitos menores, que realizam funções específicas. Esses circuitos são considerados ``caixas pretas’’, em que se ignoram os detalhes internos, e são agrupados de forma a realizar funções mais sofisticadas.</p>
 <p>A engenharia trabalha com <em>níveis de abstração</em>; cada nível corresponde a omitir detalhes internos dos subsistemas constituíntes, ou da camada de abstração anterior. Uma discussão mais detalhada sobre as camadas de abstração do computador será realizada na seção seguinte.</p>
 <p>Para que o computador consiga operar em um conjunto de informações, é necessário que essa informação seja traduzida, ou, codificada, de forma conveniente. O projeto dos computadores digitais se baseia em que as informações de entrada do sistema, e mesmo as instruções a serem seguidas, são codificadas em <em>bits</em>.</p>
 <p>Os bits são variáveis que podem assumir apenas dois valores, rotulados de 0/1 ou Verdadeiro/Falso, por exemplo. No computador digital, a tensão elétrica é utilizada como bit; as tensões próximas a <span class="math notranslate nohighlight">\(0V\)</span> são consideradas como bit 0 e as tensões próximas à tensão de alimentação do circuito (normalmente <span class="math notranslate nohighlight">\(5V\)</span> ou <span class="math notranslate nohighlight">\(3,\!3V\)</span>), como bit 1.</p>
 <p>Nas seções seguintes alguns desses tópicos serão detalhados. A ênfase será nas ideias vinculadas aos Sistemas Digitais, no manejo da complexidade por meio das camadas de abstração e nos detalhes das camadas mais próximas da camada física, com o objetivo de passar a ideia de como um computador digital clássico funciona. A finalidade é, também, comparar esse paradigma de computação com as ideias que estão surgindo na área da Computação Quântica.</p>
 <section id="niveis-de-abstracao">
-<h3>Niveis de abstração<a class="headerlink" href="#niveis-de-abstracao" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Niveis de abstração<a class="headerlink" href="#niveis-de-abstracao" title="Link para este cabeçalho">#</a></h3>
 <p>Na engenharia, uma maneira de lidar com a complexidade de sistemas muito grandes é subdividí-los em subsistemas que possam ser descritos de maneira mais simples, omitindo detalhes internos. Componentes mais básicos são usados para projetar blocos que realizam funções simples. Esses blocos passam a ser descritos apenas pela sua função (como as saídas se comportam em relação às entradas), e passa-se a ignorar sua estrutura interna. Sistemas mais complexos podem ser projetados por meio desses blocos. A cada vez que se agrupa os sistemas em blocos e passa-se a ignorar sua estrutura interna, sobe-se um nível nas <em>camadas de abstração</em>. Quando se ``abre’’ um sistema para analisar sua estrutura interna, passa-se à camada de abstração inferior.</p>
 <p>Essa divisão em camadas de abstração permite que os diversos blocos do sistema sejam projetados de forma paralela. Além disso, o projeto de um bloco pode ser reaproveitado em outros momentos, no mesmo projeto ou em outros. Outra vantagem é que o sistema passa a ser visto como composto de uma quantidade relativamente pequena de subsistemas, em vez de ser visto como milhões de transistores, cujo funcionamento em conjunto seria virtualmente impossível de descrever diretamente.</p>
 <p>A figura a seguir ilustra as camadas de abstração presentes no computador digital. Dependendo do autor, as camadas de abstração são nomeadas de maneira ligeiramente diferente ou são consideradas algumas subcamadas extra.</p>
 <p><img alt="image" src="https://github.com/user-attachments/assets/dbddcf95-1402-4453-aa0a-70184e55707d" /></p>
 </section>
 <section id="nivel-logico">
-<h3>Nível lógico<a class="headerlink" href="#nivel-logico" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Nível lógico<a class="headerlink" href="#nivel-logico" title="Link para este cabeçalho">#</a></h3>
 <p>O nível lógico refere-se à camada de abstração imediatamente acima da dos transistores. Os transistores são reunidos em <em>portas lógicas</em>. Nessa camada de abstração, os sinais de tensão na entrada e na saída são interpretados como bits, e as portas lógicas que operam esses bits simulam as funções lógicas como OR, AND, NOT, entre outras.</p>
 <p>Nesse agrupamento em blocos os detalhes internos do circuito são ignorados.</p>
 <section id="algebra-booleana">
-<h4>Álgebra booleana<a class="headerlink" href="#algebra-booleana" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Álgebra booleana<a class="headerlink" href="#algebra-booleana" title="Link para este cabeçalho">#</a></h4>
 <p>As <em>variáveis booleanas</em> são variáveis que podem assumir apenas dois valores, rotulados como 0/1 ou Falso/Verdadeiro. Os bits são sinônimos de variáveis booleanas. As funções <span class="math notranslate nohighlight">\(f\colon \{0,1\}^n \to \{0,1\}^m \,\)</span>, que levam um conjunto de <span class="math notranslate nohighlight">\(n\)</span> bits em um conjunto de <span class="math notranslate nohighlight">\(m\)</span> bits, são chamadas <em>funções booleanas</em>. As funções booleanas podem ser especificadas por expressões matemáticas ou por uma tabela  – a \emph{tabela verdade} – listando todos os possíveis valores de entrada e a saída atribuída a cada valor de entrada.</p>
 <p>Algumas funções booleanas elementares são chamadas de portas lógicas. As três operações básicas da Álgebra Booleana são <span class="math notranslate nohighlight">\(+ \colon \{0,1\}^2 \to \{0,1\}\)</span>, <span class="math notranslate nohighlight">\(\cdot\, \colon \{0,1\}^2 \to \{0,1\}\)</span> e <span class="math notranslate nohighlight">\(\overline{\phantom{a}} \colon \{0,1\} \to \{0,1\}\)</span>, também chamadas de operações OR, AND e NOT, respectivamente.</p>
 <p>A Álgebra Booleana pode ser interpretada como descrição de um sistema lógico em que há apenas dois valores lógicos – Falso/Verdadeiro ou 0/1 – e às proposições lógicas pode ser atribuído um e apenas um desses valores devido ao princípio lógico elementar do terceiro excluído.</p>
@@ -523,7 +515,7 @@ document.write(`
 </section>
 </section>
 <section id="portas-logicas">
-<h3>Portas lógicas<a class="headerlink" href="#portas-logicas" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Portas lógicas<a class="headerlink" href="#portas-logicas" title="Link para este cabeçalho">#</a></h3>
 <p>As portas lógicas são funções booleanas simples, blocos fundamentais dos circuitos digitais. As portas lógicas mais importantes são descritas resumidamente nas figuras a seguir.</p>
 <p><img alt="Porta_and.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_and.png" /></p>
 <p><img alt="Porta_nand.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_nand.png" /></p>
@@ -535,10 +527,10 @@ document.write(`
 <p>Qualquer sistema físico que se comporte de maneira a fornecer uma tabela verdade como as apresentadas acima pode ser considerado uma porta lógica.</p>
 </section>
 <section id="teoremas-da-algebra-booleana">
-<h3>Teoremas da álgebra booleana<a class="headerlink" href="#teoremas-da-algebra-booleana" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Teoremas da álgebra booleana<a class="headerlink" href="#teoremas-da-algebra-booleana" title="Link para este cabeçalho">#</a></h3>
 <p>Apresentam-se algumas identidades booleanas úteis para simplificação de expressões.</p>
 <section id="teoremas-da-algebra-booleana-para-uma-variavel">
-<h4>Teoremas da Álgebra Booleana para uma variável<a class="headerlink" href="#teoremas-da-algebra-booleana-para-uma-variavel" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Teoremas da Álgebra Booleana para uma variável<a class="headerlink" href="#teoremas-da-algebra-booleana-para-uma-variavel" title="Link para este cabeçalho">#</a></h4>
 <p>Valem as seguintes identidades:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -598,7 +590,7 @@ document.write(`
 \end{split}\]</div>
 </section>
 <section id="teoremas-da-algebra-booleana-para-varias-variaveis">
-<h4>Teoremas da Álgebra Booleana para várias variáveis<a class="headerlink" href="#teoremas-da-algebra-booleana-para-varias-variaveis" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Teoremas da Álgebra Booleana para várias variáveis<a class="headerlink" href="#teoremas-da-algebra-booleana-para-varias-variaveis" title="Link para este cabeçalho">#</a></h4>
 <p>Valem as seguintes identidades:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -636,7 +628,7 @@ document.write(`
 <p>Para <span class="math notranslate nohighlight">\(X=1\)</span>:  <span class="math notranslate nohighlight">\(1(Y+Z) = Y+Z = 1Y + 1Z\)</span>.</p>
 </section>
 <section id="teoremas-demorgan">
-<h4>Teoremas DeMorgan<a class="headerlink" href="#teoremas-demorgan" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Teoremas DeMorgan<a class="headerlink" href="#teoremas-demorgan" title="Link para este cabeçalho">#</a></h4>
 <p>Valem as seguintes identidades booleanas:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
@@ -646,7 +638,7 @@ document.write(`
     \end{split}
 \end{split}\]</div>
 <section id="prova">
-<h5>Prova<a class="headerlink" href="#prova" title="Link permanente para este cabeçalho">#</a></h5>
+<h5>Prova<a class="headerlink" href="#prova" title="Link para este cabeçalho">#</a></h5>
 <p>Mostrando <span class="math notranslate nohighlight">\(  \overline{X + Y} = \overline{X} \cdot \overline{Y}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -675,14 +667,14 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
 </section>
 </section>
 <section id="universalidade-das-portas-logicas-classicas">
-<h3>Universalidade das Portas Lógicas Clássicas<a class="headerlink" href="#universalidade-das-portas-logicas-classicas" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Universalidade das Portas Lógicas Clássicas<a class="headerlink" href="#universalidade-das-portas-logicas-classicas" title="Link para este cabeçalho">#</a></h3>
 <p>Com apenas algumas das portas lógicas apresentadas nesse artigo pode-se compor qualquer função booleana.</p>
 <p>-<strong>Teorema 1 (Universalidade das Portas Lógicas Clássicas)</strong>: Uma função booleana <span class="math notranslate nohighlight">\(f \colon \{0,1\}^m \to \{0,1\}^n\)</span> qualquer pode ser implementada por uma composição das portas lógicas OR, AND e NOT (além das portas SWAP e FANOUT).</p>
 <p><strong>Teorema 2 (Universalidade da porta NAND)</strong>:  Uma função booleana <span class="math notranslate nohighlight">\(f \colon \{0,1\}^m \to \{0,1\}^n\)</span> qualquer pode ser implementada por uma composição de portas lógicas NAND (além das portas SWAP e FANOUT).</p>
 </section>
 </section>
 <section id="computacao-quantica">
-<h2>Computação quântica<a class="headerlink" href="#computacao-quantica" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Computação quântica<a class="headerlink" href="#computacao-quantica" title="Link para este cabeçalho">#</a></h2>
 <p>A <em>Computação Quântica</em> é um novo paradigma de computação em que utilizam-se sistemas quânticos – os <em>qubits</em>, análogos dos bits clássicos – para se realizar processamento de informação. Lançam-se mão de alguns recursos não existentes na Computação Clássica, como <em>superposição</em> e <em>emaranhamento</em>.</p>
 <p>Há uma variedade de modelos de Computação Quântica, dentre os quais pode-se citar:</p>
 <ul class="simple">
@@ -693,7 +685,7 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
 </ul>
 <p>O presente trabalho aborda apenas a Computação Quântica de Circuitos.</p>
 <section id="computacao-quantica-de-circuitos">
-<h3>Computação quântica de circuitos<a class="headerlink" href="#computacao-quantica-de-circuitos" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Computação quântica de circuitos<a class="headerlink" href="#computacao-quantica-de-circuitos" title="Link para este cabeçalho">#</a></h3>
 <p>Este modelo de Computação Quântica guarda analogia com a Computação Clássica com Portas Lógicas, apresentada no início do artigo. A informação é codificada em qubits, e o processamento é feito por evolução temporal do sistema segundo operações unitárias.</p>
 <p><img alt="Computador quântico.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/Computador%20qu%C3%A2ntico.png" /></p>
 <p>Esquema geral de um computador quântico no modelo de circuitos. Os qubits são preparados em estados iniciais e são submetidos a operações unitárias simbolizadas pela caixa de rótulo <span class="math notranslate nohighlight">\(U\)</span>. Após a sequência de operações, os qubits são lidos (ocorre a medição dos qubits na base computacional), fornecendo uma sequência de bits clássicos com o resultado da computação</p>
@@ -706,9 +698,9 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
 <p>Há uma expectativa de que a computação reversível seja mais eficiente em termos energéticos que a computação irreversível. Isso se deve ao \emph{princípio de Landauer}, que diz que o apagamento de 1 bit de informação está associado a uma dissipação de energia para o ambiente de, no mínimo, <span class="math notranslate nohighlight">\(kT \ln 2\)</span> .Em tese, se forem evitados os apagamentos de informação, a computação poderia ser feita sem gasto energético apreciável.</p>
 </section>
 <section id="o-qubit">
-<h3>O qubit<a class="headerlink" href="#o-qubit" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>O qubit<a class="headerlink" href="#o-qubit" title="Link para este cabeçalho">#</a></h3>
 <section id="descricao-matematica-do-qubit">
-<h4>Descrição Matemática do Qubit<a class="headerlink" href="#descricao-matematica-do-qubit" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Descrição Matemática do Qubit<a class="headerlink" href="#descricao-matematica-do-qubit" title="Link para este cabeçalho">#</a></h4>
 <p>O qubit é um sistema físico que pode ser descrito por um espaço de Hilbert de dimensão 2. Os estados da base canônica são rotulados por <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span>, e um estado geral para o qubit é o vetor unitário</p>
 <div class="math notranslate nohighlight">
 \[
@@ -717,9 +709,9 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
 <p>em que <span class="math notranslate nohighlight">\(|a|^2 + |b|^2 = 1\)</span> e <span class="math notranslate nohighlight">\(a,b \in \mathbb{C}\)</span>.</p>
 </section>
 <section id="fase-relativa-e-fase-global">
-<h4>Fase Relativa e Fase Global<a class="headerlink" href="#fase-relativa-e-fase-global" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Fase Relativa e Fase Global<a class="headerlink" href="#fase-relativa-e-fase-global" title="Link para este cabeçalho">#</a></h4>
 <section id="fase-global">
-<h5>Fase Global<a class="headerlink" href="#fase-global" title="Link permanente para este cabeçalho">#</a></h5>
+<h5>Fase Global<a class="headerlink" href="#fase-global" title="Link para este cabeçalho">#</a></h5>
 <p>Chama-se <em>fase global</em> uma fase complexa multiplicando o estado de um qubit: <span class="math notranslate nohighlight">\(e^{i\alpha}\ket{\psi}\)</span>. Dois estados <span class="math notranslate nohighlight">\(\ket{\psi_1}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi_2} = e^{i\alpha}\ket{\psi_1}\)</span>, iguais a menos de uma fase global, não podem ser distinguidos fisicamente. De fato, dado um observável <span class="math notranslate nohighlight">\(A = \sum_k a_k P_k\)</span>, a probabilidade de o resultado de uma medida ser <span class="math notranslate nohighlight">\(a_k\)</span>, nos dois casos, é igual:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -740,7 +732,7 @@ Na formação de um sistema composto, os vetores <span class="math notranslate n
 <p>Dessa forma, a fase global não tem relevância física, e um sistema descrito por um vetor de estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> também pode ser descrito pelo vetor <span class="math notranslate nohighlight">\(e^{i\alpha}\ket{\psi}\)</span>.</p>
 </section>
 <section id="fase-relativa">
-<h5>Fase Relativa<a class="headerlink" href="#fase-relativa" title="Link permanente para este cabeçalho">#</a></h5>
+<h5>Fase Relativa<a class="headerlink" href="#fase-relativa" title="Link para este cabeçalho">#</a></h5>
 <p>A <em>fase relativa</em> em um qubit é a diferença de fase entre os coeficientes que multiplicam o <span class="math notranslate nohighlight">\(\ket{1}\)</span>. Por exemplo, os vetores</p>
 <div class="math notranslate nohighlight">
 \[
@@ -768,7 +760,7 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 </section>
 </section>
 <section id="representacao-de-um-qubit-na-esfera-de-bloch">
-<h4>Representação de um Qubit na Esfera de Bloch<a class="headerlink" href="#representacao-de-um-qubit-na-esfera-de-bloch" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Representação de um Qubit na Esfera de Bloch<a class="headerlink" href="#representacao-de-um-qubit-na-esfera-de-bloch" title="Link para este cabeçalho">#</a></h4>
 <p>O estado <span class="math notranslate nohighlight">\(\ket{\psi} = a \ket{0} + b\ket{1}\)</span> de um qubit pode ser reescrito, a menos de uma fase global, como</p>
 <div class="math notranslate nohighlight">
 \[
@@ -778,14 +770,14 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 <p><img alt="image" src="https://github.com/user-attachments/assets/2a875130-f59d-49e4-8127-1954ac213591" />)</p>
 </section>
 <section id="pontos-na-esfera-de-bloch">
-<h4>Pontos na Esfera de Bloch<a class="headerlink" href="#pontos-na-esfera-de-bloch" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Pontos na Esfera de Bloch<a class="headerlink" href="#pontos-na-esfera-de-bloch" title="Link para este cabeçalho">#</a></h4>
 <p>Os polos norte da esfera corresponde ao estado <span class="math notranslate nohighlight">\(\ket{0}\)</span> e o polo sul, ao <span class="math notranslate nohighlight">\(\ket{1}\)</span>. No equador, situam-se os estados da forma <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}} \ket{0} + \frac{e^{i\varphi}}{\sqrt{2}} \ket{1}\)</span>, isto é, superposições dos estados <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span> com o mesmo peso e com alguma fase relativa.</p>
 <p><img alt="Pontos_Esfera_Bloch.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Pontos_Esfera_Bloch.png" /></p>
 <p>Observe que os vetores da base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> correspondem às intersecções da esfera com o eixo <span class="math notranslate nohighlight">\(x\)</span>. De forma similar, isso vale para as bases <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{Z}\)</span>, que correspondem às intersecções da esfera com os eixos <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(z\)</span>, respectivamente.</p>
 <p><img alt="Qubit_dois.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/TCC%20LaTeX/cap4/figuras/blochsphere4.png" /></p>
 </section>
 <section id="projecoes-nos-eixos-coordenados">
-<h4>Projeções nos eixos coordenados<a class="headerlink" href="#projecoes-nos-eixos-coordenados" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Projeções nos eixos coordenados<a class="headerlink" href="#projecoes-nos-eixos-coordenados" title="Link para este cabeçalho">#</a></h4>
 <p>As projeções nos eixos <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(x\)</span> de um ponto <span class="math notranslate nohighlight">\(\vec{r}\)</span> na superfície da esfera de Bloch são dadas pelas coordenadas esféricas:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -807,7 +799,7 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 </section>
 </section>
 <section id="notacao-de-circuitos">
-<h3>Notação de Circuitos<a class="headerlink" href="#notacao-de-circuitos" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Notação de Circuitos<a class="headerlink" href="#notacao-de-circuitos" title="Link para este cabeçalho">#</a></h3>
 <p>Os detalhes da notação utilizada para representar circuitos quânticos serão vistos nesta seção.</p>
 <p><img alt="Circuito_Um.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Circuito_Um.png" /></p>
 <p><strong>Entradas e saídas</strong></p>
@@ -816,26 +808,26 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 <p>Os qubits de entrada podem se encontrar em estados <span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span> ou em superposições desses estados. Também podem encontrar-se em estados emaranhados, não possíveis de se exprimir como produto tensorial de estados de 1 qubit.</p>
 </section>
 <section id="sequencia-de-operacoes">
-<h3>Sequência de operações<a class="headerlink" href="#sequencia-de-operacoes" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Sequência de operações<a class="headerlink" href="#sequencia-de-operacoes" title="Link para este cabeçalho">#</a></h3>
 <p>A passagem do tempo, e portanto a sequência de operações, é representada da esquerda para a direita. Ocasionalmente pode-se representar o circuito na forma vertical, e a passagem do tempo é representada de cima para baixo.</p>
 </section>
 <section id="simbolos-para-portas-logicas-quanticas">
-<h3>Símbolos para Portas Lógicas Quânticas<a class="headerlink" href="#simbolos-para-portas-logicas-quanticas" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Símbolos para Portas Lógicas Quânticas<a class="headerlink" href="#simbolos-para-portas-logicas-quanticas" title="Link para este cabeçalho">#</a></h3>
 <p>As portas lógicas quânticas são representadas por caixas contendo o mesmo número de entradas e saídas. As portas lógicas controladas são portas lógicas de mais de 1 qubit em que pelo menos um dos qubits age como controle; o qubit de controle é representado por um círculo (mais detalhes serão vistos posteriormente).</p>
 <p><img alt="Circuito_Tres.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Circuito_Tres.png" /></p>
 <p>Exemplos de portas lógicas quânticas. (1) Porta lógica de 1 qubit. (2) Porta lógica controlada de 2 qubits. (3) Porta lógica de 3 qubits.</p>
 </section>
 <section id="medicoes-de-qubits">
-<h3>Medições de qubits<a class="headerlink" href="#medicoes-de-qubits" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Medições de qubits<a class="headerlink" href="#medicoes-de-qubits" title="Link para este cabeçalho">#</a></h3>
 <p>As medições são as únicas operações potencialmente irreversíveis de um circuito quântico. Em geral são realizadas na base computacional <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span>. A notação para medições é ilustrada abaixo, em que, novamente, fica implícito que a base de medidas é a computacional. Após a medição na base computacional, o resultado é um bit clássico.</p>
 <p><img alt="Circuito_Quatro.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Circuito_Quatro.png" /></p>
 <p>Notações possíveis para medição de qubits. Após a medição na base canônica, o resultado é um cbit. (1) e (2) Medição na base canônica. (3) Medição de um observável <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> especificado.</p>
 </section>
 <section id="portas-logicas-quanticas">
-<h3>Portas Lógicas Quânticas<a class="headerlink" href="#portas-logicas-quanticas" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Portas Lógicas Quânticas<a class="headerlink" href="#portas-logicas-quanticas" title="Link para este cabeçalho">#</a></h3>
 <p>As portas lógicas quânticas são operações unitárias aplicadas em um ou mais qubits. Nesta seção, essas portas lógicas são apresentadas em detalhes.</p>
 <section id="portas-logicas-de-1-qubit">
-<h4>Portas Lógicas de 1 Qubit<a class="headerlink" href="#portas-logicas-de-1-qubit" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Portas Lógicas de 1 Qubit<a class="headerlink" href="#portas-logicas-de-1-qubit" title="Link para este cabeçalho">#</a></h4>
 <p>Estas portas lógicas atuam em 1 qubit apenas. São descritas por matrizes unitárias <span class="math notranslate nohighlight">\(2 \times 2\)</span>. As portas lógicas apresentadas nesse tópico são as portas <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(Z\)</span> de Pauli (também denotadas por <span class="math notranslate nohighlight">\(\sigma_x\)</span>, <span class="math notranslate nohighlight">\(\sigma_y\)</span> e <span class="math notranslate nohighlight">\(\sigma_z\)</span>, respectivamente), a porta <span class="math notranslate nohighlight">\(H\)</span> de Hadamard, a porta de fase ou porta <span class="math notranslate nohighlight">\(S\)</span> e a porta <span class="math notranslate nohighlight">\(\tfrac{\pi}{8}\)</span> ou porta <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <p><strong>Porta X de Pauli ou NOT quântico</strong></p>
 <p>A porta <span class="math notranslate nohighlight">\(X\)</span> de Pauli é a operação unitária de 1 qubit que, na base computacional, é representada pela matriz de Pauli <span class="math notranslate nohighlight">\(X = \sigma_x\)</span>. Algumas informações dessa porta estão resumidas na figura abaixo.</p>
@@ -874,7 +866,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 \]</div>
 </section>
 <section id="portas-logicas-de-2-qubits">
-<h4>Portas Lógicas de 2 Qubits<a class="headerlink" href="#portas-logicas-de-2-qubits" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Portas Lógicas de 2 Qubits<a class="headerlink" href="#portas-logicas-de-2-qubits" title="Link para este cabeçalho">#</a></h4>
 <p>As portas lógicas de 2 qubits são realizadas por matrizes unitárias <span class="math notranslate nohighlight">\(4\times 4\)</span>. As principais operações são CNOT (NOT controlada), <span class="math notranslate nohighlight">\(Z\)</span> controlada e SWAP, descritas abaixo.</p>
 <p><strong>Porta CNOT</strong></p>
 <p>A porta CNOT, ou NOT controlada, é uma porta de 2 qubits em que um deles exerce a função de controle e o outro, a de alvo. Em geral, quando não especificado, o primeiro qubit é o controle e o segundo, o alvo. Se o qubit de controle for <span class="math notranslate nohighlight">\(\ket{0}\)</span>, nada acontece com o qubit alvo. Se o controle for <span class="math notranslate nohighlight">\(\ket{1}\)</span>, a porta NOT quântica (porta <span class="math notranslate nohighlight">\(X\)</span> de Pauli) é aplicada ao alvo:</p>
@@ -912,7 +904,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <p><img alt="Porta_Swap.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Swap.png" /></p>
 </section>
 <section id="portas-logicas-de-3-qubits">
-<h4>Portas Lógicas de 3 Qubits<a class="headerlink" href="#portas-logicas-de-3-qubits" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Portas Lógicas de 3 Qubits<a class="headerlink" href="#portas-logicas-de-3-qubits" title="Link para este cabeçalho">#</a></h4>
 <p>As principais operações em 3 qubits são as portas Toffoli, também conhecida por CCNOT (CNOT controlada), e Fredkin, ou CSWAP (SWAP controlada).</p>
 <p><strong>Porta Toffoli ou CCNOT</strong></p>
 <p>A porta Toffoli é uma operação linear que envolve 3 qubits. Dois deles funcionam como controle e um, como alvo. O alvo só é modificado (pela aplicação da porta <span class="math notranslate nohighlight">\(X\)</span>) se o estado dos dois controles for <span class="math notranslate nohighlight">\(\ket{1}\ket{1}\)</span>.</p>
@@ -925,10 +917,10 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 </section>
 </section>
 <section id="identidades-de-circuitos">
-<h3>Identidades de Circuitos<a class="headerlink" href="#identidades-de-circuitos" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Identidades de Circuitos<a class="headerlink" href="#identidades-de-circuitos" title="Link para este cabeçalho">#</a></h3>
 <p>Esta seção reúne algumas propriedades das portas lógicas quânticas vistas anteriormente. Também são apresentadas identidades úteis para se manipular circuitos quânticos.</p>
 <section id="identidades-para-as-matrizes-de-pauli">
-<h4>Identidades para as matrizes de Pauli<a class="headerlink" href="#identidades-para-as-matrizes-de-pauli" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Identidades para as matrizes de Pauli<a class="headerlink" href="#identidades-para-as-matrizes-de-pauli" title="Link para este cabeçalho">#</a></h4>
 <p>Valem as seguintes relações para as matrizes de Pauli <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(Z\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -957,7 +949,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 \end{split}\]</div>
 </section>
 <section id="matrizes-de-pauli-na-base-ket-ket">
-<h4>Matrizes de Pauli na base <span class="math notranslate nohighlight">\(\ket{+},\ket{-}\)</span><a class="headerlink" href="#matrizes-de-pauli-na-base-ket-ket" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Matrizes de Pauli na base <span class="math notranslate nohighlight">\(\ket{+},\ket{-}\)</span><a class="headerlink" href="#matrizes-de-pauli-na-base-ket-ket" title="Link para este cabeçalho">#</a></h4>
 <p>Fazendo-se a mudança de base de <span class="math notranslate nohighlight">\(\ket{0},\ket{1}\)</span> para <span class="math notranslate nohighlight">\(\ket{+},\ket{-}\)</span> por meio da matriz <span class="math notranslate nohighlight">\(H\)</span>, obtém-se para as matrizes de Pauli:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -997,7 +989,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
   \end{split}\]</div>
 </section>
 <section id="inversa-de-hadamard">
-<h4>Inversa de Hadamard<a class="headerlink" href="#inversa-de-hadamard" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Inversa de Hadamard<a class="headerlink" href="#inversa-de-hadamard" title="Link para este cabeçalho">#</a></h4>
 <p>A porta de Hadamard é sua própria inversa.</p>
 <p>Pode-se verificar fazendo a conta com matrizes diretamente.</p>
 <div class="math notranslate nohighlight">
@@ -1011,25 +1003,25 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <p>Outra maneira de se verificar isso é perceber que <span class="math notranslate nohighlight">\(H\)</span> é hermitiana (<span class="math notranslate nohighlight">\(H^\dagger = H\)</span>) e unitária (<span class="math notranslate nohighlight">\(H^{-1} = H^\dagger\)</span>), de forma que <span class="math notranslate nohighlight">\(H^{-1} = H^\dagger = H\)</span>.</p>
 </section>
 <section id="relacao-entre-as-portas-s-e-t">
-<h4>Relação entre as portas <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span><a class="headerlink" href="#relacao-entre-as-portas-s-e-t" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Relação entre as portas <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span><a class="headerlink" href="#relacao-entre-as-portas-s-e-t" title="Link para este cabeçalho">#</a></h4>
 <p>As portas CNOT e SWAP são suas próprias inversas. CNOT^2 = SWAP^2 = I</p>
 </section>
 <section id="cnot-por-z">
-<h4>CNOT por Z<a class="headerlink" href="#cnot-por-z" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>CNOT por Z<a class="headerlink" href="#cnot-por-z" title="Link para este cabeçalho">#</a></h4>
 <p>A porta CNOT pode ser obtida usando-se uma porta <span class="math notranslate nohighlight">\(Z\)</span> controlada:</p>
 <p><img alt="CNOT_Usando_Z.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/CNOT_Usando_Z.png" /></p>
 </section>
 <section id="swap-por-cnot">
-<h4>SWAP por CNOT<a class="headerlink" href="#swap-por-cnot" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>SWAP por CNOT<a class="headerlink" href="#swap-por-cnot" title="Link para este cabeçalho">#</a></h4>
 <p>A porta SWAP pode ser construída por 3 portas CNOT:</p>
 <p><img alt="CNOT_USANDO_SWAP.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/CNOT_USANDO_SWAP.png" /></p>
 </section>
 </section>
 <section id="universalidade-das-portas-logicas-quanticas">
-<h3>Universalidade das Portas Lógicas Quânticas<a class="headerlink" href="#universalidade-das-portas-logicas-quanticas" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Universalidade das Portas Lógicas Quânticas<a class="headerlink" href="#universalidade-das-portas-logicas-quanticas" title="Link para este cabeçalho">#</a></h3>
 <p>É útil saber quais conjuntos de portas lógicas quânticas permitem reproduzir qualquer operação unitária <span class="math notranslate nohighlight">\(U\)</span> em <span class="math notranslate nohighlight">\(n\)</span> qubits. Essa questão é conhecida como \emph{universalidade} de um conjunto de portas lógicas quânticas. A universalidade pode ter um sentido estrito – isto é, uma operação <span class="math notranslate nohighlight">\(U\)</span> qualquer pode ser implementada exatamente com um número finito portas lógicas – ou um sentido amplo – isto é, a operação <span class="math notranslate nohighlight">\(U\)</span> pode ser aproximada, permitindo-se um erro <span class="math notranslate nohighlight">\(\varepsilon\)</span> arbitrado, por uma sequência finita de portas lógicas (cujo número é função do erro <span class="math notranslate nohighlight">\(\varepsilon\)</span> máximo estipulado).</p>
 <section id="universalidade-de-portas-logicas-na-computacao-classica-reversivel">
-<h4>Universalidade de Portas Lógicas na Computação Clássica Reversível<a class="headerlink" href="#universalidade-de-portas-logicas-na-computacao-classica-reversivel" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Universalidade de Portas Lógicas na Computação Clássica Reversível<a class="headerlink" href="#universalidade-de-portas-logicas-na-computacao-classica-reversivel" title="Link para este cabeçalho">#</a></h4>
 <p>Na Computação Clássica Reversível, as funções booleanas têm o mesmo número de bits na entrada e saída, e as portas lógicas são reversíveis (isto é, conhecendo-se a saída, é possível determinar a entrada que a originou). As portas lógicas NOT, CNOT, SWAP, Toffoli e Fredkin, quando trabalhando apenas com bits e não qubits, são exemplos de portas lógicas clássicas reversíveis.</p>
 <p><strong>Teorema 1:</strong> A porta Toffoli é universal para a Computação Clássica.</p>
 <p>É possível realizar as portas NOT e AND utilizando a porta Toffoli e acrescentando alguns bits de trabalho (bits com valor fixado em 0 ou 1 dependendo da necessidade).</p>
@@ -1040,7 +1032,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <p>Com isso, um circuito booleano qualquer pode ser realizado apenas com portas Fredkin ignorando-se bits extra (``lixo’’).</p>
 </section>
 <section id="universalidade-de-portas-logicas-na-computacao-quantica">
-<h4>Universalidade de Portas Lógicas na Computação Quântica<a class="headerlink" href="#universalidade-de-portas-logicas-na-computacao-quantica" title="Link permanente para este cabeçalho">#</a></h4>
+<h4>Universalidade de Portas Lógicas na Computação Quântica<a class="headerlink" href="#universalidade-de-portas-logicas-na-computacao-quantica" title="Link para este cabeçalho">#</a></h4>
 <p>Como as portas Toffoli e Fredkin da Computação Clássica têm análogos quânticos, e tendo em vista a universalidade dessas portas na Computação Clássica, tem-se que a Computação Quântica engloba a Computação Clássica quando lança-se mão de qubits de trabalho e ignoram-se os qubits ``lixo’’</p>
 <p>É possível verificar que, para a Computação Quântica, todas as portas lógicas de 1 qubit e a porta CNOT formam um conjunto universal no sentido estrito (ou seja, capaz de produzir exatamente, em princípio, qualquer transformação unitária)</p>
 <p>O conjunto finito de operações <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(Z\)</span>, <span class="math notranslate nohighlight">\(H\)</span>, <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(S\)</span>, e CNOT também é universal, agora no sentido amplo (isto é, capaz apenas de aproximar uma operação unitária geral dentro de uma faixa de erro pré-determinada). Esse conjunto não é mínimo, pois  algumas dessas portas de 1 qubit podem ser obtidas das demais. Por exemplo: <span class="math notranslate nohighlight">\(S = T^2\)</span>, <span class="math notranslate nohighlight">\(Z=HXH = S^2\)</span>, <span class="math notranslate nohighlight">\(Y = -iZX\)</span>.</p>
@@ -1049,7 +1041,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 </section>
 </section>
 <section id="teorema-da-nao-clonagem">
-<h3>Teorema da Não-Clonagem<a class="headerlink" href="#teorema-da-nao-clonagem" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Teorema da Não-Clonagem<a class="headerlink" href="#teorema-da-nao-clonagem" title="Link para este cabeçalho">#</a></h3>
 <p>Um bit clássico pode ser copiado para servir como entrada em diversas partes de um circuito digital clássico.</p>
 <p><img alt="Nao_clonagem.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Nao_clonagem.png" /></p>
 <p>Pode-se pensar nesse comportamento em termos da porta lógica clássica COPY que devolve à saída duas (ou mais) cópias do bit de entrada.</p>
@@ -1144,7 +1136,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">próximo</p>
-        <p class="prev-next-title">Programação Quântica com Ket</p>
+        <p class="prev-next-title">Programacão Quântica com Ket</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1155,7 +1147,8 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1272,8 +1265,8 @@ De Evandro Chagas Ribeiro da Rosa
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

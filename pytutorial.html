@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="pt-BR" data-content_root="" >
+<html lang="pt-BR" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Tutorial de Python &#8212; Computação Quântica com Ket</title>
   
@@ -17,60 +16,60 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="_static/translations.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=daa5921a"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'pytutorial';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
     <link rel="next" title="Álgebra Linear para Computação Quântica" href="algebra.html" />
     <link rel="prev" title="Introdução à Computação Quântica" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,19 +85,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -106,7 +94,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +101,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,7 +118,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -161,11 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
-    <script>document.write(`<img src="_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+    <img src="_static/gcq.svg" class="logo__image only-dark pst-js-only" alt="Computação Quântica com Ket - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -180,7 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="algebra.html">Álgebra Linear para Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="computacao_classica_quantica.html">Computação clássica e quãntica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kettutorial.html">Programação Quântica com Ket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kettutorial.html">Programacão Quântica com Ket</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="algoritmos/grover.html">Algoritmo de Busca de Grover</a></li>
 <li class="toctree-l2"><a class="reference internal" href="algoritmos/deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
@@ -210,9 +205,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -231,9 +231,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -258,14 +258,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/pytutorial.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -276,14 +276,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/pytutorial.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_colab.png">
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -376,27 +376,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -449,10 +441,10 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tutorial-de-python">
-<h1>Tutorial de Python<a class="headerlink" href="#tutorial-de-python" title="Link permanente para este cabeçalho">#</a></h1>
+<h1>Tutorial de Python<a class="headerlink" href="#tutorial-de-python" title="Link para este cabeçalho">#</a></h1>
 <p>Este capítulo traz uma breve introdução ao Python. Nosso objetivo é apresentar conceitos básicos, visando um público que não possui familiaridade com linguagens de programação. Caso você já tenha familiaridade com alguma linguagem de programação e/ou queira aprofundar seu conhecimento em Python, recomendamos o <a class="reference external" href="https://docs.python.org/pt-br/3.10/tutorial/">tutorial oficial de Python</a> e o <a class="reference external" href="https://www.w3schools.com/python">Python Tutorial</a> da W3Schools (em inglês).</p>
 <section id="ambiente-de-execucao">
-<h2>Ambiente de Execução<a class="headerlink" href="#ambiente-de-execucao" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Ambiente de Execução<a class="headerlink" href="#ambiente-de-execucao" title="Link para este cabeçalho">#</a></h2>
 <p>É possível executar e interagir com todo código Python neste site, basta ativar a opção <i class="fas fa-rocket"></i> <strong>Live Code</strong>. Essa é uma ótima maneira de testar seus conhecimentos. No entanto, o código executado não fica salvo, e a página volta ao seu estado inicial sempre que recarregada.</p>
 <p>Todo o site é construído em Jupyter Notebook, assim, caso queira salvar suas alterações, é possível <i class="fas fa-download"></i> baixar o notebook da página (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) e executá-lo localmente; ou carregar e executar o notebook no <i class="fas fa-rocket"></i> <strong>Binder/Colab</strong> e, em seguida, fazer o download do notebook com suas modificações.</p>
 <div class="admonition note">
@@ -466,7 +458,7 @@ document.write(`
 </div>
 </section>
 <section id="variaveis-e-tipos-de-dados">
-<h2>Variáveis e Tipos de Dados<a class="headerlink" href="#variaveis-e-tipos-de-dados" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Variáveis e Tipos de Dados<a class="headerlink" href="#variaveis-e-tipos-de-dados" title="Link para este cabeçalho">#</a></h2>
 <p>As informações, como números e palavras, são armazenadas em variáveis. Cada variável possui um nome e um valor. Para criar ou atualizar o valor de uma variável, é usado o operador <code class="docutils literal notranslate"><span class="pre">=</span></code> como no exemplo abaixo, onde é atribuído o valor 42 à variável <code class="docutils literal notranslate"><span class="pre">answer</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -526,7 +518,7 @@ Texto é do tipo &lt;class &#39;str&#39;&gt;
 </div>
 </section>
 <section id="operacoes-matematicas-basicas">
-<h2>Operações Matemáticas Básicas<a class="headerlink" href="#operacoes-matematicas-basicas" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Operações Matemáticas Básicas<a class="headerlink" href="#operacoes-matematicas-basicas" title="Link para este cabeçalho">#</a></h2>
 <p>Operações matemáticas básicas estão disponíveis nativamente no Python. É possível somar (<code class="docutils literal notranslate"><span class="pre">+</span></code>), subtrair (<code class="docutils literal notranslate"><span class="pre">-</span></code>), multiplicar (<code class="docutils literal notranslate"><span class="pre">*</span></code>), dividir (<code class="docutils literal notranslate"><span class="pre">/</span></code>) números e encontrar o resto da divisão inteira (<code class="docutils literal notranslate"><span class="pre">%</span></code>) entre números. Além disso, também é possível realizar operações de potenciação (<code class="docutils literal notranslate"><span class="pre">**</span></code>) e divisão inteira (<code class="docutils literal notranslate"><span class="pre">//</span></code>). As operações seguem a precedência de operadores usual, e é possível usar parênteses para definir a ordem das operações.</p>
 <p>Abaixo segue exemplos simples de como realizar operações matemáticas básicas em Python. Experimente modificar e executar este código em para ver os resultados das operações.</p>
 <div class="cell docutils container">
@@ -580,10 +572,10 @@ Resultado 2: 30
 </div>
 </section>
 <section id="estruturas-de-controle">
-<h2>Estruturas de Controle<a class="headerlink" href="#estruturas-de-controle" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Estruturas de Controle<a class="headerlink" href="#estruturas-de-controle" title="Link para este cabeçalho">#</a></h2>
 <p>Estruturas de controle permitem alterar o fluxo de execução de um código. Por padrão, o código é executado linha por linha, de cima para baixo. No entanto, é possível utilizar instruções para executar um trecho de código de maneira condicional, ou instruir para repetir uma execução dependendo de algum parâmetro.</p>
 <section id="condicionais">
-<h3>Condicionais<a class="headerlink" href="#condicionais" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Condicionais<a class="headerlink" href="#condicionais" title="Link para este cabeçalho">#</a></h3>
 <p>Uma das estruturas de controle mais usadas é o <code class="docutils literal notranslate"><span class="pre">if-else</span></code>, onde um trecho de código é executado dependendo de alguma condição. Por exemplo, o código abaixo verifica se o número é par ou não.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -635,7 +627,7 @@ x não é o maior, mas é maior que y
 <p>No exemplo acima, primeiro verificamos se <code class="docutils literal notranslate"><span class="pre">x</span></code> é maior que <code class="docutils literal notranslate"><span class="pre">y</span></code>. Se for verdadeiro, verificamos se <code class="docutils literal notranslate"><span class="pre">x</span></code> também é maior que <code class="docutils literal notranslate"><span class="pre">z</span></code>. Se isso for verdadeiro, imprimimos que <code class="docutils literal notranslate"><span class="pre">x</span></code> é o maior de todos. Caso contrário, imprimimos que <code class="docutils literal notranslate"><span class="pre">x</span></code> não é o maior, mas ainda é maior que <code class="docutils literal notranslate"><span class="pre">y</span></code>. Se a primeira condição (<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code>) for falsa, então imprimimos que <code class="docutils literal notranslate"><span class="pre">y</span></code> é maior que <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 </section>
 <section id="laco-de-repeticao-loop">
-<h3>Laço de Repetição (Loop)<a class="headerlink" href="#laco-de-repeticao-loop" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Laço de Repetição (Loop)<a class="headerlink" href="#laco-de-repeticao-loop" title="Link para este cabeçalho">#</a></h3>
 <p>Outra estrutura de controle muito usada é o laço de repetição <code class="docutils literal notranslate"><span class="pre">for</span></code>, onde um bloco de código é executado repetidamente. Por exemplo, o código abaixo soma todos os números dos primeiros 1000 números:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -696,11 +688,11 @@ lagarto tem 7 letras
 </section>
 </section>
 <section id="funcoes">
-<h2>Funções<a class="headerlink" href="#funcoes" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Funções<a class="headerlink" href="#funcoes" title="Link para este cabeçalho">#</a></h2>
 <p>Funções são uma ótima maneira de abstrair o funcionamento do seu código e organizá-lo. Funções são blocos de código que com um comportamento específico e normalmente possuem parâmetros de entrada e retornam algum valor. Por exemplo, a função <code class="docutils literal notranslate"><span class="pre">soma</span></code> definida abaixo retorna a soma dos argumentos de entrada.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">soma</span><span class="p">(</span><span class="n">valor_a</span><span class="p">,</span> <span class="n">valor_b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">(</span><span class="n">valor_a</span><span class="p">,</span> <span class="n">valor_b</span><span class="p">):</span>
     <span class="n">resultado</span> <span class="o">=</span> <span class="n">valor_a</span> <span class="o">+</span> <span class="n">valor_b</span>
     <span class="k">return</span> <span class="n">resultado</span>
 </pre></div>
@@ -730,7 +722,7 @@ lagarto tem 7 letras
 <p>A instrução <code class="docutils literal notranslate"><span class="pre">return</span></code> é usada para indicar o valor que deve ser retornado da função. É possível que uma função retorne em mais de um lugar. Por exemplo, podemos colocar o <code class="docutils literal notranslate"><span class="pre">return</span></code> dentro de um bloco condicional:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maior_de_idade</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">idade</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">maior_de_idade</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">idade</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> é maior de idade.&quot;</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> é menor de idade.&quot;</span>
@@ -751,7 +743,7 @@ lagarto tem 7 letras
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tipo do parâmetro name ↴           ↱ tipo do parâmetro idade</span>
-<span class="k">def</span> <span class="nf">maior_de_idade</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">idade</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">maior_de_idade</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">idade</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="c1">#                                        ↳ tipo do retorno da função</span>
     <span class="k">if</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> é maior de idade.&quot;</span>
@@ -771,12 +763,12 @@ lagarto tem 7 letras
 <p>Você também pode chamar funções já definidas. Por exemplo, <code class="docutils literal notranslate"><span class="pre">print</span></code> é uma função já definida do Python. Além desta, existem diversas outras, como a função <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#range" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">range</span></code></a> vista anteriormente.</p>
 </section>
 <section id="importando-modulos">
-<h2>Importando Módulos<a class="headerlink" href="#importando-modulos" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Importando Módulos<a class="headerlink" href="#importando-modulos" title="Link para este cabeçalho">#</a></h2>
 <p>Além das funcionalidades básicas do Python, algumas já vistas neste tutorial, a linguagem traz uma vasta biblioteca com módulos específicos para criptografia, processamento de texto, gerenciamento de arquivos e muito mais. Recomendamos consultar a documentação do Python para ver quais bibliotecas o Python traz por padrão: <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/index.html">Documentação Python</a>. Para exemplificar o uso de módulos no Python, vamos importar a biblioteca <a class="reference external" href="https://docs.python.org/pt-br/3.10/library/math.html#module-math" title="(em Python v3.10)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code></a>.</p>
 <p>Para importar uma biblioteca, é usada a instrução <code class="docutils literal notranslate"><span class="pre">import</span></code>, como no exemplo abaixo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valor de π =&quot;</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valor de e =&quot;</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
@@ -795,7 +787,7 @@ Raiz quadrada de 2 = 1.4142135623730951
 <p>Uma vez que o módulo é importado, você terá acesso às funções e variáveis definidas nele. Além disso, é possível importar elementos específicos de um módulo, como no exemplo a seguir:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cosseno de π =&quot;</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Seno de π =&quot;</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
@@ -815,10 +807,10 @@ Seno de π = 1.2246467991473532e-16
 </div>
 </section>
 <section id="estruturas-de-dados">
-<h2>Estruturas de Dados<a class="headerlink" href="#estruturas-de-dados" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Estruturas de Dados<a class="headerlink" href="#estruturas-de-dados" title="Link para este cabeçalho">#</a></h2>
 <p>Estruturar seus dados de maneira correta é essencial para conseguir resolver alguns problemas usando programação de maneira eficiente. Dentre as estruturas de dados que o Python implementa, duas são essenciais: listas e dicionários.</p>
 <section id="listas">
-<h3>Listas<a class="headerlink" href="#listas" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Listas<a class="headerlink" href="#listas" title="Link para este cabeçalho">#</a></h3>
 <p>Lista (<a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#list" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) é uma estrutura de dados simples, onde cada elemento tem uma posição e é possível adicionar e remover elementos da lista, além de iterar sobre a mesma. Em Python, para criar uma lista, basta listar seus itens como no exemplo abaixo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -972,7 +964,7 @@ Lista de pares após remover o terceiro elemento: [2, 6, 8, 10, 12]
 </div>
 </section>
 <section id="dicionarios">
-<h3>Dicionários<a class="headerlink" href="#dicionarios" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Dicionários<a class="headerlink" href="#dicionarios" title="Link para este cabeçalho">#</a></h3>
 <p>Dicionário (<a class="reference external" href="https://docs.python.org/pt-br/3.10/library/stdtypes.html#dict" title="(em Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) é uma estrutura de dados que mapeia uma chave a um valor, análogo a um dicionário de português que mapeia uma palavra para o seu significado. É possível construir um dicionário diretamente, como no exemplo abaixo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1099,7 +1091,7 @@ Nota de Eva: 9.5
 </section>
 </section>
 <section id="operacoes-com-matrizes">
-<h2>Operações com Matrizes<a class="headerlink" href="#operacoes-com-matrizes" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Operações com Matrizes<a class="headerlink" href="#operacoes-com-matrizes" title="Link para este cabeçalho">#</a></h2>
 <p>Como a linguagem da computação quântica é álgebra linear, é interessante sabermos como operar com matrizes no Python. Para isso, é recomendado usar a biblioteca NumPy. Como essa biblioteca não faz parte do Python, é necessário instalá-la. Execute a próxima célula que irá instalar o NumPy e importá-lo.</p>
 <p>Note que no importe nós renomeamos o módulo <code class="docutils literal notranslate"><span class="pre">numpy</span></code> para <code class="docutils literal notranslate"><span class="pre">np</span></code> no código.</p>
 <div class="cell docutils container">
@@ -1107,7 +1099,7 @@ Nota de Eva: 9.5
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span>-q
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>-q
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -1238,7 +1230,7 @@ Além disso, operações como soma e multiplicação elemento a elemento também
 </div>
 </div>
 <section id="vetor-linha-e-vetor-coluna">
-<h3>Vetor Linha e Vetor Coluna<a class="headerlink" href="#vetor-linha-e-vetor-coluna" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Vetor Linha e Vetor Coluna<a class="headerlink" href="#vetor-linha-e-vetor-coluna" title="Link para este cabeçalho">#</a></h3>
 <p>Quando um vetor é definido como <code class="docutils literal notranslate"><span class="pre">np.array([...])</span></code>, ele pode operar tanto como um vetor linha quanto como um vetor coluna. Esse é o comportamento esperado para um vetor de uma dimensão, no entanto, em alguns casos, como na computação quântica, diferenciar entre vetor linha e coluna é importante. Vetores linha e coluna possuem duas dimensões como matrizes e podem ser criados como no exemplo a seguir.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1289,7 +1281,7 @@ Além disso, operações como soma e multiplicação elemento a elemento também
 </section>
 </section>
 <section id="conclusao">
-<h2>Conclusão<a class="headerlink" href="#conclusao" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Conclusão<a class="headerlink" href="#conclusao" title="Link para este cabeçalho">#</a></h2>
 <p>O objetivo deste tutorial é proporcionar uma breve introdução ao Python e permitir que alunos sem familiaridade com programação possam iniciar sua introdução ao tema.</p>
 <p>Este material está longe de ser completo e não tem a intenção de ser. Recomendamos aos alunos que busquem materiais externos para complementar seus conhecimentos. Além disso, uma boa maneira de aprender é modificar e executar o código apresentado no site. Portanto, ative o <i class="fas fa-rocket"></i> Live Code e teste!</p>
 </section>
@@ -1350,7 +1342,8 @@ Além disso, operações como soma e multiplicação elemento a elemento também
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1427,8 +1420,8 @@ De Evandro Chagas Ribeiro da Rosa
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

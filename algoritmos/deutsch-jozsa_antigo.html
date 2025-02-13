@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="pt-BR" data-content_root="" >
+<html lang="pt-BR" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Algoritmo de Deutsch-Jozsa &#8212; Computação Quântica com Ket</title>
   
@@ -17,60 +16,60 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=daa5921a"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algoritmos/deutsch-jozsa_antigo';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,19 +85,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -106,7 +94,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +101,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -133,7 +120,8 @@ const thebe_selector_output = ".output, .cell_output"
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -163,11 +151,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
-    <script>document.write(`<img src="../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+    <img src="../_static/gcq.svg" class="logo__image only-dark pst-js-only" alt="Computação Quântica com Ket - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -182,7 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../algebra.html">Álgebra Linear para Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computacao_classica_quantica.html">Computação clássica e quãntica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kettutorial.html">Programação Quântica com Ket</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kettutorial.html">Programacão Quântica com Ket</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="grover.html">Algoritmo de Busca de Grover</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
@@ -212,9 +207,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -233,9 +233,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -311,27 +311,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -372,14 +364,14 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="algoritmo-de-deutsch-jozsa">
-<h1>Algoritmo de Deutsch-Jozsa<a class="headerlink" href="#algoritmo-de-deutsch-jozsa" title="Link permanente para este cabeçalho">#</a></h1>
+<h1>Algoritmo de Deutsch-Jozsa<a class="headerlink" href="#algoritmo-de-deutsch-jozsa" title="Link para este cabeçalho">#</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Material extraído do TCC <span class="xref myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span>, de Giovani Goraiebe Pollachini.</p>
+<p>Material extraído do TCC <a class="reference internal" href="#./tcc-giovani.pdf"><span class="xref myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
 </div>
 <p>O Algoritmo de Deutsch-Jozsa é um algoritmo quântico projetado para resolver o Problema de Deutsch-Jozsa. Esse problema não tem especial ênfase em aplicações, mas torna-se laboratório interessante para investigar técnicas e possíveis vantagens da Computação Quântica. A principal referência para esta seção é o livro <span id="id1">[<a class="reference internal" href="../referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span>.</p>
 <section id="problema-de-deutsch-jozsa">
-<h2>Problema de Deutsch-Jozsa<a class="headerlink" href="#problema-de-deutsch-jozsa" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Problema de Deutsch-Jozsa<a class="headerlink" href="#problema-de-deutsch-jozsa" title="Link para este cabeçalho">#</a></h2>
 <p>Antes de enunciar o problema de Deutsch-Jozsa é conveniente escrever algumas definições.</p>
 <p><strong>Definição 1:</strong> Função constante e função balanceada.</p>
 <p>A função booleana <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to \{0,1\}\)</span> é dita \emph{constante} se <span class="math notranslate nohighlight">\(f\)</span> assume o mesmo valor em todas as entradas:</p>
@@ -411,7 +403,7 @@ O problema desta seção tem o seguinte enunciado:</p>
 <p>Deseja-se, dada uma função <span class="math notranslate nohighlight">\(f\)</span> considerada como caixa preta, e com o compromisso de ser ou constante ou balanceada, decidir qual dos dois casos mutuamente excludentes é verdadeiro.</p>
 </section>
 <section id="id2">
-<h2>Algoritmo de Deutsch-Jozsa<a class="headerlink" href="#id2" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Algoritmo de Deutsch-Jozsa<a class="headerlink" href="#id2" title="Link para este cabeçalho">#</a></h2>
 <p>Para resolver o problema de Deutsch-Jozsa com um algoritmo quântico, é necessário ter uma versão quântica da função booleana <span class="math notranslate nohighlight">\(f\)</span>, dada como oráculo, isto é, dada como uma caixa preta em que não se pode visualizar a subrotina que calcula <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>Considere que <span class="math notranslate nohighlight">\(f\)</span> seja dada por meio do oráculo de fase. O algoritmo de Deutsch-Jozsa para decidir se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada é dado pelo procedimento abaixo.</p>
 <p><span class="math notranslate nohighlight">\(\textbf{Entrada:}\)</span> <span class="math notranslate nohighlight">\(O_\text{F}(f) = O\)</span> \ \ (oráculo de fase associado à função booleana <span class="math notranslate nohighlight">\(f\)</span>)</p>
@@ -489,16 +481,16 @@ Notação compacta:</p>
 <p>Dessa forma, decide-se por ‘<span class="math notranslate nohighlight">\(f\)</span> é constante’ se a medida resultar no estado <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span> e por `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’, se resultar em um estado diferente. Esse teste é realizado no algoritmo por uma mudança de base, realizada pela porta Hadamard, e uma medição na base computacional.</p>
 </section>
 <section id="algoritimo-classico">
-<h2>Algorítimo clássico<a class="headerlink" href="#algoritimo-classico" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Algorítimo clássico<a class="headerlink" href="#algoritimo-classico" title="Link para este cabeçalho">#</a></h2>
 <p>Agora considere o problema de Deutsch-Jozsa no contexto clássico. Tem-se <span class="math notranslate nohighlight">\(f\)</span> dada como uma caixa preta e se quer decidir se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada. A seguir serão vistas brevemente as abordagens clássicas determinística e aleatória para o problema.</p>
 <section id="algoritmo-classico-deterministico">
-<h3>Algoritmo Clássico Determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Algoritmo Clássico Determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link para este cabeçalho">#</a></h3>
 <p>A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar aplicações sucessivas de <span class="math notranslate nohighlight">\(f\)</span> para diversas entradas até se ter certeza de qual opção é válida (se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada). Por exemplo\footnote{Nesta parte, usou-se a notação que confunde uma palavra de bits com sua representação por número inteiro sem sinal. Ver observação \ref{cap5:rmk_notacao_vetor_bits_nro_inteiro}.}, calcula-se <span class="math notranslate nohighlight">\(f(0)\)</span>, <span class="math notranslate nohighlight">\(f(1)\)</span>, <span class="math notranslate nohighlight">\(f(2)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> e se verifica se <span class="math notranslate nohighlight">\(f(1) = f(0)\)</span>, <span class="math notranslate nohighlight">\(f(2) = f(1)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> ou não. Caso ocorra <span class="math notranslate nohighlight">\(f(j) \neq f(i)\)</span>, então a opção certa é `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’, e caso isso não ocorra, a opção correta é ``<span class="math notranslate nohighlight">\(f\)</span> é constante’’.</p>
 <p>Para se distinguir com certeza as duas opções, deve-se aplicar <span class="math notranslate nohighlight">\(f\)</span> a metade das entradas possíveis mais uma, ou seja, a <span class="math notranslate nohighlight">\(2^n/2 + 1\)</span> entradas. Isso porque, na pior das hipóteses, a função era balanceada e, obteve-se um mesmo resultado, por azar, para as <span class="math notranslate nohighlight">\(2^n/2\)</span> entradas testadas, impedindo que se faça a escolha com certeza.</p>
 <p>Dessa forma, o custo computacional desse algoritmo é de <span class="math notranslate nohighlight">\(2^n/2 + 1\)</span> aplicações de <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </section>
 <section id="algoritmo-classico-probabilistico">
-<h3>Algoritmo Clássico Probabilístico<a class="headerlink" href="#algoritmo-classico-probabilistico" title="Link permanente para este cabeçalho">#</a></h3>
+<h3>Algoritmo Clássico Probabilístico<a class="headerlink" href="#algoritmo-classico-probabilistico" title="Link para este cabeçalho">#</a></h3>
 <p>Um algoritmo probabilístico utiliza a probabilidade como recurso computacional. Para esse tipo de computação, é possível que entradas iguais produzam saídas diferentes, e que a máquina passe por estados diferentes durante a computação, em função de fatores probabilísticos presentes no algoritmo.</p>
 <p>Nesse contexto, se for permitida uma probabilidade de erro <span class="math notranslate nohighlight">\(\varepsilon\)</span> na decisão e o uso de sorteios aleatórios em certas etapas, é possível reduzir o custo computacional do algoritmo clássico determinístico.</p>
 <p>Primeiramente, permite-se que as entradas <span class="math notranslate nohighlight">\(i\)</span> sejam tiradas aleatoriamente, cada uma com mesma probabilidade <span class="math notranslate nohighlight">\(p(i) = 1/2^n\)</span>. Por exemplo, se <span class="math notranslate nohighlight">\(f\)</span> for constante <span class="math notranslate nohighlight">\(1\)</span> (<span class="math notranslate nohighlight">\(f(i) = 1 \forall j\)</span>), a probabilidade de resultar <span class="math notranslate nohighlight">\(1\)</span> é <span class="math notranslate nohighlight">\(1 = 100\%\)</span> e a de resultar <span class="math notranslate nohighlight">\(0\)</span> é <span class="math notranslate nohighlight">\(0 = 0\%\)</span>. Se <span class="math notranslate nohighlight">\(f\)</span> for balanceada, a probabilidade de resultar <span class="math notranslate nohighlight">\(1\)</span> é <span class="math notranslate nohighlight">\(0,\!5 = 50\%\)</span> e o mesmo vale para o resultado <span class="math notranslate nohighlight">\(0\)</span>. Supõe-se, para simplificar a discussão, que o sorteio das entradas é feito sem memória\footnote{Para um número de bits <span class="math notranslate nohighlight">\(n\)</span> grande, esse caso é semelhante ao caso com memória, em que não se permite repetir as entradas no sorteio.}, isto é, com chance de se sortear duas entradas iguais.</p>
@@ -522,7 +514,7 @@ Notação compacta:</p>
 </section>
 </section>
 <section id="comparacao-de-desempenho">
-<h2>Comparação de desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link permanente para este cabeçalho">#</a></h2>
+<h2>Comparação de desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link para este cabeçalho">#</a></h2>
 <p>A tabela abaixo traz a comparação entre o desempenho dos algoritmos clássico determinístico, clássico probabilístico e quântico.</p>
 <p><img alt="Screenshot 2024-10-21 at 21-46-13 tcc-giovani pdf" src="https://github.com/user-attachments/assets/ddbc9d1b-c6fd-44aa-b022-9df9fa7db288" /></p>
 <p>Essa comparação entre o desempenho clássico e quântico, no entanto, não pode ser considerada muito seriamente. Há que se levar em conta que são arquiteturas diferentes: aplicar uma operação <span class="math notranslate nohighlight">\(f\)</span> clássica (correspondente a chamar uma subrotina ``caixa preta’’) e aplicar o oráculo de fase <span class="math notranslate nohighlight">\(O_\text{F}(f)\)</span> em um circuito quântico são coisas distintas. Não é claro que essas operações têm custo computacional equivalente para que sejam comparadas diretamente como na tabela apresentada. Por outro lado, como comparação simplificada, essa análise serve para se ter uma noção dos ganhos que a Computação Quântica poderia trazer em relação a Computação Clássica.</p>
@@ -567,7 +559,8 @@ Notação compacta:</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -632,8 +625,8 @@ De Evandro Chagas Ribeiro da Rosa
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
