@@ -28,7 +28,9 @@ jobs:
         run: black book
 
       - name: Build the book
-        run: jupyter-book build book
+        run: |
+          jupyter-book build book
+          mv book/iframe_figures book/_build/html
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

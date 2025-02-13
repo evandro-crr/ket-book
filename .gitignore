@@ -4,3 +4,4 @@ public/*
 venv/*
 virtualenv/*
 **/.ipynb_checkpoints
+**/iframe_figures/

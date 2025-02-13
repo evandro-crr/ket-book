@@ -50,3 +50,4 @@ sphinx:
       ket:
       - https://quantumket.org
       - null
+    suppress_warnings: ["mystnb.unknown_mime_type"]
