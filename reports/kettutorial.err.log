@@ -15,28 +15,37 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-def ghz(qubits: Quant):
-    # Implemente aqui a função ghz usando a função ctrl
-    ...
-
-
-n = 10
-
 processo = Process()
-qubits = processo.alloc(n)
 
-ghz(qubits)
+qubits = processo.alloc(2)
 
+# Preparando o estado de Bell
+cat(kron(H, I), CNOT)(*qubits)
+
+estado_quântico = dump(qubits)
+
+print("Estado quântico antes da medida")
+print_state(qubits)
+
+medida = measure(qubits[0])
+print("Resultado da medida do primeiro qubit:", medida.value)
+
+print("Estado quântico após o colapso")
 print_state(qubits)
 ------------------
 
+----- stdout -----
+Estado quântico antes da medida
+------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[20], line 13[0m
-[1;32m      9[0m qubits [38;5;241m=[39m processo[38;5;241m.[39malloc(n)
-[1;32m     11[0m ghz(qubits)
-[0;32m---> 13[0m [43mprint_state[49m(qubits)
+Cell [0;32mIn[36], line 11[0m
+[1;32m      8[0m estado_quântico [38;5;241m=[39m dump(qubits)
+[1;32m     10[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mEstado quântico antes da medida[39m[38;5;124m"[39m)
+[0;32m---> 11[0m [43mprint_state[49m(qubits)
+[1;32m     13[0m medida [38;5;241m=[39m measure(qubits[[38;5;241m0[39m])
+[1;32m     14[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mResultado da medida do primeiro qubit:[39m[38;5;124m"[39m, medida[38;5;241m.[39mvalue)
 
 [0;31mNameError[0m: name 'print_state' is not defined
 

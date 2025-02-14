@@ -440,7 +440,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucoes-quanticas">Instruções Quânticas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-controladas">Operações Controladas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-implementando-o-estado-ghz-com-a-funcao-ctrl">Exercício: Implementando o Estado GHZ com a Função <code class="docutils literal notranslate"><span class="pre">ctrl</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-implementando-o-estado-ghz">Exercício: Implementando o Estado GHZ</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-inversas">Operações Inversas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-uvu-dagger">Operações <span class="math notranslate nohighlight">\(UVU^\dagger\)</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alterando-o-estado-de-controle">Alterando o Estado de Controle</a></li>
@@ -484,6 +484,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span>pip
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;ket-lang[full]&gt;=0.8.2,&lt;0.9&#39;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">plotly.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pio</span>
 
@@ -579,9 +581,9 @@ pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7fe5bbfc9030&gt;
-Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7fe5bbfc9030&gt;
-Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f3eeed6fe20&gt;
+Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f3eeed6fe20&gt;
+Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 </pre></div>
 </div>
 </div>
@@ -595,11 +597,11 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 <p>O Ket oferece um conjunto universal de portas lógicas quânticas, permitindo a descrição de qualquer computação quântica. Todas as portas implementadas no Ket estão disponíveis no módulo <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#module-ket.gates" title="(em Ket Quantum Programming)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gates</span></code></a>. Na documentação, é possível visualizar tanto a representação matricial das portas quanto seus efeitos.</p>
 <section id="portas-de-1-qubit">
 <h3>Portas de 1 Qubit<a class="headerlink" href="#portas-de-1-qubit" title="Link para este cabeçalho">#</a></h3>
-<p>As portas quânticas são aplicadas diretamente a qubits encapsulados em objetos <a class="reference external" href="https://quantumket.org/ket/api/ket.base.html#ket.base.Quant" title="(em Ket Quantum Programming)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quant</span></code></a>. No Ket, os qubits são implementados como <strong>referências opacas</strong>, garantindo que a aplicação de portas quânticas não tenha efeitos colaterais no estado clássico do sistema, afetando apenas o <strong>estado quântico</strong>.</p>
+<p>As portas quânticas são aplicadas diretamente a qubits encapsulados em objetos <a class="reference external" href="https://quantumket.org/ket/api/ket.base.html#ket.base.Quant" title="(em Ket Quantum Programming)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quant</span></code></a>. No Ket, os qubits são implementados como referências opacas, garantindo que a aplicação de portas quânticas não tenha efeitos colaterais no estado clássico do sistema, afetando apenas o estado quântico.</p>
 <p>As portas implementadas no Ket seguem a convenção de nomes em letras maiúsculas. Por exemplo, as <strong>portas de Pauli</strong> incluem <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.X" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">X()</span></code></a>, <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.Y" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">Y()</span></code></a> e <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.Z" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">Z()</span></code></a>, enquanto a <strong>porta de Hadamard</strong> é representada por <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.H" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">H()</span></code></a>.</p>
 <section id="portas-de-pauli-e-de-hadamard">
 <h4>Portas de Pauli e de Hadamard<a class="headerlink" href="#portas-de-pauli-e-de-hadamard" title="Link para este cabeçalho">#</a></h4>
-<p>As <strong>portas de Pauli</strong> e a <strong>porta de Hadamard</strong> são fundamentais para muitos algoritmos quânticos. As portas de Pauli realizam rotações de <strong>180º</strong> nos eixos <strong>X, Y e Z</strong> da <a class="reference internal" href="postulados.html#esfera-de-bloch"><span class="std std-ref">esfera de Bloch</span></a>. No entanto, essas portas, por si só, não são suficientes para gerar <strong>superposição</strong>. Para isso, utilizamos a <strong>porta de Hadamard</strong>, que transforma um qubit do estado <span class="math notranslate nohighlight">\(\ket{0}\)</span> ou <span class="math notranslate nohighlight">\(\ket{1}\)</span> para o estado de superposição:</p>
+<p>As portas de Pauli e a porta de Hadamard são fundamentais para muitos algoritmos quânticos. As portas de Pauli realizam rotações de 180º nos eixos X, Y e Z da <a class="reference internal" href="postulados.html#esfera-de-bloch"><span class="std std-ref">esfera de Bloch</span></a>. No entanto, essas portas, por si só, não são suficientes para gerar <strong>superposição</strong>. Para isso, utilizamos a porta de Hadamard, que transforma um qubit do estado <span class="math notranslate nohighlight">\(\ket{0}\)</span> ou <span class="math notranslate nohighlight">\(\ket{1}\)</span> para o estado de superposição:</p>
 <div class="math notranslate nohighlight">
 \[\frac{1}{\sqrt{2}}(\ket{0} \pm \ket{1})\]</div>
 <div class="admonition tip">
@@ -639,11 +641,11 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </section>
 <section id="portas-parametrizadas">
 <h4>Portas Parametrizadas<a class="headerlink" href="#portas-parametrizadas" title="Link para este cabeçalho">#</a></h4>
-<p>Além das <strong>portas de Pauli</strong> e da <strong>porta de Hadamard</strong>, o Ket também oferece <strong>portas de rotação</strong> e a <strong>porta de fase</strong>, que desempenham um papel essencial na construção de algoritmos quânticos.</p>
-<p>As <strong>portas de rotação</strong>, como <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RX" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RX()</span></code></a>, <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RY" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RY()</span></code></a> e <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RZ" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RZ()</span></code></a>, realizam rotações controladas em torno dos eixos <strong>X, Y e Z</strong>, respectivamente. Essas portas permitem manipular o estado de um qubit de forma precisa e controlada.</p>
-<p>Já a <strong>porta de fase</strong>, representada por <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.PHASE" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">PHASE()</span></code></a>, aplica uma fase ao estado do qubit. Essas portas são chamadas de <strong>portas parametrizadas</strong>, pois recebem um parâmetro clássico (um número real, <code class="docutils literal notranslate"><span class="pre">float</span></code>), que controla a operação aplicada.</p>
-<p>A <strong>porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RZ" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RZ()</span></code></a> e a <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.PHASE" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">PHASE()</span></code></a> são equivalentes em termos de fase global</strong>, ou seja, ao analisarmos seu efeito na <strong>esfera de Bloch</strong>, não conseguimos distingui-las. No entanto, quando usadas em <strong>operações controladas</strong>, a fase global pode gerar diferenças no estado quântico.</p>
-<p>A seguir, apresentamos um exemplo que demonstra a aplicação das <strong>portas parametrizadas</strong>. Recomendamos que você execute este código e experimente modificar os parâmetros das portas para compreender melhor seus efeitos:</p>
+<p>Além das portas de Pauli e da porta de Hadamard, o Ket também oferece <strong>portas de rotação</strong> e a <strong>porta de fase</strong>, que desempenham um papel essencial na construção de algoritmos quânticos.</p>
+<p>As portas de rotação, como <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RX" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RX()</span></code></a>, <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RY" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RY()</span></code></a> e <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RZ" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RZ()</span></code></a>, realizam rotações controladas em torno dos eixos X, Y e Z, respectivamente. Essas portas permitem manipular o estado de um qubit de forma precisa e controlada.</p>
+<p>Já a porta de fase, representada por <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.PHASE" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">PHASE()</span></code></a>, aplica uma fase ao estado do qubit. Essas portas são chamadas de portas parametrizadas, pois recebem um parâmetro clássico (um número real, <code class="docutils literal notranslate"><span class="pre">float</span></code>), que controla a operação aplicada.</p>
+<p>A porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RZ" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RZ()</span></code></a> e a <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.PHASE" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">PHASE()</span></code></a> são equivalentes em termos de fase global, ou seja, ao analisarmos seu efeito na esfera de Bloch, não conseguimos distingui-las. No entanto, quando usadas em operações controladas, a fase global pode gerar diferenças no estado quântico.</p>
+<p>A seguir, apresentamos um exemplo que demonstra a aplicação das portas parametrizadas. Recomendamos que você execute este código e experimente modificar os parâmetros das portas para compreender melhor seus efeitos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instanciando um novo do processo quântico</span>
@@ -676,8 +678,8 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </section>
 <section id="concatenando-portas-quanticas">
 <h4>Concatenando Portas Quânticas<a class="headerlink" href="#concatenando-portas-quanticas" title="Link para este cabeçalho">#</a></h4>
-<p>Ao listar a aplicação de <strong>portas lógicas quânticas</strong> linha por linha, podemos inflar desnecessariamente o número de linhas de código, tornando o programa menos legível e mais difícil de entender. Para evitar esse problema, uma prática útil na implementação de <strong>algoritmos quânticos</strong> é a <strong>concatenação de portas lógicas</strong>, que permite expressar operações de forma mais concisa.</p>
-<p>No Ket, existem <strong>duas maneiras</strong> de concatenar portas lógicas.</p>
+<p>Ao listar a aplicação de portas lógicas quânticas linha por linha, podemos inflar desnecessariamente o número de linhas de código, tornando o programa menos legível e mais difícil de entender. Para evitar esse problema, uma prática útil na implementação de algoritmos quânticos é a concatenação de portas lógicas, que permite expressar operações de forma mais concisa.</p>
+<p>No Ket, existem duas maneiras de concatenar portas lógicas.</p>
 <section id="encadeamento-de-chamadas-de-funcao">
 <h5>Encadeamento de chamadas de função<a class="headerlink" href="#encadeamento-de-chamadas-de-funcao" title="Link para este cabeçalho">#</a></h5>
 <p>Essa abordagem é recomendada quando o número de portas encadeadas não é muito grande. No entanto, o uso excessivo de parênteses pode comprometer a legibilidade do código. Como cada porta implementada no Ket retorna o próprio objeto <a class="reference external" href="https://quantumket.org/ket/api/ket.base.html#ket.base.Quant" title="(em Ket Quantum Programming)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quant</span></code></a> passado como parâmetro, podemos encadear as operações conforme mostrado no exemplo abaixo:</p>
@@ -712,8 +714,8 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </section>
 <section id="concatenacao-de-portas">
 <h5>Concatenação de portas<a class="headerlink" href="#concatenacao-de-portas" title="Link para este cabeçalho">#</a></h5>
-<p>A segunda opção é utilizar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.cat" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">cat()</span></code></a>, que permite criar uma <strong>nova porta</strong> representando a concatenação das portas passadas como argumento.</p>
-<p>Essa abordagem é especialmente útil em situações onde precisamos <strong>armazenar ou reutilizar</strong> uma sequência específica de operações quânticas. Ao criar uma nova porta quântica com <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.cat" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">cat()</span></code></a>, podemos encapsular essa sequência de operações em uma única entidade. Isso torna o código <strong>mais modular</strong>, facilita a reutilização de blocos de operações e melhora a organização do programa.</p>
+<p>A segunda opção é utilizar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.cat" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">cat()</span></code></a>, que permite criar uma nova porta representando a concatenação das portas passadas como argumento.</p>
+<p>Essa abordagem é especialmente útil em situações onde precisamos armazenar ou reutilizar uma sequência específica de operações quânticas. Ao criar uma nova porta quântica com <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.cat" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">cat()</span></code></a>, podemos encapsular essa sequência de operações em uma única entidade. Isso torna o código mais modular, facilita a reutilização de blocos de operações e melhora a organização do programa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instanciando um novo do processo quântico</span>
@@ -741,7 +743,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 ></iframe>
 </div></div>
 </div>
-<p>Para <strong>concatenar portas parametrizadas</strong> usando a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.cat" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">cat()</span></code></a>, basta fornecer o <strong>argumento clássico</strong> correspondente. Quando apenas esse argumento é passado, a função cria uma <strong>nova porta</strong> com o parâmetro já aplicado.</p>
+<p>Para concatenar portas parametrizadas usando a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.cat" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">cat()</span></code></a>, basta fornecer o argumento clássico correspondente. Quando apenas esse argumento é passado, a função cria uma nova porta com o parâmetro já aplicado.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span>
@@ -777,7 +779,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </section>
 <section id="portas-de-2-qubits">
 <h3>Portas de 2 Qubits<a class="headerlink" href="#portas-de-2-qubits" title="Link para este cabeçalho">#</a></h3>
-<p>Para explorar todo o potencial da computação quântica, é necessário utilizar o <strong>entrelaçamento</strong> quântico, que requer o uso de <strong>portas que operam em dois qubits</strong>, como a <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.CNOT" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">CNOT()</span></code></a>. Juntas com as portas de 1 qubit apresentadas anteriormente, a porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.CNOT" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">CNOT()</span></code></a> forma um conjunto <strong>universal de portas lógicas quânticas</strong>. Além disso, o Ket oferece outras portas para facilitar a implementação de algoritmos quânticos, como <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.SWAP" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">SWAP()</span></code></a>, <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RXX" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RXX()</span></code></a>, <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RYY" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RYY()</span></code></a> e <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RZZ" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RZZ()</span></code></a>.</p>
+<p>Para explorar todo o potencial da computação quântica, é necessário utilizar o <strong>entrelaçamento</strong> quântico, que requer o uso de portas que operam em dois qubits, como a <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.CNOT" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">CNOT()</span></code></a>. Juntas com as portas de 1 qubit apresentadas anteriormente, a porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.CNOT" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">CNOT()</span></code></a> forma um conjunto universal de portas lógicas quânticas. Além disso, o Ket oferece outras portas para facilitar a implementação de algoritmos quânticos, como <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.SWAP" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">SWAP()</span></code></a>, <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RXX" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RXX()</span></code></a>, <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RYY" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RYY()</span></code></a> e <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RZZ" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RZZ()</span></code></a>.</p>
 <p>Para exemplificar o uso de portas de 2 qubits, vamos criar um <strong>estado de Bell</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -813,7 +815,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 \[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
 </div>
 </div>
-<p>Assim como ocorre com as portas de 1 qubit, também é possível <strong>concatenar operações</strong> com portas de 2 qubits, como exemplificado no código abaixo, que prepara o estado de Bell:</p>
+<p>Assim como ocorre com as portas de 1 qubit, também é possível oncatenar operações com portas de 2 qubits, como exemplificado no código abaixo, que prepara o estado de Bell:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instanciando um novo processo quântico</span>
@@ -838,7 +840,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </div>
 <section id="produto-tensorial-de-portas">
 <h4>Produto Tensorial de Portas<a class="headerlink" href="#produto-tensorial-de-portas" title="Link para este cabeçalho">#</a></h4>
-<p>É possível criar <strong>portas de múltiplos qubits</strong> utilizando o <strong>produto tensorial</strong> com a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.kron" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">kron()</span></code></a>. Essa função aceita múltiplas portas como argumentos e gera uma nova porta lógica que opera em múltiplos qubits.</p>
+<p>É possível criar **portas de múltiplos qubits utilizando o produto tensorial com a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.kron" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">kron()</span></code></a>. Essa função aceita múltiplas portas como argumentos e gera uma nova porta lógica que opera em múltiplos qubits.</p>
 <p>Podemos usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.kron" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">kron()</span></code></a> em conjunto com a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.cat" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">cat()</span></code></a> para criar uma nova porta de dois qubits que prepara um estado de Bell, como no exemplo abaixo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -864,7 +866,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </div>
 <p>Neste exemplo, a operação <code class="docutils literal notranslate"><span class="pre">kron(H,</span> <span class="pre">I)</span></code> cria uma porta de dois qubits, aplicando a operação Hadamard em <code class="docutils literal notranslate"><span class="pre">a</span></code> e a operação identidade em <code class="docutils literal notranslate"><span class="pre">b</span></code>. Em seguida, a operação <code class="docutils literal notranslate"><span class="pre">CNOT</span></code> é aplicada como uma operação controlada entre <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code>. Isso resulta na preparação do estado de Bell nos qubits <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
 <p>Aqui está o seu texto corrigido e aprimorado:</p>
-<p>Como <code class="docutils literal notranslate"><span class="pre">bell</span></code> é considerada uma nova porta lógica quântica, podemos usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.lib.html#ket.lib.draw" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">draw()</span></code></a> para visualizar o <strong>circuito quântico</strong> que ela representa.</p>
+<p>Como <code class="docutils literal notranslate"><span class="pre">bell</span></code> é considerada uma nova porta lógica quântica, podemos usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.lib.html#ket.lib.draw" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">draw()</span></code></a> para visualizar o circuito quântico que ela representa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">bell</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
@@ -880,17 +882,17 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </section>
 <section id="instrucoes-quanticas">
 <h2>Instruções Quânticas<a class="headerlink" href="#instrucoes-quanticas" title="Link para este cabeçalho">#</a></h2>
-<p>Além das portas lógicas quânticas já apresentadas, o Ket oferece <strong>instruções</strong> que aproveitam a especificidade da computação quântica para facilitar a programação.</p>
+<p>Além das portas lógicas quânticas já apresentadas, o Ket oferece instruções que aproveitam a especificidade da computação quântica para facilitar a programação.</p>
 <section id="operacoes-controladas">
 <h3>Operações Controladas<a class="headerlink" href="#operacoes-controladas" title="Link para este cabeçalho">#</a></h3>
-<p>É comum criar <strong>portas lógicas quânticas de múltiplos qubits</strong> adicionando <strong>qubits de controle</strong> a portas já existentes. No <strong>Libket</strong>, a biblioteca de tempo de execução do Ket, apenas portas de 1 qubit são implementadas, mas elas permitem a adição de controles. Por exemplo, podemos gerar a porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.CNOT" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">CNOT()</span></code></a> a partir da porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.X" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">X()</span></code></a>. No Ket, as operações controladas são aplicadas <strong>somente</strong> se todos os qubits de controle estiverem no estado <span class="math notranslate nohighlight">\(\ket{1}\)</span>.</p>
+<p>É comum criar portas lógicas quânticas de múltiplos qubits adicionando qubits de controle a portas já existentes. No Libket, a biblioteca de tempo de execução do Ket, apenas portas de 1 qubit são implementadas, mas elas permitem a adição de controles. Por exemplo, podemos gerar a porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.CNOT" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">CNOT()</span></code></a> a partir da porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.X" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">X()</span></code></a>. No Ket, as operações controladas são aplicadas somente se todos os qubits de controle estiverem no estado <span class="math notranslate nohighlight">\(\ket{1}\)</span>.</p>
 <p>Existem duas maneiras de realizar operações controladas no Ket:</p>
 <ol class="arabic simple">
-<li><p>Usando a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.control" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">control()</span></code></a> para criar um <strong>contexto controlado</strong>.</p></li>
+<li><p>Usando a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.control" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">control()</span></code></a> para criar um contexto controlado.</p></li>
 <li><p>Utilizando a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.ctrl" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ctrl()</span></code></a> para criar uma nova porta controlada.</p></li>
 </ol>
-<p>Abaixo, apresentamos exemplos de como criar as portas <strong>CNOT</strong>, <strong>Toffoli (CCNOT)</strong>, <strong>SWAP</strong> e <strong>Fredkin (CSWAP)</strong> a partir da porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.X" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">X()</span></code></a>.</p>
-<p>No Ket, qualquer função Python que aceite <strong>qubits</strong> como argumento e <strong>não realize nenhuma medida ou alocação de qubits</strong> pode ser considerada uma porta lógica quântica, o que facilita a criação de novas portas. Além disso, podemos usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.lib.html#ket.lib.draw" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">draw()</span></code></a> para visualizar a porta gerada.</p>
+<p>Abaixo, apresentamos exemplos de como criar as portas CNOT, Toffoli (CCNOT), SWAP e Fredkin (CSWAP) a partir da porta <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.X" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">X()</span></code></a>.</p>
+<p>No Ket, qualquer função Python que aceite qubits como argumento e não realize nenhuma medida ou alocação de qubits pode ser considerada uma porta lógica quântica, o que facilita a criação de novas portas. Além disso, podemos usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.lib.html#ket.lib.draw" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">draw()</span></code></a> para visualizar a porta gerada.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">meu_cnot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -967,8 +969,8 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Dica</p>
-<p>Embora a implementação do <code class="docutils literal notranslate"><span class="pre">meu_swap</span></code> acima esteja correta, ela não faz uso de uma otimização introduzida com o <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a>, que veremos mais adiante neste capítulo.</p>
-<p>O impacto de não usar essa otimização pode ser observado no circuito da porta Fredkin abaixo, que não está na forma otimizada.</p>
+<p>Embora a implementação de <code class="docutils literal notranslate"><span class="pre">meu_swap</span></code> esteja correta, ela não aproveita uma otimização introduzida pelo uso de <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a>, que será abordada mais adiante neste capítulo.</p>
+<p>A ausência dessa otimização pode ser observada no circuito da porta Fredkin abaixo, que não está em sua forma otimizada.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -986,8 +988,8 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </div>
 </div>
 </section>
-<section id="exercicio-implementando-o-estado-ghz-com-a-funcao-ctrl">
-<h3>Exercício: Implementando o Estado GHZ com a Função <code class="docutils literal notranslate"><span class="pre">ctrl</span></code><a class="headerlink" href="#exercicio-implementando-o-estado-ghz-com-a-funcao-ctrl" title="Link para este cabeçalho">#</a></h3>
+<section id="exercicio-implementando-o-estado-ghz">
+<h3>Exercício: Implementando o Estado GHZ<a class="headerlink" href="#exercicio-implementando-o-estado-ghz" title="Link para este cabeçalho">#</a></h3>
 <p>Neste exercício, o objetivo é usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.ctrl" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ket.operations.ctrl()</span></code></a> para implementar uma porta quântica que prepara o estado GHZ de <span class="math notranslate nohighlight">\(n\)</span> qubits.</p>
 <p>O estado GHZ é definido como:</p>
 <div class="math notranslate nohighlight">
@@ -1012,21 +1014,13 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 
 <span class="n">ghz</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 
-<span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">line</span> <span class="mi">13</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">qubits</span> <span class="o">=</span> <span class="n">processo</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">ghz</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">13</span> <span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;print_state&#39; is not defined
-</pre></div>
-</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  \left|0000000000\right&gt;\]</div>
 </div>
 </div>
 <p>A função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.ctrl" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ctrl()</span></code></a> recebe dois argumentos: um objeto do tipo <a class="reference external" href="https://quantumket.org/ket/api/ket.base.html#ket.base.Quant" title="(em Ket Quantum Programming)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quant</span></code></a> com os qubits de controle (sendo possível utilizar múltiplos qubits de controle) e uma função que atua como uma porta lógica quântica. É importante ressaltar que a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.ctrl" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ctrl()</span></code></a> não está limitada a adicionar qubits de controle apenas às portas quânticas disponíveis no módulo <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#module-ket.gates" title="(em Ket Quantum Programming)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gates</span></code></a>, mas pode adicionar qubits de controle a qualquer função. Por exemplo, podemos implementar uma porta de Bell e adicionar qubits de controle a ela como no código abaixo.</p>
@@ -1063,9 +1057,13 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 <span class="n">ctrl</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">bell</span><span class="p">)(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 
 <span class="c1"># Imprime o estado do sistema</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span>
+<span class="n">dump</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{\sqrt{2}} \left|000\right&gt;+\frac{1}{\sqrt{4}} \left|100\right&gt;+\frac{1}{\sqrt{4}} \left|111\right&gt;\]</div>
 </div>
 </div>
 </section>
@@ -1118,6 +1116,11 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1415939331054688
+</pre></div>
+</div>
+</div>
 </div>
 <p>Para realizar operações inversas, uma abordagem alternativa é empregar a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.inverse" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">inverse()</span></code></a>. Esta instrução cria um contexto onde as operações são executadas na ordem usual do Python, mas as portas lógicas quânticas são aplicadas de maneira inversa no estado quântico. Abaixo está um exemplo que demonstra o uso dessa instrução. Note que é necessário fornecer o <a class="reference external" href="https://quantumket.org/ket/api/ket.base.html#ket.base.Process" title="(em Ket Quantum Programming)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a> onde as operações inversas serão aplicadas.</p>
 <div class="cell docutils container">
@@ -1127,14 +1130,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">processo</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado inicial:&quot;</span><span class="p">)</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">())</span>
 
 <span class="c1"># Prepara o estado de Bell</span>
 <span class="n">H</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="n">CNOT</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado após a preparação:&quot;</span><span class="p">)</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">())</span>
 
 <span class="c1"># Invertendo a preparação do estado de Bell</span>
 <span class="k">with</span> <span class="n">inverse</span><span class="p">(</span><span class="n">processo</span><span class="p">):</span>
@@ -1142,9 +1145,26 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
     <span class="n">CNOT</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado após a inversão da preparação:&quot;</span><span class="p">)</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">dump</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estado inicial:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  \left|00\right&gt;\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estado após a preparação:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estado após a inversão da preparação:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  \left|00\right&gt;\]</div>
 </div>
 </div>
 </section>
@@ -1152,33 +1172,69 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 <h3>Operações <span class="math notranslate nohighlight">\(UVU^\dagger\)</span><a class="headerlink" href="#operacoes-uvu-dagger" title="Link para este cabeçalho">#</a></h3>
 <p>Uma construção comum em algoritmos quânticos é aplicar uma operação <span class="math notranslate nohighlight">\(U\)</span> em torno de outra operação <span class="math notranslate nohighlight">\(V\)</span>, seguida pela operação inversa <span class="math notranslate nohighlight">\(U^\dagger\)</span>. Essa sequência de operações é representada matematicamente como <span class="math notranslate nohighlight">\(UVU^\dagger\)</span>.</p>
 <p>Um exemplo do uso desse tipo de construção está na implementação do difusor do algoritmo de Grover. Nele, uma operação controlada é envolta por portas de Hadamard. Aqui, as portas <span class="math notranslate nohighlight">\(U\)</span> são as portas de Hadamard, e é importante observar que a Hadamard é sua própria inversa. A porta controlada é representada pela porta <span class="math notranslate nohighlight">\(V\)</span>.</p>
-<figure class="align-default" id="id1">
-<img alt="https://cnot.io/quantum_algorithms/grover/img/fig14.png" src="https://cnot.io/quantum_algorithms/grover/img/fig14.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Fonte: <a class="reference external" href="https://cnot.io">https://cnot.io</a>.</span><a class="headerlink" href="#id1" title="Link para esta imagem">#</a></p>
-</figcaption>
-</figure>
-<p>Para viabilizar essa construção no Ket, a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> é oferecida. No exemplo abaixo, implementamos o difusor de Grover usando essa instrução. No circuito, a porta controlada é aplicada se os qubits estiverem no estado <span class="math notranslate nohighlight">\(\ket{0}\)</span>, o que é diferente do comportamento padrão no Ket. Portanto, aplicamos portas X para inverter o controle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">difusor</span><span class="p">(</span><span class="n">qubits</span><span class="p">:</span> <span class="n">Quant</span><span class="p">,</span> <span class="n">auxiliar</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">cat</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> <span class="n">qubits</span><span class="p">):</span>
         <span class="n">ctrl</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">X</span><span class="p">)(</span><span class="n">auxiliar</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difusor do algoritmo de Grover&quot;</span><span class="p">)</span>
+<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">difusor</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difusor do algoritmo de Grover
+</pre></div>
 </div>
+<img alt="_images/d79eae348146ad383be98d02347e6b8598540a459a1726fb62de83829e206eff.png" src="_images/d79eae348146ad383be98d02347e6b8598540a459a1726fb62de83829e206eff.png" />
+</div>
+</div>
+<p>Para facilitar essa construção no Ket, a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> é oferecida. No exemplo acima, implementamos o difusor de Grover usando essa instrução.</p>
 <p>A título de comparação, a seguir está implementado o difusor de Grover sem usar a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a>. Além da redução do número de linhas, o uso de <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> torna o código mais legível e menos propenso a erros, proporcionando uma implementação mais eficiente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">difusor</span><span class="p">(</span><span class="n">qubits</span><span class="p">:</span> <span class="n">Quant</span><span class="p">,</span> <span class="n">auxiliar</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">difusor_2</span><span class="p">(</span><span class="n">qubits</span><span class="p">:</span> <span class="n">Quant</span><span class="p">,</span> <span class="n">auxiliar</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
     <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
     <span class="n">ctrl</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">X</span><span class="p">)(</span><span class="n">auxiliar</span><span class="p">)</span>
     <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difusor do algoritmo de Grover&quot;</span><span class="p">)</span>
+<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">difusor_2</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difusor do algoritmo de Grover
+</pre></div>
+</div>
+<img alt="_images/d79eae348146ad383be98d02347e6b8598540a459a1726fb62de83829e206eff.png" src="_images/d79eae348146ad383be98d02347e6b8598540a459a1726fb62de83829e206eff.png" />
+</div>
+</div>
+<p>Além de facilitar a construção de algumas operações quânticas, a estrutura <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> também permite <a class="reference external" href="https://arxiv.org/abs/2406.05581">reduzir o número de qubits de controle em certas operações</a>.</p>
+<p>No exemplo abaixo, utilizamos <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> para definir uma porta SWAP e, em seguida, empregamos essa mesma porta para implementar uma porta de Fredkin, que é essencialmente uma versão controlada da SWAP.</p>
+<p>Note que, no circuito abaixo, há menos qubits de controle em comparação com o exemplo anterior da porta de Fredkin.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">meu_swap_op</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">CNOT</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="n">CNOT</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fredkin_op</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">ctrl</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">meu_swap_op</span><span class="p">)(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+
+<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">fredkin_op</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/12db36091bcb70b9ed54befb049d02c81ed8adeb883c4655fbc6bf5469ca6dc5.png" src="_images/12db36091bcb70b9ed54befb049d02c81ed8adeb883c4655fbc6bf5469ca6dc5.png" />
 </div>
 </div>
 <section id="alterando-o-estado-de-controle">
@@ -1187,9 +1243,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 <p>O exemplo abaixo ilustra esse uso, onde queremos aplicar operações condicionais de acordo com os dados carregados. Neste exemplo, as operações condicionais são aplicadas nos qubits <code class="docutils literal notranslate"><span class="pre">qubits</span></code> com base nos dados carregados, e em seguida o emaranhamento é removido condicionalmente de acordo com esses mesmos dados.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="n">lib</span>
-
-<span class="n">processo</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">processo</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
 
 <span class="c1"># Aloca qubits</span>
 <span class="n">qubits</span> <span class="o">=</span> <span class="n">processo</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
@@ -1203,27 +1257,39 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 
 <span class="c1"># Aplica as operações condicionais com base nos dados</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dado</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dados</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">flip_to_control</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">aux</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">qulib</span><span class="o">.</span><span class="n">flip_to_control</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">aux</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">aux</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dado</span><span class="si">:</span><span class="s2">0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
                     <span class="n">X</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dados carregados:&quot;</span><span class="p">)</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">aux</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">qubits</span> <span class="o">+</span> <span class="n">aux</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
 
 <span class="c1"># Remove o emaranhamento condicionalmente com base nos dados</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dado</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dados</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">flip_to_control</span><span class="p">(</span><span class="n">dado</span><span class="p">),</span> <span class="n">qubits</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">qulib</span><span class="o">.</span><span class="n">flip_to_control</span><span class="p">(</span><span class="n">dado</span><span class="p">),</span> <span class="n">qubits</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span><span class="si">}</span><span class="s2">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">aux</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
                     <span class="n">X</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Emaranhamento removido condicionalmente:&quot;</span><span class="p">)</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">aux</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">qubits</span> <span class="o">+</span> <span class="n">aux</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dados carregados:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{\sqrt{4}} \left|11\right&gt;\left|00\right&gt;+\frac{1}{\sqrt{4}} \left|33\right&gt;\left|10\right&gt;+\frac{1}{\sqrt{4}} \left|22\right&gt;\left|01\right&gt;+\frac{1}{\sqrt{4}} \left|44\right&gt;\left|11\right&gt;\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Emaranhamento removido condicionalmente:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{\sqrt{4}} \left|44\right&gt;\left|00\right&gt;+\frac{1}{\sqrt{4}} \left|22\right&gt;\left|00\right&gt;+\frac{1}{\sqrt{4}} \left|33\right&gt;\left|00\right&gt;+\frac{1}{\sqrt{4}} \left|11\right&gt;\left|00\right&gt;\]</div>
 </div>
 </div>
 </section>
@@ -1237,22 +1303,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_rxx</span><span class="p">():</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">sympy.physics.quantum.circuitplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">CircuitPlot</span><span class="p">,</span> <span class="n">CreateOneQubitGate</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">sympy.physics.quantum.gate</span><span class="w"> </span><span class="kn">import</span> <span class="n">CNOT</span><span class="p">,</span> <span class="n">H</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Latex</span>
-
-    <span class="n">RZ</span> <span class="o">=</span> <span class="n">CreateOneQubitGate</span><span class="p">(</span><span class="s2">&quot;RZ&quot;</span><span class="p">,</span> <span class="s2">&quot;R_Z(</span><span class="se">\\</span><span class="s2">theta)&quot;</span><span class="p">)</span>
-
-    <span class="n">display</span><span class="p">(</span><span class="n">Latex</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\text{Porta Quântica RXX}(\theta)&quot;</span><span class="p">))</span>
-    <span class="n">CircuitPlot</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">H</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">CNOT</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">RZ</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">CNOT</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">H</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">H</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
-
-
-<span class="n">plot_rxx</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RXX</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/bd0ec48e7c19ee906a730461621d36076f3986ad3ee7bae827baced5bde0c6d4.png" src="_images/bd0ec48e7c19ee906a730461621d36076f3986ad3ee7bae827baced5bde0c6d4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1270,33 +1328,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_ryy</span><span class="p">():</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">sympy.physics.quantum.circuitplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">CircuitPlot</span><span class="p">,</span> <span class="n">CreateOneQubitGate</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">sympy.physics.quantum.gate</span><span class="w"> </span><span class="kn">import</span> <span class="n">CNOT</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Latex</span>
-
-    <span class="n">RZ</span> <span class="o">=</span> <span class="n">CreateOneQubitGate</span><span class="p">(</span><span class="s2">&quot;RZ&quot;</span><span class="p">,</span> <span class="s2">&quot;R_Z(</span><span class="se">\\</span><span class="s2">theta)&quot;</span><span class="p">)</span>
-    <span class="n">RX_PI_2</span> <span class="o">=</span> <span class="n">CreateOneQubitGate</span><span class="p">(</span><span class="s2">&quot;RX(π/2)&quot;</span><span class="p">,</span> <span class="s2">&quot;R_X(</span><span class="se">\\</span><span class="s2">frac{</span><span class="se">\\</span><span class="s2">pi}</span><span class="si">{2}</span><span class="s2">)&quot;</span><span class="p">)</span>
-    <span class="n">RX_mPI_2</span> <span class="o">=</span> <span class="n">CreateOneQubitGate</span><span class="p">(</span><span class="s2">&quot;RX(-π/2)&quot;</span><span class="p">,</span> <span class="s2">&quot;R_X(</span><span class="se">\\</span><span class="s2">frac{-</span><span class="se">\\</span><span class="s2">pi}</span><span class="si">{2}</span><span class="s2">)&quot;</span><span class="p">)</span>
-
-    <span class="n">display</span><span class="p">(</span><span class="n">Latex</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\text{Porta Quântica RZZ}(\theta)&quot;</span><span class="p">))</span>
-    <span class="n">CircuitPlot</span><span class="p">(</span>
-        <span class="n">RX_mPI_2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="o">*</span> <span class="n">RX_mPI_2</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="o">*</span> <span class="n">CNOT</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="o">*</span> <span class="n">RZ</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="o">*</span> <span class="n">CNOT</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="o">*</span> <span class="n">RX_PI_2</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="o">*</span> <span class="n">RX_PI_2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-        <span class="mi">2</span><span class="p">,</span>
-    <span class="p">)</span>
-
-
-<span class="n">plot_ryy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RYY</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/5dd172173288df4725d7500b4887dba442bd81d71576ab69e6443ffea03cedd2.png" src="_images/5dd172173288df4725d7500b4887dba442bd81d71576ab69e6443ffea03cedd2.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1314,22 +1353,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_rzz</span><span class="p">():</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">sympy.physics.quantum.circuitplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">CircuitPlot</span><span class="p">,</span> <span class="n">CreateOneQubitGate</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">sympy.physics.quantum.gate</span><span class="w"> </span><span class="kn">import</span> <span class="n">CNOT</span><span class="p">,</span> <span class="n">H</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Latex</span>
-
-    <span class="n">RZ</span> <span class="o">=</span> <span class="n">CreateOneQubitGate</span><span class="p">(</span><span class="s2">&quot;RZ&quot;</span><span class="p">,</span> <span class="s2">&quot;R_Z(</span><span class="se">\\</span><span class="s2">theta)&quot;</span><span class="p">)</span>
-
-    <span class="n">display</span><span class="p">(</span><span class="n">Latex</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\text{Porta Quântica RZZ}(\theta)&quot;</span><span class="p">))</span>
-    <span class="n">CircuitPlot</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">RZ</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">CNOT</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
-
-
-<span class="n">plot_rzz</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RZZ</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/192ad5c90d7c95b223d2aa13a7873802d70230908b66e74785fb6da77eecc936.png" src="_images/192ad5c90d7c95b223d2aa13a7873802d70230908b66e74785fb6da77eecc936.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1373,11 +1404,22 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.7071067811865476+0j) |0⟩
+(0.7071067811865476+0j) |3⟩
+</pre></div>
+</div>
+</div>
 </div>
 <p>Uma maneira alternativa de exibir o estado quântico é utilizando o método <code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code> da classe <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumState</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">estado_quântico</span><span class="o">.</span><span class="n">show</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Math object&gt;
 </pre></div>
 </div>
 </div>
@@ -1406,6 +1448,23 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado quântico após o colapso&quot;</span><span class="p">)</span>
 <span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estado quântico antes da medida
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">36</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">estado_quântico</span> <span class="o">=</span> <span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado quântico antes da medida&quot;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">medida</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado da medida do primeiro qubit:&quot;</span><span class="p">,</span> <span class="n">medida</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;print_state&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1601,7 +1660,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fe5bbfc9030&gt;
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucoes-quanticas">Instruções Quânticas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-controladas">Operações Controladas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-implementando-o-estado-ghz-com-a-funcao-ctrl">Exercício: Implementando o Estado GHZ com a Função <code class="docutils literal notranslate"><span class="pre">ctrl</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-implementando-o-estado-ghz">Exercício: Implementando o Estado GHZ</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-inversas">Operações Inversas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-uvu-dagger">Operações <span class="math notranslate nohighlight">\(UVU^\dagger\)</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alterando-o-estado-de-controle">Alterando o Estado de Controle</a></li>
