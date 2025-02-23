@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=2efa9f5e"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -71,7 +68,6 @@
     <link rel="prev" title="Computação clássica e quântica" href="computacao_classica_quantica.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,8 +83,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -96,6 +103,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -103,8 +111,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -120,8 +128,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -151,17 +158,21 @@
     
     
     <img src="_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
-    <img src="_static/gcq.svg" class="logo__image only-dark pst-js-only" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Buscar</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -207,14 +218,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -378,16 +384,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -483,7 +497,7 @@
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span>pip
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;ket-lang[full]&gt;=0.8.2,&lt;0.9&#39;</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;ket-lang[full]&gt;=0.8.3,&lt;0.9&#39;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 
@@ -581,9 +595,9 @@ pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f3eeed6fe20&gt;
-Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f3eeed6fe20&gt;
-Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f59e5bc0f70&gt;
+Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f59e5bc0f70&gt;
+Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
 </pre></div>
 </div>
 </div>
@@ -990,7 +1004,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 </section>
 <section id="exercicio-implementando-o-estado-ghz">
 <h3>Exercício: Implementando o Estado GHZ<a class="headerlink" href="#exercicio-implementando-o-estado-ghz" title="Link para este cabeçalho">#</a></h3>
-<p>Neste exercício, o objetivo é usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.ctrl" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ket.operations.ctrl()</span></code></a> para implementar uma porta quântica que prepara o estado GHZ de <span class="math notranslate nohighlight">\(n\)</span> qubits.</p>
+<p>Neste exercício, o objetivo é usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.ctrl" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ctrl()</span></code></a> para implementar uma porta quântica que prepara o estado GHZ de <span class="math notranslate nohighlight">\(n\)</span> qubits.</p>
 <p>O estado GHZ é definido como:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1303,7 +1317,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RXX</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RXX</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1317,8 +1331,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">porta_rxx</span><span class="p">(</span><span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">qubits</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
     <span class="c1"># Implemente a portas RXX(ϴ)</span>
     <span class="o">...</span>
+
+
+<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">porta_rxx</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6fb9626075084b90876842d51111af6d43bf4f841c3dbfbf154343f8858d4aab.png" src="_images/6fb9626075084b90876842d51111af6d43bf4f841c3dbfbf154343f8858d4aab.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1342,8 +1362,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">porta_ryy</span><span class="p">(</span><span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">qubits</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
     <span class="c1"># Implemente a portas RYY(ϴ)</span>
     <span class="o">...</span>
+
+
+<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">porta_ryy</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6fb9626075084b90876842d51111af6d43bf4f841c3dbfbf154343f8858d4aab.png" src="_images/6fb9626075084b90876842d51111af6d43bf4f841c3dbfbf154343f8858d4aab.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1367,8 +1393,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">porta_rzz</span><span class="p">(</span><span class="n">theta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">qubits</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
     <span class="c1"># Implemente a portas RZZ(ϴ)</span>
     <span class="o">...</span>
+
+
+<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">porta_rzz</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6fb9626075084b90876842d51111af6d43bf4f841c3dbfbf154343f8858d4aab.png" src="_images/6fb9626075084b90876842d51111af6d43bf4f841c3dbfbf154343f8858d4aab.png" />
 </div>
 </div>
 </section>
@@ -1414,14 +1446,13 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 <p>Uma maneira alternativa de exibir o estado quântico é utilizando o método <code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code> da classe <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumState</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">estado_quântico</span><span class="o">.</span><span class="n">show</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estado_quântico</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Math object&gt;
-</pre></div>
-</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
 </div>
 </div>
 </section>
@@ -1438,16 +1469,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 <span class="c1"># Preparando o estado de Bell</span>
 <span class="n">cat</span><span class="p">(</span><span class="n">kron</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">I</span><span class="p">),</span> <span class="n">CNOT</span><span class="p">)(</span><span class="o">*</span><span class="n">qubits</span><span class="p">)</span>
 
-<span class="n">estado_quântico</span> <span class="o">=</span> <span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado quântico antes da medida&quot;</span><span class="p">)</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">())</span>
 
 <span class="n">medida</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado da medida do primeiro qubit:&quot;</span><span class="p">,</span> <span class="n">medida</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado quântico após o colapso&quot;</span><span class="p">)</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1455,18 +1484,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estado quântico antes da medida
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">36</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">estado_quântico</span> <span class="o">=</span> <span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado quântico antes da medida&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">medida</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado da medida do primeiro qubit:&quot;</span><span class="p">,</span> <span class="n">medida</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;print_state&#39; is not defined
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado da medida do primeiro qubit: 0
+Estado quântico após o colapso
 </pre></div>
 </div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  \left|00\right&gt;\]</div>
 </div>
 </div>
 <section id="exercicio-medidas-em-outras-bases">
@@ -1542,10 +1567,20 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
 <span class="n">estado_quântico</span> <span class="o">=</span> <span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estado quântico&quot;</span><span class="p">)</span>
-<span class="n">print_state</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">))</span>
 
 <span class="n">medida</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado das medidas:&quot;</span><span class="p">,</span> <span class="n">medida</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estado quântico
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{1}{\sqrt{2}} \left|0\right&gt;+\frac{1}{\sqrt{2}} \left|3\right&gt;\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {0: 1052, 3: 996}
 </pre></div>
 </div>
 </div>
@@ -1621,8 +1656,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f3eeed6fe20&gt;
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1732,8 +1766,8 @@ De Evandro Chagas Ribeiro da Rosa
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
