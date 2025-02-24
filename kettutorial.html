@@ -458,7 +458,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-inversas">Operações Inversas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-uvu-dagger">Operações <span class="math notranslate nohighlight">\(UVU^\dagger\)</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alterando-o-estado-de-controle">Alterando o Estado de Controle</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-reimplementando-portas-quanticas-com-around">Exercício: Reimplementando Portas Quânticas com <code class="docutils literal notranslate"><span class="pre">around</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-implementando-portas-quanticas-com-with-around">Exercício: Implementando Portas Quânticas com <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">around</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -595,9 +595,9 @@ pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f59e5bc0f70&gt;
-Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f59e5bc0f70&gt;
-Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f0882db8f40&gt;
+Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f0882db8f40&gt;
+Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f0882db8f40&gt;
 </pre></div>
 </div>
 </div>
@@ -854,7 +854,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
 </div>
 <section id="produto-tensorial-de-portas">
 <h4>Produto Tensorial de Portas<a class="headerlink" href="#produto-tensorial-de-portas" title="Link para este cabeçalho">#</a></h4>
-<p>É possível criar **portas de múltiplos qubits utilizando o produto tensorial com a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.kron" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">kron()</span></code></a>. Essa função aceita múltiplas portas como argumentos e gera uma nova porta lógica que opera em múltiplos qubits.</p>
+<p>É possível criar portas de múltiplos qubits utilizando o produto tensorial com a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.kron" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">kron()</span></code></a>. Essa função aceita múltiplas portas como argumentos e gera uma nova porta lógica que opera em múltiplos qubits.</p>
 <p>Podemos usar a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.kron" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">kron()</span></code></a> em conjunto com a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.cat" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">cat()</span></code></a> para criar uma nova porta de dois qubits que prepara um estado de Bell, como no exemplo abaixo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1097,11 +1097,11 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">qubits</span>
-        <span class="n">H</span><span class="p">(</span><span class="n">tail</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctrl_qubit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">head</span><span class="p">)):</span>
-            <span class="n">ctrl</span><span class="p">(</span><span class="n">ctrl_qubit</span><span class="p">,</span> <span class="n">PHASE</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))(</span><span class="n">tail</span><span class="p">)</span>
-        <span class="n">qft</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="o">*</span><span class="n">init</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">qubits</span>
+        <span class="n">H</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctrl_qubit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">init</span><span class="p">)):</span>
+            <span class="n">ctrl</span><span class="p">(</span><span class="n">ctrl_qubit</span><span class="p">,</span> <span class="n">PHASE</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))(</span><span class="n">last</span><span class="p">)</span>
+        <span class="n">qft</span><span class="p">(</span><span class="n">init</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">invert</span><span class="p">:</span>
         <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
@@ -1193,16 +1193,14 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
         <span class="n">ctrl</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">X</span><span class="p">)(</span><span class="n">auxiliar</span><span class="p">)</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difusor do algoritmo de Grover&quot;</span><span class="p">)</span>
-<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">difusor</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">difusor</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Difusor do algoritmo de Grover&quot;</span><span class="p">)</span>
+<span class="n">fig</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difusor do algoritmo de Grover
-</pre></div>
-</div>
-<img alt="_images/d79eae348146ad383be98d02347e6b8598540a459a1726fb62de83829e206eff.png" src="_images/d79eae348146ad383be98d02347e6b8598540a459a1726fb62de83829e206eff.png" />
+<img alt="_images/f4728cd7e796e3258e225b85420aff5f27bf459cf6b83c482029a6c78f970772.png" src="_images/f4728cd7e796e3258e225b85420aff5f27bf459cf6b83c482029a6c78f970772.png" />
 </div>
 </div>
 <p>Para facilitar essa construção no Ket, a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> é oferecida. No exemplo acima, implementamos o difusor de Grover usando essa instrução.</p>
@@ -1217,15 +1215,11 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difusor do algoritmo de Grover&quot;</span><span class="p">)</span>
 <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">difusor_2</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difusor do algoritmo de Grover
-</pre></div>
-</div>
 <img alt="_images/d79eae348146ad383be98d02347e6b8598540a459a1726fb62de83829e206eff.png" src="_images/d79eae348146ad383be98d02347e6b8598540a459a1726fb62de83829e206eff.png" />
 </div>
 </div>
@@ -1307,8 +1301,8 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
 </div>
 </div>
 </section>
-<section id="exercicio-reimplementando-portas-quanticas-com-around">
-<h4>Exercício: Reimplementando Portas Quânticas com <code class="docutils literal notranslate"><span class="pre">around</span></code><a class="headerlink" href="#exercicio-reimplementando-portas-quanticas-com-around" title="Link para este cabeçalho">#</a></h4>
+<section id="exercicio-implementando-portas-quanticas-com-with-around">
+<h4>Exercício: Implementando Portas Quânticas com <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">around</span></code><a class="headerlink" href="#exercicio-implementando-portas-quanticas-com-with-around" title="Link para este cabeçalho">#</a></h4>
 <p>Neste exercício, sua tarefa é utilizar a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> para reimplementar as portas lógicas quânticas <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RXX" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RXX()</span></code></a>, <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RYY" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RYY()</span></code></a> e <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#ket.gates.RZZ" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">RZZ()</span></code></a>. Use como base para a reimplementação o circuito quântico de decomposição de cada porta.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1317,13 +1311,15 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RXX</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RXX</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;RXX Gate&quot;</span><span class="p">)</span>
+<span class="n">fig</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/bd0ec48e7c19ee906a730461621d36076f3986ad3ee7bae827baced5bde0c6d4.png" src="_images/bd0ec48e7c19ee906a730461621d36076f3986ad3ee7bae827baced5bde0c6d4.png" />
+<img alt="_images/98de52d2cff9bbfe7198feb0b8c08cd97df4eda96bae662470352d780834384e.png" src="_images/98de52d2cff9bbfe7198feb0b8c08cd97df4eda96bae662470352d780834384e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1348,13 +1344,15 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RYY</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RYY</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;RYY Gate&quot;</span><span class="p">)</span>
+<span class="n">fig</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5dd172173288df4725d7500b4887dba442bd81d71576ab69e6443ffea03cedd2.png" src="_images/5dd172173288df4725d7500b4887dba442bd81d71576ab69e6443ffea03cedd2.png" />
+<img alt="_images/30a000577f60c3438237a8165bacac7fa877a59a932da6ce657b67af42cc8473.png" src="_images/30a000577f60c3438237a8165bacac7fa877a59a932da6ce657b67af42cc8473.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1379,13 +1377,15 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f59e5bc0f70&gt;
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RZZ</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">RZZ</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;RZZ Gate&quot;</span><span class="p">)</span>
+<span class="n">fig</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/192ad5c90d7c95b223d2aa13a7873802d70230908b66e74785fb6da77eecc936.png" src="_images/192ad5c90d7c95b223d2aa13a7873802d70230908b66e74785fb6da77eecc936.png" />
+<img alt="_images/319df407e7ec65100796a57cb8905c7e5c91b010db1cae769865e8e2076d3c18.png" src="_images/319df407e7ec65100796a57cb8905c7e5c91b010db1cae769865e8e2076d3c18.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1580,7 +1580,7 @@ Estado quântico após o colapso
 </div>
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle \frac{1}{\sqrt{2}} \left|0\right&gt;+\frac{1}{\sqrt{2}} \left|3\right&gt;\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {0: 1052, 3: 996}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {0: 1047, 3: 1001}
 </pre></div>
 </div>
 </div>
@@ -1698,7 +1698,7 @@ Estado quântico após o colapso
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-inversas">Operações Inversas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-uvu-dagger">Operações <span class="math notranslate nohighlight">\(UVU^\dagger\)</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alterando-o-estado-de-controle">Alterando o Estado de Controle</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-reimplementando-portas-quanticas-com-around">Exercício: Reimplementando Portas Quânticas com <code class="docutils literal notranslate"><span class="pre">around</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-implementando-portas-quanticas-com-with-around">Exercício: Implementando Portas Quânticas com <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">around</span></code></a></li>
 </ul>
 </li>
 </ul>
