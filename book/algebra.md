@@ -1543,6 +1543,89 @@ Positivo& $\bra{\psi}P\ket{\psi} \geq 0 \ , \ \ \forall \ket{\psi}$
 Positivo definido& $\bra{\psi}P\ket{\psi} > 0 \ , \ \ \forall \ket{\psi}\neq 0$
 ```
 
+(funcao-de-operadores)=
+## Função de Operadores
+Como podemos calcular $f(A)$, em que $A$ é um operador? Vamos utilizar a série de Taylor
+```{math}
+f(x) = \sum_{n=0}^{\infty} \frac{(x - x_{0})^{n}}{n!} \frac{d^{n}f}{dx^{n}} \bigg\rvert_{x = x_0}
+```
+onde $x_0$ é o ponto onde queremos expandir a função.
+
+:::{admonition} Exemplo
+:class: tip
+$e^{x}$ = ?; $x_0 = 0$
+
+```{math}
+e^{x} = \sum\limits_{n=0}^{\infty}  \frac{x^{n}}{n!} \underbrace{\frac{d^{n}(e^{x})}{dx^{n}} \bigg\lvert_{x=0}}_{?}
+```
+
+```{math}
+\begin{cases} 
+\frac{d(e^{x})}{dx} = e^{x} \\
+\quad \vdots \\
+\frac{d^{n}(e^{x})}{dx^{n}} = e^{x}
+\end{cases} \implies \frac{d^{n}(e^{x})}{dx^{n}}\bigg\vert_{x=0} = 1
+```
+
+```{math}
+\therefore e^{x} = \sum\limits_{n=0}^{\infty} \frac{x^{n}}{n!}
+```
+
+Expansão em série de Taylor para $e^x$
+
+No caso onde $x$ é um operador $A$, temos:
+
+```{math}
+e^A = \sum_{n=0}^{\infty} \frac{A^n}{n!}
+```
+
+Usando a decomposição espectral do operador $A$:
+
+```{math}
+A = \sum_{i} a_i \ket{a_i}\bra{a_i}; \quad A\ket{a_i} = a_i \ket{a_i}
+```
+
+```{math}
+\Rightarrow A^2 = \left( \sum_i a_i \ket{a_i} \bra{a_i} \right) \left( \sum_j a_j \ket{a_j} \bra{a_2} \right)
+```
+
+```{math}
+= \sum_{i,j} a_i a_j \ket{a_i} \underbrace{\braket a_i | a_j}_{\delta_ij} \bra{a_j}
+```
+
+```{math}
+= \sum_{i,j} a_i a_j \delta_{ij} \ket{a_i} \bra{a_j}
+```
+
+```{math}
+= \sum_{i} a_{i}^{2} \ket{a_i} \bra{a_i}
+```
+
+```{math}
+\therefore A^{2} = \sum_{i} a_{i}^{2} \ket{a_i} \bra{a_i} \implies A^{n} = \sum_{i} a_{i}^{n} \ket{a_i} \bra{a_i}
+```
+
+Voltando para $e^A$
+
+```{math}
+e^{A} = \sum_{n=0}^{\infty} \frac{A^n}{n!} = \sum_{n=0}^{\infty} \frac{1}{n!} \left( \sum_{i} a_{i}^{n} \ket{a_i} \bra{a_i} \right)
+```
+
+```{math}
+= \sum_{i} \left( \sum_{n=0}^{\infty} \frac{a_{i}^{n}}{n!} \right) \ket{a_i} \bra{a_i}
+```
+
+```{math}
+e^{A} = \sum_{i} e^{a_i} \ket{a_i} \bra{a_i}
+```
+
+:::
+
+Portanto, de maneira geral, se $f(x)$ puder ser expandida em série de Taylor, então
+```{math}
+f(A) = \sum_{i} f(a_i) \ket{a_i} \bra{a_i}
+```
+
 (produto-tensorial)=
 ## Produto Tensorial
 
