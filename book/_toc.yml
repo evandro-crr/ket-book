@@ -2,20 +2,20 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: index
+root: 01-index
 chapters:
-- file: pytutorial
-- file: algebra
-- file: postulados
-- file: computacao_classica
-- file: computacao_quantica
-- file: kettutorial
-- file: algoritmos
+- file: 02-pytutorial
+- file: 03-algebra
+- file: 04-postulados
+- file: 05-computacao_classica
+- file: 06-computacao_quantica
+- file: 07-kettutorial
+- file: 08-algoritmos
   sections:
-    - file: algoritmos/grover
-    - file: algoritmos/deutsch-jozsa
-    - file: algoritmos/simon
+    - file: algoritmos/08_1-grover
+    - file: algoritmos/08_2-deutsch-jozsa
+    - file: algoritmos/08_3-simon
 - file: panorama
 - url: https://qubox.ufsc.br/index.html
   title: Qubox UFSC
-- file: referencias
+- file: 09-referencias

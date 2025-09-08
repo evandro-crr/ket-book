@@ -1,4 +1,4 @@
-# Computação quântica
+# Computação Quântica
 
 A *Computação Quântica* é um novo paradigma de computação em que utilizam-se sistemas quânticos -- os *qubits*, análogos dos bits clássicos -- para se realizar processamento de informação. Lançam-se mão de alguns recursos não existentes na Computação Clássica, como *superposição* e *emaranhamento*. 
  
