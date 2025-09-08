@@ -15,7 +15,6 @@ chapters:
     - file: algoritmos/08_1-grover
     - file: algoritmos/08_2-deutsch-jozsa
     - file: algoritmos/08_3-simon
-- file: panorama
 - url: https://qubox.ufsc.br/index.html
   title: Qubox UFSC
 - file: 09-referencias
