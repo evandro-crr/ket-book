@@ -1,0 +1,669 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Algoritmos Quânticos &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '08-algoritmos';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="Algoritmo de Busca de Grover" href="algoritmos/08_1-grover.html" />
+    <link rel="prev" title="Programacão Quântica com Ket" href="07-kettutorial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-algebra.html">Álgebra Linear para Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/08_1-grover.html">Algoritmo de Busca de Grover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/08_2-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/08_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/08-algoritmos.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Algoritmos Quânticos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacao-superdensa">Codificação superdensa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visao-geral">Visão geral</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamento-detalhado">Funcionamento detalhado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-de-teletransporte">Circuito de teletransporte</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Visão geral</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Circuito</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Funcionamento detalhado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculos-quanticos">Oráculos quânticos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculo-xor">Oráculo XOR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor">Construção do Oráculo de Fase usando o Oráculo XOR</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="algoritmos-quanticos">
+<h1>Algoritmos Quânticos<a class="headerlink" href="#algoritmos-quanticos" title="Link para este cabeçalho">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
+</div>
+<p>Neste capítulo serão abordados alguns protocolos e algoritmos quânticos conhecidos na literatura. Quando possível, é feita uma comparação com os algoritmos clássicos conhecidos.</p>
+<section id="codificacao-superdensa">
+<h2>Codificação superdensa<a class="headerlink" href="#codificacao-superdensa" title="Link para este cabeçalho">#</a></h2>
+<p>A codificação superdensa é um protocolo que envolve duas partes, Alice e Bob, que queiram se comunicar trocando bits. Alice quer enviar bits de mensagem para Bob.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Em Teoria da Informação e Criptografia Quântica, é uma convenção tácita rotular os dois lados da comunicação por Alice e Bob!</p>
+</div>
+<p>Não é possível, classicamente, codificar 2 bits de mensagem em 1 bit transmitido, já que só há 2¹ = 2 palavras código – as palavras 0 e 1 – e 2² = 4 palavras de mensagem que podem ser enviadas – as palavras 00, 01, 10 e 11. No entanto, é possível codificar 2 bits de mensagem em 1 qubit transmitido, e é essa a função do circuito de codificação superdensa.</p>
+<p>Uma referância para este conteúdo é <span id="id1">[<a class="reference internal" href="09-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span> seção 2.3, p. 97-98</p>
+<section id="visao-geral">
+<h3>Visão geral<a class="headerlink" href="#visao-geral" title="Link para este cabeçalho">#</a></h3>
+<p>A codificação superdensa envolve o compartilhamento prévio de um par de qubits emaranhados, no estado de Bell <span class="math notranslate nohighlight">\(\ket{\beta_{00}}= \frac{\ket{00}+\ket{11}}{\sqrt{2}}\)</span>. Esse estado independe da mensagem que Alice quer enviar a Bob, e pode ter sido distribuído por uma fonte externa de pares emaranhados.</p>
+<p>Assim, o primeiro qubit está com Alice e o segundo, com Bob. Alice pode realizar operações em seu qubit em função dos bits de mensagem que ela quer enviar. Após as operações, ela envia seu qubit a Bob, que passa a estar em posse dos dois qubits. Bob pode medí-los de maneira a obter os bits de mensagem.</p>
+</section>
+<section id="circuito">
+<h3>Circuito<a class="headerlink" href="#circuito" title="Link para este cabeçalho">#</a></h3>
+<p>O circuito completo para a codificação superdensa é representado abaixo. Seu funcionamento detalhado será abordado a seguir.</p>
+<p><img alt="Screenshot 2024-10-21 at 21-02-07 tcc-giovani pdf" src="https://github.com/user-attachments/assets/afc12264-f877-421c-a43c-4e6ee3d8b910" /></p>
+</section>
+<section id="funcionamento-detalhado">
+<h3>Funcionamento detalhado<a class="headerlink" href="#funcionamento-detalhado" title="Link para este cabeçalho">#</a></h3>
+<p><strong>Setup</strong></p>
+<p>Num primeiro momento, Alice e Bob compartilham o estado de Bell</p>
+<div class="math notranslate nohighlight">
+\[ \ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}\]</div>
+<p>Usamos os rótulos <span class="math notranslate nohighlight">\(A\)</span> para o primeiro qubit (da Alice) e <span class="math notranslate nohighlight">\(B\)</span> para o segundo qubit (que está com Bob).</p>
+<p><strong>Codificação - Alice</strong></p>
+<p>Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.</p>
+<p><img alt="Screenshot 2024-10-21 at 21-02-52 tcc-giovani pdf" src="https://github.com/user-attachments/assets/b3227509-480c-4c0d-bd91-5e1779240568" /></p>
+<p>Observa-se que <span class="math notranslate nohighlight">\(ZX = iY\)</span> pela identidade de circuitos. Os estados de Bell <span class="math notranslate nohighlight">\(\ket{\beta_{00}}\)</span>, <span class="math notranslate nohighlight">\(\ket{\beta_{01}}\)</span>, <span class="math notranslate nohighlight">\(\ket{\beta_{10}}\)</span> e <span class="math notranslate nohighlight">\(\ket{\beta_{11}}\)</span> formam uma base para o espaço de 2 qubits. Observa-se também que, se a mensagem é <span class="math notranslate nohighlight">\(b_0 b_1\)</span>, então quando <span class="math notranslate nohighlight">\(b_1 = 1\)</span> aplica-se <span class="math notranslate nohighlight">\(X_A\)</span> e quando <span class="math notranslate nohighlight">\(b_0 = 1\)</span>, aplica-se <span class="math notranslate nohighlight">\(Z_A\)</span>. Dessa forma, para todos os valores da mensagem <span class="math notranslate nohighlight">\(b_0 b_1\)</span>, pode-se escrever a operação no qubit <span class="math notranslate nohighlight">\(A\)</span> por <span class="math notranslate nohighlight">\(Z_A^{\,\, b_0} X_A^{\,\, b_1}\)</span>. Portanto, a operação que Alice deve fazer em seu qubit pode ser representada pelo seguinte circuito controlado por cbits:</p>
+<p><img alt="Screenshot 2024-10-21 at 21-03-50 tcc-giovani pdf" src="https://github.com/user-attachments/assets/5e3afea8-bf5a-485f-a22f-8a5f640b2b86" /></p>
+<p><strong>Decodificação - Bob</strong></p>
+<p>Alice envia, então, seu qubit a Bob, que realiza uma medida na base de Bell. Bob consegue distinguir em qual estado o par de qubits se encontra com essa medida, e, consequentemente, consegue saber quais bits de mensagem foram enviados: se o resultado for <span class="math notranslate nohighlight">\(\ket{\beta_{b_0b_1}}\)</span>, então a mensagem é <span class="math notranslate nohighlight">\(b_0 b_1\)</span>.</p>
+<p>A medição na base de Bell pode ser realizada em função da medição na base computacional pelo seguinte circuito:</p>
+<p><img alt="Screenshot 2024-10-21 at 21-04-49 tcc-giovani pdf" src="https://github.com/user-attachments/assets/edcd3cc1-56aa-4ee3-81e0-142c27e5b579" /></p>
+</section>
+</section>
+<section id="circuito-de-teletransporte">
+<h2>Circuito de teletransporte<a class="headerlink" href="#circuito-de-teletransporte" title="Link para este cabeçalho">#</a></h2>
+<p>O circuito de teletransporte também envolve duas partes, chamadas de Alice e Bob, como de costume. Dessa vez, Alice está em posse de um qubit <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> cujo estado lhe é desconhecido e precisa enviá-lo a Bob. No entanto, o único meio de comunicação entre os dois é um canal clássico, por onde só é possível enviar cbits. Pode-se pensar em uma linha telefônica, ou uma conexão de internet entre os dois, por exemplo, e que os dois estão a uma grande distância um do outro. Enviando apenas bits clássicos, Alice deve tentar enviar o estado de seu qubit a Bob.</p>
+<p>Aparentemente não seria possível realizar essa tarefa, pois o estado de um qubit <span class="math notranslate nohighlight">\(\ket{\psi} = a\ket{0} + b \ket{1}\)</span> é definido por dois números complexos <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>, que demandariam muitos bits para serem representados de maneira satisfatória (mas aproximada apenas). Além disso, Alice não tem conhecimento sobre o estado do seu qubit, e uma medida não seria suficiente para conseguir encontrar os coeficientes <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>. Seriam necessárias muitas medidas de cópias do sistema em bases diferentes para se conseguir obter estimativas das probabilidades de o resultado ser <span class="math notranslate nohighlight">\(\ket{0}\)</span> ou <span class="math notranslate nohighlight">\(\ket{1}\)</span>, e isso não é possível de se fazer quando não se tem cópias do sistema.</p>
+<p>No entanto, se Alice e Bob estiverem compartilhando um par de qubits emaranhados, a situação torna-se mais favorável. O par emaranhado <span class="math notranslate nohighlight">\( \ket{\beta_{00}} \)</span> pode ter sido distribuído previamente, e não depende do qubit <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> de Alice. O circuito de teletransporte faz uso desse par emaranhado para realizar essa tarefa de enviar o estado de um qubit (não conhecido) fazendo-se uso apenas de um canal clássico. O nome ``teletransporte’’ tornou-se popular para fazer referência ao circuito, mas não é muito adequado. Esse circuito envia apenas a informação sobre o estado, não ocorrendo deslocamento físico do qubit em questão.</p>
+<p>Uma referência para esse circuito pode ser encontrado em <span id="id2">[<a class="reference internal" href="09-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span></p>
+<section id="id3">
+<h3>Visão geral<a class="headerlink" href="#id3" title="Link para este cabeçalho">#</a></h3>
+<p>Como na codificação superdensa, o circuito de teletransporte necessita do compartilhamento prévio de dois qubits emaranhados no estado de Bell <span class="math notranslate nohighlight">\(\ket{\beta_{00}}\)</span>, que independe do qubit que Alice quer enviar a Bob.</p>
+<p>Além desse par compartilhado, Alice tem um qubit em um estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> desconhecido. Alice realiza determinadas operações nos seus dois qubits e realiza medidas na base computacional. Ao medir seus dois qubits, ela obtém informação clássica (cbits), e envia-as a Bob.</p>
+<p>Bob recebe os cbits e, em função do resultado, realiza algumas operações em seu qubit (o segundo qubit do par emaranhado compartilhado previamente).  Essas operações o ajudam a recuperar o estado do qubit que Alice queria enviar, completando a tarefa.</p>
+<p>Nesse processo, o qubit <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> de Alice tem seu estado destruído pela medida, mas reaparece no qubit de Bob por causa do emaranhamento, restando apenas realizar uma correção em função do resultado da medida de Alice.</p>
+</section>
+<section id="id4">
+<h3>Circuito<a class="headerlink" href="#id4" title="Link para este cabeçalho">#</a></h3>
+<p>O circuito abaixo realiza o teletransporte do estado de 1 qubit de Alice para Bob utilizando apenas o envio de 2 cbits. O funcionamento detalhado do Circuito de Teletransporte será visto adiante.</p>
+<p><img alt="Screenshot 2024-10-21 at 21-05-52 tcc-giovani pdf" src="https://github.com/user-attachments/assets/79cd53bd-3a6c-4b8c-bbd9-98b19874162e" /></p>
+</section>
+<section id="id5">
+<h3>Funcionamento detalhado<a class="headerlink" href="#id5" title="Link para este cabeçalho">#</a></h3>
+<p><strong>Setup</strong>
+Alice e Bob previamente compartilham o estado de Bell</p>
+<div class="math notranslate nohighlight">
+\[\ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}\]</div>
+<p>Alice também possui um qubit <span class="math notranslate nohighlight">\(\ket{\psi} = a\ket{0} + b\ket{1}\)</span> em um estado não necessariamente conhecido por ela. Sua intenção é que Bob tenha uma ``cópia’’ do estado desse qubit. Usando-se os rótulos <span class="math notranslate nohighlight">\(A_1\)</span> e <span class="math notranslate nohighlight">\(A_2\)</span> para os qubits de Alice e <span class="math notranslate nohighlight">\(B\)</span> para o de Bob, o estado do sistema completo pode ser escrito como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+       \ket{\psi_0} 
+       &amp;= \ket{\psi}_{A_1} \ket{\beta_{00}}_{A_2 B} \\
+       &amp;=  \big( a \ket{0}_{A_1} + b \ket{1}_{A_1} \big) \frac{1}{\sqrt{2}}\big(\ket{0}_{A_2}\ket{0}_B +  \ket{1}_{A_2}\ket{1}_B \big) \\
+       &amp;=  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2}\ket{0}_B  + \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2}\ket{1}_B  \\
+       &amp;\phantom{=} \quad + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\ket{0}_B  + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2}\ket{1}_B \\
+       &amp;=  \left(  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
+       &amp;\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B    \ . 
+      \end{split}\end{split}\]</div>
+<p><strong>Preparação - Alice</strong></p>
+<p>Alice realiza as operações CNOT nos dois qubits e Hadamard em <span class="math notranslate nohighlight">\(A_1\)</span>, e o sistema completo passa a ficar no estado:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+    \ket{\psi_1} 
+    &amp;= \text{CNOT}_{A_1,A_2} \ket{\psi_0} \\
+    &amp;= \text{CNOT}_{A_1,A_2} \bigg[ \left(  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
+     &amp;\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B \bigg]\\
+   &amp;=\left( \tfrac{a}{\sqrt{2}} \text{CNOT}_{A_1,A_2} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \text{CNOT}_{A_1,A_2} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
+       &amp;\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \text{CNOT}_{A_1,A_2}\ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \text{CNOT}_{A_1,A_2} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B \\
+   &amp;= \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
+       &amp;\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2} \right)\ket{1}_B \\
+   \end{split}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+    \ket{\psi_2} 
+    &amp;= H_{A_1} \ket{\psi_1} \\
+    &amp;= H_{A_1} \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
+       &amp;\phantom{=} \quad  + H_{A_1} \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2} \right)\ket{1}_B \\
+    &amp;=  \left( \tfrac{a}{\sqrt{2}} H_{A_1}\ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  H_{A_1}\ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
+       &amp;\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} H_{A_1}\ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} H_{A_1} \ket{1}_{A_1} \ket{0}_{A_2} \right)\ket{1}_B \\
+    &amp;=  \left( \tfrac{a}{2} \big(\ket{0}_{A_1} + \ket{1}_{A_1}\big) \ket{0}_{A_2} + \tfrac{b}{2} \big(\ket{0}_{A_1} - \ket{1}_{A_1}\big) \ket{1}_{A_2}\right) \ket{0}_B   \\
+       &amp;\phantom{=} \quad  + \left( \tfrac{a}{2} \big(\ket{0}_{A_1} + \ket{1}_{A_1}\big)\ket{1}_{A_2} + \tfrac{b}{2} \big(\ket{0}_{A_1} - \ket{1}_{A_1}\big) \ket{0}_{A_2} \right)\ket{1}_B \\   
+    &amp;= \ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right) + \ket{01}_{A_1A_2}\left( \tfrac{b}{2} \ket{0}_B + \tfrac{a}{2} \ket{1}_B \right) \\
+       &amp;\phantom{=} \quad  + \ket{10}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B - \tfrac{b}{2} \ket{1}_B \right)  + \ket{11}_{A_1A_2}\left(- \tfrac{b}{2} \ket{0}_B + \tfrac{a}{2} \ket{1}_B   \right) 
+    \end{split}\end{split}\]</div>
+<p>Alice realiza, então, a medida dos seus dois qubits na base computacional. Essa medida faz com que o sistema total encontre-se no estado:</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi_3} = \ket{b_0 b_1}_{A_1A_2} \ket{\psi_3}_B\]</div>
+<p>em que o resultado da medida é <span class="math notranslate nohighlight">\(b_0 b_1\)</span>. O qubit que está com Bob passa a ficar no estado <span class="math notranslate nohighlight">\(\ket{\psi_3}_B\)</span>, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.</p>
+<p><img alt="Screenshot 2024-10-21 at 21-06-47 tcc-giovani pdf" src="https://github.com/user-attachments/assets/9bdb83b6-c876-40f4-b59e-70c53db502df" /></p>
+<p>Caso o resultado da medida tenha sido <span class="math notranslate nohighlight">\(00\)</span>, o estado do sistema total <span class="math notranslate nohighlight">\(\ket{\psi_3}\)</span> é obtido pela projeção <span class="math notranslate nohighlight">\(\ket{00}\bra{00}_{A_1A_2}\)</span> seguida de uma normalização do vetor resultante. É conveniente lembrar que <span class="math notranslate nohighlight">\(|a|^2 + |b|^2 = 1\)</span> pela normalização do estado <span class="math notranslate nohighlight">\(\ket{\psi} = a\ket{0} + b\ket{1}\)</span> do início do algoritmo.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+      \ket{\psi_2} 
+      &amp;= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \sqrt{|\tfrac{a}{2}|^2 + |\tfrac{b}{2}|^2 } }  \\
+      &amp;= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \tfrac{1}{2} \sqrt{|a|^2 + |b|^2 } }  \\
+      &amp;= \ket{00}_{A_1A_2}\left( a \ket{0}_B + b \ket{1}_B \right) \ .
+    \end{split}\end{split}\]</div>
+<p>Os outros estados da tabela sãoo obtidos com contas similares</p>
+<p><strong>Processamento final - Bob</strong></p>
+<p>Para recuperar o estado <span class="math notranslate nohighlight">\(a\ket{0} + b\ket{1}\)</span>, Bob deve fazer algumas operações para corrigir o estado do seu qubit, em função do valor da medida informado a ele.</p>
+<p>Se a medida for <span class="math notranslate nohighlight">\(00\)</span>, seu qubit está em <span class="math notranslate nohighlight">\( a\ket{0} + b\ket{1}\)</span> e nada precisa ser feito. Se a medida resultou em <span class="math notranslate nohighlight">\(01\)</span>, seu qubit está em <span class="math notranslate nohighlight">\(b\ket{0} + a\ket{1}\)</span>; nesse caso, é possível perceber que a porta <span class="math notranslate nohighlight">\(X\)</span> fornece novamente o estado desejado <span class="math notranslate nohighlight">\(b\ket{1} + a\ket{0}\)</span>. Considerando-se todos os resultados possíveis da medida, monta-se a correção necessária para cada caso.</p>
+<p><img alt="Screenshot 2024-10-21 at 21-10-35 tcc-giovani pdf" src="https://github.com/user-attachments/assets/ea738175-2216-4443-a823-e790ae555cad" /></p>
+<p>Essas operações, como na codificação superdensa, podem ser resumidas na operação controlada classicamente <span class="math notranslate nohighlight">\(Z_B^{\, b_0} X_B^{\, b_1}\)</span>, em que <span class="math notranslate nohighlight">\(b_0b_1\)</span> é o resultado da medida. Dessa forma, pode-se representar o processamento de Bob pelo circuito a seguir.</p>
+<p><img alt="Screenshot 2024-10-21 at 21-11-09 tcc-giovani pdf" src="https://github.com/user-attachments/assets/cbcc21aa-648c-43f8-8d6c-f6454a75dc28" /></p>
+<p>Com isso, independente do resultado da medida, Bob tem, ao final, o estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> que Alice queria transmitir.</p>
+</section>
+</section>
+<section id="oraculos-quanticos">
+<h2>Oráculos quânticos<a class="headerlink" href="#oraculos-quanticos" title="Link para este cabeçalho">#</a></h2>
+<p>Os oráculos são funções booleanas <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to \{ 0,1 \}\)</span> consideradas como ``caixas pretas’’. Dado um vetor de bits <span class="math notranslate nohighlight">\(x\)</span>, o oráculo clássico fornece <span class="math notranslate nohighlight">\(f(x)\)</span>. Alguns problemas computacionais são escritos em termos de oráculos, como o problema de Deutsch-Jozsa, o problema de Simon e o problema de busca de Grover. Para abordar esses problemas, é necessário definir uma versão quântica desse oráculo, o que será abordado nesta seção.</p>
+<p>Há duas maneiras de se escrever um análogo quântico ao oráculo clássico: o oráculo XOR e o oráculo de fase.</p>
+<section id="oraculo-xor">
+<h3>Oráculo XOR<a class="headerlink" href="#oraculo-xor" title="Link para este cabeçalho">#</a></h3>
+<p>O oráculo XOR é uma operação unitária que realiza a função booleana <span class="math notranslate nohighlight">\(f\)</span> por meio de um bit extra, que sinaliza as entradas em que <span class="math notranslate nohighlight">\(f\)</span> vale 1.</p>
+<p><img alt="Screenshot 2024-10-21 at 21-11-56 tcc-giovani pdf" src="https://github.com/user-attachments/assets/f59d7db1-1357-4a13-bc54-2bbc503b22c0" /></p>
+</section>
+<section id="construcao-do-oraculo-de-fase-usando-o-oraculo-xor">
+<h3>Construção do Oráculo de Fase usando o Oráculo XOR<a class="headerlink" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor" title="Link para este cabeçalho">#</a></h3>
+<p>Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alvo como um qubit auxiliar. Ao usarmos <span class="math notranslate nohighlight">\(\ket{-}\)</span> na entrada alvo do oráculo XOR, obtemos, para qualquer estado <span class="math notranslate nohighlight">\(\ket{x}\)</span> da base computacional:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
+  \begin{cases}
+   \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &amp;\text{se $f(x)=0$}  \\
+   \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &amp;\text{se $f(x)=1$} \ ,
+  \end{cases}\end{split}\]</div>
+<p>o que pode ser resumido por <span class="math notranslate nohighlight">\(\ket{x}\big((-1)^{f(x)}\ket{-} \big)\)</span>. Além disso, o fator multiplicativo <span class="math notranslate nohighlight">\((-1)^{f(x)}\)</span> pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:</p>
+<div class="math notranslate nohighlight">
+\[\ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}\]</div>
+<p>A figura a seguir ilustra a construção do oráculo de fase.</p>
+<p><img alt="Screenshot 2024-10-21 at 21-14-09 tcc-giovani pdf" src="https://github.com/user-attachments/assets/d74c7a8c-6064-4fd3-999a-000d9ed12a95" /></p>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07-kettutorial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Programacão Quântica com Ket</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="algoritmos/08_1-grover.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Algoritmo de Busca de Grover</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacao-superdensa">Codificação superdensa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visao-geral">Visão geral</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamento-detalhado">Funcionamento detalhado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-de-teletransporte">Circuito de teletransporte</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Visão geral</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Circuito</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Funcionamento detalhado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculos-quanticos">Oráculos quânticos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculo-xor">Oráculo XOR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor">Construção do Oráculo de Fase usando o Oráculo XOR</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

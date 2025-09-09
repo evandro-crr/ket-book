@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Computação Clássica &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05-computacao_classica';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="Computação Quântica" href="06-computacao_quantica.html" />
+    <link rel="prev" title="Postulados da Mecânica Quântica" href="04-postulados.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-algebra.html">Álgebra Linear para Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="08-algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/08_1-grover.html">Algoritmo de Busca de Grover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/08_2-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/08_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/05-computacao_classica.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Computação Clássica</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveis-de-abstracao">Niveis de abstração</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-logico">Nível lógico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algebra-booleana">Álgebra booleana</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portas-logicas">Portas lógicas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-da-algebra-booleana">Teoremas da álgebra booleana</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-da-algebra-booleana-para-uma-variavel">Teoremas da Álgebra Booleana para uma variável</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-da-algebra-booleana-para-varias-variaveis">Teoremas da Álgebra Booleana para várias variáveis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-demorgan">Teoremas DeMorgan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prova">Prova</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#universalidade-das-portas-logicas-classicas">Universalidade das Portas Lógicas Clássicas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="computacao-classica">
+<h1>Computação Clássica<a class="headerlink" href="#computacao-classica" title="Link para este cabeçalho">#</a></h1>
+<div class="admonition-referencias admonition">
+<p class="admonition-title">Referências</p>
+<p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
+</div>
+<p>Um computador digital é um sistema que pode seguir uma sequência de instruções, chamada programa, e que opera em um conjunto de informações. Os computadores digitais modernos são compostos de milhões a bilhões de transistores, que se agrupam em circuitos digitais. Para lidar com a complexidade desses sistemas, os circuitos são subdivididos em circuitos menores, que realizam funções específicas. Esses circuitos são considerados ``caixas pretas’’, em que se ignoram os detalhes internos, e são agrupados de forma a realizar funções mais sofisticadas.</p>
+<p>A engenharia trabalha com <em>níveis de abstração</em>; cada nível corresponde a omitir detalhes internos dos subsistemas constituíntes, ou da camada de abstração anterior. Uma discussão mais detalhada sobre as camadas de abstração do computador será realizada na seção seguinte.</p>
+<p>Para que o computador consiga operar em um conjunto de informações, é necessário que essa informação seja traduzida, ou, codificada, de forma conveniente. O projeto dos computadores digitais se baseia em que as informações de entrada do sistema, e mesmo as instruções a serem seguidas, são codificadas em <em>bits</em>.</p>
+<p>Os bits são variáveis que podem assumir apenas dois valores, rotulados de 0/1 ou Verdadeiro/Falso, por exemplo. No computador digital, a tensão elétrica é utilizada como bit; as tensões próximas a <span class="math notranslate nohighlight">\(0V\)</span> são consideradas como bit 0 e as tensões próximas à tensão de alimentação do circuito (normalmente <span class="math notranslate nohighlight">\(5V\)</span> ou <span class="math notranslate nohighlight">\(3,\!3V\)</span>), como bit 1.</p>
+<p>Nas seções seguintes alguns desses tópicos serão detalhados. A ênfase será nas ideias vinculadas aos Sistemas Digitais, no manejo da complexidade por meio das camadas de abstração e nos detalhes das camadas mais próximas da camada física, com o objetivo de passar a ideia de como um computador digital clássico funciona. A finalidade é, também, comparar esse paradigma de computação com as ideias que estão surgindo na área da Computação Quântica.</p>
+<section id="niveis-de-abstracao">
+<h2>Niveis de abstração<a class="headerlink" href="#niveis-de-abstracao" title="Link para este cabeçalho">#</a></h2>
+<p>Na engenharia, uma maneira de lidar com a complexidade de sistemas muito grandes é subdividí-los em subsistemas que possam ser descritos de maneira mais simples, omitindo detalhes internos. Componentes mais básicos são usados para projetar blocos que realizam funções simples. Esses blocos passam a ser descritos apenas pela sua função (como as saídas se comportam em relação às entradas), e passa-se a ignorar sua estrutura interna. Sistemas mais complexos podem ser projetados por meio desses blocos. A cada vez que se agrupa os sistemas em blocos e passa-se a ignorar sua estrutura interna, sobe-se um nível nas <em>camadas de abstração</em>. Quando se ``abre’’ um sistema para analisar sua estrutura interna, passa-se à camada de abstração inferior.</p>
+<p>Essa divisão em camadas de abstração permite que os diversos blocos do sistema sejam projetados de forma paralela. Além disso, o projeto de um bloco pode ser reaproveitado em outros momentos, no mesmo projeto ou em outros. Outra vantagem é que o sistema passa a ser visto como composto de uma quantidade relativamente pequena de subsistemas, em vez de ser visto como milhões de transistores, cujo funcionamento em conjunto seria virtualmente impossível de descrever diretamente.</p>
+<p>A figura a seguir ilustra as camadas de abstração presentes no computador digital. Dependendo do autor, as camadas de abstração são nomeadas de maneira ligeiramente diferente ou são consideradas algumas subcamadas extra.</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/dbddcf95-1402-4453-aa0a-70184e55707d" /></p>
+</section>
+<section id="nivel-logico">
+<h2>Nível lógico<a class="headerlink" href="#nivel-logico" title="Link para este cabeçalho">#</a></h2>
+<p>O nível lógico refere-se à camada de abstração imediatamente acima da dos transistores. Os transistores são reunidos em <em>portas lógicas</em>. Nessa camada de abstração, os sinais de tensão na entrada e na saída são interpretados como bits, e as portas lógicas que operam esses bits simulam as funções lógicas como OR, AND, NOT, entre outras.</p>
+<p>Nesse agrupamento em blocos os detalhes internos do circuito são ignorados.</p>
+<section id="algebra-booleana">
+<h3>Álgebra booleana<a class="headerlink" href="#algebra-booleana" title="Link para este cabeçalho">#</a></h3>
+<p>As <em>variáveis booleanas</em> são variáveis que podem assumir apenas dois valores, rotulados como 0/1 ou Falso/Verdadeiro. Os bits são sinônimos de variáveis booleanas. As funções <span class="math notranslate nohighlight">\(f\colon \{0,1\}^n \to \{0,1\}^m \,\)</span>, que levam um conjunto de <span class="math notranslate nohighlight">\(n\)</span> bits em um conjunto de <span class="math notranslate nohighlight">\(m\)</span> bits, são chamadas <em>funções booleanas</em>. As funções booleanas podem ser especificadas por expressões matemáticas ou por uma tabela  – a \emph{tabela verdade} – listando todos os possíveis valores de entrada e a saída atribuída a cada valor de entrada.</p>
+<p>Algumas funções booleanas elementares são chamadas de portas lógicas. As três operações básicas da Álgebra Booleana são <span class="math notranslate nohighlight">\(+ \colon \{0,1\}^2 \to \{0,1\}\)</span>, <span class="math notranslate nohighlight">\(\cdot\, \colon \{0,1\}^2 \to \{0,1\}\)</span> e <span class="math notranslate nohighlight">\(\overline{\phantom{a}} \colon \{0,1\} \to \{0,1\}\)</span>, também chamadas de operações OR, AND e NOT, respectivamente.</p>
+<p>A Álgebra Booleana pode ser interpretada como descrição de um sistema lógico em que há apenas dois valores lógicos – Falso/Verdadeiro ou 0/1 – e às proposições lógicas pode ser atribuído um e apenas um desses valores devido ao princípio lógico elementar do terceiro excluído.</p>
+<p>Neste trabalho, o enfoque será mais voltado às aplicações em Sistemas Digitais.</p>
+</section>
+</section>
+<section id="portas-logicas">
+<h2>Portas lógicas<a class="headerlink" href="#portas-logicas" title="Link para este cabeçalho">#</a></h2>
+<p>As portas lógicas são funções booleanas simples, blocos fundamentais dos circuitos digitais. As portas lógicas mais importantes são descritas resumidamente nas figuras a seguir.</p>
+<p><img alt="Porta_and.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_and.png" /></p>
+<p><img alt="Porta_nand.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_nand.png" /></p>
+<p><img alt="Porta_not.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_not.png" /></p>
+<p><img alt="Porta_or.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_or.png" /></p>
+<p><img alt="Porta_xnor.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_xnor.png" /></p>
+<p><img alt="porta_xor.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/porta_xor.png" /></p>
+<p><img alt="Portas_fanout.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Portas_fanout.png" /></p>
+<p>Qualquer sistema físico que se comporte de maneira a fornecer uma tabela verdade como as apresentadas acima pode ser considerado uma porta lógica.</p>
+</section>
+<section id="teoremas-da-algebra-booleana">
+<h2>Teoremas da álgebra booleana<a class="headerlink" href="#teoremas-da-algebra-booleana" title="Link para este cabeçalho">#</a></h2>
+<p>Apresentam-se algumas identidades booleanas úteis para simplificação de expressões.</p>
+<section id="teoremas-da-algebra-booleana-para-uma-variavel">
+<h3>Teoremas da Álgebra Booleana para uma variável<a class="headerlink" href="#teoremas-da-algebra-booleana-para-uma-variavel" title="Link para este cabeçalho">#</a></h3>
+<p>Valem as seguintes identidades:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+  X \cdot 0  &amp;= 0 \\
+  X \cdot 1  &amp;= X \\
+  X \cdot X  &amp;= X \\
+  X \cdot \overline{X} &amp;= 0
+ \end{split}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+ X + 0 &amp;= X \\
+ X + 1 &amp;= 1 \\
+ X + X &amp;= X  \\
+ X + \overline{X} &amp;= 1 
+\end{split}
+\end{split}\]</div>
+<p><strong>Prova:</strong></p>
+<p>As igualdades se verificam testando todos os casos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+   X \cdot 0 \, = 0 \, \, \, \,:  \begin{cases}
+                         0\cdot 0 = 0 &amp; (X=0) \\ 1\cdot 0 = 0  &amp; (X=1)
+                       \end{cases}
+   &amp; &amp;
+     X + 0 \, = 0 \, \, \, \, :  \begin{cases}
+                       0 + 0 = 0 &amp; (X=0)\\  1 + 0 = 1 &amp; (X=1)
+                       \end{cases} 
+ \\ 
+  X \cdot 1 \, = X \, \, :  \begin{cases}
+                         0\cdot 1 = 0 &amp; (X=0) \\ 1\cdot 1 = 1  &amp; (X=1)
+                       \end{cases}
+   &amp; &amp;
+     X + 1 \, = 1 \, \, \, \, :  \begin{cases}
+                       0 + 1 = 1 &amp; (X=0)\\  1 + 1 = 1 &amp; (X=1)
+                       \end{cases} 
+ \\ 
+  X \cdot X \, = X:  \begin{cases}
+                         0\cdot 0 = 0 &amp; (X=0) \\ 1\cdot 1 = 1  &amp; (X=1)
+                       \end{cases}
+   &amp; &amp;
+     X + X \, = X :  \begin{cases}
+                       0 + 0 = 0 &amp; (X=0)\\  1 + 1 = 1 &amp; (X=1)
+                       \end{cases} 
+  \\ 
+  X \cdot \overline{X} \, = 0 \, \, :  \begin{cases}
+                         0\cdot 1 = 0 &amp; (X=0) \\ 1\cdot 0 = 0  &amp; (X=1)
+                       \end{cases}
+   &amp; &amp;
+     X + \overline{X} \, = 1 \, \, :  \begin{cases}
+                       0 + 1 = 1 &amp; (X=0)\\  1 + 0 = 1 &amp; (X=1)
+                       \end{cases} 
+  \end{array}
+\end{split}\]</div>
+</section>
+<section id="teoremas-da-algebra-booleana-para-varias-variaveis">
+<h3>Teoremas da Álgebra Booleana para várias variáveis<a class="headerlink" href="#teoremas-da-algebra-booleana-para-varias-variaveis" title="Link para este cabeçalho">#</a></h3>
+<p>Valem as seguintes identidades:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ll}
+   Associatividade &amp; 
+    \begin{array}{l}
+    X + (Y + Z) = (X + Y) + Z \\
+    (XY)Z = X(YZ) 
+   \end{array} 
+    \\\\
+   Comutatividade &amp;
+   \begin{array}{l}
+    X + Y = Y + X \\
+    X Y = YX 
+   \end{array} 
+     \\\\
+   Distributividade &amp;
+   \begin{array}{l}
+    X (Y+Z) = XY + XZ \\
+    (X+Y)Z = XZ + YZ \\
+    (X+Y)(Z+W) = XZ + XW + YZ + YW 
+   \end{array} 
+     \\\\
+   Outras &amp;
+   \begin{array}{l}
+    X + XY = X\\
+    X + \overline{X}Y = X+Y \\
+    \overline{X} + XY = \overline{X} + Y
+   \end{array} 
+   \end{array}
+\end{split}\]</div>
+<p><strong>Prova:</strong></p>
+<p>A verificação se dá atribuindo valores às variáveis ou escrevendo a tabela verdade dos dois lados da equação e verificando que o resultado é o mesmo. Pode-se usar o teorema 1} para facilitar. Por exemplo, verifica-se a identidade do <span class="math notranslate nohighlight">\(X (Y+Z) = XY + XZ \)</span>:</p>
+<p>Para <span class="math notranslate nohighlight">\(X=0\)</span>:  <span class="math notranslate nohighlight">\(0(Y+Z) = 0 = 0Y + 0Z\)</span>.</p>
+<p>Para <span class="math notranslate nohighlight">\(X=1\)</span>:  <span class="math notranslate nohighlight">\(1(Y+Z) = Y+Z = 1Y + 1Z\)</span>.</p>
+</section>
+<section id="teoremas-demorgan">
+<h3>Teoremas DeMorgan<a class="headerlink" href="#teoremas-demorgan" title="Link para este cabeçalho">#</a></h3>
+<p>Valem as seguintes identidades booleanas:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{split}
+     \overline{X + Y} &amp;= \overline{X} \cdot \overline{Y} \\
+     \overline{X \cdot Y} &amp;= \overline{X} + \overline{Y}
+    \end{split}
+\end{split}\]</div>
+<section id="prova">
+<h4>Prova<a class="headerlink" href="#prova" title="Link para este cabeçalho">#</a></h4>
+<p>Mostrando <span class="math notranslate nohighlight">\(  \overline{X + Y} = \overline{X} \cdot \overline{Y}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{array}{cc|cc|ccc}
+    X &amp; Y &amp; X+Y &amp; \overline{X + Y} &amp; \overline{X} &amp; \overline{Y} &amp; \overline{X} \cdot \overline{Y} \\ \hline
+    0 &amp; 0 &amp; 0   &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+    0 &amp; 1 &amp; 1   &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+    1 &amp; 0 &amp; 1   &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+    1 &amp; 1 &amp; 1   &amp; 0 &amp; 0 &amp; 0 &amp; 0 
+  \end{array}
+\end{split}\]</div>
+<p>Os valores das colunas <span class="math notranslate nohighlight">\(\overline{X + Y}\)</span> e <span class="math notranslate nohighlight">\(\overline{X} \cdot \overline{Y}\)</span> coincidem, portanto vale a igualdade.  \
+Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = \overline{X} + \overline{Y}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}    
+ \begin{array}{cc|cc|ccc}
+    X &amp; Y &amp; X\cdot Y &amp; \overline{X \cdot Y} &amp; \overline{X} &amp; \overline{Y} &amp; \overline{X} + \overline{Y} \\ \hline
+    0 &amp; 0 &amp; 0   &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+    0 &amp; 1 &amp; 0   &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+    1 &amp; 0 &amp; 0   &amp; 1 &amp; 0 &amp; 1 &amp; 1 \\
+    1 &amp; 1 &amp; 1   &amp; 0 &amp; 0 &amp; 0 &amp; 0 
+  \end{array}
+\end{split}\]</div>
+<p>Como os valores das colunas <span class="math notranslate nohighlight">\(\overline{X \cdot Y}\)</span> e <span class="math notranslate nohighlight">\(\overline{X} + \overline{Y}\)</span> coincidem, igualdade é válida.</p>
+</section>
+</section>
+</section>
+<section id="universalidade-das-portas-logicas-classicas">
+<h2>Universalidade das Portas Lógicas Clássicas<a class="headerlink" href="#universalidade-das-portas-logicas-classicas" title="Link para este cabeçalho">#</a></h2>
+<p>Com apenas algumas das portas lógicas apresentadas nesse artigo pode-se compor qualquer função booleana.</p>
+<p>-<strong>Teorema 1 (Universalidade das Portas Lógicas Clássicas)</strong>: Uma função booleana <span class="math notranslate nohighlight">\(f \colon \{0,1\}^m \to \{0,1\}^n\)</span> qualquer pode ser implementada por uma composição das portas lógicas OR, AND e NOT (além das portas SWAP e FANOUT).</p>
+<p><strong>Teorema 2 (Universalidade da porta NAND)</strong>:  Uma função booleana <span class="math notranslate nohighlight">\(f \colon \{0,1\}^m \to \{0,1\}^n\)</span> qualquer pode ser implementada por uma composição de portas lógicas NAND (além das portas SWAP e FANOUT).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04-postulados.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Postulados da Mecânica Quântica</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06-computacao_quantica.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Computação Quântica</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveis-de-abstracao">Niveis de abstração</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-logico">Nível lógico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algebra-booleana">Álgebra booleana</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portas-logicas">Portas lógicas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-da-algebra-booleana">Teoremas da álgebra booleana</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-da-algebra-booleana-para-uma-variavel">Teoremas da Álgebra Booleana para uma variável</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-da-algebra-booleana-para-varias-variaveis">Teoremas da Álgebra Booleana para várias variáveis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-demorgan">Teoremas DeMorgan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prova">Prova</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#universalidade-das-portas-logicas-classicas">Universalidade das Portas Lógicas Clássicas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
