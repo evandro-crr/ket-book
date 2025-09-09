@@ -1523,7 +1523,7 @@ Se $\ket{\psi} = a \ket{0} + b \ket{1}$, então
 
 A figura abaixo traz um quadro resumo dos operadores especiais abordados neste capítulo.
 
-:::{figure} /static/operators.png
+:::{figure} /images/algebra/operators.png
 :class: no-scaled-link
 :width: 100%
 

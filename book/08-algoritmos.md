@@ -46,6 +46,15 @@ Usamos os rótulos $A$ para o primeiro qubit (da Alice) e $B$ para o segundo qub
 Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.
 
 ![Screenshot 2024-10-21 at 21-02-52 tcc-giovani pdf](https://github.com/user-attachments/assets/b3227509-480c-4c0d-bd91-5e1779240568)
+$$
+\begin{array}{ccc}
+   \text{Mensagem} & \text{Operação} & \text{Resultado} \\ \hline \\
+   00 & I_A & \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \ket{\beta_{00}} \\
+   01 & Z_A & \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \ket{\beta_{01}} \\
+   10 & X_A & \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \ket{\beta_{10}} \\
+   11 & iY_A = Z_A X_A & \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \ket{\beta_{11}}
+\end{array}
+$$
 
 Observa-se que $ZX = iY$ pela identidade de circuitos. Os estados de Bell $\ket{\beta_{00}}$, $\ket{\beta_{01}}$, $\ket{\beta_{10}}$ e $\ket{\beta_{11}}$ formam uma base para o espaço de 2 qubits. Observa-se também que, se a mensagem é $b_0 b_1$, então quando $b_1 = 1$ aplica-se $X_A$ e quando $b_0 = 1$, aplica-se $Z_A$. Dessa forma, para todos os valores da mensagem $b_0 b_1$, pode-se escrever a operação no qubit $A$ por $Z_A^{\,\, b_0} X_A^{\,\, b_1}$. Portanto, a operação que Alice deve fazer em seu qubit pode ser representada pelo seguinte circuito controlado por cbits:
 
