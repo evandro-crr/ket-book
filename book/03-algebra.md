@@ -405,9 +405,9 @@ Os vetores $\ket{0}$, $\ket{1}$, $\ket{+}$ e $\ket{-}$ têm norma 1.
 
 A norma do vetor $\ket{\psi} = \frac{i}{2} \ket{0} + \frac{\sqrt{3}}{2} \ket{1}$ é
 
-```{math}
-||{\ket{\psi}}|| =  \sqrt{|{\frac{i}|{2}}^2 + |{\frac{\sqrt{3}|}{2}}^2}  = \sqrt{\frac{1}{4} + \frac{3}{4}} = 1 \ .
-```
+$$
+||{\ket{\psi}}|| =  \sqrt{|{\frac{i}{2}}|^2 + |{\frac{\sqrt{3}|}{2}}^2}  = \sqrt{\frac{1}{4} + \frac{3}{4}} = 1 \ .
+$$
 :::
 
 ### Ortogonalidade
