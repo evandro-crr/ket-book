@@ -36,9 +36,10 @@ O circuito completo para a codificação superdensa é representado abaixo. Seu 
 **Setup**
 
 Num primeiro momento, Alice e Bob compartilham o estado de Bell
-  ```{math}
-   \ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}
-  ```
+$$
+\ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}
+$$
+
 Usamos os rótulos $A$ para o primeiro qubit (da Alice) e $B$ para o segundo qubit (que está com Bob). 
 
 **Codificação - Alice**
@@ -99,13 +100,13 @@ O circuito abaixo realiza o teletransporte do estado de 1 qubit de Alice para Bo
 **Setup**
 Alice e Bob previamente compartilham o estado de Bell
 
-```{math}
+$$
 \ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}
-```
+$$
 
 Alice também possui um qubit $\ket{\psi} = a\ket{0} + b\ket{1}$ em um estado não necessariamente conhecido por ela. Sua intenção é que Bob tenha uma ``cópia'' do estado desse qubit. Usando-se os rótulos $A_1$ e $A_2$ para os qubits de Alice e $B$ para o de Bob, o estado do sistema completo pode ser escrito como
 
-```{math}
+$$
 \begin{split}
        \ket{\psi_0} 
        &= \ket{\psi}_{A_1} \ket{\beta_{00}}_{A_2 B} \\
@@ -115,13 +116,13 @@ Alice também possui um qubit $\ket{\psi} = a\ket{0} + b\ket{1}$ em um estado n�
        &=  \left(  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
        &\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B    \ . 
       \end{split}
-```
+$$
 
 **Preparação - Alice**
 
 Alice realiza as operações CNOT nos dois qubits e Hadamard em $A_1$, e o sistema completo passa a ficar no estado:
 
-```{math}
+$$
 \begin{split}
     \ket{\psi_1} 
     &= \text{CNOT}_{A_1,A_2} \ket{\psi_0} \\
@@ -132,9 +133,9 @@ Alice realiza as operações CNOT nos dois qubits e Hadamard em $A_1$, e o siste
    &= \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
        &\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2} \right)\ket{1}_B \\
    \end{split}
-```
+$$
 
-```{math}
+$$
 \begin{split}
     \ket{\psi_2} 
     &= H_{A_1} \ket{\psi_1} \\
@@ -147,13 +148,13 @@ Alice realiza as operações CNOT nos dois qubits e Hadamard em $A_1$, e o siste
     &= \ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right) + \ket{01}_{A_1A_2}\left( \tfrac{b}{2} \ket{0}_B + \tfrac{a}{2} \ket{1}_B \right) \\
        &\phantom{=} \quad  + \ket{10}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B - \tfrac{b}{2} \ket{1}_B \right)  + \ket{11}_{A_1A_2}\left(- \tfrac{b}{2} \ket{0}_B + \tfrac{a}{2} \ket{1}_B   \right) 
     \end{split}
-```
+$$
 
 Alice realiza, então, a medida dos seus dois qubits na base computacional. Essa medida faz com que o sistema total encontre-se no estado:
 
-```{math}
+$$
 \ket{\psi_3} = \ket{b_0 b_1}_{A_1A_2} \ket{\psi_3}_B
-```
+$$
 
 em que o resultado da medida é $b_0 b_1$. O qubit que está com Bob passa a ficar no estado $\ket{\psi_3}_B$, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.
 
@@ -161,14 +162,15 @@ em que o resultado da medida é $b_0 b_1$. O qubit que está com Bob passa a fic
 
 Caso o resultado da medida tenha sido $00$, o estado do sistema total $\ket{\psi_3}$ é obtido pela projeção $\ket{00}\bra{00}_{A_1A_2}$ seguida de uma normalização do vetor resultante. É conveniente lembrar que $|a|^2 + |b|^2 = 1$ pela normalização do estado $\ket{\psi} = a\ket{0} + b\ket{1}$ do início do algoritmo.
 
-```{math}
+$$
 \begin{split}
       \ket{\psi_2} 
       &= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \sqrt{|\tfrac{a}{2}|^2 + |\tfrac{b}{2}|^2 } }  \\
       &= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \tfrac{1}{2} \sqrt{|a|^2 + |b|^2 } }  \\
       &= \ket{00}_{A_1A_2}\left( a \ket{0}_B + b \ket{1}_B \right) \ .
     \end{split}
-```
+$$
+
 Os outros estados da tabela sãoo obtidos com contas similares
 
 **Processamento final - Bob**
@@ -201,19 +203,19 @@ O oráculo XOR é uma operação unitária que realiza a função booleana $f$ p
 
 Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alvo como um qubit auxiliar. Ao usarmos $\ket{-}$ na entrada alvo do oráculo XOR, obtemos, para qualquer estado $\ket{x}$ da base computacional:
 
-```{math}
+$$
 \ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
   \begin{cases}
    \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &\text{se $f(x)=0$}  \\
    \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &\text{se $f(x)=1$} \ ,
   \end{cases}
-```
+$$
 
   o que pode ser resumido por $\ket{x}\big((-1)^{f(x)}\ket{-} \big)$. Além disso, o fator multiplicativo $(-1)^{f(x)}$ pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:
 
-```{math}
+$$
 \ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}
-```
+$$
 
 A figura a seguir ilustra a construção do oráculo de fase.
 

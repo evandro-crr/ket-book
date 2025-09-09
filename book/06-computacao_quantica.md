@@ -124,7 +124,7 @@ Os polos norte da esfera corresponde ao estado $\ket{0}$ e o polo sul, ao $\ket{
 
 Observe que os vetores da base $\mathcal{X}$ correspondem às intersecções da esfera com o eixo $x$. De forma similar, isso vale para as bases $\mathcal{Y}$ e $\mathcal{Z}$, que correspondem às intersecções da esfera com os eixos $y$ e $z$, respectivamente.
 
-![Qubit_dois.png](../TCC%20LaTeX/cap4/figuras/blochsphere4.png)
+![Qubit_dois.png](images/comp_quantica/Qubit2.png)
 
 #### Projeções nos eixos coordenados
 
