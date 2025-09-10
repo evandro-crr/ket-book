@@ -403,13 +403,23 @@ document.write(`
 <section id="funcionamento-detalhado">
 <h3>Funcionamento detalhado<a class="headerlink" href="#funcionamento-detalhado" title="Link para este cabeçalho">#</a></h3>
 <p><strong>Setup</strong></p>
-<p>Num primeiro momento, Alice e Bob compartilham o estado de Bell</p>
-<div class="math notranslate nohighlight">
-\[ \ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}\]</div>
+<p>Num primeiro momento, Alice e Bob compartilham o estado de Bell
+$<span class="math notranslate nohighlight">\(
+\ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}
+\)</span>$</p>
 <p>Usamos os rótulos <span class="math notranslate nohighlight">\(A\)</span> para o primeiro qubit (da Alice) e <span class="math notranslate nohighlight">\(B\)</span> para o segundo qubit (que está com Bob).</p>
 <p><strong>Codificação - Alice</strong></p>
 <p>Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.</p>
-<p><img alt="Screenshot 2024-10-21 at 21-02-52 tcc-giovani pdf" src="https://github.com/user-attachments/assets/b3227509-480c-4c0d-bd91-5e1779240568" /></p>
+<p><img alt="Screenshot 2024-10-21 at 21-02-52 tcc-giovani pdf" src="https://github.com/user-attachments/assets/b3227509-480c-4c0d-bd91-5e1779240568" />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{ccc}
+   \text{Mensagem} &amp; \text{Operação} &amp; \text{Resultado} \\ \hline \\
+   00 &amp; I_A &amp; \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \ket{\beta_{00}} \\
+   01 &amp; Z_A &amp; \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \ket{\beta_{01}} \\
+   10 &amp; X_A &amp; \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \ket{\beta_{10}} \\
+   11 &amp; iY_A = Z_A X_A &amp; \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \ket{\beta_{11}}
+\end{array}
+\)</span>$</p>
 <p>Observa-se que <span class="math notranslate nohighlight">\(ZX = iY\)</span> pela identidade de circuitos. Os estados de Bell <span class="math notranslate nohighlight">\(\ket{\beta_{00}}\)</span>, <span class="math notranslate nohighlight">\(\ket{\beta_{01}}\)</span>, <span class="math notranslate nohighlight">\(\ket{\beta_{10}}\)</span> e <span class="math notranslate nohighlight">\(\ket{\beta_{11}}\)</span> formam uma base para o espaço de 2 qubits. Observa-se também que, se a mensagem é <span class="math notranslate nohighlight">\(b_0 b_1\)</span>, então quando <span class="math notranslate nohighlight">\(b_1 = 1\)</span> aplica-se <span class="math notranslate nohighlight">\(X_A\)</span> e quando <span class="math notranslate nohighlight">\(b_0 = 1\)</span>, aplica-se <span class="math notranslate nohighlight">\(Z_A\)</span>. Dessa forma, para todos os valores da mensagem <span class="math notranslate nohighlight">\(b_0 b_1\)</span>, pode-se escrever a operação no qubit <span class="math notranslate nohighlight">\(A\)</span> por <span class="math notranslate nohighlight">\(Z_A^{\,\, b_0} X_A^{\,\, b_1}\)</span>. Portanto, a operação que Alice deve fazer em seu qubit pode ser representada pelo seguinte circuito controlado por cbits:</p>
 <p><img alt="Screenshot 2024-10-21 at 21-03-50 tcc-giovani pdf" src="https://github.com/user-attachments/assets/5e3afea8-bf5a-485f-a22f-8a5f640b2b86" /></p>
 <p><strong>Decodificação - Bob</strong></p>
@@ -441,10 +451,13 @@ document.write(`
 <p><strong>Setup</strong>
 Alice e Bob previamente compartilham o estado de Bell</p>
 <div class="math notranslate nohighlight">
-\[\ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}\]</div>
+\[
+\ket{\beta_{00}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}
+\]</div>
 <p>Alice também possui um qubit <span class="math notranslate nohighlight">\(\ket{\psi} = a\ket{0} + b\ket{1}\)</span> em um estado não necessariamente conhecido por ela. Sua intenção é que Bob tenha uma ``cópia’’ do estado desse qubit. Usando-se os rótulos <span class="math notranslate nohighlight">\(A_1\)</span> e <span class="math notranslate nohighlight">\(A_2\)</span> para os qubits de Alice e <span class="math notranslate nohighlight">\(B\)</span> para o de Bob, o estado do sistema completo pode ser escrito como</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
+\[\begin{split}
+\begin{split}
        \ket{\psi_0} 
        &amp;= \ket{\psi}_{A_1} \ket{\beta_{00}}_{A_2 B} \\
        &amp;=  \big( a \ket{0}_{A_1} + b \ket{1}_{A_1} \big) \frac{1}{\sqrt{2}}\big(\ket{0}_{A_2}\ket{0}_B +  \ket{1}_{A_2}\ket{1}_B \big) \\
@@ -452,11 +465,13 @@ Alice e Bob previamente compartilham o estado de Bell</p>
        &amp;\phantom{=} \quad + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\ket{0}_B  + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2}\ket{1}_B \\
        &amp;=  \left(  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
        &amp;\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B    \ . 
-      \end{split}\end{split}\]</div>
+      \end{split}
+\end{split}\]</div>
 <p><strong>Preparação - Alice</strong></p>
 <p>Alice realiza as operações CNOT nos dois qubits e Hadamard em <span class="math notranslate nohighlight">\(A_1\)</span>, e o sistema completo passa a ficar no estado:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
+\[\begin{split}
+\begin{split}
     \ket{\psi_1} 
     &amp;= \text{CNOT}_{A_1,A_2} \ket{\psi_0} \\
     &amp;= \text{CNOT}_{A_1,A_2} \bigg[ \left(  \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2}\right) \ket{0}_B   \\
@@ -465,9 +480,11 @@ Alice e Bob previamente compartilham o estado de Bell</p>
        &amp;\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \text{CNOT}_{A_1,A_2}\ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \text{CNOT}_{A_1,A_2} \ket{1}_{A_1} \ket{1}_{A_2} \right)\ket{1}_B \\
    &amp;= \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
        &amp;\phantom{=} \quad  + \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{1}_{A_2} + \tfrac{b}{\sqrt{2}} \ket{1}_{A_1} \ket{0}_{A_2} \right)\ket{1}_B \\
-   \end{split}\end{split}\]</div>
+   \end{split}
+\end{split}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
+\[\begin{split}
+\begin{split}
     \ket{\psi_2} 
     &amp;= H_{A_1} \ket{\psi_1} \\
     &amp;= H_{A_1} \left( \tfrac{a}{\sqrt{2}} \ket{0}_{A_1} \ket{0}_{A_2} + \tfrac{b}{\sqrt{2}}  \ket{1}_{A_1} \ket{1}_{A_2}\right) \ket{0}_B   \\
@@ -478,20 +495,25 @@ Alice e Bob previamente compartilham o estado de Bell</p>
        &amp;\phantom{=} \quad  + \left( \tfrac{a}{2} \big(\ket{0}_{A_1} + \ket{1}_{A_1}\big)\ket{1}_{A_2} + \tfrac{b}{2} \big(\ket{0}_{A_1} - \ket{1}_{A_1}\big) \ket{0}_{A_2} \right)\ket{1}_B \\   
     &amp;= \ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right) + \ket{01}_{A_1A_2}\left( \tfrac{b}{2} \ket{0}_B + \tfrac{a}{2} \ket{1}_B \right) \\
        &amp;\phantom{=} \quad  + \ket{10}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B - \tfrac{b}{2} \ket{1}_B \right)  + \ket{11}_{A_1A_2}\left(- \tfrac{b}{2} \ket{0}_B + \tfrac{a}{2} \ket{1}_B   \right) 
-    \end{split}\end{split}\]</div>
+    \end{split}
+\end{split}\]</div>
 <p>Alice realiza, então, a medida dos seus dois qubits na base computacional. Essa medida faz com que o sistema total encontre-se no estado:</p>
 <div class="math notranslate nohighlight">
-\[\ket{\psi_3} = \ket{b_0 b_1}_{A_1A_2} \ket{\psi_3}_B\]</div>
+\[
+\ket{\psi_3} = \ket{b_0 b_1}_{A_1A_2} \ket{\psi_3}_B
+\]</div>
 <p>em que o resultado da medida é <span class="math notranslate nohighlight">\(b_0 b_1\)</span>. O qubit que está com Bob passa a ficar no estado <span class="math notranslate nohighlight">\(\ket{\psi_3}_B\)</span>, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.</p>
 <p><img alt="Screenshot 2024-10-21 at 21-06-47 tcc-giovani pdf" src="https://github.com/user-attachments/assets/9bdb83b6-c876-40f4-b59e-70c53db502df" /></p>
 <p>Caso o resultado da medida tenha sido <span class="math notranslate nohighlight">\(00\)</span>, o estado do sistema total <span class="math notranslate nohighlight">\(\ket{\psi_3}\)</span> é obtido pela projeção <span class="math notranslate nohighlight">\(\ket{00}\bra{00}_{A_1A_2}\)</span> seguida de uma normalização do vetor resultante. É conveniente lembrar que <span class="math notranslate nohighlight">\(|a|^2 + |b|^2 = 1\)</span> pela normalização do estado <span class="math notranslate nohighlight">\(\ket{\psi} = a\ket{0} + b\ket{1}\)</span> do início do algoritmo.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
+\[\begin{split}
+\begin{split}
       \ket{\psi_2} 
       &amp;= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \sqrt{|\tfrac{a}{2}|^2 + |\tfrac{b}{2}|^2 } }  \\
       &amp;= \frac{\ket{00}_{A_1A_2}\left( \tfrac{a}{2} \ket{0}_B + \tfrac{b}{2} \ket{1}_B \right)}{ \tfrac{1}{2} \sqrt{|a|^2 + |b|^2 } }  \\
       &amp;= \ket{00}_{A_1A_2}\left( a \ket{0}_B + b \ket{1}_B \right) \ .
-    \end{split}\end{split}\]</div>
+    \end{split}
+\end{split}\]</div>
 <p>Os outros estados da tabela sãoo obtidos com contas similares</p>
 <p><strong>Processamento final - Bob</strong></p>
 <p>Para recuperar o estado <span class="math notranslate nohighlight">\(a\ket{0} + b\ket{1}\)</span>, Bob deve fazer algumas operações para corrigir o estado do seu qubit, em função do valor da medida informado a ele.</p>
@@ -515,14 +537,18 @@ Alice e Bob previamente compartilham o estado de Bell</p>
 <h3>Construção do Oráculo de Fase usando o Oráculo XOR<a class="headerlink" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor" title="Link para este cabeçalho">#</a></h3>
 <p>Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alvo como um qubit auxiliar. Ao usarmos <span class="math notranslate nohighlight">\(\ket{-}\)</span> na entrada alvo do oráculo XOR, obtemos, para qualquer estado <span class="math notranslate nohighlight">\(\ket{x}\)</span> da base computacional:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
+\[\begin{split}
+\ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
   \begin{cases}
    \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &amp;\text{se $f(x)=0$}  \\
    \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &amp;\text{se $f(x)=1$} \ ,
-  \end{cases}\end{split}\]</div>
+  \end{cases}
+\end{split}\]</div>
 <p>o que pode ser resumido por <span class="math notranslate nohighlight">\(\ket{x}\big((-1)^{f(x)}\ket{-} \big)\)</span>. Além disso, o fator multiplicativo <span class="math notranslate nohighlight">\((-1)^{f(x)}\)</span> pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:</p>
 <div class="math notranslate nohighlight">
-\[\ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}\]</div>
+\[
+\ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}
+\]</div>
 <p>A figura a seguir ilustra a construção do oráculo de fase.</p>
 <p><img alt="Screenshot 2024-10-21 at 21-14-09 tcc-giovani pdf" src="https://github.com/user-attachments/assets/d74c7a8c-6064-4fd3-999a-000d9ed12a95" /></p>
 </section>

@@ -415,7 +415,7 @@ document.write(`
 <section id="computacao-quantica-de-circuitos">
 <h2>Computação quântica de circuitos<a class="headerlink" href="#computacao-quantica-de-circuitos" title="Link para este cabeçalho">#</a></h2>
 <p>Este modelo de Computação Quântica guarda analogia com a Computação Clássica com Portas Lógicas, apresentada no início do artigo. A informação é codificada em qubits, e o processamento é feito por evolução temporal do sistema segundo operações unitárias.</p>
-<p><img alt="Computador quântico.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/Computador%20qu%C3%A2ntico.png" /></p>
+<p><img alt="Computador_quântico.png" src="_images/Computador_quantico.png" /></p>
 <p>Esquema geral de um computador quântico no modelo de circuitos. Os qubits são preparados em estados iniciais e são submetidos a operações unitárias simbolizadas pela caixa de rótulo <span class="math notranslate nohighlight">\(U\)</span>. Após a sequência de operações, os qubits são lidos (ocorre a medição dos qubits na base computacional), fornecendo uma sequência de bits clássicos com o resultado da computação</p>
 <p><strong>Número de entradas e saídas</strong></p>
 <p>Os circuitos quânticos devem ter o mesmo número de entradas e saídas, pois qubits não são introduzidos ou removidos durante o processamento e as portas lógicas quânticas são operadores, o que significa que preservam o número de qubits em que atuam. Diferentemente do que ocorre com os circuitos clássicos, nos quais há portas com diferentes números de bits à entrada e à saída (como as portas AND e NOT, por exemplo).</p>
@@ -494,14 +494,14 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
  \ket{\psi} = \cos(\theta/2)\ket{0} + e^{i\varphi} \sin(\theta/2) \ket{1} \ , \ \ \theta \in [0,\pi] , \varphi \in [0,2\pi)
 \]</div>
 <p>Pode-se multiplicar o estado por uma fase global para que o termo multiplicando <span class="math notranslate nohighlight">\(\ket{0}\)</span> seja real e positivo. Fazendo-se essa identificação em relação à fase global, tem-se o estado de um qubit descrito por dois parâmetros <span class="math notranslate nohighlight">\(\theta\)</span> e <span class="math notranslate nohighlight">\(\varphi\)</span>. Utilizando esses dois parâmetros no sistema de coordenadas esféricas, pode-se corresponder os estados de um qubit com os pontos na superfície de uma esfera de raio unitário, a chamada <em>Esfera de Bloch</em>.</p>
-<p><img alt="image" src="https://github.com/user-attachments/assets/2a875130-f59d-49e4-8127-1954ac213591" />)</p>
+<p><img alt="esfera-de-bloch" src="https://github.com/user-attachments/assets/2a875130-f59d-49e4-8127-1954ac213591" /></p>
 </section>
 <section id="pontos-na-esfera-de-bloch">
 <h4>Pontos na Esfera de Bloch<a class="headerlink" href="#pontos-na-esfera-de-bloch" title="Link para este cabeçalho">#</a></h4>
 <p>Os polos norte da esfera corresponde ao estado <span class="math notranslate nohighlight">\(\ket{0}\)</span> e o polo sul, ao <span class="math notranslate nohighlight">\(\ket{1}\)</span>. No equador, situam-se os estados da forma <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}} \ket{0} + \frac{e^{i\varphi}}{\sqrt{2}} \ket{1}\)</span>, isto é, superposições dos estados <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span> com o mesmo peso e com alguma fase relativa.</p>
-<p><img alt="Pontos_Esfera_Bloch.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Pontos_Esfera_Bloch.png" /></p>
+<p><img alt="Pontos_Esfera_Bloch.png" src="_images/Pontos_Esfera_Bloch.png" /></p>
 <p>Observe que os vetores da base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> correspondem às intersecções da esfera com o eixo <span class="math notranslate nohighlight">\(x\)</span>. De forma similar, isso vale para as bases <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{Z}\)</span>, que correspondem às intersecções da esfera com os eixos <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(z\)</span>, respectivamente.</p>
-<p><img alt="Qubit_dois.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/TCC%20LaTeX/cap4/figuras/blochsphere4.png" /></p>
+<p><img alt="Qubit_dois.png" src="_images/Qubit2.png" /></p>
 </section>
 <section id="projecoes-nos-eixos-coordenados">
 <h4>Projeções nos eixos coordenados<a class="headerlink" href="#projecoes-nos-eixos-coordenados" title="Link para este cabeçalho">#</a></h4>
@@ -529,10 +529,10 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 <section id="notacao-de-circuitos">
 <h2>Notação de Circuitos<a class="headerlink" href="#notacao-de-circuitos" title="Link para este cabeçalho">#</a></h2>
 <p>Os detalhes da notação utilizada para representar circuitos quânticos serão vistos nesta seção.</p>
-<p><img alt="Circuito_Um.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Circuito_Um.png" /></p>
-<p><strong>Entradas e saídas</strong></p>
+<p><img alt="Circuito1.png" src="_images/Circuito1.png" />
+<strong>Entradas e saídas</strong></p>
 <p>O circuito deve conter o mesmo número de entradas e saídas (às vezes podem estar omitidas quando não utilizadas). Cada qubit é representado por uma linha horizontal, e linhas duplas representam bits clássicos. Pode-se pôr rótulos nos qubits para indicar em que estado se encontram na entrada.</p>
-<p><img alt="Circuito_Dois.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Circuito_Dois.png" /></p>
+<p><img alt="Circuito2.png" src="_images/Circuito2.png" /></p>
 <p>Os qubits de entrada podem se encontrar em estados <span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span> ou em superposições desses estados. Também podem encontrar-se em estados emaranhados, não possíveis de se exprimir como produto tensorial de estados de 1 qubit.</p>
 </section>
 <section id="sequencia-de-operacoes">
@@ -542,13 +542,13 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 <section id="simbolos-para-portas-logicas-quanticas">
 <h2>Símbolos para Portas Lógicas Quânticas<a class="headerlink" href="#simbolos-para-portas-logicas-quanticas" title="Link para este cabeçalho">#</a></h2>
 <p>As portas lógicas quânticas são representadas por caixas contendo o mesmo número de entradas e saídas. As portas lógicas controladas são portas lógicas de mais de 1 qubit em que pelo menos um dos qubits age como controle; o qubit de controle é representado por um círculo (mais detalhes serão vistos posteriormente).</p>
-<p><img alt="Circuito_Tres.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Circuito_Tres.png" /></p>
+<p><img alt="Circuito_Tres.png" src="_images/Circuito3.png" /></p>
 <p>Exemplos de portas lógicas quânticas. (1) Porta lógica de 1 qubit. (2) Porta lógica controlada de 2 qubits. (3) Porta lógica de 3 qubits.</p>
 </section>
 <section id="medicoes-de-qubits">
 <h2>Medições de qubits<a class="headerlink" href="#medicoes-de-qubits" title="Link para este cabeçalho">#</a></h2>
 <p>As medições são as únicas operações potencialmente irreversíveis de um circuito quântico. Em geral são realizadas na base computacional <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span>. A notação para medições é ilustrada abaixo, em que, novamente, fica implícito que a base de medidas é a computacional. Após a medição na base computacional, o resultado é um bit clássico.</p>
-<p><img alt="Circuito_Quatro.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Circuito_Quatro.png" /></p>
+<p><img alt="Circuito_Quatro.png" src="_images/Circuito4.png" /></p>
 <p>Notações possíveis para medição de qubits. Após a medição na base canônica, o resultado é um cbit. (1) e (2) Medição na base canônica. (3) Medição de um observável <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> especificado.</p>
 </section>
 <section id="portas-logicas-quanticas">
@@ -559,19 +559,19 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 <p>Estas portas lógicas atuam em 1 qubit apenas. São descritas por matrizes unitárias <span class="math notranslate nohighlight">\(2 \times 2\)</span>. As portas lógicas apresentadas nesse tópico são as portas <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(Z\)</span> de Pauli (também denotadas por <span class="math notranslate nohighlight">\(\sigma_x\)</span>, <span class="math notranslate nohighlight">\(\sigma_y\)</span> e <span class="math notranslate nohighlight">\(\sigma_z\)</span>, respectivamente), a porta <span class="math notranslate nohighlight">\(H\)</span> de Hadamard, a porta de fase ou porta <span class="math notranslate nohighlight">\(S\)</span> e a porta <span class="math notranslate nohighlight">\(\tfrac{\pi}{8}\)</span> ou porta <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <p><strong>Porta X de Pauli ou NOT quântico</strong></p>
 <p>A porta <span class="math notranslate nohighlight">\(X\)</span> de Pauli é a operação unitária de 1 qubit que, na base computacional, é representada pela matriz de Pauli <span class="math notranslate nohighlight">\(X = \sigma_x\)</span>. Algumas informações dessa porta estão resumidas na figura abaixo.</p>
-<p><img alt="Porta_X.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_X.png" /></p>
+<p><img alt="Porta_X.png" src="_images/Porta_X.png" /></p>
 <p><strong>Porta Y de Pauli</strong></p>
 <p>A porta <span class="math notranslate nohighlight">\(Y\)</span> de Pauli é a operação unitária de 1 qubit que, na base computacional, é representada pela matriz de Pauli <span class="math notranslate nohighlight">\(Y = \sigma_y\)</span>. Algumas informações dessa porta estão dispostas abaixo.</p>
-<p><img alt="Porta_Y.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Y.png" /></p>
+<p><img alt="Porta_Y.png" src="_images/Porta_Y.png" /></p>
 <p><strong>Porta Z de Pauli</strong></p>
 <p>A porta <span class="math notranslate nohighlight">\(Z\)</span> de Pauli é a operação unitária de 1 qubit que é representada na base computacional pela matriz de Pauli <span class="math notranslate nohighlight">\(Z = \sigma_z\)</span>. Essa porta introduz uma fase relativa de <span class="math notranslate nohighlight">\(\pi\)</span>, o que corresponde a multiplicar o <span class="math notranslate nohighlight">\(\ket{1}\)</span> por <span class="math notranslate nohighlight">\(-1 = e^{i\pi}\)</span>, como se pode observar no quadro a seguir.</p>
-<p><img alt="Porta_Z.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Z.png" /></p>
+<p><img alt="Porta_Z.png" src="_images/Porta_Z.png" /></p>
 <p><strong>Porta Hadamard</strong></p>
 <p>A porta de Hadamard é uma operação unitária de 1 qubit representada na base computacional pela matriz de Hadamard <span class="math notranslate nohighlight">\(H\)</span>. Essa matriz, definida abaixo, também realiza mudança de base de <span class="math notranslate nohighlight">\(\mathcal{I} = \big\lbrace \ket{0}, \ket{1}\big\rbrace\)</span> para <span class="math notranslate nohighlight">\(\mathcal{X} = \big\lbrace \ket{+}, \ket{-}\big\rbrace\)</span> e vice-versa</p>
-<p><img alt="Porta_Hadamard.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Hadamard.png" /></p>
+<p><img alt="Porta_Hadamard.png" src="_images/Porta_Hadamard.png" /></p>
 <p><strong>Porta de Fase ou Porta S</strong></p>
 <p>A porta <span class="math notranslate nohighlight">\(S\)</span> introduz uma fase relativa de <span class="math notranslate nohighlight">\(\frac{\pi}{2}\)</span> no qubit em que atua, levando um estado <span class="math notranslate nohighlight">\(a \ket{0} + b \ket{1}\)</span> em um estado <span class="math notranslate nohighlight">\(a \ket{0} + i b \ket{1}\)</span>, já que <span class="math notranslate nohighlight">\(i = e^{i\frac{\pi}{2}}\)</span>. Os detalhes pertinentes a essa porta lógica estão dispostos abaixo.</p>
-<p><img alt="Porta_S.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_S.png" /></p>
+<p><img alt="Porta_S.png" src="_images/Porta_S.png" /></p>
 <p><strong>Porta T ou Porta <span class="math notranslate nohighlight">\(\frac{\pi}{8}\)</span></strong></p>
 <p>A porta <span class="math notranslate nohighlight">\(T\)</span>, também conhecida como porta <span class="math notranslate nohighlight">\(\frac{\pi}{8}\)</span>, é uma porta lógica que introduz uma fase relativa de <span class="math notranslate nohighlight">\(\frac{\pi}{4}\)</span>, levando um estado <span class="math notranslate nohighlight">\(a\ket{0} + b \ket{1}\)</span> em <span class="math notranslate nohighlight">\(a\ket{0} + e^{i\frac{\pi}{4}} b \ket{1}\)</span>.</p>
 <p>O nome <span class="math notranslate nohighlight">\(\frac{\pi}{8}\)</span> dessa porta se deve ao fato de poder ser escrita na forma</p>
@@ -583,14 +583,14 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 \end{bmatrix}
 \end{split}\]</div>
 <p>Isso significa que, a menos de uma fase global, essa operação realiza uma mudança de fase de <span class="math notranslate nohighlight">\(+\frac{\pi}{8}\)</span> no estado <span class="math notranslate nohighlight">\(\ket{0}\)</span> e de <span class="math notranslate nohighlight">\(-\frac{\pi}{8}\)</span> no estado <span class="math notranslate nohighlight">\(\ket{1}\)</span>.</p>
-<p><img alt="Porta_T.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_T.png" /></p>
+<p><img alt="Porta_T.png" src="_images/Porta_T.png" /></p>
 <p><strong>Porta de Fase <span class="math notranslate nohighlight">\(\theta\)</span></strong></p>
 <p>A porta de fase pode ser generalizada para uma fase arbitrária <span class="math notranslate nohighlight">\(\theta\)</span>.  Nesse caso, a aplicação dessa porta, denotada por <span class="math notranslate nohighlight">\(S(\theta)\)</span> leva um estado <span class="math notranslate nohighlight">\(a\ket{0} + b\ket{1}\)</span> em <span class="math notranslate nohighlight">\(a\ket{0} + e^{i\theta} b\ket{1}\)</span>. A matriz que realiza isso é mostrada a seguir.</p>
-<p><img alt="Porta_Theta.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Theta.png" /></p>
+<p><img alt="Porta_Theta.png" src="_images/Porta_Theta.png" /></p>
 <p>Como casos particulares, tem-se</p>
 <div class="math notranslate nohighlight">
 \[
-    Z = S(\pi) \ , \ \ S = S(\tfrac{\pi}{2}) \ \text{e} \ \ T = S(\tfrac{\pi}{4})
+Z = S(\pi) \ , \ \ S = S(\tfrac{\pi}{2}) \ \text{e} \ \ T = S(\tfrac{\pi}{4})
 \]</div>
 <section id="portas-logicas-de-2-qubits">
 <h4>Portas Lógicas de 2 Qubits<a class="headerlink" href="#portas-logicas-de-2-qubits" title="Link para este cabeçalho">#</a></h4>
@@ -599,21 +599,21 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <p>A porta CNOT, ou NOT controlada, é uma porta de 2 qubits em que um deles exerce a função de controle e o outro, a de alvo. Em geral, quando não especificado, o primeiro qubit é o controle e o segundo, o alvo. Se o qubit de controle for <span class="math notranslate nohighlight">\(\ket{0}\)</span>, nada acontece com o qubit alvo. Se o controle for <span class="math notranslate nohighlight">\(\ket{1}\)</span>, a porta NOT quântica (porta <span class="math notranslate nohighlight">\(X\)</span> de Pauli) é aplicada ao alvo:</p>
 <div class="math notranslate nohighlight">
 \[
-   \text{CNOT} \ket{0}_1\ket{1}_2 = \ket{0}_1\ket{1}_2 \ , \ \ \text{CNOT}\ket{1}_1\ket{0}_2 = X_2 \ket{1}_1 \ket{0}_2 = \ket{1}_1 \ket{1}_2
-  \]</div>
+\text{CNOT} \ket{0}_1\ket{1}_2 = \ket{0}_1\ket{1}_2 \ , \ \ \text{CNOT}\ket{1}_1\ket{0}_2 = X_2 \ket{1}_1 \ket{0}_2 = \ket{1}_1 \ket{1}_2
+\]</div>
 <p>Esse comportamento é análogo à entrada ``enable’’ em circuitos digitais clássicos, que permite a ação do circuito se está habilitada em 1, ou nada acontece, se o enable é 0. A novidade na Computação Quântica é que a entrada de controle é um qubit e pode, portanto, se encontrar em uma superposição de estados, como <span class="math notranslate nohighlight">\(\frac{\ket{0}+\ket{1}}{\sqrt{2}}\)</span>. A aplicação da porta CNOT, em casos como esse, ficaria</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-   \begin{split}
-      \text{CNOT}\frac{\ket{0}_1+\ket{1}_1}{\sqrt{2}}\ket{1}_2 
+\begin{split}
+  \text{CNOT}\frac{\ket{0}_1+\ket{1}_1}{\sqrt{2}}\ket{1}_2 
       &amp;= \frac{1}{\sqrt{2}} \big( \text{CNOT}\ket{0}_1 \ket{1}_2 + \text{CNOT}\ket{1}_1 \ket{1}_2 \big) \\
       &amp;= \frac{1}{\sqrt{2}} \big( \ket{0}_1 \ket{1}_2 + \ket{1}_1 \ket{0}_2 \big) \ .
-     \end{split}
-     \end{split}\]</div>
+\end{split}
+\end{split}\]</div>
 <p>A porta CNOT tem suas informações resumidas no quadro abaixo.</p>
-<p><img alt="Porta_CNOT.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_CNOT.png" /></p>
+<p><img alt="Porta_CNOT.png" src="_images/Porta_CNOT.png" /></p>
 <p>A porta CNOT também pode aparecer com o controle no segundo qubit e alvo no primeiro qubit. Nesse caso, podem ser usados índices no símbolo CNOT para especificar o controle e o alvo em situações mais específicas. Por exemplo:</p>
-<p><img alt="Porta_CNOT2.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_CNOT2.png" /></p>
+<p><img alt="Porta_CNOT2.png" src="_images/Porta_CNOT2.png" /></p>
 <p>Uma notação semelhante pode ser usada em outras portas controladas para especificar o qubit de controle e o de alvo.</p>
 <p><strong>Porta Z Controlada</strong></p>
 <p>A porta <span class="math notranslate nohighlight">\(Z\)</span> controlada também atua em 2 qubits, um deles com função de controle e o outro, de alvo. Se o controle (o primeiro qubit) for <span class="math notranslate nohighlight">\(\ket{0}\)</span>, o alvo (segundo qubit) não se modifica, e se o controle for <span class="math notranslate nohighlight">\(\ket{1}\)</span>, aplica-se uma porta <span class="math notranslate nohighlight">\(Z\)</span> de Pauli ao alvo, como se pode ver no quadro a seguir. Se os qubits estiverem em superposição, basta usar a linearidade do operador CZ e atuar em cada estado da base computacional isoladamente:</p>
@@ -625,10 +625,10 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
      &amp;= \frac{1}{\sqrt{2}} \big( \ket{0}_1 \ket{1}_2 - \ket{1}_1 \ket{1}_2 \big) \ .
     \end{split}
 \end{split}\]</div>
-<p><img alt="Porta_Z_Controlada.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Z_Controlada.png" /></p>
+<p><img alt="Porta_Z_Controlada.png" src="_images/Porta_Z_Controlada.png" /></p>
 <p><strong>Porta SWAP</strong></p>
 <p>A porta SWAP troca o estado de dois qubits, levando <span class="math notranslate nohighlight">\(\ket{\phi}\ket{\psi}\)</span> em <span class="math notranslate nohighlight">\(\ket{\psi}\ket{\phi}\)</span>.</p>
-<p><img alt="Porta_Swap.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Swap.png" /></p>
+<p><img alt="Porta_Swap.png" src="_images/Porta_Swap.png" /></p>
 </section>
 </section>
 <section id="portas-logicas-de-3-qubits">
@@ -636,12 +636,12 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <p>As principais operações em 3 qubits são as portas Toffoli, também conhecida por CCNOT (CNOT controlada), e Fredkin, ou CSWAP (SWAP controlada).</p>
 <p><strong>Porta Toffoli ou CCNOT</strong></p>
 <p>A porta Toffoli é uma operação linear que envolve 3 qubits. Dois deles funcionam como controle e um, como alvo. O alvo só é modificado (pela aplicação da porta <span class="math notranslate nohighlight">\(X\)</span>) se o estado dos dois controles for <span class="math notranslate nohighlight">\(\ket{1}\ket{1}\)</span>.</p>
-<p><img alt="Porta_Tofofli.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Tofofli.png" /></p>
+<p><img alt="Porta_Tofofli.png" src="_images/Porta_Toffoli1.png" /></p>
 <p>Novamente, quando não houver outra indicação, os qubits de controle são o primeiro e o segundo, e o alvo é o terceiro qubit. Pode-se especificar os qubits de controle e de alvo por meio de índices, como por exemplo:</p>
-<p><img alt="Porta_toffoliDois.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_toffoliDois.png" /></p>
+<p><img alt="Porta_toffoliDois.png" src="_images/Porta_Toffoli2.png" /></p>
 <p><strong>Porta Fredkin ou CSWAP</strong></p>
 <p>A porta de Fredkin possui um qubit de controle e dois alvos. Se o controle for <span class="math notranslate nohighlight">\(\ket{1}\)</span>, uma porta SWAP atua nos alvos.</p>
-<p><img alt="Porta_Fredkin.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Porta_Fredkin.png" /></p>
+<p><img alt="Porta_Fredkin.png" src="_images/Porta_Fredkin.png" /></p>
 </section>
 </section>
 <section id="identidades-de-circuitos">
@@ -651,18 +651,17 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <h3>Identidades para as matrizes de Pauli<a class="headerlink" href="#identidades-para-as-matrizes-de-pauli" title="Link para este cabeçalho">#</a></h3>
 <p>Valem as seguintes relações para as matrizes de Pauli <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(Z\)</span>.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-     \begin{split}
-        X^2 &amp;= I \\
-        Y^2 &amp;= I \\
-        Z^2 &amp;= I
-       \end{split}
-       \begin{split}
-        XY &amp;= iZ \\
-        YZ &amp;= iX \\
-        ZX &amp;= iY
-       \end{split}
-\end{split}\]</div>
+\[ \begin{align}\begin{aligned}\begin{split}
+  \begin{split}
+    X^2 &amp;= I \\
+    Y^2 &amp;= I \\
+    Z^2 &amp;= I
+  \end{split}\end{split}\\\begin{split}  \begin{split}
+    XY &amp;= iZ \\
+    YZ &amp;= iX \\
+    ZX &amp;= iY
+  \end{split}
+\end{split}\end{aligned}\end{align} \]</div>
 <p><strong>Prova</strong></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -685,7 +684,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
    HYH &amp;= -Y \\
    HZH &amp;= X
 \end{aligned}
-  \end{split}\]</div>
+\end{split}\]</div>
 <p>Portanto, na nova base <span class="math notranslate nohighlight">\(\ket{+},\ket{-}\)</span>, a matriz do operador <span class="math notranslate nohighlight">\(X\)</span> é <span class="math notranslate nohighlight">\(Z\)</span>, a matriz de <span class="math notranslate nohighlight">\(Y\)</span> é <span class="math notranslate nohighlight">\(-Y\)</span> e a matriz de <span class="math notranslate nohighlight">\(Z\)</span> é <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p><strong>Prova</strong></p>
 <div class="math notranslate nohighlight">
@@ -713,7 +712,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
         &amp;= \tfrac{1}{2}\begin{bmatrix}0 &amp; 2 \\ 2 &amp; 0\end{bmatrix}
           = \begin{bmatrix}0 &amp; 1 \\ 1 &amp; 0\end{bmatrix} = X.
 \end{split}
-  \end{split}\]</div>
+\end{split}\]</div>
 </section>
 </section>
 <section id="inversa-de-hadamard">
@@ -722,9 +721,9 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <p>Pode-se verificar fazendo a conta com matrizes diretamente.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-  \begin{split}
-    HH &amp;= \tfrac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; 1 \\ 1 &amp; -1\end{bmatrix}
-         \tfrac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; 1 \\ 1 &amp; -1\end{bmatrix} \\
+\begin{split}
+  HH &amp;= \tfrac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; 1 \\ 1 &amp; -1\end{bmatrix}
+      \tfrac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; 1 \\ 1 &amp; -1\end{bmatrix} \\
        &amp;= \tfrac{1}{2}\begin{bmatrix}2 &amp; 0 \\ 0 &amp; 2\end{bmatrix} = I
 \end{split}
 \end{split}\]</div>
@@ -736,12 +735,12 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <section id="cnot-por-z">
 <h4>CNOT por Z<a class="headerlink" href="#cnot-por-z" title="Link para este cabeçalho">#</a></h4>
 <p>A porta CNOT pode ser obtida usando-se uma porta <span class="math notranslate nohighlight">\(Z\)</span> controlada:</p>
-<p><img alt="CNOT_Usando_Z.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/CNOT_Usando_Z.png" /></p>
+<p><img alt="CNOT_Usando_Z.png" src="_images/CNOT_Usando_Z.png" /></p>
 </section>
 <section id="swap-por-cnot">
 <h4>SWAP por CNOT<a class="headerlink" href="#swap-por-cnot" title="Link para este cabeçalho">#</a></h4>
 <p>A porta SWAP pode ser construída por 3 portas CNOT:</p>
-<p><img alt="CNOT_USANDO_SWAP.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/CNOT_USANDO_SWAP.png" /></p>
+<p><img alt="CNOT_USANDO_SWAP.png" src="_images/CNOT_Usando_SWAP.png" /></p>
 </section>
 </section>
 <section id="universalidade-das-portas-logicas-quanticas">
@@ -752,7 +751,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <p>Na Computação Clássica Reversível, as funções booleanas têm o mesmo número de bits na entrada e saída, e as portas lógicas são reversíveis (isto é, conhecendo-se a saída, é possível determinar a entrada que a originou). As portas lógicas NOT, CNOT, SWAP, Toffoli e Fredkin, quando trabalhando apenas com bits e não qubits, são exemplos de portas lógicas clássicas reversíveis.</p>
 <p><strong>Teorema 1:</strong> A porta Toffoli é universal para a Computação Clássica.</p>
 <p>É possível realizar as portas NOT e AND utilizando a porta Toffoli e acrescentando alguns bits de trabalho (bits com valor fixado em 0 ou 1 dependendo da necessidade).</p>
-<p><img alt="Demonstraçaõ toffoli.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Demonstra%C3%A7a%C3%B5%20toffoli.png" /></p>
+<p><img alt="Demonstracao_Toffoli.png" src="_images/Demonstracao_Toffoli.png" /></p>
 <p>Com isso, um circuito booleano qualquer pode ser realizado apenas com portas Toffoli ignorando-se bits extra (``lixo’’).</p>
 <p><strong>Teorema 2:</strong>  A porta Fredkin é universal para a Computação Clássica.</p>
 <p>Da mesma forma como para a porta Toffoli, é possível realizar as portas NOT e AND utilizando a porta Fredkin e acrescentando alquns bits de trabalho.</p>
@@ -770,14 +769,14 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
 <section id="teorema-da-nao-clonagem">
 <h3>Teorema da Não-Clonagem<a class="headerlink" href="#teorema-da-nao-clonagem" title="Link para este cabeçalho">#</a></h3>
 <p>Um bit clássico pode ser copiado para servir como entrada em diversas partes de um circuito digital clássico.</p>
-<p><img alt="Nao_clonagem.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Nao_clonagem.png" /></p>
+<p><img alt="Nao_clonagem1.png" src="_images/Nao_clonagem1.png" /></p>
 <p>Pode-se pensar nesse comportamento em termos da porta lógica clássica COPY que devolve à saída duas (ou mais) cópias do bit de entrada.</p>
-<p><img alt="Nao_clonagem_Dois.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Nao_clonagem_Dois.png" /></p>
+<p><img alt="Nao_clonagem2.png" src="_images/Nao_clonagem2.png" /></p>
 <p>omo na Computação Quântica, o análogo das portas lógicas seriam as operações unitárias sobre qubits, poderia-se cogitar a existência de uma porta lógica quântica de 2 qubits que tivesse como entrada um qubit num estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> qualquer, a ser copiado, (e outra entrada <span class="math notranslate nohighlight">\(\ket{0}\)</span> para completar 2 entradas) e devolvesse 2 qubits no estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>, como ilustrado na figura a seguir.</p>
-<p><img alt="Nao_Clonagem_Tres.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Nao_Clonagem_Tres.png" /></p>
+<p><img alt="Nao_clonagem3.png" src="_images/Nao_clonagem3.png" /></p>
 <p>No entanto, o chamado <em>Teorema da Não Clonagem</em> informa que não existe uma operação unitária capaz de efetuar essa operação para qualquer estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> de entrada. Desse modo, a cópia de bits não possui análogo na Computação Quântica.</p>
 <p><strong>Teorema da Não Clonagem:</strong>  Não existe uma operação unitária que permita copiar o estado de 1 qubit em 2 (ou mais) qubits. Isto é, não existe operação unitária <span class="math notranslate nohighlight">\(U\)</span> que satisfaça, para todo estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> de 1 qubit, o seguinte:</p>
-<p><img alt="Nao_Cloangem_Qautro.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Nao_Cloangem_Qautro.png" /></p>
+<p><img alt="Nao_clonagem4.png" src="_images/Nao_clonagem4.png" /></p>
 <p><strong>Prova:</strong></p>
 <p>A prova se dá por redução ao absurdo. Seja <span class="math notranslate nohighlight">\(U\)</span> uma tal operação unitária, satisfazendo <span class="math notranslate nohighlight">\(U\ket{\psi}\ket{0} = \ket{\psi}\ket{\psi}\)</span> para todo estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> com <span class="math notranslate nohighlight">\(||\ket{\psi}|| = 1\)</span>.</p>
 <p>Considere os estados de 1 qubit <span class="math notranslate nohighlight">\(\ket{1}\)</span> e <span class="math notranslate nohighlight">\(\ket{+}\)</span>. Tem-se que</p>
@@ -790,7 +789,7 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
    &amp;= \bra{1} \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \\
    &amp;= \frac{1}{\sqrt{2}} \ .
   \end{split}
- \end{split}\]</div>
+\end{split}\]</div>
 <p>Por outro lado, como <span class="math notranslate nohighlight">\(U\)</span> é unitária, também vale que</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -801,20 +800,20 @@ e^{-i\frac{\pi}{8}} &amp; 0 \\
     &amp;= \braket{1}{+} \braket{1}{+} \\ 
     &amp;=  \frac{1}{\sqrt{2}} \cdot  \frac{1}{\sqrt{2}} \ .
    \end{split}
- \end{split}\]</div>
+\end{split}\]</div>
 <p>Comparando (1) e (2), tem-se que: <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}} =  \frac{1}{\sqrt{2}} \cdot  \frac{1}{\sqrt{2}} \)</span>,</p>
 <p>O que não pode ocorrer. Portanto a hipótese de que existe <span class="math notranslate nohighlight">\(U\)</span> como descrito acima é falsa.</p>
 <p>É possível generalizar essa demonstração para mostrar que não existe operação unitária <span class="math notranslate nohighlight">\(U\)</span> tal que <span class="math notranslate nohighlight">\(U\ket{\psi}\ket{s} = \ket{\psi}\ket{\psi}\)</span> para todo estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>, e com <span class="math notranslate nohighlight">\(\ket{s}\)</span> um estado fixo qualquer</p>
 <p>Apesar de não ser possível clonar um estado arbitrário, é possível copiar estados na base computacional. De fato, uma porta CNOT é suficiente para realizar isso.</p>
 <p><strong>Proposição:</strong> Clonagem de estados <span class="math notranslate nohighlight">\(\ket{0},\ket{1}\)</span></p>
 <p>O circuito abaixo realiza a clonagem de estados da base computacional. Se <span class="math notranslate nohighlight">\(a = 0,1\)</span>, tem-se:</p>
-<p><img alt="Ultima imagem.png" src="https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Secao_computacao_quantico/Ultima%20imagem.png" /></p>
+<p><img alt="clonagem_estados.png" src="_images/clonagem_estados.png" /></p>
 <p><strong>Prova:</strong></p>
 <p>Segue do comportamento da porta CNOT nos vetores da base computacional:</p>
 <div class="math notranslate nohighlight">
 \[
 \ket{a}\ket{0} \ \  \xrightarrow{\text{CNOT}} \ \  \ket{a}\ket{0\oplus a} = \ket{a} \ket{a}
-  \]</div>
+\]</div>
 </section>
 </section>
 </section>

@@ -44,19 +44,21 @@ As *variáveis booleanas* são variáveis que podem assumir apenas dois valores,
 
 As portas lógicas são funções booleanas simples, blocos fundamentais dos circuitos digitais. As portas lógicas mais importantes são descritas resumidamente nas figuras a seguir. 
 
-![Porta_and.png](https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_and.png)
+![porta_not.png](images/comp_classica/porta_not.png)
 
-![Porta_nand.png](https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_nand.png)
+![porta_and.png](images/comp_classica/porta_and.png)
 
-![Porta_not.png](https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_not.png)
+![porta_or.png](images/comp_classica/porta_or.png)
 
-![Porta_or.png](https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_or.png)
+![porta_xor.png](images/comp_classica/porta_xor.png)
 
-![Porta_xnor.png](https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Porta_xnor.png)
+![porta_nand.png](images/comp_classica/porta_nand.png)
 
-![porta_xor.png](https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/porta_xor.png)
+![porta_nor.png](images/comp_classica/porta_nor.png)
 
-![Portas_fanout.png](https://raw.githubusercontent.com/evandro-crr/ket-book/refs/heads/main/book/algoritmos/images/Portas_fanout.png)
+![porta_xnor.png](images/comp_classica/porta_xnor.png)
+
+![porta_fanout](images/comp_classica/)
 
 Qualquer sistema físico que se comporte de maneira a fornecer uma tabela verdade como as apresentadas acima pode ser considerado uma porta lógica. 
 
