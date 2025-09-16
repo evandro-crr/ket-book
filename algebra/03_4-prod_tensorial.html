@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Produto Tensorial &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algebra/03_4-prod_tensorial';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Postulados da Mecânica Quântica" href="../04-postulados.html" />
+    <link rel="prev" title="Autovalores, Autovetores e Operadores" href="03_3-operadores.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../03-algebra.html">Álgebra Linear para Computação Quântica</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="03_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08-algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/08_1-grover.html">Algoritmo de Busca de Grover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/08_2-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/08_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/algebra/03_4-prod_tensorial.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Produto Tensorial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-do-produto-tensorial">Espaço Vetorial do Produto Tensorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano">Comparação do Produto Tensorial com o Produto Cartesiano</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno">Produto Interno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-de-kronecker">Produto de Kronecker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial-de-varios-espacos-vetoriais">Produto Tensorial de Vários Espaços Vetoriais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao">Notação</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="produto-tensorial">
+<span id="id1"></span><h1>Produto Tensorial<a class="headerlink" href="#produto-tensorial" title="Link para este cabeçalho">#</a></h1>
+<p>É possível compor dois espaços vetoriais para formar um terceiro espaço. Uma maneira de fazer isso é por meio do <em>produto tensorial</em>. Em Computação Quântica, essa construção é fundamental para se trabalhar com sistemas compostos por mais de um qubit. Um sistema de dois qubits será o produto tensorial de dois espaços <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>, que modelam um qubit.</p>
+<section id="espaco-vetorial-do-produto-tensorial">
+<h2>Espaço Vetorial do Produto Tensorial<a class="headerlink" href="#espaco-vetorial-do-produto-tensorial" title="Link para este cabeçalho">#</a></h2>
+<p>Dados dois espaços vetorias <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, com bases <span class="math notranslate nohighlight">\(\beta_V = \{ \ket{v_k} \}\)</span> e <span class="math notranslate nohighlight">\(\beta_W = \{ \ket{w_l} \}\)</span>, o <em>produto tensorial</em> de <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, denotado por <span class="math notranslate nohighlight">\(V\otimes W\)</span>, é definido como o espaço vetorial gerado pela base:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+v_k \otimes w_l \ , \ \ \begin{matrix} k=0 , \ldots , \dim V - 1 \\  l=0 , \ldots , \dim W - 1 \end{matrix} \ .
+\end{split}\]</div>
+<p>A dimensão do espaço vetorial do produto tensorial é, portanto,</p>
+<div class="math notranslate nohighlight">
+\[
+\dim V\otimes W = \dim V \cdot \dim W \ .
+\]</div>
+<p>O produto tensorial <span class="math notranslate nohighlight">\(\otimes\)</span> forma uma dupla ordenada com propriedades diferentes das do produto cartesiano. Essas propriedades, listadas abaixos, são chamadas conjuntamente de <em>bilinearidade</em>:</p>
+<ul>
+<li><p>Para todos <span class="math notranslate nohighlight">\(z \in \mathbb{C}\)</span>, <span class="math notranslate nohighlight">\(\ket{v}\in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w} \in W\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+  z \cdot (\ket{v} \otimes \ket{w}) = (z\ket{v}) \otimes \ket{w} = \ket{v} \otimes(z\ket{w}) \ .
+  \]</div>
+</li>
+<li><p>Para todos  <span class="math notranslate nohighlight">\(\ket{v^1},\ket{v^2}\in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w} \in W\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+  (\ket{v^1}+ \ket{v^2}) \otimes \ket{w} = \ket{v^1} \otimes \ket{w} + \ket{v^2} \otimes \ket{w} \ .
+  \]</div>
+</li>
+<li><p>Para todos <span class="math notranslate nohighlight">\(\ket{v}\in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w^1},\ket{w^2} \in W\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+  \ket{v} \otimes (\ket{w^1} + \ket{w^2}) = \ket{v} \otimes \ket{w^1} + \ket{v} \otimes \ket{w^2} \ .
+  \]</div>
+</li>
+</ul>
+<p>Um elemento genérico do espaço <span class="math notranslate nohighlight">\(V\otimes W\)</span> é uma combinação linear dos vetores da base <span class="math notranslate nohighlight">\(\ket{v_k} \otimes \ket{w_l}\)</span>. Em geral, essa combinação não pode ser escrita da forma fatorada <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w}\)</span>.</p>
+<div class="tip admonition" id="cap2ex-espaco-vet-2qubits">
+<p class="admonition-title">Exemplo</p>
+<p>O sistema composto por 2 qubits é dado pelo produto tensorial de dois espaços vetoriais de 1 qubit. Esse espaço vetorial é denotado por <span class="math notranslate nohighlight">\(\mathbb{C}^2 \otimes \mathbb{C}^2\)</span>. A base desse espaço é formada pelos 4 vetores</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+\ket{00} &amp;=&amp; \ket{0} \ket{0} = \ket{0} \otimes \ket{0} \\
+\ket{01} &amp;=&amp; \ket{0} \ket{1} = \ket{0} \otimes \ket{1} \\
+\ket{10} &amp;=&amp; \ket{1} \ket{0} = \ket{1} \otimes \ket{0} \\
+\ket{11} &amp;=&amp; \ket{1} \ket{1} = \ket{1} \otimes \ket{1} \ ,
+\end{array}
+\end{split}\]</div>
+<p>e as igualdades apresentadas acima apenas referem-se a notações alternativas e mais compactas. A ordem em que as entradas aparecem no produto tensorial é importante, de forma que <span class="math notranslate nohighlight">\(\ket{01} \neq \ket{10}\)</span>, por exemplo.</p>
+<p>Um vetor qualquer <span class="math notranslate nohighlight">\(\ket{\psi} \in \mathbb{C}^2 \otimes \mathbb{C}^2\)</span> pode ser escrito como</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = a \ket{00} + b\ket{01} + c \ket{10} + d\ket{11} \ ,
+\]</div>
+<p>com <span class="math notranslate nohighlight">\(a,b,c,d \in \mathbb{C}\)</span>. Alguns exemplos de vetores pertencentes ao espaço em questão são:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\ket{00} + \ket{11}}{\sqrt{2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\ket{0} \otimes \left(\ket{0} + 2\ket{1} \right) = \ket{00} + 2 \ket{01}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\left( 5\ket{1}\right)   \ket{1}  =  5 \ket{11}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\left(\frac{1}{\sqrt{2}}\ket{0} - \frac{i}{\sqrt{2}} \right) \ket{0} = \frac{1}{\sqrt{2}}\ket{00} - \frac{i}{\sqrt{2}}\ket{10} \ .
+\]</div>
+<p>As igualdades acima são exemplos da bilinearidade do produto tensorial.</p>
+</div>
+</section>
+<section id="comparacao-do-produto-tensorial-com-o-produto-cartesiano">
+<h2>Comparação do Produto Tensorial com o Produto Cartesiano<a class="headerlink" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano" title="Link para este cabeçalho">#</a></h2>
+<p>O <em>produto cartesiano</em>, às vezes chamado <em>soma direta</em> é outra maneira de se compor dois espaços vetoriais em um espaço “maior”, denotado por <span class="math notranslate nohighlight">\(V \times W\)</span> ou por <span class="math notranslate nohighlight">\(V \oplus W\)</span>. O produto cartesiano é formado por duplas <span class="math notranslate nohighlight">\(\big( \ket{v} , \ket{w} \big)\)</span>, com <span class="math notranslate nohighlight">\(\ket{v} \in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w} \in W\)</span>. Nesta subseção, a notação <span class="math notranslate nohighlight">\(( \cdot \, , \cdot )\)</span> refere-se a par ordenado em vez de produto interno como no restante do texto.</p>
+<p>As diferenças entre essas duas operações estão dispostas no que segue:</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-number">Tabela 2 </span><span class="caption-text">Tabela comparativa entre produto tensorial e produto cartesiano (também chamado soma direta)</span><a class="headerlink" href="#id2" title="Link para esta tabela">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Produto Tensorial</p></th>
+<th class="head"><p>Produto Cartesiano ou Soma Direta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notação:</p></td>
+<td><p><span class="math notranslate nohighlight">\(V \otimes W\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(V \times W = V \oplus W\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Base:</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ket{v_k} \otimes \ket{w_l}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\big( \ket{v_k} , 0 \big) \ , \ \big( 0 , \ket{w_l} \big)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Dimensão:</p></td>
+<td><p><span class="math notranslate nohighlight">\(\dim V \otimes W = \dim V \cdot \dim W\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dim V \oplus W = \dim V + \dim W\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Outra diferença é que a soma, no produto cartesiano, é uma soma entrada a entrada</p>
+<div class="math notranslate nohighlight">
+\[
+\big( \ket{v^1} , \ket{w^1} \big) + \big( \ket{v^2} , \ket{w^2} \big) = \big( \ket{v^1} + \ket{v^2} , \ket{w^1} + \ket{w^2} \big) \ ,
+\]</div>
+<p>enquanto que a soma no produto tensorial, de modo geral, não se reduz</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{v^1} \otimes \ket{w^1}  +  \ket{v^2} \otimes \ket{w^2}  \ ,
+\]</div>
+<p>a não ser que, por exemplo, <span class="math notranslate nohighlight">\(\ket{v^1} = \ket{v^2}\)</span>, de modo que</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{v^1} \otimes \ket{w^1}  +  \ket{v^1} \otimes \ket{w^2} = \ket{v^1} \otimes \big( \ket{w^1}  + \ket{w^2} \big) \ .
+\]</div>
+<p>A multiplicação por escalar no produto cartesiano também é entrada a entrada</p>
+<div class="math notranslate nohighlight">
+\[
+z \cdot \big( \ket{v} , \ket{w} \big) = \big( z\ket{v} , z\ket{w} \big) \ ,
+\]</div>
+<p>enquanto que, no produto tensorial, o escalar pode ser incorporado a qualquer das duas entradas, mas deve ir para apenas uma delas</p>
+<div class="math notranslate nohighlight">
+\[
+z \cdot \big(\ket{v} \otimes \ket{w}\big) = \big(z\ket{v}\big) \otimes \ket{w} = \ket{v} \otimes \big(z\ket{w} \big) \ .
+\]</div>
+</section>
+<section id="produto-interno">
+<h2>Produto Interno<a class="headerlink" href="#produto-interno" title="Link para este cabeçalho">#</a></h2>
+<p>Sejam <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span> espaços de Hilbert, isto é, espaços munidos de produto interno. O produto tensorial <span class="math notranslate nohighlight">\(V\otimes W\)</span> pode ser munido com um produto interno derivado dos produtos internos de <span class="math notranslate nohighlight">\(V\)</span> e de <span class="math notranslate nohighlight">\(W\)</span>. Defina:</p>
+<div class="math notranslate nohighlight" id="cap2def-produto-interno-vetores-da-base">
+\[\begin{split}
+\begin{array}{rcl}
+  \Big( \ket{v_k}\otimes \ket{w_l} , \ket{v_{k^\prime}}\otimes \ket{w_{l^\prime}} \Big)
+&amp;=&amp;  \Big( \ket{v_k} , \ket{v_{k^\prime}} \Big)_V \cdot \Big( \ket{w_l} , \ket{w_{l^\prime}} \Big)_W  \nonumber \\
+&amp;=&amp; \braket{v_k | v_{k^\prime}}  \cdot \braket{w_l | w_{l^\prime}} =  \delta_{k,k\prime} \delta_{l,l^\prime} \ , \quad \quad \quad
+\end{array}
+\end{split}\]</div>
+<p>estendendo a definição para elementos arbitrários do produto tensorial por linearidade na segunda entrada e antilinearidade na primeira.</p>
+<p>Para dois vetores da forma <span class="math notranslate nohighlight">\(\ket{v^1}\otimes \ket{w^1}\)</span> e <span class="math notranslate nohighlight">\(\ket{v^2}\otimes \ket{w^2}\)</span> do produto tensorial, pode-se denotar</p>
+<div class="math notranslate nohighlight">
+\[
+\Big( \ket{v^1}\otimes \ket{w^1} ,   \ket{v^2}\otimes \ket{w^2} \Big) = \big( \bra{v^1}\otimes \bra{w^1} \big) \big(  \ket{v^2}\otimes \ket{w^2} \big) \ ,
+\]</div>
+<p>e decorre da definição de produto interno que</p>
+<div class="math notranslate nohighlight">
+\[
+\big( \bra{v^1}\otimes \bra{w^1} \big) \big(  \ket{v^2}\otimes \ket{w^2} \big) = \braket{v^1 | v^2}_V  \cdot \braket{w^1 | w^2}_W \ .
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^2 \otimes \mathbb{C}^2\)</span> que descreve 2 qubits foi apresentado no exemplo <a class="reference internal" href="#cap2ex-espaco-vet-2qubits"><span class="std std-ref">Espaço Vetorial de 2 Qubits</span></a>. O produto interno nesse espaço é explicitado no que segue.
+Use os índices <span class="math notranslate nohighlight">\(A\)</span> e <span class="math notranslate nohighlight">\(B\)</span> para fazer referência à primeira e à segunda entrada tensorial, respectivamente.</p>
+<p>O produto interno dos vetores da base é dado pela equação <a class="reference internal" href="#cap2def-produto-interno-vetores-da-base"><span class="std std-ref">Produto Interno de Vetores da Base</span></a>, que se traduz em</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+\braket{jk | pq}_{AB}
+&amp;=&amp; \big( \ket{jk} , \ket{pq} \big)_{AB} \\
+&amp;=&amp; \big(\ket{j},\ket{p} \big)_A \cdot \big( \ket{k},\ket{q} \big)_B \\
+&amp;=&amp; \braket{j | p}_A \cdot \braket{k | q}_B \\
+&amp;=&amp; \delta_{j,p} \cdot \delta_{k,q}  = \delta_{jk,pq} \ ,
+\end{array}
+\end{split}\]</div>
+<p>em que <span class="math notranslate nohighlight">\(j,k,p,q = 0,1\)</span>. Por exemplo,</p>
+<div class="math notranslate nohighlight">
+\[
+\text{$\braket{01 | 01} = 1$, $\braket{11 | 10} = 0$ e $\braket{10 | 01} = 0$ .}
+\]</div>
+<p>Sejam</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+    \ket{\phi} &amp;=&amp; a_1 \ket{00} + b_1 \ket{01} + c_1 \ket{10} + d_1 \ket{11} \\
+    \ket{\psi} &amp;=&amp; a_2 \ket{00} + b_2 \ket{01} + c_2 \ket{10} + d_2 \ket{11} \ .
+\end{array}
+\end{split}\]</div>
+<p>O produto interno de <span class="math notranslate nohighlight">\(\ket{\phi}\)</span> com <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é dado por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+\braket{\phi | \psi}
+&amp;=&amp; \big(a_1^{\ *} \bra{00} + b_1^{\ *} \bra{01} + c_1^{\ *} \bra{10} + d_1^{\ *} \bra{11}\big) \big(a_2 \ket{00} + b_2 \ket{01} + c_2 \ket{10} + d_2 \ket{11} \big) \\
+&amp; =&amp;  a_1^{\ *} a_2 + b_1^{\ *} b_2 + c_1^{\ *} c_2 + d_1^{\ *} d_2 \ .
+\end{array}
+\end{split}\]</div>
+<p>A norma de <span class="math notranslate nohighlight">\(\ket{\phi}\)</span> é dada por</p>
+<div class="math notranslate nohighlight">
+\[
+||{\ket{\phi}||} = \sqrt{|{a_1}|^2 + |{b_1}|^2 + |{c_1}|^2 + |{d_1}|^2}\  \ .
+\]</div>
+<p>Exemplos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+&amp; \left( \frac{\bra{0} + \bra{1}}{\sqrt{2}} \right)_{A} \bra{1}_{B}\  \ket{0}_A \left(\frac{\ket{0}-i\ket{1}}{\sqrt{2}} \right)_B \\
+&amp;\ = \ \  \left( \frac{\braket{0 | 0} + \braket{1 | 0}}{\sqrt{2}} \right)_A \left( \frac{\braket{1 | 0} -i \braket{1 | 1}}{\sqrt{2}} \right)_B \\
+&amp;\ = \ \  \frac{1+0}{\sqrt{2}} \cdot \frac{0 - i}{\sqrt{2}} = \frac{-i}{2}
+\end{split}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+||{\ket{01}|| + i \ket{10}} = \sqrt{|{1}|^2 + |{i}|^2} = \sqrt{2} \ .
+\]</div>
+</div>
+</section>
+<section id="operadores">
+<h2>Operadores<a class="headerlink" href="#operadores" title="Link para este cabeçalho">#</a></h2>
+<p>Sejam <span class="math notranslate nohighlight">\(A\)</span> um operador em <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(B\)</span> um operador em <span class="math notranslate nohighlight">\(W\)</span>. É possível definir um operador em <span class="math notranslate nohighlight">\(V\otimes W\)</span>, denotado por <span class="math notranslate nohighlight">\(A\otimes B\)</span> de forma que</p>
+<div class="math notranslate nohighlight">
+\[
+(A \otimes B) (\ket{v} \otimes \ket{w}) = A\ket{v} \otimes B\ket{w} \ .
+\]</div>
+<p>Todo operador em <span class="math notranslate nohighlight">\(V \otimes W\)</span> pode ser decomposto em uma combinação linear de operadores da forma apresentada anteriormente.</p>
+<p>Pode-se mostrar que a composição, ou produto, de dois operadores <span class="math notranslate nohighlight">\(A \otimes B\)</span> e <span class="math notranslate nohighlight">\(A' \otimes B'\)</span> é dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+(A \otimes B) (A' \otimes B') = AA' \otimes BB' \ .
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Sejam <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(H\)</span> operadores no espaço de 1 qubit dados por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ll}
+  \begin{matrix}
+  X\ket{0} = \ket{1} \\
+  X\ket{1} = \ket{0}
+\end{matrix}
+&amp;
+X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
+\\ &amp; \\
+  \begin{matrix}
+  H\ket{0} = \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1} \\
+  H\ket{1} = \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1}
+\end{matrix}
+&amp;
+H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix} \ .
+\end{array}
+\end{split}\]</div>
+<p>Esses operadores foram utilizados em vários dentre os exemplos anteriores.</p>
+<p>O operador <span class="math notranslate nohighlight">\(H \otimes X\)</span> atua no espaço de 2 qubits como no exemplo abaixo.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+  &amp;H\otimes X \big(\ket{0} \otimes (\ket{0} + i \ket{1} ) \big) \\
+  &amp;\ \ = H\ket{0} \otimes \big(X(\ket{0} + i \ket{1} ) \big) \\
+  &amp;\ \ = \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \otimes \big( \ket{1} + i \ket{0} \big) \\
+  &amp;\ \ = \frac{i}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{01} + \frac{i}{\sqrt{2}}\ket{10} + \frac{1}{\sqrt{2}}\ket{11} \ .
+\end{split}
+\end{split}\]</div>
+<p>Se forem usados rótulos <span class="math notranslate nohighlight">\(1\)</span> e <span class="math notranslate nohighlight">\(2\)</span> para as entradas tensoriais, a conta do exemplo acima poderia ser reescrita como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+  &amp;H_1 X_2 \ket{0}_1  (\ket{0} + i \ket{1} )_2  \\
+  &amp;\ \ = H_1 \ket{0}_1  X_2(\ket{0} + i \ket{1} )_2 \\
+  &amp;\ \ = \left(\frac{\ket{0}_1 + \ket{1}_1}{\sqrt{2}} \right) \big( \ket{1}_2 + i \ket{0}_2 \big) \\
+  &amp;\ \ = \frac{i}{\sqrt{2}}\ket{00}_{12} + \frac{1}{\sqrt{2}}\ket{01}_{12} + \frac{i}{\sqrt{2}}\ket{10}_{12} + \frac{1}{\sqrt{2}}\ket{11}_{12} \ .
+\end{split}
+\end{split}\]</div>
+<p>Mais detalhes sobre a notação encontram-se na seção <a class="reference internal" href="#cap2produto-tensorial-notacao"><span class="std std-ref">Produto Tensorial: Notação</span></a>.</p>
+</div>
+</section>
+<section id="produto-de-kronecker">
+<h2>Produto de Kronecker<a class="headerlink" href="#produto-de-kronecker" title="Link para este cabeçalho">#</a></h2>
+<p>Até então, o conceito de produto tensorial foi apresentado de maneira abstrata. É possível abordar esse conceito de maneira matricial também. Fixadas bases para <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, os vetores <span class="math notranslate nohighlight">\(\ket{v}\)</span> e <span class="math notranslate nohighlight">\(\ket{w}\)</span> desses espaços podem ser representados como vetores coluna.
+O vetor <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w}\)</span> também pode ser representado como vetor coluna fazendo-se o <em>produto de Kronecker</em>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ket{v} \otimes \ket{w} = \begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_{n-1} \end{bmatrix} \otimes \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_{m-1} \end{bmatrix} =  \begin{bmatrix} a_0 \ket{w} \\ a_1 \ket{w} \\ \vdots \\ a_{n-1} \ket{w} \end{bmatrix}  = \begin{bmatrix} a_0 b_0 \\ a_0 b_1 \\ \vdots \\ a_0 b_{m-1} \\ a_1 b_0 \\ a_1 b_1 \\ \vdots \\ a_{n-1} b_{m-1} \end{bmatrix}
+\end{split}\]</div>
+<p>Essa operação é mais facilmente compreendida por meio de um exemplo.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 1 \\ 2 \end{bmatrix} \otimes \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix} = \begin{bmatrix} 1 \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix} \\ \\ 2 \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix} \end{bmatrix} = \begin{bmatrix} 3 \\ 4 \\ 5 \\ 6 \\ 8 \\ 10 \end{bmatrix}
+\end{split}\]</div>
+</div>
+<p>O produto tensorial de operadores em <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span> também pode ser obtido matricialmente por meio do produto de Kronecker.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A \otimes B = \begin{bmatrix} a_{0,0} &amp; \cdots &amp; a_{0,n-1} \\ a_{1,1} &amp; &amp; a_{1,n-1} \\ \vdots &amp; &amp; \vdots \\ a_{n-1,0} &amp; \cdots &amp; a_{n-1,n-1} \end{bmatrix}  \otimes B = \begin{bmatrix} a_{0,0}B &amp; \cdots &amp; a_{0,n-1}B \\ a_{1,1}B &amp; &amp; a_{1,n-1}B \\ \vdots &amp; &amp; \vdots \\ a_{n-1,0}B &amp; \cdots &amp; a_{n-1,n-1}B \end{bmatrix}
+\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \otimes \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} = \begin{bmatrix} 0 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} &amp; 1 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} \\ \\ 1 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}  &amp; 0 \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}  \end{bmatrix} = \begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; 2 \\ 0 &amp; 0 &amp; 3 &amp; 4 \\ 1 &amp; 2 &amp; 0 &amp; 0 \\ 3 &amp; 4 &amp; 0 &amp; 0 \end{bmatrix}
+\end{split}\]</div>
+</div>
+<p>O produto de Kronecker, em geral, não é comutativo.</p>
+<p>Se <span class="math notranslate nohighlight">\(A \in M(m_A,n_A)\)</span> e <span class="math notranslate nohighlight">\(B \in M(m_B, n_B)\)</span>, então a matriz <span class="math notranslate nohighlight">\(A \otimes B\)</span> tem <span class="math notranslate nohighlight">\(m_Am_B\)</span> linhas e <span class="math notranslate nohighlight">\(n_An_B\)</span> colunas, ou seja, <span class="math notranslate nohighlight">\(A\otimes B \in M(m_Am_B,n_An_B)\)</span>. Uma forma geral de escrever o elemento <span class="math notranslate nohighlight">\(j,k\)</span> da matriz <span class="math notranslate nohighlight">\(A\otimes B\)</span> é</p>
+<div class="math notranslate nohighlight">
+\[
+( A\otimes B )_{j,k} = a_{\text{quoc}(j,m_B),\text{quoc}(k,n_B)}\  b_{\text{resto}(j,m_B),\text{resto}(k,n_B)} \ \ ,
+\]</div>
+<p>em que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+  j &amp;= 0 , 1 , \ldots , m_A m_B - 1 \\
+  k &amp;= 0 , 1 , \ldots , n_A n_B - 1
+\end{split}
+\end{split}\]</div>
+<p>e, para <span class="math notranslate nohighlight">\(x,y\)</span> inteiros,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \text{quoc}(x,y) \ \ &amp;\text{é o quociente da divisão $x / y$} \\
+    \text{resto}(x,y) \ \ &amp;\text{é o resto da divisão $x / y$} \ .
+\end{split}
+\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p><span class="math notranslate nohighlight">\(A_{2\times2}\)</span> , <span class="math notranslate nohighlight">\(B_{3\times2}\)</span>. O elemento <span class="math notranslate nohighlight">\(4,2\)</span> da matriz <span class="math notranslate nohighlight">\(A\otimes B\)</span> pode ser obtido por:</p>
+<div class="math notranslate nohighlight">
+\[
+   (A \otimes B)_{4,2} = a_{\text{quoc}(4,3),\text{quoc}(2,2)}\  b_{\text{resto}(4,3),\text{resto}(2,2)} = a_{1,1} b_{1,0} \ .
+\]</div>
+<p>A matriz <span class="math notranslate nohighlight">\(A\otimes B*\)</span> está representada abaixo, destacando-se o elemento <span class="math notranslate nohighlight">\(4,2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A \otimes B = \begin{bmatrix} a_{0,0} B &amp; a_{0,1} B \\ a_{1,0} B &amp; a_{1,1} B \end{bmatrix} =   \begin{bmatrix} a_{0,0} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} &amp; a_{0,1} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} \\ &amp; \\ a_{1,0} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} &amp; \boxed{a_{1,1}} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ \boxed{b_{1,0}} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} \end{bmatrix}   \ .
+\end{split}\]</div>
+</div>
+</section>
+<section id="produto-tensorial-de-varios-espacos-vetoriais">
+<h2>Produto Tensorial de Vários Espaços Vetoriais<a class="headerlink" href="#produto-tensorial-de-varios-espacos-vetoriais" title="Link para este cabeçalho">#</a></h2>
+<p>O produto tensorial de vários espaços vetoriais segue a mesma ideia do caso de dois espaços, apresentado anteriormente. A dimensão será o produto das dimensões de cada espaço. O produto tensorial é associativo, então não é necessário usar parênteses num produto tensorial de vários espaços. Não é possível comutar os fatores do produto tensorial.</p>
+</section>
+<section id="notacao">
+<span id="cap2produto-tensorial-notacao"></span><h2>Notação<a class="headerlink" href="#notacao" title="Link para este cabeçalho">#</a></h2>
+<p>Em situações práticas, costuma-se usar índices em cada fator do produto tensorial para evitar confusões. Também há variantes que deixam a notação mais curta. Alguns comentários a respeito dessas variantes são abordados nesta seção. Para tratar disso, considere um exemplo em <span class="math notranslate nohighlight">\(V\otimes W \otimes U\)</span>.</p>
+<p>Pode-se denotar um elemento da forma <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w} \otimes \ket{u}\)</span> omitindo-se o símbolo <span class="math notranslate nohighlight">\(\otimes\)</span>: <span class="math notranslate nohighlight">\(\ket{v}  \ket{w}  \ket{u}\)</span>. Nesse caso, deve-se tomar cuidado para não confundir essa justaposição com o produto matricial; nas situações de interesse, normalmente o produto matricial não será possível e há menos risco de confusão.</p>
+<p>Costuma-se atribuir índices aos fatores: <span class="math notranslate nohighlight">\(\ket{v} \otimes \ket{w} \otimes \ket{u} = \ket{v}_V \otimes \ket{w}_W \otimes \ket{u}_U  =  \ket{v}_V \ket{w}_W  \ket{u}_U\)</span>. Ainda, pode-se escrever esse elemento como: <span class="math notranslate nohighlight">\(\ket{v}_1 \ket{w}_2 \ket{u}_3\)</span>, ou <span class="math notranslate nohighlight">\(\ket{v \, w \, u}_{VWU}\)</span>, ou, ainda, qualquer notação equivalente, que evidencie a que espaço cada ket pertence. Com a identificação por índices, é possível até trocar a ordem em que são escritos; não deve ser confundido com a comutatividade dos fatores, que não é permitida em geral. Assim, pode-se escrever: <span class="math notranslate nohighlight">\(\ket{u}_3 \ket{w}_2 \ket{v}_1\)</span>.</p>
+<p>Os bras também podem ser rotulados com índices. Por exemplo, escreve-se <span class="math notranslate nohighlight">\(\big( \ket{v}_1 \ket{w}_2 \ket{u}_3\big)^\dagger =  {}_1\bra{v} {}_2\bra{w} {}_3\bra{u}\)</span>, ou <span class="math notranslate nohighlight">\(\ket{v \, w \, u}_{VWU}^{\ \ \dagger} = {}_{VWU}\bra{v \, w \, u}\)</span>.</p>
+<p>Considere, agora, os operadores da forma <span class="math notranslate nohighlight">\(A\otimes B\otimes C\)</span>, com <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> e <span class="math notranslate nohighlight">\(C\)</span> operadores nos espaços <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(W\)</span> e <span class="math notranslate nohighlight">\(U\)</span>, respectivamente. É possível também atribuir índices nos operadores para lembrar em que espaço cada um deles atua. Por exemplo, pode-se denotar: <span class="math notranslate nohighlight">\(A_1\otimes B_2\otimes C_3\)</span>.</p>
+<p>Há situações em que se deseja operar apenas em uma das entradas do produto tensorial. Assim, por exemplo, <span class="math notranslate nohighlight">\(A\ket{v} \otimes \ket{w}\otimes \ket{u} = A_1 \big( \ket{v} \otimes \ket{w}\otimes \ket{u} \big)\)</span>. Formalmente, <span class="math notranslate nohighlight">\(A_1 = A \otimes I \otimes I\)</span>, nesse caso. O produto (ou composição) dos operadores <span class="math notranslate nohighlight">\(A_1 B_2 C_3\)</span> significa <span class="math notranslate nohighlight">\((A\otimes I \otimes I) (I \otimes B \otimes I)(I \otimes I \otimes C) = AII \otimes IBI \otimes IIC = A\otimes B \otimes C\)</span>. Dessa forma, com os índices, pode-se escrever <span class="math notranslate nohighlight">\(A_1 B_2 C_3 = A \otimes B \otimes C\)</span> sem perigo de confusão com o produto matricial de <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> e <span class="math notranslate nohighlight">\(C\)</span>; Pode-se até mesmo trocar a ordem de como são escritos:
+<span class="math notranslate nohighlight">\(B_2 A_1 C_3 = A\otimes B \otimes C\)</span>.</p>
+<p>Outra notação bastante utilizada é quando se deseja realizar o produto tensorial entre <span class="math notranslate nohighlight">\(n\)</span> cópias de um vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>. Define-se</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi}^{\otimes n} = \underbrace{\ket{\psi} \otimes \ket{\psi}}_{\text{$n$ vezes}} \ .
+\]</div>
+<p>Essa notação pode ser utilizada para bras e para operadores: <span class="math notranslate nohighlight">\(\bra{\psi}^{\otimes n}\)</span>, <span class="math notranslate nohighlight">\(A^{\otimes n }\)</span>. Também é possível usar uma notação análoga ao produtório para denotar, por exemplo,</p>
+<div class="math notranslate nohighlight">
+\[
+\bigotimes_{i=1}^{n} A_i \ket{0}_i = A_1 \ket{0}_1 \otimes \ldots \otimes A_n \ket{0}_n = A_1 \ldots A_n \ket{0\ldots 0} \ .
+\]</div>
+<p>Há, pois, diversas maneiras de se denotar os mesmos vetores ou operadores. Essa variedade é útil para permitir a escrita de expressões compactas em diversas situações em que o produto tensorial aparece.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./algebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_3-operadores.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Autovalores, Autovetores e Operadores</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04-postulados.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Postulados da Mecânica Quântica</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-do-produto-tensorial">Espaço Vetorial do Produto Tensorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-do-produto-tensorial-com-o-produto-cartesiano">Comparação do Produto Tensorial com o Produto Cartesiano</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno">Produto Interno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-de-kronecker">Produto de Kronecker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-tensorial-de-varios-espacos-vetoriais">Produto Tensorial de Vários Espaços Vetoriais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao">Notação</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

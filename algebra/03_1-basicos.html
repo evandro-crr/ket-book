@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Conceitos Básicos de Álgebra &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algebra/03_1-basicos';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Transformações Lineares" href="03_2-transformacoes.html" />
+    <link rel="prev" title="Álgebra Linear para Computação Quântica" href="../03-algebra.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../03-algebra.html">Álgebra Linear para Computação Quântica</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../08-algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/08_1-grover.html">Algoritmo de Busca de Grover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/08_2-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/08_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/algebra/03_1-basicos.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Conceitos Básicos de Álgebra</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-base-e-dimensao">Espaço Vetorial, Base e Dimensão</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial">Espaço Vetorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-e-dimensao">Base e Dimensão</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-mudanca-de-base">Matriz de Mudança de base</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno-norma-e-produto-exterior">Produto Interno, Norma e Produto Exterior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno">Produto Interno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norma">Norma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ortogonalidade">Ortogonalidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-ortonormal">Base Ortonormal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desigualdade-de-cauchy-schwarz">Desigualdade de Cauchy-Schwarz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-mudanca-de-base-entre-bases-ortonormais">Matriz de Mudança de Base entre Bases Ortonormais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-exterior">Produto Exterior</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conceitos-basicos-de-algebra">
+<h1>Conceitos Básicos de Álgebra<a class="headerlink" href="#conceitos-basicos-de-algebra" title="Link para este cabeçalho">#</a></h1>
+<section id="espaco-vetorial-base-e-dimensao">
+<h2>Espaço Vetorial, Base e Dimensão<a class="headerlink" href="#espaco-vetorial-base-e-dimensao" title="Link para este cabeçalho">#</a></h2>
+<section id="espaco-vetorial">
+<h3>Espaço Vetorial<a class="headerlink" href="#espaco-vetorial" title="Link para este cabeçalho">#</a></h3>
+<p>O conjunto das <span class="math notranslate nohighlight">\(n\)</span>-uplas <span class="math notranslate nohighlight">\((z_0, \ldots, z_{n-1})\)</span> de números complexos com a soma e o produto por escalar definidos entrada a entrada é um <em>Espaço Vetorial Complexo</em> e é denotado por <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span>. É conveniente representar esses elementos por vetores coluna. Tem-se então:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}z_0 \\ z_{1} \\ \vdots \\ z_{n-1}\end{bmatrix} + \begin{bmatrix}w_0 \\ w_{1} \\ \vdots \\ w_{n-1}\end{bmatrix} = \begin{bmatrix}z_0 + w_0\\ z_{1} + w_1 \\ \vdots \\ z_{n-1} + w_{n-1}\end{bmatrix}  \ \ \ \text{ e } \ \ \   z \cdot \begin{bmatrix}z_0 \\ z_{1} \\ \vdots \\ z_{n-1}\end{bmatrix} = \begin{bmatrix}z \cdot z_0 \\ z\cdot z_{1} \\ \vdots \\ z \cdot z_{n-1}\end{bmatrix} \ .
+\end{split}\]</div>
+<p>Em Mecânica Quântica, os vetores de <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> costumam ser usados na <em>notação de Dirac</em>, ou <em>notação de braket</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ket{\psi} = (z_0 , z_{1} , \ldots , z_{n-1} ) =  \begin{bmatrix}z_0 \\ z_{1} \\ \vdots \\ z_{n-1}\end{bmatrix}   \ \ .
+\end{split}\]</div>
+<p>Um vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é chamado <em>ket</em> (em contraponto com <span class="math notranslate nohighlight">\(\bra{\psi}\)</span>, que será definido posteriormente, e será chamado  <em>bra</em>).</p>
+<p>Os vetores se comportam de maneira semelhante aos números no que diz respeito à soma e subtração. Em particular, a soma comuta <span class="math notranslate nohighlight">\(\ket{\phi} + \ket{\psi} = \ket{\psi} + \ket{\phi}\)</span>, há um vetor nulo, denotado por <span class="math notranslate nohighlight">\(0\)</span> ou <span class="math notranslate nohighlight">\(\ket{\varnothing} = (0, \ldots , 0)\)</span> de tal forma que <span class="math notranslate nohighlight">\(\ket{\psi} + 0 = \ket{\psi}\)</span> e, ainda, vale <span class="math notranslate nohighlight">\(-\ket{\psi} = (-z_0, \dots , -z_{n-1}) = -1 \cdot \ket{\psi}\)</span>. O produto por escalar também se comporta de maneira semelhante ao produto numérico, e valem as propriedades distributivas <span class="math notranslate nohighlight">\(z(\ket{\phi} + \ket{\psi}) = z \ket{\phi} + z \ket{\psi}\)</span> e <span class="math notranslate nohighlight">\((z+w)\ket{\psi} = z\ket{\psi} + w \ket{\psi}\)</span>, por exemplo.</p>
+<div class="tip admonition">
+<p class="admonition-title">Espaço de estados de 1 qubit</p>
+<p>O conjunto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbb{C}^2 = \left\{ \ket{\psi} = \begin{bmatrix} a \\ b \end{bmatrix} : a,b \in \mathbb{C}\right\}
+\end{split}\]</div>
+<p>é um espaço vetorial com soma e produto por escalar dados por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} a_1 \\ b_1 \end{bmatrix} + \begin{bmatrix} a_2 \\ b_2 \end{bmatrix} = \begin{bmatrix} a_1 + a_2 \\ b_1 + b_2 \end{bmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+z \cdot \begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} za \\ zb \end{bmatrix} \ .
+\end{split}\]</div>
+<p>Esse espaço vetorial será largamente utilizado nos capítulos seguintes e descreve o espaço de estados de 1 <em>qubit</em>, o análogo do bit clássico.</p>
+</div>
+</section>
+<section id="base-e-dimensao">
+<h3>Base e Dimensão<a class="headerlink" href="#base-e-dimensao" title="Link para este cabeçalho">#</a></h3>
+<p>Uma base para o espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> é um conjunto de vetores <em>linearmente independentes</em> (LI) e que <em>geram o espaço</em>.  Demonstra-se que todas as bases de um espaço vetorial têm o mesmo número de elementos, e define-se a <em>dimensão</em> do espaço vetorial pelo número de elementos de uma base.</p>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> tem dimensão <span class="math notranslate nohighlight">\(n\)</span>, isto é, todas as suas bases têm <span class="math notranslate nohighlight">\(n\)</span> vetores. Uma base muito útil é a chamada <em>base computacional</em>, ou base canônica`(O adjetivo “canônico”, na Matemática, tem um sentido de “padrão”, como na expressão “configuração padrão”):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ket{0} = \begin{bmatrix}1 \\ 0 \\ \vdots \\ 0\end{bmatrix} \ \ , \ \ \ket{1} = \begin{bmatrix}0 \\ 1 \\ \vdots \\ 0 \end{bmatrix}  \ \ , \ \ \cdots \ \ , \ \ \ket{n-1}^= \begin{bmatrix}0 \\ 0 \\ \vdots \\ 1\end{bmatrix}  \ \ .
+\end{split}\]</div>
+<p>Na base computacional, um vetor <span class="math notranslate nohighlight">\(\ket{\psi} = (z_0 , z_{1} , \ldots , z_{n-1} )\)</span> é escrito como</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = z_0 \ket{0} + z_1 \ket{1} + \ldots + z_{n-1} \ket{n-1} \ \ .
+\]</div>
+<p>Numa base qualquer <span class="math notranslate nohighlight">\(\beta = \big\{\ket{b_0}, \ldots, \ket{b_{n-1}} \big\}\)</span>, qualquer vetor <span class="math notranslate nohighlight">\(\psi\)</span> pode ser escrito como combinação linear dos vetores dessa base. Os coeficientes da combinação linear, colocados em um vetor coluna, representam o vetor <span class="math notranslate nohighlight">\(\psi\)</span> escrito na base <span class="math notranslate nohighlight">\(\beta\)</span>, conforme o esquema abaixo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ket{\psi} = a_0 \ket{b_0} + \ldots + a_{n-1} \ket{b_{n-1}} \ \  \Leftrightarrow \ \ \big[ \ket{\psi} \big]_\beta = \begin{bmatrix} a_0 \\ \vdots \\ a_{n-1} \end{bmatrix}_\beta \ .
+\end{split}\]</div>
+<p>O subscrito <span class="math notranslate nohighlight">\(\beta\)</span> pode ser omitido se não houver risco de confusão. Normalmente omite-se esse subscrito quando se trata da base computacional.</p>
+<div class="tip admonition" id="base-para-1-qubit">
+<p class="admonition-title">Bases para 1 qubit</p>
+<p>Há especial interesse no espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>. Este espaço modela um <em>qubit</em> — o análogo quântico do bit — a ser discutido em mais detalhes posteriormente. O espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span> tem dimensão <span class="math notranslate nohighlight">\(2\)</span> e admite, entre outras, as seguintes bases:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rll}
+  \mathcal{I} = \mathcal{Z} &amp;=&amp; \big\{ \ket{0} \  , \  \ket{1} \big\} \\
+  \mathcal{X} &amp;=&amp; \left\{ \ket{+} = \tfrac{1}{\sqrt{2}}( \ket{0} + \ket{1}) \ , \  \ket{-} = \tfrac{1}{\sqrt{2}}( \ket{0} - \ket{1})  \right\} \\
+  \mathcal{Y} &amp;=&amp; \left\{ \ket{+i} = \tfrac{1}{\sqrt{2}}( \ket{0} + i\ket{1}) , \ket{-i} = \tfrac{1}{\sqrt{2}}( \ket{0} -i \ket{1}) \right\} \ \ .
+\end{array}
+\end{split}\]</div>
+<p>Essa notação para as bases será justificada <em>a posteriori</em>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title"><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é base para 1 qubit</p>
+<p>Para mostrar que</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{X} = \left\{ \ket{+} = \tfrac{1}{\sqrt{2}}( \ket{0} + \ket{1}) \ , \  \ket{-} = \tfrac{1}{\sqrt{2}}( \ket{0} - \ket{1})  \right\}
+\]</div>
+<p>é base do espaço de estados de 1 qubit, deve-se mostrar que os vetores são LI (Linearmente Independentes) e geram o espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> <strong>é LI</strong>: Considere a combinação linear nula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{r}
+a_0 \ket{+} + a_1 \ket{-} = 0 \\
+a_0 \frac{1}{\sqrt{2}}( \ket{0} + \ket{1}) + a_1 \frac{1}{\sqrt{2}}( \ket{0} - \ket{1}) = 0 \\
+\frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0 - a_1}{\sqrt{2}} \ket{1} = 0
+\end{array}
+\end{split}\]</div>
+<p>Tem-se que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+  \frac{a_0 + a_1}{\sqrt{2}} = 0 \\
+  \frac{a_0 - a_1}{\sqrt{2}} = 0
+\end{cases}
+\implies
+\begin{cases}
+  a_0 + a_1 = 0 \\
+  a_0 - a_1 = 0
+\end{cases}
+\implies
+\begin{cases}
+  a_0 = 0 \\
+  a_1 = 0 \ .
+\end{cases}
+\end{split}\]</div>
+<p>Portanto os coeficientes da combinação linear nula devem ser todos nulos, e isso significa que os vetores <span class="math notranslate nohighlight">\(\ket{+}\)</span> e <span class="math notranslate nohighlight">\(\ket{-}\)</span> são LI.</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> <strong>gera o espaço</strong>: Seja <span class="math notranslate nohighlight">\(\ket{\psi} = z_0 \ket{0} + z_1 \ket{1}\)</span> um vetor qualquer de <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>. Tenta-se escrever <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como combinação linear de <span class="math notranslate nohighlight">\(\ket{+}\)</span> e <span class="math notranslate nohighlight">\(\ket{-}\)</span>. Se for possível, esses vetores geram o espaço.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rll}
+  z_0 \ket{0} + z_1 \ket{1}
+  &amp;=&amp; a_0 \ket{+} + a_1 \ket{-} \\
+  &amp;=&amp; a_0 \frac{1}{\sqrt{2}}( \ket{0} + \ket{1}) + a_1 \frac{1}{\sqrt{2}}( \ket{0} - \ket{1}) \\
+  &amp;=&amp;  \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0 - a_1}{\sqrt{2}} \ket{1}
+\end{array}
+\end{split}\]</div>
+<p>Assim,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\frac{a_0 + a_1}{\sqrt{2}} = z_0 \\
+\frac{a_0 - a_1}{\sqrt{2}} = z_1
+\end{cases}
+\implies
+\begin{cases}
+a_0 = \frac{z_0 + z_1}{\sqrt{2}} \\
+a_1 = \frac{z_0 - z_1}{\sqrt{2}}
+\end{cases}
+\end{split}\]</div>
+<p>Dessa forma, <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> gera o espaço <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span> e é base desse espaço.</p>
+<p><strong>Comentário</strong>: Quando se sabe previamente que a dimensão do espaço é <span class="math notranslate nohighlight">\(n\)</span> e se a lista de vetores candidatos a base tem <span class="math notranslate nohighlight">\(n\)</span> elementos, então as condições de ser LI e gerar o espaço são equivalentes. Em consequência, basta verificar uma das condições para mostrar que os vetores formam uma base. Por exemplo, se sabemos que a dimensão de <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span> é <span class="math notranslate nohighlight">\(\dim \mathbb{C}^2 = 2\)</span>, e temos que <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> tem dois elementos, então bastaria verificar uma das duas condições: <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é LI ou <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> gera o espaço.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercício</p>
+<p>Um Qubit se encontra em um estado:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2}\ket{0}-\frac{\sqrt{3}}{2}\ket{1}
+\]</div>
+<p>Escreva esse estado utilizando-se da notação de colunas</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercício</p>
+<p>Escreva uma função em Python que recebe uma matriz coluna dado por uma lista ou tuple e retorna ao usuário o a combinação linear dos vetores na notação de Dirac.</p>
+</div>
+</section>
+<section id="matriz-de-mudanca-de-base">
+<span id="cap2matriz-de-mudanca-de-base"></span><h3>Matriz de Mudança de base<a class="headerlink" href="#matriz-de-mudanca-de-base" title="Link para este cabeçalho">#</a></h3>
+<p>Por vezes é conveniente expressar um vetor em outra base que não a base computacional. Essa mudança de base pode trazer novo <em>insight</em> em algumas situações, bem como tornar os cálculos mais simples e factíveis.</p>
+<p>A matriz de mudança de base de <span class="math notranslate nohighlight">\(\beta_{\text{old}} = \big\{\ket{u_0}, \ldots, \ket{u_{n-1}} \big\}\)</span> para <span class="math notranslate nohighlight">\(\beta_{\text{new}} = \big\{ \ket{v_0}, \ldots, \ket{v_{n-1}} \big\}\)</span> é dada por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[I]^{\beta_{\text{old}}}_{\beta_{\text{new}} } = \left[ \begin{matrix} | &amp; &amp; | \\ \big[\ket{v_0}\big]_{\beta_{\text{old}}} &amp; \cdots &amp; \big[\ket{v_{n-1}}\big]_{\beta_{\text{old}}} \\  | &amp; &amp; | \end{matrix} \right] \ .
+\end{split}\]</div>
+<p>Isto é, para montar a matriz de mudança de base, os vetores da base nova devem ser escritos como combinação linear dos vetores da base antiga, obtendo vetores coluna. Esses vetores serão as colunas da matriz de mudança de base. Dessa forma, tem-se</p>
+<div class="math notranslate nohighlight">
+\[
+[v]_{\beta_{\text{new}}} = [I]^{\beta_{\text{old}}}_{\beta_{\text{new}} } [v]_{\beta_{\text{old}}} \ .
+\]</div>
+<p>A matriz de mudança de base admite matriz inversa, que corresponde à mudança de base da base nova de volta para a base antiga:</p>
+<div class="math notranslate nohighlight">
+\[
+[I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }\phantom{|} ^{-1} = [I]^{\beta_{\text{new}}}_{\beta_{\text{old}} } \ .
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O símbolo <span class="math notranslate nohighlight">\(I\)</span> na matriz de mudança de base <span class="math notranslate nohighlight">\([I]^{\beta_{\text{old}}}_{\beta_{\text{new}}}\)</span> refere-se ao operador identidade.
+A matriz de mudança de base corresponde à matriz do operador identidade nas bases <span class="math notranslate nohighlight">\(\beta_{\text{old}}\)</span> e <span class="math notranslate nohighlight">\(\beta_{\text{new}}\)</span>.
+As matrizes referente a operadores lineares serão vistas na seção <a class="reference internal" href="03_2-transformacoes.html#cap2sec-matriz-tl"><span class="std std-ref">Matriz de uma Transformação Linear</span></a>.</p>
+</div>
+<div class="tip admonition" id="cap2ex-matrix-mudanca-de-base">
+<p class="admonition-title">Exemplo</p>
+<p>Considere as bases <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> apresentadas no exemplo [Base para 1 qubit]. A matriz de mudança de base da base computacional <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> para a base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é obtida escrevendo os vetores da base nova (<span class="math notranslate nohighlight">\(\mathcal{X}\)</span>) como combinação linear dos vetores na base antiga (<span class="math notranslate nohighlight">\(\mathcal{I}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}
+\ket{+}
+&amp;=&amp; \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}}  \ket{1}  = \begin{bmatrix} \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}} \end{bmatrix}_{\mathcal{I}}\\
+\ket{-}
+&amp;=&amp; \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1} = \begin{bmatrix} \phantom{-} \frac{1}{\sqrt{2}}\\  - \frac{1}{\sqrt{2}} \end{bmatrix}_{\mathcal{I}}
+\end{array}
+\end{split}\]</div>
+<p>Colocam-se as os vetores coluna na ordem em que aparecem na lista:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[I]^\mathcal{I}_\mathcal{X} = \begin{bmatrix}  \begin{bmatrix} \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}} \end{bmatrix}_{\mathcal{I}} &amp; \begin{bmatrix} \phantom{-} \frac{1}{\sqrt{2}}\\  - \frac{1}{\sqrt{2}} \end{bmatrix}_{\mathcal{I}} \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1  \end{bmatrix} \ .
+\end{split}\]</div>
+<p>Essa matriz é conhecida em Computação Quântica como <em>matriz de Hadamard</em>, e costuma ser denotada por <span class="math notranslate nohighlight">\(H\)</span>. Portanto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H = [I]^\mathcal{I}_\mathcal{X} = \frac{1}{\sqrt{2}} \begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1  \end{bmatrix} \ .
+\end{split}\]</div>
+<p>Também vale que a matriz de mudança de base de <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> para <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> é <span class="math notranslate nohighlight">\(H\)</span>, visto que</p>
+<div class="math notranslate nohighlight">
+\[
+HH = I  \implies H^{-1} = H \implies [I]_\mathcal{I}^\mathcal{X} = \big([I]^\mathcal{I}_\mathcal{X} \big)^{-1} = H^{-1} = H \ .
+\]</div>
+<p>Então:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l}
+  H\ket{0} = \ket{+} \\
+  H\ket{1} = \ket{-}
+  \end{array}
+  \quad \quad
+  \begin{array}{l}
+  H\ket{+} = \ket{0} \\
+  H\ket{-} = \ket{1}
+\end{array} \ .
+\end{split}\]</div>
+</div>
+</section>
+</section>
+<section id="produto-interno-norma-e-produto-exterior">
+<h2>Produto Interno, Norma e Produto Exterior<a class="headerlink" href="#produto-interno-norma-e-produto-exterior" title="Link para este cabeçalho">#</a></h2>
+<section id="produto-interno">
+<h3>Produto Interno<a class="headerlink" href="#produto-interno" title="Link para este cabeçalho">#</a></h3>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> admite o seguinte <em>produto interno</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\big( \ket{\phi} , \ket{\psi} \big) = \braket{\phi | \psi} = \begin{bmatrix}w_0^{\ *} &amp; w_1^{\ *} &amp; \cdots &amp; w_{n-1}^{\ *}\end{bmatrix} \cdot \begin{bmatrix}z_0 \\ z_1 \\ \vdots \\ z_{n-1}\end{bmatrix} = \sum_{k=0}^{n-1} w_k^{\ *} z_k \ \ \ ,
+\end{split}\]</div>
+<p>para <span class="math notranslate nohighlight">\(\ket{\phi} = \begin{bmatrix}w_0 \\ \vdots \\ w_{n-1}\end{bmatrix}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi} = \begin{bmatrix}z_0 \\ \vdots \\ z_{n-1}\end{bmatrix}\)</span>. Pode-se considerar o símbolo <span class="math notranslate nohighlight">\(\bra{\phi}\)</span> de maneira independente, definindo-o como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\bra{\phi} = \ket{\phi}^\dagger = \begin{bmatrix}w_0 \\ \vdots \\ w_{n-1}\end{bmatrix}^\dagger =  \begin{bmatrix}w_0^{\ *} &amp; w_1^{\ *} &amp; \cdots &amp; w_{n-1}^{\ *}\end{bmatrix} \ \ ,
+\end{split}\]</div>
+<p>em que o símbolo <span class="math notranslate nohighlight">\(\dagger\)</span> denota transposição e conjugação do vetor. Essa notação também será justificada posteriormente.</p>
+<p>A operação definida acima satisfaz as propriedades que definem um produto interno de maneira geral:</p>
+<ul>
+<li><p><strong>(PI1)</strong> Linearidade no segundo argumento:</p>
+<div class="math notranslate nohighlight">
+\[
+  \big( \ket{\phi} , z_1\ket{\psi_1} + z_2 \ket{\psi_2} \big) = z_1 \big( \ket{\phi} , \ket{\psi_1} \big) + z_2 \big( \ket{\phi} , \ket{\psi_2} \big)
+  \]</div>
+</li>
+<li><p><strong>(PI2)</strong> Antilinearidade no primeiro argumento:</p>
+<div class="math notranslate nohighlight">
+\[
+  \big( z_1 \ket{\phi_1} + z_2 \ket{\phi_2} , \ket{\psi} \big) = z_1^{\ *} \big( \ket{\phi_1} , \ket{\psi} \big) + z_2^{\ *} \big( \ket{\phi_2} , \ket{\psi} \big)
+  \]</div>
+</li>
+<li><p><strong>(PI3)</strong> Simetria hermitiana:</p>
+<div class="math notranslate nohighlight">
+\[
+  \big( \ket{\phi} , \ket{\psi} \big)^* = \big( \ket{\psi} , \ket{\phi} \big)
+  \]</div>
+</li>
+<li><p><strong>(PI4)</strong> Positividade:</p>
+<div class="math notranslate nohighlight">
+\[
+  \big( \ket{\phi} , \ket{\phi} \big) \geq 0 \ \ \  \text{e} \ \ \ \big( \ket{\phi} , \ket{\phi} \big) = 0  \Leftrightarrow \ket{\psi} = 0
+  \]</div>
+</li>
+</ul>
+<p>A propriedade (PI2) decorre de (PI1) e de (PI3), mas foi incluída na lista por completeza. Por causa das propriedades (PI1) e (PI2), o produto interno é dito ser <em>sesquilinear</em> (O prefixo <em>sesqui</em> significa “um e meio”).</p>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> é, pois, dito ser um <em>espaço vetorial com produto interno</em>, ou ainda, um <em>espaço de Hilbert</em>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Um espaço de Hilbert é definido como sendo um espaço vetorial com produto interno e com uma propriedade adicional chamada <em>completude</em>. Essa propriedade é automática para espaços de dimensão finita.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O produto interno dos vetores</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ket{\phi} = \frac{i}{2} \ket{0} + \frac{\sqrt{3}}{2} \ket{1} = \begin{bmatrix} \frac{i}{2}\\ \frac{\sqrt{3}}{2}\end{bmatrix}  \ \text{ e } \  \ket{\psi} = \frac{1}{\sqrt{2}} \ket{0} + \frac{-i}{\sqrt{2}} \ket{1} = \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix}
+\end{split}\]</div>
+<p>é dado por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+  \braket{\phi | \psi}
+  &amp;=&amp; \left( \frac{-i}{2} \bra{0} + \frac{\sqrt{3}}{2} \bra{1} \right) \left( \frac{1}{\sqrt{2}} \ket{0} + \frac{-i}{\sqrt{2}} \ket{1} \right)  \\
+  &amp;=&amp;
+  \frac{-i}{2\sqrt{2}} \braket{0 | 0} + \frac{-i^2}{2\sqrt{2}} \braket{0 | 1} + \frac{\sqrt{3}}{2\sqrt{2}} \braket{1 | 0} + \frac{-i\sqrt{3}}{2\sqrt{2}} \braket{0 | 0} \\
+  &amp;=&amp;
+  \frac{-i}{2\sqrt{2}} + 0 + 0 + \frac{-i\sqrt{3}}{2\sqrt{2}} = -i\frac{1+\sqrt{3}}{2\sqrt{2}} \ .
+\end{array}
+\end{split}\]</div>
+<p>Esse produto interno também pode ser calculado de maneira matricial:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+  \braket{\phi | \psi}
+  &amp;=&amp;  \begin{bmatrix} \frac{i}{2}\\ \frac{\sqrt{3}}{2}\end{bmatrix}^\dagger \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix} \\
+  &amp;=&amp;   \begin{bmatrix} \frac{i}{2}^{*}  &amp; \frac{\sqrt{3}}{2}^{*}\end{bmatrix} \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix}   \\
+  &amp;=&amp; \begin{bmatrix} \frac{-i}{2}  &amp; \frac{\sqrt{3}}{2}\end{bmatrix} \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{bmatrix}   \\
+  &amp;=&amp;  \frac{-i}{2\sqrt{2}} + \frac{-i\sqrt{3}}{2\sqrt{2}}
+\end{array}
+\end{split}\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercício</p>
+<p>Considere:</p>
+<div class="math notranslate nohighlight">
+\[
+a = \frac{3+i\sqrt{3}}{4}\ket{0}+\frac{1}{2}\ket{1}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+b = \frac{1}{4}\ket{0}+\frac{\sqrt{15}}{4}\ket{1}
+\]</div>
+<p>(a) Encontre <span class="math notranslate nohighlight">\(\braket{a | b}\)</span></p>
+<p>(b) Encontre <span class="math notranslate nohighlight">\(\braket{b | a}\)</span></p>
+<p>(c) Qual a relação entre os resultados obtidos?</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercício</p>
+<p>Escreva uma função em Python que receba dois vetores dados por uma lista ou tuple e retorne o produto interno entre eles na notação de matriz coluna e na notação de Dirac</p>
+</div>
+</section>
+<section id="norma">
+<h3>Norma<a class="headerlink" href="#norma" title="Link para este cabeçalho">#</a></h3>
+<p>A <em>norma</em>, ou <em>tamanho</em>, de um vetor é definida por</p>
+<div class="math notranslate nohighlight">
+\[
+||{\ket\psi}|| = \sqrt{\braket{\psi}} \geq 0,
+\]</div>
+<p>operação bem definida pois <span class="math notranslate nohighlight">\(\braket{\psi}\)</span> é real e não-negativo. Por consequência da propriedade (P4), tem-se <span class="math notranslate nohighlight">\(||{\ket{\psi}}|| = 0 \Leftrightarrow \ket{\psi} = 0\)</span>. Um vetor <em>normalizado</em> é um vetor de tamanho unitário, e a operação de <em>normalização</em> consiste em multiplicar o vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> por <span class="math notranslate nohighlight">\(\frac{1}{||{\ket{\psi}}||}\)</span> para que o vetor resultante <span class="math notranslate nohighlight">\(\frac{\ket{\psi}}{||{\ket{\psi}}||}\)</span> tenha norma 1.</p>
+<div class="tip admonition" id="cap2ex-base-comp-norma-1">
+<p class="admonition-title">Exemplo</p>
+<p>Os vetores <span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span>, <span class="math notranslate nohighlight">\(\ket{+}\)</span> e <span class="math notranslate nohighlight">\(\ket{-}\)</span> têm norma 1.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A norma do vetor <span class="math notranslate nohighlight">\(\ket{\psi} = \frac{i}{2} \ket{0} + \frac{\sqrt{3}}{2} \ket{1}\)</span> é</p>
+<div class="math notranslate nohighlight">
+\[
+||{\ket{\psi}}|| =  \sqrt{\left|{\frac{i}{2}}\right|^2 + \left|{\frac{\sqrt{3}}{2}} \right|^2}  = \sqrt{\frac{1}{4} + \frac{3}{4}} = 1 \ .
+\]</div>
+</div>
+</section>
+<section id="ortogonalidade">
+<h3>Ortogonalidade<a class="headerlink" href="#ortogonalidade" title="Link para este cabeçalho">#</a></h3>
+<p>De forma análoga com o que se passa com vetores no <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>, dois vetores <span class="math notranslate nohighlight">\(\ket{\phi}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> são ditos <em>ortogonais</em> se o produto interno entre eles é nulo. Em símbolos, <span class="math notranslate nohighlight">\(\ket{\phi} \perp \ket{\psi} \ \Leftrightarrow \ \braket{\phi | \psi} = 0\)</span>.</p>
+<div class="tip admonition" id="cap2ex-ortogonalidade-base-comp">
+<p class="admonition-title">Exemplo</p>
+<p>Os vetores <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span> são ortogonais:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\braket{0 | 1} = \begin{bmatrix}1 &amp; 0 \end{bmatrix} \cdot \begin{bmatrix}0 \\ 1\end{bmatrix} = 0 \ .
+\end{split}\]</div>
+</div>
+<div class="tip admonition" id="cap2ex-ortogonalidade-base-x">
+<p class="admonition-title">Exemplo</p>
+<p>Os vetores <span class="math notranslate nohighlight">\(\ket{+} =  \frac{1}{\sqrt{2}} \ket{0} +  \frac{1}{\sqrt{2}} \ket{1}\)</span> e <span class="math notranslate nohighlight">\(\ket{-} =  \frac{1}{\sqrt{2}} \ket{0} -  \frac{1}{\sqrt{2}} \ket{1}\)</span> são ortogonais:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+\braket{+ | -}
+&amp;=&amp; \left( \frac{1}{\sqrt{2}} \bra{0} +  \frac{1}{\sqrt{2}} \bra{1} \right) \left( \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1} \right) \\
+&amp;=&amp; \frac{1}{2} \braket{0 | 0} - \frac{1}{2} \braket{0 | 1} + \frac{1}{2} \braket{1 | 0}  - \frac{1}{2} \braket{1 | 1} \\
+&amp;=&amp; \frac{1}{2} - 0 + 0 - \frac{1}{2} = 0 \ .
+\end{array}
+\end{split}\]</div>
+</div>
+</section>
+<section id="base-ortonormal">
+<span id="cap2base-ortonormal"></span><h3>Base Ortonormal<a class="headerlink" href="#base-ortonormal" title="Link para este cabeçalho">#</a></h3>
+<p>Uma base em que todos os vetores são ortogonais dois a dois e têm tamanho 1 é dita ser <em>base ortonormal</em>. Se <span class="math notranslate nohighlight">\(\beta = \{\ket{b_0}, \ldots, \ket{b_{n-1}} \}\)</span> é uma tal base, vale a chamada <em>relação de ortogonalidade</em></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\braket{b_k | b_l} = \delta_{k,l} = \left\lbrace \begin{matrix} 1 \ , \text{ se } k=l \\ 0 \ , \text{ se } k\neq l \end{matrix}\right. \ \ ,
+\end{split}\]</div>
+<p>em que <span class="math notranslate nohighlight">\(\delta_{k,l}\)</span> é conhecido como <em>delta de Kronecker</em>, e vale 1 se e somente se os seus dois índices são iguais; se forem diferentes, vale 0.</p>
+<p>Um vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> pode ser escrito como combinação linear dos vetores da base <span class="math notranslate nohighlight">\(\beta\)</span> por <span class="math notranslate nohighlight">\(\ket{\psi} = \sum_k a_k \ket{b_k}\)</span>. Os coeficientes <span class="math notranslate nohighlight">\(a_k\)</span> podem ser encontrados de maneira simples quando a base é ortonormal. Aplicando-se o produto interno em ambos os lados, tem-se</p>
+<div class="math notranslate nohighlight">
+\[
+\braket{b_l | \psi} = \bra{b_l} \left( \sum_k a_k \ket{b_k} \right) = \sum_k a_k \braket{b_l | b_k} = \sum_k a_k \delta_{l,k} = a_l \ .
+\]</div>
+<p>Percebe-se que isso é análogo à decomposição de um vetor <span class="math notranslate nohighlight">\(\vec{v} \in \mathbb{R}^3\)</span> nas suas componentes <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(z\)</span> na base canônica. Nesse caso, as componentes do vetor são dadas por <span class="math notranslate nohighlight">\(v_x = \hat{x} \cdot \vec{v}\)</span>, <span class="math notranslate nohighlight">\(v_y = \hat{y} \cdot \vec{v}\)</span> e <span class="math notranslate nohighlight">\(v_z = \hat{z} \cdot \vec{v}\)</span>, em que <span class="math notranslate nohighlight">\(\cdot\)</span> denota o produto interno no <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.</p>
+<p>Portanto, os coeficientes do vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> na base ortonormal são obtidos realizando-se projeções de  <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> na direção dos vetores unitários <span class="math notranslate nohighlight">\(\ket{b_l}\)</span> da base ortonormal. Assim:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ket{\psi} = \sum_k \braket{b_k | \psi} \ket{b_k} \ \  \Leftrightarrow \ \ \big[ \ket{\psi} \big]_\beta = \begin{bmatrix} \braket{b_0 | \psi}\\ \vdots \\ \braket{b_{n-1}}{\psi}\end{bmatrix}_\beta \ .
+\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A base <span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span> é ortonormal, em consequência dos exemplos <a class="reference internal" href="#cap2ex-base-comp-norma-1"><span class="std std-ref">Normal 1</span></a> e <a class="reference internal" href="#cap2ex-ortogonalidade-base-comp"><span class="std std-ref">Ortogonalidade da Base Computacional</span></a>. As projeções de um vetor <span class="math notranslate nohighlight">\(\ket{\psi} = a_0 \ket{0} + a_1 \ket{1}\)</span> na base computacional são dadas por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+a_0 &amp;=&amp; \braket{0 | \psi} \\
+a_1 &amp;=&amp; \braket{1 | \psi}
+\end{array}
+\end{split}\]</div>
+<p>e o vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> pode ser escrito como</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = \braket{0 | \psi} \ket{0} + \braket{1 | \psi} \ket{1} \ .
+\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A base <span class="math notranslate nohighlight">\(\ket{+}\)</span>, <span class="math notranslate nohighlight">\(\ket{-}\)</span> é ortonormal em consequência dos exemplos <a class="reference internal" href="#cap2ex-base-comp-norma-1"><span class="std std-ref">Norma 1</span></a> e <a class="reference internal" href="#cap2ex-ortogonalidade-base-x"><span class="std std-ref">Ortogonalidade da Base X</span></a>. Os coeficientes do vetor <span class="math notranslate nohighlight">\(\ket{\psi} = \frac{1}{2} \left( \ket{0} + i \sqrt{3} \ket{1} \right)\)</span> na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> são dados por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+  a_0
+  &amp;=&amp; \braket{+ | \psi} \\
+  &amp;=&amp; \frac{1}{\sqrt{2}} \ \frac{1}{2} \left( \bra{0} + \bra{1} \right) \left(  \ket{0} + i \sqrt{3} \ket{1} \right) \\
+  &amp;=&amp; \frac{1}{2\sqrt{2}} (1 + i\sqrt{3} )
+\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+  a_1
+  &amp;=&amp; \braket{- | \psi} \\
+  &amp;=&amp; \frac{1}{\sqrt{2}} \ \frac{1}{2} \left( \bra{0} - \bra{1} \right) \left(  \ket{0} + i \sqrt{3} \ket{1} \right) \\
+  &amp;=&amp; \frac{1}{2\sqrt{2}} (1 - i\sqrt{3} )
+\end{array}
+\end{split}\]</div>
+<p>Portanto,</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = \braket{+ | \psi} \ket{+} + \braket{- | \psi} \ket{-} = \frac{1 + i\sqrt{3}}{2\sqrt{2}} \ket{+} + \frac{1 - i\sqrt{3}}{2\sqrt{2}} \ket{-} \ .
+\]</div>
+</div>
+</section>
+<section id="desigualdade-de-cauchy-schwarz">
+<h3>Desigualdade de Cauchy-Schwarz<a class="headerlink" href="#desigualdade-de-cauchy-schwarz" title="Link para este cabeçalho">#</a></h3>
+<p>Há uma desigualdade envolvendo normas de vetores que é válida de maneira geral, para quaisquer espaços vetoriais equipados com produto interno e norma. É conhecida por <em>desigualdade de Cauchy-Schwarz</em>.</p>
+<div class="seealso admonition">
+<p class="admonition-title">Desigualdade de Cauchy-Schwarz</p>
+<p>Dados <span class="math notranslate nohighlight">\(\ket{u}, \ket{v} \in V\)</span>, com <span class="math notranslate nohighlight">\(V\)</span> um espaço vetorial qualquer munido de produto interno e norma, vale que</p>
+<div class="math notranslate nohighlight">
+\[
+|{\braket{u | v}}| \leq ||\ {\ket{u}}||\  ||\ {\ket{v}}|| \ .
+\]</div>
+<p>A igualdade ocorre se e somente se os vetores <span class="math notranslate nohighlight">\(\ket{u}\)</span> e <span class="math notranslate nohighlight">\(\ket{v}\)</span> forem múltiplos um do outro.</p>
+<p><strong>Demonstração.</strong> Considere o vetor <span class="math notranslate nohighlight">\(a\ket{u} - b\ket{v}\)</span>. O produto interno desse vetor consigo mesmo deve ser real e não-negativo, por propriedade do produto interno, portanto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+ 0
+ &amp;\leq \big( a^{*}\bra{u} - b^{*}\bra{v} \big) \big(a \ket{u} - b \ket{v} \big) \\
+ &amp;= |{a}|^2\braket{u | u} - a^{*}b\braket{u | v} - a b^{*} \braket{v | u} + |{b}|^2\braket{v | v} \ . \\
+\end{split}
+\end{split}\]</div>
+<p>Escolhendo <span class="math notranslate nohighlight">\(a = \braket{v | v}\)</span> e <span class="math notranslate nohighlight">\(b = \braket{v | u}\)</span>, tem-se</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+  0
+  &amp;\leq  |{a}|^2\braket{u | u} - a^{*}b\braket{u | v} - a b^{*} \braket{v | u}  + |{b}|^2\braket{v | v} \\
+  &amp;=   |{\braket{v | v}}|^2\braket{u | u} - \braket{v | v} \braket{v | u} \braket{u | v} - \braket{v | v} \braket{u | v} \braket{v | u}  + |{\braket{v | u}}|^2\braket{v | v} \\
+  &amp;=   \braket{v | v}^2\braket{u | u} - 2 \braket{v | v} \braket{u | v} \braket{v | u}  + |{\braket{u | v}}|^2\braket{v | v} \\
+  &amp;=   \braket{v | v}^2\braket{u | u} - 2 \braket{v | v} |{ \braket{u | v}}|^2   + |{\braket{u | v}}|^2 \braket{v | v}
+\end{split}
+\end{split}\]</div>
+<p>Logo, obtém-se</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    &amp;0
+    \leq
+    \braket{u | u} \braket{v | v} -  |{ \braket{u | v}}|^2 \\
+  &amp;\implies  |{ \braket{u | v}}| \leq \sqrt{\braket{u | u} \braket{v | v}} \\
+  &amp; \implies |{ \braket{u | v}}| \leq ||{\ket{u}}|| ||{\ket{v}}|| \ ,
+\end{split}
+\end{split}\]</div>
+<p>e fica provada a desigualdade.</p>
+<p>Ocorre igualdade se e somente se ocorrer igualdade em <span class="math notranslate nohighlight">\(0 \leq \big( a^{*}\bra{u} - b^{*}\bra{v} \big) \big(a \ket{u} - b \ket{v} \big)\)</span>, isto é, se e somente se o vetor <span class="math notranslate nohighlight">\(a \ket{u} - b \ket{v}\)</span> for nulofootnote{Isso é devido à propriedade (PI4) do produto interno.}. Portanto deve-se ter um dos vetores <span class="math notranslate nohighlight">\(\ket{u}\)</span>, <span class="math notranslate nohighlight">\(\ket{v}\)</span> múltiplo do outro.</p>
+</div>
+<p>No espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> essa desigualdade permite definir o conceito de ângulo entre dois vetores por meio da relação <span class="math notranslate nohighlight">\(\cos \theta = \frac{\overrightarrow{u} \cdot \overrightarrow{v}}{||{\overrightarrow{u}||} ||{\overrightarrow{v}}}||\)</span>. No caso de interesse para o presente trabalho, o do espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span>, essa interpretação não é possível pois o produto interno pode assumir um valor complexo.</p>
+</section>
+<section id="matriz-de-mudanca-de-base-entre-bases-ortonormais">
+<h3>Matriz de Mudança de Base entre Bases Ortonormais<a class="headerlink" href="#matriz-de-mudanca-de-base-entre-bases-ortonormais" title="Link para este cabeçalho">#</a></h3>
+<p>Da mesma forma que em <a class="reference internal" href="#cap2matriz-de-mudanca-de-base"><span class="std std-ref">Matriz de Mudança de Base</span></a>, é possível escrever uma matriz que faz a mudança de base entre duas bases ortonormais <span class="math notranslate nohighlight">\(\beta_{\text{old}} = \big\{\ket{u_0}, \ldots, \ket{u_{n-1}} \big\}\)</span> e <span class="math notranslate nohighlight">\(\beta_{\text{new}} = \big\{ \ket{v_0}, \ldots, \ket{v_{n-1}} \big\}\)</span>. As colunas da matriz de mudança de base são os vetores da base nova escritos como combinação linear dos vetores da base antiga. Como as bases são ortonormais, esses coeficientes podem ser obtidos pela projeção na direção dos vetores da base, como descrito na seção <a class="reference internal" href="#cap2base-ortonormal"><span class="std std-ref">Base Ortonormal</span></a>.</p>
+<p>A matriz de mudança de base, nesse caso, é dada por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+[I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }
+&amp;=&amp;
+      \begin{bmatrix} \Big| &amp; \Big| &amp; &amp; \Big|
+      \\ \big[\ket{v_0}\big]_{\beta_{\text{old}}} &amp;  \big[\ket{v_1}\big]_{\beta_{\text{old}}} &amp; \cdots &amp; \big[\ket{v_{n-1}}\big]_{\beta_{\text{old}}} \\
+        \Big| &amp; \Big| &amp; &amp; \Big| \end{bmatrix} \\ \\
+&amp;=&amp;
+\begin{bmatrix} \braket{u_0 | v_0} &amp; \braket{u_0 | v_1}&amp; \ \cdots \  &amp; \braket{u_0 | v_{n-1}} \\
+      \braket{u_1 | v_0} &amp; \braket{u_1 | v_1}&amp; \cdots &amp; \braket{u_1 | v_{n-1}} \\
+      \vdots &amp; \vdots &amp; \ddots  &amp; \vdots \\
+      \braket{u_{n-1}}{v_0} &amp; \braket{u_{n-1}}{v_1}&amp; \cdots &amp; \braket{u_{n-1}}{v_{n-1}}   \end{bmatrix}
+\ .
+\end{array}
+\end{split}\]</div>
+<p>A matriz de mudança de base satisfaz <span class="math notranslate nohighlight">\([I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }\phantom{\big{|}}^{-1} = [I]^{\beta_{\text{old}}}_{\beta_{\text{new}} }\phantom{\big{|}}^{\dagger} = [I]^{\beta_{\text{new}}}_{\beta_{\text{old}} }\)</span>.</p>
+<p>Isso significa que a matriz de mudança de base é <em>unitária</em>, um assunto que será visto na seção <a class="reference internal" href="03_3-operadores.html#cap2operadores-unitarios"><span class="std std-ref">Operadores Unitários</span></a>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Sabendo que as bases <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> são ortonormais, pode-se encontrar a matriz de mudança de base fazendo as seguintes contas.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+\braket{0 | +} &amp;=&amp; \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\
+\braket{1 | +} &amp;=&amp; \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\ \\
+\braket{0 | -} &amp;=&amp; \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\
+\braket{1 | -} &amp;=&amp; \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{0} \right) = - \frac{1}{\sqrt{2}} \\
+\end{array}
+\end{split}\]</div>
+<p>Portanto, a matriz de mudança de base de <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> para <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é dada por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[I]^\mathcal{I}_\mathcal{X} = \begin{bmatrix} \braket{0 | +} &amp; \braket{0 | -} \\ \braket{1 | +} &amp; \braket{1 | -} \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}  = H \ .
+\end{split}\]</div>
+<p>Esse é o mesmo resultado obtido no exemplo <a class="reference internal" href="#cap2ex-matrix-mudanca-de-base"><span class="std std-ref">Matrix Mudança de Base</span></a>.</p>
+</div>
+</section>
+<section id="produto-exterior">
+<h3>Produto Exterior<a class="headerlink" href="#produto-exterior" title="Link para este cabeçalho">#</a></h3>
+<p>É possível dar um significado ao símbolo <span class="math notranslate nohighlight">\(\bra{\phi}\)</span> como sendo um vetor linha. Isso permite, pois, considerar-se o produto matricial <span class="math notranslate nohighlight">\(\ket{\psi} \cdot \bra{\phi} = \ket{\psi}\bra{\phi}\)</span> de um vetor linha <span class="math notranslate nohighlight">\(n\times 1\)</span> por um vetor coluna <span class="math notranslate nohighlight">\(1 \times n\)</span>, resultando em uma matriz <span class="math notranslate nohighlight">\(n \times n\)</span>. Essa operação é chamada de <em>produto exterior</em>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>No espaço vetorial de 1 qubit, alguns exemplos de produto exterior são:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+  \ket{0}\bra{0} &amp;=&amp; \begin{bmatrix} 1 \\ 0 \end{bmatrix} \cdot \begin{bmatrix} 1 &amp; 0 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{bmatrix}  \\
+  \ket{0}\bra{1} &amp;=&amp; \begin{bmatrix} 1 \\ 0 \end{bmatrix} \cdot \begin{bmatrix} 0 &amp; 1 \end{bmatrix} = \begin{bmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{bmatrix}  \\
+  \ket{1}\bra{0} &amp;=&amp; \begin{bmatrix} 0 \\ 1 \end{bmatrix} \cdot \begin{bmatrix} 1 &amp; 0 \end{bmatrix} = \begin{bmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{bmatrix}  \\
+  \ket{1}\bra{1} &amp;=&amp; \begin{bmatrix} 0 \\ 1 \end{bmatrix} \cdot \begin{bmatrix} 0 &amp; 1 \end{bmatrix} = \begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
+\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+  \ket{+}\bra{0} &amp;=&amp; \begin{bmatrix} \tfrac{1}{\sqrt{2}} \\ \tfrac{1}{\sqrt{2}} \end{bmatrix} \cdot \begin{bmatrix} 1 &amp; 0 \end{bmatrix} = \begin{bmatrix} \tfrac{1}{\sqrt{2}} &amp; 0 \\ \tfrac{1}{\sqrt{2}} &amp; 0 \end{bmatrix}  \\
+  \ket{+}\bra{-} &amp;=&amp; \begin{bmatrix} \tfrac{1}{\sqrt{2}} \\ \tfrac{1}{\sqrt{2}} \end{bmatrix} \cdot \begin{bmatrix} \tfrac{1}{\sqrt{2}} &amp; -\tfrac{1}{\sqrt{2}} \end{bmatrix} = \begin{bmatrix} \tfrac{1}{2} &amp; -\tfrac{1}{2} \\ \tfrac{1}{2}  &amp; -\tfrac{1}{2}  \end{bmatrix}
+\end{array}
+\end{split}\]</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./algebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../03-algebra.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Álgebra Linear para Computação Quântica</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_2-transformacoes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Transformações Lineares</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial-base-e-dimensao">Espaço Vetorial, Base e Dimensão</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espaco-vetorial">Espaço Vetorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-e-dimensao">Base e Dimensão</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-mudanca-de-base">Matriz de Mudança de base</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno-norma-e-produto-exterior">Produto Interno, Norma e Produto Exterior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-interno">Produto Interno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norma">Norma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ortogonalidade">Ortogonalidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-ortonormal">Base Ortonormal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desigualdade-de-cauchy-schwarz">Desigualdade de Cauchy-Schwarz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-mudanca-de-base-entre-bases-ortonormais">Matriz de Mudança de Base entre Bases Ortonormais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produto-exterior">Produto Exterior</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
