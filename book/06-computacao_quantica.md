@@ -361,7 +361,7 @@ $$
 
 
 
-#### Matrizes de Pauli na base $\ket{+},\ket{-}$
+### Matrizes de Pauli na base $\ket{+},\ket{-}$
 
 Fazendo-se a mudança de base de $\ket{0},\ket{1}$ para $\ket{+},\ket{-}$ por meio da matriz $H$, obtém-se para as matrizes de Pauli:
 
@@ -479,13 +479,13 @@ Um bit clássico pode ser copiado para servir como entrada em diversas partes de
 
  Pode-se pensar nesse comportamento em termos da porta lógica clássica COPY que devolve à saída duas (ou mais) cópias do bit de entrada. 
 
- ![Nao_clonagem2.png](images/comp_quantica/Nao_clonagem2.png)
+![Nao_clonagem2.png](images/comp_quantica/Nao_clonagem2.png)
 
- omo na Computação Quântica, o análogo das portas lógicas seriam as operações unitárias sobre qubits, poderia-se cogitar a existência de uma porta lógica quântica de 2 qubits que tivesse como entrada um qubit num estado $\ket{\psi}$ qualquer, a ser copiado, (e outra entrada $\ket{0}$ para completar 2 entradas) e devolvesse 2 qubits no estado $\ket{\psi}$, como ilustrado na figura a seguir.
+Como na Computação Quântica, o análogo das portas lógicas seriam as operações unitárias sobre qubits, poderia-se cogitar a existência de uma porta lógica quântica de 2 qubits que tivesse como entrada um qubit num estado $\ket{\psi}$ qualquer, a ser copiado, (e outra entrada $\ket{0}$ para completar 2 entradas) e devolvesse 2 qubits no estado $\ket{\psi}$, como ilustrado na figura a seguir.
 
- ![Nao_clonagem3.png](images/comp_quantica/Nao_clonagem3.png)
+![Nao_clonagem3.png](images/comp_quantica/Nao_clonagem3.png)
 
- No entanto, o chamado *Teorema da Não Clonagem* informa que não existe uma operação unitária capaz de efetuar essa operação para qualquer estado $\ket{\psi}$ de entrada. Desse modo, a cópia de bits não possui análogo na Computação Quântica.
+No entanto, o chamado *Teorema da Não Clonagem* informa que não existe uma operação unitária capaz de efetuar essa operação para qualquer estado $\ket{\psi}$ de entrada. Desse modo, a cópia de bits não possui análogo na Computação Quântica.
 
 **Teorema da Não Clonagem:**  Não existe uma operação unitária que permita copiar o estado de 1 qubit em 2 (ou mais) qubits. Isto é, não existe operação unitária $U$ que satisfaça, para todo estado $\ket{\psi}$ de 1 qubit, o seguinte:
 

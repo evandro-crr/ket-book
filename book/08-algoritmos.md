@@ -28,8 +28,7 @@ Assim, o primeiro qubit está com Alice e o segundo, com Bob. Alice pode realiza
 
 O circuito completo para a codificação superdensa é representado abaixo. Seu funcionamento detalhado será abordado a seguir.
 
-![Screenshot 2024-10-21 at 21-02-07 tcc-giovani pdf](https://github.com/user-attachments/assets/afc12264-f877-421c-a43c-4e6ee3d8b910)
-
+![teletransporte_quantico.png](images/algoritmos/base/teletransporte_quantico.png)
 
 ### Funcionamento detalhado
 
@@ -46,10 +45,11 @@ Usamos os rótulos $A$ para o primeiro qubit (da Alice) e $B$ para o segundo qub
 
 Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.
 
-![Screenshot 2024-10-21 at 21-02-52 tcc-giovani pdf](https://github.com/user-attachments/assets/b3227509-480c-4c0d-bd91-5e1779240568)
+![tabela_mensagens.png](images/algoritmos/base/tabela_mensagens.png)
+
 $$
 \begin{array}{ccc}
-   \text{Mensagem} & \text{Operação} & \text{Resultado} \\ \hline \\
+   \text{Mensagem} & \text{Operação} & \text{Resultado} \\ \hline 
    00 & I_A & \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \ket{\beta_{00}} \\
    01 & Z_A & \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \ket{\beta_{01}} \\
    10 & X_A & \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \ket{\beta_{10}} \\
@@ -59,7 +59,7 @@ $$
 
 Observa-se que $ZX = iY$ pela identidade de circuitos. Os estados de Bell $\ket{\beta_{00}}$, $\ket{\beta_{01}}$, $\ket{\beta_{10}}$ e $\ket{\beta_{11}}$ formam uma base para o espaço de 2 qubits. Observa-se também que, se a mensagem é $b_0 b_1$, então quando $b_1 = 1$ aplica-se $X_A$ e quando $b_0 = 1$, aplica-se $Z_A$. Dessa forma, para todos os valores da mensagem $b_0 b_1$, pode-se escrever a operação no qubit $A$ por $Z_A^{\,\, b_0} X_A^{\,\, b_1}$. Portanto, a operação que Alice deve fazer em seu qubit pode ser representada pelo seguinte circuito controlado por cbits:
 
-![Screenshot 2024-10-21 at 21-03-50 tcc-giovani pdf](https://github.com/user-attachments/assets/5e3afea8-bf5a-485f-a22f-8a5f640b2b86)
+![mensagem_bob.png](images/algoritmos/base/mensagem_bob.png)
 
 **Decodificação - Bob**
 
@@ -67,7 +67,7 @@ Alice envia, então, seu qubit a Bob, que realiza uma medida na base de Bell. Bo
  
 A medição na base de Bell pode ser realizada em função da medição na base computacional pelo seguinte circuito:
 
-![Screenshot 2024-10-21 at 21-04-49 tcc-giovani pdf](https://github.com/user-attachments/assets/edcd3cc1-56aa-4ee3-81e0-142c27e5b579)
+![operador_teletransporte.png](images/algoritmos/base/operador_teletransporte.png)
 
 ## Circuito de teletransporte
 
@@ -93,7 +93,7 @@ Nesse processo, o qubit $\ket{\psi}$ de Alice tem seu estado destruído pela med
 
 O circuito abaixo realiza o teletransporte do estado de 1 qubit de Alice para Bob utilizando apenas o envio de 2 cbits. O funcionamento detalhado do Circuito de Teletransporte será visto adiante. 
 
-![Screenshot 2024-10-21 at 21-05-52 tcc-giovani pdf](https://github.com/user-attachments/assets/79cd53bd-3a6c-4b8c-bbd9-98b19874162e)
+![circuito_teletransporte.png](images/algoritmos/base/circuito_teletransporte.png)
 
 ### Funcionamento detalhado
 
@@ -158,7 +158,17 @@ $$
 
 em que o resultado da medida é $b_0 b_1$. O qubit que está com Bob passa a ficar no estado $\ket{\psi_3}_B$, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.
 
-![Screenshot 2024-10-21 at 21-06-47 tcc-giovani pdf](https://github.com/user-attachments/assets/9bdb83b6-c876-40f4-b59e-70c53db502df)
+![tabela_resultado.png](images/algoritmos/base/tabela_resultado_medida.png)
+
+$$
+\begin{array}{cc}
+\text{Resultado da medida} & \text{Estado do qubit } B \\ \hline
+00 & \phantom{-} a \ket{0} + b \ket{1} \\
+01 & \phantom{-} b \ket{0} + a \ket{1} \\
+10 & \phantom{-} a \ket{0} - b \ket{1} \\
+11 & - b \ket{0} + a \ket{1}
+\end{array}
+$$
 
 Caso o resultado da medida tenha sido $00$, o estado do sistema total $\ket{\psi_3}$ é obtido pela projeção $\ket{00}\bra{00}_{A_1A_2}$ seguida de uma normalização do vetor resultante. É conveniente lembrar que $|a|^2 + |b|^2 = 1$ pela normalização do estado $\ket{\psi} = a\ket{0} + b\ket{1}$ do início do algoritmo.
 
@@ -179,11 +189,21 @@ Para recuperar o estado $a\ket{0} + b\ket{1}$, Bob deve fazer algumas operaçõe
   
 Se a medida for $00$, seu qubit está em $ a\ket{0} + b\ket{1}$ e nada precisa ser feito. Se a medida resultou em $01$, seu qubit está em $b\ket{0} + a\ket{1}$; nesse caso, é possível perceber que a porta $X$ fornece novamente o estado desejado $b\ket{1} + a\ket{0}$. Considerando-se todos os resultados possíveis da medida, monta-se a correção necessária para cada caso.
 
-![Screenshot 2024-10-21 at 21-10-35 tcc-giovani pdf](https://github.com/user-attachments/assets/ea738175-2216-4443-a823-e790ae555cad)
+![pos_medicao_teleporte.png](images/algoritmos/base/pos_medicao_teleporte.png)
 
 Essas operações, como na codificação superdensa, podem ser resumidas na operação controlada classicamente $Z_B^{\, b_0} X_B^{\, b_1}$, em que $b_0b_1$ é o resultado da medida. Dessa forma, pode-se representar o processamento de Bob pelo circuito a seguir.
 
-![Screenshot 2024-10-21 at 21-11-09 tcc-giovani pdf](https://github.com/user-attachments/assets/cbcc21aa-648c-43f8-8d6c-f6454a75dc28)
+![tabela_medida_estado_final.png](images/algoritmos/base/tabela_medida_estado_final.png)
+
+$$
+\begin{array}{cccc}
+\text{Medida} & \text{Estado do qubit } B & \text{Aplicar operações} & \text{Estado final} \\ \hline 
+00 & \phantom{-} a \ket{0} + b \ket{1} & I_B & a \ket{0} + b \ket{1} = \ket{\psi} \\
+01 & \phantom{-} b \ket{0} + a \ket{1} & X_B & a \ket{0} + b \ket{1} = \ket{\psi} \\
+10 & \phantom{-} a \ket{0} - b \ket{1} & Z_B & a \ket{0} + b \ket{1} = \ket{\psi} \\
+11 & - b \ket{0} + a \ket{1} & Z_B X_B & a\ket{0} + b \ket{1} = \ket{\psi}
+\end{array}
+$$
 
 Com isso, independente do resultado da medida, Bob tem, ao final, o estado $\ket{\psi}$ que Alice queria transmitir. 
 
@@ -197,7 +217,7 @@ Com isso, independente do resultado da medida, Bob tem, ao final, o estado $\ket
 
 O oráculo XOR é uma operação unitária que realiza a função booleana $f$ por meio de um bit extra, que sinaliza as entradas em que $f$ vale 1. 
 
-![Screenshot 2024-10-21 at 21-11-56 tcc-giovani pdf](https://github.com/user-attachments/assets/f59d7db1-1357-4a13-bc54-2bbc503b22c0)
+![oraculo_xor](images/algoritmos/base/oraculo_xor.png)
 
 ### Construção do Oráculo de Fase usando o Oráculo XOR
 
@@ -219,4 +239,4 @@ $$
 
 A figura a seguir ilustra a construção do oráculo de fase.
 
-![Screenshot 2024-10-21 at 21-14-09 tcc-giovani pdf](https://github.com/user-attachments/assets/d74c7a8c-6064-4fd3-999a-000d9ed12a95)
+![oraculo_fase.png](images/algoritmos/base/oraculo_fase.png)

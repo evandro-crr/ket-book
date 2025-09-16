@@ -1,9 +1,9 @@
 (produto-tensorial)=
-## Produto Tensorial
+# Produto Tensorial
 
 É possível compor dois espaços vetoriais para formar um terceiro espaço. Uma maneira de fazer isso é por meio do *produto tensorial*. Em Computação Quântica, essa construção é fundamental para se trabalhar com sistemas compostos por mais de um qubit. Um sistema de dois qubits será o produto tensorial de dois espaços $\mathbb{C}^2$, que modelam um qubit.
 
-### Espaço Vetorial do Produto Tensorial
+## Espaço Vetorial do Produto Tensorial
 
 Dados dois espaços vetorias $V$ e $W$, com bases $\beta_V = \{ \ket{v_k} \}$ e $\beta_W = \{ \ket{w_l} \}$, o *produto tensorial* de $V$ e $W$, denotado por $V\otimes W$, é definido como o espaço vetorial gerado pela base:
 
@@ -84,7 +84,7 @@ $$
 As igualdades acima são exemplos da bilinearidade do produto tensorial.
 :::
 
-### Comparação do Produto Tensorial com o Produto Cartesiano
+## Comparação do Produto Tensorial com o Produto Cartesiano
 
 O *produto cartesiano*, às vezes chamado *soma direta* é outra maneira de se compor dois espaços vetoriais em um espaço "maior", denotado por $V \times W$ ou por $V \oplus W$. O produto cartesiano é formado por duplas $\big( \ket{v} , \ket{w} \big)$, com $\ket{v} \in V$ e $\ket{w} \in W$. Nesta subseção, a notação $( \cdot \, , \cdot )$ refere-se a par ordenado em vez de produto interno como no restante do texto.
 
@@ -130,7 +130,7 @@ $$
 z \cdot \big(\ket{v} \otimes \ket{w}\big) = \big(z\ket{v}\big) \otimes \ket{w} = \ket{v} \otimes \big(z\ket{w} \big) \ .
 $$
 
-### Produto Interno
+## Produto Interno
 
 Sejam $V$ e $W$ espaços de Hilbert, isto é, espaços munidos de produto interno. O produto tensorial $V\otimes W$ pode ser munido com um produto interno derivado dos produtos internos de $V$ e de $W$. Defina:
 
@@ -222,7 +222,7 @@ $$
 $$
 :::
 
-### Operadores
+## Operadores
 
 Sejam $A$ um operador em $V$ e $B$ um operador em $W$. É possível definir um operador em $V\otimes W$, denotado por $A\otimes B$ de forma que
 
@@ -288,7 +288,7 @@ $$
 Mais detalhes sobre a notação encontram-se na seção [Produto Tensorial: Notação](cap2produto-tensorial-notacao).
 :::
 
-### Produto de Kronecker
+## Produto de Kronecker
 
 Até então, o conceito de produto tensorial foi apresentado de maneira abstrata. É possível abordar esse conceito de maneira matricial também. Fixadas bases para $V$ e $W$, os vetores $\ket{v}$ e $\ket{w}$ desses espaços podem ser representados como vetores coluna.
 O vetor $\ket{v} \otimes \ket{w}$ também pode ser representado como vetor coluna fazendo-se o *produto de Kronecker*.
@@ -364,13 +364,13 @@ A \otimes B = \begin{bmatrix} a_{0,0} B & a_{0,1} B \\ a_{1,0} B & a_{1,1} B \en
 $$
 :::
 
-### Produto Tensorial de Vários Espaços Vetoriais
+## Produto Tensorial de Vários Espaços Vetoriais
 
 O produto tensorial de vários espaços vetoriais segue a mesma ideia do caso de dois espaços, apresentado anteriormente. A dimensão será o produto das dimensões de cada espaço. O produto tensorial é associativo, então não é necessário usar parênteses num produto tensorial de vários espaços. Não é possível comutar os fatores do produto tensorial.
 
 (cap2produto-tensorial-notacao)=
 
-### Notação
+## Notação
 
 Em situações práticas, costuma-se usar índices em cada fator do produto tensorial para evitar confusões. Também há variantes que deixam a notação mais curta. Alguns comentários a respeito dessas variantes são abordados nesta seção. Para tratar disso, considere um exemplo em $V\otimes W \otimes U$.
 

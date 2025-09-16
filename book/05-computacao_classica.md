@@ -22,7 +22,7 @@ Essa divisão em camadas de abstração permite que os diversos blocos do sistem
 
 A figura a seguir ilustra as camadas de abstração presentes no computador digital. Dependendo do autor, as camadas de abstração são nomeadas de maneira ligeiramente diferente ou são consideradas algumas subcamadas extra.
 
-![image](https://github.com/user-attachments/assets/dbddcf95-1402-4453-aa0a-70184e55707d)
+![camadas_abstracao.png](images/comp_classica/camadas_abstracao.png)
 
 $$
 \begin{array}{c}
@@ -75,7 +75,7 @@ As portas lógicas são funções booleanas simples, blocos fundamentais dos cir
 
 Qualquer sistema físico que se comporte de maneira a fornecer uma tabela verdade como as apresentadas acima pode ser considerado uma porta lógica. 
 
-## Teoremas da álgebra booleana
+## Teoremas da Álgebra Booleana
 
 Apresentam-se algumas identidades booleanas úteis para simplificação de expressões. 
 

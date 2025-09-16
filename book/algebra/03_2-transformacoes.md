@@ -1,8 +1,6 @@
 # Transformações Lineares
 
-## Transformações Lineares
-
-### Transformação Linear e Operador Linear
+## Transformação Linear e Operador Linear
 
 Uma *transformação linear* é uma aplicação $T \colon \mathbb{C}^n \to \mathbb{C}^m$ que respeita a soma e a multiplicação por escalar, ou seja, tal que valem:
 
@@ -60,7 +58,7 @@ $$
   $$
 :::
 
-### Funcional Linear
+## Funcional Linear
 
 Um *funcional linear* é uma transformação linear $f \colon \mathbb{C}^n \to \mathbb{C}$ ($m=1$). O bra $\bra{\phi}$ pode ser pensado como um funcional linear que pode atuar em um vetor coluna $\ket{\psi}$ para resultar no número complexo $\braket{\phi | \psi}$. Pode-se verificar que todo funcional linear é da forma $\bra{\phi} = \braket{\phi | \cdot}$ para algum $\ket{\phi}$.
 
