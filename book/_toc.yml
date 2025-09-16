@@ -5,6 +5,7 @@ format: jb-book
 root: 01-index
 chapters:
 - file: 02-pytutorial
+- file: 002-complexos
 - file: 03-algebra
   sections:
     - file: algebra/03_1-basicos
