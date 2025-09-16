@@ -382,6 +382,35 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometria-dos-numeros-complexos">Geometria dos Números Complexos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-plano-complexo">O Plano Complexo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-como-comprimento-vetorial">Módulo como Comprimento Vetorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adicao-e-subtracao-geometricas">Adição e Subtração Geométricas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adicao">Adição</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subtracao">Subtração</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-polar">Representação Polar</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conversao-entre-representacoes">Conversão entre Representações</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#magnitude-e-fase">Magnitude e Fase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicacao-na-forma-polar">Multiplicação na Forma Polar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicacao-como-rotacao">Multiplicação como Rotação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#divisao-na-forma-polar">Divisão na Forma Polar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencias-e-raizes">Potências e Raízes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#potencias">Potências</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#raizes">Raízes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-de-euler-e-forma-exponencial">Fórmula de Euler e Forma Exponencial</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades">Propriedades</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raizes-da-unidade">Raízes da Unidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacoes-de-mobius">Transformações de Möbius</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-das-transformacoes-de-mobius">Propriedades das Transformações de Möbius</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
 </ul>
 </li>
 </ul>
@@ -421,7 +450,7 @@ document.write(`
 <h3>Expressando o Número Complexo<a class="headerlink" href="#expressando-o-numero-complexo" title="Link para este cabeçalho">#</a></h3>
 <p>Com a informação de que  <span class="math notranslate nohighlight">\({i = \sqrt{-1}}\)</span>, conseguimos perceber alguns comportamentos, tais como:</p>
 <div class="math notranslate nohighlight">
-\[i^2 = \sqrt{-1}^2 = -1 \space \text{e} \space i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i\]</div>
+\[i^2 = \sqrt{-1}^2 = -1 e i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i\]</div>
 <p>Além de podemos elevar o <span class="math notranslate nohighlight">\({i}\)</span> a <span class="math notranslate nohighlight">\({n}\)</span> fatores, podemos multiplicar o fator <span class="math notranslate nohighlight">\({i}\)</span> por um número real <span class="math notranslate nohighlight">\({b}\)</span>, e obter resultados como:</p>
 <div class="math notranslate nohighlight">
 \[ 3i = 3\times\sqrt{-1} e 3,14i = 3,14\times\sqrt{-1}\]</div>
@@ -527,7 +556,9 @@ c_3 = -16 + 17i
 \[\frac{a_1 + b_1i}{a_2 + b_2i} = \frac{a_1a_2 + b_1b_2}{a_2^2 + b_2^2} + \frac{a_2b_1 - a_1b_2}{a_2^2 + b_2^2}i\]</div>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
-<p>–ADICIONAR EXEMPLOS</p>
+<p>Dado dois números complexos, <span class="math notranslate nohighlight">\({c_1 = 3 + 2i}\)</span> e <span class="math notranslate nohighlight">\({c_2 = 2 + 4i}\)</span>, a divisão desses dois números resultará em:</p>
+<div class="math notranslate nohighlight">
+\[${\frac{3 + 2i}{2 + 4i} = \frac{(3 \times 2) + (2 \times 4)}{2^2 + 4^2} + \frac{(2 \times 2) - (3 \times 4)}{2^2 + 4^2}i = \frac{14}{20} - \frac{8}{20}i = \frac{7}{10} - \frac{2}{10}i}$\]</div>
 </div>
 </section>
 <section id="modulo-e-conjugacao">
@@ -569,9 +600,177 @@ c_3 = -16 + 17i
 <h3>O Plano Complexo<a class="headerlink" href="#o-plano-complexo" title="Link para este cabeçalho">#</a></h3>
 <p>No início da seção passada, aprendemos que um número complexo é um par de números reais. Isso sugere uma representação natural: os números reais são colocados na reta, então pares de reais correspondem a pontos no plano ou, equivalentemente, a vetores que partem da origem e apontam para esse ponto.</p>
 <p>Nesta representação, os números reais (ou seja, números complexos sem parte imaginária) ficam no eixo horizontal e os números imaginários ficam no eixo vertical. Este plano é conhecido como <strong>plano complexo</strong> ou <strong>plano de Argand</strong>.</p>
-<figure class="align-default">
-<img alt="_images/imagem0ComplexNumbers.png" class="no-scaled-link" src="_images/imagem0ComplexNumbers.png" style="width: 100%;" />
-</figure>
+<p><img alt="imagem0ComplexNumbers.png" src="_images/imagem0ComplexNumbers.png" /></p>
+</section>
+<section id="modulo-como-comprimento-vetorial">
+<h3>Módulo como Comprimento Vetorial<a class="headerlink" href="#modulo-como-comprimento-vetorial" title="Link para este cabeçalho">#</a></h3>
+<p>Através desta representação, as propriedades algébricas dos números complexos podem ser vistas sob uma nova luz. Comecemos com o módulo: ele nada mais é do que o <strong>comprimento do vetor</strong>. De fato, o comprimento de um vetor, via teorema de Pitágoras, é a raiz quadrada da soma dos quadrados dos catetos <em>- valor no eixo real e eixo imaginário</em>, que é precisamente o módulo, conforme definido na seção anterior.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Considere o número complexo c = 3 + 4i. O comprimento do vetor é a hipotenusa do triângulo retângulo cujos lados têm comprimento 3 e 4, respectivamente. O teorema de Pitágoras nos dá:</p>
+<div class="math notranslate nohighlight">
+\[h = \sqrt{c_a^2 + c_o^2} = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5\]</div>
+</div>
+<p><img alt="imagem1ComplexNumbers.png" src="_images/imagem1ComplexNumbers.png" /></p>
+<div class="math notranslate nohighlight">
+\[\text{comprimento}(c) = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5\]</div>
+<p>Este é exatamente o módulo de c.</p>
+</section>
+<section id="adicao-e-subtracao-geometricas">
+<h3>Adição e Subtração Geométricas<a class="headerlink" href="#adicao-e-subtracao-geometricas" title="Link para este cabeçalho">#</a></h3>
+<section id="adicao">
+<h4>Adição<a class="headerlink" href="#adicao" title="Link para este cabeçalho">#</a></h4>
+<p>Vetores podem ser somados usando a <strong>regra do paralelogramo</strong>: desenhe o paralelogramo cujas arestas paralelas são os dois vetores a serem somados; sua soma é a diagonal.</p>
+<p><img alt="imagem0Comp2exNumbers.png" src="_images/imagem2ComplexNumbers.png" /></p>
+</section>
+<section id="subtracao">
+<h4>Subtração<a class="headerlink" href="#subtracao" title="Link para este cabeçalho">#</a></h4>
+<p>A subtração também tem um significado geométrico claro: subtrair c₂ de c₁ é o mesmo que somar a negação de c₂, ou seja, -c₂, a c₁. A negação de um vetor é simplesmente o vetor de mesmo comprimento apontando na direção oposta.</p>
+<p><img alt="imagem3ComplexNumbers.png" src="_images/imagem3ComplexNumbers.png" /></p>
+</section>
+</section>
+<section id="representacao-polar">
+<h3>Representação Polar<a class="headerlink" href="#representacao-polar" title="Link para este cabeçalho">#</a></h3>
+<p>Para dar um significado geométrico simples à multiplicação, precisamos desenvolver outra caracterização dos números complexos. Para cada número complexo, podemos desenhar um triângulo retângulo cujos comprimentos dos catetos são as partes real e imaginária do número e cujo comprimento da hipotenusa é o módulo.</p>
+<p>O módulo ρ e o ângulo <span class="math notranslate nohighlight">\({\theta}\)</span> (dois números reais, como antes) são suficientes para determinar exclusivamente o número complexo:
+<span class="math notranslate nohighlight">\({
+(a, b) \mapsto (\rho, \theta)
+}\)</span></p>
+<section id="conversao-entre-representacoes">
+<h4>Conversão entre Representações<a class="headerlink" href="#conversao-entre-representacoes" title="Link para este cabeçalho">#</a></h4>
+<ul class="simple">
+<li><p><strong>Cartesiana para Polar</strong>:
+<span class="math notranslate nohighlight">\({
+\rho = \sqrt{a^2 + b^2}, \quad \theta = \arctg\left(\frac{b}{a}\right)
+}\)</span></p></li>
+<li><p><strong>Polar para Cartesiana</strong>:
+<span class="math notranslate nohighlight">\({
+a = \rho \cos(\theta), \quad b = \rho \sin(\theta)
+}\)</span></p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Seja c = 1 + i. Sua representação polar é:</p>
+<div class="math notranslate nohighlight">
+\[\rho = \sqrt{1^2 + 1^2} = \sqrt{2}, \quad \theta = \arctg(1) = \frac{\pi}{4}\]</div>
+</div>
+<p>c é o vetor de comprimento √2 a partir da origem em um ângulo de π/4 radianos, ou 45°.</p>
+</section>
+</section>
+<section id="magnitude-e-fase">
+<h3>Magnitude e Fase<a class="headerlink" href="#magnitude-e-fase" title="Link para este cabeçalho">#</a></h3>
+<p><strong>Definição Essencial</strong> Um número complexo é uma <strong>magnitude</strong> e uma <strong>fase</strong>.</p>
+<ul class="simple">
+<li><p>Os reais positivos ordinários são números complexos com fase zero</p></li>
+<li><p>Os reais negativos têm fase π</p></li>
+<li><p>Os números imaginários têm fase constante igual a π/2 (imaginário positivo) ou 3π/2 (imaginário negativo)</p></li>
+</ul>
+<p>Dada uma fase constante, há uma linha inteira de números complexos com essa fase.</p>
+</section>
+<section id="multiplicacao-na-forma-polar">
+<h3>Multiplicação na Forma Polar<a class="headerlink" href="#multiplicacao-na-forma-polar" title="Link para este cabeçalho">#</a></h3>
+<p>Dados dois números complexos em coordenadas polares, (ρ₁, θ₁) e (ρ₂, θ₂), seu produto pode ser obtido multiplicando suas magnitudes e somando suas fases:</p>
+<div class="math notranslate nohighlight">
+\[(\rho_1, \theta_1) \times (\rho_2, \theta_2) = (\rho_1\rho_2 \space , \space \theta_1 + \theta_2)\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2\\\text{Então, esse mesmo número em representação polar equivale a:}\\c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})\\\text{Portanto, seu produto usando a regra geométrica é:}\\c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)\\\text{Revertendo para coordenadas cartesianas obtemos:}\\(2 \times \cos(\pi), 2 \times \sin(\pi)) = (-2, 0)\\\text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico.}\end{aligned}\end{align} \]</div>
+</div>
+</section>
+<section id="multiplicacao-como-rotacao">
+<h3>Multiplicação como Rotação<a class="headerlink" href="#multiplicacao-como-rotacao" title="Link para este cabeçalho">#</a></h3>
+<p>A multiplicação no domínio complexo está relacionada com <strong>rotações</strong> do plano complexo. A multiplicação por i (que tem módulo 1 e fase π/2) tem o resultado líquido de girar o número complexo original em 90°, um ângulo reto. Podemos concluir com segurança que a multiplicação por i é uma <strong>rotação de 90° no sentido anti-horário</strong> do plano complexo.</p>
+</section>
+<section id="divisao-na-forma-polar">
+<h3>Divisão na Forma Polar<a class="headerlink" href="#divisao-na-forma-polar" title="Link para este cabeçalho">#</a></h3>
+<p>Dados dois números complexos em forma polar, para obtermos o resultado de sua divisão devemos dividir as magnitudes e subtrair os ângulos:</p>
+<div class="math notranslate nohighlight">
+\[\frac{(\rho_1, \theta_1)}{(\rho_2, \theta_2)} = \left(\frac{\rho_1}{\rho_2}, \theta_1 - \theta_2\right)\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Sejam  <span class="math notranslate nohighlight">\({ c_1 = 1 + i }\)</span> e <span class="math notranslate nohighlight">\({ c_2 = -1 + i }\)</span>. Primeiro, vamos calcular a divisão <span class="math notranslate nohighlight">\({ \frac{c_1}{c_2} }\)</span> usando a regra algébrica:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\frac{c_1}{c_2} = \frac{1 + i}{-1 + i}\\
+\text{Multiplicando numerador e denominador pelo conjugado do denominador:}\\
+\frac{1 + i}{-1 + i} \cdot \frac{-1 - i}{-1 - i} = \frac{(1 + i)(-1 - i)}{(-1 + i)(-1 - i)}\\
+\text{Calculando o numerador:}\\
+(1 + i)(-1 - i) = 1 \cdot (-1) + 1 \cdot (-i) + i \cdot (-1) + i \cdot (-i) = -1 - i - i - i^2 = -1 - 2i - (-1) = -1 - 2i + 1 = -2i\\
+\text{Calculando o denominador:}\\
+(-1 + i)(-1 - i) = (-1)^2 - (i)^2 = 1 - (-1) = 1 + 1 = 2\\
+\text{Portanto:}\\
+\frac{c_1}{c_2} = \frac{-2i}{2} = -i\\
+\text{Então, esse mesmo número em representação polar equivale a:}\\
+c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})\\
+\text{Portanto, sua divisão usando a regra geométrica é:}\\
+\frac{c_1}{c_2} = \left( \frac{\sqrt{2}}{\sqrt{2}}, \frac{\pi}{4} - \frac{3\pi}{4} \right) = (1, -\frac{\pi}{2})\\
+\text{Revertendo para coordenadas cartesianas obtemos:}\\
+(1 \times \cos(-\frac{\pi}{2}), 1 \times \sin(-\frac{\pi}{2})) = (0, -1)\\\text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico ${-i = 0 - 1i}$}.\end{aligned}\end{align} \]</div>
+</div>
+</section>
+<section id="potencias-e-raizes">
+<h3>Potências e Raízes<a class="headerlink" href="#potencias-e-raizes" title="Link para este cabeçalho">#</a></h3>
+<section id="potencias">
+<h4>Potências<a class="headerlink" href="#potencias" title="Link para este cabeçalho">#</a></h4>
+<p>Se <span class="math notranslate nohighlight">\({c = (ρ, θ)}\)</span> é um número complexo na forma polar e n um inteiro positivo, sua n-ésima potência é dada pela múltiplicação de si mesmo <span class="math notranslate nohighlight">\({n}\)</span> vezes, que quando simplificada resulta na fórmula:</p>
+<div class="math notranslate nohighlight">
+\[c^n = (\rho^n, n\theta)\]</div>
+</section>
+<section id="raizes">
+<h4>Raízes<a class="headerlink" href="#raizes" title="Link para este cabeçalho">#</a></h4>
+<p>A n-ésima raiz de um número complexo é mais complicada de se definir, sendo entendida como:</p>
+<div class="math notranslate nohighlight">
+\[c^{\frac{1}{n}} = \left(\sqrt[n]{\rho}, \frac{1}{n}(\theta + k2\pi)\right)\]</div>
+<p>Existem <strong>precisamente n raízes n-ésimas</strong> para um número complexo.</p>
+</section>
+</section>
+<section id="formula-de-euler-e-forma-exponencial">
+<h3>Fórmula de Euler e Forma Exponencial<a class="headerlink" href="#formula-de-euler-e-forma-exponencial" title="Link para este cabeçalho">#</a></h3>
+<p>A <strong>fórmula de Euler</strong> nos permite escrever números complexos de uma outra maneira, estabelecendo uma noção essencial para o entendimento da computação quântica:</p>
+<div class="math notranslate nohighlight">
+\[e^{i\theta} = \cos(\theta) + i \sin(\theta)\]</div>
+<p>Isso nos permite reescrever qualquer número complexo na <strong>forma exponencial</strong>:</p>
+<div class="math notranslate nohighlight">
+\[c = \rho e^{i\theta}\]</div>
+<section id="propriedades">
+<h4>Propriedades<a class="headerlink" href="#propriedades" title="Link para este cabeçalho">#</a></h4>
+<p>Assim, percebemos determinadas propriedades, como:</p>
+<ul class="simple">
+<li><p>Multiplicação: <span class="math notranslate nohighlight">\({ c_1c_2 = \rho_1 e^{i\theta_1} \rho_2 e^{i\theta_2} = \rho_1\rho_2 e^{i(\theta_1 + \theta_2)} }\)</span></p></li>
+<li><p>A função exponencial leva somas em produtos: <span class="math notranslate nohighlight">\({ e^{i(\theta_1 + \theta_2)} = e^{i\theta_1} \times e^{i\theta_2} }\)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="raizes-da-unidade">
+<h3>Raízes da Unidade<a class="headerlink" href="#raizes-da-unidade" title="Link para este cabeçalho">#</a></h3>
+<p>As raízes n-ésimas da unidade <span class="math notranslate nohighlight">\({(1 = (1, 0) = 1 + 0i)}\)</span> são dadas por:</p>
+<div class="math notranslate nohighlight">
+\[c^{\frac{1}{n}} = (1, 0)^{\frac{1}{n}} = \left(\sqrt[n]{1}, \frac{1}{n}(0 + 2k\pi)\right) = \left(1, \frac{2k\pi}{n}\right)\]</div>
+<p>Permitindo k = 0, 1, 2, …, n - 1, obtemos n raízes diferentes da unidade. A k-ésima raiz da unidade na forma exponencial é <span class="math notranslate nohighlight">\({ e^{2\pi ik/n} }\)</span>. Denotamos essas n raízes diferentes da unidade por:
+<span class="math notranslate nohighlight">\({
+\omega^0_n = 1, \omega^1_n, \omega^2_n, \ldots, \omega^{n-1}_n
+}\)</span></p>
+<p>Geometricamente, essas n raízes da unidade correspondem a dividir o círculo unitário em n partes onde a primeira partição é (1, 0).</p>
+</section>
+<section id="transformacoes-de-mobius">
+<h3>Transformações de Möbius<a class="headerlink" href="#transformacoes-de-mobius" title="Link para este cabeçalho">#</a></h3>
+<p>Além dos polinômios, o próximo conjunto de funções são as <strong>funções racionais</strong>, ou quocientes de polinômios. O caso mais simples e importante é:</p>
+<div class="math notranslate nohighlight">
+\[R_{a,b,c,d}(x) = \frac{ax + b}{cx + d}\]</div>
+<p>onde <span class="math notranslate nohighlight">\({a, b, c, d \in \mathbb{C} \space \text{e} \space  ad - bc \neq 0}\)</span>. Esta é conhecida como <strong>transformação de Möbius</strong>.</p>
+<section id="propriedades-das-transformacoes-de-mobius">
+<h4>Propriedades das Transformações de Möbius<a class="headerlink" href="#propriedades-das-transformacoes-de-mobius" title="Link para este cabeçalho">#</a></h4>
+<ul class="simple">
+<li><p>A composição de duas transformações de Möbius é uma transformação de Möbius</p></li>
+<li><p>A transformação identidade é uma transformação de Möbius</p></li>
+<li><p>Cada transformação de Möbius tem uma inversa que também é uma transformação de Möbius</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusao">
+<h3>Conclusão<a class="headerlink" href="#conclusao" title="Link para este cabeçalho">#</a></h3>
+<p>Cobrimos a linguagem básica dos números complexos e suas interpretações geométricas. Esta compreensão será fundamental para o entendimento da computação quântica, onde precisaremos de outra ferramenta: <strong><span class="math notranslate nohighlight">\({\text{ALGEBRA} \space \text{LINEAR}}\)</span></strong>.</p>
 </section>
 </section>
 </section>
@@ -669,6 +868,35 @@ c_3 = -16 + 17i
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometria-dos-numeros-complexos">Geometria dos Números Complexos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-plano-complexo">O Plano Complexo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-como-comprimento-vetorial">Módulo como Comprimento Vetorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adicao-e-subtracao-geometricas">Adição e Subtração Geométricas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adicao">Adição</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subtracao">Subtração</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-polar">Representação Polar</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conversao-entre-representacoes">Conversão entre Representações</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#magnitude-e-fase">Magnitude e Fase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicacao-na-forma-polar">Multiplicação na Forma Polar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicacao-como-rotacao">Multiplicação como Rotação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#divisao-na-forma-polar">Divisão na Forma Polar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencias-e-raizes">Potências e Raízes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#potencias">Potências</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#raizes">Raízes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formula-de-euler-e-forma-exponencial">Fórmula de Euler e Forma Exponencial</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades">Propriedades</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raizes-da-unidade">Raízes da Unidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacoes-de-mobius">Transformações de Möbius</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-das-transformacoes-de-mobius">Propriedades das Transformações de Möbius</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
 </ul>
 </li>
 </ul>
