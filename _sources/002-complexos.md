@@ -52,9 +52,11 @@ c = a + bi
 Então, idenficamos qualquer número possível sendo um resultado dessa equação, como por exemplo:
 
 ```{math}
-c = 3 + 7i resulta no número complexo 3 + 9i 
-c = 19 - 8i resulta no número complexo 19 - 8i
-c = 5 + 0i resulta no número inteiro 5
+c = 3 + 7i \space \text{resulta no número complexo} \space 3 + 9i
+
+c = 19 - 8i \space \text{resulta no número complexo} \space 19 - 8i
+
+c = 5 + 0i \space \text{resulta no número inteiro} \space 5
 ```
 
 ### Soma e Subtração
@@ -68,26 +70,25 @@ Sendo ${c_1 = 3 + 9i}$ e ${c_2 = 19 - 8i}$
 A sua soma resultará em:
 
 ```{math}
+\begin{eqnarray*}
 c_3 = c_1 + c_2
-
 c_3 = (3 + 9i) + (19 - 8i)
-
 c_3 = (3 + 19) + (9i - 8i)
-
 c_3 = 22 + i
+\end{eqnarray*}
 ```
 
 E a sua subtração resultará em:
 
 ```{math}
+\begin{eqnarray*}
 c_3 = c_1 - c_2
-
 c_3 = (3 + 9i) - (19 - 8i)
-
 c_3 = (3 - 19) + (9i + 8i)
-
 c_3 = -16 + 17i
+\end{eqnarray*}
 ```
+
 ### Multiplicação
 
 A multiplicação não é tão simples quanto a soma e a subtração. Para realizar a multiplicação entre dois números complexos, ${c_1}$ e ${c_2}$, devemos realizar a distributiva entre eles para obter o resultado, ${c_3}$.
