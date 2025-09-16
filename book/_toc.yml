@@ -6,6 +6,11 @@ root: 01-index
 chapters:
 - file: 02-pytutorial
 - file: 03-algebra
+  sections:
+    - file: algebra/03_1-basicos
+    - file: algebra/03_2-transformacoes
+    - file: algebra/03_3-operadores
+    - file: algebra/03_4-prod_tensorial
 - file: 04-postulados
 - file: 05-computacao_classica
 - file: 06-computacao_quantica

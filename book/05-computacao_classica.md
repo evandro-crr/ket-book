@@ -24,6 +24,19 @@ A figura a seguir ilustra as camadas de abstração presentes no computador digi
 
 ![image](https://github.com/user-attachments/assets/dbddcf95-1402-4453-aa0a-70184e55707d)
 
+$$
+\begin{array}{c}
+\text{Camadas de Abstração} \\ \hline
+\text{Linguagens de Programação} \\
+\text{Instruction Set Architecture} \\
+\text{Microarquitetura} \\
+\text{Transferência de Registrador} \\
+\text{Portas Lógicas} \\
+\text{Circuitos Transistorizados}
+\text{Nível Físico}
+\end{array}
+$$
+
 ## Nível lógico
 
 O nível lógico refere-se à camada de abstração imediatamente acima da dos transistores. Os transistores são reunidos em *portas lógicas*. Nessa camada de abstração, os sinais de tensão na entrada e na saída são interpretados como bits, e as portas lógicas que operam esses bits simulam as funções lógicas como OR, AND, NOT, entre outras.
@@ -164,7 +177,7 @@ $$
 
 **Prova:**
 
-A verificação se dá atribuindo valores às variáveis ou escrevendo a tabela verdade dos dois lados da equação e verificando que o resultado é o mesmo. Pode-se usar o teorema 1} para facilitar. Por exemplo, verifica-se a identidade do $X (Y+Z) = XY + XZ $: 
+A verificação se dá atribuindo valores às variáveis ou escrevendo a tabela verdade dos dois lados da equação e verificando que o resultado é o mesmo. Pode-se usar o teorema 1 para facilitar. Por exemplo, verifica-se a identidade do $X (Y+Z) = XY + XZ $: 
 
  Para $X=0$:  $0(Y+Z) = 0 = 0Y + 0Z$. 
  
