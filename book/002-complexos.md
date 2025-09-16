@@ -35,7 +35,7 @@ Que a solução da equação ${x^2 = -1}$ é um número cujo quadrado é ${-1}$,
 Com a informação de que  ${i = \sqrt{-1}}$, conseguimos perceber alguns comportamentos, tais como:
 
 ```{math}
-i^2 = \sqrt{-1}^2 = -1 e i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i
+i^2 = \sqrt{-1}^2 = -1 \space \text{e} \space i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i
 ```
 
 Além de podemos elevar o ${i}$ a ${n}$ fatores, podemos multiplicar o fator ${i}$ por um número real ${b}$, e obter resultados como:
@@ -434,3 +434,4 @@ onde ${a, b, c, d \in \mathbb{C} \space \text{e} \space  ad - bc \neq 0}$. Esta 
 ### Conclusão
 
 Cobrimos a linguagem básica dos números complexos e suas interpretações geométricas. Esta compreensão será fundamental para o entendimento da computação quântica, onde precisaremos de outra ferramenta: **${\text{ALGEBRA} \space \text{LINEAR}}$**.
+
