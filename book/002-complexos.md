@@ -35,7 +35,7 @@ Que a solução da equação ${x^2 = -1}$ é um número cujo quadrado é ${-1}$,
 Com a informação de que  ${i = \sqrt{-1}}$, conseguimos perceber alguns comportamentos, tais como:
 
 ```{math}
-i^2 = \sqrt{-1}^2 = -1 \space \text{e} \space i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i
+i^2 = \sqrt{-1}^2 = -1 e i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i
 ```
 
 Além de podemos elevar o ${i}$ a ${n}$ fatores, podemos multiplicar o fator ${i}$ por um número real ${b}$, e obter resultados como:
@@ -194,7 +194,10 @@ Sendo assim, a solução é encontrada por:
 ```{admonition} Exemplo
 :class: tip
 
---ADICIONAR EXEMPLOS
+Dado dois números complexos, ${c_1 = 3 + 2i}$ e ${c_2 = 2 + 4i}$, a divisão desses dois números resultará em:
+
+```{math}
+${\frac{3 + 2i}{2 + 4i} = \frac{(3 \times 2) + (2 \times 4)}{2^2 + 4^2} + \frac{(2 \times 2) - (3 \times 4)}{2^2 + 4^2}i = \frac{14}{20} - \frac{8}{20}i = \frac{7}{10} - \frac{2}{10}i}$
 ```
 
 ### Módulo e Conjugação
@@ -239,19 +242,22 @@ No início da seção passada, aprendemos que um número complexo é um par de n
 
 Nesta representação, os números reais (ou seja, números complexos sem parte imaginária) ficam no eixo horizontal e os números imaginários ficam no eixo vertical. Este plano é conhecido como **plano complexo** ou **plano de Argand**.
 
-:::{figure} /images/complexos/imagem0ComplexNumbers.png
-:class: no-scaled-link
-:width: 100%
+![imagem0ComplexNumbers.png](images/complexos/imagem0ComplexNumbers.png)
 
 ### Módulo como Comprimento Vetorial
 
 Através desta representação, as propriedades algébricas dos números complexos podem ser vistas sob uma nova luz. Comecemos com o módulo: ele nada mais é do que o **comprimento do vetor**. De fato, o comprimento de um vetor, via teorema de Pitágoras, é a raiz quadrada da soma dos quadrados dos catetos *- valor no eixo real e eixo imaginário*, que é precisamente o módulo, conforme definido na seção anterior.
 
-**Exemplo** Considere o número complexo c = 3 + 4i. O comprimento do vetor é a hipotenusa do triângulo retângulo cujos lados têm comprimento 3 e 4, respectivamente. O teorema de Pitágoras nos dá:
+```{admonition} Exemplo
+:class: tip
 
-:::{figure} /images/complexos/imagem1ComplexNumbers.png
-:class: no-scaled-link
-:width: 100%
+Considere o número complexo c = 3 + 4i. O comprimento do vetor é a hipotenusa do triângulo retângulo cujos lados têm comprimento 3 e 4, respectivamente. O teorema de Pitágoras nos dá:
+
+```{math}
+h = \sqrt{c_a^2 + c_o^2} = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5
+```
+
+![imagem1ComplexNumbers.png](images/complexos/imagem1ComplexNumbers.png)
 
 ```{math}
 \text{comprimento}(c) = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5
@@ -264,16 +270,12 @@ Este é exatamente o módulo de c.
 #### Adição
 Vetores podem ser somados usando a **regra do paralelogramo**: desenhe o paralelogramo cujas arestas paralelas são os dois vetores a serem somados; sua soma é a diagonal.
 
-:::{figure} /images/complexos/imagem2ComplexNumbers.png
-:class: no-scaled-link
-:width: 100%
+![imagem0Comp2exNumbers.png](images/complexos/imagem2ComplexNumbers.png)
 
 #### Subtração
 A subtração também tem um significado geométrico claro: subtrair c₂ de c₁ é o mesmo que somar a negação de c₂, ou seja, -c₂, a c₁. A negação de um vetor é simplesmente o vetor de mesmo comprimento apontando na direção oposta.
 
-:::{figure} /images/complexos/imagem3ComplexNumbers.png
-:class: no-scaled-link
-:width: 100%
+![imagem3ComplexNumbers.png](images/complexos/imagem3ComplexNumbers.png)
 
 ### Representação Polar
 
@@ -294,7 +296,10 @@ ${
   a = \rho \cos(\theta), \quad b = \rho \sin(\theta)
   }$
 
-**Exemplo** Seja c = 1 + i. Sua representação polar é:
+```{admonition} Exemplo
+:class: tip
+
+Seja c = 1 + i. Sua representação polar é:
 
 ```{math}
 \rho = \sqrt{1^2 + 1^2} = \sqrt{2}, \quad \theta = \arctg(1) = \frac{\pi}{4}
@@ -320,31 +325,28 @@ Dados dois números complexos em coordenadas polares, (ρ₁, θ₁) e (ρ₂, �
 (\rho_1, \theta_1) \times (\rho_2, \theta_2) = (\rho_1\rho_2 \space , \space \theta_1 + \theta_2)
 ```
 
-**Exemplo** Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:
+```{admonition} Exemplo
+:class: tip
+
+Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:
 
 ```{math}
 c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2
-```
 
-Então, esse mesmo número em representação polar equivale a:
+\text{Então, esse mesmo número em representação polar equivale a:}
 
-```{math}
 c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})
-```
 
-Portanto, seu produto usando a regra geométrica é:
+\text{Portanto, seu produto usando a regra geométrica é:}
 
-```{math}
 c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)
-```
 
-Revertendo para coordenadas cartesianas obtemos:
+\text{Revertendo para coordenadas cartesianas obtemos:}
 
-```{math}
 (2 \times \cos(\pi), 2 \times \sin(\pi)) = (-2, 0)
-```
 
-Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico.
+\text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico.}
+```
 
 ### Multiplicação como Rotação
 
@@ -361,7 +363,54 @@ Dados dois números complexos em forma polar, para obtermos o resultado de sua d
 ```{admonition} Exemplo
 :class: tip
 
-{ADICIONAR EXEMPLO}
+Sejam  ${ c_1 = 1 + i }$ e ${ c_2 = -1 + i }$. Primeiro, vamos calcular a divisão ${ \frac{c_1}{c_2} }$ usando a regra algébrica:
+
+```{math}
+\frac{c_1}{c_2} = \frac{1 + i}{-1 + i}
+
+
+\text{Multiplicando numerador e denominador pelo conjugado do denominador:}
+
+
+\frac{1 + i}{-1 + i} \cdot \frac{-1 - i}{-1 - i} = \frac{(1 + i)(-1 - i)}{(-1 + i)(-1 - i)}
+
+
+\text{Calculando o numerador:}
+
+
+(1 + i)(-1 - i) = 1 \cdot (-1) + 1 \cdot (-i) + i \cdot (-1) + i \cdot (-i) = -1 - i - i - i^2 = -1 - 2i - (-1) = -1 - 2i + 1 = -2i
+
+
+\text{Calculando o denominador:}
+
+
+(-1 + i)(-1 - i) = (-1)^2 - (i)^2 = 1 - (-1) = 1 + 1 = 2
+
+
+\text{Portanto:}
+
+
+\frac{c_1}{c_2} = \frac{-2i}{2} = -i
+
+
+\text{Então, esse mesmo número em representação polar equivale a:}
+
+
+c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})
+
+
+\text{Portanto, sua divisão usando a regra geométrica é:}
+
+
+\frac{c_1}{c_2} = \left( \frac{\sqrt{2}}{\sqrt{2}}, \frac{\pi}{4} - \frac{3\pi}{4} \right) = (1, -\frac{\pi}{2})
+
+
+\text{Revertendo para coordenadas cartesianas obtemos:}
+
+
+(1 \times \cos(-\frac{\pi}{2}), 1 \times \sin(-\frac{\pi}{2})) = (0, -1)
+
+\text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico ${-i = 0 - 1i}$}.
 ```
 
 ### Potências e Raízes
@@ -434,4 +483,3 @@ onde ${a, b, c, d \in \mathbb{C} \space \text{e} \space  ad - bc \neq 0}$. Esta 
 ### Conclusão
 
 Cobrimos a linguagem básica dos números complexos e suas interpretações geométricas. Esta compreensão será fundamental para o entendimento da computação quântica, onde precisaremos de outra ferramenta: **${\text{ALGEBRA} \space \text{LINEAR}}$**.
-
