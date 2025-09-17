@@ -35,13 +35,13 @@ Que a solução da equação ${x^2 = -1}$ é um número cujo quadrado é ${-1}$,
 Com a informação de que  ${i = \sqrt{-1}}$, conseguimos perceber alguns comportamentos, tais como:
 
 ```{math}
-i^2 = \sqrt{-1}^2 = -1 e i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i
+i^2 = \sqrt{-1}^2 = -1 \space \text{e} \space i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i
 ```
 
 Além de podemos elevar o ${i}$ a ${n}$ fatores, podemos multiplicar o fator ${i}$ por um número real ${b}$, e obter resultados como:
 
 ```{math}
- 3i = 3\times\sqrt{-1} e 3,14i = 3,14\times\sqrt{-1}
+ 3i = 3\times\sqrt{-1} \space \text{e} \space 3,14i = 3,14\times\sqrt{-1}
 ```
 Assim, podemos definir um número complexo ${c}$ sendo uma soma entre uma parte real, explicitada como um número ${a}$, e uma parte imaginária, definida por um ${i}$ que estará sendo multiplicada por outro número real ${b}$, para ilustrar:
 
@@ -289,7 +289,7 @@ ${
 #### Conversão entre Representações
 - **Cartesiana para Polar**:
   ${
-  \rho = \sqrt{a^2 + b^2}, \quad \theta = \arctg\left(\frac{b}{a}\right)
+  \rho = \sqrt{a^2 + b^2}, \quad \theta = \arctan\left(\frac{b}{a}\right)
   }$
 - **Polar para Cartesiana**:
   ${
@@ -299,27 +299,27 @@ ${
 ```{admonition} Exemplo
 :class: tip
 
-Seja c = 1 + i. Sua representação polar é:
-
 ```{math}
-\rho = \sqrt{1^2 + 1^2} = \sqrt{2}, \quad \theta = \arctg(1) = \frac{\pi}{4}
+\text{Seja ${c = 1 + i}$. Sua representação polar é:}
+
+\rho = \sqrt{1^2 + 1^2} = \sqrt{2}, \quad \theta = \arctan(1) = \frac{\pi}{4}
 ```
 
-c é o vetor de comprimento √2 a partir da origem em um ângulo de π/4 radianos, ou 45°.
+c é o vetor de comprimento ${\sqrt{2}}$ a partir da origem em um ângulo de ${\frac{π}{4}}$ radianos, ou 45°.
 
 ### Magnitude e Fase
 
 **Definição Essencial** Um número complexo é uma **magnitude** e uma **fase**.
 
 - Os reais positivos ordinários são números complexos com fase zero
-- Os reais negativos têm fase π
-- Os números imaginários têm fase constante igual a π/2 (imaginário positivo) ou 3π/2 (imaginário negativo)
+- Os reais negativos têm fase ${π}$
+- Os números imaginários têm fase constante igual a ${\frac{\pi}{2}}$ (imaginário positivo) ou ${\frac{3\pi}{2}}$ (imaginário negativo)
 
 Dada uma fase constante, há uma linha inteira de números complexos com essa fase.
 
 ### Multiplicação na Forma Polar
 
-Dados dois números complexos em coordenadas polares, (ρ₁, θ₁) e (ρ₂, θ₂), seu produto pode ser obtido multiplicando suas magnitudes e somando suas fases:
+Dados dois números complexos em coordenadas polares, ${(ρ₁, θ₁)}$ e ${(ρ₂, θ₂)}$, seu produto pode ser obtido multiplicando suas magnitudes e somando suas fases:
 
 ```{math}
 (\rho_1, \theta_1) \times (\rho_2, \theta_2) = (\rho_1\rho_2 \space , \space \theta_1 + \theta_2)
@@ -328,16 +328,16 @@ Dados dois números complexos em coordenadas polares, (ρ₁, θ₁) e (ρ₂, �
 ```{admonition} Exemplo
 :class: tip
 
-Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:
-
 ```{math}
+\text{Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:}
+
 c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2
 
 \text{Então, esse mesmo número em representação polar equivale a:}
 
 c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})
 
-\text{Portanto, seu produto usando a regra geométrica é:}
+\text{Portanto, seu produto usando a raegra geométrica é:}
 
 c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)
 
@@ -363,9 +363,9 @@ Dados dois números complexos em forma polar, para obtermos o resultado de sua d
 ```{admonition} Exemplo
 :class: tip
 
-Sejam  ${ c_1 = 1 + i }$ e ${ c_2 = -1 + i }$. Primeiro, vamos calcular a divisão ${ \frac{c_1}{c_2} }$ usando a regra algébrica:
-
 ```{math}
+\text{Sejam  ${ c_1 = 1 + i }$ e ${ c_2 = -1 + i }$. Primeiro, vamos calcular a divisão ${ \frac{c_1}{c_2} }$ usando a regra algébrica:}
+
 \frac{c_1}{c_2} = \frac{1 + i}{-1 + i}
 
 
@@ -373,19 +373,6 @@ Sejam  ${ c_1 = 1 + i }$ e ${ c_2 = -1 + i }$. Primeiro, vamos calcular a divis�
 
 
 \frac{1 + i}{-1 + i} \cdot \frac{-1 - i}{-1 - i} = \frac{(1 + i)(-1 - i)}{(-1 + i)(-1 - i)}
-
-
-\text{Calculando o numerador:}
-
-
-(1 + i)(-1 - i) = 1 \cdot (-1) + 1 \cdot (-i) + i \cdot (-1) + i \cdot (-i) = -1 - i - i - i^2 = -1 - 2i - (-1) = -1 - 2i + 1 = -2i
-
-
-\text{Calculando o denominador:}
-
-
-(-1 + i)(-1 - i) = (-1)^2 - (i)^2 = 1 - (-1) = 1 + 1 = 2
-
 
 \text{Portanto:}
 
@@ -458,12 +445,12 @@ As raízes n-ésimas da unidade ${(1 = (1, 0) = 1 + 0i)}$ são dadas por:
 c^{\frac{1}{n}} = (1, 0)^{\frac{1}{n}} = \left(\sqrt[n]{1}, \frac{1}{n}(0 + 2k\pi)\right) = \left(1, \frac{2k\pi}{n}\right)
 ```
 
-Permitindo k = 0, 1, 2, ..., n - 1, obtemos n raízes diferentes da unidade. A k-ésima raiz da unidade na forma exponencial é ${ e^{2\pi ik/n} }$. Denotamos essas n raízes diferentes da unidade por:
+Permitindo ${k = 0, 1, 2, ..., n - 1}$, obtemos n raízes diferentes da unidade. A k-ésima raiz da unidade na forma exponencial é ${ e^{2\pi ik/n} }$. Denotamos essas n raízes diferentes da unidade por:
 ${
 \omega^0_n = 1, \omega^1_n, \omega^2_n, \ldots, \omega^{n-1}_n
 }$
 
-Geometricamente, essas n raízes da unidade correspondem a dividir o círculo unitário em n partes onde a primeira partição é (1, 0).
+Geometricamente, essas n raízes da unidade correspondem a dividir o círculo unitário em n partes onde a primeira partição é ${(1, 0)}$.
 
 ### Transformações de Möbius
 
