@@ -5,22 +5,22 @@ format: jb-book
 root: 01-index
 chapters:
 - file: 02-pytutorial
-- file: 002-complexos
-- file: 03-algebra
+- file: 03-complexos
+- file: 04-algebra
   sections:
-    - file: algebra/03_1-basicos
-    - file: algebra/03_2-transformacoes
-    - file: algebra/03_3-operadores
-    - file: algebra/03_4-prod_tensorial
-- file: 04-postulados
-- file: 05-computacao_classica
-- file: 06-computacao_quantica
-- file: 07-kettutorial
-- file: 08-algoritmos
+    - file: algebra/04_1-basicos
+    - file: algebra/04_2-transformacoes
+    - file: algebra/04_3-operadores
+    - file: algebra/04_4-prod_tensorial
+- file: 05-postulados
+- file: 06-computacao_classica
+- file: 07-computacao_quantica
+- file: 08-kettutorial
+- file: 09-algoritmos
   sections:
-    - file: algoritmos/08_1-grover
-    - file: algoritmos/08_2-deutsch-jozsa
-    - file: algoritmos/08_3-simon
+    - file: algoritmos/09_1-grover
+    - file: algoritmos/09_2-deutsch-jozsa
+    - file: algoritmos/09_3-simon
 - url: https://qubox.ufsc.br/index.html
   title: Qubox UFSC
-- file: 09-referencias
+- file: 10-referencias
