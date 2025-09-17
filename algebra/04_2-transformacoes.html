@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Transformações Lineares &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algebra/04_2-transformacoes';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Autovalores, Autovetores e Operadores" href="04_3-operadores.html" />
+    <link rel="prev" title="Conceitos Básicos de Álgebra" href="04_1-basicos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../04-algebra.html">Álgebra Linear para Computação Quântica</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09-algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/09_1-grover.html">Algoritmo de Busca de Grover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/09_2-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algoritmos/09_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/algebra/04_2-transformacoes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Transformações Lineares</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-linear-e-operador-linear">Transformação Linear e Operador Linear</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-linear">Funcional Linear</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projecao-e-relacao-de-completude">Projeção e Relação de Completude</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao-de-uma-transformacao-linear-nos-elementos-da-base">Definição de uma Transformação Linear nos Elementos da Base</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-uma-transformacao-linear">Matriz de uma Transformação Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-da-composicao-de-transformacoes-lineares">Matriz da Composição de Transformações Lineares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mudanca-de-base">Mudança de Base</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="transformacoes-lineares">
+<h1>Transformações Lineares<a class="headerlink" href="#transformacoes-lineares" title="Link para este cabeçalho">#</a></h1>
+<section id="transformacao-linear-e-operador-linear">
+<h2>Transformação Linear e Operador Linear<a class="headerlink" href="#transformacao-linear-e-operador-linear" title="Link para este cabeçalho">#</a></h2>
+<p>Uma <em>transformação linear</em> é uma aplicação <span class="math notranslate nohighlight">\(T \colon \mathbb{C}^n \to \mathbb{C}^m\)</span> que respeita a soma e a multiplicação por escalar, ou seja, tal que valem:</p>
+<ul>
+<li><p><strong>(TL1)</strong> Preservação da soma:</p>
+<div class="math notranslate nohighlight">
+\[
+  T(\ket{\phi} + \ket{\psi}) = T\ket{\phi} + T\ket{\psi}
+  \]</div>
+</li>
+<li><p><strong>(TL2)</strong> Preservação do produto por escalar:</p>
+<div class="math notranslate nohighlight">
+\[
+  T( z\ket{\psi} ) = z \cdot T\ket{\psi} \ .
+  \]</div>
+</li>
+</ul>
+<p>Um <em>operador linear</em> é uma transformação linear <span class="math notranslate nohighlight">\(A \colon \mathbb{C}^n \to \mathbb{C}^n\)</span> (<span class="math notranslate nohighlight">\(m=n\)</span>).</p>
+<div class="tip admonition" id="cap2ex-verificar-transformacao-linear">
+<p class="admonition-title">Exemplo</p>
+<p>A função <span class="math notranslate nohighlight">\(H \colon \mathbb{C}^2 \to \mathbb{C}^2\)</span> dada por</p>
+<div class="math notranslate nohighlight">
+\[
+H \left( a_0 \ket{0} + a_1 \ket{1} \right) = \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0-a_1}{\sqrt{2}}
+\]</div>
+<p>é uma transformação linear. De fato, as propriedades de transformação linear se verificam para <span class="math notranslate nohighlight">\(H\)</span>.</p>
+<ul>
+<li><p><strong>Preservação da soma:</strong> Sejam <span class="math notranslate nohighlight">\(\ket{\phi} = a_0 \ket{0} + a_1 \ket{1}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi} = b_0 \ket{0} + b_1 \ket{1}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{array}{rcl}
+    H(\ket{\phi} + \ket{\psi})
+    &amp;=&amp; H \left( a_0 \ket{0} + a_1 \ket{1} + b_0 \ket{0} + b_1 \ket{1} \right)  \\
+    &amp;=&amp; H\left( (a_0 + b_0) \ket{0} + (a_1 + b_1) \ket{1} \right) \\
+    &amp;=&amp; \frac{(a_0 + b_0) + (a_1 + b_1)}{\sqrt{2}} \ket{0} + \frac{(a_0 + b_0) - (a_1 + b_1)}{\sqrt{2}}   \\
+    &amp;=&amp; \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0-a_1}{\sqrt{2}} + \frac{b_0 + b_1}{\sqrt{2}} \ket{0} + \frac{b_0-b_1}{\sqrt{2}}  \\
+    &amp;=&amp; H \ket{\phi} + H \ket{\psi}
+  \end{array}
+  \end{split}\]</div>
+</li>
+<li><p><strong>Preservação do produto por escalar:</strong> Sejam <span class="math notranslate nohighlight">\(z \in \mathbb{C}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi} = a_0 \ket{0} + a_1 \ket{1}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{array}{rcl}
+    H(z \ket{\psi})
+    &amp;=&amp; H \big( z(a_0 \ket{0} + a_1 \ket{1}) \big) \\
+    &amp;=&amp;  H \left( za_0 \ket{0} + za_1 \ket{1}) \right) \\
+    &amp;=&amp; \frac{za_0 + za_1}{\sqrt{2}} \ket{0} + \frac{za_0-za_1}{\sqrt{2}} \\
+    &amp;=&amp; z \left( \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0-a_1}{\sqrt{2}} \right) \\
+  &amp;=&amp; z\cdot  H \ket{\psi}
+  \end{array}
+  \end{split}\]</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="funcional-linear">
+<h2>Funcional Linear<a class="headerlink" href="#funcional-linear" title="Link para este cabeçalho">#</a></h2>
+<p>Um <em>funcional linear</em> é uma transformação linear <span class="math notranslate nohighlight">\(f \colon \mathbb{C}^n \to \mathbb{C}\)</span> (<span class="math notranslate nohighlight">\(m=1\)</span>). O bra <span class="math notranslate nohighlight">\(\bra{\phi}\)</span> pode ser pensado como um funcional linear que pode atuar em um vetor coluna <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> para resultar no número complexo <span class="math notranslate nohighlight">\(\braket{\phi | \psi}\)</span>. Pode-se verificar que todo funcional linear é da forma <span class="math notranslate nohighlight">\(\bra{\phi} = \braket{\phi | \cdot}\)</span> para algum <span class="math notranslate nohighlight">\(\ket{\phi}\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>O bra <span class="math notranslate nohighlight">\(\bra{0}\)</span> é um funcional linear que leva <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> no coeficiente <span class="math notranslate nohighlight">\(\braket{0 | \psi}\)</span> da projeção na direção <span class="math notranslate nohighlight">\(\ket{0}\)</span>. Igualmente, o bra <span class="math notranslate nohighlight">\(\bra{1}\)</span> é um funcional linear que leva <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> no coeficiente <span class="math notranslate nohighlight">\(\braket{1 | \psi}\)</span> da projeção na direção <span class="math notranslate nohighlight">\(\ket{1}\)</span>.</p>
+</div>
+<section id="projecao-e-relacao-de-completude">
+<h3>Projeção e Relação de Completude<a class="headerlink" href="#projecao-e-relacao-de-completude" title="Link para este cabeçalho">#</a></h3>
+<p>Se <span class="math notranslate nohighlight">\(\ket{u}\)</span> for unitário, o funcional linear <span class="math notranslate nohighlight">\(\bra{u}\)</span> leva um ket <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> em <span class="math notranslate nohighlight">\(\braket{u | \psi}\)</span>, que corresponde ao coeficiente da projeção de <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> na direção de <span class="math notranslate nohighlight">\(\ket{u}\)</span>.</p>
+<p>O vetor <span class="math notranslate nohighlight">\(\braket{u | \psi}\ket{u}\)</span> é a projeção de <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> na direção do vetor unitário <span class="math notranslate nohighlight">\(\ket{u}\)</span>. Movendo-se o número <span class="math notranslate nohighlight">\(\braket{u | \psi}\)</span> para a direita, pode-se escrever essa projeção como <span class="math notranslate nohighlight">\(\text{proj}_{\ket{u}} \ket{\psi} = \ket{u}\bra{u}\ket{\psi}\)</span>. O operador <span class="math notranslate nohighlight">\(\ket{u}\bra{u}\)</span> é, então, chamado operador projeção na direção de <span class="math notranslate nohighlight">\(\ket{u}\)</span></p>
+<p>Se <span class="math notranslate nohighlight">\(\beta = \{\ket{b_0}, \ldots, \ket{b_{n-1}} \}\)</span> é uma base ortonormal, pode-se escrever qualquer vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como soma das suas projeções ortogonais sobre as direções definidas pelos vetores da base. Dessa forma, tem-se</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = \sum_{k=0}^{n-1} \braket{b_k | \psi} \ket{b_k} =  \sum_{k=0}^{n-1} \ket{b_k}\braket{b_k | \psi}  \ \ .
+\]</div>
+<p>Segue que</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k=0}^{n-1} \ket{b_k}\bra{b_k} = I  \ ,
+\]</div>
+<p>expressão conhecida como <em>relação de completude</em>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>A projeção ortogonal da direção do vetor <span class="math notranslate nohighlight">\(\ket{0}\)</span> é o operador <span class="math notranslate nohighlight">\(\ket{0}\bra{0}\)</span>, visto que sua ação em um ket <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é dada por <span class="math notranslate nohighlight">\(\ket{0}\bra{0} \ket{\psi} = \braket{0 | \psi} \ket{0}\)</span> e a projeção ortogonal na direção de <span class="math notranslate nohighlight">\(\ket{1}\)</span> é o operador de projeção <span class="math notranslate nohighlight">\(\ket{1}\bra{1}\)</span>, pois <span class="math notranslate nohighlight">\(\ket{1}\bra{1} \ket{\psi} = \braket{1 | \psi} \ket{1}\)</span>.</p>
+<p>A relação de completude no espaço vetorial dos estados de 1 qubit, <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>, é dada por</p>
+<div class="math notranslate nohighlight">
+\[
+I = \ket{0}\bra{0} + \ket{1}\bra{1} \ .
+\]</div>
+</div>
+</section>
+<section id="definicao-de-uma-transformacao-linear-nos-elementos-da-base">
+<span id="cap2sec-def-tl-nos-elementos-da-base"></span><h3>Definição de uma Transformação Linear nos Elementos da Base<a class="headerlink" href="#definicao-de-uma-transformacao-linear-nos-elementos-da-base" title="Link para este cabeçalho">#</a></h3>
+<p>Para definir uma transformação linear, basta que se forneça como ela atua nos elementos de uma base. Isto é, dada <span class="math notranslate nohighlight">\(\beta = \{\ket{b_0}, \ldots, \ket{b_{n-1}} \}\)</span> base de <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span>, pode-se obter <span class="math notranslate nohighlight">\(T\ket{\psi}\)</span> conhecendo-se <span class="math notranslate nohighlight">\(T\ket{b_k}\)</span> para todo <span class="math notranslate nohighlight">\(k\)</span>. De fato, como <span class="math notranslate nohighlight">\(\beta\)</span> base, pode-se escrever <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como combinação linear</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = \sum_k a_k \ket{b_k} \ \ .
+\]</div>
+<p>Aplicando-se a transformação <span class="math notranslate nohighlight">\(T\)</span> e usando a linearidade, obtém-se</p>
+<div class="math notranslate nohighlight">
+\[
+T\ket{\psi} = \sum_k a_k T\ket{b_k}  \ \ ,
+\]</div>
+<p>e dessa forma, <span class="math notranslate nohighlight">\(T\ket{\psi}\)</span> pode ser obtido a partir dos <span class="math notranslate nohighlight">\(T\ket{b_k}\)</span>’s.</p>
+<div class="tip admonition" id="cap2ex-transformacao-linear-nos-elementos-da-base">
+<p class="admonition-title">Exemplo</p>
+<p>Considere o operador linear em 1 qubit <span class="math notranslate nohighlight">\(X \colon \mathbb{C}^2 \to \mathbb{C}^2\)</span> definido nos vetores da base computacional por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l}
+  X\ket{0} = \ket{1} \\
+  X \ket{1} = \ket{0}
+\end{array}
+\end{split}\]</div>
+<p>O operador <span class="math notranslate nohighlight">\(X\)</span> está bem definido em todo <span class="math notranslate nohighlight">\(\ket{\psi} = a \ket{0} + b \ket{1}\)</span> graças à sua linearidade:</p>
+<div class="math notranslate nohighlight">
+\[
+X\ket{\psi} = X\big(a \ket{0} + b \ket{1}\big) = a X\ket{0} + b X \ket{1} = a \ket{1} + b \ket{0} \ .
+\]</div>
+</div>
+</section>
+<section id="matriz-de-uma-transformacao-linear">
+<span id="cap2sec-matriz-tl"></span><h3>Matriz de uma Transformação Linear<a class="headerlink" href="#matriz-de-uma-transformacao-linear" title="Link para este cabeçalho">#</a></h3>
+<p>Seja <span class="math notranslate nohighlight">\(T  \colon U= \mathbb{C}^n \to V=\mathbb{C}^m\)</span>  uma transformação linear. Sejam <span class="math notranslate nohighlight">\(\beta_U = \{\ket{u_0}, \ldots, \ket{u_{n-1}} \}\)</span> base de <span class="math notranslate nohighlight">\(U\)</span> e <span class="math notranslate nohighlight">\(\beta_V = \{ \ket{v_0} , \ldots , \ket{v_{n-1}} \}\)</span> base de <span class="math notranslate nohighlight">\(V\)</span>. Quando fixadas bases para os espaços vetoriais do domínio e do contradomínio de <span class="math notranslate nohighlight">\(T\)</span>, é possível representar a transformação <span class="math notranslate nohighlight">\(T\)</span> por uma matriz, de forma que a atuação de <span class="math notranslate nohighlight">\(T\)</span> sobre um vetor <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é equivalente ao produto matriz-vetor coluna.</p>
+<p>A matriz da transformação linear <span class="math notranslate nohighlight">\(T\)</span> nas bases <span class="math notranslate nohighlight">\(\beta_U\)</span> e <span class="math notranslate nohighlight">\(\beta_V\)</span> é dada por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[T]^{\beta_U}_{\beta_V} = \left[ \begin{matrix} | &amp; &amp; | \\ [T(u_0)]_{\beta_V} &amp; \cdots &amp; [T(u_{n-1})]_{\beta_V} \\  | &amp; &amp; | \end{matrix} \right]  \in M(m,n)
+\end{split}\]</div>
+<p>Definida dessa forma, vale que:</p>
+<div class="math notranslate nohighlight">
+\[
+[T\ket{\psi}]_{\beta_V} = [T]^{\beta_U}_{\beta_V} \cdot [\ket{\psi}]_{\beta_U} \ \ ,
+\]</div>
+<p>portanto, a atuação da matriz de <span class="math notranslate nohighlight">\(T\)</span> sobre um ket é equivalente à multiplicação matriz-vetor coluna levando-se em consideração as bases previamente fixadas.</p>
+<p>Considere que as bases <span class="math notranslate nohighlight">\(\beta_U\)</span> e <span class="math notranslate nohighlight">\(\beta_V\)</span> sejam ortonormais. Cada vetor <span class="math notranslate nohighlight">\(T\ket{u_k}\)</span> pode ser escrito na base <span class="math notranslate nohighlight">\(\beta_V\)</span> da seguinte forma:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[T\ket{u_k}]_{\beta_V} = \begin{bmatrix} \braket{v_0 | Tu_k} \\  \braket{v_1 | Tu_k} \\ \vdots \\  \braket{v_{m-1}}{Tu_k} \end{bmatrix}_{\beta_V} \ ,
+\end{split}\]</div>
+<p>tendo em vista que a <span class="math notranslate nohighlight">\(l\)</span>-ésima entrada do vetor é o coeficiente da projeção de <span class="math notranslate nohighlight">\(\ket{Tu_k}\)</span> na direção do <span class="math notranslate nohighlight">\(l\)</span>-ésimo vetor da base em <span class="math notranslate nohighlight">\(V\)</span>. Assim, a entrada de linha <span class="math notranslate nohighlight">\(l\)</span> e coluna <span class="math notranslate nohighlight">\(k\)</span> da matriz <span class="math notranslate nohighlight">\([T]^{\beta_U}_{\beta_V}\)</span> é <span class="math notranslate nohighlight">\(\braket{v_l | Tu_k}\)</span>, com <span class="math notranslate nohighlight">\(l = 0, \ldots , m-1\)</span> e <span class="math notranslate nohighlight">\(k=0, \ldots , n-1\)</span> e consequentemente</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[T]^{\beta_U}_{\beta_V} =
+\begin{bmatrix} \braket{v_0 | Tu_0} &amp; \braket{v_0 | Tu_1} &amp; \ldots &amp; \braket{v_0 | Tu_{n-1}} \\
+        \braket{v_1 | Tu_0} &amp; \braket{v_1 | Tu_1} &amp; \ldots &amp; \braket{v_1 | Tu_{n-1}} \\
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+        \braket{v_{m-1}}{Tu_0} &amp; \braket{v_{m-1}}{Tu_1} &amp; \ldots &amp; \braket{v_{m-1}}{Tu_{n-1}} \end{bmatrix} \ .
+\end{split}\]</div>
+<p>No caso de um operador linear, tem-se <span class="math notranslate nohighlight">\(U=V\)</span> (<span class="math notranslate nohighlight">\(m=n\)</span>), e é possível escolher a mesma base <span class="math notranslate nohighlight">\(\beta = \{\ket{b_0}, \ldots, \ket{b_{n-1}} \}\)</span> para o domínio e o contradomínio da transformação. Essa é uma situação bastante frequente, e a matriz associada ao operador linear é montada da seguinte forma: as colunas da matriz são os vetores <span class="math notranslate nohighlight">\(\ket{Tb_k}\)</span> escritos como vetores coluna na base <span class="math notranslate nohighlight">\(\beta\)</span>. Portanto:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[T]_{\beta} = [T]^{\beta}_{\beta} = \left[ \begin{matrix} | &amp; &amp; | \\ \big[\ket{Tb_0}\big]_{\beta} &amp; \cdots &amp; \big[\ket{Tb_{n-1}}\big]_{\beta} \\  | &amp; &amp; | \end{matrix} \right]
+\end{split}\]</div>
+<p>Se a base <span class="math notranslate nohighlight">\(\beta\)</span> for ortonormal, obtém-se que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[T]_{\beta} =
+\begin{bmatrix} \braket{b_0 | Tb_0} &amp; \braket{b_0 | Tb_1} &amp; \ldots &amp; \braket{b_0 | Tb_{n-1}} \\
+        \braket{b_1 | Tb_0} &amp; \braket{b_1 | Tb_1} &amp; \ldots &amp; \braket{b_1 | Tb_{n-1}} \\
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+        \braket{b_{n-1}}{Tb_0} &amp; \braket{b_{n-1}}{Tb_1} &amp; \ldots &amp; \braket{b_{n-1}}{Tb_{n-1}} \end{bmatrix} \ .
+\end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Um operador linear <span class="math notranslate nohighlight">\(A\)</span> sobre um qubit pode ser escrito como uma matriz (na base computacional) <span class="math notranslate nohighlight">\(2\times2\)</span> com coeficientes complexos da seguinte forma:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[A] = \left[ \begin{matrix} | &amp; | \\ \big[ A\ket{0}\big]  &amp; \big[ A\ket{1}\big] \\  | &amp; | \end{matrix} \right] =
+\begin{bmatrix} \phantom{\Big(} \! \! \! \bra{0}A\ket{0} &amp; \bra{0}A\ket{1} \ \ \\
+        \phantom{\Big(}\! \! \! \bra{1}A\ket{0} &amp; \bra{1}A\ket{1} \ \  \end{bmatrix}
+      \ \ ,
+\end{split}\]</div>
+<p>com <span class="math notranslate nohighlight">\([\cdot]\)</span> significando que os vetores em questão estão escritos como vetores coluna na base computacional. É frequente denotar a matriz do operador <span class="math notranslate nohighlight">\(A\)</span> pelo mesmo símbolo <span class="math notranslate nohighlight">\(A\)</span>, quando está implícito qual base é considerada.</p>
+</div>
+<div class="tip admonition" id="cap2ex-matriz-da-transformacao-linear">
+<p class="admonition-title">Exemplo</p>
+<p>A matriz da transformação linear do exemplo <a class="reference internal" href="#cap2ex-transformacao-linear-nos-elementos-da-base"><span class="std std-ref">Transformação Linear nos Elementos da Base</span></a>, na base computacional, é obtida escrevendo-se a ação de <span class="math notranslate nohighlight">\(X\)</span> sobre os vetores da base.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l}
+  X\ket{0} = \ket{1} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\ \\
+  X \ket{1} = \ket{0} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \ .
+\end{array}
+\end{split}\]</div>
+<p>Em seguida, monta-se a matriz fazendo</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X = \left[ \begin{matrix} | &amp; | \\  X\ket{0}  &amp;  X\ket{1} \\  | &amp; | \end{matrix} \right] = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ .
+\end{split}\]</div>
+</div>
+<div class="tip admonition" id="cap2ex-matrizes-de-pauli">
+<p class="admonition-title">Matrizes de Pauli</p>
+<p>As matrizes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X = \begin{bmatrix}0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ \ , \ \ \ Y = \begin{bmatrix} 0 &amp; -i \\ i &amp; \phantom{-}0 \end{bmatrix} \ \ \text{e} \ \ \ Z =  \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix}
+\end{split}\]</div>
+<p>são conhecidas como <em>matrizes de Pauli</em>. Essas são representações na base computacional dos operadores <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(Z\)</span>. Usa-se, costumeiramente, a mesma notação para se referir ao operador e à sua matriz na base computacional.</p>
+<p>Em determinadas situações, a matriz identidade <span class="math notranslate nohighlight">\(I\)</span> também é chamada matriz de Pauli, e usa-se a notação alternativa</p>
+<div class="math notranslate nohighlight">
+\[
+I = \sigma_0 \ \ , \ \ \ X = \sigma_x = \sigma_1 \ \ , \ \ \ Y = \sigma_y = \sigma_2 \ \ \text{e} \ \ \ Z = \sigma_z = \sigma_3 \ .
+\]</div>
+</div>
+</section>
+<section id="matriz-da-composicao-de-transformacoes-lineares">
+<h3>Matriz da Composição de Transformações Lineares<a class="headerlink" href="#matriz-da-composicao-de-transformacoes-lineares" title="Link para este cabeçalho">#</a></h3>
+<p>A composição de transformações lineares <span class="math notranslate nohighlight">\(T \colon U \to V\)</span> e <span class="math notranslate nohighlight">\(R \colon V \to W\)</span> é a transformação linear denotada por <span class="math notranslate nohighlight">\(R T = R \circ T \colon U \to W\)</span> e tal que <span class="math notranslate nohighlight">\(RT(\ket{\psi}) = R \Big( T\big(\ket{\psi}\big) \Big)\)</span> para todo <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>. A matriz dessa transformação linear pode ser obtida pela multiplicação matricial das matrizes de <span class="math notranslate nohighlight">\(R\)</span> e de <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+[RT]^{\beta_U}_{\beta_W} = [R]^{\beta_U}_{\beta_V} \cdot [T]^{\beta_V}_{\beta_W} \ ,
+\]</div>
+<p>em que <span class="math notranslate nohighlight">\(\beta_U\)</span>, <span class="math notranslate nohighlight">\(\beta_V\)</span> e <span class="math notranslate nohighlight">\(\beta_W\)</span> são bases de <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, respectivamente.</p>
+</section>
+<section id="mudanca-de-base">
+<h3>Mudança de Base<a class="headerlink" href="#mudanca-de-base" title="Link para este cabeçalho">#</a></h3>
+<p>Para escrever a matriz de uma transformação linear <span class="math notranslate nohighlight">\(T\colon U \to V\)</span> em novas bases <span class="math notranslate nohighlight">\(\beta_U^\prime\)</span> e <span class="math notranslate nohighlight">\(\beta_V^\prime\)</span> basta aplicar matrizes de mudança de base de maneira apropriada.</p>
+<div class="math notranslate nohighlight">
+\[
+[T]^{\beta_U^\prime}_{\beta_V^\prime} = [I]^{\beta_U^\prime}_{\beta_U} [T]^{\beta_U}_{\beta_V} [I]^{\beta_V}_{\beta_V^\prime} \ .
+\]</div>
+<p>No caso de um operador linear <span class="math notranslate nohighlight">\(A \colon V \to V\)</span>, pode-se usar a mesma base nos espaços vetoriais do domínio e do contradomínio da função. A mudança de base nesse caso fica:</p>
+<div class="math notranslate nohighlight">
+\[
+[A]^{\beta_U^\prime}_{\beta_U^\prime} = [I]^{\beta_U^\prime}_{\beta_U} [A]^{\beta_U}_{\beta_U} [I]^{\beta_U}_{\beta_U^\prime}
+  = \big( [I]^{\beta_U}_{\beta_U^\prime} \big)^{-1} [A]^{\beta_U}_{\beta_U} \big( [I]^{\beta_U}_{\beta_U^\prime} \big) \ .
+\]</div>
+<p>A transformação matricial <span class="math notranslate nohighlight">\([A] \to [A]^\prime = [M]^{-1} [A] [M]\)</span> é conhecida como <em>transformação de similaridade</em>. Duas transformações conectadas dessa forma são ditas <em>matrizes semelhantes</em>. As matrizes semelhantes são representantes de um mesmo operador linear escrito em bases diferentes.</p>
+<p>Se as bases <span class="math notranslate nohighlight">\(\beta_U\)</span> e <span class="math notranslate nohighlight">\(\beta_U^\prime\)</span> forem ortonormais, a fórmula para mudança de base fica:</p>
+<div class="math notranslate nohighlight">
+\[
+[A]^{\beta_U^\prime}_{\beta_U^\prime} = [I]^{\beta_U^\prime}_{\beta_U} [A]^{\beta_U}_{\beta_U} [I]^{\beta_U}_{\beta_U^\prime}
+  = \big( [I]^{\beta_U}_{\beta_U^\prime} \big)^{\dagger} [A]^{\beta_U}_{\beta_U} \big( [I]^{\beta_U}_{\beta_U^\prime} \big) \ ,
+\]</div>
+<p>em que a operação simbolizada por <span class="math notranslate nohighlight">\(\dagger\)</span> é a transposição e conjugação da matriz. Essa operação será introduzida formalmente na seção <a class="reference internal" href="04_3-operadores.html#cap2operador-adjunto"><span class="std std-ref">Operador Adjunto</span></a>.</p>
+<div class="tip admonition" id="cap2ex-matriz-hadamard-mudanca-base-x">
+<p class="admonition-title">Matrizes de Pauli</p>
+<p>Considere as bases <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> apresentadas no exemplo [Base para 1 qubit].
+A matriz de mudança de base de <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> para <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> e vice-versa é a matriz de Hadamard <span class="math notranslate nohighlight">\(H\)</span>, como visto no exemplo <a class="reference internal" href="04_1-basicos.html#cap2ex-matrix-mudanca-de-base"><span class="std std-ref">Matrix Mudança de Base</span></a>. O operador <span class="math notranslate nohighlight">\(X\)</span>, visto no exemplo <a class="reference internal" href="#cap2ex-matrizes-de-pauli"><span class="std std-ref">Matrizes de Pauli</span></a>, cuja matriz na base computacional é</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X = [X]_{\mathcal{I}} =  \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
+\end{split}\]</div>
+<p>pode ser representado na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+  [X]_{\mathcal{X}}
+  &amp;= [I]^{\mathcal{I}}_{\mathcal{X}} [X]_\mathcal{I} [I]^{\mathcal{X}}_{\mathcal{I}} \\
+  &amp;= H X H \\
+  &amp;= \frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix} \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}  \\
+  &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix} \\
+  &amp;= Z \ .
+\end{split}
+\end{split}\]</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./algebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_1-basicos.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Conceitos Básicos de Álgebra</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_3-operadores.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Autovalores, Autovetores e Operadores</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-linear-e-operador-linear">Transformação Linear e Operador Linear</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-linear">Funcional Linear</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projecao-e-relacao-de-completude">Projeção e Relação de Completude</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao-de-uma-transformacao-linear-nos-elementos-da-base">Definição de uma Transformação Linear nos Elementos da Base</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-uma-transformacao-linear">Matriz de uma Transformação Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-da-composicao-de-transformacoes-lineares">Matriz da Composição de Transformações Lineares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mudanca-de-base">Mudança de Base</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
