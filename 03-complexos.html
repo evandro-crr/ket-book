@@ -450,10 +450,10 @@ document.write(`
 <h3>Expressando o Número Complexo<a class="headerlink" href="#expressando-o-numero-complexo" title="Link para este cabeçalho">#</a></h3>
 <p>Com a informação de que  <span class="math notranslate nohighlight">\({i = \sqrt{-1}}\)</span>, conseguimos perceber alguns comportamentos, tais como:</p>
 <div class="math notranslate nohighlight">
-\[i^2 = \sqrt{-1}^2 = -1 e i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i\]</div>
+\[i^2 = \sqrt{-1}^2 = -1 \space \text{e} \space i^3 = \sqrt{-1}^3 = \sqrt{-1}^2 \times \sqrt{-1} = -i\]</div>
 <p>Além de podemos elevar o <span class="math notranslate nohighlight">\({i}\)</span> a <span class="math notranslate nohighlight">\({n}\)</span> fatores, podemos multiplicar o fator <span class="math notranslate nohighlight">\({i}\)</span> por um número real <span class="math notranslate nohighlight">\({b}\)</span>, e obter resultados como:</p>
 <div class="math notranslate nohighlight">
-\[ 3i = 3\times\sqrt{-1} e 3,14i = 3,14\times\sqrt{-1}\]</div>
+\[ 3i = 3\times\sqrt{-1} \space \text{e} \space 3,14i = 3,14\times\sqrt{-1}\]</div>
 <p>Assim, podemos definir um número complexo <span class="math notranslate nohighlight">\({c}\)</span> sendo uma soma entre uma parte real, explicitada como um número <span class="math notranslate nohighlight">\({a}\)</span>, e uma parte imaginária, definida por um <span class="math notranslate nohighlight">\({i}\)</span> que estará sendo multiplicada por outro número real <span class="math notranslate nohighlight">\({b}\)</span>, para ilustrar:</p>
 <div class="math notranslate nohighlight">
 \[c = a + bi\]</div>
@@ -641,7 +641,7 @@ c_3 = -16 + 17i
 <ul class="simple">
 <li><p><strong>Cartesiana para Polar</strong>:
 <span class="math notranslate nohighlight">\({
-\rho = \sqrt{a^2 + b^2}, \quad \theta = \arctg\left(\frac{b}{a}\right)
+\rho = \sqrt{a^2 + b^2}, \quad \theta = \arctan\left(\frac{b}{a}\right)
 }\)</span></p></li>
 <li><p><strong>Polar para Cartesiana</strong>:
 <span class="math notranslate nohighlight">\({
@@ -650,11 +650,10 @@ a = \rho \cos(\theta), \quad b = \rho \sin(\theta)
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
-<p>Seja c = 1 + i. Sua representação polar é:</p>
 <div class="math notranslate nohighlight">
-\[\rho = \sqrt{1^2 + 1^2} = \sqrt{2}, \quad \theta = \arctg(1) = \frac{\pi}{4}\]</div>
+\[ \begin{align}\begin{aligned}\text{Seja ${c = 1 + i}$. Sua representação polar é:}\\\rho = \sqrt{1^2 + 1^2} = \sqrt{2}, \quad \theta = \arctan(1) = \frac{\pi}{4}\end{aligned}\end{align} \]</div>
 </div>
-<p>c é o vetor de comprimento √2 a partir da origem em um ângulo de π/4 radianos, ou 45°.</p>
+<p>c é o vetor de comprimento <span class="math notranslate nohighlight">\({\sqrt{2}}\)</span> a partir da origem em um ângulo de <span class="math notranslate nohighlight">\({\frac{π}{4}}\)</span> radianos, ou 45°.</p>
 </section>
 </section>
 <section id="magnitude-e-fase">
@@ -662,21 +661,20 @@ a = \rho \cos(\theta), \quad b = \rho \sin(\theta)
 <p><strong>Definição Essencial</strong> Um número complexo é uma <strong>magnitude</strong> e uma <strong>fase</strong>.</p>
 <ul class="simple">
 <li><p>Os reais positivos ordinários são números complexos com fase zero</p></li>
-<li><p>Os reais negativos têm fase π</p></li>
-<li><p>Os números imaginários têm fase constante igual a π/2 (imaginário positivo) ou 3π/2 (imaginário negativo)</p></li>
+<li><p>Os reais negativos têm fase <span class="math notranslate nohighlight">\({π}\)</span></p></li>
+<li><p>Os números imaginários têm fase constante igual a <span class="math notranslate nohighlight">\({\frac{\pi}{2}}\)</span> (imaginário positivo) ou <span class="math notranslate nohighlight">\({\frac{3\pi}{2}}\)</span> (imaginário negativo)</p></li>
 </ul>
 <p>Dada uma fase constante, há uma linha inteira de números complexos com essa fase.</p>
 </section>
 <section id="multiplicacao-na-forma-polar">
 <h3>Multiplicação na Forma Polar<a class="headerlink" href="#multiplicacao-na-forma-polar" title="Link para este cabeçalho">#</a></h3>
-<p>Dados dois números complexos em coordenadas polares, (ρ₁, θ₁) e (ρ₂, θ₂), seu produto pode ser obtido multiplicando suas magnitudes e somando suas fases:</p>
+<p>Dados dois números complexos em coordenadas polares, <span class="math notranslate nohighlight">\({(ρ₁, θ₁)}\)</span> e <span class="math notranslate nohighlight">\({(ρ₂, θ₂)}\)</span>, seu produto pode ser obtido multiplicando suas magnitudes e somando suas fases:</p>
 <div class="math notranslate nohighlight">
 \[(\rho_1, \theta_1) \times (\rho_2, \theta_2) = (\rho_1\rho_2 \space , \space \theta_1 + \theta_2)\]</div>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
-<p>Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2\\\text{Então, esse mesmo número em representação polar equivale a:}\\c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})\\\text{Portanto, seu produto usando a regra geométrica é:}\\c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)\\\text{Revertendo para coordenadas cartesianas obtemos:}\\(2 \times \cos(\pi), 2 \times \sin(\pi)) = (-2, 0)\\\text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico.}\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}\text{Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:}\\c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2\\\text{Então, esse mesmo número em representação polar equivale a:}\\c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})\\\text{Portanto, seu produto usando a raegra geométrica é:}\\c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)\\\text{Revertendo para coordenadas cartesianas obtemos:}\\(2 \times \cos(\pi), 2 \times \sin(\pi)) = (-2, 0)\\\text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico.}\end{aligned}\end{align} \]</div>
 </div>
 </section>
 <section id="multiplicacao-como-rotacao">
@@ -690,16 +688,10 @@ a = \rho \cos(\theta), \quad b = \rho \sin(\theta)
 \[\frac{(\rho_1, \theta_1)}{(\rho_2, \theta_2)} = \left(\frac{\rho_1}{\rho_2}, \theta_1 - \theta_2\right)\]</div>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
-<p>Sejam  <span class="math notranslate nohighlight">\({ c_1 = 1 + i }\)</span> e <span class="math notranslate nohighlight">\({ c_2 = -1 + i }\)</span>. Primeiro, vamos calcular a divisão <span class="math notranslate nohighlight">\({ \frac{c_1}{c_2} }\)</span> usando a regra algébrica:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\frac{c_1}{c_2} = \frac{1 + i}{-1 + i}\\
+\[ \begin{align}\begin{aligned}\text{Sejam  ${ c_1 = 1 + i }$ e ${ c_2 = -1 + i }$. Primeiro, vamos calcular a divisão ${ \frac{c_1}{c_2} }$ usando a regra algébrica:}\\\frac{c_1}{c_2} = \frac{1 + i}{-1 + i}\\
 \text{Multiplicando numerador e denominador pelo conjugado do denominador:}\\
-\frac{1 + i}{-1 + i} \cdot \frac{-1 - i}{-1 - i} = \frac{(1 + i)(-1 - i)}{(-1 + i)(-1 - i)}\\
-\text{Calculando o numerador:}\\
-(1 + i)(-1 - i) = 1 \cdot (-1) + 1 \cdot (-i) + i \cdot (-1) + i \cdot (-i) = -1 - i - i - i^2 = -1 - 2i - (-1) = -1 - 2i + 1 = -2i\\
-\text{Calculando o denominador:}\\
-(-1 + i)(-1 - i) = (-1)^2 - (i)^2 = 1 - (-1) = 1 + 1 = 2\\
-\text{Portanto:}\\
+\frac{1 + i}{-1 + i} \cdot \frac{-1 - i}{-1 - i} = \frac{(1 + i)(-1 - i)}{(-1 + i)(-1 - i)}\\\text{Portanto:}\\
 \frac{c_1}{c_2} = \frac{-2i}{2} = -i\\
 \text{Então, esse mesmo número em representação polar equivale a:}\\
 c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})\\
@@ -747,11 +739,11 @@ c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})\\
 <p>As raízes n-ésimas da unidade <span class="math notranslate nohighlight">\({(1 = (1, 0) = 1 + 0i)}\)</span> são dadas por:</p>
 <div class="math notranslate nohighlight">
 \[c^{\frac{1}{n}} = (1, 0)^{\frac{1}{n}} = \left(\sqrt[n]{1}, \frac{1}{n}(0 + 2k\pi)\right) = \left(1, \frac{2k\pi}{n}\right)\]</div>
-<p>Permitindo k = 0, 1, 2, …, n - 1, obtemos n raízes diferentes da unidade. A k-ésima raiz da unidade na forma exponencial é <span class="math notranslate nohighlight">\({ e^{2\pi ik/n} }\)</span>. Denotamos essas n raízes diferentes da unidade por:
+<p>Permitindo <span class="math notranslate nohighlight">\({k = 0, 1, 2, ..., n - 1}\)</span>, obtemos n raízes diferentes da unidade. A k-ésima raiz da unidade na forma exponencial é <span class="math notranslate nohighlight">\({ e^{2\pi ik/n} }\)</span>. Denotamos essas n raízes diferentes da unidade por:
 <span class="math notranslate nohighlight">\({
 \omega^0_n = 1, \omega^1_n, \omega^2_n, \ldots, \omega^{n-1}_n
 }\)</span></p>
-<p>Geometricamente, essas n raízes da unidade correspondem a dividir o círculo unitário em n partes onde a primeira partição é (1, 0).</p>
+<p>Geometricamente, essas n raízes da unidade correspondem a dividir o círculo unitário em n partes onde a primeira partição é <span class="math notranslate nohighlight">\({(1, 0)}\)</span>.</p>
 </section>
 <section id="transformacoes-de-mobius">
 <h3>Transformações de Möbius<a class="headerlink" href="#transformacoes-de-mobius" title="Link para este cabeçalho">#</a></h3>
