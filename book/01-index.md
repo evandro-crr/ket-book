@@ -4,6 +4,19 @@ Este é um material didático auxiliar para a disciplina FSC7152 – Computaçã
 
 Parte deste material é adaptada das notas de aula do Prof. Dr. Eduardo Inácio Duzzioni e do TCC de Giovani Goraiebe Pollachini.
 
+## O que é a Computação Quântica
+A Computação Quântica é um paradigma revolucionário de processamento de informação que utiliza os princípios fundamentais da Mecânica Quântica para realizar operações computacionais. Ao procurar por novas perspectivas para o processamento de dados, ela se apresenta não como uma evolução incremental, mas como uma transformação radical, capaz de redefinir os limites do que é computacionalmente possível.
+
+Esta abordagem permite encontrar soluções para desafios computacionais que eram considerados impossíveis para os computadores atuais, abrindo portas para descobertas em diversas áreas.
+
+### Fundamentos Quânticos
+Diferente dos computadores clássicos que utilizam bits (unidade que podem ou ser 0 ou ser 1), os computadores quânticos utilizam qubits (bits quânticos), que podem existir em superposição de estados, representando simultaneamente 0 e 1. 
+
+Esta capacidade de superposição, combinada com outros fenômenos quânticos como emaranhamento e interferência, permite que computadores quânticos resolvam certos tipos de problemas de forma exponencialmente mais rápida que os computadores clássicos. Problemas complexos em áreas como criptografia, otimização, simulação de materiais e machine learning podem ser abordados de maneira completamente nova através da computação quântica.
+
+### Propósito e Aplicações
+A computação quântica não visa substituir os computadores clássicos, mas sim complementá-los, criando uma nova classe de dispositivos capazes de resolver problemas que são intratáveis mesmo para os supercomputadores mais poderosos da atualidade.
+
 # Panorama Atual da Computação Quântica
 
 ```{note}
