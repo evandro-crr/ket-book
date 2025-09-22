@@ -1,9 +1,5 @@
 # Números Complexos para Computação Quântica
 
-```{note}
-Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](./tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
-```
-
 Os números complexos são essenciais para o entendimento completo da computação quântica. Sendo de extrema importância para a definição dos estados e das operações realizadas em qubits, eles operam um papel crucial em algoritmos quânticos. É fundamental entender não apenas o *conceito algébrico*, mas também suas diferentes maneiras de representação, particularmente a *interpretação geométrica*, que fornece intuição visual para operações como rotação de fase, um aspecto vital para o poder de processamento quântico.
 
 Nesse capítulo, será apresentado as definições básicas, a estrutura algébrica - retratando também as operações em números complexos - e as noções geométricas, em que haverá a discussão de tópicos mais avançados.
@@ -71,10 +67,15 @@ A sua soma resultará em:
 
 ```{math}
 \begin{eqnarray*}
+
 c_3 = c_1 + c_2
+
 c_3 = (3 + 9i) + (19 - 8i)
+
 c_3 = (3 + 19) + (9i - 8i)
+
 c_3 = 22 + i
+
 \end{eqnarray*}
 ```
 
@@ -83,9 +84,13 @@ E a sua subtração resultará em:
 ```{math}
 \begin{eqnarray*}
 c_3 = c_1 - c_2
+
 c_3 = (3 + 9i) - (19 - 8i)
+
 c_3 = (3 - 19) + (9i + 8i)
+
 c_3 = -16 + 17i
+
 \end{eqnarray*}
 ```
 
@@ -197,7 +202,7 @@ Sendo assim, a solução é encontrada por:
 Dado dois números complexos, ${c_1 = 3 + 2i}$ e ${c_2 = 2 + 4i}$, a divisão desses dois números resultará em:
 
 ```{math}
-${\frac{3 + 2i}{2 + 4i} = \frac{(3 \times 2) + (2 \times 4)}{2^2 + 4^2} + \frac{(2 \times 2) - (3 \times 4)}{2^2 + 4^2}i = \frac{14}{20} - \frac{8}{20}i = \frac{7}{10} - \frac{2}{10}i}$
+{\frac{3 + 2i}{2 + 4i} = \frac{(3 \times 2) + (2 \times 4)}{2^2 + 4^2} + \frac{(2 \times 2) - (3 \times 4)}{2^2 + 4^2}i = \frac{14}{20} - \frac{8}{20}i = \frac{7}{10} - \frac{2}{10}i}
 ```
 
 ### Módulo e Conjugação
@@ -248,6 +253,8 @@ Nesta representação, os números reais (ou seja, números complexos sem parte 
 
 Através desta representação, as propriedades algébricas dos números complexos podem ser vistas sob uma nova luz. Comecemos com o módulo: ele nada mais é do que o **comprimento do vetor**. De fato, o comprimento de um vetor, via teorema de Pitágoras, é a raiz quadrada da soma dos quadrados dos catetos *- valor no eixo real e eixo imaginário*, que é precisamente o módulo, conforme definido na seção anterior.
 
+![imagem1ComplexNumbers.png](images/complexos/imagem1ComplexNumbers.png)
+
 ```{admonition} Exemplo
 :class: tip
 
@@ -257,11 +264,6 @@ Considere o número complexo c = 3 + 4i. O comprimento do vetor é a hipotenusa 
 h = \sqrt{c_a^2 + c_o^2} = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5
 ```
 
-![imagem1ComplexNumbers.png](images/complexos/imagem1ComplexNumbers.png)
-
-```{math}
-\text{comprimento}(c) = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5
-```
 
 Este é exatamente o módulo de c.
 
@@ -331,19 +333,27 @@ Dados dois números complexos em coordenadas polares, ${(ρ₁, θ₁)}$ e ${(ρ
 ```{math}
 \text{Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:}
 
+
 c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2
+
 
 \text{Então, esse mesmo número em representação polar equivale a:}
 
+
 c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})
+
 
 \text{Portanto, seu produto usando a raegra geométrica é:}
 
+
 c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)
+
 
 \text{Revertendo para coordenadas cartesianas obtemos:}
 
+
 (2 \times \cos(\pi), 2 \times \sin(\pi)) = (-2, 0)
+
 
 \text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico.}
 ```

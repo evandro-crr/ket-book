@@ -426,10 +426,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="numeros-complexos-para-computacao-quantica">
 <h1>Números Complexos para Computação Quântica<a class="headerlink" href="#numeros-complexos-para-computacao-quantica" title="Link para este cabeçalho">#</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
-</div>
 <p>Os números complexos são essenciais para o entendimento completo da computação quântica. Sendo de extrema importância para a definição dos estados e das operações realizadas em qubits, eles operam um papel crucial em algoritmos quânticos. É fundamental entender não apenas o <em>conceito algébrico</em>, mas também suas diferentes maneiras de representação, particularmente a <em>interpretação geométrica</em>, que fornece intuição visual para operações como rotação de fase, um aspecto vital para o poder de processamento quântico.</p>
 <p>Nesse capítulo, será apresentado as definições básicas, a estrutura algébrica - retratando também as operações em números complexos - e as noções geométricas, em que haverá a discussão de tópicos mais avançados.</p>
 <p>A referência para esse capítulo é <span id="id1">[<a class="reference internal" href="10-referencias.html#id7" title="Noson S. Yanofsky and Mirco A. Mannucci. Quantum computing for computer scientists. Cambridge university press, Cambridge, 2008. ISBN 978-0-521-87996-5.">YMannucci08</a>]</span>, que aborda o tema de números complexos com foco no entendimento da computação quântica.</p>
@@ -468,20 +464,11 @@ document.write(`
 <p>Sendo <span class="math notranslate nohighlight">\({c_1 = 3 + 9i}\)</span> e <span class="math notranslate nohighlight">\({c_2 = 19 - 8i}\)</span></p>
 <p>A sua soma resultará em:</p>
 <div class="math notranslate nohighlight">
-\[\begin{eqnarray*}
-c_3 = c_1 + c_2
-c_3 = (3 + 9i) + (19 - 8i)
-c_3 = (3 + 19) + (9i - 8i)
-c_3 = 22 + i
-\end{eqnarray*}\]</div>
+\[ \begin{align}\begin{aligned}\begin{eqnarray*}\\c_3 = c_1 + c_2\\c_3 = (3 + 9i) + (19 - 8i)\\c_3 = (3 + 19) + (9i - 8i)\\c_3 = 22 + i\\\end{eqnarray*}\end{aligned}\end{align} \]</div>
 <p>E a sua subtração resultará em:</p>
 <div class="math notranslate nohighlight">
-\[\begin{eqnarray*}
-c_3 = c_1 - c_2
-c_3 = (3 + 9i) - (19 - 8i)
-c_3 = (3 - 19) + (9i + 8i)
-c_3 = -16 + 17i
-\end{eqnarray*}\]</div>
+\[ \begin{align}\begin{aligned}\begin{eqnarray*}
+c_3 = c_1 - c_2\\c_3 = (3 + 9i) - (19 - 8i)\\c_3 = (3 - 19) + (9i + 8i)\\c_3 = -16 + 17i\\\end{eqnarray*}\end{aligned}\end{align} \]</div>
 </section>
 <section id="multiplicacao">
 <h3>Multiplicação<a class="headerlink" href="#multiplicacao" title="Link para este cabeçalho">#</a></h3>
@@ -558,7 +545,7 @@ c_3 = -16 + 17i
 <p class="admonition-title">Exemplo</p>
 <p>Dado dois números complexos, <span class="math notranslate nohighlight">\({c_1 = 3 + 2i}\)</span> e <span class="math notranslate nohighlight">\({c_2 = 2 + 4i}\)</span>, a divisão desses dois números resultará em:</p>
 <div class="math notranslate nohighlight">
-\[${\frac{3 + 2i}{2 + 4i} = \frac{(3 \times 2) + (2 \times 4)}{2^2 + 4^2} + \frac{(2 \times 2) - (3 \times 4)}{2^2 + 4^2}i = \frac{14}{20} - \frac{8}{20}i = \frac{7}{10} - \frac{2}{10}i}$\]</div>
+\[{\frac{3 + 2i}{2 + 4i} = \frac{(3 \times 2) + (2 \times 4)}{2^2 + 4^2} + \frac{(2 \times 2) - (3 \times 4)}{2^2 + 4^2}i = \frac{14}{20} - \frac{8}{20}i = \frac{7}{10} - \frac{2}{10}i}\]</div>
 </div>
 </section>
 <section id="modulo-e-conjugacao">
@@ -605,15 +592,13 @@ c_3 = -16 + 17i
 <section id="modulo-como-comprimento-vetorial">
 <h3>Módulo como Comprimento Vetorial<a class="headerlink" href="#modulo-como-comprimento-vetorial" title="Link para este cabeçalho">#</a></h3>
 <p>Através desta representação, as propriedades algébricas dos números complexos podem ser vistas sob uma nova luz. Comecemos com o módulo: ele nada mais é do que o <strong>comprimento do vetor</strong>. De fato, o comprimento de um vetor, via teorema de Pitágoras, é a raiz quadrada da soma dos quadrados dos catetos <em>- valor no eixo real e eixo imaginário</em>, que é precisamente o módulo, conforme definido na seção anterior.</p>
+<p><img alt="imagem1ComplexNumbers.png" src="_images/imagem1ComplexNumbers.png" /></p>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
 <p>Considere o número complexo c = 3 + 4i. O comprimento do vetor é a hipotenusa do triângulo retângulo cujos lados têm comprimento 3 e 4, respectivamente. O teorema de Pitágoras nos dá:</p>
 <div class="math notranslate nohighlight">
 \[h = \sqrt{c_a^2 + c_o^2} = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5\]</div>
 </div>
-<p><img alt="imagem1ComplexNumbers.png" src="_images/imagem1ComplexNumbers.png" /></p>
-<div class="math notranslate nohighlight">
-\[\text{comprimento}(c) = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5\]</div>
 <p>Este é exatamente o módulo de c.</p>
 </section>
 <section id="adicao-e-subtracao-geometricas">
@@ -674,7 +659,15 @@ a = \rho \cos(\theta), \quad b = \rho \sin(\theta)
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\text{Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:}\\c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2\\\text{Então, esse mesmo número em representação polar equivale a:}\\c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})\\\text{Portanto, seu produto usando a raegra geométrica é:}\\c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)\\\text{Revertendo para coordenadas cartesianas obtemos:}\\(2 \times \cos(\pi), 2 \times \sin(\pi)) = (-2, 0)\\\text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico.}\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}\text{Sejam c₁ = 1 + i e c₂ = -1 + i. Seu produto, de acordo com a regra algébrica, é:}\\
+c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2\\
+\text{Então, esse mesmo número em representação polar equivale a:}\\
+c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})\\
+\text{Portanto, seu produto usando a raegra geométrica é:}\\
+c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)\\
+\text{Revertendo para coordenadas cartesianas obtemos:}\\
+(2 \times \cos(\pi), 2 \times \sin(\pi)) = (-2, 0)\\
+\text{Que é exatamente a resposta que obtivemos utilizando do cálculo algébrico.}\end{aligned}\end{align} \]</div>
 </div>
 </section>
 <section id="multiplicacao-como-rotacao">
