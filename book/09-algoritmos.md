@@ -45,8 +45,6 @@ Usamos os rótulos $A$ para o primeiro qubit (da Alice) e $B$ para o segundo qub
 
 Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.
 
-![tabela_mensagens.png](images/algoritmos/base/tabela_mensagens.png)
-
 $$
 \begin{array}{ccc}
    \text{Mensagem} & \text{Operação} & \text{Resultado} \\ \hline 
@@ -158,8 +156,6 @@ $$
 
 em que o resultado da medida é $b_0 b_1$. O qubit que está com Bob passa a ficar no estado $\ket{\psi_3}_B$, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.
 
-![tabela_resultado.png](images/algoritmos/base/tabela_resultado_medida.png)
-
 $$
 \begin{array}{cc}
 \text{Resultado da medida} & \text{Estado do qubit } B \\ \hline
@@ -192,8 +188,6 @@ Se a medida for $00$, seu qubit está em $ a\ket{0} + b\ket{1}$ e nada precisa s
 ![pos_medicao_teleporte.png](images/algoritmos/base/pos_medicao_teleporte.png)
 
 Essas operações, como na codificação superdensa, podem ser resumidas na operação controlada classicamente $Z_B^{\, b_0} X_B^{\, b_1}$, em que $b_0b_1$ é o resultado da medida. Dessa forma, pode-se representar o processamento de Bob pelo circuito a seguir.
-
-![tabela_medida_estado_final.png](images/algoritmos/base/tabela_medida_estado_final.png)
 
 $$
 \begin{array}{cccc}
