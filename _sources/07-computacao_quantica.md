@@ -120,7 +120,18 @@ Pode-se multiplicar o estado por uma fase global para que o termo multiplicando 
 
 Os polos norte da esfera corresponde ao estado $\ket{0}$ e o polo sul, ao $\ket{1}$. No equador, situam-se os estados da forma $\frac{1}{\sqrt{2}} \ket{0} + \frac{e^{i\varphi}}{\sqrt{2}} \ket{1}$, isto é, superposições dos estados $\ket{0}$ e $\ket{1}$ com o mesmo peso e com alguma fase relativa.
 
-![Pontos_Esfera_Bloch.png](images/comp_quantica/Pontos_Esfera_Bloch.png)
+
+$$
+\begin{array}{ccc|c}
+\text{Ponto da esfera de Bloch} & \theta & \varphi & \text{Estado } \ket{\psi} \\ \hline
+\hat{x} = (1,0,0) & \theta = \pi/2 & \varphi = 0 & \ket{+} \\
+-\hat{x} = (-1,0,0) & \theta = \pi/2 & \varphi = \pi & \ket{-} \\
+\hat{y} = (0,1,0) & \theta = \pi/2 & \varphi = \pi/2 & \ket{+i} \\
+-\hat{y} = (0,-1,0) & \theta = \pi/2 & \varphi = 3\pi/2 & \ket{-i} \\
+\hat{z} = (0,0,1) & \theta = 0 & & \ket{0} \\
+-\hat{z} = (0,0,-1) & \theta = \pi & & \ket{1}
+\end{array}
+$$
 
 Observe que os vetores da base $\mathcal{X}$ correspondem às intersecções da esfera com o eixo $x$. De forma similar, isso vale para as bases $\mathcal{Y}$ e $\mathcal{Z}$, que correspondem às intersecções da esfera com os eixos $y$ e $z$, respectivamente.
 

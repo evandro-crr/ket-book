@@ -659,37 +659,24 @@ f(x) = \sum_{n=0}^{\infty} \frac{(x - x_{0})^{n}}{n!} \frac{d^{n}f}{dx^{n}} \big
 <p>onde <span class="math notranslate nohighlight">\(x_0\)</span> é o ponto onde queremos expandir a função.</p>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
-<p><span class="math notranslate nohighlight">\(e^{x}\)</span> = ?; <span class="math notranslate nohighlight">\(x_0 = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(f(x) = e^x\)</span> com <span class="math notranslate nohighlight">\(x_0 = 0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-e^{x} = \sum\limits_{n=0}^{\infty}  \frac{x^{n}}{n!} \underbrace{\frac{d^{n}(e^{x})}{dx^{n}} \bigg\lvert_{x=0}}_{?}
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} \frac{d^n (e^x)}{dx^n} \bigg\rvert_{x=0} = \sum_{n=0}^{\infty} \frac{x^n}{n!}
 \]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{cases} 
-\frac{d(e^{x})}{dx} = e^{x} \\
-\quad \vdots \\
-\frac{d^{n}(e^{x})}{dx^{n}} = e^{x}
-\end{cases} \implies \frac{d^{n}(e^{x})}{dx^{n}}\bigg\vert_{x=0} = 1
-\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[
-\therefore e^{x} = \sum\limits_{n=0}^{\infty} \frac{x^{n}}{n!}
-\]</div>
-<p>Expansão em série de Taylor para <span class="math notranslate nohighlight">\(e^x\)</span></p>
-<p>No caso onde <span class="math notranslate nohighlight">\(x\)</span> é um operador <span class="math notranslate nohighlight">\(A\)</span>, temos:</p>
+<p>Podemos estender essa ideia para operadores substituindo <span class="math notranslate nohighlight">\(x\)</span> por <span class="math notranslate nohighlight">\(A\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 e^A = \sum_{n=0}^{\infty} \frac{A^n}{n!}
 \]</div>
-<p>Usando a decomposição espectral do operador <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<p>Usando a decomposição espectral de <span class="math notranslate nohighlight">\(A\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-A = \sum_{i} a_i \ket{a_i}\bra{a_i}; \quad A\ket{a_i} = a_i \ket{a_i}
+A = \sum_{i} a_i \ket{a_i} \bra{a_i}, \, \text{com } A \ket{a_i} = a_i\ket{a_i}
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-\Rightarrow A^2 = \left( \sum_i a_i \ket{a_i} \bra{a_i} \right) \left( \sum_j a_j \ket{a_j} \bra{a_2} \right)
+\Rightarrow A^2 = \left( \sum_i a_i \ket{a_i} \bra{a_i} \right) \left( \sum_j a_j \ket{a_j} \bra{a_j} \right)
 \]</div>
 <div class="math notranslate nohighlight">
 \[
@@ -707,25 +694,18 @@ A = \sum_{i} a_i \ket{a_i}\bra{a_i}; \quad A\ket{a_i} = a_i \ket{a_i}
 \[
 \therefore A^{2} = \sum_{i} a_{i}^{2} \ket{a_i} \bra{a_i} \implies A^{n} = \sum_{i} a_{i}^{n} \ket{a_i} \bra{a_i}
 \]</div>
-<p>Voltando para <span class="math notranslate nohighlight">\(e^A\)</span></p>
+<p>Calculando <span class="math notranslate nohighlight">\(e^A\)</span> via autovalores, subsituímos na série:</p>
 <div class="math notranslate nohighlight">
 \[
-e^{A} = \sum_{n=0}^{\infty} \frac{A^n}{n!} = \sum_{n=0}^{\infty} \frac{1}{n!} \left( \sum_{i} a_{i}^{n} \ket{a_i} \bra{a_i} \right)
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-= \sum_{i} \left( \sum_{n=0}^{\infty} \frac{a_{i}^{n}}{n!} \right) \ket{a_i} \bra{a_i}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-e^{A} = \sum_{i} e^{a_i} \ket{a_i} \bra{a_i}
+e^A = \sum_{n=0}^{\infty} \frac{A^n}{n!} = \sum_{i} \left(\sum_{n=0}^{\infty} \frac{a_{i}^{n}}{n!} \right) \ket{a_i}\bra{a_i} = \sum_{i} e^{a_i} \ket{a_i}\bra{a_i}
 \]</div>
 </div>
-<p>Portanto, de maneira geral, se <span class="math notranslate nohighlight">\(f(x)\)</span> puder ser expandida em série de Taylor, então</p>
+<p>Portanto, de maneira geral, se <span class="math notranslate nohighlight">\(f(x)\)</span> puder ser expandida em série de Taylor, podemos definir a função de operador <span class="math notranslate nohighlight">\(f(A)\)</span> como:</p>
 <div class="math notranslate nohighlight">
 \[
 f(A) = \sum_{i} f(a_i) \ket{a_i} \bra{a_i}
 \]</div>
+<p>Ou seja, basta aplicar <span class="math notranslate nohighlight">\(f\)</span> nos autovalores de <span class="math notranslate nohighlight">\(A\)</span></p>
 </section>
 <section id="tipos-especiais-de-operadores">
 <span id="cap2tipos-especiais-de-operadores"></span><h3>Tipos Especiais de Operadores<a class="headerlink" href="#tipos-especiais-de-operadores" title="Link para este cabeçalho">#</a></h3>

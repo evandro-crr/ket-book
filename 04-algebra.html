@@ -330,7 +330,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -346,6 +348,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-de-dirac">Notação de Dirac</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ket">Ket</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bra">Bra</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -366,6 +380,48 @@ document.write(`
 <p>Na Computação Quântica o interesse é voltado a espaços vetoriais de <strong>dimensão finita</strong> sobre o corpo dos números complexos. Isso permite a identificação do espaço com as <span class="math notranslate nohighlight">\(n\)</span>-uplas de números complexos, o que simplifica grandemente a teoria. Os resultados resumidos neste capítulo estão situados nesse contexto.</p>
 <p>A principal referência para esse capítulo é <span id="id1">[<a class="reference internal" href="10-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span>. Outra referência muito útil é <span id="id2">[<a class="reference internal" href="10-referencias.html#id3" title="Elon Lages Lima. Álgebra Linear: uma introdução moderna. Associação Instituto Nacional de Matemática Pura e Aplicada, Rio de Janeiro, RJ, September 2021. ISBN 978-85-244-0089-6.">Lim21</a>]</span>, que possui um capítulo voltado a espaços vetoriais complexos. Livros texto clássicos de Álgebra Linear, como <span id="id3">[<a class="reference internal" href="10-referencias.html#id4" title="Alfredo Steinbruch and Paulo Winterle. Algebra linear. Pearson Makron Books, São Paulo (SP), 2. ed edition, 2009. ISBN 978-0-07-450412-3. OCLC: 817074083.">SW09</a>]</span> também são úteis. Embora tenham ênfase em espaços vetoriais reais, a maioria das definições, resultados e demonstrações se transporta integralmente para os espaços vetoriais complexos.</p>
 <p>Será considerado um pré-requisito a este texto um curso de Álgebra Linear ao nível de graduação abordando-se os seguintes itens: espaços vetoriais, base e dimensão, transformações lineares, autovalores e autovetores. Por ter um caráter de resumo, os resultados apresentados, via de regra, não são acompanhados de suas demonstrações, as quais podem ser encontradas nos livros mencionados no parágrafo anterior.</p>
+<section id="notacao-de-dirac">
+<h2>Notação de Dirac<a class="headerlink" href="#notacao-de-dirac" title="Link para este cabeçalho">#</a></h2>
+<p>Como mencionado, neste trabalho será utilizada a notação de Dirac ou notação de Braket. Esta notação é uma forma compacta de representar vetores, permitindo representar cálculos e operações de forma mais compacta e intuitiva.</p>
+<p>Esta notação consiste de 2 representações o ket <span class="math notranslate nohighlight">\(\ket{\cdot}\)</span> e o bra <span class="math notranslate nohighlight">\(\bra{\cdot}\)</span></p>
+<section id="ket">
+<h3>Ket<a class="headerlink" href="#ket" title="Link para este cabeçalho">#</a></h3>
+<p>O ket representa um vetor coluna, isto é, um vetor com uma única coluna:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ket{\psi} = \begin{bmatrix}  z_0 \\ z_1 \\ \vdots \\ z_{n-1} \end{bmatrix}
+\end{split}\]</div>
+<p>Este vetor lê-se como <em>ket</em> <span class="math notranslate nohighlight">\(\psi\)</span>.</p>
+</section>
+<section id="bra">
+<h3>Bra<a class="headerlink" href="#bra" title="Link para este cabeçalho">#</a></h3>
+<p>O bra representa o ket<span class="math notranslate nohighlight">\(^\dagger\)</span>, onde <span class="math notranslate nohighlight">\(\dagger\)</span> (adaga/dagger) é equivalente às operações de conjugação e transposição. Portanto, bra será o vetor linha cujos sinais das partes imaginárias serão opostos ao do ket:</p>
+<div class="math notranslate nohighlight">
+\[
+\bra{\psi} = \ket{\psi}^\dagger = \begin{bmatrix} z_{0}^{*} &amp; z_{1}^{*} &amp; \cdots &amp; z_{n-1}^{*} \end{bmatrix}
+\]</div>
+<p>Este vetor lê-se como <em>bra</em> <span class="math notranslate nohighlight">\(\psi\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exemplo</p>
+<p>Dado um vetor <span class="math notranslate nohighlight">\(v\)</span>, onde:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+v = \begin{bmatrix} 3 + 9i \\ 19 - 8i \end{bmatrix}
+\end{split}\]</div>
+<p>Temos que:</p>
+<p>O <em>ket</em> é o vetor em forma de coluna:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ket{v} = \begin{bmatrix} 3 + 9i \\ 19 - 8i \end{bmatrix}
+\end{split}\]</div>
+<p>O <em>bra</em> é obtido aplicando o operador <span class="math notranslate nohighlight">\(\dagger\)</span> (transposição + conjugação):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\bra{v} = \ket{v}^\dagger = (\ket{v}^*)^T = \begin{bmatrix} 3 - 9i \\ 19 + 8i \end{bmatrix}^T = \begin{bmatrix} 3 - 9i &amp; 19 + 8i \end{bmatrix}
+\end{split}\]</div>
+</div>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -424,6 +480,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notacao-de-dirac">Notação de Dirac</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ket">Ket</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bra">Bra</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

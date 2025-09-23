@@ -14,3 +14,51 @@ A principal referência para esse capítulo é {cite}`nielsen_quantum_2010`. Out
 
 Será considerado um pré-requisito a este texto um curso de Álgebra Linear ao nível de graduação abordando-se os seguintes itens: espaços vetoriais, base e dimensão, transformações lineares, autovalores e autovetores. Por ter um caráter de resumo, os resultados apresentados, via de regra, não são acompanhados de suas demonstrações, as quais podem ser encontradas nos livros mencionados no parágrafo anterior.
 
+## Notação de Dirac
+
+Como mencionado, neste trabalho será utilizada a notação de Dirac ou notação de Braket. Esta notação é uma forma compacta de representar vetores, permitindo representar cálculos e operações de forma mais compacta e intuitiva.
+
+Esta notação consiste de 2 representações o ket $\ket{\cdot}$ e o bra $\bra{\cdot}$
+
+### Ket
+O ket representa um vetor coluna, isto é, um vetor com uma única coluna:
+
+$$
+\ket{\psi} = \begin{bmatrix}  z_0 \\ z_1 \\ \vdots \\ z_{n-1} \end{bmatrix}
+$$
+
+Este vetor lê-se como *ket* $\psi$.
+
+### Bra
+O bra representa o ket$^\dagger$, onde $\dagger$ (adaga/dagger) é equivalente às operações de conjugação e transposição. Portanto, bra será o vetor linha cujos sinais das partes imaginárias serão opostos ao do ket:
+
+$$
+\bra{\psi} = \ket{\psi}^\dagger = \begin{bmatrix} z_{0}^{*} & z_{1}^{*} & \cdots & z_{n-1}^{*} \end{bmatrix}
+$$
+
+Este vetor lê-se como *bra* $\psi$.
+
+::: {admonition} Exemplo
+:class: tip
+Dado um vetor $v$, onde:
+
+$$
+v = \begin{bmatrix} 3 + 9i \\ 19 - 8i \end{bmatrix}
+$$
+
+Temos que:
+
+O *ket* é o vetor em forma de coluna:
+
+$$
+\ket{v} = \begin{bmatrix} 3 + 9i \\ 19 - 8i \end{bmatrix}
+$$
+
+O *bra* é obtido aplicando o operador $\dagger$ (transposição + conjugação):
+
+$$
+\bra{v} = \ket{v}^\dagger = (\ket{v}^*)^T = \begin{bmatrix} 3 - 9i \\ 19 + 8i \end{bmatrix}^T = \begin{bmatrix} 3 - 9i & 19 + 8i \end{bmatrix}
+$$
+
+:::
+

@@ -417,7 +417,6 @@ $<span class="math notranslate nohighlight">\(
 <p>Usamos os rótulos <span class="math notranslate nohighlight">\(A\)</span> para o primeiro qubit (da Alice) e <span class="math notranslate nohighlight">\(B\)</span> para o segundo qubit (que está com Bob).</p>
 <p><strong>Codificação - Alice</strong></p>
 <p>Alice conseguirá 4 estados da base de Bell distintos em função dos bits de mensagem.</p>
-<p><img alt="tabela_mensagens.png" src="_images/tabela_mensagens.png" /></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{ccc}
@@ -511,7 +510,6 @@ Alice e Bob previamente compartilham o estado de Bell</p>
 \ket{\psi_3} = \ket{b_0 b_1}_{A_1A_2} \ket{\psi_3}_B
 \]</div>
 <p>em que o resultado da medida é <span class="math notranslate nohighlight">\(b_0 b_1\)</span>. O qubit que está com Bob passa a ficar no estado <span class="math notranslate nohighlight">\(\ket{\psi_3}_B\)</span>, que depende do valor da medida. As opções possíveis são listadas na tabela a seguir.</p>
-<p><img alt="tabela_resultado.png" src="_images/tabela_resultado_medida.png" /></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{cc}
@@ -538,7 +536,6 @@ Alice e Bob previamente compartilham o estado de Bell</p>
 <p>Se a medida for <span class="math notranslate nohighlight">\(00\)</span>, seu qubit está em <span class="math notranslate nohighlight">\( a\ket{0} + b\ket{1}\)</span> e nada precisa ser feito. Se a medida resultou em <span class="math notranslate nohighlight">\(01\)</span>, seu qubit está em <span class="math notranslate nohighlight">\(b\ket{0} + a\ket{1}\)</span>; nesse caso, é possível perceber que a porta <span class="math notranslate nohighlight">\(X\)</span> fornece novamente o estado desejado <span class="math notranslate nohighlight">\(b\ket{1} + a\ket{0}\)</span>. Considerando-se todos os resultados possíveis da medida, monta-se a correção necessária para cada caso.</p>
 <p><img alt="pos_medicao_teleporte.png" src="_images/pos_medicao_teleporte.png" /></p>
 <p>Essas operações, como na codificação superdensa, podem ser resumidas na operação controlada classicamente <span class="math notranslate nohighlight">\(Z_B^{\, b_0} X_B^{\, b_1}\)</span>, em que <span class="math notranslate nohighlight">\(b_0b_1\)</span> é o resultado da medida. Dessa forma, pode-se representar o processamento de Bob pelo circuito a seguir.</p>
-<p><img alt="tabela_medida_estado_final.png" src="_images/tabela_medida_estado_final.png" /></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{cccc}

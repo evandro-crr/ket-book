@@ -504,7 +504,18 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 <section id="pontos-na-esfera-de-bloch">
 <h4>Pontos na Esfera de Bloch<a class="headerlink" href="#pontos-na-esfera-de-bloch" title="Link para este cabeçalho">#</a></h4>
 <p>Os polos norte da esfera corresponde ao estado <span class="math notranslate nohighlight">\(\ket{0}\)</span> e o polo sul, ao <span class="math notranslate nohighlight">\(\ket{1}\)</span>. No equador, situam-se os estados da forma <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}} \ket{0} + \frac{e^{i\varphi}}{\sqrt{2}} \ket{1}\)</span>, isto é, superposições dos estados <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span> com o mesmo peso e com alguma fase relativa.</p>
-<p><img alt="Pontos_Esfera_Bloch.png" src="_images/Pontos_Esfera_Bloch.png" /></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc|c}
+\text{Ponto da esfera de Bloch} &amp; \theta &amp; \varphi &amp; \text{Estado } \ket{\psi} \\ \hline
+\hat{x} = (1,0,0) &amp; \theta = \pi/2 &amp; \varphi = 0 &amp; \ket{+} \\
+-\hat{x} = (-1,0,0) &amp; \theta = \pi/2 &amp; \varphi = \pi &amp; \ket{-} \\
+\hat{y} = (0,1,0) &amp; \theta = \pi/2 &amp; \varphi = \pi/2 &amp; \ket{+i} \\
+-\hat{y} = (0,-1,0) &amp; \theta = \pi/2 &amp; \varphi = 3\pi/2 &amp; \ket{-i} \\
+\hat{z} = (0,0,1) &amp; \theta = 0 &amp; &amp; \ket{0} \\
+-\hat{z} = (0,0,-1) &amp; \theta = \pi &amp; &amp; \ket{1}
+\end{array}
+\end{split}\]</div>
 <p>Observe que os vetores da base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> correspondem às intersecções da esfera com o eixo <span class="math notranslate nohighlight">\(x\)</span>. De forma similar, isso vale para as bases <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span> e <span class="math notranslate nohighlight">\(\mathcal{Z}\)</span>, que correspondem às intersecções da esfera com os eixos <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(z\)</span>, respectivamente.</p>
 <p><img alt="Qubit_dois.png" src="_images/Qubit2.png" /></p>
 </section>
