@@ -1017,7 +1017,7 @@ Número de Daniel é (88) 93771-0112
 <li><p>Remover elementos do dicionário: Podemos remover elementos do dicionário utilizando o comando <code class="docutils literal notranslate"><span class="pre">del</span></code>.</p></li>
 <li><p>Iterar sobre os elementos do dicionário: Podemos percorrer todas as chaves de um dicionário utilizando um loop <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p></li>
 <li><p>Verificar se uma chave está presente no dicionário: Podemos verificar se uma determinada chave está presente no dicionário utilizando o operador <code class="docutils literal notranslate"><span class="pre">in</span></code>.</p></li>
-<li><p>Ver quais são as chaves, valores ou pares de chave:valor do dicionário utilizando <code class="docutils literal notranslate"><span class="pre">telefones.keys()</span></code>, <code class="docutils literal notranslate"><span class="pre">telefones.values()</span></code> e <code class="docutils literal notranslate"><span class="pre">telefones.items()</span></code> respectivamente.</p></li>
+<li><p>Ver quais são as chaves, valores ou pares de (chave,valor) do dicionário utilizando <code class="docutils literal notranslate"><span class="pre">telefones.keys()</span></code>, <code class="docutils literal notranslate"><span class="pre">telefones.values()</span></code> e <code class="docutils literal notranslate"><span class="pre">telefones.items()</span></code> respectivamente.</p></li>
 </ul>
 <p>Abaixo seguem mais exemplos de como usar um dicionario.</p>
 <div class="cell docutils container">
@@ -1112,17 +1112,19 @@ Nota de Eva: 9.5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vendo as chaves, valores e pares (chave:valor) do dicionário</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chaves do dicionário:&quot;</span><span class="p">,</span> <span class="n">notas_alunos</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valores do dicionário:&quot;</span><span class="p">,</span> <span class="n">notas_alunos</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pares de chave-valor do dicionário:&quot;</span><span class="p">,</span> <span class="n">notas_alunos</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vendo as chaves, valores e pares (chave,valor) do dicionário</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Chaves do dicionário:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">notas_alunos</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="p">)</span>  <span class="c1"># Transformamos em lista para deixar mais legivel a impressao na tela</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valores do dicionário:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">notas_alunos</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pares de chave-valor do dicionário:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">notas_alunos</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chaves do dicionário: dict_keys([&#39;Alice&#39;, &#39;Bob&#39;, &#39;Carlos&#39;, &#39;Daniel&#39;])
-Valores do dicionário: dict_values([8.5, 7.2, 9.0, 6.8])
-Pares de chave-valor do dicionário: dict_items([(&#39;Alice&#39;, 8.5), (&#39;Bob&#39;, 7.2), (&#39;Carlos&#39;, 9.0), (&#39;Daniel&#39;, 6.8)])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chaves do dicionário: [&#39;Alice&#39;, &#39;Bob&#39;, &#39;Carlos&#39;, &#39;Daniel&#39;]
+Valores do dicionário: [8.5, 7.2, 9.0, 6.8]
+Pares de chave-valor do dicionário: [(&#39;Alice&#39;, 8.5), (&#39;Bob&#39;, 7.2), (&#39;Carlos&#39;, 9.0), (&#39;Daniel&#39;, 6.8)]
 </pre></div>
 </div>
 </div>

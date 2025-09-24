@@ -18,7 +18,7 @@ Será considerado um pré-requisito a este texto um curso de Álgebra Linear ao 
 
 Como mencionado, neste trabalho será utilizada a notação de Dirac ou notação de Braket. Esta notação é uma forma compacta de representar vetores, permitindo representar cálculos e operações de forma mais compacta e intuitiva.
 
-Esta notação consiste de 2 representações o ket $\ket{\cdot}$ e o bra $\bra{\cdot}$
+Esta notação consiste de 2 representações: o ket $\ket{\cdot}$ e o bra $\bra{\cdot}$
 
 ### Ket
 O ket representa um vetor coluna, isto é, um vetor com uma única coluna:
