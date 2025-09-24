@@ -65,34 +65,28 @@ Sendo ${c_1 = 3 + 9i}$ e ${c_2 = 19 - 8i}$
 
 A sua soma resultará em:
 
-```{math}
-\begin{eqnarray*}
 
-c_3 = c_1 + c_2
+$$
+\begin{array}{rcl}
+c_3 &=& c_1 + c_2 \\
+c_3 &=& (3 + 9i) + (19 - 8i) \\
+c_3 &=& (3 + 19) + (9i - 9i) \\
+c_3 &=& 22 + i
+\end{array}
+$$
 
-c_3 = (3 + 9i) + (19 - 8i)
-
-c_3 = (3 + 19) + (9i - 8i)
-
-c_3 = 22 + i
-
-\end{eqnarray*}
-```
 
 E a sua subtração resultará em:
 
-```{math}
-\begin{eqnarray*}
-c_3 = c_1 - c_2
 
-c_3 = (3 + 9i) - (19 - 8i)
-
-c_3 = (3 - 19) + (9i + 8i)
-
-c_3 = -16 + 17i
-
-\end{eqnarray*}
-```
+$$
+\begin{array}{rcl}
+c_3 &=& c_1 - c_2 \\
+c_3 &=& (3 + 9i) - (19 - 8i) \\
+c_3 &=& (3 - 19) + (9i + 8i) \\
+c_3 &=& -16 + 17i
+\end{array}
+$$
 
 ### Multiplicação
 
@@ -102,15 +96,14 @@ Sendo ${c_1 = 3 + 9i}$ e ${c_2 = 19 - 8i}$
 
 A sua multiplicação resultará em:
 
-```{math}
-c_3 = c_1 \times c_2
-
-c_3 = (3 + 9i) \times (19 - 8i)
-
-c_3 = (3 \times 19) + (3 \times 8i) + (9i \times 19) + (9i \times 8i)
-
-c_3 = 57 + 24i + 171i + 72i^2
-```
+$$
+\begin{array}{rcl}
+c_3 &=& c_1 \times c_2 \\
+c_3 &=& (3 + 9i) \times (19 - 8i) \\
+c_3 &=& (3 \times 19) + (3 \times 8i) + (9i \times 19) + (9i \times 8i) \\
+c_3 &=& 57 + 24i + 171i + 72i^2
+\end{array}
+$$
 
 ```{admonition} Atenção
 :class: tip
@@ -118,11 +111,12 @@ c_3 = 57 + 24i + 171i + 72i^2
 Nesse momento é importante lembrar da potenciação de i, ${i^2 = -1}$, que, quando aplicada na multiplicação entre ${c_1}$ e ${c_2}$ resultará em:
 ```
 
-```{math}
-c_3 = 57 + 24i + 171i - 72
-
-c_3 = -15 + 195i
-```
+$$
+\begin{array}{rcl}
+c_3 &=& 57 + 24i + 171i - 72 \\
+c_3 &=& -15 + 195i
+\end{array}
+$$
 
 Esse resultado, permite perceber que uma das principais proposições do teorema fundamental da álgebra, que define que toda equação polinomial de uma variável com coeficientes complexos possuem uma solução complexa.
 
