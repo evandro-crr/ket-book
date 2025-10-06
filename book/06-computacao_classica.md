@@ -22,8 +22,6 @@ Essa divisão em camadas de abstração permite que os diversos blocos do sistem
 
 A figura a seguir ilustra as camadas de abstração presentes no computador digital. Dependendo do autor, as camadas de abstração são nomeadas de maneira ligeiramente diferente ou são consideradas algumas subcamadas extra.
 
-![camadas_abstracao.png](images/comp_classica/camadas_abstracao.png)
-
 $$
 \begin{array}{c}
 \text{Camadas de Abstração} \\ \hline
@@ -71,7 +69,7 @@ As portas lógicas são funções booleanas simples, blocos fundamentais dos cir
 
 ![porta_xnor.png](images/comp_classica/porta_xnor.png)
 
-![porta_fanout](images/comp_classica/)
+![porta_fanout](images/comp_classica/porta_fanout.png)
 
 Qualquer sistema físico que se comporte de maneira a fornecer uma tabela verdade como as apresentadas acima pode ser considerado uma porta lógica. 
 

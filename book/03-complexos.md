@@ -65,27 +65,28 @@ Sendo ${c_1 = 3 + 9i}$ e ${c_2 = 19 - 8i}$
 
 A sua soma resultará em:
 
-```{math}
-c_3 = c_1 + c_2
 
-c_3 = (3 + 9i) + (19 - 8i)
+$$
+\begin{array}{rcl}
+c_3 &=& c_1 + c_2 \\
+c_3 &=& (3 + 9i) + (19 - 8i) \\
+c_3 &=& (3 + 19) + (9i - 8i) \\
+c_3 &=& 22 + i
+\end{array}
+$$
 
-c_3 = (3 + 19) + (9i - 8i)
-
-c_3 = 22 + i
-```
 
 E a sua subtração resultará em:
 
-```{math}
-c_3 = c_1 - c_2
 
-c_3 = (3 + 9i) - (19 - 8i)
-
-c_3 = (3 - 19) + (9i + 8i)
-
-c_3 = -16 + 17i
-```
+$$
+\begin{array}{rcl}
+c_3 &=& c_1 - c_2 \\
+c_3 &=& (3 + 9i) - (19 - 8i) \\
+c_3 &=& (3 - 19) + (9i + 8i) \\
+c_3 &=& -16 + 17i
+\end{array}
+$$
 
 ### Multiplicação
 
@@ -95,15 +96,14 @@ Sendo ${c_1 = 3 + 9i}$ e ${c_2 = 19 - 8i}$
 
 A sua multiplicação resultará em:
 
-```{math}
-c_3 = c_1 \times c_2
-
-c_3 = (3 + 9i) \times (19 - 8i)
-
-c_3 = (3 \times 19) + (3 \times 8i) + (9i \times 19) + (9i \times 8i)
-
-c_3 = 57 + 24i + 171i + 72i^2
-```
+$$
+\begin{array}{rcl}
+c_3 &=& c_1 \times c_2 \\
+c_3 &=& (3 + 9i) \times (19 - 8i) \\
+c_3 &=& (3 \times 19) + (3 \times 8i) + (9i \times 19) + (9i \times 8i) \\
+c_3 &=& 57 + 24i + 171i + 72i^2
+\end{array}
+$$
 
 ```{admonition} Atenção
 :class: tip
@@ -111,11 +111,12 @@ c_3 = 57 + 24i + 171i + 72i^2
 Nesse momento é importante lembrar da potenciação de i, ${i^2 = -1}$, que, quando aplicada na multiplicação entre ${c_1}$ e ${c_2}$ resultará em:
 ```
 
-```{math}
-c_3 = 57 + 24i + 171i - 72
-
-c_3 = -15 + 195i
-```
+$$
+\begin{array}{rcl}
+c_3 &=& 57 + 24i + 171i - 72 \\
+c_3 &=& -15 + 195i
+\end{array}
+$$
 
 Esse resultado, permite perceber que uma das principais proposições do teorema fundamental da álgebra, que define que toda equação polinomial de uma variável com coeficientes complexos possuem uma solução complexa.
 
@@ -473,3 +474,4 @@ onde ${a, b, c, d \in \mathbb{C} \space \text{e} \space  ad - bc \neq 0}$. Esta 
 ### Conclusão
 
 Cobrimos a linguagem básica dos números complexos e suas interpretações geométricas. Esta compreensão será fundamental para o entendimento da computação quântica, onde precisaremos de outra ferramenta: **${\text{ALGEBRA} \space \text{LINEAR}}$**.
+
