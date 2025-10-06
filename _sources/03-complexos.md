@@ -70,7 +70,7 @@ $$
 \begin{array}{rcl}
 c_3 &=& c_1 + c_2 \\
 c_3 &=& (3 + 9i) + (19 - 8i) \\
-c_3 &=& (3 + 19) + (9i - 9i) \\
+c_3 &=& (3 + 19) + (9i - 8i) \\
 c_3 &=& 22 + i
 \end{array}
 $$
@@ -474,3 +474,4 @@ onde ${a, b, c, d \in \mathbb{C} \space \text{e} \space  ad - bc \neq 0}$. Esta 
 ### Conclusão
 
 Cobrimos a linguagem básica dos números complexos e suas interpretações geométricas. Esta compreensão será fundamental para o entendimento da computação quântica, onde precisaremos de outra ferramenta: **${\text{ALGEBRA} \space \text{LINEAR}}$**.
+
