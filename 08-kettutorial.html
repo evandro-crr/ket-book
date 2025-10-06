@@ -198,9 +198,13 @@
 <li class="toctree-l1"><a class="reference internal" href="07-computacao_quantica.html">Computação Quântica</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Programacão Quântica com Ket</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="09-algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_1-grover.html">Algoritmo de Busca de Grover</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_2-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_2-bernstein-vazirani.html">Algorítimo clássico</a></li>
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="algoritmos/09_3-simon.html">Problema de Simon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_4-grover.html">Algoritmo de Busca de Grover</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
@@ -589,9 +593,9 @@ pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f043c0d1b70&gt;
-Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f043c0d1b70&gt;
-Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f043c0d1b70&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7fb74403db10&gt;
+Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7fb74403db10&gt;
+Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fb74403db10&gt;
 </pre></div>
 </div>
 </div>
@@ -675,7 +679,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f043c0d1b70&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2355/220369460.py:11: DeprecationWarning:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2292/220369460.py:11: DeprecationWarning:
 
 PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
 </pre></div>
@@ -954,7 +958,16 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cdbd4caf0ab69f3061fa5a43b34f957fda28be40bf4f99f4cdb4bdd0e3d229f4.png" src="_images/cdbd4caf0ab69f3061fa5a43b34f957fda28be40bf4f99f4cdb4bdd0e3d229f4.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">toffoli</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">ctrl</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">X</span><span class="p">)(</span><span class="n">c</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">toffoli</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;qulib&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
