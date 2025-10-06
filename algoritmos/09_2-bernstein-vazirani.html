@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Algorítimo clássico &#8212; Computação Quântica com Ket</title>
+    <title>Problema de Bernstein-Vazirani &#8212; Computação Quântica com Ket</title>
   
   
   
@@ -199,10 +199,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../08-kettutorial.html">Programacão Quântica com Ket</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../09-algoritmos.html">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="09_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Algorítimo clássico</a></li>
-
-
-
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Problema de Bernstein-Vazirani</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_3-simon.html">Problema de Simon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_4-grover.html">Algoritmo de Busca de Grover</a></li>
 </ul>
@@ -414,7 +411,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Algorítimo clássico</h1>
+    <h1>Problema de Bernstein-Vazirani</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -424,15 +421,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algorítimo clássico</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo Clássico Determinístico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritimo-classico">Algorítimo clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo Clássico Determinístico</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-bernstein-vazirani">Algoritmo de Bernstein-Vazirani</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-bernstein-vazirani">Simulação do algorítimo de Bernstein-Vazirani</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-bernstein-vazirani">Algoritmo de Bernstein-Vazirani</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-bernstein-vazirani">Simulação do algorítimo de Bernstein-Vazirani</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -467,13 +463,14 @@ document.write(`
 <p>Material extraído do TCC <a class="reference download internal" download="" href="../_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
 </div>
 <p>O Algoritmo de Bernstein-Vazirani é um algoritmo quântico desenvolvido para resolver o Problema de Bernstein-Vazirani. Embora este problema não possua aplicações práticas diretas de grande relevância, ele serve como um laboratório teórico fundamental para explorar e compreender as capacidades distintivas da Computação Quântica. A principal referência para esta discussão é o livro {cite}nielsen_quantum_2010.</p>
-<p><strong>Problema de Bernstein-Vazirani</strong></p>
+<section class="tex2jax_ignore mathjax_ignore" id="problema-de-bernstein-vazirani">
+<h1>Problema de Bernstein-Vazirani<a class="headerlink" href="#problema-de-bernstein-vazirani" title="Link para este cabeçalho">#</a></h1>
 <p>Seja <span class="math notranslate nohighlight">\({ f: \{0,1\}^n \to \{0,1\} }\)</span> uma função tal que <span class="math notranslate nohighlight">\({ f(x) = x \cdot s }\)</span>, onde “ · “ representa o produto escalar (módulo 2) entre <span class="math notranslate nohighlight">\({x}\)</span> e <span class="math notranslate nohighlight">\({s}\)</span>, e <span class="math notranslate nohighlight">\({ s \in \{0,1\}^n }\)</span> é uma string secreta de tamanho <span class="math notranslate nohighlight">\({ n }\)</span>. O objetivo é encontrar <span class="math notranslate nohighlight">\({s}\)</span>.</p>
 <section id="algoritimo-classico">
-<h1>Algorítimo clássico<a class="headerlink" href="#algoritimo-classico" title="Link para este cabeçalho">#</a></h1>
+<h2>Algorítimo clássico<a class="headerlink" href="#algoritimo-classico" title="Link para este cabeçalho">#</a></h2>
 <p>Agora considere o problema de Bernstein-Vazirani no contexto clássico. A seguir serão vistas brevemente a abordagem clássica para o problema.</p>
 <section id="algoritmo-classico-deterministico">
-<h2>Algoritmo Clássico Determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link para este cabeçalho">#</a></h2>
+<h3>Algoritmo Clássico Determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link para este cabeçalho">#</a></h3>
 <p>A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar uma verificação de cada bit separadamente, o que equivale a testa uma base da matriz identidade. Desse modo, precisamento realizar uma chamada a função <span class="math notranslate nohighlight">\(n\)</span> vezes, sendo <span class="math notranslate nohighlight">\(n\)</span> o número de bits da string. Por exemplo:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -510,7 +507,7 @@ document.write(`
 </section>
 </section>
 <section id="algoritmo-de-bernstein-vazirani">
-<h1>Algoritmo de Bernstein-Vazirani<a class="headerlink" href="#algoritmo-de-bernstein-vazirani" title="Link para este cabeçalho">#</a></h1>
+<h2>Algoritmo de Bernstein-Vazirani<a class="headerlink" href="#algoritmo-de-bernstein-vazirani" title="Link para este cabeçalho">#</a></h2>
 <p>Para resolver o problema de Bernstein-Vazirani com um algoritmo quântico, é necessário ter uma versão quântica da função linear <span class="math notranslate nohighlight">\(f(x) = s \cdot x \mod 2\)</span>, fornecida como um oráculo quântico. Considere que <span class="math notranslate nohighlight">\(f\)</span> seja implementada por meio de um <strong>oráculo de fase</strong> <span class="math notranslate nohighlight">\(U_f\)</span>, que atua sobre estados quânticos da seguinte forma:</p>
 <p><span class="math notranslate nohighlight">\({
 O_f \ket{x} = (-1)^{f(x)} \ket{x} = (-1)^{s \cdot x} \ket{x}
@@ -587,7 +584,7 @@ $<span class="math notranslate nohighlight">\(
 \)</span>$</p>
 </section>
 <section id="comparacao-de-desempenho">
-<h1>Comparação de desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link para este cabeçalho">#</a></h1>
+<h2>Comparação de desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link para este cabeçalho">#</a></h2>
 <p>A tabela abaixo traz a comparação entre o desempenho dos algoritmos clássico e quântico.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -601,7 +598,7 @@ $<span class="math notranslate nohighlight">\(
 <p>Em relação ao algoritmo clássico, o algoritmo quântico apresenta ganho exponencial em desempenho.</p>
 </section>
 <section id="simulacao-do-algoritimo-de-bernstein-vazirani">
-<h1>Simulação do algorítimo de Bernstein-Vazirani<a class="headerlink" href="#simulacao-do-algoritimo-de-bernstein-vazirani" title="Link para este cabeçalho">#</a></h1>
+<h2>Simulação do algorítimo de Bernstein-Vazirani<a class="headerlink" href="#simulacao-do-algoritimo-de-bernstein-vazirani" title="Link para este cabeçalho">#</a></h2>
 <p>Para simular o algorítimo de Deutsch Simplificado usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
@@ -665,6 +662,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 <p><strong>Provavel Dúvida:</strong></p>
 <p>O algoritmo de Bernstein-Vazirani não recebe a string secreta diretamente como input, mas sim acesso a um oráculo que contém essa string de forma oculta. A string secreta está embutida internamente no oráculo como parte de sua implementação, e o objetivo do algoritmo é descobrir essa string desconhecida analisando o comportamento do oráculo quando consultado com diferentes entradas. A vantagem quântica surge porque o algoritmo consegue extrair todos os bits da string secreta simultaneamente usando superposição quântica, exigindo apenas uma consulta ao oráculo, enquanto abordagens clássicas precisariam de múltiplas consultas sequenciais.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -731,15 +729,14 @@ $<span class="math notranslate nohighlight">\(
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algorítimo clássico</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo Clássico Determinístico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritimo-classico">Algorítimo clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo Clássico Determinístico</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-bernstein-vazirani">Algoritmo de Bernstein-Vazirani</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-bernstein-vazirani">Simulação do algorítimo de Bernstein-Vazirani</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-bernstein-vazirani">Algoritmo de Bernstein-Vazirani</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-bernstein-vazirani">Simulação do algorítimo de Bernstein-Vazirani</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
