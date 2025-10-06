@@ -18,9 +18,10 @@ chapters:
 - file: 08-kettutorial
 - file: 09-algoritmos
   sections:
-    - file: algoritmos/09_1-grover
-    - file: algoritmos/09_2-deutsch-jozsa
+    - file: algoritmos/09_1-deutsch-jozsa
+    - file: algoritmos/09_2-bernstein-vazirani
     - file: algoritmos/09_3-simon
+    - file: algoritmos/09_4-grover
 - url: https://qubox.ufsc.br/index.html
   title: Qubox UFSC
 - file: 10-referencias

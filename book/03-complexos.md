@@ -66,8 +66,6 @@ Sendo ${c_1 = 3 + 9i}$ e ${c_2 = 19 - 8i}$
 A sua soma resultará em:
 
 ```{math}
-\begin{eqnarray*}
-
 c_3 = c_1 + c_2
 
 c_3 = (3 + 9i) + (19 - 8i)
@@ -75,14 +73,11 @@ c_3 = (3 + 9i) + (19 - 8i)
 c_3 = (3 + 19) + (9i - 8i)
 
 c_3 = 22 + i
-
-\end{eqnarray*}
 ```
 
 E a sua subtração resultará em:
 
 ```{math}
-\begin{eqnarray*}
 c_3 = c_1 - c_2
 
 c_3 = (3 + 9i) - (19 - 8i)
@@ -90,8 +85,6 @@ c_3 = (3 + 9i) - (19 - 8i)
 c_3 = (3 - 19) + (9i + 8i)
 
 c_3 = -16 + 17i
-
-\end{eqnarray*}
 ```
 
 ### Multiplicação
