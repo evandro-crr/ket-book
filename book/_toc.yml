@@ -22,7 +22,7 @@ chapters:
     - file: algoritmos/09_2-bernstein-vazirani
     - file: algoritmos/09_3-simon
     - file: algoritmos/09_4-grover
-    - file: algoritmos/09_5-qft
+    - file: algoritmos/09_05-qft
 - url: https://qubox.ufsc.br/index.html
   title: Qubox UFSC
 - file: 10-referencias
