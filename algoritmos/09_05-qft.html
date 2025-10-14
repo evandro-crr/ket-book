@@ -442,6 +442,8 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier">Simulação do algorítimo da Transformada Quântica de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-quantica-de-fourier-inversa-iqft">Transformada Quântica de Fourier Inversa (IQFT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier-inversa">Simulação do algorítimo da Transformada Quântica de Fourier Inversa</a></li>
 </ul>
             </nav>
         </div>
@@ -613,27 +615,31 @@ R_k = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{2\pi i / 2^k} \end{bmatrix}
 \end{split}
 \end{split}\]</div>
 <p>onde <span class="math notranslate nohighlight">\([0.j_1 j_2 \cdots j_n]\)</span> representa a fração binária <span class="math notranslate nohighlight">\(j_1/2 + j_2/4 + \cdots + j_n/2^n\)</span>.</p>
-<p>Operações no qubit 2:
-$<span class="math notranslate nohighlight">\(
+<p>Operações no qubit 2:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{split}
 \ket{\psi_2} &amp;= R_n^2 \cdots R_3^2 H_2 \ket{\psi_1} \\
 &amp;= \frac{1}{\sqrt{2^2}} (\ket{0} + e^{2\pi i [0.j_2 j_3 \cdots j_n]} \ket{1}) \otimes (\ket{0} + e^{2\pi i [0.j_1 j_2 \cdots j_n]} \ket{1}) \otimes \ket{j_3 \cdots j_n}
 \end{split}
-\)</span>$</p>
+\end{split}\]</div>
 <p>Continuando este processo para todos os qubits:</p>
-<p>Estado final antes dos SWAPs:
-$<span class="math notranslate nohighlight">\(
+<p>Estado final antes dos SWAPs:</p>
+<div class="math notranslate nohighlight">
+\[
 \ket{\psi_n} = \frac{1}{\sqrt{2^n}} \bigotimes_{k=1}^n \left( \ket{0} + e^{2\pi i [0.j_k j_{k+1} \cdots j_n]} \ket{1} \right)
-\)</span>$</p>
+\]</div>
 <p>Etapa n+1 - Aplicação dos SWAPs:
-Para obter a ordem correta dos qubits na representação binária, aplicamos portas SWAP entre qubits simétricos:
-$<span class="math notranslate nohighlight">\(
+Para obter a ordem correta dos qubits na representação binária, aplicamos portas SWAP entre qubits simétricos:</p>
+<div class="math notranslate nohighlight">
+\[
 \ket{\psi_{final}} = SWAP_{1,n} SWAP_{2,n-1} \cdots \ket{\psi_n}
-\)</span>$</p>
-<p>O estado final é exatamente:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>O estado final é exatamente:</p>
+<div class="math notranslate nohighlight">
+\[
 QFT\ket{j} = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i j k / N} \ket{k}
-\)</span>$</p>
+\]</div>
 </section>
 </section>
 <section id="comparacao-de-desempenho">
@@ -684,6 +690,31 @@ QFT\ket{j} = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i j k / N} \ket{k}
         <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
             <span class="n">SWAP</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubits</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="transformada-quantica-de-fourier-inversa-iqft">
+<h2>Transformada Quântica de Fourier Inversa (IQFT)<a class="headerlink" href="#transformada-quantica-de-fourier-inversa-iqft" title="Link para este cabeçalho">#</a></h2>
+<p>A Transformada Quântica de Fourier Inversa (IQFT - Inverse Quantum Fourier Transform) é a operação unitária que realiza a transformação inversa exata da Transformada Quântica de Fourier (QFT). Enquanto a QFT codifica informações da base computacional para a base de Fourier, a IQFT decodifica informações da base de Fourier de volta para a base computacional.</p>
+<p>A IQFT é exatamente o operador adjunto da QFT:</p>
+<div class="math notranslate nohighlight">
+\[
+IQFT = QFT^\dagger
+\]</div>
+</section>
+<section id="simulacao-do-algoritimo-da-transformada-quantica-de-fourier-inversa">
+<h2>Simulação do algorítimo da Transformada Quântica de Fourier Inversa<a class="headerlink" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier-inversa" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algorítimo IQFT usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Como demonstrado anteriormente, a Transformada Quântica de Fourier Inversa é o operador adjunto da QFT. O ket nos permite descobrir o operador adjunto de uma porta lógica, exceto as operações de medida, com a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.adj" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">adj()</span></code></a>, como demonstrado abaixo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">iqft</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+    <span class="n">adj</span><span class="p">(</span><span class="n">qft</span><span class="p">)(</span><span class="n">qubits</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -775,6 +806,8 @@ QFT\ket{j} = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i j k / N} \ket{k}
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier">Simulação do algorítimo da Transformada Quântica de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-quantica-de-fourier-inversa-iqft">Transformada Quântica de Fourier Inversa (IQFT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier-inversa">Simulação do algorítimo da Transformada Quântica de Fourier Inversa</a></li>
 </ul>
   </nav></div>
 
