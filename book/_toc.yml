@@ -24,6 +24,7 @@ chapters:
     - file: algoritmos/09_4-grover
     - file: algoritmos/09_05-qft
     - file: algoritmos/09_06-qpe
+    - file: algoritmos/09_07-shor
 - url: https://qubox.ufsc.br/index.html
   title: Qubox UFSC
 - file: 10-referencias
