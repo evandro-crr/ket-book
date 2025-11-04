@@ -1,0 +1,830 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fatoração de Números Inteiros (Shor) &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algoritmos/09_07-shor';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Referências" href="../10-referencias.html" />
+    <link rel="prev" title="Estimativa de Fase Quântica (QPE)" href="09_06-qpe.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../09-algoritmos.html">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="09_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_3-simon.html">Problema de Simon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_4-grover.html">Algoritmo de Busca de Grover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_05-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_06-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/algoritmos/09_07-shor.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/algoritmos/09_07-shor.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/algoritmos/09_07-shor.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fatoração de Números Inteiros (Shor)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-de-euler">Série de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-shor">Algoritmo de Shor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-de-shor">Circuito Quântico de Shor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-shor">Simulação do algorítimo de Shor</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_thebe-init tag_remove-output tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>O Algoritmo de Shor é um dos marcos fundamentais da computação quântica, servindo como demonstração prática mais impactante da supremacia quântica sobre paradigmas clássicos. O algoritmo é a ponte que conecta princípios profundos da teoria de números com o poder exponencial do paralelismo quântico, permitindo-nos “desvendar” a estrutura multiplicativa de inteiros - um problema que há séculos resiste aos ataques dos mais avançados algoritmos clássicos. Mais do que uma ferramenta de fatoração, Shor é a materialização quântica que transforma o problema aparentemente intratável da periodização modular em informação mensurável, expondo assim as fundações teóricas que sustentam sistemas criptográficos globais e redefinindo os limites do computável.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="fatoracao-de-numeros-inteiros-shor">
+<h1>Fatoração de Números Inteiros (Shor)<a class="headerlink" href="#fatoracao-de-numeros-inteiros-shor" title="Link para este cabeçalho">#</a></h1>
+<p><strong>AVISO:</strong> Para o entedimento completo do algorítmo de Shor é necessário conhecimento perante o Algorítmo de Estimação de Fase Quântica e Transformada Quântica de Fourier</p>
+<p><strong>O Problema da Fatoração de Números Inteiros</strong></p>
+<p>O Problema da Fatoração de Números Inteiros constitui um dos desafios computacionais mais fundamentais e persistentes da matemática e ciência da computação. Em sua essência, o problema questiona: dado um número composto N, como encontrar eficientemente seus fatores primos? Enquanto verificar se um número é primo é relativamente fácil, fazer o caminho inverso, descobrir quais números primos multiplicados geram um número grande, é extremamente complexo e consome muito tempo.</p>
+<div class="math notranslate nohighlight">
+\[
+N = p \times q
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span> são números primos.</p>
+<section id="serie-de-euler">
+<h2>Série de Euler<a class="headerlink" href="#serie-de-euler" title="Link para este cabeçalho">#</a></h2>
+<p>Calcular <span class="math notranslate nohighlight">\({17 \times 3}\)</span> é simples. Porém, dado o número <span class="math notranslate nohighlight">\(51\)</span>, é mais difícil encontrar seus fatores primos. Para números menos, mesmo que demorado, esses problemas são solucionáveis. Entretando, ao tratar de protocolos, como os de criptografia, são usados centenas de dígitos, aumentando a dificuldade da fatoração.</p>
+<p>Tendo em vista o problema da fatoração, o matemático Leonard Euler desenvolveu importantes contribuições que posteriormente se tornaram fundamentais para o entendimento teórico por trás de algorítmo de fatoração.</p>
+<p>Euler descobre um padrão, observando uma série <span class="math notranslate nohighlight">\(m\)</span> de potências de 2:</p>
+<div class="math notranslate nohighlight">
+\[
+m = 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048...
+\]</div>
+<p>Aplicando <span class="math notranslate nohighlight">\(\mod 5\)</span> em cada item dessa série, obtemos o seguinte resultado:</p>
+<div class="math notranslate nohighlight">
+\[
+m\mod 5 = 1, 2, 4, 3, 1, 2, 4, 3, 1, 2, 4, 3
+\]</div>
+<p>Nota-se que, nessa série, os valores <span class="math notranslate nohighlight">\([1, 2, 4, 3]\)</span> se repetem indefinidade, com período 4.</p>
+<p>Se aplicarmos <span class="math notranslate nohighlight">\(\mod 15\)</span> na mesma série <span class="math notranslate nohighlight">\(m\)</span> original, notamos que obteremos o seguinte padrão:</p>
+<div class="math notranslate nohighlight">
+\[
+m\mod 15 = 1, 2, 4, 8, 1, 2, 4, 8, 1, 2, 4, 8
+\]</div>
+<p>Dessa vez, nessa série, os valores são diferentes quando comparados a <span class="math notranslate nohighlight">\(m\mod 5\)</span>, <span class="math notranslate nohighlight">\([1, 2, 4, 8]\)</span> se repetem indefinidade. Porém, com exato mesmo período 4.</p>
+<p>Com isso, Euler percebeu que dada a sequência: [<span class="math notranslate nohighlight">\(x \mod N, x^2 \mod N, x^3 \mod N, x^4 \mod N, …\)</span>].
+Se <span class="math notranslate nohighlight">\(N\)</span> é o produto de dois primos <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span>, e <span class="math notranslate nohighlight">\(x\)</span> não é divisível por <span class="math notranslate nohighlight">\(p\)</span> ou <span class="math notranslate nohighlight">\(q\)</span>, a sequência se repete com um período que divide <span class="math notranslate nohighlight">\((p-1)(q-1)\)</span>.</p>
+</section>
+<section id="algoritmo-de-shor">
+<h2>Algoritmo de Shor<a class="headerlink" href="#algoritmo-de-shor" title="Link para este cabeçalho">#</a></h2>
+<p>O <em>Algoritmo de Shor</em> possui uma estrutura muito similar ao <em>Algorítmo de Estimação de Fase (QPE)</em>, pois, assim como o <em>QPE</em>, o <em>Algorítmo de Shor</em> é uma aplicação fundamental da <em>Transformada Quântica de Fourier (QFT)</em> que permite estimar o autovalor de um operador unitário.</p>
+<p>Dado um número composto <strong>N</strong> que desejamos fatorar, e um inteiro <strong>a</strong> coprimo com N, encontre o menor inteiro positivo <strong>r</strong> tal que:</p>
+<div class="math notranslate nohighlight">
+\[a^r \equiv 1 \pmod{N}\]</div>
+<p>Portanto, necessita-se dos seguintes recursos quânticos:</p>
+<ul class="simple">
+<li><p><strong>Registro de controle</strong>: <span class="math notranslate nohighlight">\(t\)</span> qubits para estimação de fase (<span class="math notranslate nohighlight">\(t \approx 2\log_2 N\)</span>)</p></li>
+<li><p><strong>Registro de trabalho</strong>: <span class="math notranslate nohighlight">\(n\)</span> qubits para representar números módulo N (<span class="math notranslate nohighlight">\(n = \lceil \log_2 N \rceil\)</span>)</p></li>
+<li><p><strong>Operador unitário</strong>: <span class="math notranslate nohighlight">\(U_a\)</span> definido por <span class="math notranslate nohighlight">\(U_a\ket{x} = \ket{ax \mod N}\)</span></p></li>
+</ul>
+<section id="circuito-quantico-de-shor">
+<h3>Circuito Quântico de Shor<a class="headerlink" href="#circuito-quantico-de-shor" title="Link para este cabeçalho">#</a></h3>
+<p>O algoritmo quântico para a Estimação de Fase Quântica é implementado através de um circuito composto por portas Hadamard e operadores unitários. O procedimento para <span class="math notranslate nohighlight">\(m\)</span> qubits em <span class="math notranslate nohighlight">\({\ket{0}}\)</span> e <span class="math notranslate nohighlight">\(n\)</span> qubits é:</p>
+<p><strong>Procedimento:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc}
+   \text{Etapa 0:} &amp; \ket{0}^{\otimes m} \ket{v} &amp; \text{Inicializa m qubits em 0 e n qubits em v} \\
+   \text{Etapa 1:} &amp; H\ket{\psi_0} &amp; \text{Coloca os qubits incializados em 0 em superposição} \\
+   \text{Etapa 2:} &amp; U^1\ket{\psi_1} &amp; \text{Aplica o operador unitário no primeiro qubit v} \\
+   \vdots &amp; \vdots &amp; \vdots \\
+   \text{Etapa m:} &amp; U^{2^{m-1}}\ket{\psi_{m-1}} &amp; \text{Aplica o operador unitário no n-ésimo qubit em v} \\
+   \text{Etapa m+1:} &amp; \text{IQFT} \ket{\psi_m} &amp; \text{Aplica a IQFT nos m qubits} \\
+\end{array}
+\end{split}\]</div>
+<p><strong>Circuito</strong></p>
+<p>Notação expandida:</p>
+<p><img alt="shor-3.png" src="../_images/shor-3.png" /></p>
+<p>Observação: Nessa imagem notamos uma diferença de notação para o procedimento, em que: “<span class="math notranslate nohighlight">\(m \space qubits\)</span>” se tornaram “<span class="math notranslate nohighlight">\(n \space qubits\)</span>” e “<span class="math notranslate nohighlight">\(IQFT\)</span>” se tornou “<span class="math notranslate nohighlight">\(QFT^\dagger\)</span>”</p>
+<p>Análise detalhada do algoritmo:</p>
+<p><strong>Estado Inicial:</strong> $<span class="math notranslate nohighlight">\(\ket{\psi_0} = \ket{0}^{\otimes t} \otimes \ket{1}^{\otimes n}\)</span>$</p>
+<p>Aplicamos Hadamard nos qubits inicializados em <span class="math notranslate nohighlight">\(\ket{0}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[H^{\otimes t}\ket{\psi_0} = \frac{1}{\sqrt{2^t}} \sum_{j=0}^{2^t-1} \ket{j} \otimes \ket{1}\]</div>
+<p>Aplicação Controlada do Operador Modular:</p>
+<p>Para cada qubit <span class="math notranslate nohighlight">\(k\)</span> no registro de controle (<span class="math notranslate nohighlight">\(k = 0, 1, \dots, t-1\)</span>), aplicamos <span class="math notranslate nohighlight">\(U_a^{2^k}\)</span> controlado:</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi_2} = \frac{1}{\sqrt{2^t}} \sum_{j=0}^{2^t-1} \ket{j} \otimes U_a^j\ket{1} = \frac{1}{\sqrt{2^t}} \sum_{j=0}^{2^t-1} \ket{j} \otimes \ket{a^j \mod N}\]</div>
+<p>Aplicação da Transformada Quântica de Fourier Inversa (IQFT)</p>
+<p>Aplicamos QFT<span class="math notranslate nohighlight">\(^\dagger\)</span> no registro de controle:</p>
+<div class="math notranslate nohighlight">
+\[\ket{\psi_3} = \text{QFT}^\dagger \otimes I \ket{\psi_2}\]</div>
+<p><strong>Medição</strong>
+Medimos o registro de controle para obter uma aproximação da fase.</p>
+<p><strong>Complexidade</strong></p>
+<p>A complexidade do algoritmo é   <span class="math notranslate nohighlight">\({O(t^2 + t \cdot C_U)}\)</span>, em que <span class="math notranslate nohighlight">\(C_U\)</span> é custo de implementar <span class="math notranslate nohighlight">\(U\)</span></p>
+</section>
+</section>
+<section id="simulacao-do-algoritimo-de-shor">
+<h2>Simulação do algorítimo de Shor<a class="headerlink" href="#simulacao-do-algoritimo-de-shor" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algorítimo de Shor usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">log2</span><span class="p">,</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">sqrt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>O <em>Algorítmo de Shor</em> utiliza a <span class="math notranslate nohighlight">\(IQFT\)</span>, portanto, é necessário a implementação da <em>Transformada Quântica de Fourier (QFT)</em>, que já foi explicada anteriormente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">qft</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">do_swap</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="o">*</span><span class="n">init</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">qubits</span>
+        <span class="n">H</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctrl_qubit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">init</span><span class="p">)):</span>
+            <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">ctrl_qubit</span><span class="p">):</span>
+                <span class="n">PHASE</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">last</span><span class="p">)</span>
+
+        <span class="n">qft</span><span class="p">(</span><span class="n">init</span><span class="p">,</span> <span class="n">do_swap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">do_swap</span><span class="p">:</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">SWAP</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubits</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Uma vez que a implementação da <em>Transformada Quântica de Fourier</em> foi feita, pode-se implementar o algorítmo de <em>Estimação de Fase Quântica</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">qu_exp</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Quant</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">qulib</span><span class="o">.</span><span class="n">flip_to_control</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+                <span class="n">qulib</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">set_int</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">shor_quantico</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">processo</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">processo</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">processo</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="n">H</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">qu_exp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">measure</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">adj</span><span class="p">(</span><span class="n">qft</span><span class="p">)(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="n">Fraction</span><span class="p">(</span><span class="n">r</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">denominator</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">resultado</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">shor</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="c1"># Se N for par, retorna o fator 2.</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+
+    <span class="c1"># Se N = a^b para inteiros a &gt;= 1 e b &gt;= 2, retorna a.</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="n">b</span>
+        <span class="n">u1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">u2</span> <span class="o">=</span> <span class="n">u1</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">u1</span><span class="o">**</span><span class="n">b</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">u1</span>
+        <span class="k">elif</span> <span class="n">u2</span><span class="o">**</span><span class="n">b</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">u2</span>
+
+    <span class="c1"># Escolhe a aleatoriamente. Se mdc(a, N) &gt; 1 retorna mdc(a, N).</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">mdc_a_N</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mdc_a_N</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sorte!&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">mdc_a_N</span>
+
+        <span class="c1"># Encontrando a ordem com algoritmo quântico</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">shor_quantico</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">r</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">!=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="p">(</span><span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">*</span> <span class="n">N</span> <span class="o">//</span> <span class="n">p</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">p</span>
+
+            <span class="n">q</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="p">(</span><span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">q</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">q</span> <span class="o">*</span> <span class="n">N</span> <span class="o">//</span> <span class="n">q</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">q</span>
+
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Falha ao fatorar, tente novamente&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">shor</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">N</span><span class="o">//</span><span class="n">a</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">a</span> <span class="o">=</span> <span class="n">shor</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">N</span><span class="o">//</span><span class="n">a</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nn">Cell In[5], line 28,</span> in <span class="ni">shor</span><span class="nt">(N)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="k">return</span> <span class="n">mdc_a_N</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="c1"># Encontrando a ordem com algoritmo quântico</span>
+<span class="ne">---&gt; </span><span class="mi">28</span> <span class="n">r</span> <span class="o">=</span> <span class="n">shor_quantico</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">if</span> <span class="n">r</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">!=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="p">(</span><span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="nn">Cell In[4], line 16,</span> in <span class="ni">shor_quantico</span><span class="nt">(a, N)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">y</span> <span class="o">=</span> <span class="n">processo</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">H</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">qu_exp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">measure</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">adj</span><span class="p">(</span><span class="n">qft</span><span class="p">)(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="nn">Cell In[4], line 3,</span> in <span class="ni">qu_exp</span><span class="nt">(a, x, n, y)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">qu_exp</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Quant</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>         <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">qulib</span><span class="o">.</span><span class="n">flip_to_control</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>             <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                 <span class="n">qulib</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">set_int</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+<span class="ne">AttributeError</span>: module &#39;ket.qulib&#39; has no attribute &#39;flip_to_control&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./algoritmos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_06-qpe.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Estimativa de Fase Quântica (QPE)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../10-referencias.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Referências</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-de-euler">Série de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-shor">Algoritmo de Shor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-de-shor">Circuito Quântico de Shor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-shor">Simulação do algorítimo de Shor</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
