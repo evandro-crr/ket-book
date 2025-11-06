@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Transformada Quântica de Fourier (QFT) &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algoritmos/baseados_em_QFT/09_3_1-qft';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Estimativa de Fase Quântica (QPE)" href="09_3_2-qpe.html" />
+    <link rel="prev" title="Algoritmos Baseados em QFT" href="09_3_0-algoritmos_qft.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../09-algoritmos.html">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../busca/09_2_0-algoritmos_de_busca.html">Algoritmos de Busca</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../busca/09_2_1-grover.html">Algoritmo de Busca de Grover</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/algoritmos/baseados_em_QFT/09_3_1-qft.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/algoritmos/baseados_em_QFT/09_3_1-qft.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/algoritmos/baseados_em_QFT/09_3_1-qft.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Transformada Quântica de Fourier (QFT)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-discreta-de-fourier-dft">Transformada Discreta de Fourier (DFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-para-n-4">Exemplo para N = 4</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complexidade-computacional">Complexidade Computacional</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-rapida-de-fourier-fft">Transformada Rápida de Fourier (FFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-do-algoritmo">Estratégia do Algoritmo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-pratico-para-n-8">Exemplo Prático para N = 8</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complexidade-da-fft">Complexidade da FFT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-da-transformada-quantica-de-fourier-qft">Algoritmo da Transformada Quântica de Fourier (QFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-da-qft">Circuito Quântico da QFT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier">Simulação do algorítimo da Transformada Quântica de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-quantica-de-fourier-inversa-iqft">Transformada Quântica de Fourier Inversa (IQFT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier-inversa">Simulação do algorítimo da Transformada Quântica de Fourier Inversa</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_thebe-init tag_remove-output tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>A Transformada Quântica de Fourier (QFT) é um dos algoritmos quânticos fundamentais, servindo como componente essencial para diversos outros algoritmos quânticos, incluindo o famoso algoritmo de Shor para fatoração. A QFT é a versão quântica da Transformada Discreta de Fourier e oferece uma aceleração exponencial em relação à sua contraparte clássica.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="transformada-quantica-de-fourier-qft">
+<h1>Transformada Quântica de Fourier (QFT)<a class="headerlink" href="#transformada-quantica-de-fourier-qft" title="Link para este cabeçalho">#</a></h1>
+<p>Seja um estado quântico <span class="math notranslate nohighlight">\(\ket{\psi} = \sum_{j=0}^{N-1} x_j \ket{j}\)</span> representado na base computacional, onde <span class="math notranslate nohighlight">\(N = 2^n\)</span> e <span class="math notranslate nohighlight">\(n\)</span> é o número de qubits. A Transformada Quântica de Fourier aplica a seguinte transformação:</p>
+<div class="math notranslate nohighlight">
+\[
+QFT\ket{\psi} = \sum_{k=0}^{N-1} y_k \ket{k}
+\]</div>
+<p>onde os coeficientes <span class="math notranslate nohighlight">\(y_k\)</span> são dados por:</p>
+<div class="math notranslate nohighlight">
+\[
+y_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} x_j e^{2\pi i j k / N}
+\]</div>
+<section id="algoritmo-classico">
+<h2>Algoritmo Clássico<a class="headerlink" href="#algoritmo-classico" title="Link para este cabeçalho">#</a></h2>
+<p>Agora considere o problema de calcular a Transformada de Fourier no contexto clássico. A seguir serão vistas brevemente as abordagens clássicas para este problema.</p>
+<section id="transformada-discreta-de-fourier-dft">
+<h3>Transformada Discreta de Fourier (DFT)<a class="headerlink" href="#transformada-discreta-de-fourier-dft" title="Link para este cabeçalho">#</a></h3>
+<p>A abordagem mais direta para calcular a Transformada Discreta de Fourier (DFT) classicamente segue exatamente a definição matemática. Para um vetor de entrada <span class="math notranslate nohighlight">\(\mathbf{x} = [x_0, x_1, \ldots, x_{N-1}]\)</span>, cada coeficiente de saída <span class="math notranslate nohighlight">\(y_k\)</span> é calculado individualmente através da fórmula:</p>
+<div class="math notranslate nohighlight">
+\[
+y_k = \sum_{j=0}^{N-1} x_j \cdot \omega_N^{jk}, \quad \text{onde } \omega_N = e^{2\pi i / N}
+\]</div>
+<p>Esta abordagem é determinística - para uma mesma entrada, produz sempre a mesma saída - e não faz uso de recursos probabilísticos. No entanto, sua implementação prática requer o cálculo explícito de cada termo da soma.</p>
+<section id="exemplo-para-n-4">
+<h4>Exemplo para N = 4<a class="headerlink" href="#exemplo-para-n-4" title="Link para este cabeçalho">#</a></h4>
+<p>Para um vetor com 4 elementos <span class="math notranslate nohighlight">\([x_0, x_1, x_2, x_3]\)</span>, os cálculos necessários são:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+y_0 &amp;= x_0 \cdot \omega^0 + x_1 \cdot \omega^0 + x_2 \cdot \omega^0 + x_3 \cdot \omega^0 \\
+y_1 &amp;= x_0 \cdot \omega^0 + x_1 \cdot \omega^1 + x_2 \cdot \omega^2 + x_3 \cdot \omega^3 \\
+y_2 &amp;= x_0 \cdot \omega^0 + x_1 \cdot \omega^2 + x_2 \cdot \omega^4 + x_3 \cdot \omega^6 \\
+y_3 &amp;= x_0 \cdot \omega^0 + x_1 \cdot \omega^3 + x_2 \cdot \omega^6 + x_3 \cdot \omega^9
+\end{aligned}
+\end{split}\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\omega = e^{2\pi i / 4} = i\)</span> é uma raiz primitiva da unidade.</p>
+</section>
+<section id="complexidade-computacional">
+<h4>Complexidade Computacional<a class="headerlink" href="#complexidade-computacional" title="Link para este cabeçalho">#</a></h4>
+<p>Para calcular todos os N coeficientes de saída:</p>
+<ul class="simple">
+<li><p><strong>Multiplicações complexas</strong>: <span class="math notranslate nohighlight">\(N \times N = N^2\)</span></p></li>
+<li><p><strong>Adições complexas</strong>: <span class="math notranslate nohighlight">\(N \times (N-1) = N^2 - N\)</span></p></li>
+<li><p><strong>Total de operações</strong>: <span class="math notranslate nohighlight">\(O(N^2)\)</span></p></li>
+</ul>
+<p>Esta complexidade quadrática torna a DFT direta computacionalmente inviável para valores grandes de N, pois o número de operações cresce rapidamente.</p>
+</section>
+</section>
+<section id="transformada-rapida-de-fourier-fft">
+<h3>Transformada Rápida de Fourier (FFT)<a class="headerlink" href="#transformada-rapida-de-fourier-fft" title="Link para este cabeçalho">#</a></h3>
+<p>Uma abordagem mais sofisticada é o algoritmo FFT (Fast Fourier Transform), que explora a estrutura de simetria e periodicidade das raízes complexas da unidade. O algoritmo mais conhecido é o de Cooley-Tukey, que utiliza uma estratégia de divisão e conquista.</p>
+<section id="estrategia-do-algoritmo">
+<h4>Estratégia do Algoritmo<a class="headerlink" href="#estrategia-do-algoritmo" title="Link para este cabeçalho">#</a></h4>
+<p>O algoritmo FFT baseia-se na observação de que uma DFT de tamanho N pode ser decomposta em DFTs menores:</p>
+<p><strong>Decomposição Radix-2:</strong></p>
+<ul class="simple">
+<li><p>Separar o vetor original em elementos de índice par e ímpar</p></li>
+<li><p>Calcular recursivamente a FFT para cada metade</p></li>
+<li><p>Combinar os resultados usando operações elementares</p></li>
+</ul>
+<p>Matematicamente, para N par:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+y_k &amp;= \sum_{j=0}^{N-1} x_j \omega_N^{jk} \\
+&amp;= \sum_{m=0}^{N/2-1} x_{2m} \omega_N^{2mk} + \sum_{m=0}^{N/2-1} x_{2m+1} \omega_N^{(2m+1)k} \\
+&amp;= \sum_{m=0}^{N/2-1} x_{2m} \omega_{N/2}^{mk} + \omega_N^k \sum_{m=0}^{N/2-1} x_{2m+1} \omega_{N/2}^{mk}
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="exemplo-pratico-para-n-8">
+<h4>Exemplo Prático para N = 8<a class="headerlink" href="#exemplo-pratico-para-n-8" title="Link para este cabeçalho">#</a></h4>
+<p><strong>Primeiro nível de recursão:</strong></p>
+<ul class="simple">
+<li><p>Subproblema par: <span class="math notranslate nohighlight">\([x_0, x_2, x_4, x_6]\)</span> → FFT de tamanho 4</p></li>
+<li><p>Subproblema ímpar: <span class="math notranslate nohighlight">\([x_1, x_3, x_5, x_7]\)</span> → FFT de tamanho 4</p></li>
+</ul>
+<p><strong>Segundo nível de recursão:</strong></p>
+<ul class="simple">
+<li><p>Pares dos pares: <span class="math notranslate nohighlight">\([x_0, x_4]\)</span> → FFT de tamanho 2</p></li>
+<li><p>Ímpares dos pares: <span class="math notranslate nohighlight">\([x_2, x_6]\)</span> → FFT de tamanho 2</p></li>
+<li><p>Pares dos ímpares: <span class="math notranslate nohighlight">\([x_1, x_5]\)</span> → FFT de tamanho 2</p></li>
+<li><p>Ímpares dos ímpares: <span class="math notranslate nohighlight">\([x_3, x_7]\)</span> → FFT de tamanho 2</p></li>
+</ul>
+<p><strong>Operações de combinação:</strong>
+Em cada nível, as DFTs menores são combinadas usando operações “borboleta” que envolvem multiplicações por fatores de rotação (twiddle factors).</p>
+</section>
+<section id="complexidade-da-fft">
+<h4>Complexidade da FFT<a class="headerlink" href="#complexidade-da-fft" title="Link para este cabeçalho">#</a></h4>
+<ul class="simple">
+<li><p><strong>Número de níveis recursivos</strong>: <span class="math notranslate nohighlight">\(\log_2 N = n\)</span></p></li>
+<li><p><strong>Operações por nível</strong>: <span class="math notranslate nohighlight">\(N\)</span> operações (combinações borboleta)</p></li>
+<li><p><strong>Total de operações</strong>: <span class="math notranslate nohighlight">\(O(N \log N) = O(2^n \cdot n)\)</span></p></li>
+</ul>
+<p>Esta complexidade representa uma melhoria significativa em relação à abordagem direta, mas ainda apresenta crescimento superlinear com o tamanho do problema.</p>
+<p>A análise da abordagem clássica fornece o contexto necessário para apreciar as vantagens da implementação quântica da Transformada de Fourier, que será discutida a seguir.</p>
+</section>
+</section>
+</section>
+<section id="algoritmo-da-transformada-quantica-de-fourier-qft">
+<h2>Algoritmo da Transformada Quântica de Fourier (QFT)<a class="headerlink" href="#algoritmo-da-transformada-quantica-de-fourier-qft" title="Link para este cabeçalho">#</a></h2>
+<p>Para implementar a Transformada Quântica de Fourier, precisamos de um circuito quântico que realize a transformação unitária correspondente. A QFT atua sobre estados da base computacional aplicando a seguinte transformação:</p>
+<div class="math notranslate nohighlight">
+\[
+QFT\ket{j} = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i j k / N} \ket{k}
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(N = 2^n\)</span> e <span class="math notranslate nohighlight">\(j, k \in \{0, 1, \dots, N-1\}\)</span>.</p>
+<section id="circuito-quantico-da-qft">
+<h3>Circuito Quântico da QFT<a class="headerlink" href="#circuito-quantico-da-qft" title="Link para este cabeçalho">#</a></h3>
+<p>O algoritmo quântico para a Transformada de Fourier é implementado através de um circuito composto por portas Hadamard e portas de rotação controlada. O procedimento para <span class="math notranslate nohighlight">\(n\)</span> qubits é:</p>
+<p><strong>Procedimento:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc}
+   \text{Etapa 0:} &amp; \ket{j_1 j_2 \cdots j_n} &amp; \text{Estado inicial} \\
+   \text{Etapa 1:} &amp; H_1 R_2^1 R_3^1 \cdots R_n^1 \ket{j_1 j_2 \cdots j_n} &amp; \text{Operações no qubit 1} \\
+   \text{Etapa 2:} &amp; H_2 R_3^2 \cdots R_n^2 \ket{\psi_1} &amp; \text{Operações no qubit 2} \\
+   \vdots &amp; \vdots &amp; \vdots \\
+   \text{Etapa n:} &amp; H_n \ket{\psi_{n-1}} &amp; \text{Operação final} \\
+   \text{Etapa n+1:} &amp; \text{SWAPs} \ket{\psi_n} &amp; \text{Correção de ordem} \\
+  \end{array}
+\end{split}\]</div>
+<p>onde <span class="math notranslate nohighlight">\(R_k^m\)</span> representa uma porta de rotação <span class="math notranslate nohighlight">\(R_k\)</span> controlada pelo qubit <span class="math notranslate nohighlight">\(m\)</span>, com:
+$<span class="math notranslate nohighlight">\(
+R_k = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{2\pi i / 2^k} \end{bmatrix}
+\)</span>$</p>
+<p><strong>Circuito</strong></p>
+<p>Notação expandida:</p>
+<p><img alt="qft_algoritmo" src="algoritmos/images/algoritmos/qft/qft_algoritmo.png" /></p>
+<p>Análise detalhada do algoritmo:</p>
+<p><strong>Estado inicial:</strong> <span class="math notranslate nohighlight">\(\ket{\psi_0} = \ket{j_1 j_2 \cdots j_n} = \ket{j}\)</span></p>
+<p>Aplicamos Hadamard no primeiro qubit seguido de rotações controladas:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+\ket{\psi_1} &amp;= R_n^1 \cdots R_3^1 R_2^1 H_1 \ket{j_1 j_2 \cdots j_n} \\
+&amp;= \frac{1}{\sqrt{2}} (\ket{0} + e^{2\pi i [0.j_1 j_2 \cdots j_n]} \ket{1}) \otimes \ket{j_2 \cdots j_n}
+\end{split}
+\end{split}\]</div>
+<p>onde <span class="math notranslate nohighlight">\([0.j_1 j_2 \cdots j_n]\)</span> representa a fração binária <span class="math notranslate nohighlight">\(j_1/2 + j_2/4 + \cdots + j_n/2^n\)</span>.</p>
+<p>Operações no qubit 2:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+\ket{\psi_2} &amp;= R_n^2 \cdots R_3^2 H_2 \ket{\psi_1} \\
+&amp;= \frac{1}{\sqrt{2^2}} (\ket{0} + e^{2\pi i [0.j_2 j_3 \cdots j_n]} \ket{1}) \otimes (\ket{0} + e^{2\pi i [0.j_1 j_2 \cdots j_n]} \ket{1}) \otimes \ket{j_3 \cdots j_n}
+\end{split}
+\end{split}\]</div>
+<p>Continuando este processo para todos os qubits:</p>
+<p>Estado final antes dos SWAPs:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi_n} = \frac{1}{\sqrt{2^n}} \bigotimes_{k=1}^n \left( \ket{0} + e^{2\pi i [0.j_k j_{k+1} \cdots j_n]} \ket{1} \right)
+\]</div>
+<p>Etapa n+1 - Aplicação dos SWAPs:
+Para obter a ordem correta dos qubits na representação binária, aplicamos portas SWAP entre qubits simétricos:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi_{final}} = SWAP_{1,n} SWAP_{2,n-1} \cdots \ket{\psi_n}
+\]</div>
+<p>O estado final é exatamente:</p>
+<div class="math notranslate nohighlight">
+\[
+QFT\ket{j} = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i j k / N} \ket{k}
+\]</div>
+</section>
+</section>
+<section id="comparacao-de-desempenho">
+<h2>Comparação de Desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link para este cabeçalho">#</a></h2>
+<p>A tabela abaixo traz a comparação entre o desempenho dos algoritmos clássicos e quântico para o cálculo da Transformada de Fourier:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l|l}
+\text{Algoritmo} &amp; \text{Complexidade Computacional} \\ \hline
+\text{DFT (Clássico)} &amp; O(N^2) = O(2^{2n}) \\
+\text{FFT (Clássico)} &amp; O(N \log N) = O(2^n \cdot n) \\
+\text{QFT (Quântico)} &amp; O(n^2)
+\end{array}
+\end{split}\]</div>
+</section>
+<section id="simulacao-do-algoritimo-da-transformada-quantica-de-fourier">
+<h2>Simulação do algorítimo da Transformada Quântica de Fourier<a class="headerlink" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algorítimo QFT usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <em>Transformada Quântica de Fourier (QFT)</em> é crucial para algoritmos como o de Shor. Ela mapeia estados da <em>codificação de base computacional</em> para um domínio de <em>frequência</em>, onde a informação é codificada nas <em>fases relativas</em> dos qubits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">qft</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">do_swap</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="o">*</span><span class="n">init</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">qubits</span>
+        <span class="n">H</span><span class="p">(</span><span class="n">last</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctrl_qubit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">init</span><span class="p">)):</span>
+            <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">ctrl_qubit</span><span class="p">):</span>
+                <span class="n">PHASE</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">last</span><span class="p">)</span>
+
+        <span class="n">qft</span><span class="p">(</span><span class="n">init</span><span class="p">,</span> <span class="n">do_swap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">do_swap</span><span class="p">:</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">SWAP</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubits</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="transformada-quantica-de-fourier-inversa-iqft">
+<h2>Transformada Quântica de Fourier Inversa (IQFT)<a class="headerlink" href="#transformada-quantica-de-fourier-inversa-iqft" title="Link para este cabeçalho">#</a></h2>
+<p>A Transformada Quântica de Fourier Inversa (IQFT - Inverse Quantum Fourier Transform) é a operação unitária que realiza a transformação inversa exata da Transformada Quântica de Fourier (QFT). Enquanto a QFT codifica informações da base computacional para a base de Fourier, a IQFT decodifica informações da base de Fourier de volta para a base computacional.</p>
+<p>A IQFT é exatamente o operador adjunto da QFT:</p>
+<div class="math notranslate nohighlight">
+\[
+IQFT = QFT^\dagger
+\]</div>
+</section>
+<section id="simulacao-do-algoritimo-da-transformada-quantica-de-fourier-inversa">
+<h2>Simulação do algorítimo da Transformada Quântica de Fourier Inversa<a class="headerlink" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier-inversa" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algorítimo IQFT usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Como demonstrado anteriormente, a Transformada Quântica de Fourier Inversa é o operador adjunto da QFT. O ket nos permite descobrir o operador adjunto de uma porta lógica, exceto as operações de medida, com a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.adj" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">adj()</span></code></a>, como demonstrado abaixo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">iqft</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+    <span class="n">adj</span><span class="p">(</span><span class="n">qft</span><span class="p">)(</span><span class="n">qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./algoritmos/baseados_em_QFT"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_3_0-algoritmos_qft.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Algoritmos Baseados em QFT</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_3_2-qpe.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Estimativa de Fase Quântica (QPE)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-discreta-de-fourier-dft">Transformada Discreta de Fourier (DFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-para-n-4">Exemplo para N = 4</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complexidade-computacional">Complexidade Computacional</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-rapida-de-fourier-fft">Transformada Rápida de Fourier (FFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-do-algoritmo">Estratégia do Algoritmo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-pratico-para-n-8">Exemplo Prático para N = 8</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complexidade-da-fft">Complexidade da FFT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-da-transformada-quantica-de-fourier-qft">Algoritmo da Transformada Quântica de Fourier (QFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-da-qft">Circuito Quântico da QFT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier">Simulação do algorítimo da Transformada Quântica de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-quantica-de-fourier-inversa-iqft">Transformada Quântica de Fourier Inversa (IQFT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-da-transformada-quantica-de-fourier-inversa">Simulação do algorítimo da Transformada Quântica de Fourier Inversa</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

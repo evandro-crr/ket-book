@@ -1,0 +1,1152 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Problema de Deutsch-Jozsa &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algoritmos/introdutórios/09_1_1-deutsch-jozsa';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Problema de Bernstein-Vazirani" href="09_1_2-bernstein-vazirani.html" />
+    <link rel="prev" title="Algoritmos Introdutórios" href="09_1_0-algoritmos_introdut%C3%B3rios.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../09-algoritmos.html">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../busca/09_2_0-algoritmos_de_busca.html">Algoritmos de Busca</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../busca/09_2_1-grover.html">Algoritmo de Busca de Grover</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/algoritmos/introdutórios/09_1_1-deutsch-jozsa.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/algoritmos/introdutórios/09_1_1-deutsch-jozsa.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/algoritmos/introdutórios/09_1_1-deutsch-jozsa.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Problema de Deutsch-Jozsa</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritimo-classico">Algorítimo clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo Clássico Determinístico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch">Algoritmo de Deutsch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsch">Simulação do algorítimo de Deutsch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch-versao-simplificada">Algoritmo de Deutsch - Versão Simplificada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsch-simplificado">Simulação do algorítimo de Deutsch Simplificado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch-jozsa">Algoritmo de Deutsch-Jozsa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsche-jozsa">Simulação do algorítimo de Deutsche-Jozsa</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_hide-input tag_thebe-init tag_remove-output docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="admonition-referencias admonition">
+<p class="admonition-title">Referências</p>
+<p>Material extraído do TCC <a class="reference internal" href="#../tcc-giovani.pdf"><span class="xref myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
+</div>
+<p>O Algoritmo de Deutsch-Jozsa é um algoritmo quântico projetado para resolver o Problema de Deutsch-Jozsa. Esse problema não tem especial ênfase em aplicações, mas torna-se laboratório interessante para investigar técnicas e possíveis vantagens da Computação Quântica. A principal referência para esta seção é o livro <span id="id1">[<a class="reference internal" href="../../10-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span>.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="problema-de-deutsch-jozsa">
+<h1>Problema de Deutsch-Jozsa<a class="headerlink" href="#problema-de-deutsch-jozsa" title="Link para este cabeçalho">#</a></h1>
+<p>Antes de enunciar o problema de Deutsch-Jozsa é conveniente escrever algumas definições.</p>
+<p><strong>Definição 1:</strong> Função constante e função balanceada.</p>
+<p>A função booleana <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to \{0,1\}\)</span> é dita constante se <span class="math notranslate nohighlight">\(f\)</span> assume o mesmo valor em todas as entradas:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ll}
+       f(x) = 0 \ , \ \ \forall x \in  \{ 0,1 \}^n &amp;  \text{ ou} \\
+        f(x) = 1 \ , \ \ \forall x \in  \{ 0,1 \}^n &amp;  \ .
+      \end{array} 
+\end{split}\]</div>
+<p>A função <span class="math notranslate nohighlight">\(f\)</span> é dita balanceada se admite o valor <span class="math notranslate nohighlight">\(0\)</span> em metade das suas entradas e admite <span class="math notranslate nohighlight">\(1\)</span> na metade complementar das entradas.</p>
+<p><strong>Exemplos:</strong></p>
+<ul class="simple">
+<li><p>A função booleana <span class="math notranslate nohighlight">\(f(x) = 1\)</span> é constante.</p></li>
+<li><p>Denote <span class="math notranslate nohighlight">\(x \in \{ 0,1 \}^n \)</span> por <span class="math notranslate nohighlight">\(x = x_{n-1} \ldots x_1 x_0\)</span>. A função booleana <span class="math notranslate nohighlight">\(f(x) = x_0\)</span> é balanceada, pois para exatamente metade das entradas <span class="math notranslate nohighlight">\(x\)</span> tem-se <span class="math notranslate nohighlight">\(x_0 = 0\)</span> e para a outra metade, tem-se <span class="math notranslate nohighlight">\(x_0 = 1\)</span>.</p></li>
+<li><p>Considere a função booleana com entradas de <span class="math notranslate nohighlight">\(n=2\)</span> bits dada por <span class="math notranslate nohighlight">\(f(a,b) = a\cdot b\)</span>, em que, lembrando, <span class="math notranslate nohighlight">\(\cdot\)</span> representa a porta AND. A tabela verdade dessa função é representada abaixo.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{array}{ccc}
+    a &amp; b &amp; f(a,b) = a \cdot b \\ \hline
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+    1 &amp; 0 &amp; 0 \\
+    1 &amp; 1 &amp; 1 
+   \end{array}
+\end{split}\]</div>
+<p>Essa função não é balanceada nem constante.
+O problema desta seção tem o seguinte enunciado:</p>
+<p><strong>Problema de Deutsch-Jozsa</strong></p>
+<p>Seja uma função booleana <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to \{0,1\}\)</span> que pode ser apenas ou constante ou balanceada. Decidir se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada.</p>
+<p>Deseja-se, dada uma função <span class="math notranslate nohighlight">\(f\)</span> considerada como caixa preta, e com o compromisso de ser ou constante ou balanceada, decidir qual dos dois casos mutuamente excludentes é verdadeiro.</p>
+<section id="algoritimo-classico">
+<h2>Algorítimo clássico<a class="headerlink" href="#algoritimo-classico" title="Link para este cabeçalho">#</a></h2>
+<p>Agora considere o problema de Deutsch-Jozsa no contexto clássico. Tem-se <span class="math notranslate nohighlight">\(f\)</span> dada como uma caixa preta e se quer decidir se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada. A seguir serão vistas brevemente as abordagens clássicas determinística e aleatória para o problema.</p>
+<section id="algoritmo-classico-deterministico">
+<h3>Algoritmo Clássico Determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link para este cabeçalho">#</a></h3>
+<p>A Computação Clássica Determinística é um tipo de computação em que se busca algoritmos que não façam uso de recursos probabilísticos para resolver um problema. Os algoritmos determinísticos são tais que, ao serem executados diversas vezes para uma mesma entrada, produz-se sempre a mesma saída. Para que se resolva o problema nesse tipo de computação, é necessário realizar aplicações sucessivas de <span class="math notranslate nohighlight">\(f\)</span> para diversas entradas até se ter certeza de qual opção é válida (se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada) , calcula-se <span class="math notranslate nohighlight">\(f(0)\)</span>, <span class="math notranslate nohighlight">\(f(1)\)</span>, <span class="math notranslate nohighlight">\(f(2)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> e se verifica se <span class="math notranslate nohighlight">\(f(1) = f(0)\)</span>, <span class="math notranslate nohighlight">\(f(2) = f(1)\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> ou não. Caso ocorra <span class="math notranslate nohighlight">\(f(j) \neq f(i)\)</span>, então a opção certa é `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’, e caso isso não ocorra, a opção correta é ``<span class="math notranslate nohighlight">\(f\)</span> é constante’’.</p>
+<p>Para se distinguir com certeza as duas opções, deve-se aplicar <span class="math notranslate nohighlight">\(f\)</span> a metade das entradas possíveis mais uma, ou seja, a <span class="math notranslate nohighlight">\(2^n/2 + 1\)</span> entradas. Isso porque, na pior das hipóteses, a função era balanceada e, obteve-se um mesmo resultado, por azar, para as <span class="math notranslate nohighlight">\(2^n/2\)</span> entradas testadas, impedindo que se faça a escolha com certeza.</p>
+<p>Dessa forma, o custo computacional desse algoritmo é de <span class="math notranslate nohighlight">\(2^n/2 + 1\)</span> aplicações de <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p><strong>EXERCÍCIO</strong></p>
+</section>
+<section id="algoritmo-classico-probabilistico">
+<h3>Algoritmo Clássico Probabilístico<a class="headerlink" href="#algoritmo-classico-probabilistico" title="Link para este cabeçalho">#</a></h3>
+<p>Um algoritmo probabilístico utiliza a probabilidade como recurso computacional. Para esse tipo de computação, é possível que entradas iguais produzam saídas diferentes, e que a máquina passe por estados diferentes durante a computação, em função de fatores probabilísticos presentes no algoritmo.</p>
+<p>Nesse contexto, se for permitida uma probabilidade de erro <span class="math notranslate nohighlight">\(\varepsilon\)</span> na decisão e o uso de sorteios aleatórios em certas etapas, é possível reduzir o custo computacional do algoritmo clássico determinístico.</p>
+<p>Primeiramente, permite-se que as entradas <span class="math notranslate nohighlight">\(i\)</span> sejam tiradas aleatoriamente, cada uma com mesma probabilidade <span class="math notranslate nohighlight">\(p(i) = 1/2^n\)</span>. Por exemplo, se <span class="math notranslate nohighlight">\(f\)</span> for constante <span class="math notranslate nohighlight">\(1\)</span> (<span class="math notranslate nohighlight">\(f(i) = 1 \forall j\)</span>), a probabilidade de resultar <span class="math notranslate nohighlight">\(1\)</span> é <span class="math notranslate nohighlight">\(1 = 100\%\)</span> e a de resultar <span class="math notranslate nohighlight">\(0\)</span> é <span class="math notranslate nohighlight">\(0 = 0\%\)</span>. Se <span class="math notranslate nohighlight">\(f\)</span> for balanceada, a probabilidade de resultar <span class="math notranslate nohighlight">\(1\)</span> é <span class="math notranslate nohighlight">\(0,\!5 = 50\%\)</span> e o mesmo vale para o resultado <span class="math notranslate nohighlight">\(0\)</span>. Supõe-se, para simplificar a discussão, que o sorteio das entradas é feito sem memória\footnote{Para um número de bits <span class="math notranslate nohighlight">\(n\)</span> grande, esse caso é semelhante ao caso com memória, em que não se permite repetir as entradas no sorteio.}, isto é, com chance de se sortear duas entradas iguais.</p>
+<p><img alt="dj_probabilistico1" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico1.png" /></p>
+<p>A primeira avaliação <span class="math notranslate nohighlight">\(f(i_1)\)</span> não traz mais informação para distinguir entre constante e balanceada.</p>
+<p><img alt="dj_probabilistico2" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico2.png" /></p>
+<p>A segunda aplicação, se resultar <span class="math notranslate nohighlight">\(f(i_2) \neq f(i_1)\)</span>, já resolve com certeza que <span class="math notranslate nohighlight">\(f\)</span> é balanceada.</p>
+<p><img alt="dj_probabilistico3" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico3.png" /></p>
+<p>Se o resultado for <span class="math notranslate nohighlight">\(f(i_2) = f(i_1)\)</span>, tende-se a pensar que <span class="math notranslate nohighlight">\(f\)</span> seria constante e a probabilidade de se estar errado é a probabilidade de tirar duas saídas iguais aleatoriamente numa função balanceada, ou seja, <span class="math notranslate nohighlight">\(P_e = 1 \cdot 0,\!5 = 0,\!5\)</span>.</p>
+<p><img alt="dj_probabilistico4" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico4.png" /></p>
+<p>Na terceira etapa, caso <span class="math notranslate nohighlight">\(f(i_3) \neq f(i_2)\)</span>, resolve-se com certeza que <span class="math notranslate nohighlight">\(f\)</span> é balanceada e caso <span class="math notranslate nohighlight">\(f(i_3) = f(i_2)\)</span>, conclui-se pela opção constante com probabilidade de erro igual a <span class="math notranslate nohighlight">\(P_e = 1 \cdot 0,\!5 \cdot 0,\!5 = 0,\!25\)</span>, correspondente à probabilidade de que, numa função balanceada, tenha-se o mesmo resultado para 3 entradas sorteadas aleatoriamente com igual probabilidade.</p>
+<p><img alt="dj_probabilistico5" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico5.png" /></p>
+<p><img alt="dj_probabilistico6" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico6.png" /></p>
+<p>Seguindo essa ideia, na <span class="math notranslate nohighlight">\(m\)</span>-ésima aplicação de <span class="math notranslate nohighlight">\(f\)</span>, se ocorrer <span class="math notranslate nohighlight">\(f(i_m) \neq f(i_{m-1})\)</span>, conclui-se com certeza a opção `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’ e se <span class="math notranslate nohighlight">\(f(i_m) = f(i_{m-1})\)</span>, pode-se concluir que ``<span class="math notranslate nohighlight">\(f\)</span> é constante’’ com probabilidade de erro</p>
+<div class="math notranslate nohighlight">
+\[
+P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
+\]</div>
+<p>Para uma probabilidade de erro  <span class="math notranslate nohighlight">\(P_e &lt; 1/2\)</span> na decisão, deve-se repetir o algoritmo até que a probabilidade de erro <span class="math notranslate nohighlight">\(P_{e,m} = 1/2^{m-1}\)</span> satisfaça</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2^{m-1}} &lt; \frac{1}{2} \implies 2^m &gt; 2^2 \implies m &gt;2 \implies m \geq 3
+\]</div>
+<p>Se forem <span class="math notranslate nohighlight">\(m=3\)</span> aplicações, a probabilidade de erro será limitada por <span class="math notranslate nohighlight">\(\varepsilon = 1/2^{m-1} = 0,\!25 &lt; 0,\!5\)</span>, como visto anteriormente.</p>
+</section>
+</section>
+<section id="algoritmo-de-deutsch">
+<h2>Algoritmo de Deutsch<a class="headerlink" href="#algoritmo-de-deutsch" title="Link para este cabeçalho">#</a></h2>
+<p>O Algoritmo de Deutsch é um dos primeiros algoritmos quânticos conhecidos, proposto por David Deutsch em 1985. Embora resolva um problema que não haja uma implementação direta, sua importância é histórica e conceitual, pois foi a primeira demonstração de que um computador quântico poderia superar um computador clássico para uma tarefa específica. O algoritmo serve como uma demonstração para introduzir conceitos-chave da computação quântica.</p>
+<p>O algorítmo de Deutsch resolve parcialmente o problema de Deutsch-Jozsa, resolvendo um problema artificial de complexidade mínima (envolvendo uma função de um único bit).</p>
+<p>Considere que <span class="math notranslate nohighlight">\(f\)</span> <span class="math notranslate nohighlight">\({(f : {0,1} →{0,1})}\)</span> seja dada por meio do oráculo de fase. O algoritmo de Deutsch para decidir se <span class="math notranslate nohighlight">\(f\)</span> é constante <span class="math notranslate nohighlight">\({(f(0) = f(1))}\)</span> ou balanceada <span class="math notranslate nohighlight">\({(f(0) \neq f(1))}\)</span> é dado pelo procedimento abaixo.</p>
+<p><span class="math notranslate nohighlight">\(\textbf{Entrada:}\)</span> <span class="math notranslate nohighlight">\(O_\text{F}(f) = O\)</span> \ \ (oráculo de fase associado à função booleana <span class="math notranslate nohighlight">\(f\)</span>)</p>
+<p><strong>Procedimento:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc}
+   \text{Etapa 0:} &amp; \ket{0}\ket{1} &amp; \text{preparação do estado inicial} \\
+   \text{Etapa 1:} &amp; \ket{+}\ket{-} &amp; \text{superposição com $H^{\otimes 2}$} \\
+   \text{Etapa 2:} &amp; O_\text{F}\ket{+}\ket{-} &amp; \text{aplicação de $f$ (oráculo de fase)} \\
+   \text{Etapa 3:} &amp; H\ket{\psi_f}\ket{-} &amp; \text{segunda Hadamard no primeiro qubit} \\
+  \end{array}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\textbf{Saída:}\)</span> Probabilidade da medida do primeiro qubit resultará em:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+   1 &amp; \text{se $f$ é constante} \\
+   0 &amp; \text{se $f$ é balanceada}
+\end{cases}
+\end{split}\]</div>
+<p>Portanto, se o estado após a medida na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> for <span class="math notranslate nohighlight">\(\ket{0}\)</span>, então decide-se que <span class="math notranslate nohighlight">\(f\)</span> é constante. E se o estado após a medida for <span class="math notranslate nohighlight">\(\ket{1}\)</span>, decide-se que <span class="math notranslate nohighlight">\(f\)</span> é balanceada.</p>
+<p><strong>Circuito</strong></p>
+<p>Notação:</p>
+<p><img alt="The-Deutsch-Algorithm" src="algoritmos/images/algoritmos/deutsch-jozsa/The-Deutsch-Algorithm.png" /></p>
+<p>Observação: Nessa imagem vemos a inicialização de ambos os qubits em <span class="math notranslate nohighlight">\({\ket{0}}\)</span> e a aplicação da porta <span class="math notranslate nohighlight">\(X\)</span> no 2° qubit, havendo a mesma aplicação que inicializar o sistema com dois qubits em <span class="math notranslate nohighlight">\({\ket{1}}\)</span>.</p>
+<p>Análise detalhada do alogorítmo:</p>
+<p>Na etapa 1, aplica-se <span class="math notranslate nohighlight">\(H\)</span> em ambos qubits, resultando em:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_1} 
+    &amp;= H^{\otimes 2} \ket{0}\ket{1} \\
+    &amp;= \ket{+}\ket{-} \\
+    &amp;= \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \otimes \left(\frac{\ket{0} - \ket{1}}{\sqrt{2}} \right) \\
+    &amp;= \frac{1}{2}(\ket{00} - \ket{01} + \ket{10} - \ket{11}) \ ,
+\end{split}
+\end{split}\]</div>
+<p>A segunda etapa é caracterizada pela aplicação do oráculo de fase, fornecendo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_2} 
+    &amp;= U_f \ket{\psi_1} \\
+    &amp;= U_f \ket{+}\ket{-} \\
+    &amp;= \frac{1}{\sqrt{2}}[(-1)^{f(0)}\ket{0} + (-1)^{f(1)}\ket{1}] \otimes \ket{-} \\
+    &amp;= \frac{1}{\sqrt{2}}\left(\sum_{x=0}^{1} (-1)^{f(x)}\ket{x}\right) \otimes \ket{-} \ ,
+\end{split}
+\end{split}\]</div>
+<p>Por final, a aplicação de <span class="math notranslate nohighlight">\(H\)</span> no primeiro qubit resulta em:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_3} 
+    &amp;= (H \otimes I) \ket{\psi_2} \\
+    &amp;= \frac{1}{\sqrt{2}}\left[(-1)^{f(0)}H\ket{0} + (-1)^{f(1)}H\ket{1}\right] \otimes \ket{-} \\
+    &amp;= \frac{1}{2}\left[(-1)^{f(0)}(\ket{0} + \ket{1}) + (-1)^{f(1)}(\ket{0} - \ket{1})\right] \otimes \ket{-} \\
+    &amp;= \frac{1}{2}\left[((-1)^{f(0)} + (-1)^{f(1)})\ket{0} + ((-1)^{f(0)} - (-1)^{f(1)})\ket{1}\right] \otimes \ket{-} \ ,
+\end{split}
+\end{split}\]</div>
+<p>Caso a função seja constante é fornecido, após a medição:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+    \left[\frac{(-1)^{f(0)} + (-1)^{f(1)}}{2}\right]\ket{0}
+\end{split}
+\]</div>
+<p>E caso ela seja balanceada o termo sobrevivente na função é</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{split}
+    \left[\frac{(-1)^{f(0)} - (-1)^{f(1)}}{2}\right]\ket{1}
+\end{split}
+\]</div>
+</section>
+<section id="simulacao-do-algoritimo-de-deutsch">
+<h2>Simulação do algorítimo de Deutsch<a class="headerlink" href="#simulacao-do-algoritimo-de-deutsch" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algorítimo de Deutsch usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Implementaremos dois <em>oráculos</em> para o Algoritmo de Deutsch:</p>
+<ul class="simple">
+<li><p>Um <em>oráculo constante</em>, onde <span class="math notranslate nohighlight">\(f(0) = f(1)\)</span>.</p></li>
+<li><p>Um <em>oráculo balanceado</em>, onde <span class="math notranslate nohighlight">\(f(0) \not = f(1)\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}U = \begin{bmatrix}(-1)^{f(0)} &amp; 0 \\ 0 &amp; (-1)^{f(1)} \end{bmatrix}\end{split}\]</div>
+<p>Em seguida, testaremos esses oráculos no algoritmo completo de Deutsch para verificar se o algoritmo consegue distinguir corretamente entre as duas categorias (constante ou balanceado) com <em>uma única chamada ao oráculo</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemplo de oráculo constante</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">constant_oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+    <span class="n">I</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Apenas uma operação identidade</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemplo de oráculo balanceado</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">balanced_oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+    <span class="n">CNOT</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># CNOT com controle no primeiro qubit e alvo no segundo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Agora implementaremos o algoritmo de Deutsch, utilizando esses oráculos que criamos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deutsch</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Inicialização do processo e alocação de qubits</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Configuração inicial: |0⟩|1⟩</span>
+    <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Aplicação de Haddamard em ambos os qubits -&gt; Estado: |+⟩|−⟩</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+    <span class="c1"># Aplicação do oráculo</span>
+    <span class="n">balanced_oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Troque por constant_oracle para testar o outro oráculo</span>
+
+    <span class="c1"># Aplicação de Haddamard no primeiro qubit</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Medição do primeiro qubit</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+
+    <span class="c1"># Finalização do processo</span>
+    <span class="k">if</span> <span class="n">results</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é constante.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é balanceada.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercício:</strong></p>
+<p>Implemente outros oráculos quânticos possíveis, um para função constante e um para função balanceada, para o algorítmo de Deutsch</p>
+</section>
+<section id="algoritmo-de-deutsch-versao-simplificada">
+<h2>Algoritmo de Deutsch - Versão Simplificada<a class="headerlink" href="#algoritmo-de-deutsch-versao-simplificada" title="Link para este cabeçalho">#</a></h2>
+<p>O algoritmo de Deutsch na versão simplificada determina se uma função binária <span class="math notranslate nohighlight">\({ f: \{0,1\} \to \{0,1\} }\)</span> é <strong>constante</strong> ou <strong>balanceada</strong> usando <strong>apenas 1 qubit</strong> e <strong>uma única consulta</strong> ao oráculo.</p>
+<p><strong>Oráculo de Fase</strong></p>
+<p>Na versão simplificada, usamos um <strong>oráculo de fase</strong> que age como:</p>
+<p><span class="math notranslate nohighlight">\({
+O_f|x⟩ = (-1)^{f(x)}|x⟩
+}\)</span></p>
+<p><strong>Procedimento:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc}
+   \text{Etapa 0:} &amp; \ket{0} &amp; \text{preparação do estado inicial} \\
+   \text{Etapa 1:} &amp; \ket{+} &amp; \text{superposição com $H$} \\
+   \text{Etapa 2:} &amp; O_f\ket{+} &amp; \text{aplicação de $f$ (oráculo de fase)} \\
+   \text{Etapa 3:} &amp; H\ket{\psi_f} &amp; \text{segunda Hadamard} \\
+  \end{array}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\textbf{Saída:}\)</span> Probabilidade da medida do primeiro qubit resultará em:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+   1 &amp; \text{se $f$ é constante} \\
+   0 &amp; \text{se $f$ é balanceada}
+\end{cases}
+\end{split}\]</div>
+<p>Portanto, se o estado após a medida na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> for <span class="math notranslate nohighlight">\(\ket{0}\)</span>, então decide-se que <span class="math notranslate nohighlight">\(f\)</span> é constante. E se o estado após a medida for <span class="math notranslate nohighlight">\(\ket{1}\)</span>, decide-se que <span class="math notranslate nohighlight">\(f\)</span> é balanceada.</p>
+<p><strong>Circuito</strong></p>
+<p>Notação:</p>
+<p><img alt="Deutsch-Simple" src="algoritmos/images/algoritmos/deutsch-jozsa/Deutsch-Simple.png" /></p>
+<p>Análise detalhada do alogorítmo:</p>
+<p>Na etapa 1, aplica-se <span class="math notranslate nohighlight">\(H\)</span> no qubit, resultando em:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_1} &amp;= H\ket{0} \\
+    &amp;= \frac{\ket{0} + \ket{1}}{\sqrt{2}} \\
+    &amp;= \ket{+}
+\end{split}
+\end{split}\]</div>
+<p>A segunda etapa é caracterizada pela aplicação do oráculo de fase, fornecendo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_2} &amp;= O_f\ket{+} \\
+    &amp;= \frac{(-1)^{f(0)}\ket{0} + (-1)^{f(1)}\ket{1}}{\sqrt{2}} \\
+    &amp;= \ket{\psi_f}
+\end{split}
+\end{split}\]</div>
+<p>Por final, a aplicação de <span class="math notranslate nohighlight">\(H\)</span> no qubit resulta em:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_3} &amp;= H\ket{\psi_f} \\
+    &amp;= \frac{1}{\sqrt{2}}[(-1)^{f(0)}H\ket{0} + (-1)^{f(1)}H\ket{1}] \\
+    &amp;= \frac{1}{2}[((-1)^{f(0)} + (-1)^{f(1)})\ket{0} + ((-1)^{f(0)} - (-1)^{f(1)})\ket{1}]
+\end{split}
+\end{split}\]</div>
+<p>Caso a função seja constante é fornecido, após a medição:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi_3} = (-1)^c\ket{0} \Rightarrow \text{Medição = 0}
+\]</div>
+<p>E caso ela seja balanceada o termo sobrevivente na função é</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi_3} = \pm\ket{1} \Rightarrow \text{Medição = 1}
+\]</div>
+</section>
+<section id="simulacao-do-algoritimo-de-deutsch-simplificado">
+<h2>Simulação do algorítimo de Deutsch Simplificado<a class="headerlink" href="#simulacao-do-algoritimo-de-deutsch-simplificado" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algorítimo de Deutsch Simplificado usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Faremos o mesmo exemplo realizado com o Algoritmo de Deutsch, implementaremos dois <em>oráculos</em> para o Algoritmo de Deutsch:</p>
+<ul class="simple">
+<li><p>Um <em>oráculo constante</em>, onde <span class="math notranslate nohighlight">\(f(0) = f(1)\)</span>.</p></li>
+<li><p>Um <em>oráculo balanceado</em>, onde <span class="math notranslate nohighlight">\(f(0) \not = f(1)\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}U = \begin{bmatrix}(-1)^{f(0)} &amp; 0 \\ 0 &amp; (-1)^{f(1)} \end{bmatrix}\end{split}\]</div>
+<p>Em seguida, testaremos esses oráculos no algoritmo completo de Deutsch para verificar se o algoritmo consegue distinguir corretamente entre as duas categorias (constante ou balanceado) com <em>uma única chamada ao oráculo</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemplo de oráculo constante</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">constant_oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+    <span class="n">I</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Apenas uma operação identidade</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemplo de oráculo balanceado</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">balanced_oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+    <span class="n">Z</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Porta Z para inverter a fase</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Agora implementaremos o algoritmo de Deutsch, utilizando esses oráculos que criamos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deutsch</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Inicialização do processo e alocação de qubit</span>
+    <span class="c1"># Configuração inicial: |0⟩</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Aplicação de Haddamard em ambos os qubits -&gt; Estado: |+⟩</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+    <span class="c1"># Aplicação do oráculo</span>
+    <span class="n">balanced_oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Troque por constant_oracle para testar o outro oráculo</span>
+
+    <span class="c1"># Aplicação de Haddamard no primeiro qubit</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+    <span class="c1"># Medição do primeiro qubit</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+
+    <span class="c1"># Finalização do processo</span>
+    <span class="k">if</span> <span class="n">results</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é constante.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é balanceada.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercício:</strong></p>
+<p>Implemente outros oráculos quânticos possíveis, um para função constante e um para função balanceada, para o algorítmo de Deutsch Simplificado</p>
+</section>
+<section id="algoritmo-de-deutsch-jozsa">
+<h2>Algoritmo de Deutsch-Jozsa<a class="headerlink" href="#algoritmo-de-deutsch-jozsa" title="Link para este cabeçalho">#</a></h2>
+<p>Para resolver o problema de Deutsch-Jozsa com um algoritmo quântico, é necessário ter uma versão quântica da função booleana <span class="math notranslate nohighlight">\(f\)</span>, dada como oráculo, isto é, dada como uma caixa preta em que não se pode visualizar a subrotina que calcula <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>Considere que <span class="math notranslate nohighlight">\(f\)</span> seja dada por meio do oráculo de fase. O algoritmo de Deutsch-Jozsa para decidir se <span class="math notranslate nohighlight">\(f\)</span> é constante ou balanceada é dado pelo procedimento abaixo.</p>
+<p><span class="math notranslate nohighlight">\(\textbf{Entrada:}\)</span> <span class="math notranslate nohighlight">\(O_\text{F}(f) = O\)</span> \ \ (oráculo de fase associado à função booleana <span class="math notranslate nohighlight">\(f\)</span>)</p>
+<p><strong>Procedimento:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc}
+   \text{etapa 0:} &amp; \ket{0}^{\otimes n} &amp; \text{preparação do estado inicial} \\
+   \text{etapa 1:} &amp; \ket{+}^{\otimes n} &amp; \text{superposição de estados com $H^{\otimes n}$} \\
+   \text{etapa 2:} &amp; O_\text{F}\ket{+}^{\otimes n} &amp; \text{aplicação de $f$ (oráculo de fase)} \\
+   \text{etapa 3:} &amp; \bra{+}^{\otimes n}O_\text{F}\ket{+}^{\otimes n} &amp; \text{testar para $\ket{+}^{\otimes n}$ (base girada $\mathcal{X}$)} \\
+  \end{array}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\textbf{Saída:}\)</span> Probabilidade da medida de <span class="math notranslate nohighlight">\(\ket{\psi_2}\)</span> resultar em  <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span> é</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+   1 &amp; \text{se $f$ é constante} \\
+   0 &amp; \text{se $f$ é balanceada}
+\end{cases}
+\end{split}\]</div>
+<p>Portanto, se o estado após a medida na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> for <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span>, então decide-se que <span class="math notranslate nohighlight">\(f\)</span> é constante. E se o estado após a medida for qualquer outro, decide-se que <span class="math notranslate nohighlight">\(f\)</span> é balanceada.</p>
+<p><strong>Circuito</strong>
+Notação compacta:</p>
+<p><img alt="dj_notacao_compacta" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_notacao_compacta.png" /></p>
+<p>Notação expandida:</p>
+<p><img alt="dj_notacao_expandida" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_notacao_expandida.png" /></p>
+<p>Observação: A porção destacada na figura corresponde à medição na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> feita a partir da medição na base computacional. De fato, o operador de Hadamard realiza mudança de base de <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> (base girada) para <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> (base computacional), de forma que o resultado medido na base computacional corresponde a uma medição na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. A figura ilustra a medição na base girada feita em função da medição na base computacional.</p>
+<p><img alt="medicao_base" src="algoritmos/images/algoritmos/deutsch-jozsa/medicao_base.png" /></p>
+<p>Análise detalhada do algoritmo:</p>
+<p>Na etapa 1, aplica-se <span class="math notranslate nohighlight">\(H\)</span> para cada qubit de entrada, resultando em:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_1} 
+    &amp;= H^{\otimes n} \ket{0}^{\otimes n} \\
+    &amp;= \ket{+}^{\otimes n} \\
+    &amp;= \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \ldots \left(\frac{\ket{0} + \ket{1}}{\sqrt{2}} \right) \\
+    &amp;= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} \ket{x} \ ,
+   \end{split}
+\end{split}\]</div>
+<p>em que <span class="math notranslate nohighlight">\(\mathbb{B}_n\)</span> representa o conjunto de todas as palavras de <span class="math notranslate nohighlight">\(n\)</span> bits. Isto é,</p>
+<p><strong>EXERCÍCIO</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+       \mathbb{B}_n 
+       &amp;= \{ 0\ldots 00 \, , \, \, 0 \ldots 01 \, , \, \, 0\ldots 10 \, , \, \, 0 \ldots 11 \, , \, \, \ldots \, , \, \, 1 \ldots 11 \}  \\
+       &amp;= \{ 0, 1, 2, 3, \ldots, 2^n-1 \}  \ .
+     \end{split}
+\end{split}\]</div>
+<p>Observação: or vezes é útil fazer a identificação entre vetores de bits e números inteiros sem sinal, para simplificar a notação. Por exemplo, <span class="math notranslate nohighlight">\(0 = 0\ldots000\)</span>, <span class="math notranslate nohighlight">\(1 = 0\ldots001\)</span>, <span class="math notranslate nohighlight">\(2 = 0\ldots010\)</span>, <span class="math notranslate nohighlight">\(3 = 0\ldots011\)</span> e assim por diante, até <span class="math notranslate nohighlight">\(2^n-1 = 1 \ldots 111\)</span>.</p>
+<p>A aplicação do oráculo na etapa 2 fornece:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \ket{\psi_2} 
+    &amp;= O_\text{F} \ket{\psi_1}  \\
+    &amp;= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} O \ket{x} \\
+    &amp;= \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} (-1)^{f(x)} \ket{x} \ .
+    \end{split} 
+\end{split}\]</div>
+<p>Se a função for constante, o fator <span class="math notranslate nohighlight">\((-1)^{f(x)}\)</span> se tornará um sinal global <span class="math notranslate nohighlight">\(+\)</span> ou <span class="math notranslate nohighlight">\(-\)</span>, que essencialmente não altera o estado anterior.</p>
+<p><strong>EXERCÍCIO</strong></p>
+<p>A última etapa consiste na medição na base girada <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. Para realizar essa medida, pode-se aplicar <span class="math notranslate nohighlight">\(H\)</span> a todos os qubits e medir na base computacional. Calculando a probabilidade de se obter <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span>, consegue-se:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+    \bra{+}^{\otimes n} \ket{\psi_2}
+    &amp;= \left( \frac{1}{\sqrt{2^n}} \sum_{y \in \mathbb{B}_n} \bra{y} \right) \frac{1}{\sqrt{2^n}} \sum_{x \in \mathbb{B}_n} (-1)^{f(x)} \ket{x} \\
+    &amp;= \frac{1}{2^n} \sum_{x \in \mathbb{B}_n} \sum_{y \in \mathbb{B}_n} (-1)^{f(x)}  \bra{y}\ket{x} \\
+    &amp;= \frac{1}{2^n} \sum_{x \in \mathbb{B}_n} \sum_{y \in \mathbb{B}_n} (-1)^{f(x)}  \delta_{x,y} \\
+    &amp;= \frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} \ .
+    \end{split}
+\end{split}\]</div>
+<p>Caso a função seja constante, a última equação fornece</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} =   \pm \frac{1}{2^n} 2^n = \pm 1
+\]</div>
+<p>E caso a função seja balanceada, metade das parcelas contribui com <span class="math notranslate nohighlight">\(1\)</span> e a outra metade com <span class="math notranslate nohighlight">\(-1\)</span>, portanto</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2^n} \sum_{x \in \mathbb{B}_n}  (-1)^{f(x)} =    \frac{1}{2^n} 0 = 0
+\]</div>
+<p>A probabilidade <span class="math notranslate nohighlight">\(P\)</span> de se obter <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span> é dada pelo módulo ao quadrado do resultado obtido, logo</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
+   1 &amp; \text{se $f$ é constante} \\
+   0 &amp; \text{se $f$ é balanceada} \ .
+   \end{cases}
+\end{split}\]</div>
+<p>Dessa forma, decide-se por ‘<span class="math notranslate nohighlight">\(f\)</span> é constante’ se a medida resultar no estado <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span> e por `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’, se resultar em um estado diferente. Esse teste é realizado no algoritmo por uma mudança de base, realizada pela porta Hadamard, e uma medição na base computacional.</p>
+</section>
+<section id="comparacao-de-desempenho">
+<h2>Comparação de desempenho<a class="headerlink" href="#comparacao-de-desempenho" title="Link para este cabeçalho">#</a></h2>
+<p>A tabela abaixo traz a comparação entre o desempenho dos algoritmos clássico determinístico, clássico probabilístico e quântico.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l|l}
+\text{Algoritmo} &amp; \text{Desempenho } (\# \text{ aplicações de } f) \\ \hline
+\text{Class. Det.} &amp; 2^n/2 + 1 \\
+\text{Class. Prob.} &amp; 3 \\
+\text{Quântico} &amp; 1
+\end{array}
+\end{split}\]</div>
+<p>Essa comparação entre o desempenho clássico e quântico, no entanto, não pode ser considerada muito seriamente. Há que se levar em conta que são arquiteturas diferentes: aplicar uma operação <span class="math notranslate nohighlight">\(f\)</span> clássica (correspondente a chamar uma subrotina ``caixa preta’’) e aplicar o oráculo de fase <span class="math notranslate nohighlight">\(O_\text{F}(f)\)</span> em um circuito quântico são coisas distintas. Não é claro que essas operações têm custo computacional equivalente para que sejam comparadas diretamente como na tabela apresentada. Por outro lado, como comparação simplificada, essa análise serve para se ter uma noção dos ganhos que a Computação Quântica poderia trazer em relação a Computação Clássica.</p>
+<p>Em relação ao algoritmo clássico determinístico, o algoritmo quântico apresenta ganho exponencial em desempenho. Já em relação ao algoritmo clássico probabilístico, o desempenho é semelhante.</p>
+</section>
+<section id="simulacao-do-algoritimo-de-deutsche-jozsa">
+<h2>Simulação do algorítimo de Deutsche-Jozsa<a class="headerlink" href="#simulacao-do-algoritimo-de-deutsche-jozsa" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algorítimo de Deutsche-Jozsa usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Primeiro devemos definir o oráculo. O oráculo é uma função que representa a função f(x)f(x) que queremos testar. Para este exemplo, consideraremos uma função balanceada que retorna 0 para entradas com número par de bits 1 e 1 para entradas com número ímpar de bits 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+    <span class="c1"># Aplica a porta X ao qubit auxiliar se a entrada tiver um número ímpar de bits 1</span>
+    <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Então, implementa-se o algorítimo de Deutsche-Jozsa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deutsch_jozsa</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Cria um processo quântico</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
+
+    <span class="c1"># Aloca n qubits para a entrada e 1 qubit auxiliar</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Inicializa o qubit auxiliar no estado |1⟩</span>
+    <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Aplica a porta Hadamard a todos os qubits</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+    <span class="c1"># Aplica o oráculo</span>
+    <span class="n">oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+    <span class="c1"># Aplica a porta Hadamard aos qubits de entrada</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Mede os qubits de entrada</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="c1"># Verifica se todos os resultados são 0</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é constante.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é balanceada.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./algoritmos/introdutórios"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_1_0-algoritmos_introdut%C3%B3rios.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Algoritmos Introdutórios</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_1_2-bernstein-vazirani.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Problema de Bernstein-Vazirani</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritimo-classico">Algorítimo clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo Clássico Determinístico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch">Algoritmo de Deutsch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsch">Simulação do algorítimo de Deutsch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch-versao-simplificada">Algoritmo de Deutsch - Versão Simplificada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsch-simplificado">Simulação do algorítimo de Deutsch Simplificado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch-jozsa">Algoritmo de Deutsch-Jozsa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsche-jozsa">Simulação do algorítimo de Deutsche-Jozsa</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -64,7 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="next" title="Problema de Deutsch-Jozsa" href="algoritmos/09_1-deutsch-jozsa.html" />
+    <link rel="next" title="Algoritmos Introdutórios" href="algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html" />
     <link rel="prev" title="Programacão Quântica com Ket" href="08-kettutorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
@@ -198,13 +198,22 @@
 <li class="toctree-l1"><a class="reference internal" href="07-computacao_quantica.html">Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08-kettutorial.html">Programacão Quântica com Ket</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_3-simon.html">Problema de Simon</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_4-grover.html">Algoritmo de Busca de Grover</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_05-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_06-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algoritmos/09_07-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="algoritmos/introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algoritmos/introdut%C3%B3rios/09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algoritmos/introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="algoritmos/busca/09_2_0-algoritmos_de_busca.html">Algoritmos de Busca</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="algoritmos/busca/09_2_1-grover.html">Algoritmo de Busca de Grover</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="algoritmos/baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algoritmos/baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algoritmos/baseados_em_QFT/09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
@@ -357,6 +366,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ler-um-algoritmo-quantico">Como ler um algoritmo quântico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos-fundamentais-para-compreensao">Elementos fundamentais para compreensão</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-de-leitura">Estratégia de leitura</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entendendo-um-circuito">Entendendo um circuito</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-estrutura-basica-de-um-circuito">A estrutura básica de um circuito</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos-fundamentais-de-um-circuito-quantico">Elementos fundamentais de um circuito quântico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-de-circuito">Exemplo de circuito</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacao-superdensa">Codificação superdensa</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visao-geral">Visão geral</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
@@ -367,11 +387,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Visão geral</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Circuito</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Funcionamento detalhado</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculos-quanticos">Oráculos quânticos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculo-xor">Oráculo XOR</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor">Construção do Oráculo de Fase usando o Oráculo XOR</a></li>
 </ul>
 </li>
 </ul>
@@ -391,7 +406,71 @@ document.write(`
 <p class="admonition-title">Nota</p>
 <p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
 </div>
-<p>Neste capítulo serão abordados alguns protocolos e algoritmos quânticos conhecidos na literatura. Quando possível, é feita uma comparação com os algoritmos clássicos conhecidos.</p>
+<p>Neste capítulo serão abordados de uma maneira didática como entender algoritmos quânticos, ler circuitos quânticos e alguns protocolos e algoritmos quânticos conhecidos na literatura. Quando possível, é feita uma comparação com os algoritmos clássicos conhecidos.</p>
+<section id="como-ler-um-algoritmo-quantico">
+<h2>Como ler um algoritmo quântico<a class="headerlink" href="#como-ler-um-algoritmo-quantico" title="Link para este cabeçalho">#</a></h2>
+<p>A leitura de algoritmos quânticos requer uma abordagem diferente daquela utilizada para algoritmos clássicos. Enquanto algoritmos clássicos são tipicamente descritos através de sequências de operações bem definidas sobre bits, os algoritmos quânticos envolvem operações sobre qubits que exploram propriedades como superposição e emaranhamento.</p>
+<section id="elementos-fundamentais-para-compreensao">
+<h3>Elementos fundamentais para compreensão<a class="headerlink" href="#elementos-fundamentais-para-compreensao" title="Link para este cabeçalho">#</a></h3>
+<p>Para compreender bem o funcionamento de um algoritmo quântica é necessário compreender alguns elementos fundamentais para a computação quântica, sendo eles:</p>
+<ol class="arabic simple">
+<li><p><strong>Notação de Dirac</strong>: Os estados quânticos são representados usando a notação bra-ket (⟨| e |⟩), onde |0⟩ e |1⟩ representam os estados base.</p></li>
+<li><p><strong>Portas quânticas</strong>: Operações unitárias que transformam os estados dos qubits. Cada porta representa uma matriz unitária que atua sobre o vetor de estado.</p></li>
+<li><p><strong>Evolução temporal</strong>: O sistema evolui deterministicamente através de operações unitárias até o momento da medição.</p></li>
+<li><p><strong>Medição</strong>: O ponto onde a informação quântica é convertida em informação clássica, colapsando o estado para um dos estados da base.</p></li>
+</ol>
+</section>
+<section id="estrategia-de-leitura">
+<h3>Estratégia de leitura<a class="headerlink" href="#estrategia-de-leitura" title="Link para este cabeçalho">#</a></h3>
+<ul class="simple">
+<li><p><strong>Identifique os registros</strong>: Separe mentalmente os qubits de entrada, saída e possíveis qubits auxiliares.</p></li>
+<li><p><strong>Siga a evolução temporal</strong>: Leia o circuito da esquerda para a direita, acompanhando como cada operação modifica o estado.</p></li>
+<li><p><strong>Verifique a unitariedade</strong>: Certifique-se de que as operações preservam a norma do vetor de estado.</p></li>
+<li><p><strong>Analise antes e depois da medição</strong>: Compreenda quais informações são acessíveis antes da medição (em superposição) e depois (resultados clássicos).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>No começo, é recomendado abrir os cálculos de matrizes na mão, independente da dificuldade deles, para estruturar noções fundamentais que será exigidas em algorítmos mais complexos.</p>
+<p>A abordagem mais eficaz é através da análise metódica de exemplos progressivos:</p>
+<ul class="simple">
+<li><p>Inicie com circuitos fundamentais como codificação superdensa e teletransporte</p></li>
+<li><p>Acompanhe detalhadamente a evolução matemática do estado em cada etapa</p></li>
+<li><p>Calcule explicitamente como cada operação unitária modifica as amplitudes</p></li>
+<li><p>Identifique os pontos onde o emaranhamento emerge entre os qubits</p></li>
+<li><p>Compreenda como essas correlações quânticas são exploradas para alcançar vantagens computacionais</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="entendendo-um-circuito">
+<h2>Entendendo um circuito<a class="headerlink" href="#entendendo-um-circuito" title="Link para este cabeçalho">#</a></h2>
+<p>Os circuitos quânticos são a principal ferramenta visual para representar algoritmos quânticos. Eles funcionam como mapas que guiam o funcionamento do algorítmo, transformando operações matemáticas em diagramas intuitivos que podemos seguir passo a passo.</p>
+<section id="a-estrutura-basica-de-um-circuito">
+<h3>A estrutura básica de um circuito<a class="headerlink" href="#a-estrutura-basica-de-um-circuito" title="Link para este cabeçalho">#</a></h3>
+<p>Um circuito quântico é lido sempre da esquerda para a direita, representando a evolução temporal do sistema. As linhas horizontais correspondem aos qubits individuais, enquanto os símbolos colocados sobre essas linhas (caixinhas, pontos e outros símbolos) representam as operações sendo aplicadas. Essa representação temporal é crucial para entender a sequência lógica das operações e como a informação quântica flui através do sistema.</p>
+</section>
+<section id="elementos-fundamentais-de-um-circuito-quantico">
+<h3>Elementos fundamentais de um circuito quântico<a class="headerlink" href="#elementos-fundamentais-de-um-circuito-quantico" title="Link para este cabeçalho">#</a></h3>
+<ul class="simple">
+<li><p><strong>Linhas de qubit</strong>: Cada linha horizontal representa a linha do tempo de um qubit específico, mostrando seu estado desde a inicialização até a medição final</p></li>
+<li><p><strong>Portas quânticas</strong>: São operações unitárias que transformam o estado dos qubits, representadas por símbolos como H (Hadamard), X, Y, Z, entre outros</p></li>
+<li><p><strong>Operações controladas</strong>: Indicam que uma operação em um qubit depende do estado de outro qubit, criando correlações quânticas, geralmente são linhas saíndo de um qubit (qubit de controle) para outro com uma operação (qubit alvo).</p></li>
+<li><p><strong>Medições</strong>: Representam o momento onde a informação quântica é convertida em bits clássicos que podemos ler e interpretar</p></li>
+</ul>
+</section>
+<section id="exemplo-de-circuito">
+<h3>Exemplo de circuito<a class="headerlink" href="#exemplo-de-circuito" title="Link para este cabeçalho">#</a></h3>
+<p>Para entendermos melhor como ler um circuito quânticos, utilizaremos de exemplo o seguinte circuito de 2 qubits:</p>
+<p><img alt="circuito_básico.jpg" src="images/algoritmos/base/circuito_b%C3%A1sico.jpg" /></p>
+<p>Nesse circuito, notamos de início a presença de dois bits quânticos (linhas), e dois bits clássicos que receberão as informações quânticas após a medição (3ª linha).</p>
+<p><strong>Lendo o circuito:</strong></p>
+<ul class="simple">
+<li><p>O qubit <span class="math notranslate nohighlight">\(q_0\)</span> é colocado em superposição pelo uso de uma porta Hadamard (caixa com H);</p></li>
+<li><p>Uma porta controlada (linha que conecta os dois qubits) é aplicada, representando, nesse caso, que, caso o qubit <span class="math notranslate nohighlight">\(q_0\)</span> tenha valor 1 (ponto no qubit <span class="math notranslate nohighlight">\(q_0\)</span>), a porta quântica <span class="math notranslate nohighlight">\(X\)</span> é aplicada no qubit <span class="math notranslate nohighlight">\(q_1\)</span>;</p></li>
+<li><p>A medição (caixa com símbolo de medidor) é realizada e a superposição quântica é quebrada.</p></li>
+</ul>
+</section>
+</section>
 <section id="codificacao-superdensa">
 <h2>Codificação superdensa<a class="headerlink" href="#codificacao-superdensa" title="Link para este cabeçalho">#</a></h2>
 <p>A codificação superdensa é um protocolo que envolve duas partes, Alice e Bob, que queiram se comunicar trocando bits. Alice quer enviar bits de mensagem para Bob.</p>
@@ -553,35 +632,6 @@ Alice e Bob previamente compartilham o estado de Bell</p>
 <p>Com isso, independente do resultado da medida, Bob tem, ao final, o estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> que Alice queria transmitir.</p>
 </section>
 </section>
-<section id="oraculos-quanticos">
-<h2>Oráculos quânticos<a class="headerlink" href="#oraculos-quanticos" title="Link para este cabeçalho">#</a></h2>
-<p>Os oráculos são funções booleanas <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to \{ 0,1 \}\)</span> consideradas como ``caixas pretas’’. Dado um vetor de bits <span class="math notranslate nohighlight">\(x\)</span>, o oráculo clássico fornece <span class="math notranslate nohighlight">\(f(x)\)</span>. Alguns problemas computacionais são escritos em termos de oráculos, como o problema de Deutsch-Jozsa, o problema de Simon e o problema de busca de Grover. Para abordar esses problemas, é necessário definir uma versão quântica desse oráculo, o que será abordado nesta seção.</p>
-<p>Há duas maneiras de se escrever um análogo quântico ao oráculo clássico: o oráculo XOR e o oráculo de fase.</p>
-<section id="oraculo-xor">
-<h3>Oráculo XOR<a class="headerlink" href="#oraculo-xor" title="Link para este cabeçalho">#</a></h3>
-<p>O oráculo XOR é uma operação unitária que realiza a função booleana <span class="math notranslate nohighlight">\(f\)</span> por meio de um bit extra, que sinaliza as entradas em que <span class="math notranslate nohighlight">\(f\)</span> vale 1.</p>
-<p><img alt="oraculo_xor" src="_images/oraculo_xor.png" /></p>
-</section>
-<section id="construcao-do-oraculo-de-fase-usando-o-oraculo-xor">
-<h3>Construção do Oráculo de Fase usando o Oráculo XOR<a class="headerlink" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor" title="Link para este cabeçalho">#</a></h3>
-<p>Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alvo como um qubit auxiliar. Ao usarmos <span class="math notranslate nohighlight">\(\ket{-}\)</span> na entrada alvo do oráculo XOR, obtemos, para qualquer estado <span class="math notranslate nohighlight">\(\ket{x}\)</span> da base computacional:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
-  \begin{cases}
-   \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &amp;\text{se $f(x)=0$}  \\
-   \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &amp;\text{se $f(x)=1$} \ ,
-  \end{cases}
-\end{split}\]</div>
-<p>o que pode ser resumido por <span class="math notranslate nohighlight">\(\ket{x}\big((-1)^{f(x)}\ket{-} \big)\)</span>. Além disso, o fator multiplicativo <span class="math notranslate nohighlight">\((-1)^{f(x)}\)</span> pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:</p>
-<div class="math notranslate nohighlight">
-\[
-\ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}
-\]</div>
-<p>A figura a seguir ilustra a construção do oráculo de fase.</p>
-<p><img alt="oraculo_fase.png" src="_images/oraculo_fase.png" /></p>
-</section>
-</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -626,11 +676,11 @@ Alice e Bob previamente compartilham o estado de Bell</p>
       </div>
     </a>
     <a class="right-next"
-       href="algoritmos/09_1-deutsch-jozsa.html"
+       href="algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">próximo</p>
-        <p class="prev-next-title">Problema de Deutsch-Jozsa</p>
+        <p class="prev-next-title">Algoritmos Introdutórios</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -650,6 +700,17 @@ Alice e Bob previamente compartilham o estado de Bell</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ler-um-algoritmo-quantico">Como ler um algoritmo quântico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos-fundamentais-para-compreensao">Elementos fundamentais para compreensão</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-de-leitura">Estratégia de leitura</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entendendo-um-circuito">Entendendo um circuito</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-estrutura-basica-de-um-circuito">A estrutura básica de um circuito</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elementos-fundamentais-de-um-circuito-quantico">Elementos fundamentais de um circuito quântico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-de-circuito">Exemplo de circuito</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacao-superdensa">Codificação superdensa</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visao-geral">Visão geral</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito">Circuito</a></li>
@@ -660,11 +721,6 @@ Alice e Bob previamente compartilham o estado de Bell</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Visão geral</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Circuito</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Funcionamento detalhado</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculos-quanticos">Oráculos quânticos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculo-xor">Oráculo XOR</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor">Construção do Oráculo de Fase usando o Oráculo XOR</a></li>
 </ul>
 </li>
 </ul>

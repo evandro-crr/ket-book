@@ -4,7 +4,83 @@
 Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](./tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
 ```
 
-Neste capítulo serão abordados alguns protocolos e algoritmos quânticos conhecidos na literatura. Quando possível, é feita uma comparação com os algoritmos clássicos conhecidos.
+Neste capítulo serão abordados de uma maneira didática como entender algoritmos quânticos, ler circuitos quânticos e alguns protocolos e algoritmos quânticos conhecidos na literatura. Quando possível, é feita uma comparação com os algoritmos clássicos conhecidos.
+
+## Como ler um algoritmo quântico
+
+A leitura de algoritmos quânticos requer uma abordagem diferente daquela utilizada para algoritmos clássicos. Enquanto algoritmos clássicos são tipicamente descritos através de sequências de operações bem definidas sobre bits, os algoritmos quânticos envolvem operações sobre qubits que exploram propriedades como superposição e emaranhamento.
+
+### Elementos fundamentais para compreensão
+
+Para compreender bem o funcionamento de um algoritmo quântica é necessário compreender alguns elementos fundamentais para a computação quântica, sendo eles:
+
+1. **Notação de Dirac**: Os estados quânticos são representados usando a notação bra-ket (⟨| e |⟩), onde |0⟩ e |1⟩ representam os estados base.
+
+2. **Portas quânticas**: Operações unitárias que transformam os estados dos qubits. Cada porta representa uma matriz unitária que atua sobre o vetor de estado.
+
+3. **Evolução temporal**: O sistema evolui deterministicamente através de operações unitárias até o momento da medição.
+
+4. **Medição**: O ponto onde a informação quântica é convertida em informação clássica, colapsando o estado para um dos estados da base.
+
+### Estratégia de leitura
+
+- **Identifique os registros**: Separe mentalmente os qubits de entrada, saída e possíveis qubits auxiliares.
+
+- **Siga a evolução temporal**: Leia o circuito da esquerda para a direita, acompanhando como cada operação modifica o estado.
+
+- **Verifique a unitariedade**: Certifique-se de que as operações preservam a norma do vetor de estado.
+
+- **Analise antes e depois da medição**: Compreenda quais informações são acessíveis antes da medição (em superposição) e depois (resultados clássicos).
+
+```{note}
+No começo, é recomendado abrir os cálculos de matrizes na mão, independente da dificuldade deles, para estruturar noções fundamentais que será exigidas em algorítmos mais complexos.
+
+A abordagem mais eficaz é através da análise metódica de exemplos progressivos:
+
+- Inicie com circuitos fundamentais como codificação superdensa e teletransporte
+
+- Acompanhe detalhadamente a evolução matemática do estado em cada etapa
+
+- Calcule explicitamente como cada operação unitária modifica as amplitudes
+
+- Identifique os pontos onde o emaranhamento emerge entre os qubits
+
+- Compreenda como essas correlações quânticas são exploradas para alcançar vantagens computacionais
+
+```
+
+## Entendendo um circuito
+
+Os circuitos quânticos são a principal ferramenta visual para representar algoritmos quânticos. Eles funcionam como mapas que guiam o funcionamento do algorítmo, transformando operações matemáticas em diagramas intuitivos que podemos seguir passo a passo.
+
+### A estrutura básica de um circuito
+
+Um circuito quântico é lido sempre da esquerda para a direita, representando a evolução temporal do sistema. As linhas horizontais correspondem aos qubits individuais, enquanto os símbolos colocados sobre essas linhas (caixinhas, pontos e outros símbolos) representam as operações sendo aplicadas. Essa representação temporal é crucial para entender a sequência lógica das operações e como a informação quântica flui através do sistema.
+
+### Elementos fundamentais de um circuito quântico
+
+- **Linhas de qubit**: Cada linha horizontal representa a linha do tempo de um qubit específico, mostrando seu estado desde a inicialização até a medição final
+
+- **Portas quânticas**: São operações unitárias que transformam o estado dos qubits, representadas por símbolos como H (Hadamard), X, Y, Z, entre outros
+
+- **Operações controladas**: Indicam que uma operação em um qubit depende do estado de outro qubit, criando correlações quânticas, geralmente são linhas saíndo de um qubit (qubit de controle) para outro com uma operação (qubit alvo).
+
+- **Medições**: Representam o momento onde a informação quântica é convertida em bits clássicos que podemos ler e interpretar
+
+### Exemplo de circuito
+Para entendermos melhor como ler um circuito quânticos, utilizaremos de exemplo o seguinte circuito de 2 qubits:
+
+![circuito_básico.jpg](images/algoritmos/base/circuito_básico.jpg)
+
+Nesse circuito, notamos de início a presença de dois bits quânticos (linhas), e dois bits clássicos que receberão as informações quânticas após a medição (3ª linha). 
+
+**Lendo o circuito:**
+
+- O qubit $q_0$ é colocado em superposição pelo uso de uma porta Hadamard (caixa com H);
+
+- Uma porta controlada (linha que conecta os dois qubits) é aplicada, representando, nesse caso, que, caso o qubit $q_0$ tenha valor 1 (ponto no qubit $q_0$), a porta quântica $X$ é aplicada no qubit $q_1$;
+
+- A medição (caixa com símbolo de medidor) é realizada e a superposição quântica é quebrada.
 
 ## Codificação superdensa
 
@@ -200,37 +276,3 @@ $$
 $$
 
 Com isso, independente do resultado da medida, Bob tem, ao final, o estado $\ket{\psi}$ que Alice queria transmitir. 
-
-## Oráculos quânticos
-
- Os oráculos são funções booleanas $f \colon \{ 0,1 \}^n \to \{ 0,1 \}$ consideradas como ``caixas pretas''. Dado um vetor de bits $x$, o oráculo clássico fornece $f(x)$. Alguns problemas computacionais são escritos em termos de oráculos, como o problema de Deutsch-Jozsa, o problema de Simon e o problema de busca de Grover. Para abordar esses problemas, é necessário definir uma versão quântica desse oráculo, o que será abordado nesta seção. 
- 
- Há duas maneiras de se escrever um análogo quântico ao oráculo clássico: o oráculo XOR e o oráculo de fase.
-
- ### Oráculo XOR
-
-O oráculo XOR é uma operação unitária que realiza a função booleana $f$ por meio de um bit extra, que sinaliza as entradas em que $f$ vale 1. 
-
-![oraculo_xor](images/algoritmos/base/oraculo_xor.png)
-
-### Construção do Oráculo de Fase usando o Oráculo XOR
-
-Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alvo como um qubit auxiliar. Ao usarmos $\ket{-}$ na entrada alvo do oráculo XOR, obtemos, para qualquer estado $\ket{x}$ da base computacional:
-
-$$
-\ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
-  \begin{cases}
-   \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &\text{se $f(x)=0$}  \\
-   \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &\text{se $f(x)=1$} \ ,
-  \end{cases}
-$$
-
-  o que pode ser resumido por $\ket{x}\big((-1)^{f(x)}\ket{-} \big)$. Além disso, o fator multiplicativo $(-1)^{f(x)}$ pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:
-
-$$
-\ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}
-$$
-
-A figura a seguir ilustra a construção do oráculo de fase.
-
-![oraculo_fase.png](images/algoritmos/base/oraculo_fase.png)
