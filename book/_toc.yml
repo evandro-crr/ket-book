@@ -4,27 +4,33 @@
 format: jb-book
 root: 01-index
 chapters:
-- file: 02-pytutorial
-- file: 03-complexos
-- file: 04-algebra
-  sections:
-    - file: algebra/04_1-basicos
-    - file: algebra/04_2-transformacoes
-    - file: algebra/04_3-operadores
-    - file: algebra/04_4-prod_tensorial
-- file: 05-postulados
-- file: 06-computacao_classica
-- file: 07-computacao_quantica
-- file: 08-kettutorial
-- file: 09-algoritmos
-  sections:
-    - file: algoritmos/09_1-deutsch-jozsa
-    - file: algoritmos/09_2-bernstein-vazirani
-    - file: algoritmos/09_3-simon
-    - file: algoritmos/09_4-grover
-    - file: algoritmos/09_05-qft
-    - file: algoritmos/09_06-qpe
-    - file: algoritmos/09_07-shor
-- url: https://qubox.ufsc.br/index.html
-  title: Qubox UFSC
-- file: 10-referencias
+  - file: 02-pytutorial
+  - file: 03-complexos
+  - file: 04-algebra
+    sections:
+      - file: algebra/04_1-basicos
+      - file: algebra/04_2-transformacoes
+      - file: algebra/04_3-operadores
+      - file: algebra/04_4-prod_tensorial
+  - file: 05-postulados
+  - file: 06-computacao_classica
+  - file: 07-computacao_quantica
+  - file: 08-kettutorial
+  - file: 09-algoritmos
+    sections:
+      - file: algoritmos/introdutórios/09_1_0-algoritmos_introdutórios
+        sections:
+          - file: algoritmos/introdutórios/09_1_1-deutsch-jozsa
+          - file: algoritmos/introdutórios/09_1_2-bernstein-vazirani
+          - file: algoritmos/introdutórios/09_1_3-simon
+      - file: algoritmos/busca/09_2_0-algoritmos_de_busca
+        sections:
+          - file: algoritmos/busca/09_2_1-grover 
+      - file: algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft
+        sections:
+          - file: algoritmos/baseados_em_QFT/09_3_1-qft
+          - file: algoritmos/baseados_em_QFT/09_3_2-qpe
+          - file: algoritmos/baseados_em_QFT/09_3_3-shor
+  - url: https://qubox.ufsc.br/index.html
+    title: Qubox UFSC
+  - file: 10-referencias
