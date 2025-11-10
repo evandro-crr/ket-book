@@ -70,7 +70,7 @@ Um circuito quântico é lido sempre da esquerda para a direita, representando a
 ### Exemplo de circuito
 Para entendermos melhor como ler um circuito quânticos, utilizaremos de exemplo o seguinte circuito de 2 qubits:
 
-![circuito_básico.jpg](images/algoritmos/base/circuito_básico.jpg)
+![circuito_basico.jpg](images/algoritmos/base/circuito_basico.jpg)
 
 Nesse circuito, notamos de início a presença de dois bits quânticos (linhas), e dois bits clássicos que receberão as informações quânticas após a medição (3ª linha). 
 
