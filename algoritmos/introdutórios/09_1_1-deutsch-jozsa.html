@@ -475,7 +475,7 @@ document.write(`
 </div>
 <div class="admonition-referencias admonition">
 <p class="admonition-title">Referências</p>
-<p>Material extraído do TCC <a class="reference internal" href="#../tcc-giovani.pdf"><span class="xref myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
+<p>Material extraído do TCC <a class="reference download internal" download="" href="../../_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
 </div>
 <p>O Algoritmo de Deutsch-Jozsa é um algoritmo quântico projetado para resolver o Problema de Deutsch-Jozsa. Esse problema não tem especial ênfase em aplicações, mas torna-se laboratório interessante para investigar técnicas e possíveis vantagens da Computação Quântica. A principal referência para esta seção é o livro <span id="id1">[<a class="reference internal" href="../../10-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span>.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="problema-de-deutsch-jozsa">
@@ -527,16 +527,16 @@ O problema desta seção tem o seguinte enunciado:</p>
 <p>Um algoritmo probabilístico utiliza a probabilidade como recurso computacional. Para esse tipo de computação, é possível que entradas iguais produzam saídas diferentes, e que a máquina passe por estados diferentes durante a computação, em função de fatores probabilísticos presentes no algoritmo.</p>
 <p>Nesse contexto, se for permitida uma probabilidade de erro <span class="math notranslate nohighlight">\(\varepsilon\)</span> na decisão e o uso de sorteios aleatórios em certas etapas, é possível reduzir o custo computacional do algoritmo clássico determinístico.</p>
 <p>Primeiramente, permite-se que as entradas <span class="math notranslate nohighlight">\(i\)</span> sejam tiradas aleatoriamente, cada uma com mesma probabilidade <span class="math notranslate nohighlight">\(p(i) = 1/2^n\)</span>. Por exemplo, se <span class="math notranslate nohighlight">\(f\)</span> for constante <span class="math notranslate nohighlight">\(1\)</span> (<span class="math notranslate nohighlight">\(f(i) = 1 \forall j\)</span>), a probabilidade de resultar <span class="math notranslate nohighlight">\(1\)</span> é <span class="math notranslate nohighlight">\(1 = 100\%\)</span> e a de resultar <span class="math notranslate nohighlight">\(0\)</span> é <span class="math notranslate nohighlight">\(0 = 0\%\)</span>. Se <span class="math notranslate nohighlight">\(f\)</span> for balanceada, a probabilidade de resultar <span class="math notranslate nohighlight">\(1\)</span> é <span class="math notranslate nohighlight">\(0,\!5 = 50\%\)</span> e o mesmo vale para o resultado <span class="math notranslate nohighlight">\(0\)</span>. Supõe-se, para simplificar a discussão, que o sorteio das entradas é feito sem memória\footnote{Para um número de bits <span class="math notranslate nohighlight">\(n\)</span> grande, esse caso é semelhante ao caso com memória, em que não se permite repetir as entradas no sorteio.}, isto é, com chance de se sortear duas entradas iguais.</p>
-<p><img alt="dj_probabilistico1" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico1.png" /></p>
+<p><img alt="dj_probabilistico1" src="../../_images/dj_probabilistico1.png" /></p>
 <p>A primeira avaliação <span class="math notranslate nohighlight">\(f(i_1)\)</span> não traz mais informação para distinguir entre constante e balanceada.</p>
-<p><img alt="dj_probabilistico2" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico2.png" /></p>
+<p><img alt="dj_probabilistico2" src="../../_images/dj_probabilistico2.png" /></p>
 <p>A segunda aplicação, se resultar <span class="math notranslate nohighlight">\(f(i_2) \neq f(i_1)\)</span>, já resolve com certeza que <span class="math notranslate nohighlight">\(f\)</span> é balanceada.</p>
-<p><img alt="dj_probabilistico3" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico3.png" /></p>
+<p><img alt="dj_probabilistico3" src="../../_images/dj_probabilistico3.png" /></p>
 <p>Se o resultado for <span class="math notranslate nohighlight">\(f(i_2) = f(i_1)\)</span>, tende-se a pensar que <span class="math notranslate nohighlight">\(f\)</span> seria constante e a probabilidade de se estar errado é a probabilidade de tirar duas saídas iguais aleatoriamente numa função balanceada, ou seja, <span class="math notranslate nohighlight">\(P_e = 1 \cdot 0,\!5 = 0,\!5\)</span>.</p>
-<p><img alt="dj_probabilistico4" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico4.png" /></p>
+<p><img alt="dj_probabilistico4" src="../../_images/dj_probabilistico4.png" /></p>
 <p>Na terceira etapa, caso <span class="math notranslate nohighlight">\(f(i_3) \neq f(i_2)\)</span>, resolve-se com certeza que <span class="math notranslate nohighlight">\(f\)</span> é balanceada e caso <span class="math notranslate nohighlight">\(f(i_3) = f(i_2)\)</span>, conclui-se pela opção constante com probabilidade de erro igual a <span class="math notranslate nohighlight">\(P_e = 1 \cdot 0,\!5 \cdot 0,\!5 = 0,\!25\)</span>, correspondente à probabilidade de que, numa função balanceada, tenha-se o mesmo resultado para 3 entradas sorteadas aleatoriamente com igual probabilidade.</p>
-<p><img alt="dj_probabilistico5" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico5.png" /></p>
-<p><img alt="dj_probabilistico6" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_probabilistico6.png" /></p>
+<p><img alt="dj_probabilistico5" src="../../_images/dj_probabilistico5.png" /></p>
+<p><img alt="dj_probabilistico6" src="../../_images/dj_probabilistico6.png" /></p>
 <p>Seguindo essa ideia, na <span class="math notranslate nohighlight">\(m\)</span>-ésima aplicação de <span class="math notranslate nohighlight">\(f\)</span>, se ocorrer <span class="math notranslate nohighlight">\(f(i_m) \neq f(i_{m-1})\)</span>, conclui-se com certeza a opção `<span class="math notranslate nohighlight">\(f\)</span> é balanceada’ e se <span class="math notranslate nohighlight">\(f(i_m) = f(i_{m-1})\)</span>, pode-se concluir que ``<span class="math notranslate nohighlight">\(f\)</span> é constante’’ com probabilidade de erro</p>
 <div class="math notranslate nohighlight">
 \[
@@ -577,7 +577,7 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
 <p>Portanto, se o estado após a medida na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> for <span class="math notranslate nohighlight">\(\ket{0}\)</span>, então decide-se que <span class="math notranslate nohighlight">\(f\)</span> é constante. E se o estado após a medida for <span class="math notranslate nohighlight">\(\ket{1}\)</span>, decide-se que <span class="math notranslate nohighlight">\(f\)</span> é balanceada.</p>
 <p><strong>Circuito</strong></p>
 <p>Notação:</p>
-<p><img alt="The-Deutsch-Algorithm" src="algoritmos/images/algoritmos/deutsch-jozsa/The-Deutsch-Algorithm.png" /></p>
+<p><img alt="The-Deutsch-Algorithm" src="../../_images/The-Deutsch-Algorithm.png" /></p>
 <p>Observação: Nessa imagem vemos a inicialização de ambos os qubits em <span class="math notranslate nohighlight">\({\ket{0}}\)</span> e a aplicação da porta <span class="math notranslate nohighlight">\(X\)</span> no 2° qubit, havendo a mesma aplicação que inicializar o sistema com dois qubits em <span class="math notranslate nohighlight">\({\ket{1}}\)</span>.</p>
 <p>Análise detalhada do alogorítmo:</p>
 <p>Na etapa 1, aplica-se <span class="math notranslate nohighlight">\(H\)</span> em ambos qubits, resultando em:</p>
@@ -732,7 +732,7 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
 <p>Portanto, se o estado após a medida na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> for <span class="math notranslate nohighlight">\(\ket{0}\)</span>, então decide-se que <span class="math notranslate nohighlight">\(f\)</span> é constante. E se o estado após a medida for <span class="math notranslate nohighlight">\(\ket{1}\)</span>, decide-se que <span class="math notranslate nohighlight">\(f\)</span> é balanceada.</p>
 <p><strong>Circuito</strong></p>
 <p>Notação:</p>
-<p><img alt="Deutsch-Simple" src="algoritmos/images/algoritmos/deutsch-jozsa/Deutsch-Simple.png" /></p>
+<p><img alt="Deutsch-Simple" src="../../_images/Deutsch-Simple.png" /></p>
 <p>Análise detalhada do alogorítmo:</p>
 <p>Na etapa 1, aplica-se <span class="math notranslate nohighlight">\(H\)</span> no qubit, resultando em:</p>
 <div class="math notranslate nohighlight">
@@ -871,11 +871,11 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
 <p>Portanto, se o estado após a medida na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> for <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span>, então decide-se que <span class="math notranslate nohighlight">\(f\)</span> é constante. E se o estado após a medida for qualquer outro, decide-se que <span class="math notranslate nohighlight">\(f\)</span> é balanceada.</p>
 <p><strong>Circuito</strong>
 Notação compacta:</p>
-<p><img alt="dj_notacao_compacta" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_notacao_compacta.png" /></p>
+<p><img alt="dj_notacao_compacta" src="../../_images/dj_notacao_compacta.png" /></p>
 <p>Notação expandida:</p>
-<p><img alt="dj_notacao_expandida" src="algoritmos/images/algoritmos/deutsch-jozsa/dj_notacao_expandida.png" /></p>
+<p><img alt="dj_notacao_expandida" src="../../_images/dj_notacao_expandida.png" /></p>
 <p>Observação: A porção destacada na figura corresponde à medição na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> feita a partir da medição na base computacional. De fato, o operador de Hadamard realiza mudança de base de <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> (base girada) para <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> (base computacional), de forma que o resultado medido na base computacional corresponde a uma medição na base <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. A figura ilustra a medição na base girada feita em função da medição na base computacional.</p>
-<p><img alt="medicao_base" src="algoritmos/images/algoritmos/deutsch-jozsa/medicao_base.png" /></p>
+<p><img alt="medicao_base" src="../../_images/medicao_base.png" /></p>
 <p>Análise detalhada do algoritmo:</p>
 <p>Na etapa 1, aplica-se <span class="math notranslate nohighlight">\(H\)</span> para cada qubit de entrada, resultando em:</p>
 <div class="math notranslate nohighlight">

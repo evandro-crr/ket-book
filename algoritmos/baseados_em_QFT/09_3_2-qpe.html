@@ -476,7 +476,7 @@ document.write(`
 \[
 U\ket{\psi} = e^{2\pi i\theta}\ket{\psi}
 \]</div>
-<p>para algum <span class="math notranslate nohighlight">\(\theta \in \reals\)</span>. Devido à periodicidade da exponencial complexa, podemos sempre assumir que <span class="math notranslate nohighlight">\(0 \leq \theta &lt; 1\)</span>.</p>
+<p>para algum <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span>. Devido à periodicidade da exponencial complexa, podemos sempre assumir que <span class="math notranslate nohighlight">\(0 \leq \theta &lt; 1\)</span>.</p>
 <p><strong>Objetivo</strong></p>
 <p>O objetivo do algoritmo é produzir uma estimativa precisa para <span class="math notranslate nohighlight">\(\theta\)</span> utilizando um número reduzido de portas quânticas e mantendo alta probabilidade de sucesso. A estimativa de fase quântica alcança esse desempenho assumindo acesso oráculo a <span class="math notranslate nohighlight">\(U\)</span> e disponibilidade de <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> como estado quântico. Esta abordagem permite que nos concentremos no número de aplicações de <span class="math notranslate nohighlight">\(U\)</span>, sem precisar considerar o custo de implementação do operador em si.</p>
 <p>O algoritmo retorna com alta probabilidade uma aproximação para <span class="math notranslate nohighlight">\(\theta\)</span> com erro aditivo <span class="math notranslate nohighlight">\(\varepsilon\)</span>, utilizando <span class="math notranslate nohighlight">\(\text{n} \space = O(log(\frac{1}{\varepsilon}))\)</span> qubits no primeiro registro e <span class="math notranslate nohighlight">\(O(\frac{1}{\varepsilon})\)</span> operações controladas de <span class="math notranslate nohighlight">\(U\)</span>. A probabilidade de sucesso pode ser melhorada para <span class="math notranslate nohighlight">\(1 - \Delta\)</span> para qualquer <span class="math notranslate nohighlight">\(\Delta &gt; 0\)</span> através do uso de <span class="math notranslate nohighlight">\(O(\frac{log(\frac{1}{\Delta})}{ε})\)</span> aplicações de operações controladas por U, sendo este limite considerado ótimo para o algoritmo.</p>
@@ -506,7 +506,7 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 \end{split}\]</div>
 <p><strong>Circuito</strong></p>
 <p>Notação expandida:</p>
-<p><img alt="PEA.webp" src="algoritmos/images/algoritmos/qpe/PEA.webp" /></p>
+<p><img alt="PEA.webp" src="../../_images/PEA.webp" /></p>
 <p>Observação: Nessa imagem notamos uma diferença de notação para o procedimento, em que: “<span class="math notranslate nohighlight">\(m \space qubits\)</span>” se tornaram “<span class="math notranslate nohighlight">\(n \space qubits\)</span>” e “<span class="math notranslate nohighlight">\(IQFT\)</span>” se tornou “<span class="math notranslate nohighlight">\(QFT^\dagger\)</span>”</p>
 <p>Análise detalhada do algoritmo:</p>
 <p><strong>Estado inicial:</strong> <span class="math notranslate nohighlight">\(\ket{0}^{\otimes m} \ket{v}\)</span></p>
@@ -604,9 +604,9 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2421/2383908159.py:17: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2404/2383908159.py:17: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
   oraculo=lambda i, tgr: PHASE(2 * pi * (fase / 10) * 2**i, tgr),
-/tmp/ipykernel_2421/2553051591.py:10: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+/tmp/ipykernel_2404/2553051591.py:10: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
   PHASE(pi / 2 ** (i + 1), last)
 </pre></div>
 </div>

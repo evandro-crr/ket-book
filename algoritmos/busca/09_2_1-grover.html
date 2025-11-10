@@ -557,7 +557,7 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
 <section id="circuito">
 <h3>Circuito<a class="headerlink" href="#circuito" title="Link para este cabeçalho">#</a></h3>
 <p>Notação compacta</p>
-<p><img alt="Grover_notacao_compacta.png" src="algoritmos/images/algoritmos/grover/Grover_notacao_compacta.png" /></p>
+<p><img alt="Grover_notacao_compacta.png" src="../../_images/Grover_notacao_compacta.png" /></p>
 </section>
 <section id="notacao-auxiliar">
 <h3>Notação auxiliar<a class="headerlink" href="#notacao-auxiliar" title="Link para este cabeçalho">#</a></h3>
@@ -663,7 +663,7 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
       \end{split}  
 \end{split}\]</div>
 <p>O vetor <span class="math notranslate nohighlight">\(\ket{\psi_1}\)</span> continua no espaço <span class="math notranslate nohighlight">\(S\)</span>, e a aplicação do oráculo de fase pode ser visualizada como uma reflexão em torno do eixo <span class="math notranslate nohighlight">\(\ket{\alpha}\)</span>.</p>
-<p><img alt="Reflexao_em_alpha.png" src="algoritmos/images/algoritmos/grover/Reflexao_em_alpha.png" /></p>
+<p><img alt="Reflexao_em_alpha.png" src="../../_images/Reflexao_em_alpha.png" /></p>
 <p>As etapas 2, 3 e 4 de <span class="math notranslate nohighlight">\(G\)</span> redundam em aplicar <span class="math notranslate nohighlight">\(2 \ket{\psi}\bra{\psi} - I\)</span> em <span class="math notranslate nohighlight">\( \ket{\psi_1} \)</span>, conforme equação (<span class="math notranslate nohighlight">\(G\)</span>). E a aplicação desse operador pode ser vista geometricamente de acordo com a figura abaixo.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -673,17 +673,17 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
        &amp;= 2 \ket{\psi}\bra{\psi}\ket{\psi_1} - \ket{\psi_1}
       \end{split}
 \end{split}\]</div>
-<p><img alt="Representacao_geometrica.png" src="algoritmos/images/algoritmos/grover/Representacao_geometrica.png" /></p>
+<p><img alt="Representacao_geometrica.png" src="../../_images/Representacao_geometrica.png" /></p>
 <p>Dessa forma, a primeira aplicação do operador <span class="math notranslate nohighlight">\(G\)</span> fornece o seguinte.</p>
-<p><img alt="Aplicacao_de_G.png" src="algoritmos/images/algoritmos/grover/Aplicacao_de_G.png" /></p>
+<p><img alt="Aplicacao_de_G.png" src="../../_images/Aplicacao_de_G.png" /></p>
 <p><strong>EXERCÍCIO</strong></p>
 </section>
 <section id="aplicacoes-subsequentes-do-operador-g">
 <h3>Aplicações subsequentes do operador <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#aplicacoes-subsequentes-do-operador-g" title="Link para este cabeçalho">#</a></h3>
 <p>As aplicações sucessivas do operador de Grover têm o mesmo efeito descrito anteriormente. Cada aplicação de <span class="math notranslate nohighlight">\(G\)</span> corresponde a uma rotação no sentido anti-horário. A figura a seguir ilustra a <span class="math notranslate nohighlight">\(l\)</span>-ésima aplicação de <span class="math notranslate nohighlight">\(G\)</span>.</p>
-<p><img alt="Aplicacoes_sucessivavs.png" src="algoritmos/images/algoritmos/grover/Aplicacoes_sucessivas.png" /></p>
+<p><img alt="Aplicacoes_sucessivavs.png" src="../../_images/Aplicacoes_sucessivas.png" /></p>
 <p>O operador <span class="math notranslate nohighlight">\(G\)</span> é aplicado por <span class="math notranslate nohighlight">\(k\)</span> vezes até que o vetor resultante esteja o mais próximo possível do eixo <span class="math notranslate nohighlight">\(\ket{\beta}\)</span>.</p>
-<p><img alt="I-esima_aplicacao_de_G.png" src="algoritmos/images/algoritmos/grover/I-esima_aplicacao_de_G.png" /></p>
+<p><img alt="I-esima_aplicacao_de_G.png" src="../../_images/I-esima_aplicacao_de_G.png" /></p>
 </section>
 <section id="numero-necessario-de-aplicacoes-de-g">
 <h3>Número necessário de aplicações de <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#numero-necessario-de-aplicacoes-de-g" title="Link para este cabeçalho">#</a></h3>
@@ -771,7 +771,7 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
 <section id="probabilidade-de-acerto">
 <h3>Probabilidade de acerto<a class="headerlink" href="#probabilidade-de-acerto" title="Link para este cabeçalho">#</a></h3>
 <p>Ao aplicar a subrotina <span class="math notranslate nohighlight">\(G\)</span> por um número <span class="math notranslate nohighlight">\(k\)</span> de vezes especificado anteriormente, obtém-se o estado final o mais próximo possível de <span class="math notranslate nohighlight">\(\ket{\beta} = \ket{x_0}\)</span>, o item desejado. A projeção na direção desse vetor permite encontrar a probabilidade de acerto do algoritmo. O estado final <span class="math notranslate nohighlight">\(G^k \ket{\psi}\)</span> faz um ângulo com o estado <span class="math notranslate nohighlight">\(\ket{x_0}\)</span> menor que <span class="math notranslate nohighlight">\(\theta/2\)</span>, pois se fosse maior ou igual, seria possível aplicar novamente o operador <span class="math notranslate nohighlight">\(G\)</span> para reduzi-lo. Portanto, o ângulo <span class="math notranslate nohighlight">\(\cos \theta\big(\ket{x_0},G^k\ket{\psi}\big)\)</span> entre o estado desejado e o estado final é menor que <span class="math notranslate nohighlight">\(\theta/2\)</span>, o que significa que seu cosseno é maior que <span class="math notranslate nohighlight">\(\cos (\theta/2)\)</span>.</p>
-<p><img alt="Probabilidade_acerto.png" src="algoritmos/images/algoritmos/grover/Probabilidade_acerto.png" /></p>
+<p><img alt="Probabilidade_acerto.png" src="../../_images/Probabilidade_acerto.png" /></p>
 <p>Com isso, tem-se a probabilidade de acerto estimada em</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}

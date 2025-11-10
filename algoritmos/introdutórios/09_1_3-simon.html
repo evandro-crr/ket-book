@@ -434,11 +434,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algorítmo clássico determinístico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo clássico determinístico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-simon">Algorítmo de Simon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-simon">Algoritmo de Simon</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapas-da-subrotina-de-simon">Etapas da subrotina de Simon</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidades-nas-medicoes">Probabilidades nas medições</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-exemplo">Encontrando o valor do período c – exemplo</a></li>
@@ -473,7 +473,7 @@ document.write(`
 </div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Material extraído do TCC <a class="reference internal" href="#../tcc-giovani.pdf"><span class="xref myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
+<p>Material extraído do TCC <a class="reference download internal" download="" href="../../_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
 </div>
 <p>Assim como no caso do Algoritmo de Deutsch-Jozsa, o Algoritmo de Simon é um algoritmo quântico projetado para resolver o Problema de Simon. Esse problema também tem propósito de funcionar como laboratório de testes para a Computação Quântica, não apresentando aplicações conhecidas.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="problema-de-simon">
@@ -564,7 +564,7 @@ f(000) = f(100), 100 = 000 \oplus 100 \implies c = 100
 <section id="algoritmo-classico">
 <h2>Algoritmo Clássico<a class="headerlink" href="#algoritmo-classico" title="Link para este cabeçalho">#</a></h2>
 <section id="algoritmo-classico-deterministico">
-<h3>Algorítmo clássico determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link para este cabeçalho">#</a></h3>
+<h3>Algoritmo clássico determinístico<a class="headerlink" href="#algoritmo-classico-deterministico" title="Link para este cabeçalho">#</a></h3>
 <p>Um algoritmo clássico para o Problema de Simon consiste em escolher entradas <span class="math notranslate nohighlight">\(x\)</span> em <span class="math notranslate nohighlight">\(\mathbb{B}_n\)</span>, calcular <span class="math notranslate nohighlight">\(f(x)\)</span> e comparar com os outros valores já obtidos, até que se encontre um par de vetores distintos <span class="math notranslate nohighlight">\(x_{(1)}\)</span> e <span class="math notranslate nohighlight">\(x_{(2)}\)</span> com <span class="math notranslate nohighlight">\(f(x_{(1)}) = f(x_{(2)})\)</span> ou até que se possa concluir que <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1.</p>
 <p>Supondo que seja possível armazenar todas as entradas testadas e seus resultados pela aplicação da <span class="math notranslate nohighlight">\(f\)</span>, na pior das hipóteses, deve-se calcular <span class="math notranslate nohighlight">\(f\)</span> para metade das entradas mais uma, isto é, <span class="math notranslate nohighlight">\(2^{n}/2 + 1\)</span> vezes. Caso <span class="math notranslate nohighlight">\(f\)</span> seja 1-para-1, todos os resultados seriam distintos, e caso <span class="math notranslate nohighlight">\(f\)</span> seja 2-para-1, na pior das hipóteses, na tentativa de número <span class="math notranslate nohighlight">\(2^{n}/2 + 1\)</span> será obtido um valor repetido após aplicação da função.</p>
 </section>
@@ -606,7 +606,7 @@ m &gt; \frac{1 + \sqrt{1 + 2^{n+1}}}{2}
 </section>
 </section>
 <section id="algoritmo-de-simon">
-<h2>Algorítmo de Simon<a class="headerlink" href="#algoritmo-de-simon" title="Link para este cabeçalho">#</a></h2>
+<h2>Algoritmo de Simon<a class="headerlink" href="#algoritmo-de-simon" title="Link para este cabeçalho">#</a></h2>
 <p>O algoritmo a ser apresentado pressupõe que a função booleana <span class="math notranslate nohighlight">\(f\)</span> seja dada como um oráculo XOR. Também são necessários 2 registradores de <span class="math notranslate nohighlight">\(n\)</span> qubits. O algoritmo descreve uma subrotina a ser repetida da ordem de <span class="math notranslate nohighlight">\(n\)</span> vezes. Em cada iteração, obtém-se um pouco de informação, que será processada classicamente para obter como saída o valor de <span class="math notranslate nohighlight">\(c\)</span> e a decisão se <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1 ou 2-para-1.</p>
 <p><strong>Procedimento:</strong></p>
 <div class="math notranslate nohighlight">
@@ -629,9 +629,9 @@ m &gt; \frac{1 + \sqrt{1 + 2^{n+1}}}{2}
 <p><strong>Saída:</strong> Após processamento clássico final, valor do período <span class="math notranslate nohighlight">\(c\)</span> e decisão se <span class="math notranslate nohighlight">\(f\)</span> é 1-para-1 ou 2-para-1.</p>
 <p><strong>Circuito</strong></p>
 <p>Notação compacta:</p>
-<p><img alt="simon_notacao_compacta" src="algoritmos/images/algoritmos/simon/simon_notacao_compacta.png" /></p>
+<p><img alt="simon_notacao_compacta" src="../../_images/simon_notacao_compacta.png" /></p>
 <p>Notação expandida:</p>
-<p><img alt="simon_notacao_expandida" src="algoritmos/images/algoritmos/simon/simon_notacao_expandida.png" /></p>
+<p><img alt="simon_notacao_expandida" src="../../_images/simon_notacao_expandida.png" /></p>
 <p><strong>EXERCÍCIO</strong></p>
 <p><strong>Contas auxiliares</strong></p>
 <p><strong>Definição 3:</strong> Usa-se a seguinte notação, com o intuito de simplificar algumas expressões:</p>
@@ -1053,7 +1053,7 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
 </div>
 </div>
 </div>
-<p>E então implementar o algorítmo de Simon</p>
+<p>E então implementar o algoritmo de Simon</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simon_algorithm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
@@ -1152,11 +1152,11 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico">Algoritmo Clássico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algorítmo clássico determinístico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-deterministico">Algoritmo clássico determinístico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-classico-probabilistico">Algoritmo Clássico Probabilístico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-simon">Algorítmo de Simon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-simon">Algoritmo de Simon</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapas-da-subrotina-de-simon">Etapas da subrotina de Simon</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidades-nas-medicoes">Probabilidades nas medições</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-exemplo">Encontrando o valor do período c – exemplo</a></li>

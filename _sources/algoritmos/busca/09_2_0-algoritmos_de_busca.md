@@ -1,7 +1,7 @@
 # Algoritmos de Busca
 
 ```{note}
-Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](./tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
+Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](../../tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
 ```
 
 Neste capítulo serão abordados os algoritmos de Busca, algoritmos que possuem o objetivo de encontrar um item específico em uma lista, ordenada ou não.
@@ -18,7 +18,7 @@ Há duas maneiras de se escrever um análogo quântico ao oráculo clássico: o 
 
 O oráculo XOR é uma operação unitária que realiza a função booleana $f$ por meio de um bit extra, que sinaliza as entradas em que $f$ vale 1. 
 
-![oraculo_xor](images/algoritmos/base/oraculo_xor.png)
+![oraculo_xor](../../images/algoritmos/base/oraculo_xor.png)
 
 ### Construção do Oráculo de Fase usando o Oráculo XOR
 
@@ -40,7 +40,7 @@ $$
 
 A figura a seguir ilustra a construção do oráculo de fase.
 
-![oraculo_fase.png](images/algoritmos/base/oraculo_fase.png)
+![oraculo_fase.png](../../images/algoritmos/base/oraculo_fase.png)
 
 ## Conteúdo
 
