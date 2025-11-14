@@ -529,6 +529,7 @@ minimizar \space C(z)
 H(t) = H_c + \beta(t) H_m
 \]</div>
 <p>onde <span class="math notranslate nohighlight">\(\beta(t)\)</span> é um parâmetro de controle que varia ao longo do tempo e é continuamente atualizado a partir das medições feitas no sistema.</p>
+<p><img alt="falqon" src="../../_images/falqon.png" /></p>
 <section id="dinamica-de-evolucao-temporal">
 <h3>Dinâmica de Evolução Temporal<a class="headerlink" href="#dinamica-de-evolucao-temporal" title="Link para este cabeçalho">#</a></h3>
 <div class="admonition note">
@@ -642,8 +643,6 @@ H_c = \sum_{(i,j) \in E} \frac{1 - Z_i Z_j}{2}
 <li><p><span class="math notranslate nohighlight">\(Z_i\)</span> e <span class="math notranslate nohighlight">\(Z_j\)</span> são operadores de Pauli-Z aplicados aos qubits <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
 </ul>
 <p>Esse termo atribui energia menor (ou custo maior) às configurações de bits que <strong>maximizam o número de arestas “cortadas”</strong>, ou seja, que conectam vértices em partições diferentes do grafo.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: ilustração de um grafo simples com o corte (Max-Cut) destacado e a associação com os qubits via ( Z_iZ_j )).</em></p>
 </section>
 <section id="hamiltoniano-de-mistura-mixer">
 <h3>Hamiltoniano de Mistura (Mixer)<a class="headerlink" href="#hamiltoniano-de-mistura-mixer" title="Link para este cabeçalho">#</a></h3>
@@ -663,8 +662,6 @@ Assim, enquanto <span class="math notranslate nohighlight">\(H_c\)</span> “atr
 <h1>Aplicando FALQON no Max-Cut<a class="headerlink" href="#aplicando-falqon-no-max-cut" title="Link para este cabeçalho">#</a></h1>
 <p>O <strong>FALQON</strong> também pode ser ilustrado usando o problema do <strong>Max-Cut</strong>, um dos exemplos clássicos em otimização combinatória.
 Nesse problema, buscamos <strong>dividir os vértices de um grafo em dois conjuntos</strong> de forma a <strong>maximizar o número de arestas que conectam vértices de grupos diferentes</strong>.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: grafo dividido em dois grupos coloridos, mostrando as arestas cortadas — as que ligam vértices de cores diferentes.)</em></p>
 <section id="o-problema-do-max-cut">
 <h2>O Problema do Max-Cut<a class="headerlink" href="#o-problema-do-max-cut" title="Link para este cabeçalho">#</a></h2>
 <p>Dado um grafo <span class="math notranslate nohighlight">\(G = (V, E)\)</span> com vértices <span class="math notranslate nohighlight">\(V\)</span> e arestas <span class="math notranslate nohighlight">\(E\)</span>, queremos encontrar uma partição dos vértices <span class="math notranslate nohighlight">\(V\)</span> em dois subconjuntos <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(\bar{S}\)</span> tal que o número de arestas entre eles seja máximo.</p>
@@ -674,8 +671,7 @@ Nesse problema, buscamos <strong>dividir os vértices de um grafo em dois conjun
 C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
 \]</div>
 <p>onde <span class="math notranslate nohighlight">\(z_i, z_j \in {+1, -1}\)</span> representam a qual subconjunto cada vértice pertence.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: grafo com duas partições coloridas, ilustrando quais arestas são “cortadas”.)</em></p>
+<p><img alt="Max-cut" src="../../_images/Max-cut.svg" /></p>
 </section>
 <section id="falqon-em-max-cut">
 <h2>FALQON em Max-Cut<a class="headerlink" href="#falqon-em-max-cut" title="Link para este cabeçalho">#</a></h2>
@@ -704,8 +700,6 @@ os parâmetros <span class="math notranslate nohighlight">\(\beta(t)\)</span> e 
 <li><p>Essa medida serve de feedback para atualizar <span class="math notranslate nohighlight">\(\beta(t)\)</span> e <span class="math notranslate nohighlight">\(\gamma(t)\)</span> segundo uma regra de controle predefinida.</p></li>
 <li><p>O sistema continua evoluindo, adaptando seus parâmetros até se aproximar do estado de menor energia, correspondente à melhor solução do Max-Cut.</p></li>
 </ol>
-<p>!!! FIGURA !!!
-<em>(Sugestão: esquema temporal mostrando a evolução do estado (|\psi(t)\rangle) sob feedback, com medições influenciando os parâmetros (\beta(t)) e (\gamma(t)).)</em></p>
 </section>
 <section id="simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-no-max-cut">
 <h2>Simulação do Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON) no Max-Cut<a class="headerlink" href="#simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-no-max-cut" title="Link para este cabeçalho">#</a></h2>
@@ -812,8 +806,6 @@ os parâmetros <span class="math notranslate nohighlight">\(\beta(t)\)</span> e 
 <section class="tex2jax_ignore mathjax_ignore" id="aplicando-falqon-ao-qubo">
 <h1>Aplicando FALQON ao QUBO<a class="headerlink" href="#aplicando-falqon-ao-qubo" title="Link para este cabeçalho">#</a></h1>
 <p>O FALQON é particularmente adequado para resolver problemas do tipo <strong>QUBO</strong> (<em>Quadratic Unconstrained Binary Optimization</em>), pois ele se baseia inteiramente no Hamiltoniano que codifica a função objetivo do problema e em um mecanismo de controle que ajusta a dinâmica quântica conforme o sistema evolui.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: diagrama do circuito do QAOA, mostrando as camadas alternadas de <span class="math notranslate nohighlight">\(e^{-i\gamma H_c}\)</span> e <span class="math notranslate nohighlight">\(e^{-i\beta H_m}\)</span>, com parâmetros ajustáveis.)</em></p>
 <section id="o-que-e-o-qubo">
 <h2>O que é o QUBO<a class="headerlink" href="#o-que-e-o-qubo" title="Link para este cabeçalho">#</a></h2>
 <p>O QUBO pode ser entendido como um problema onde buscamos um vetor binário <span class="math notranslate nohighlight">\(z = (z_1, z_2, ..., z_n)\)</span>, com cada <span class="math notranslate nohighlight">\(z_i \in {+1, -1}\)</span>, que minimize (ou maximize) uma função de custo quadrática da forma:</p>
@@ -827,8 +819,6 @@ C(z) = \sum_{i&lt;j} w_{ij} z_i z_j + \sum_i w_i z_i
 \[
 C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
 \]</div>
-<p>!!! FIGURA !!!
-<em>(Sugestão: grafo com vértices divididos em duas cores, destacando as arestas “cortadas” pela partição.)</em></p>
 </section>
 <section id="falqon-ao-qubo">
 <h2>FALQON ao QUBO<a class="headerlink" href="#falqon-ao-qubo" title="Link para este cabeçalho">#</a></h2>
@@ -858,8 +848,6 @@ C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
 <section id="leitura-da-solucao">
 <h3>Leitura da Solução<a class="headerlink" href="#leitura-da-solucao" title="Link para este cabeçalho">#</a></h3>
 <p>No final, o estado é medido diversas vezes. Cada resultado <span class="math notranslate nohighlight">\(z\)</span> é avaliado com <span class="math notranslate nohighlight">\(C(z)\)</span>, e o menor valor observado é tomado como a solução aproximada do QUBO.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: diagrama híbrido mostrando o loop entre o computador quântico (geração do estado e medição) e o otimizador clássico (ajuste de parâmetros).)</em></p>
 </section>
 </section>
 <section id="simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-ao-qubo">
