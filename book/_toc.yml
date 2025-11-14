@@ -31,6 +31,10 @@ chapters:
           - file: algoritmos/baseados_em_QFT/09_3_1-qft
           - file: algoritmos/baseados_em_QFT/09_3_2-qpe
           - file: algoritmos/baseados_em_QFT/09_3_3-shor
+      - file: algoritmos/variacionais/09_4_0-algoritmos_variacionais
+        sections:
+          - file: algoritmos/variacionais/09_4_1-QAOA
+          - file: algoritmos/variacionais/09_4_2-FALQON
   - url: https://qubox.ufsc.br/index.html
     title: Qubox UFSC
   - file: 10-referencias
