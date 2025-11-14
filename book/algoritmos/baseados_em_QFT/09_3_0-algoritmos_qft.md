@@ -1,7 +1,7 @@
 # Algoritmos Baseados em QFT
 
 ```{note}
-Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](./tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
+Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](../../tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
 ```
 
 Neste capítulo serão abordados os algoritmos baseados no uso de QFT, algoritmos que possuem relações com frequência e fase. Muitos deles, se destacando na literatura da computação quântica.

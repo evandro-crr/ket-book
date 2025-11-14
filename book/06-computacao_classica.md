@@ -30,7 +30,7 @@ $$
 \text{Microarquitetura} \\
 \text{Transferência de Registrador} \\
 \text{Portas Lógicas} \\
-\text{Circuitos Transistorizados}
+\text{Circuitos Transistorizados} \\
 \text{Nível Físico}
 \end{array}
 $$
