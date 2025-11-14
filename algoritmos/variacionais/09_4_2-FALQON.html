@@ -1,0 +1,1335 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON) &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algoritmos/variacionais/09_4_2-FALQON';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Referências" href="../../10-referencias.html" />
+    <link rel="prev" title="Algoritmo Quântico de Otimização Aproximada (QAOA)" href="09_4_1-QAOA.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../01-index.html">
+                    Introdução à Computação Quântica
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../09-algoritmos.html">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../busca/09_2_0-algoritmos_de_busca.html">Algoritmos de Busca</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../busca/09_2_1-grover.html">Algoritmo de Busca de Grover</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="09_4_0-algoritmos_variacionais.html">Algoritmos Variacionais Quânticos (VQAs)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="09_4_1-QAOA.html">Algoritmo Quântico de Otimização Aproximada (QAOA)</a></li>
+
+
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/algoritmos/variacionais/09_4_2-FALQON.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/algoritmos/variacionais/09_4_2-FALQON.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/algoritmos/variacionais/09_4_2-FALQON.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-do-algoritmo">Estrutura do Algorítmo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-de-evolucao-temporal">Dinâmica de Evolução Temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equacao-de-evolucao">Equação de Evolução</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucao-temporal-discretizada">Evolução Temporal Discretizada</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lei-de-controle-de-feedback">Lei de Controle de Feedback</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-fisica">Interpretação Física</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convergencia">Convergência</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacao-em-circuitos-quanticos">Implementação em Circuitos Quânticos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltoniano-de-custo-cost">Hamiltoniano de Custo (Cost)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltoniano-de-mistura-mixer">Hamiltoniano de Mistura (Mixer)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicando-falqon-no-max-cut">Aplicando FALQON no Max-Cut</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-problema-do-max-cut">O Problema do Max-Cut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#falqon-em-max-cut">FALQON em Max-Cut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-no-max-cut">Simulação do Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON) no Max-Cut</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicando-falqon-ao-qubo">Aplicando FALQON ao QUBO</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-e-o-qubo">O que é o QUBO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#falqon-ao-qubo">FALQON ao QUBO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controle-por-feedback">Controle por Feedback</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucao-do-sistema">Evolução do Sistema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leitura-da-solucao">Leitura da Solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-ao-qubo">Simulação do Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON) ao QUBO</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_thebe-init tag_remove-output tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>O FALQON foi proposto em 2021, e sua ideia central é controlar a evolução quântica de forma iterativa e adaptativa, isto é, com feedback contínuo do sistema. Ele tenta encontrar o estado quântico de menor energia (ou seja, a melhor solução para um problema de otimização) sem precisar de uma etapa de otimização clássica externa, o que é um grande problema no QAOA. Enquanto o QAOA alterna entre dois Hamiltonianos e ajusta parâmetros (ângulos) via um otimizador clássico, o FALQON faz isso automaticamente com um esquema de controle de feedback baseado em medições quânticas.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon">
+<h1>Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)<a class="headerlink" href="#algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon" title="Link para este cabeçalho">#</a></h1>
+<p>O FALQON (<em>Feedback-based Algorithm for Quantum Optimization</em>) é um algoritmo quântico projetado para resolver problemas de otimização combinatória, utilizando controle por realimentação (feedback) para ajustar automaticamente a evolução do sistema quântico em direção à solução ótima.</p>
+<p>Diferente de abordagens tradicionais que dependem de otimização clássica, o FALQON define um mecanismo de aprendizado interno, no qual o próprio sistema quântico coleta informações sobre seu estado e as usa para corrigir seu rumo dinamicamente. Buscando resolver problemas formulados como:</p>
+<div class="math notranslate nohighlight">
+\[
+minimizar \space C(z)
+\]</div>
+<p>Em que <span class="math notranslate nohighlight">\(C\)</span> é a função custo que mede a precisão de cada solução e <span class="math notranslate nohighlight">\(z\)</span> é uma configuração.</p>
+<section id="estrutura-do-algoritmo">
+<h2>Estrutura do Algorítmo<a class="headerlink" href="#estrutura-do-algoritmo" title="Link para este cabeçalho">#</a></h2>
+<p>O FALQON se baseia em dois Hamiltonianos fundamentais:</p>
+<ul class="simple">
+<li><p><strong>Hamiltoniano de custo</strong> (<span class="math notranslate nohighlight">\(H_c\)</span>), que representa o problema a ser otimizado.</p></li>
+<li><p><strong>Hamiltoniano de mistura</strong> (<span class="math notranslate nohighlight">\(H_m\)</span>), que promove a transição entre diferentes estados do espaço de soluções.</p></li>
+</ul>
+<p>A dinâmica total do sistema é dada por um <strong>Hamiltoniano dependente do tempo</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+H(t) = H_c + \beta(t) H_m
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\beta(t)\)</span> é um parâmetro de controle que varia ao longo do tempo e é continuamente atualizado a partir das medições feitas no sistema.</p>
+<section id="dinamica-de-evolucao-temporal">
+<h3>Dinâmica de Evolução Temporal<a class="headerlink" href="#dinamica-de-evolucao-temporal" title="Link para este cabeçalho">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Essa parte é mais complicada, <strong>principalmente se você não tem costume com a física</strong>, foque em entender o conceito principal.</p>
+</div>
+<p>A dinâmica de evolução temporal do FALQON descreve como o estado quântico do sistema é modificado ao longo do tempo sob a influência de um Hamiltoniano dependente de um parâmetro de controle realimentado, <span class="math notranslate nohighlight">\(\beta(t)\)</span>.</p>
+<p>Essa evolução é contínua no tempo, mas é frequentemente discretizada em intervalos finitos para implementação prática em circuitos quânticos.</p>
+<section id="equacao-de-evolucao">
+<h4>Equação de Evolução<a class="headerlink" href="#equacao-de-evolucao" title="Link para este cabeçalho">#</a></h4>
+<p>O sistema quântico é descrito por um vetor de estado <span class="math notranslate nohighlight">\(\ket{\psi(t)}\)</span> que obedece à <strong>equação de Schrödinger dependente do tempo</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+i\frac{d}{dt}\ket{\psi(t)} = H(t)\ket{\psi(t)}
+\]</div>
+<p>onde o Hamiltoniano total é dado por:</p>
+<div class="math notranslate nohighlight">
+\[
+H(t) = H_c + \beta(t) H_m
+\]</div>
+<p>Nesse formalismo, <span class="math notranslate nohighlight">\(H_c\)</span> é o <strong>Hamiltoniano de custo</strong>, responsável por atrair o sistema para estados de baixa energia (soluções boas), enquanto <span class="math notranslate nohighlight">\(H_m\)</span> é o <strong>Hamiltoniano de mistura</strong>, que promove transições entre diferentes configurações.</p>
+<p>O parâmetro <span class="math notranslate nohighlight">\(\beta(t)\)</span> funciona como um <strong>campo de controle dinâmico</strong>, modulando a influência de <span class="math notranslate nohighlight">\(H_m\)</span> ao longo do tempo.
+A estratégia central do FALQON é ajustar <span class="math notranslate nohighlight">\(\beta(t)\)</span> de forma a minimizar a energia esperada <span class="math notranslate nohighlight">\(\langle H_c \rangle\)</span> durante a evolução.</p>
+</section>
+<section id="evolucao-temporal-discretizada">
+<h4>Evolução Temporal Discretizada<a class="headerlink" href="#evolucao-temporal-discretizada" title="Link para este cabeçalho">#</a></h4>
+<p>Na prática, o tempo é dividido em pequenos intervalos <span class="math notranslate nohighlight">\(\Delta t\)</span>, de modo que a evolução pode ser aproximada por passos discretos:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi_{k+1}} = e^{-i(H_c + \beta_k H_m)\Delta t} \ket{\psi_k}
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\beta_k = \beta(t_k)\)</span> é o valor do parâmetro de controle no instante <span class="math notranslate nohighlight">\(t_k\)</span>.</p>
+<p>Após cada passo de evolução, o algoritmo realiza medições do valor esperado de <span class="math notranslate nohighlight">\(H_c\)</span> no estado atual:</p>
+<div class="math notranslate nohighlight">
+\[
+\langle H_c \rangle_k = \bra{\psi_k} H_c \ket{\psi_k}
+\]</div>
+<p>Essas medições fornecem informações sobre a “energia atual” do sistema e permitem ajustar <span class="math notranslate nohighlight">\(\beta_k\)</span> para o próximo passo.</p>
+</section>
+<section id="lei-de-controle-de-feedback">
+<h4>Lei de Controle de Feedback<a class="headerlink" href="#lei-de-controle-de-feedback" title="Link para este cabeçalho">#</a></h4>
+<p>A atualização do parâmetro de controle é realizada segundo uma <strong>lei de feedback</strong> que visa diminuir continuamente o valor de <span class="math notranslate nohighlight">\(\langle H_c \rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\beta_{k+1} = \beta_k - \eta \frac{d\langle H_c \rangle}{d\beta_k}
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\eta\)</span> é a <strong>taxa de aprendizado</strong> — um pequeno fator positivo que controla a intensidade da correção.</p>
+<p>Fisicamente, essa relação expressa uma <strong>descida adaptativa no espaço de controle</strong>:
+o sistema mede o impacto do parâmetro <span class="math notranslate nohighlight">\(\beta_k\)</span> sobre a energia e o ajusta de modo a seguir a direção de menor energia esperada.</p>
+<p>Em termos diferenciais, no limite contínuo, isso pode ser expresso como:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d\beta(t)}{dt} = -\lambda \langle [H_m, H_c] \rangle_t
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\lambda\)</span> é uma constante de proporcionalidade e o termo <span class="math notranslate nohighlight">\(\langle [H_m, H_c] \rangle_t\)</span> (o <strong>valor esperado do comutador</strong> entre <span class="math notranslate nohighlight">\(H_m\)</span> e <span class="math notranslate nohighlight">\(H_c\)</span>) indica <strong>como as duas partes do Hamiltoniano interferem dinamicamente</strong>.
+Esse termo é fundamental: ele quantifica <strong>a taxa de variação da energia</strong> em função da mistura induzida por <span class="math notranslate nohighlight">\(H_m\)</span>.</p>
+</section>
+<section id="interpretacao-fisica">
+<h4>Interpretação Física<a class="headerlink" href="#interpretacao-fisica" title="Link para este cabeçalho">#</a></h4>
+<p>O mecanismo pode ser interpretado como um <strong>sistema de controle em malha fechada</strong>:</p>
+<ol class="arabic simple">
+<li><p>O estado <span class="math notranslate nohighlight">\(\ket{\psi(t)}\)</span> evolui sob a ação do Hamiltoniano total.</p></li>
+<li><p>Mede-se o valor esperado da energia do problema <span class="math notranslate nohighlight">\(\langle H_c \rangle_t\)</span>.</p></li>
+<li><p>Essa medição alimenta a atualização do campo <span class="math notranslate nohighlight">\(\beta(t)\)</span>, que ajusta a dinâmica do sistema.</p></li>
+<li><p>O processo se repete, guiando o sistema quântico em direção ao estado de energia mínima.</p></li>
+</ol>
+<p>Dessa forma, o FALQON implementa uma espécie de <strong>descida de energia supervisionada pelo próprio sistema</strong>, sem dependência de um otimizador externo.</p>
+</section>
+<section id="convergencia">
+<h4>Convergência<a class="headerlink" href="#convergencia" title="Link para este cabeçalho">#</a></h4>
+<p>Ao longo do tempo, a sequência de estados <span class="math notranslate nohighlight">\({ \ket{\psi_k} }\)</span> tende para uma configuração onde:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d\langle H_c \rangle}{dt} \approx 0
+\]</div>
+<p>ou seja, a energia esperada se estabiliza, indicando que o sistema atingiu um <strong>ponto fixo</strong> — normalmente próximo ao <strong>estado fundamental</strong> de <span class="math notranslate nohighlight">\(H_c\)</span>.</p>
+<p>Esse é o critério prático de convergência do algoritmo.</p>
+</section>
+<section id="implementacao-em-circuitos-quanticos">
+<h4>Implementação em Circuitos Quânticos<a class="headerlink" href="#implementacao-em-circuitos-quanticos" title="Link para este cabeçalho">#</a></h4>
+<p>Na implementação experimental, a evolução exponencial <span class="math notranslate nohighlight">\(e^{-i(H_c + \beta_k H_m)\Delta t}\)</span> é realizada por <strong>sequências alternadas de portas quânticas</strong>, usando a decomposição de Trotter-Suzuki:</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-i(H_c + \beta_k H_m)\Delta t} \approx e^{-iH_c \Delta t} e^{-i\beta_k H_m \Delta t}
+\]</div>
+<p>Essa decomposição permite construir o circuito correspondente ao passo <span class="math notranslate nohighlight">\(k\)</span> usando <strong>blocos de portas controladas por <span class="math notranslate nohighlight">\(\beta_k\)</span></strong>, atualizadas após cada rodada de medições.</p>
+</section>
+<section id="conclusao">
+<h4>Conclusão<a class="headerlink" href="#conclusao" title="Link para este cabeçalho">#</a></h4>
+<p>A dinâmica temporal do FALQON é caracterizada por um <strong>controle adaptativo e contínuo</strong>, no qual o sistema:</p>
+<ul class="simple">
+<li><p>evolui sob um Hamiltoniano dependente do tempo,</p></li>
+<li><p>mede seu próprio estado,</p></li>
+<li><p>e ajusta seu parâmetro de controle para reduzir a energia.</p></li>
+</ul>
+</section>
+</section>
+<section id="hamiltoniano-de-custo-cost">
+<h3>Hamiltoniano de Custo (Cost)<a class="headerlink" href="#hamiltoniano-de-custo-cost" title="Link para este cabeçalho">#</a></h3>
+<p>O <strong>hamiltoniano de custo</strong> é o responsável por <strong>codificar o problema de otimização</strong> no sistema quântico.
+Cada possível solução <span class="math notranslate nohighlight">\(z\)</span> (uma sequência de bits) é associada a um valor de energia proporcional ao custo <span class="math notranslate nohighlight">\(C(z)\)</span>. O objetivo é encontrar o estado quântico que minimize essa energia esperada.</p>
+<p>De modo geral, <span class="math notranslate nohighlight">\(H_c\)</span> é <strong>diagonal na base computacional</strong>, e sua forma depende do problema que se deseja resolver.</p>
+<p>Por exemplo, para o problema <strong>Max-Cut</strong>, o hamiltoniano de custo é dado por:</p>
+<div class="math notranslate nohighlight">
+\[
+H_c = \sum_{(i,j) \in E} \frac{1 - Z_i Z_j}{2}
+\]</div>
+<p>onde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E\)</span> é o conjunto de arestas do grafo,</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z_i\)</span> e <span class="math notranslate nohighlight">\(Z_j\)</span> são operadores de Pauli-Z aplicados aos qubits <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+</ul>
+<p>Esse termo atribui energia menor (ou custo maior) às configurações de bits que <strong>maximizam o número de arestas “cortadas”</strong>, ou seja, que conectam vértices em partições diferentes do grafo.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: ilustração de um grafo simples com o corte (Max-Cut) destacado e a associação com os qubits via ( Z_iZ_j )).</em></p>
+</section>
+<section id="hamiltoniano-de-mistura-mixer">
+<h3>Hamiltoniano de Mistura (Mixer)<a class="headerlink" href="#hamiltoniano-de-mistura-mixer" title="Link para este cabeçalho">#</a></h3>
+<p>O <strong>hamiltoniano de mistura</strong> tem o papel de <strong>explorar o espaço de soluções</strong>, permitindo que o sistema quântico escape de mínimos locais.</p>
+<p>Ele é definido, de forma geral, como:</p>
+<div class="math notranslate nohighlight">
+\[
+H_m = \sum_{i} X_i
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(X_i\)</span> é o operador de Pauli-X aplicado ao qubit <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>O operador <span class="math notranslate nohighlight">\(X_i\)</span> realiza rotações entre os estados <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span>, ou seja, <strong>muda os bits das soluções</strong> de forma controlada pelos parâmetros <span class="math notranslate nohighlight">\(\beta\)</span>.
+Assim, enquanto <span class="math notranslate nohighlight">\(H_c\)</span> “atrai” o sistema para as boas soluções, <span class="math notranslate nohighlight">\(H_m\)</span> garante diversidade e exploração — evitando que o algoritmo se prenda a uma única configuração.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aplicando-falqon-no-max-cut">
+<h1>Aplicando FALQON no Max-Cut<a class="headerlink" href="#aplicando-falqon-no-max-cut" title="Link para este cabeçalho">#</a></h1>
+<p>O <strong>FALQON</strong> também pode ser ilustrado usando o problema do <strong>Max-Cut</strong>, um dos exemplos clássicos em otimização combinatória.
+Nesse problema, buscamos <strong>dividir os vértices de um grafo em dois conjuntos</strong> de forma a <strong>maximizar o número de arestas que conectam vértices de grupos diferentes</strong>.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: grafo dividido em dois grupos coloridos, mostrando as arestas cortadas — as que ligam vértices de cores diferentes.)</em></p>
+<section id="o-problema-do-max-cut">
+<h2>O Problema do Max-Cut<a class="headerlink" href="#o-problema-do-max-cut" title="Link para este cabeçalho">#</a></h2>
+<p>Dado um grafo <span class="math notranslate nohighlight">\(G = (V, E)\)</span> com vértices <span class="math notranslate nohighlight">\(V\)</span> e arestas <span class="math notranslate nohighlight">\(E\)</span>, queremos encontrar uma partição dos vértices <span class="math notranslate nohighlight">\(V\)</span> em dois subconjuntos <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(\bar{S}\)</span> tal que o número de arestas entre eles seja máximo.</p>
+<p>O custo clássico pode ser expresso como:</p>
+<div class="math notranslate nohighlight">
+\[
+C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(z_i, z_j \in {+1, -1}\)</span> representam a qual subconjunto cada vértice pertence.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: grafo com duas partições coloridas, ilustrando quais arestas são “cortadas”.)</em></p>
+</section>
+<section id="falqon-em-max-cut">
+<h2>FALQON em Max-Cut<a class="headerlink" href="#falqon-em-max-cut" title="Link para este cabeçalho">#</a></h2>
+<p>O algoritmo inicia com o sistema no estado <span class="math notranslate nohighlight">\(\ket{+}^{\otimes n}\)</span>, representando uma <strong>superposição uniforme</strong> de todas as possíveis partições.
+O Hamiltoniano de custo é definido como:</p>
+<div class="math notranslate nohighlight">
+\[
+H_C = \sum_{(i,j)\in E} \frac{1}{2}(I - Z_i Z_j)
+\]</div>
+<p>e o Hamiltoniano de mistura é geralmente tomado como:</p>
+<div class="math notranslate nohighlight">
+\[
+H_M = \sum_i X_i
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(Z_i\)</span> e <span class="math notranslate nohighlight">\(X_i\)</span> são os operadores de Pauli correspondentes a cada qubit.</p>
+<p>A evolução temporal do estado segue a equação:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d\ket{\psi(t)}}{dt} = -i \big[\beta(t) H_m + \gamma(t) H_c\big] \ket{\psi(t)}
+\]</div>
+<p>Aqui está a principal diferença do FALQON:
+os parâmetros <span class="math notranslate nohighlight">\(\beta(t)\)</span> e <span class="math notranslate nohighlight">\(\gamma(t)\)</span> <strong>não são otimizados por um loop clássico</strong>, mas <strong>ajustados dinamicamente</strong> a cada passo de tempo, com base nas <strong>medições do próprio sistema</strong>.</p>
+<p>O procedimento é o seguinte:</p>
+<ol class="arabic simple">
+<li><p>Mede-se a expectativa de <span class="math notranslate nohighlight">\(H_c\)</span> no estado atual.</p></li>
+<li><p>Essa medida serve de feedback para atualizar <span class="math notranslate nohighlight">\(\beta(t)\)</span> e <span class="math notranslate nohighlight">\(\gamma(t)\)</span> segundo uma regra de controle predefinida.</p></li>
+<li><p>O sistema continua evoluindo, adaptando seus parâmetros até se aproximar do estado de menor energia, correspondente à melhor solução do Max-Cut.</p></li>
+</ol>
+<p>!!! FIGURA !!!
+<em>(Sugestão: esquema temporal mostrando a evolução do estado (|\psi(t)\rangle) sob feedback, com medições influenciando os parâmetros (\beta(t)) e (\gamma(t)).)</em></p>
+</section>
+<section id="simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-no-max-cut">
+<h2>Simulação do Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON) no Max-Cut<a class="headerlink" href="#simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-no-max-cut" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o FALQON usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">plotly</span><span class="w"> </span><span class="kn">import</span> <span class="n">express</span> <span class="k">as</span> <span class="n">px</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Primeiro definimos o hamiltoniano de custo (<span class="math notranslate nohighlight">\(H_c\)</span>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cost_h</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">obs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Z</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="n">a</span><span class="p">])</span> <span class="o">*</span> <span class="n">Z</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="n">b</span><span class="p">])</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Agora definimos o hamiltoniano de mistura (<span class="math notranslate nohighlight">\(H_m\)</span>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mixer_h</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">obs</span><span class="p">():</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Depois disso, definimos o operador <span class="math notranslate nohighlight">\(\beta(t)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">beta_h</span><span class="p">(</span><span class="n">arestas</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">commutator</span><span class="p">(</span><span class="n">mixer_h</span><span class="p">(</span><span class="n">qubits</span><span class="p">),</span> <span class="n">cost_h</span><span class="p">(</span><span class="n">arestas</span><span class="p">,</span> <span class="n">qubits</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Criaremos a camada do FALQON, focando na evolução temporal</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">falqon_layer</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+    <span class="n">evolve</span><span class="p">(</span><span class="n">cost_h</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_t</span><span class="p">)</span>
+    <span class="n">evolve</span><span class="p">(</span><span class="n">mixer_h</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_t</span> <span class="o">*</span> <span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizando do ket, conseguimos plotar o circuito referente ao algoritmo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+<span class="n">num_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="n">delta_t</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">falqon_layer</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">,</span> <span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5b6032231f4aab7ad1701d10eab4a745cdd6f477d38ec5ab97cb74ffff707cb0.png" src="../../_images/5b6032231f4aab7ad1701d10eab4a745cdd6f477d38ec5ab97cb74ffff707cb0.png" />
+</div>
+</div>
+<p>Agora aplicamos o FALQON e plotamos os resultados</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_layers</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">betas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
+<span class="n">qubits</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">)</span>
+<span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layers</span><span class="p">):</span>
+    <span class="n">falqon_layer</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">betas</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">qubits</span><span class="p">)</span>
+
+    <span class="n">cost</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exp_value</span><span class="p">(</span><span class="n">cost_h</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">qubits</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+    <span class="n">betas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exp_value</span><span class="p">(</span><span class="n">beta_h</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">qubits</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+
+<span class="n">sample</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="s2">&quot;bin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Gráficos de custo e beta</span>
+<span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cost</span><span class="p">))),</span> <span class="n">y</span><span class="o">=</span><span class="n">cost</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Cost&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">betas</span><span class="p">))),</span> <span class="n">y</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Beta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aplicando-falqon-ao-qubo">
+<h1>Aplicando FALQON ao QUBO<a class="headerlink" href="#aplicando-falqon-ao-qubo" title="Link para este cabeçalho">#</a></h1>
+<p>O FALQON é particularmente adequado para resolver problemas do tipo <strong>QUBO</strong> (<em>Quadratic Unconstrained Binary Optimization</em>), pois ele se baseia inteiramente no Hamiltoniano que codifica a função objetivo do problema e em um mecanismo de controle que ajusta a dinâmica quântica conforme o sistema evolui.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: diagrama do circuito do QAOA, mostrando as camadas alternadas de <span class="math notranslate nohighlight">\(e^{-i\gamma H_c}\)</span> e <span class="math notranslate nohighlight">\(e^{-i\beta H_m}\)</span>, com parâmetros ajustáveis.)</em></p>
+<section id="o-que-e-o-qubo">
+<h2>O que é o QUBO<a class="headerlink" href="#o-que-e-o-qubo" title="Link para este cabeçalho">#</a></h2>
+<p>O QUBO pode ser entendido como um problema onde buscamos um vetor binário <span class="math notranslate nohighlight">\(z = (z_1, z_2, ..., z_n)\)</span>, com cada <span class="math notranslate nohighlight">\(z_i \in {+1, -1}\)</span>, que minimize (ou maximize) uma função de custo quadrática da forma:</p>
+<div class="math notranslate nohighlight">
+\[
+C(z) = \sum_{i&lt;j} w_{ij} z_i z_j + \sum_i w_i z_i
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(w_{ij}\)</span> e <span class="math notranslate nohighlight">\(w_i\)</span> são pesos associados às interações e aos vértices, respectivamente.</p>
+<p>Um exemplo clássico é o <strong>problema de Max-Cut</strong>, onde o objetivo é dividir os vértices de um grafo em dois grupos de modo a maximizar o número de arestas entre eles. Nesse caso, o custo pode ser escrito como:</p>
+<div class="math notranslate nohighlight">
+\[
+C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
+\]</div>
+<p>!!! FIGURA !!!
+<em>(Sugestão: grafo com vértices divididos em duas cores, destacando as arestas “cortadas” pela partição.)</em></p>
+</section>
+<section id="falqon-ao-qubo">
+<h2>FALQON ao QUBO<a class="headerlink" href="#falqon-ao-qubo" title="Link para este cabeçalho">#</a></h2>
+<p>O FALQON resolve problemas QUBO convertendo a função de custo em um Hamiltoniano quântico e conduzindo o sistema através de uma evolução guiada por feedback.</p>
+<ul class="simple">
+<li><p>O <strong>Hamiltoniano de Custo</strong>, <span class="math notranslate nohighlight">\(H_c\)</span>, codifica a função objetivo do problema (no caso do Max-Cut, ele depende das arestas do grafo).</p></li>
+<li><p>O <strong>Hamiltoniano Misturador</strong>, <span class="math notranslate nohighlight">\(H_m\)</span>, atua sobre os qubits permitindo a exploração do espaço de soluções.</p></li>
+</ul>
+<section id="controle-por-feedback">
+<h3>Controle por Feedback<a class="headerlink" href="#controle-por-feedback" title="Link para este cabeçalho">#</a></h3>
+<p>No FALQON, o parâmetro de controle é <strong><span class="math notranslate nohighlight">\(\beta(t)\)</span></strong>, ajustado dinamicamente a cada passo. Sua atualização segue uma regra de feedback baseada na estimativa quântica do comutador:</p>
+<div class="math notranslate nohighlight">
+\[
+\beta_{k+1} = \beta_k + \eta , \langle i[H_c, H_m] \rangle_k.
+\]</div>
+</section>
+<section id="evolucao-do-sistema">
+<h3>Evolução do Sistema<a class="headerlink" href="#evolucao-do-sistema" title="Link para este cabeçalho">#</a></h3>
+<p>A evolução ocorre em passos discretos:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+\ket{\psi_{k+1}}\\e^{-i \Delta t ( H_c + \beta_k H_m )}
+\ket{\psi_k},
+\end{aligned}\end{align} \]</div>
+<p>fazendo o estado se aproximar de configurações com energia baixa de <span class="math notranslate nohighlight">\(H_c\)</span>.</p>
+</section>
+<section id="leitura-da-solucao">
+<h3>Leitura da Solução<a class="headerlink" href="#leitura-da-solucao" title="Link para este cabeçalho">#</a></h3>
+<p>No final, o estado é medido diversas vezes. Cada resultado <span class="math notranslate nohighlight">\(z\)</span> é avaliado com <span class="math notranslate nohighlight">\(C(z)\)</span>, e o menor valor observado é tomado como a solução aproximada do QUBO.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: diagrama híbrido mostrando o loop entre o computador quântico (geração do estado e medição) e o otimizador clássico (ajuste de parâmetros).)</em></p>
+</section>
+</section>
+<section id="simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-ao-qubo">
+<h2>Simulação do Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON) ao QUBO<a class="headerlink" href="#simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-ao-qubo" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o FALQON usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
+</pre></div>
+</div>
+<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">prod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="n">ket_version</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyqubo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">plotly</span><span class="w"> </span><span class="kn">import</span> <span class="n">express</span> <span class="k">as</span> <span class="n">px</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para implementar o FALQON no problema QUBO devemos primeiramente definir o portifólio</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">portfolio</span><span class="p">(</span>
+    <span class="n">exp_return</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+    <span class="n">cov_matrix</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]],</span>
+    <span class="n">budget</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">risk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">risk</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;risk must be between 0 and 1&quot;</span><span class="p">)</span>
+
+    <span class="n">num_assets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">exp_return</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">num_assets</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cov_matrix must be square </span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">budget</span> <span class="o">&lt;=</span> <span class="n">num_assets</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;budget must be between 0 and </span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">assets</span> <span class="o">=</span> <span class="n">Array</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;assets&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_assets</span><span class="p">,),</span> <span class="n">vartype</span><span class="o">=</span><span class="s2">&quot;BINARY&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="p">(</span>
+        <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">prod</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">assets</span><span class="p">,</span> <span class="n">exp_return</span><span class="p">)))</span>
+        <span class="o">-</span> <span class="n">risk</span>
+        <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="n">cov_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">assets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">assets</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_assets</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_assets</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="o">-</span> <span class="n">penalty</span> <span class="o">*</span> <span class="p">(</span><span class="n">budget</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">assets</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Agora definimos os Hamiltonianos (mixel e custo), que já está nativamente no Ket, o <span class="math notranslate nohighlight">\(\beta(t)\)</span> e suas camadas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost_h</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">ham</span><span class="o">.</span><span class="n">qubo</span>
+<span class="n">mixer_h</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">ham</span><span class="o">.</span><span class="n">xy_mixer</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">beta_h</span><span class="p">(</span><span class="n">arestas</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">commutator</span><span class="p">(</span><span class="n">mixer_h</span><span class="p">(</span><span class="n">qubits</span><span class="p">),</span> <span class="n">cost_h</span><span class="p">(</span><span class="n">arestas</span><span class="p">,</span> <span class="n">qubits</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">h</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">falqon_layer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+    <span class="n">evolve</span><span class="p">(</span><span class="n">cost_h</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_t</span><span class="p">)</span>
+    <span class="n">evolve</span><span class="p">(</span><span class="n">mixer_h</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_t</span> <span class="o">*</span> <span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizando do ket, conseguimos plotar o circuito referente ao algoritmo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mf">1.08774352e-03</span><span class="p">,</span> <span class="mf">2.59532811e-04</span><span class="p">,</span> <span class="mf">1.80247155e-04</span><span class="p">,</span> <span class="mf">3.21724369e-04</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">2.59532811e-04</span><span class="p">,</span> <span class="mf">4.43192629e-04</span><span class="p">,</span> <span class="mf">7.43211072e-05</span><span class="p">,</span> <span class="mf">2.27911525e-04</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.80247155e-04</span><span class="p">,</span> <span class="mf">7.43211072e-05</span><span class="p">,</span> <span class="mf">3.89444953e-04</span><span class="p">,</span> <span class="mf">1.37915422e-04</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">3.21724369e-04</span><span class="p">,</span> <span class="mf">2.27911525e-04</span><span class="p">,</span> <span class="mf">1.37915422e-04</span><span class="p">,</span> <span class="mf">8.75437564e-04</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.31542042</span><span class="p">,</span> <span class="mf">0.0571331</span><span class="p">,</span> <span class="mf">0.11430001</span><span class="p">,</span> <span class="mf">0.30109367</span><span class="p">]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">portfolio</span><span class="p">(</span><span class="n">exp_return</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov_matrix</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">risk</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<span class="n">delta_t</span> <span class="o">=</span> <span class="mf">0.8</span>
+
+<span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">falqon_layer</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">),</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/72025725104c467830f1bf7ee014f5fc5b83ae0ff8e09a94b857f8ea7dc0e441.png" src="../../_images/72025725104c467830f1bf7ee014f5fc5b83ae0ff8e09a94b857f8ea7dc0e441.png" />
+</div>
+</div>
+<p>Assim, conseguimos plotar os resultados:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_layers</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">betas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
+<span class="n">qubits</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layers</span><span class="p">):</span>
+    <span class="n">falqon_layer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">betas</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">qubits</span><span class="p">)</span>
+
+    <span class="n">cost</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exp_value</span><span class="p">(</span><span class="n">cost_h</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">qubits</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+    <span class="n">betas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exp_value</span><span class="p">(</span><span class="n">beta_h</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">qubits</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+
+<span class="n">sample</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="s2">&quot;bin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Gráficos de custo e beta</span>
+<span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cost</span><span class="p">))),</span> <span class="n">y</span><span class="o">=</span><span class="n">cost</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Cost&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">betas</span><span class="p">))),</span> <span class="n">y</span><span class="o">=</span><span class="n">betas</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Beta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dimod</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExactSolver</span>
+
+<span class="n">bqm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to_bqm</span><span class="p">()</span>
+<span class="n">sa</span> <span class="o">=</span> <span class="n">ExactSolver</span><span class="p">()</span>
+<span class="n">sampleset</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">bqm</span><span class="p">)</span>
+<span class="n">sampleset</span><span class="o">.</span><span class="n">to_pandas_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;energy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>assets[0]</th>
+      <th>assets[1]</th>
+      <th>assets[2]</th>
+      <th>assets[3]</th>
+      <th>energy</th>
+      <th>num_occurrences</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-0.616353</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-0.429630</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>-0.415325</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.372424</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-0.358113</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-0.171396</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.269506</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.326757</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.513404</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.527693</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.684580</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.698906</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.885700</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.942867</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3.212654</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.000000</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./algoritmos/variacionais"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_4_1-QAOA.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Algoritmo Quântico de Otimização Aproximada (QAOA)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../10-referencias.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Referências</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-do-algoritmo">Estrutura do Algorítmo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-de-evolucao-temporal">Dinâmica de Evolução Temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equacao-de-evolucao">Equação de Evolução</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucao-temporal-discretizada">Evolução Temporal Discretizada</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lei-de-controle-de-feedback">Lei de Controle de Feedback</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-fisica">Interpretação Física</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convergencia">Convergência</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacao-em-circuitos-quanticos">Implementação em Circuitos Quânticos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltoniano-de-custo-cost">Hamiltoniano de Custo (Cost)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltoniano-de-mistura-mixer">Hamiltoniano de Mistura (Mixer)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicando-falqon-no-max-cut">Aplicando FALQON no Max-Cut</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-problema-do-max-cut">O Problema do Max-Cut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#falqon-em-max-cut">FALQON em Max-Cut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-no-max-cut">Simulação do Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON) no Max-Cut</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicando-falqon-ao-qubo">Aplicando FALQON ao QUBO</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-e-o-qubo">O que é o QUBO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#falqon-ao-qubo">FALQON ao QUBO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controle-por-feedback">Controle por Feedback</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucao-do-sistema">Evolução do Sistema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leitura-da-solucao">Leitura da Solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-baseado-em-feedback-para-otimizacao-quantica-linear-falqon-ao-qubo">Simulação do Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON) ao QUBO</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Evandro Chagas Ribeiro da Rosa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
