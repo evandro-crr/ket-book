@@ -1,8 +1,10 @@
 # Introdução à Computação Quântica
 
-Este é um material didático auxiliar para a disciplina FSC7152 – Computação Quântica da UFSC, que tem como objetivo estabelecer uma ponte entre os conceitos teóricos vistos em sala de aula e a prática da programação quântica utilizando a [plataforma Ket](https://quantumket.org).
+Este é um material didático produzido por membros do Grupo de Computação Quântica da UFSC, com o objetivo de disseminar o ensino e promover a acessibilidade na área de computação quântica.
 
-Parte deste material é adaptada das notas de aula do Prof. Dr. Eduardo Inácio Duzzioni e do TCC de Giovani Goraiebe Pollachini.
+Desenvolvido para estabelecer uma ponte entre os conceitos teóricos fundamentais e a prática da programação quântica utilizando a [plataforma Ket](https://quantumket.org), este material foi testado e validado como recurso auxiliar na disciplina FSC7152 – Computação Quântica da UFSC, mas também foi estruturado para servir como um guia de aprendizado independente para qualquer pessoa interessada em ingressar neste campo, independente de seus conhecimentos prévios.
+
+Parte deste conteúdo é adaptada das notas de aula do Prof. Dr. Eduardo Inácio Duzzioni e do TCC de Giovani Goraiebe Pollachini, incorporando anos de experiência docente e de pesquisa em computação quântica. Demais material utilizados estão devidamente citados em seus momentos de uso e nas referências.
 
 ## O que é a Computação Quântica
 
