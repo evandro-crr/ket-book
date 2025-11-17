@@ -20,51 +20,6 @@ Esta capacidade de superposição, combinada com outros fenômenos quânticos co
 
 A computação quântica não visa substituir os computadores clássicos, mas sim complementá-los, criando uma nova classe de dispositivos capazes de resolver problemas que são intratáveis mesmo para os supercomputadores mais poderosos da atualidade.
 
-# Panorama Atual da Computação Quântica
-
-```{note}
-Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](./tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
-```
-
-## Breve histórico 
-
-No início do século XX, a Física Clássica enfrentava dificuldades em descrever alguns fenômenos observados à época, como, por exemplo, o espectro de radiação de corpo negro ou o efeito fotoelétrico. Essa crise culminou na criação da Mecânica Quântica, que se consolidou por volta da década de 1920, e tem sido aplicada com sucesso em diversos fenômenos.
-
-O desenvolvimento tecnológico na década de 1970 permitiu o controle de sistemas quânticos individuais permitindo-se aprisionar átomos individuais em armadilhas (traps), isolando-os do restante do ambiente, e medindo seus diversos aspectos com precisão notável. Nesse contexto, passou-se a considerar a possibilidade de se usar sistemas quânticos para realizar processamento e transmissão de informação, fazendo uso de fundamentos da Mecânica Quântica, como superposição e emaranhamento. Esses sistemas guardam analogia com os bits clássicos, e são chamados de qubits.
-
-O físico R. Feynman, na década de 1980, sugeriu o uso de computadores quânticos para simular sistemas quânticos. E em 1994, o matemático P. Shor propôs um algoritmo quântico capaz de resolver o problema de fatoração de números em fatores primos de forma mais eficiente que os algoritmos clássicos conhecidos. Há uma expectativa de que um tal algoritmo possa ameaçar alguns protocolos de criptografia, como o RSA, usado largamente na atualidade. O cientista da computação Lov Grover também elaborou um algoritmo quântico de busca em uma base de dados não estruturada, que possui ganho quadrático de desempenho em comparação ao melhor algoritmo clássico conhecido.
-
- Atualmente, a Computação Quântica e a Informação Quântica estão se consolidando como áreas de pesquisa com desenvolvimento acelerado nas últimas décadas. Empresas de tecnologia como IBM, Google, Intel e Microsoft têm projetos e pesquisas nessa área, e diversas Startups têm surgido nesse contexto. 
-
-## Motivação para Computação Quântica
-
-A lei de Moore, formulada em 1965, previu que a capacidade computacional dos sistemas digitais dobraria a cada dois
-anos. Surpreendentemente, os avanços computacionais se mantiveram aproximadamente nesse ritmo até a atualidade. No entanto, à medida que a escala dos transistores se reduz, aproxima-se de limites físicos fundamentais, e aparentemente insuperáveis. Os efeitos quânticos, em alguns aspectos indesejáveis,
-passam a interferir intensamente no funcionamento ideal do transistor. Para que o ritmo ditado pela lei de Moore continue, tem-se
-apostado, entre outras abordagens, na Computação Quântica.
-
-Outro ponto refere-se ao consumo de energia. O princípio
-de Landauer afirma que para cada bit de informação apagado,
-dissipa-se no ambiente uma quantidade de energia proporcional a temperatura que o sistema está operando. Pelas características da Mecânica Quântica, as portas
-lógicas quânticas precisam ser reversíveis. Isso corresponderia,
-em princípio, à não necessidade de se apagar informação e à
-possibilidade de se ter um computador que não dissipa energia
-no processamento.
-
-Um terceiro ponto motivador das pesquisas em Computação Quântica é que a investigação nessa área pode elucidar aspectos da Mecânica Quântica, frequentemente contraintuitivos
-em relação à Física Clássica, ou mesmo, apontar fenômenos
-ainda não explorados.
-
-Por fim, a Computação Quântica apresenta desafios em
-diversas áreas, com manipulação de sistemas quânticos, novas
-técnicas experimentais, desenvolvimento de algoritmos, teoria da
-informação, entre outros, o que torna a área multidisciplinar.
-
-```{note}
-A Computação Quântica é uma tecnologia ainda em estágio inicial, e tem se mostrado uma área de pesquisa estratégica no cenário internacional. 
-Nessa página, faz-se um breve estudo das expectativas de mercado em relação à Computação Quântica, em grande parte baseado na Gartner, uma consultoria em Tecnologia da Informação. Apresenta-se também algumas das principais empresas com pesquisas em Computação Quântica, e mostra-se um resumo dos desenvolvimentos realizados nessas empresas tanto em hardware como em software.
-```
-
 ## Site Interativo
 
 Todo código presente neste site pode ser executado diretamente na própria página ou carregado para ambientes interativos como o Google Colab ou o Binder. Isso permite que você experimente e modifique os exemplos de código para entender melhor os conceitos apresentados.
@@ -75,7 +30,26 @@ Para ativar a execução de código no site, basta clicar na opção <i class="f
 
 Essa abordagem oferece uma maneira prática e didática de explorar os conceitos de computação quântica, permitindo que você experimente ativamente e desenvolva sua compreensão por meio da prática e da experimentação direta.
 
-## Conteúdo
+## Entendendo o Material
 
-```{tableofcontents}
-```
+Esse material cobrirá todos os conteúdos necessários para o pleno entendimento da computação quântica, ele é dividido em três sessões principais, com cada uma contendo subsessões de tópicos necessários no estudo da matería.
+
+- **Pré-requisitos**: Os pré-requisitos da computação quântica contém uma base de conhecimentos que serão de suma importância ao se aprofundar em tópicos mais complexos, nele possuímos:
+    - [Tutorial de Python](02-pytutorial.ipynb) : A linguagem de programação Python, que, mais tarde, será utilizada para o entendimento da plataforma de programação quântica Ket.
+    - [Números Complexos](03-complexos.md) : Fundamentos matemáticos essenciais para representar estados quânticos e operações.
+    - [Algebra Linear](04-algebra.md) : Base matemática para compreender espaços vetoriais, operadores e transformações na computação quântica.
+    - [Postulados da Mecânica Quântica](05-postulados.ipynb) : Princípios fundamentais que regem o comportamento dos sistemas quânticos.
+    - [Computação Clássica](06-computacao_classica.md) : Conceitos básicos de computação tradicional para contrastar com o paradigma quântico.
+
+- **Fundamentos da Computação Quântica**: Conceitos centrais que formam a base da computação quântica, você encontrará:
+    - [Computação Quântica](07-computacao_quantica.md) : Introdução aos princípios e elementos fundamentais da computação quântica.
+    - [Tutorial do Ket](08-kettutorial.ipynb) : Guia prático para utilizar a plataforma de programação quântica Ket.
+
+- **Algoritmos Quânticos**: Estudo dos principais algoritmos quânticas da literatura atual, nessa sessão, você estudará:
+    - [Como Entender um Algoritmo](09-algoritmos.md) : Metodologia para análise e compreensão de algoritmos quânticos.
+        - [Algoritmos Introdutórios](algoritmos/introdutórios/09_1_0-algoritmos_introdutórios.md) : Algoritmos básicos que introduzem conceitos fundamentais.
+        - [Algoritmos de Busca](algoritmos/busca/09_2_0-algoritmos_de_busca.md) : Algoritmos como o de Grover para busca em bancos de dados.
+        - [Algoritmos Baseados em QFT](algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.md) : Algoritmos que utilizam a Transformada Quântica de Fourier.
+        - [Algoritmos Variacionais](algoritmos/variacionais/09_4_0-algoritmos_variacionais.md) : Algoritmos híbridos quântico-clássicos para otimização.
+
+- [Referências](10-referencias.md) : Fontes bibliográficas.
