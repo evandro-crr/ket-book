@@ -444,6 +444,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postulado-1-espaco-do-sistema">Postulado 1 - Espaço do Sistema</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postulado-2-evolucao">Postulado 2 - Evolução</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentacao-teorica-das-portas-logicas-quanticas">Fundamentação Teórica das Portas Lógicas Quânticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-matematicas-fundamentais">Propriedades Matemáticas Fundamentais</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarquia-conceitual">Hierarquia Conceitual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#portas-quanticas-como-unitarias-elementares">Portas Quânticas como Unitárias Elementares</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esfera-de-bloch">Esfera de Bloch</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-portas-de-rotacao-parametrizadas">Exercício: Portas de Rotação Parametrizadas</a></li>
 </ul>
@@ -720,14 +726,37 @@ Estado de um qubit qualquer:
 \[
 U\left| \psi_1 \right&gt; = \left| \psi_2 \right&gt;
 \]</div>
-<p>Este postulado descreve que os passos de computação são descritos por operadores unitários, que na computação quântica são conhecidos como portas lógicas quânticas. Abaixo estão listadas algumas portas quânticas de um qubit:</p>
+<section id="fundamentacao-teorica-das-portas-logicas-quanticas">
+<h3>Fundamentação Teórica das Portas Lógicas Quânticas<a class="headerlink" href="#fundamentacao-teorica-das-portas-logicas-quanticas" title="Link para este cabeçalho">#</a></h3>
+<p>Este postulado estabelece a base teórica para as <strong>portas lógicas quânticas</strong>, que constituem a manifestação computacional das transformações unitárias. A conexão fundamental reside em que:</p>
+<p><strong>Cada porta quântica implementa uma transformação unitária discreta</strong> que evolui o estado do sistema de forma reversível e determinística entre medições.</p>
+<section id="propriedades-matematicas-fundamentais">
+<h4>Propriedades Matemáticas Fundamentais<a class="headerlink" href="#propriedades-matematicas-fundamentais" title="Link para este cabeçalho">#</a></h4>
+<p>Os operadores unitários <span class="math notranslate nohighlight">\(U\)</span> satisfazem:</p>
+<ul class="simple">
+<li><p><strong>Unitariedade</strong>: <span class="math notranslate nohighlight">\(U^\dagger U = U U^\dagger = I\)</span></p></li>
+<li><p><strong>Preservação de norma</strong>: <span class="math notranslate nohighlight">\(\|U|\psi\rangle\| = \||\psi\rangle\|\)</span></p></li>
+<li><p><strong>Reversibilidade</strong>: <span class="math notranslate nohighlight">\(U^{-1} = U^\dagger\)</span></p></li>
+</ul>
+</section>
+<section id="hierarquia-conceitual">
+<h4>Hierarquia Conceitual<a class="headerlink" href="#hierarquia-conceitual" title="Link para este cabeçalho">#</a></h4>
+<p>O Postulado 2 estabelece uma hierarquia teórica que conecta física fundamental com computação:</p>
+<p>No <strong>nível fundamental</strong>, temos o princípio físico de que sistemas quânticos isolados evoluem deterministicamente no tempo. Este é o domínio da equação de Schrödinger e da unitariedade como propriedade intrínseca da natureza.</p>
+<p>No <strong>nível computacional</strong>, essa evolução contínua é discretizada em operações unitárias bem definidas. Aqui, a unitariedade deixa de ser apenas uma propriedade física para se tornar o mecanismo de processamento de informação.</p>
+<p>No <strong>nível implementacional</strong>, essas operações unitárias abstratas se materializam como portas lógicas quânticas específicas, os componentes básicos dos circuitos quânticos. Cada porta representa uma unitária particular que pode ser fisicamente realizada.</p>
+<p>Assim, o que começa como um princípio fundamental da natureza termina como um elemento de programação concreto, com as portas lógicas sendo a expressão prática do Postulado 2 na computação quântica.</p>
+</section>
+<section id="portas-quanticas-como-unitarias-elementares">
+<h4>Portas Quânticas como Unitárias Elementares<a class="headerlink" href="#portas-quanticas-como-unitarias-elementares" title="Link para este cabeçalho">#</a></h4>
+<p>As portas quânticas de um qubit representam transformações unitárias fundamentais:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-X =&amp; \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} &amp; &amp; \begin{matrix} X\left|0\right&gt; = &amp; \left|1\right&gt; \\ X\left|1\right&gt; = &amp; \left|0\right&gt; \end{matrix}\\
-Y =&amp; \begin{bmatrix} 0 &amp; -i \\ i &amp; 0 \end{bmatrix} &amp; &amp; \begin{matrix} Y\left|0\right&gt; = &amp; i\left|1\right&gt; \\ Y\left|1\right&gt; =&amp; -i\left|0\right&gt; \end{matrix}\\
-Z =&amp; \begin{bmatrix}  1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix} &amp; &amp; \begin{matrix} Z\left|0\right&gt; = &amp; \left|0\right&gt; \\ Z\left|1\right&gt; = &amp; -\left|1\right&gt; \end{matrix}\\
-\text{Hadamard} = H =&amp; \frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix} &amp; &amp; \begin{matrix} H\left|0\right&gt; = &amp; \frac{\left|0\right&gt;+\left|1\right&gt;}{\sqrt{2}} = &amp; \left|+\right&gt; \\ H\left|1\right&gt; = &amp; \frac{\left|0\right&gt;-\left|1\right&gt;}{\sqrt{2}} = &amp; \left|-\right&gt; \\ H\left|+\right&gt; = &amp; \left|0\right&gt; \\ H\left|-\right&gt; = &amp; \left|1\right&gt; \\ \end{matrix}\\
+X =&amp; \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} &amp; &amp; \text{(Rotação de π em torno do eixo X)}\\
+Y =&amp; \begin{bmatrix} 0 &amp; -i \\ i &amp; 0 \end{bmatrix} &amp; &amp; \text{(Rotação de π em torno do eixo Y)}\\
+Z =&amp; \begin{bmatrix}  1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix} &amp; &amp; \text{(Rotação de π em torno do eixo Z)}\\
+\text{Hadamard} = H =&amp; \frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix} &amp; &amp; \text{(Transformação base computacional para diagonal)}
 \end{aligned}
 \end{split}\]</div>
 <p>Veremos de múltiplos qubits após o Postulado 4.</p>
@@ -765,6 +794,8 @@ Z =&amp; \begin{bmatrix}  1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix} &amp; &amp; \beg
 </div>
 </div>
 </div>
+</section>
+</section>
 <section id="esfera-de-bloch">
 <span id="id2"></span><h3>Esfera de Bloch<a class="headerlink" href="#esfera-de-bloch" title="Link para este cabeçalho">#</a></h3>
 <p>A Esfera de Bloch é uma representação geométrica tridimensional de um bit quântico, que oferece uma maneira intuitiva de visualizar e entender seu estado. Nesta esfera, cada ponto na superfície representa um estado possível do qubit. Por exemplo, os estados básicos <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span> são representados pelos polos norte e sul da esfera, respectivamente. Além disso, estados superpostos são representados por pontos em outras posições da superfície da esfera.</p>
@@ -1374,6 +1405,12 @@ Mensagem teleportada:
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postulado-1-espaco-do-sistema">Postulado 1 - Espaço do Sistema</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postulado-2-evolucao">Postulado 2 - Evolução</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentacao-teorica-das-portas-logicas-quanticas">Fundamentação Teórica das Portas Lógicas Quânticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-matematicas-fundamentais">Propriedades Matemáticas Fundamentais</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarquia-conceitual">Hierarquia Conceitual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#portas-quanticas-como-unitarias-elementares">Portas Quânticas como Unitárias Elementares</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esfera-de-bloch">Esfera de Bloch</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-portas-de-rotacao-parametrizadas">Exercício: Portas de Rotação Parametrizadas</a></li>
 </ul>
