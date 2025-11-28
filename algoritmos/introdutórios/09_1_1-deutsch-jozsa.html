@@ -477,6 +477,15 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="n">ket_version</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> |</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">table</span> <span class="o">+=</span> <span class="s2">&quot;|------|:--------|</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">table</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> |</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">table</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> |</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">Markdown</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -680,7 +689,7 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
 <p>Agora implementaremos o algoritmo de Deutsch, utilizando esses oráculos que criamos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deutsch</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deutsch</span><span class="p">():</span>
     <span class="c1"># Inicialização do processo e alocação de qubits</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
     <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -698,13 +707,21 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="c1"># Medição do primeiro qubit</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
     <span class="c1"># Finalização do processo</span>
     <span class="k">if</span> <span class="n">results</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é constante.&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é balanceada.&quot;</span><span class="p">)</span>
+
+
+<span class="n">deutsch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A função é balanceada.
 </pre></div>
 </div>
 </div>
@@ -784,17 +801,6 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
 <section id="simulacao-do-algoritimo-de-deutsch-simplificado">
 <h2>Simulação do algorítimo de Deutsch Simplificado<a class="headerlink" href="#simulacao-do-algoritimo-de-deutsch-simplificado" title="Link para este cabeçalho">#</a></h2>
 <p>Para simular o algorítimo de Deutsch Simplificado usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
-</pre></div>
-</div>
-<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>Faremos o mesmo exemplo realizado com o Algoritmo de Deutsch, implementaremos dois <em>oráculos</em> para o Algoritmo de Deutsch:</p>
 <ul class="simple">
 <li><p>Um <em>oráculo constante</em>, onde <span class="math notranslate nohighlight">\(f(0) = f(1)\)</span>.</p></li>
@@ -824,11 +830,11 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
 <p>Agora implementaremos o algoritmo de Deutsch, utilizando esses oráculos que criamos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deutsch</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deutsch</span><span class="p">():</span>
     <span class="c1"># Inicialização do processo e alocação de qubit</span>
     <span class="c1"># Configuração inicial: |0⟩</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
-    <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">()</span>
 
     <span class="c1"># Aplicação de Haddamard em ambos os qubits -&gt; Estado: |+⟩</span>
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
@@ -840,13 +846,21 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 
     <span class="c1"># Medição do primeiro qubit</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
     <span class="c1"># Finalização do processo</span>
     <span class="k">if</span> <span class="n">results</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é constante.&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é balanceada.&quot;</span><span class="p">)</span>
+
+
+<span class="n">deutsch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A função é balanceada.
 </pre></div>
 </div>
 </div>
@@ -969,24 +983,12 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
 <section id="simulacao-do-algoritimo-de-deutsche-jozsa">
 <h2>Simulação do algorítimo de Deutsche-Jozsa<a class="headerlink" href="#simulacao-do-algoritimo-de-deutsche-jozsa" title="Link para este cabeçalho">#</a></h2>
 <p>Para simular o algorítimo de Deutsche-Jozsa usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
-</pre></div>
-</div>
-<p>Com a biblioteca instalada, importa-se para ser usada dentro do seu código:</p>
+<p>Primeiro devemos definir o oráculo. O oráculo é uma função que representa a função f(x) que queremos testar. Para este exemplo, consideraremos uma função balanceada que retorna 0 para entradas com número par e 1 para entradas com número ímpar.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Primeiro devemos definir o oráculo. O oráculo é uma função que representa a função f(x)f(x) que queremos testar. Para este exemplo, consideraremos uma função balanceada que retorna 0 para entradas com número par de bits 1 e 1 para entradas com número ímpar de bits 1.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
-    <span class="c1"># Aplica a porta X ao qubit auxiliar se a entrada tiver um número ímpar de bits 1</span>
-    <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">auxiliar</span><span class="p">):</span>
+    <span class="c1"># Aplica a porta X ao qubit auxiliar se a entrada tiver um número ímpar</span>
+    <span class="n">CNOT</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">auxiliar</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -999,28 +1001,37 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
     <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
 
     <span class="c1"># Aloca n qubits para a entrada e 1 qubit auxiliar</span>
-    <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">auxiliar</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">()</span>
 
     <span class="c1"># Inicializa o qubit auxiliar no estado |1⟩</span>
-    <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">X</span><span class="p">(</span><span class="n">auxiliar</span><span class="p">)</span>
 
     <span class="c1"># Aplica a porta Hadamard a todos os qubits</span>
-    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span> <span class="o">+</span> <span class="n">auxiliar</span><span class="p">)</span>
 
     <span class="c1"># Aplica o oráculo</span>
-    <span class="n">oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">auxiliar</span><span class="p">)</span>
 
     <span class="c1"># Aplica a porta Hadamard aos qubits de entrada</span>
-    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 
     <span class="c1"># Mede os qubits de entrada</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
-    <span class="c1"># Verifica se todos os resultados são 0</span>
-    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">):</span>
+    <span class="c1"># Verifica se todos os resultados são 0 ou 1</span>
+    <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">2</span><span class="o">**</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é constante.&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é balanceada.&quot;</span><span class="p">)</span>
+
+
+<span class="n">deutsch_jozsa</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A função é balanceada.
 </pre></div>
 </div>
 </div>

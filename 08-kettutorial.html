@@ -514,13 +514,22 @@ document.write(`
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span>pip
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;ket-lang[full]&gt;=0.9,&lt;0.10&#39;</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;ket-lang[plot]&gt;=0.9,&lt;0.10&#39;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">plotly.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pio</span>
 
 <span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;iframe&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="n">ket_version</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> |</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">table</span> <span class="o">+=</span> <span class="s2">&quot;|------|:--------|</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">table</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> |</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">table</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> |</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">Markdown</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -611,9 +620,9 @@ pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f467c5f2800&gt;
-Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f467c5f2800&gt;
-Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f467c5f2800&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7fa680c1a500&gt;
+Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7fa680c1a500&gt;
+Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7fa680c1a500&gt;
 </pre></div>
 </div>
 </div>
@@ -690,18 +699,13 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f467c5f2800&gt;
 <span class="n">RX</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Porta de rotação Rx com ângulo de 0.5 radianos</span>
 <span class="n">RY</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Porta de rotação Ry com ângulo de 0.2 radianos</span>
 <span class="n">RZ</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Porta de rotação Rz com ângulo de 2.3 radianos</span>
-<span class="n">PHASE</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Porta de fase com ângulo de 0.2 radianos</span>
+<span class="n">P</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Porta de fase com ângulo de 0.2 radianos</span>
 
 <span class="n">dump</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">sphere</span><span class="p">()</span>  <span class="c1"># Mostra o Bloch Sphere</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2273/220369460.py:11: DeprecationWarning:
-
-PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
-</pre></div>
-</div>
 <div class="output text_html"><iframe
     scrolling="no"
     width="100%"
@@ -910,14 +914,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">bell</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="ne">TypeError</span>: draw() missing 1 required positional argument: &#39;qubits&#39;
-</pre></div>
-</div>
+<img alt="_images/cb8c41a9b3cd221ce43ed06270f219c824cd4a18d6b0d14d15b8ff9079ba2bf0.png" src="_images/cb8c41a9b3cd221ce43ed06270f219c824cd4a18d6b0d14d15b8ff9079ba2bf0.png" />
 </div>
 </div>
 </section>
@@ -947,7 +944,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/59e9e4f778d4f607cf18c1978ffbbe5214526c981e0c0e08a19f585b82b48691.png" src="_images/59e9e4f778d4f607cf18c1978ffbbe5214526c981e0c0e08a19f585b82b48691.png" />
+<img alt="_images/74a3ad4a61081413e29a0925799e2ab71268f139c10de7f47f4bab35eef560fc.png" src="_images/74a3ad4a61081413e29a0925799e2ab71268f139c10de7f47f4bab35eef560fc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -962,7 +959,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/59e9e4f778d4f607cf18c1978ffbbe5214526c981e0c0e08a19f585b82b48691.png" src="_images/59e9e4f778d4f607cf18c1978ffbbe5214526c981e0c0e08a19f585b82b48691.png" />
+<img alt="_images/74a3ad4a61081413e29a0925799e2ab71268f139c10de7f47f4bab35eef560fc.png" src="_images/74a3ad4a61081413e29a0925799e2ab71268f139c10de7f47f4bab35eef560fc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -976,16 +973,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">toffoli</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">ctrl</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">X</span><span class="p">)(</span><span class="n">c</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">gate</span><span class="o">=</span><span class="n">toffoli</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="ne">NameError</span>: name &#39;qulib&#39; is not defined
-</pre></div>
-</div>
+<img alt="_images/aabb2becbb390689299407d23ca9cfb794cda20d63ee49a1a228259d64c4e008.png" src="_images/aabb2becbb390689299407d23ca9cfb794cda20d63ee49a1a228259d64c4e008.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1000,7 +988,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cdbd4caf0ab69f3061fa5a43b34f957fda28be40bf4f99f4cdb4bdd0e3d229f4.png" src="_images/cdbd4caf0ab69f3061fa5a43b34f957fda28be40bf4f99f4cdb4bdd0e3d229f4.png" />
+<img alt="_images/aabb2becbb390689299407d23ca9cfb794cda20d63ee49a1a228259d64c4e008.png" src="_images/aabb2becbb390689299407d23ca9cfb794cda20d63ee49a1a228259d64c4e008.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1016,7 +1004,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e6a710b60aca56e55ffabe8e50dbd30fc54ad37d469b8999a336f0f3cd46e392.png" src="_images/e6a710b60aca56e55ffabe8e50dbd30fc54ad37d469b8999a336f0f3cd46e392.png" />
+<img alt="_images/252aa57e5ace2058328f04500995ab35aa58d176200778540b7f4ed1005cb15f.png" src="_images/252aa57e5ace2058328f04500995ab35aa58d176200778540b7f4ed1005cb15f.png" />
 </div>
 </div>
 <div class="admonition tip">
@@ -1036,7 +1024,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e692205689ec12025c8613339b3df3bf3116bdeb0292656a987ee72efa203a8a.png" src="_images/e692205689ec12025c8613339b3df3bf3116bdeb0292656a987ee72efa203a8a.png" />
+<img alt="_images/f0cfbdfc65a78525f9b9c62601c8e821a8eb54e42275fb1c634161fe434419ff.png" src="_images/f0cfbdfc65a78525f9b9c62601c8e821a8eb54e42275fb1c634161fe434419ff.png" />
 </div>
 </div>
 </section>
@@ -1169,6 +1157,15 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2330/2844684540.py:35: DeprecationWarning:
+
+PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+
+/tmp/ipykernel_2330/2844684540.py:11: DeprecationWarning:
+
+PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1415939331054688
 </pre></div>
 </div>
@@ -1236,7 +1233,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a78dad22e26d1d3d89a54946fb41a998d6e4228e452848aa9a00faa1d4170689.png" src="_images/a78dad22e26d1d3d89a54946fb41a998d6e4228e452848aa9a00faa1d4170689.png" />
+<img alt="_images/992e6fc7f51a9824b81ef3f0476d31487f94f57390064e54f9ad78ff419d6c27.png" src="_images/992e6fc7f51a9824b81ef3f0476d31487f94f57390064e54f9ad78ff419d6c27.png" />
 </div>
 </div>
 <p>Para facilitar essa construção no Ket, a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> é oferecida. No exemplo acima, implementamos o difusor de Grover usando essa instrução.</p>
@@ -1256,7 +1253,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e1d88607bbd453ecf1fa483588c0959ddbb5a53609f8c71faf24b71f1a1e50de.png" src="_images/e1d88607bbd453ecf1fa483588c0959ddbb5a53609f8c71faf24b71f1a1e50de.png" />
+<img alt="_images/87929e645d4da02d2e6ec21024b71ed17fbdef3ba245a96055d0a6484cb552cd.png" src="_images/87929e645d4da02d2e6ec21024b71ed17fbdef3ba245a96055d0a6484cb552cd.png" />
 </div>
 </div>
 <p>Além de facilitar a construção de algumas operações quânticas, a estrutura <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> também permite <a class="reference external" href="https://arxiv.org/abs/2406.05581">reduzir o número de qubits de controle em certas operações</a>.</p>
@@ -1278,7 +1275,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d13ce858fd0e492bf6424a9d93a15bdfbc03bc626cb4626c8f7e490b74b8b4b3.png" src="_images/d13ce858fd0e492bf6424a9d93a15bdfbc03bc626cb4626c8f7e490b74b8b4b3.png" />
+<img alt="_images/c0d599bd0819c91342aa24243fcdbc8d91931855aec523a1ba4e57616ff79709.png" src="_images/c0d599bd0819c91342aa24243fcdbc8d91931855aec523a1ba4e57616ff79709.png" />
 </div>
 </div>
 <section id="alterando-o-estado-de-controle">
@@ -1301,22 +1298,20 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 
 <span class="c1"># Aplica as operações condicionais com base nos dados</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dado</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dados</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">qulib</span><span class="o">.</span><span class="n">flip_to_control</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">aux</span><span class="p">):</span>
-        <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">aux</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dado</span><span class="si">:</span><span class="s2">0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
-                    <span class="n">X</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dado</span><span class="si">:</span><span class="s2">0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+                <span class="n">X</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dados carregados:&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">qubits</span> <span class="o">+</span> <span class="n">aux</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
 
 <span class="c1"># Remove o emaranhamento condicionalmente com base nos dados</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dado</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dados</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">around</span><span class="p">(</span><span class="n">qulib</span><span class="o">.</span><span class="n">flip_to_control</span><span class="p">(</span><span class="n">dado</span><span class="p">),</span> <span class="n">qubits</span><span class="p">):</span>
-        <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">qubits</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span><span class="si">}</span><span class="s2">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">aux</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
-                    <span class="n">X</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">dado</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span><span class="si">}</span><span class="s2">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">aux</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+                <span class="n">X</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Emaranhamento removido condicionalmente:&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">dump</span><span class="p">(</span><span class="n">qubits</span> <span class="o">+</span> <span class="n">aux</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
@@ -1355,7 +1350,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e69345ddd2c90db39ab575b56c5d7a44d41a570fea2166cb0b2e0050db0c37de.png" src="_images/e69345ddd2c90db39ab575b56c5d7a44d41a570fea2166cb0b2e0050db0c37de.png" />
+<img alt="_images/841c7245b634cb2f3f0bea0c90a3072a892ec9b2fdc09e5ff17ce69e8588fcab.png" src="_images/841c7245b634cb2f3f0bea0c90a3072a892ec9b2fdc09e5ff17ce69e8588fcab.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1370,7 +1365,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/85d93b13d95c473b274505e919877c6cd016e0c43438070968fe940766633e85.png" src="_images/85d93b13d95c473b274505e919877c6cd016e0c43438070968fe940766633e85.png" />
+<img alt="_images/33671fc7b32f8f383672ddefc9b89825e880f4ca79149fa7e906ab8cd407558d.png" src="_images/33671fc7b32f8f383672ddefc9b89825e880f4ca79149fa7e906ab8cd407558d.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1388,7 +1383,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/09e514f471f87abde4fbc51e4906aeeef46b80172befac418695d456905e2c31.png" src="_images/09e514f471f87abde4fbc51e4906aeeef46b80172befac418695d456905e2c31.png" />
+<img alt="_images/9dcef80c9d8d5ed2d2613b8c55a9c413becda3022d72796d9b9efe657a060e49.png" src="_images/9dcef80c9d8d5ed2d2613b8c55a9c413becda3022d72796d9b9efe657a060e49.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1403,7 +1398,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/85d93b13d95c473b274505e919877c6cd016e0c43438070968fe940766633e85.png" src="_images/85d93b13d95c473b274505e919877c6cd016e0c43438070968fe940766633e85.png" />
+<img alt="_images/33671fc7b32f8f383672ddefc9b89825e880f4ca79149fa7e906ab8cd407558d.png" src="_images/33671fc7b32f8f383672ddefc9b89825e880f4ca79149fa7e906ab8cd407558d.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1421,7 +1416,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/91fb12a3d4e5e9100479d08bb8b276aff8f7e9f1b0b29060b46119d794daa63c.png" src="_images/91fb12a3d4e5e9100479d08bb8b276aff8f7e9f1b0b29060b46119d794daa63c.png" />
+<img alt="_images/bfc832994e472bea3e725c350265b408b27e1d188b9022884a15495fe0c6aa68.png" src="_images/bfc832994e472bea3e725c350265b408b27e1d188b9022884a15495fe0c6aa68.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1436,7 +1431,7 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/85d93b13d95c473b274505e919877c6cd016e0c43438070968fe940766633e85.png" src="_images/85d93b13d95c473b274505e919877c6cd016e0c43438070968fe940766633e85.png" />
+<img alt="_images/33671fc7b32f8f383672ddefc9b89825e880f4ca79149fa7e906ab8cd407558d.png" src="_images/33671fc7b32f8f383672ddefc9b89825e880f4ca79149fa7e906ab8cd407558d.png" />
 </div>
 </div>
 </section>
@@ -1522,12 +1517,12 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado da medida do primeiro qubit: 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado da medida do primeiro qubit: 1
 Estado quântico após o colapso
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle  \left|00\right&gt;\]</div>
+\[\displaystyle  \left|11\right&gt;\]</div>
 </div>
 </div>
 <section id="exercicio-medidas-em-outras-bases">
@@ -1616,7 +1611,7 @@ Estado quântico após o colapso
 </div>
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle \frac{1}{\sqrt{2}} \left|0\right&gt;+\frac{1}{\sqrt{2}} \left|3\right&gt;\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {0: 1035, 3: 1013}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {3: 1050, 0: 998}
 </pre></div>
 </div>
 </div>
