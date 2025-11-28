@@ -481,7 +481,7 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang<span class="o">[</span>plot<span class="o">]==</span><span class="m">0</span>.9.1.2<span class="w"> </span><span class="nv">kaleido</span><span class="o">==</span><span class="m">0</span>.2.1<span class="w"> </span>pyqubo<span class="w"> </span>-q
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang<span class="o">[</span>plot<span class="o">]</span><span class="w"> </span>pyqubo<span class="w"> </span>-q
 </pre></div>
 </div>
 </div>
@@ -1035,6 +1035,63 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="n">ket_version</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="n">version</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;table&gt;</span>
+<span class="s2">  &lt;thead&gt;</span>
+<span class="s2">    &lt;tr&gt;</span>
+<span class="s2">      &lt;th&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/th&gt;</span>
+<span class="s2">      &lt;th&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/th&gt;</span>
+<span class="s2">    &lt;/tr&gt;</span>
+<span class="s2">  &lt;/thead&gt;</span>
+<span class="s2">  &lt;tbody&gt;</span>
+<span class="s2">    &lt;tr&gt;</span>
+<span class="s2">      &lt;td&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">      &lt;td&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">    &lt;/tr&gt;</span>
+<span class="s2">    &lt;tr&gt;</span>
+<span class="s2">      &lt;td&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">      &lt;td&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">    &lt;/tr&gt;</span>
+<span class="s2">  &lt;/tbody&gt;</span>
+<span class="s2">&lt;/table&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<table>
+  <thead>
+    <tr>
+      <th>Ket</th>
+      <th>v0.9.1.5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Libket</td>
+      <td>v0.6.0</td>
+    </tr>
+    <tr>
+      <td>KBW</td>
+      <td>v0.4.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 </div>
 </section>
 </section>
