@@ -481,7 +481,11 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang<span class="o">[</span>plot<span class="o">]</span><span class="w"> </span>pyqubo<span class="w"> </span>-q
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang<span class="o">[</span>plot<span class="o">]</span><span class="w"> </span>pyqubo<span class="w"> </span>scipy<span class="w"> </span>-q
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pio</span>
+
+<span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;iframe&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -685,7 +689,15 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
    maxcv: 0.0
 </pre></div>
 </div>
-</div>
+<div class="output text_html"><iframe
+    scrolling="no"
+    width="100%"
+    height="545px"
+    src="iframe_figures/figure_8.html"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
 </div>
 </section>
 </section>

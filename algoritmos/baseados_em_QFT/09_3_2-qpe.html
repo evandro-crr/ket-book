@@ -575,7 +575,7 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ctrl_qubit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">init</span><span class="p">)):</span>
             <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">ctrl_qubit</span><span class="p">):</span>
-                <span class="n">PHASE</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">last</span><span class="p">)</span>
+                <span class="n">P</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">last</span><span class="p">)</span>
 
         <span class="n">qft</span><span class="p">(</span><span class="n">init</span><span class="p">,</span> <span class="n">do_swap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -613,10 +613,8 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2560/2383908159.py:17: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2508/2383908159.py:17: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
   oraculo=lambda i, tgr: PHASE(2 * pi * (fase / 10) * 2**i, tgr),
-/tmp/ipykernel_2560/2553051591.py:10: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
-  PHASE(pi / 2 ** (i + 1), last)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1415939331054688
