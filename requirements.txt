@@ -1,1 +1,4 @@
 jupyter-book[sphinx]==1.0.3
+ket-lang
+pyqubo
+scipy
