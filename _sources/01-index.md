@@ -40,10 +40,10 @@ Esse material cobrirá todos os conteúdos necessários para o pleno entendiment
     - [Tutorial de Python](02-pytutorial.ipynb) : A linguagem de programação Python, que, mais tarde, será utilizada para o entendimento da plataforma de programação quântica Ket.
     - [Números Complexos](03-complexos.md) : Fundamentos matemáticos essenciais para representar estados quânticos e operações.
     - [Algebra Linear](04-algebra.md) : Base matemática para compreender espaços vetoriais, operadores e transformações na computação quântica.
-    - [Postulados da Mecânica Quântica](05-postulados.ipynb) : Princípios fundamentais que regem o comportamento dos sistemas quânticos.
     - [Computação Clássica](06-computacao_classica.md) : Conceitos básicos de computação tradicional para contrastar com o paradigma quântico.
 
 - **Fundamentos da Computação Quântica**: Conceitos centrais que formam a base da computação quântica, você encontrará:
+    - [Postulados da Mecânica Quântica](05-postulados.ipynb) : Princípios fundamentais que regem o comportamento dos sistemas quânticos.
     - [Computação Quântica](07-computacao_quantica.md) : Introdução aos princípios e elementos fundamentais da computação quântica.
     - [Tutorial do Ket](08-kettutorial.ipynb) : Guia prático para utilizar a plataforma de programação quântica Ket.
 
