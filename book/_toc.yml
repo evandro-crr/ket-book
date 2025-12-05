@@ -3,38 +3,48 @@
 
 format: jb-book
 root: 01-index
-chapters:
-  - file: 02-pytutorial
-  - file: 03-complexos
-  - file: 04-algebra
-    sections:
-      - file: algebra/04_1-basicos
-      - file: algebra/04_2-transformacoes
-      - file: algebra/04_3-operadores
-      - file: algebra/04_4-prod_tensorial
-  - file: 05-postulados
-  - file: 06-computacao_classica
-  - file: 07-computacao_quantica
-  - file: 08-kettutorial
-  - file: 09-algoritmos
-    sections:
-      - file: algoritmos/introdutórios/09_1_0-algoritmos_introdutórios
+
+parts:
+  - caption: Pré-requisitos
+    chapters:
+      - file: 02-pytutorial
+      - file: 03-complexos
+      - file: 04-algebra
         sections:
-          - file: algoritmos/introdutórios/09_1_1-deutsch-jozsa
-          - file: algoritmos/introdutórios/09_1_2-bernstein-vazirani
-          - file: algoritmos/introdutórios/09_1_3-simon
-      - file: algoritmos/busca/09_2_0-algoritmos_de_busca
+          - file: algebra/04_1-basicos
+          - file: algebra/04_2-transformacoes
+          - file: algebra/04_3-operadores
+          - file: algebra/04_4-prod_tensorial
+      - file: 06-computacao_classica
+
+  - caption: Fundamentos
+    chapters:
+      - file: 05-postulados
+      - file: 07-computacao_quantica
+      - file: 08-kettutorial
+
+  - caption: Algoritmos
+    chapters:
+      - file: 09-algoritmos
         sections:
-          - file: algoritmos/busca/09_2_1-grover 
-      - file: algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft
-        sections:
-          - file: algoritmos/baseados_em_QFT/09_3_1-qft
-          - file: algoritmos/baseados_em_QFT/09_3_2-qpe
-          - file: algoritmos/baseados_em_QFT/09_3_3-shor
-      - file: algoritmos/variacionais/09_4_0-algoritmos_variacionais
-        sections:
-          - file: algoritmos/variacionais/09_4_1-QAOA
-          - file: algoritmos/variacionais/09_4_2-FALQON
-  - url: https://qubox.ufsc.br/index.html
-    title: Qubox UFSC
-  - file: 10-referencias
+          - file: algoritmos/introdutórios/09_1_0-algoritmos_introdutórios
+            sections:
+              - file: algoritmos/introdutórios/09_1_1-deutsch-jozsa
+              - file: algoritmos/introdutórios/09_1_2-bernstein-vazirani
+              - file: algoritmos/introdutórios/09_1_3-simon
+          - file: algoritmos/busca/09_2_0-grover 
+          - file: algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft
+            sections:
+              - file: algoritmos/baseados_em_QFT/09_3_1-qft
+              - file: algoritmos/baseados_em_QFT/09_3_2-qpe
+              - file: algoritmos/baseados_em_QFT/09_3_3-shor
+          - file: algoritmos/variacionais/09_4_0-algoritmos_variacionais
+            sections:
+              - file: algoritmos/variacionais/09_4_1-QAOA
+              - file: algoritmos/variacionais/09_4_2-FALQON
+      - url: https://qubox.ufsc.br/index.html
+        title: Qubox UFSC
+
+  - caption: Referências
+    chapters:
+      - file: 10-referencias

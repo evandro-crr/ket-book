@@ -8,39 +8,141 @@ Neste capítulo serão abordados os algoritmos introdutórios, algoritmos que po
 
 ## Oráculos quânticos
 
-Um dos fundamentos para entender os algorítmos introdutórios e de busca, é o conceito do oráculos quântico.
+Oráculos quânticos são peças fundamentais em vários algoritmos, especialmente os introdutórios e os de busca. Eles representam uma **função clássica desconhecida**, tratada como uma *caixa-preta*, que podemos consultar dentro de um circuito quântico.
 
-Os oráculos são funções booleanas $f \colon \{ 0,1 \}^n \to \{ 0,1 \}$ consideradas como ``caixas pretas''. Dado um vetor de bits $x$, o oráculo clássico fornece $f(x)$. Alguns problemas computacionais são escritos em termos de oráculos, como o problema de Deutsch-Jozsa, o problema de Simon e o problema de busca de Grover. Para abordar esses problemas, é necessário definir uma versão quântica desse oráculo, o que será abordado nesta seção. 
- 
-Há duas maneiras de se escrever um análogo quântico ao oráculo clássico: o oráculo XOR e o oráculo de fase.
-
-### Oráculo XOR
-
-O oráculo XOR é uma operação unitária que realiza a função booleana $f$ por meio de um bit extra, que sinaliza as entradas em que $f$ vale 1. 
-
-![oraculo_xor](../../images/algoritmos/base/oraculo_xor.png)
-
-### Construção do Oráculo de Fase usando o Oráculo XOR
-
-Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alvo como um qubit auxiliar. Ao usarmos $\ket{-}$ na entrada alvo do oráculo XOR, obtemos, para qualquer estado $\ket{x}$ da base computacional:
+A ideia central é: **como transformar uma função clássica**
 
 $$
-\ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
-  \begin{cases}
-   \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &\text{se $f(x)=0$}  \\
-   \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &\text{se $f(x)=1$} \ ,
-  \end{cases}
+f:{0,1}^n \to {0,1}
 $$
 
-  o que pode ser resumido por $\ket{x}\big((-1)^{f(x)}\ket{-} \big)$. Além disso, o fator multiplicativo $(-1)^{f(x)}$ pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:
+**em uma operação unitária**.
+
+Existem duas formas padrão de se fazer isso:
+
+1. **Oráculo XOR (também encontrado como oráculo padrão)**
+2. **Oráculo de fase**
+
+Ambos implementam a mesma função $f$, mas em representações diferentes, e alguns algoritmos preferem uma forma específica para permitir interferência quântica.
+
+### Como construir um oráculo quântico
+
+#### 1. O Oráculo XOR (padrão)
+
+O primeiro passo é construir uma versão unitária da função booleana.
+A operação desejada é:
 
 $$
-\ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}
+U_f , \ket{x}\ket{y} = \ket{x}\ket{y}\ket{y \oplus f(x)} ,
 $$
 
-A figura a seguir ilustra a construção do oráculo de fase.
+onde:
 
-![oraculo_fase.png](../../images/algoritmos/base/oraculo_fase.png)
+* $x$ são os qubits de entrada,
+* $y$ é um qubit auxiliar $target (ou alvo)$,
+* $\oplus$ é XOR.
+
+##### Como montar o oráculo de XOR
+
+Para construir $U_f$, basta representar logicamente a função $f(x)$ como uma sequência de portas quânticas reversíveis.
+
+Em geral:
+
+1. **Escreva a função booleana (f(x)) como portas clássicas (AND, XOR, NOT)**.
+
+2. **Troque essas portas por versões reversíveis**:
+
+   * AND → Toffoli
+
+   * XOR → CNOT
+
+   * NOT → X
+
+3. Reserve um qubit auxiliar $y$ para receber o XOR com o resultado.
+
+4. Construa um circuito que compute $f(x)$ num registrador auxiliar, e depois aplique uma CNOT para escrever o valor em $y$.
+
+É exatamente isso que o oráculo XOR representa.
+
+![oraculo\_xor](../../images/algoritmos/base/oraculo_xor.png)
+
+Ele é o mais direto, mas não é o mais conveniente para algoritmos baseados em interferência.
+
+#### 2. Oráculo de fase
+
+Algoritmos como Deutsch–Jozsa, Simon, Grover e QFT-based usam um oráculo na forma:
+
+$$
+U_f \ket{x} = (-1)^{f(x)} \ket{x} .
+$$
+
+Em vez de armazenar o resultado de $f(x)$ em um bit auxiliar, o oráculo **apenas adiciona uma fase** de $-1$ quando $f(x) = 1$.
+Isso é ideal para interferência quântica, porque fases negativas mudam probabilidades após a transformada de Hadamard.
+
+##### Construindo o oráculo de fase a partir do oráculo XOR
+
+Existe um truque fundamental:
+
+**Se você alimentar o oráculo XOR com (|-\rangle) no qubit alvo**, então:
+
+$$
+\ket{-} = \frac{\ket{0} - \ket{1}}{\sqrt{2}},
+$$
+
+e ocorre o seguinte:
+
+* Se $f(x)=0$: nada muda.
+* Se $f(x)=1$: o XOR troca $\ket{0}$ ↔ $\ket{1}$, o que introduz um sinal negativo.
+
+Isso resulta exatamente em:
+
+$$
+\ket{x} \ket{-} ; \longrightarrow ; (-1)^{f(x)} \ket{x} \ket{-} .
+$$
+
+Ou seja, o oráculo XOR “induz” um oráculo de fase se a entrada target for \ket{-}.
+
+Essa é a construção padrão.
+
+### Resumo prático: **como montar um oráculo quântico**
+
+#### Passo 1 — Comece pela função booleana (f(x))
+
+Divida-a em ANDs, XORs, NOTs.
+
+#### Passo 2 — Torne a função reversível
+
+* AND → Toffoli
+
+* XOR → CNOT
+
+* NOT → X
+
+  Use qubits auxiliares se necessário.
+
+#### Passo 3 — Escolha o tipo de oráculo que o algoritmo pede
+
+##### Se precisar do **oráculo XOR**:
+
+Implemente:
+
+$$
+\ket{x}\ket{y} \mapsto \ket{x}\ket{y\oplus f(x)}
+$$
+
+##### Se precisar do **oráculo de fase**:
+
+1. Construa o oráculo XOR normalmente.
+2. Coloque $\ket{-}$ no qubit alvo.
+3. A fase aparece automaticamente:
+   
+   $$
+   \ket{x} \mapsto (-1)^{f(x)} \ket{x}
+   $$
+
+#### Passo 4 — Opcional: remova qubits auxiliares
+
+Se o oráculo precisar ser “limpo”, desfaça os cálculos revertendo operações $computar → aplicar fase → uncompute$.
 
 ## Conteúdo
 
