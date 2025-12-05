@@ -179,11 +179,12 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../01-index.html">
-                    Introdução à Computação Quântica
+                    Bem-vindo ao Aprenda Ket
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -193,10 +194,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../../09-algoritmos.html">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Algoritmos Introdutórios</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
@@ -204,10 +211,8 @@
 <li class="toctree-l3"><a class="reference internal" href="09_1_3-simon.html">Problema de Simon</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../busca/09_2_0-algoritmos_de_busca.html">Algoritmos de Busca</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../busca/09_2_1-grover.html">Algoritmo de Busca de Grover</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
 <li class="toctree-l2 has-children"><a class="reference internal" href="../baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
@@ -226,6 +231,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../10-referencias.html">Referências</a></li>
 </ul>
 
@@ -376,8 +384,28 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculos-quanticos">Oráculos quânticos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculo-xor">Oráculo XOR</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor">Construção do Oráculo de Fase usando o Oráculo XOR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-construir-um-oraculo-quantico">Como construir um oráculo quântico</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-oraculo-xor-padrao">1. O Oráculo XOR (padrão)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#como-montar-o-oraculo-de-xor">Como montar o oráculo de XOR</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculo-de-fase">2. Oráculo de fase</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#construindo-o-oraculo-de-fase-a-partir-do-oraculo-xor">Construindo o oráculo de fase a partir do oráculo XOR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumo-pratico-como-montar-um-oraculo-quantico">Resumo prático: <strong>como montar um oráculo quântico</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#passo-1-comece-pela-funcao-booleana-f-x">Passo 1 — Comece pela função booleana (f(x))</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#passo-2-torne-a-funcao-reversivel">Passo 2 — Torne a função reversível</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#passo-3-escolha-o-tipo-de-oraculo-que-o-algoritmo-pede">Passo 3 — Escolha o tipo de oráculo que o algoritmo pede</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#se-precisar-do-oraculo-xor">Se precisar do <strong>oráculo XOR</strong>:</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#se-precisar-do-oraculo-de-fase">Se precisar do <strong>oráculo de fase</strong>:</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#passo-4-opcional-remova-qubits-auxiliares">Passo 4 — Opcional: remova qubits auxiliares</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conteudo">Conteúdo</a></li>
@@ -401,32 +429,132 @@ document.write(`
 <p>Neste capítulo serão abordados os algoritmos introdutórios, algoritmos que possuem problemas que a única aplicação é servir como material de estudos em computação quântica, para entender as bases de algorítmos mais complexos que possuem aplicações reais, como os algorítmos de busca.</p>
 <section id="oraculos-quanticos">
 <h2>Oráculos quânticos<a class="headerlink" href="#oraculos-quanticos" title="Link para este cabeçalho">#</a></h2>
-<p>Um dos fundamentos para entender os algorítmos introdutórios e de busca, é o conceito do oráculos quântico.</p>
-<p>Os oráculos são funções booleanas <span class="math notranslate nohighlight">\(f \colon \{ 0,1 \}^n \to \{ 0,1 \}\)</span> consideradas como ``caixas pretas’’. Dado um vetor de bits <span class="math notranslate nohighlight">\(x\)</span>, o oráculo clássico fornece <span class="math notranslate nohighlight">\(f(x)\)</span>. Alguns problemas computacionais são escritos em termos de oráculos, como o problema de Deutsch-Jozsa, o problema de Simon e o problema de busca de Grover. Para abordar esses problemas, é necessário definir uma versão quântica desse oráculo, o que será abordado nesta seção.</p>
-<p>Há duas maneiras de se escrever um análogo quântico ao oráculo clássico: o oráculo XOR e o oráculo de fase.</p>
-<section id="oraculo-xor">
-<h3>Oráculo XOR<a class="headerlink" href="#oraculo-xor" title="Link para este cabeçalho">#</a></h3>
-<p>O oráculo XOR é uma operação unitária que realiza a função booleana <span class="math notranslate nohighlight">\(f\)</span> por meio de um bit extra, que sinaliza as entradas em que <span class="math notranslate nohighlight">\(f\)</span> vale 1.</p>
-<p><img alt="oraculo_xor" src="../../_images/oraculo_xor.png" /></p>
-</section>
-<section id="construcao-do-oraculo-de-fase-usando-o-oraculo-xor">
-<h3>Construção do Oráculo de Fase usando o Oráculo XOR<a class="headerlink" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor" title="Link para este cabeçalho">#</a></h3>
-<p>Pode-se obter o oráculo de fase a partir do oráculo XOR com o uso do qubit alvo como um qubit auxiliar. Ao usarmos <span class="math notranslate nohighlight">\(\ket{-}\)</span> na entrada alvo do oráculo XOR, obtemos, para qualquer estado <span class="math notranslate nohighlight">\(\ket{x}\)</span> da base computacional:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\ket{x}\ket{-} = \ket{x}\tfrac{\ket{0}-\ket{1}}{\sqrt{2}} \xrightarrow{O_{\text{XOR}}} 
-  \begin{cases}
-   \ket{x}\frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{x}\ket{-}    &amp;\text{se $f(x)=0$}  \\
-   \ket{x}\frac{\ket{1}-\ket{0}}{\sqrt{2}} = \ket{x}(-\ket{-}) &amp;\text{se $f(x)=1$} \ ,
-  \end{cases}
-\end{split}\]</div>
-<p>o que pode ser resumido por <span class="math notranslate nohighlight">\(\ket{x}\big((-1)^{f(x)}\ket{-} \big)\)</span>. Além disso, o fator multiplicativo <span class="math notranslate nohighlight">\((-1)^{f(x)}\)</span> pode ser movido para qualquer entrada tensorial por multilinearidade do produto tensorial:</p>
+<p>Oráculos quânticos são peças fundamentais em vários algoritmos, especialmente os introdutórios e os de busca. Eles representam uma <strong>função clássica desconhecida</strong>, tratada como uma <em>caixa-preta</em>, que podemos consultar dentro de um circuito quântico.</p>
+<p>A ideia central é: <strong>como transformar uma função clássica</strong></p>
 <div class="math notranslate nohighlight">
 \[
-\ket{x}\otimes(-1)^{f(x)}\ket{-} =  (-1)^{f(x)} \ket{x}\otimes\ket{-}
+f:{0,1}^n \to {0,1}
 \]</div>
-<p>A figura a seguir ilustra a construção do oráculo de fase.</p>
-<p><img alt="oraculo_fase.png" src="../../_images/oraculo_fase.png" /></p>
+<p><strong>em uma operação unitária</strong>.</p>
+<p>Existem duas formas padrão de se fazer isso:</p>
+<ol class="arabic simple">
+<li><p><strong>Oráculo XOR (também encontrado como oráculo padrão)</strong></p></li>
+<li><p><strong>Oráculo de fase</strong></p></li>
+</ol>
+<p>Ambos implementam a mesma função <span class="math notranslate nohighlight">\(f\)</span>, mas em representações diferentes, e alguns algoritmos preferem uma forma específica para permitir interferência quântica.</p>
+<section id="como-construir-um-oraculo-quantico">
+<h3>Como construir um oráculo quântico<a class="headerlink" href="#como-construir-um-oraculo-quantico" title="Link para este cabeçalho">#</a></h3>
+<section id="o-oraculo-xor-padrao">
+<h4>1. O Oráculo XOR (padrão)<a class="headerlink" href="#o-oraculo-xor-padrao" title="Link para este cabeçalho">#</a></h4>
+<p>O primeiro passo é construir uma versão unitária da função booleana.
+A operação desejada é:</p>
+<div class="math notranslate nohighlight">
+\[
+U_f , \ket{x}\ket{y} = \ket{x}\ket{y}\ket{y \oplus f(x)} ,
+\]</div>
+<p>onde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> são os qubits de entrada,</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span> é um qubit auxiliar <span class="math notranslate nohighlight">\(target (ou alvo)\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\oplus\)</span> é XOR.</p></li>
+</ul>
+<section id="como-montar-o-oraculo-de-xor">
+<h5>Como montar o oráculo de XOR<a class="headerlink" href="#como-montar-o-oraculo-de-xor" title="Link para este cabeçalho">#</a></h5>
+<p>Para construir <span class="math notranslate nohighlight">\(U_f\)</span>, basta representar logicamente a função <span class="math notranslate nohighlight">\(f(x)\)</span> como uma sequência de portas quânticas reversíveis.</p>
+<p>Em geral:</p>
+<ol class="arabic simple">
+<li><p><strong>Escreva a função booleana (f(x)) como portas clássicas (AND, XOR, NOT)</strong>.</p></li>
+<li><p><strong>Troque essas portas por versões reversíveis</strong>:</p>
+<ul class="simple">
+<li><p>AND → Toffoli</p></li>
+<li><p>XOR → CNOT</p></li>
+<li><p>NOT → X</p></li>
+</ul>
+</li>
+<li><p>Reserve um qubit auxiliar <span class="math notranslate nohighlight">\(y\)</span> para receber o XOR com o resultado.</p></li>
+<li><p>Construa um circuito que compute <span class="math notranslate nohighlight">\(f(x)\)</span> num registrador auxiliar, e depois aplique uma CNOT para escrever o valor em <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+</ol>
+<p>É exatamente isso que o oráculo XOR representa.</p>
+<p><img alt="oraculoxor" src="../../_images/oraculo_xor.png" /></p>
+<p>Ele é o mais direto, mas não é o mais conveniente para algoritmos baseados em interferência.</p>
+</section>
+</section>
+<section id="oraculo-de-fase">
+<h4>2. Oráculo de fase<a class="headerlink" href="#oraculo-de-fase" title="Link para este cabeçalho">#</a></h4>
+<p>Algoritmos como Deutsch–Jozsa, Simon, Grover e QFT-based usam um oráculo na forma:</p>
+<div class="math notranslate nohighlight">
+\[
+U_f \ket{x} = (-1)^{f(x)} \ket{x} .
+\]</div>
+<p>Em vez de armazenar o resultado de <span class="math notranslate nohighlight">\(f(x)\)</span> em um bit auxiliar, o oráculo <strong>apenas adiciona uma fase</strong> de <span class="math notranslate nohighlight">\(-1\)</span> quando <span class="math notranslate nohighlight">\(f(x) = 1\)</span>.
+Isso é ideal para interferência quântica, porque fases negativas mudam probabilidades após a transformada de Hadamard.</p>
+<section id="construindo-o-oraculo-de-fase-a-partir-do-oraculo-xor">
+<h5>Construindo o oráculo de fase a partir do oráculo XOR<a class="headerlink" href="#construindo-o-oraculo-de-fase-a-partir-do-oraculo-xor" title="Link para este cabeçalho">#</a></h5>
+<p>Existe um truque fundamental:</p>
+<p><strong>Se você alimentar o oráculo XOR com (|-\rangle) no qubit alvo</strong>, então:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{-} = \frac{\ket{0} - \ket{1}}{\sqrt{2}},
+\]</div>
+<p>e ocorre o seguinte:</p>
+<ul class="simple">
+<li><p>Se <span class="math notranslate nohighlight">\(f(x)=0\)</span>: nada muda.</p></li>
+<li><p>Se <span class="math notranslate nohighlight">\(f(x)=1\)</span>: o XOR troca <span class="math notranslate nohighlight">\(\ket{0}\)</span> ↔ <span class="math notranslate nohighlight">\(\ket{1}\)</span>, o que introduz um sinal negativo.</p></li>
+</ul>
+<p>Isso resulta exatamente em:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{x} \ket{-} ; \longrightarrow ; (-1)^{f(x)} \ket{x} \ket{-} .
+\]</div>
+<p>Ou seja, o oráculo XOR “induz” um oráculo de fase se a entrada target for \ket{-}.</p>
+<p>Essa é a construção padrão.</p>
+</section>
+</section>
+</section>
+<section id="resumo-pratico-como-montar-um-oraculo-quantico">
+<h3>Resumo prático: <strong>como montar um oráculo quântico</strong><a class="headerlink" href="#resumo-pratico-como-montar-um-oraculo-quantico" title="Link para este cabeçalho">#</a></h3>
+<section id="passo-1-comece-pela-funcao-booleana-f-x">
+<h4>Passo 1 — Comece pela função booleana (f(x))<a class="headerlink" href="#passo-1-comece-pela-funcao-booleana-f-x" title="Link para este cabeçalho">#</a></h4>
+<p>Divida-a em ANDs, XORs, NOTs.</p>
+</section>
+<section id="passo-2-torne-a-funcao-reversivel">
+<h4>Passo 2 — Torne a função reversível<a class="headerlink" href="#passo-2-torne-a-funcao-reversivel" title="Link para este cabeçalho">#</a></h4>
+<ul>
+<li><p>AND → Toffoli</p></li>
+<li><p>XOR → CNOT</p></li>
+<li><p>NOT → X</p>
+<p>Use qubits auxiliares se necessário.</p>
+</li>
+</ul>
+</section>
+<section id="passo-3-escolha-o-tipo-de-oraculo-que-o-algoritmo-pede">
+<h4>Passo 3 — Escolha o tipo de oráculo que o algoritmo pede<a class="headerlink" href="#passo-3-escolha-o-tipo-de-oraculo-que-o-algoritmo-pede" title="Link para este cabeçalho">#</a></h4>
+<section id="se-precisar-do-oraculo-xor">
+<h5>Se precisar do <strong>oráculo XOR</strong>:<a class="headerlink" href="#se-precisar-do-oraculo-xor" title="Link para este cabeçalho">#</a></h5>
+<p>Implemente:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{x}\ket{y} \mapsto \ket{x}\ket{y\oplus f(x)}
+\]</div>
+</section>
+<section id="se-precisar-do-oraculo-de-fase">
+<h5>Se precisar do <strong>oráculo de fase</strong>:<a class="headerlink" href="#se-precisar-do-oraculo-de-fase" title="Link para este cabeçalho">#</a></h5>
+<ol class="arabic">
+<li><p>Construa o oráculo XOR normalmente.</p></li>
+<li><p>Coloque <span class="math notranslate nohighlight">\(\ket{-}\)</span> no qubit alvo.</p></li>
+<li><p>A fase aparece automaticamente:</p>
+<div class="math notranslate nohighlight">
+\[
+   \ket{x} \mapsto (-1)^{f(x)} \ket{x}
+   \]</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="passo-4-opcional-remova-qubits-auxiliares">
+<h4>Passo 4 — Opcional: remova qubits auxiliares<a class="headerlink" href="#passo-4-opcional-remova-qubits-auxiliares" title="Link para este cabeçalho">#</a></h4>
+<p>Se o oráculo precisar ser “limpo”, desfaça os cálculos revertendo operações <span class="math notranslate nohighlight">\(computar → aplicar fase → uncompute\)</span>.</p>
+</section>
 </section>
 </section>
 <section id="conteudo">
@@ -507,8 +635,28 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculos-quanticos">Oráculos quânticos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculo-xor">Oráculo XOR</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construcao-do-oraculo-de-fase-usando-o-oraculo-xor">Construção do Oráculo de Fase usando o Oráculo XOR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-construir-um-oraculo-quantico">Como construir um oráculo quântico</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-oraculo-xor-padrao">1. O Oráculo XOR (padrão)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#como-montar-o-oraculo-de-xor">Como montar o oráculo de XOR</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oraculo-de-fase">2. Oráculo de fase</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#construindo-o-oraculo-de-fase-a-partir-do-oraculo-xor">Construindo o oráculo de fase a partir do oráculo XOR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumo-pratico-como-montar-um-oraculo-quantico">Resumo prático: <strong>como montar um oráculo quântico</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#passo-1-comece-pela-funcao-booleana-f-x">Passo 1 — Comece pela função booleana (f(x))</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#passo-2-torne-a-funcao-reversivel">Passo 2 — Torne a função reversível</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#passo-3-escolha-o-tipo-de-oraculo-que-o-algoritmo-pede">Passo 3 — Escolha o tipo de oráculo que o algoritmo pede</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#se-precisar-do-oraculo-xor">Se precisar do <strong>oráculo XOR</strong>:</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#se-precisar-do-oraculo-de-fase">Se precisar do <strong>oráculo de fase</strong>:</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#passo-4-opcional-remova-qubits-auxiliares">Passo 4 — Opcional: remova qubits auxiliares</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conteudo">Conteúdo</a></li>

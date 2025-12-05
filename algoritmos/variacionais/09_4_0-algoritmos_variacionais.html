@@ -179,11 +179,12 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../01-index.html">
-                    Introdução à Computação Quântica
+                    Bem-vindo ao Aprenda Ket
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -193,10 +194,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../../09-algoritmos.html">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
@@ -204,10 +211,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../busca/09_2_0-algoritmos_de_busca.html">Algoritmos de Busca</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../busca/09_2_1-grover.html">Algoritmo de Busca de Grover</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
 <li class="toctree-l2 has-children"><a class="reference internal" href="../baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
@@ -226,6 +231,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../10-referencias.html">Referências</a></li>
 </ul>
 
@@ -376,6 +384,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-eles-funcionam">Como eles Funcionam</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-e-o-observavel">O que é o Observável</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observavel-como-funcao-de-custo">Observável como Função de Custo</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-e-o-hamiltoniano">O que é o Hamiltoniano</a></li>
 </ul>
 </li>
@@ -396,6 +408,10 @@ document.write(`
 <p>Os Algoritmos Variacionais Quânticos (VQAs) representam uma das abordagens mais promissoras para explorar o potencial dos computadores quânticos da era NISQ (Noisy Intermediate-Scale Quantum), dispositivos com dezenas a centenas de qubits, ainda sujeitos a ruído e erros.</p>
 <p>Esses algoritmos combinam processamento quântico e clássico de forma híbrida, utilizando o computador quântico para preparar e medir estados quânticos, e o computador clássico para ajustar parâmetros e minimizar uma função de custo.</p>
 <p>Essa arquitetura híbrida permite contornar as limitações atuais do hardware quântico, tornando os VQAs uma das principais ferramentas para aplicações práticas de curto prazo, como otimização, simulação de sistemas físicos e aprendizado de máquina quântico.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Material extraído do Artigo <a class="reference download internal" download="" href="../../_downloads/112b2b903bf95bc3a2f6e39037986a92/artigo_hamiltoniano.pdf"><span class="xref download myst"><em>Quantum Finance: um tutorial de computação quântica aplicada ao mercado financeiro</em></span></a>.</p>
+</div>
 <section id="como-eles-funcionam">
 <h2>Como eles Funcionam<a class="headerlink" href="#como-eles-funcionam" title="Link para este cabeçalho">#</a></h2>
 <p>A ideia central dos VQAs é a seguinte:</p>
@@ -403,8 +419,8 @@ document.write(`
 <li><p><strong>Preparação do Estado Parametrizado:</strong>
 Um circuito quântico <span class="math notranslate nohighlight">\(U(\boldsymbol{\theta})\)</span> é preparado, dependendo de um conjunto de parâmetros clássicos <span class="math notranslate nohighlight">\(\boldsymbol{\theta} = (\theta_1, \theta_2, ..., \theta_n)\)</span>.
 Esses parâmetros controlam rotações e operações que definem o estado quântico <span class="math notranslate nohighlight">\(\ket{\psi(\boldsymbol{\theta})} = U(\boldsymbol{\theta})\ket{0}\)</span>.</p></li>
-<li><p><strong>Medição de um Observável (Hamiltoniano):</strong>
-Mede-se o valor esperado de um <strong>Hamiltoniano</strong> <span class="math notranslate nohighlight">\(H\)</span>, que representa o problema físico ou matemático a ser resolvido.
+<li><p><strong>Medição de um Observável:</strong>
+Mede-se o valor esperado de um <strong>Observável, que pode ser Hamiltoniano</strong> <span class="math notranslate nohighlight">\(H\)</span>, que representa o problema físico ou matemático a ser resolvido.
 Essa medida fornece a <strong>função de custo</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -417,6 +433,28 @@ Um <strong>otimizador clássico</strong> (como gradient descent, Nelder–Mead o
 O processo se repete até atingir a convergência, ou seja, até encontrar um conjunto de parâmetros que minimize a energia esperada.</p></li>
 </ol>
 <p>Esse ciclo híbrido, <strong>preparação → medição → otimização → atualização</strong>, é o núcleo de qualquer VQA.</p>
+<section id="o-que-e-o-observavel">
+<h3>O que é o Observável<a class="headerlink" href="#o-que-e-o-observavel" title="Link para este cabeçalho">#</a></h3>
+<p>Em mecânica quântica, um <strong>observável</strong> é qualquer grandeza física que pode ser medida em um sistema quântico - como energia, magnetização, posição, momento ou qualquer quantidade derivada delas.</p>
+<p>Matematicamente, um observável é representado por um <strong>operador Hermitiano</strong> (ou seja, um operador igual ao seu próprio adjunto). Essa propriedade garante que os valores obtidos ao medir o observável sejam <strong>reais</strong>, como esperado em uma medida física.</p>
+<p>Nos Algoritmos Variacionais Quânticos (VQAs), o observável desempenha um papel fundamental: ele define <strong>a função de custo</strong> que se deseja minimizar.</p>
+<section id="observavel-como-funcao-de-custo">
+<h4>Observável como Função de Custo<a class="headerlink" href="#observavel-como-funcao-de-custo" title="Link para este cabeçalho">#</a></h4>
+<p>Ao aplicar o circuito parametrizado <span class="math notranslate nohighlight">\(U(\boldsymbol{\theta})\)</span> sobre o estado inicial, obtém-se um estado variacional <span class="math notranslate nohighlight">\(\ket{\psi(\boldsymbol{\theta})}\)</span>.</p>
+<p>O valor esperado do observável <span class="math notranslate nohighlight">\(O\)</span> nesse estado é dado por:</p>
+<div class="math notranslate nohighlight">
+\[
+\langle O \rangle_{\boldsymbol{\theta}} =
+\bra{\psi(\boldsymbol{\theta})} O \ket{\psi(\boldsymbol{\theta})}
+\]</div>
+<p>Esse valor esperado é exatamente o que o VQA usa como <strong>função objetivo</strong> a ser minimizada (ou maximizada), dependendo do problema.</p>
+<p>Se <span class="math notranslate nohighlight">\(O\)</span> for o Hamiltoniano <span class="math notranslate nohighlight">\(H\)</span> do sistema, então:</p>
+<ul class="simple">
+<li><p>Minimizar <span class="math notranslate nohighlight">\(\langle H \rangle\)</span> significa buscar o <strong>estado fundamental</strong>.</p></li>
+<li><p>Maximizar <span class="math notranslate nohighlight">\(\langle O \rangle\)</span> pode ser útil em certos problemas de machine learning quântico.</p></li>
+</ul>
+</section>
+</section>
 <section id="o-que-e-o-hamiltoniano">
 <h3>O que é o Hamiltoniano<a class="headerlink" href="#o-que-e-o-hamiltoniano" title="Link para este cabeçalho">#</a></h3>
 <p>O <strong>Hamiltoniano</strong> é um operador fundamental na mecânica quântica, representando a <strong>energia total</strong> (cinética + potencial) de um sistema.
@@ -512,6 +550,10 @@ H = \sum_i h_i P_i
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-eles-funcionam">Como eles Funcionam</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-e-o-observavel">O que é o Observável</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observavel-como-funcao-de-custo">Observável como Função de Custo</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-e-o-hamiltoniano">O que é o Hamiltoniano</a></li>
 </ul>
 </li>

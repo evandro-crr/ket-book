@@ -179,11 +179,12 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../01-index.html">
-                    Introdução à Computação Quântica
+                    Bem-vindo ao Aprenda Ket
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -193,10 +194,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../../09-algoritmos.html">Algoritmos Quânticos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
@@ -204,10 +211,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../busca/09_2_0-algoritmos_de_busca.html">Algoritmos de Busca</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../busca/09_2_1-grover.html">Algoritmo de Busca de Grover</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
 <li class="toctree-l2 has-children"><a class="reference internal" href="../baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
@@ -226,6 +231,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../10-referencias.html">Referências</a></li>
 </ul>
 
@@ -481,11 +489,7 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang<span class="o">[</span>plot<span class="o">]</span><span class="w"> </span>pyqubo<span class="w"> </span>scipy<span class="w"> </span>-q
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pio</span>
-
-<span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;iframe&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang<span class="o">[</span>plot<span class="o">]==</span><span class="m">0</span>.9.1.2<span class="w"> </span><span class="nv">kaleido</span><span class="o">==</span><span class="m">0</span>.2.1<span class="w"> </span>pyqubo<span class="w"> </span>-q
 </pre></div>
 </div>
 </div>
@@ -514,7 +518,6 @@ minimizar \space C(z)
 \]</div>
 <p>onde <span class="math notranslate nohighlight">\(p\)</span> é a “profundidade” do algoritmo (quanto maior, mais preciso — mas mais difícil de executar).</p>
 <p>Além disso, ele utiliza de um sistema de dois hamiltonianos, um que representa o problema a ser otimizado, <strong>hamiltoniano de custo</strong> (<span class="math notranslate nohighlight">\(H_c\)</span>) e um altera os bits, <strong>hamiltoniano de mistura</strong> (<span class="math notranslate nohighlight">\(H_m\)</span>).</p>
-<p><img alt="qaoa" src="../../_images/qaoa.png" /></p>
 <section id="hamiltoniano-de-custo-cost">
 <h3>Hamiltoniano de Custo (Cost)<a class="headerlink" href="#hamiltoniano-de-custo-cost" title="Link para este cabeçalho">#</a></h3>
 <p>O <strong>hamiltoniano de custo</strong> é o responsável por <strong>codificar o problema de otimização</strong> no sistema quântico.
@@ -531,6 +534,8 @@ H_c = \sum_{(i,j) \in E} \frac{1 - Z_i Z_j}{2}
 <li><p><span class="math notranslate nohighlight">\(Z_i\)</span> e <span class="math notranslate nohighlight">\(Z_j\)</span> são operadores de Pauli-Z aplicados aos qubits <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
 </ul>
 <p>Esse termo atribui energia menor (ou custo maior) às configurações de bits que <strong>maximizam o número de arestas “cortadas”</strong>, ou seja, que conectam vértices em partições diferentes do grafo.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: ilustração de um grafo simples com o corte (Max-Cut) destacado e a associação com os qubits via <span class="math notranslate nohighlight">\(Z_iZ_j\)</span>).</em></p>
 </section>
 <section id="hamiltoniano-de-mistura-mixer">
 <h3>Hamiltoniano de Mistura (Mixer)<a class="headerlink" href="#hamiltoniano-de-mistura-mixer" title="Link para este cabeçalho">#</a></h3>
@@ -549,6 +554,8 @@ Assim, enquanto <span class="math notranslate nohighlight">\(H_c\)</span> “atr
 <section class="tex2jax_ignore mathjax_ignore" id="aplicando-qaoa-no-max-cut">
 <h1>Aplicando QAOA no Max-Cut<a class="headerlink" href="#aplicando-qaoa-no-max-cut" title="Link para este cabeçalho">#</a></h1>
 <p>Para ilustrar o funcionamento do QAOA, o problema do <strong>Max-Cut</strong> é frequentemente utilizado como exemplo. Esse problema consiste em <strong>dividir os vértices de um grafo em dois grupos</strong> de modo a <strong>maximizar o número de arestas que conectam vértices de grupos diferentes</strong>.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: diagrama do circuito do QAOA com as camadas de <span class="math notranslate nohighlight">\(e^{-i\gamma H_c}\)</span> e <span class="math notranslate nohighlight">\(e^{-i\beta H_m}\)</span> aplicadas em sequência.)</em></p>
 <section id="o-problema-do-max-cut">
 <h2>O Problema do Max-Cut<a class="headerlink" href="#o-problema-do-max-cut" title="Link para este cabeçalho">#</a></h2>
 <p>Dado um grafo <span class="math notranslate nohighlight">\(G = (V, E)\)</span> com vértices <span class="math notranslate nohighlight">\(V\)</span> e arestas <span class="math notranslate nohighlight">\(E\)</span>, queremos encontrar uma partição dos vértices <span class="math notranslate nohighlight">\(V\)</span> em dois subconjuntos <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(\bar{S}\)</span> tal que o número de arestas entre eles seja máximo.</p>
@@ -558,7 +565,8 @@ Assim, enquanto <span class="math notranslate nohighlight">\(H_c\)</span> “atr
 C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
 \]</div>
 <p>onde <span class="math notranslate nohighlight">\(z_i, z_j \in {+1, -1}\)</span> representam a qual subconjunto cada vértice pertence.</p>
-<p><img alt="Max-cut" src="../../_images/Max-cut.svg" /></p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: grafo com duas partições coloridas, ilustrando quais arestas são “cortadas”.)</em></p>
 </section>
 <section id="qaoa-em-max-cut">
 <h2>QAOA em Max-Cut<a class="headerlink" href="#qaoa-em-max-cut" title="Link para este cabeçalho">#</a></h2>
@@ -689,21 +697,15 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
    maxcv: 0.0
 </pre></div>
 </div>
-<div class="output text_html"><iframe
-    scrolling="no"
-    width="100%"
-    height="545px"
-    src="iframe_figures/figure_8.html"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
+</div>
 </div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="aplicando-qaoa-ao-qubo">
 <h1>Aplicando QAOA ao QUBO<a class="headerlink" href="#aplicando-qaoa-ao-qubo" title="Link para este cabeçalho">#</a></h1>
 <p>Uma de suas aplicações mais diretas do QAOA é no <strong>QUBO</strong> (<em>Quadratic Unconstrained Binary Optimization</em>), um formato genérico que abrange inúmeros problemas reais, desde escalonamento e roteamento até clustering e design de portfólios.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: diagrama do circuito do QAOA, mostrando as camadas alternadas de <span class="math notranslate nohighlight">\(e^{-i\gamma H_c}\)</span> e <span class="math notranslate nohighlight">\(e^{-i\beta H_m}\)</span>, com parâmetros ajustáveis.)</em></p>
 <section id="o-que-e-o-qubo">
 <h2>O que é o QUBO<a class="headerlink" href="#o-que-e-o-qubo" title="Link para este cabeçalho">#</a></h2>
 <p>O QUBO pode ser entendido como um problema onde buscamos um vetor binário <span class="math notranslate nohighlight">\(z = (z_1, z_2, ..., z_n)\)</span>, com cada <span class="math notranslate nohighlight">\(z_i \in {+1, -1}\)</span>, que minimize (ou maximize) uma função de custo quadrática da forma:</p>
@@ -717,6 +719,8 @@ C(z) = \sum_{i&lt;j} w_{ij} z_i z_j + \sum_i w_i z_i
 \[
 C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
 \]</div>
+<p>!!! FIGURA !!!
+<em>(Sugestão: grafo com vértices divididos em duas cores, destacando as arestas “cortadas” pela partição.)</em></p>
 </section>
 <section id="qaoa-ao-qubo">
 <h2>QAOA ao QUBO<a class="headerlink" href="#qaoa-ao-qubo" title="Link para este cabeçalho">#</a></h2>
@@ -740,8 +744,12 @@ e^{-i \beta_p H_m} e^{-i \gamma_p H_c}
 e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 \ket{+}^{\otimes n}
 \]</div>
+<p>!!! FIGURA !!!
+<em>(Sugestão: diagrama temporal mostrando as camadas de evolução do QAOA — alternância entre o operador de custo e o misturador, com os parâmetros <span class="math notranslate nohighlight">\(\gamma\)</span> e <span class="math notranslate nohighlight">\(\beta\)</span> marcados.)</em></p>
 <p>Após medir o estado final, obtemos diferentes bitstrings <span class="math notranslate nohighlight">\(z\)</span>, e o valor da função <span class="math notranslate nohighlight">\(C(z)\)</span> é calculado <strong>classicamente</strong>. Um otimizador clássico ajusta então os parâmetros <span class="math notranslate nohighlight">\(\boldsymbol{\gamma}\)</span> e <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> para <strong>maximizar o valor esperado de <span class="math notranslate nohighlight">\(C(z)\)</span></strong>.</p>
 <p>Esse ciclo híbrido (quântico + clássico) é repetido até que os parâmetros convirjam para uma configuração próxima da solução ótima.</p>
+<p>!!! FIGURA !!!
+<em>(Sugestão: diagrama híbrido mostrando o loop entre o computador quântico (geração do estado e medição) e o otimizador clássico (ajuste de parâmetros).)</em></p>
 </section>
 <section id="simulacao-do-algoritmo-quantico-de-otimizacao-aproximada-qaoa-ao-qubo">
 <h2>Simulação do Algoritmo Quântico de Otimização Aproximada (QAOA) ao QUBO<a class="headerlink" href="#simulacao-do-algoritmo-quantico-de-otimizacao-aproximada-qaoa-ao-qubo" title="Link para este cabeçalho">#</a></h2>
@@ -1047,63 +1055,6 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
   </tbody>
 </table>
 </div></div></div>
-</div>
-<div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
-<summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="n">ket_version</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
-
-<span class="n">version</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">&lt;table&gt;</span>
-<span class="s2">  &lt;thead&gt;</span>
-<span class="s2">    &lt;tr&gt;</span>
-<span class="s2">      &lt;th&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/th&gt;</span>
-<span class="s2">      &lt;th&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/th&gt;</span>
-<span class="s2">    &lt;/tr&gt;</span>
-<span class="s2">  &lt;/thead&gt;</span>
-<span class="s2">  &lt;tbody&gt;</span>
-<span class="s2">    &lt;tr&gt;</span>
-<span class="s2">      &lt;td&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2">&lt;/td&gt;</span>
-<span class="s2">      &lt;td&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;</span>
-<span class="s2">    &lt;/tr&gt;</span>
-<span class="s2">    &lt;tr&gt;</span>
-<span class="s2">      &lt;td&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&lt;/td&gt;</span>
-<span class="s2">      &lt;td&gt;</span><span class="si">{</span><span class="n">ket_version</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;</span>
-<span class="s2">    &lt;/tr&gt;</span>
-<span class="s2">  &lt;/tbody&gt;</span>
-<span class="s2">&lt;/table&gt;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<table>
-  <thead>
-    <tr>
-      <th>Ket</th>
-      <th>v0.9.1.5</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Libket</td>
-      <td>v0.6.0</td>
-    </tr>
-    <tr>
-      <td>KBW</td>
-      <td>v0.4.1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
 </div>
 </section>
 </section>

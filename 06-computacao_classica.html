@@ -64,8 +64,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="next" title="Computação Quântica" href="07-computacao_quantica.html" />
-    <link rel="prev" title="Postulados da Mecânica Quântica" href="05-postulados.html" />
+    <link rel="next" title="Postulados da Mecânica Quântica" href="05-postulados.html" />
+    <link rel="prev" title="Produto Tensorial" href="algebra/04_4-prod_tensorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
   </head>
@@ -179,11 +179,12 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="01-index.html">
-                    Introdução à Computação Quântica
+                    Bem-vindo ao Aprenda Ket
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="02-pytutorial.html">Tutorial de Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-complexos.html">Números Complexos para Computação Quântica</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -193,10 +194,16 @@
 <li class="toctree-l2"><a class="reference internal" href="algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="05-postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Computação Clássica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-postulados.html">Postulados da Mecânica Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-computacao_quantica.html">Computação Quântica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="09-algoritmos.html">Algoritmos Quânticos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="algoritmos/introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
@@ -204,10 +211,8 @@
 <li class="toctree-l3"><a class="reference internal" href="algoritmos/introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="algoritmos/busca/09_2_0-algoritmos_de_busca.html">Algoritmos de Busca</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="algoritmos/busca/09_2_1-grover.html">Algoritmo de Busca de Grover</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="algoritmos/busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
 <li class="toctree-l2 has-children"><a class="reference internal" href="algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="algoritmos/baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="algoritmos/baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
@@ -226,6 +231,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://qubox.ufsc.br/index.html">Qubox UFSC</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="10-referencias.html">Referências</a></li>
 </ul>
 
@@ -636,20 +644,20 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="05-postulados.html"
+       href="algebra/04_4-prod_tensorial.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Postulados da Mecânica Quântica</p>
+        <p class="prev-next-title">Produto Tensorial</p>
       </div>
     </a>
     <a class="right-next"
-       href="07-computacao_quantica.html"
+       href="05-postulados.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">próximo</p>
-        <p class="prev-next-title">Computação Quântica</p>
+        <p class="prev-next-title">Postulados da Mecânica Quântica</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

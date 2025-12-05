@@ -1,4 +1,4 @@
-# Introdução à Computação Quântica
+# Bem-vindo ao Aprenda Ket
 
 Este é um material didático produzido por membros do Grupo de Computação Quântica da UFSC, com o objetivo de disseminar o ensino e promover a acessibilidade na área de computação quântica.
 
