@@ -534,8 +534,6 @@ H_c = \sum_{(i,j) \in E} \frac{1 - Z_i Z_j}{2}
 <li><p><span class="math notranslate nohighlight">\(Z_i\)</span> e <span class="math notranslate nohighlight">\(Z_j\)</span> são operadores de Pauli-Z aplicados aos qubits <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
 </ul>
 <p>Esse termo atribui energia menor (ou custo maior) às configurações de bits que <strong>maximizam o número de arestas “cortadas”</strong>, ou seja, que conectam vértices em partições diferentes do grafo.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: ilustração de um grafo simples com o corte (Max-Cut) destacado e a associação com os qubits via <span class="math notranslate nohighlight">\(Z_iZ_j\)</span>).</em></p>
 </section>
 <section id="hamiltoniano-de-mistura-mixer">
 <h3>Hamiltoniano de Mistura (Mixer)<a class="headerlink" href="#hamiltoniano-de-mistura-mixer" title="Link para este cabeçalho">#</a></h3>
@@ -554,8 +552,6 @@ Assim, enquanto <span class="math notranslate nohighlight">\(H_c\)</span> “atr
 <section class="tex2jax_ignore mathjax_ignore" id="aplicando-qaoa-no-max-cut">
 <h1>Aplicando QAOA no Max-Cut<a class="headerlink" href="#aplicando-qaoa-no-max-cut" title="Link para este cabeçalho">#</a></h1>
 <p>Para ilustrar o funcionamento do QAOA, o problema do <strong>Max-Cut</strong> é frequentemente utilizado como exemplo. Esse problema consiste em <strong>dividir os vértices de um grafo em dois grupos</strong> de modo a <strong>maximizar o número de arestas que conectam vértices de grupos diferentes</strong>.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: diagrama do circuito do QAOA com as camadas de <span class="math notranslate nohighlight">\(e^{-i\gamma H_c}\)</span> e <span class="math notranslate nohighlight">\(e^{-i\beta H_m}\)</span> aplicadas em sequência.)</em></p>
 <section id="o-problema-do-max-cut">
 <h2>O Problema do Max-Cut<a class="headerlink" href="#o-problema-do-max-cut" title="Link para este cabeçalho">#</a></h2>
 <p>Dado um grafo <span class="math notranslate nohighlight">\(G = (V, E)\)</span> com vértices <span class="math notranslate nohighlight">\(V\)</span> e arestas <span class="math notranslate nohighlight">\(E\)</span>, queremos encontrar uma partição dos vértices <span class="math notranslate nohighlight">\(V\)</span> em dois subconjuntos <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(\bar{S}\)</span> tal que o número de arestas entre eles seja máximo.</p>
@@ -565,8 +561,6 @@ Assim, enquanto <span class="math notranslate nohighlight">\(H_c\)</span> “atr
 C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
 \]</div>
 <p>onde <span class="math notranslate nohighlight">\(z_i, z_j \in {+1, -1}\)</span> representam a qual subconjunto cada vértice pertence.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: grafo com duas partições coloridas, ilustrando quais arestas são “cortadas”.)</em></p>
 </section>
 <section id="qaoa-em-max-cut">
 <h2>QAOA em Max-Cut<a class="headerlink" href="#qaoa-em-max-cut" title="Link para este cabeçalho">#</a></h2>
@@ -641,7 +635,7 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e5fd11f73340d2a7c0acdbbe107ef163c6cfdc84bbeb1c32f663c832f306f0f6.png" src="../../_images/e5fd11f73340d2a7c0acdbbe107ef163c6cfdc84bbeb1c32f663c832f306f0f6.png" />
+<img alt="../../_images/33b792bebb974c65665dd441d169f6946c255054fca44fc54a736f780ef305e1.png" src="../../_images/33b792bebb974c65665dd441d169f6946c255054fca44fc54a736f780ef305e1.png" />
 </div>
 </div>
 <p>Agora, podemos definir o QAOA aplicando sua evolução temporal</p>
@@ -704,8 +698,6 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 <section class="tex2jax_ignore mathjax_ignore" id="aplicando-qaoa-ao-qubo">
 <h1>Aplicando QAOA ao QUBO<a class="headerlink" href="#aplicando-qaoa-ao-qubo" title="Link para este cabeçalho">#</a></h1>
 <p>Uma de suas aplicações mais diretas do QAOA é no <strong>QUBO</strong> (<em>Quadratic Unconstrained Binary Optimization</em>), um formato genérico que abrange inúmeros problemas reais, desde escalonamento e roteamento até clustering e design de portfólios.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: diagrama do circuito do QAOA, mostrando as camadas alternadas de <span class="math notranslate nohighlight">\(e^{-i\gamma H_c}\)</span> e <span class="math notranslate nohighlight">\(e^{-i\beta H_m}\)</span>, com parâmetros ajustáveis.)</em></p>
 <section id="o-que-e-o-qubo">
 <h2>O que é o QUBO<a class="headerlink" href="#o-que-e-o-qubo" title="Link para este cabeçalho">#</a></h2>
 <p>O QUBO pode ser entendido como um problema onde buscamos um vetor binário <span class="math notranslate nohighlight">\(z = (z_1, z_2, ..., z_n)\)</span>, com cada <span class="math notranslate nohighlight">\(z_i \in {+1, -1}\)</span>, que minimize (ou maximize) uma função de custo quadrática da forma:</p>
@@ -719,8 +711,6 @@ C(z) = \sum_{i&lt;j} w_{ij} z_i z_j + \sum_i w_i z_i
 \[
 C(z) = \sum_{(i,j)\in E} \frac{1 - z_i z_j}{2}
 \]</div>
-<p>!!! FIGURA !!!
-<em>(Sugestão: grafo com vértices divididos em duas cores, destacando as arestas “cortadas” pela partição.)</em></p>
 </section>
 <section id="qaoa-ao-qubo">
 <h2>QAOA ao QUBO<a class="headerlink" href="#qaoa-ao-qubo" title="Link para este cabeçalho">#</a></h2>
@@ -744,12 +734,8 @@ e^{-i \beta_p H_m} e^{-i \gamma_p H_c}
 e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 \ket{+}^{\otimes n}
 \]</div>
-<p>!!! FIGURA !!!
-<em>(Sugestão: diagrama temporal mostrando as camadas de evolução do QAOA — alternância entre o operador de custo e o misturador, com os parâmetros <span class="math notranslate nohighlight">\(\gamma\)</span> e <span class="math notranslate nohighlight">\(\beta\)</span> marcados.)</em></p>
 <p>Após medir o estado final, obtemos diferentes bitstrings <span class="math notranslate nohighlight">\(z\)</span>, e o valor da função <span class="math notranslate nohighlight">\(C(z)\)</span> é calculado <strong>classicamente</strong>. Um otimizador clássico ajusta então os parâmetros <span class="math notranslate nohighlight">\(\boldsymbol{\gamma}\)</span> e <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> para <strong>maximizar o valor esperado de <span class="math notranslate nohighlight">\(C(z)\)</span></strong>.</p>
 <p>Esse ciclo híbrido (quântico + clássico) é repetido até que os parâmetros convirjam para uma configuração próxima da solução ótima.</p>
-<p>!!! FIGURA !!!
-<em>(Sugestão: diagrama híbrido mostrando o loop entre o computador quântico (geração do estado e medição) e o otimizador clássico (ajuste de parâmetros).)</em></p>
 </section>
 <section id="simulacao-do-algoritmo-quantico-de-otimizacao-aproximada-qaoa-ao-qubo">
 <h2>Simulação do Algoritmo Quântico de Otimização Aproximada (QAOA) ao QUBO<a class="headerlink" href="#simulacao-do-algoritmo-quantico-de-otimizacao-aproximada-qaoa-ao-qubo" title="Link para este cabeçalho">#</a></h2>
@@ -842,7 +828,7 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/563504b5dda722d11e6ba6ff65842185c66124da446fd4395e02467264aa6330.png" src="../../_images/563504b5dda722d11e6ba6ff65842185c66124da446fd4395e02467264aa6330.png" />
+<img alt="../../_images/d899d302663add977fdc57567c95213dc2ae2505d26fa97562c20ee687beb0a8.png" src="../../_images/d899d302663add977fdc57567c95213dc2ae2505d26fa97562c20ee687beb0a8.png" />
 </div>
 </div>
 <p>Agora, podemos definir o QAOA aplicando sua evolução temporal</p>
