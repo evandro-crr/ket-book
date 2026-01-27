@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
@@ -47,10 +47,10 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Clique para mostrar';</script>
+    <script>let toggleHintHide = 'Clique para ocultar';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
     <script src="../../_static/translations.js?v=daa5921a"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -450,8 +450,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-de-euler">Série de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-problema-da-fatoracao-de-numeros-inteiros">O Problema da Fatoração de Números Inteiros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacao-do-algorimto-de-shor">Organização do Algorimto de Shor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-shor">Algoritmo de Shor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processamento-classico">Pré-processamento Clássico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#processamento-quantico">Processamento Quântico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pos-processamento-classico">Pós-processamento Clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado">Resultado</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-de-euler">Série de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-de-shor">Circuito de Shor</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-de-shor">Circuito Quântico de Shor</a></li>
 </ul>
 </li>
@@ -488,39 +499,101 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="fatoracao-de-numeros-inteiros-shor">
 <h1>Fatoração de Números Inteiros (Shor)<a class="headerlink" href="#fatoracao-de-numeros-inteiros-shor" title="Link para este cabeçalho">#</a></h1>
 <p><strong>AVISO:</strong> Para o entedimento completo do algorítmo de Shor é necessário conhecimento perante o Algorítmo de Estimação de Fase Quântica e Transformada Quântica de Fourier</p>
-<p><strong>O Problema da Fatoração de Números Inteiros</strong></p>
+<section id="o-problema-da-fatoracao-de-numeros-inteiros">
+<h2>O Problema da Fatoração de Números Inteiros<a class="headerlink" href="#o-problema-da-fatoracao-de-numeros-inteiros" title="Link para este cabeçalho">#</a></h2>
 <p>O Problema da Fatoração de Números Inteiros constitui um dos desafios computacionais mais fundamentais e persistentes da matemática e ciência da computação. Em sua essência, o problema questiona: dado um número composto N, como encontrar eficientemente seus fatores primos? Enquanto verificar se um número é primo é relativamente fácil, fazer o caminho inverso, descobrir quais números primos multiplicados geram um número grande, é extremamente complexo e consome muito tempo.</p>
 <div class="math notranslate nohighlight">
 \[
 N = p \times q
 \]</div>
 <p>onde <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span> são números primos.</p>
-<section id="serie-de-euler">
-<h2>Série de Euler<a class="headerlink" href="#serie-de-euler" title="Link para este cabeçalho">#</a></h2>
-<p>Calcular <span class="math notranslate nohighlight">\({17 \times 3}\)</span> é simples. Porém, dado o número <span class="math notranslate nohighlight">\(51\)</span>, é mais difícil encontrar seus fatores primos. Para números menos, mesmo que demorado, esses problemas são solucionáveis. Entretando, ao tratar de protocolos, como os de criptografia, são usados centenas de dígitos, aumentando a dificuldade da fatoração.</p>
-<p>Tendo em vista o problema da fatoração, o matemático Leonard Euler desenvolveu importantes contribuições que posteriormente se tornaram fundamentais para o entendimento teórico por trás de algorítmo de fatoração.</p>
-<p>Euler descobre um padrão, observando uma série <span class="math notranslate nohighlight">\(m\)</span> de potências de 2:</p>
+</section>
+<section id="organizacao-do-algorimto-de-shor">
+<h2>Organização do Algorimto de Shor<a class="headerlink" href="#organizacao-do-algorimto-de-shor" title="Link para este cabeçalho">#</a></h2>
+<p>Para compreender o algoritmo desenvolvido por Peter Shor, é fundamental reconhecer que sua estrutura lógica envolve etapas de pré-processamento e pós-processamento, ambas realizadas de forma clássica.</p>
+</section>
+<section id="algoritmo-de-shor">
+<h2>Algoritmo de Shor<a class="headerlink" href="#algoritmo-de-shor" title="Link para este cabeçalho">#</a></h2>
+<p>Para uma melhor visualização, apresentaremos o Algoritmo de Shor utilizando o seguinte exemplo:</p>
 <div class="math notranslate nohighlight">
 \[
-m = 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048...
+N = 15
+\]</div>
+<section id="pre-processamento-classico">
+<h3>Pré-processamento Clássico<a class="headerlink" href="#pre-processamento-classico" title="Link para este cabeçalho">#</a></h3>
+<p>Como pré-processamento, devemos escolher um número <span class="math notranslate nohighlight">\(a\)</span> tal que <span class="math notranslate nohighlight">\(\mathrm{mdc}(a, N) = 1\)</span>. Para este exemplo, escolheremos <span class="math notranslate nohighlight">\(a = 7\)</span>.</p>
+</section>
+<section id="processamento-quantico">
+<h3>Processamento Quântico<a class="headerlink" href="#processamento-quantico" title="Link para este cabeçalho">#</a></h3>
+<p>Utilizaremos o <strong>Circuito de Shor</strong> (explicado futuramente), que implementa a <em>Série de Euler</em> (também explicada futuramente), para estimar o valor de <span class="math notranslate nohighlight">\(r\)</span>, tal que <span class="math notranslate nohighlight">\(a^r \equiv 1 \pmod{15}\)</span>.</p>
+<p>Para o exemplo, precisamos encontrar um valor de <span class="math notranslate nohighlight">\(r\)</span> tal que</p>
+<div class="math notranslate nohighlight">
+\[
+7^r \equiv 1 \pmod{15}.
+\]</div>
+<p>Aplicando o <strong>Circuito de Shor</strong> ou realizando a <em>Série de Euler</em> de maneira clássica, encontramos <span class="math notranslate nohighlight">\(r = 4\)</span>.</p>
+</section>
+<section id="pos-processamento-classico">
+<h3>Pós-processamento Clássico<a class="headerlink" href="#pos-processamento-classico" title="Link para este cabeçalho">#</a></h3>
+<p>Agora devemos calcular os seguintes mdc:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{mdc}\left(a^{r/2} - 1,, N\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+e
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{mdc}\left(a^{r/2} + 1,, N\right),
+\]</div>
+<p>para descobrirmos os fatores primos <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span> cujo produto resulta em <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<p>Seguindo o nosso exemplo, temos:</p>
+<div class="math notranslate nohighlight">
+\[
+p = \mathrm{mdc}\left(7^{4/2} - 1,, 15\right) = \mathrm{mdc}\left(48,, 15\right) = 3
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+e
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+q = \mathrm{mdc}\left(7^{4/2} + 1,, 15\right) = \mathrm{mdc}\left(50,, 15\right) = 5.
+\]</div>
+<section id="resultado">
+<h4>Resultado<a class="headerlink" href="#resultado" title="Link para este cabeçalho">#</a></h4>
+<p>Portanto, utilizando o <strong>Algoritmo de Shor</strong>, identificamos que o número <em>15</em> é o resultado da multiplicação dos números <em>3</em> e <em>5</em>.</p>
+</section>
+</section>
+</section>
+<section id="serie-de-euler">
+<h2>Série de Euler<a class="headerlink" href="#serie-de-euler" title="Link para este cabeçalho">#</a></h2>
+<p>Uma vez compreendidos os principais passos do <strong>Algoritmo de Shor</strong>, torna-se necessário entender a matemática que envolve o <em>processamento quântico</em>. Para compreender essa etapa com clareza, é fundamental ter conhecimento da Série de Euler.</p>
+<p>Como visto anteriormente, calcular <span class="math notranslate nohighlight">\({17 \times 3}\)</span> é simples. Porém, dado o número <span class="math notranslate nohighlight">\(51\)</span>, é mais difícil encontrar seus fatores primos. Para números menores, mesmo que de forma demorada, esses problemas são solucionáveis. Entretanto, ao tratar de protocolos, como os de criptografia, são utilizados números com centenas de dígitos, aumentando significativamente a dificuldade da fatoração.</p>
+<p>Tendo em vista o problema da fatoração, o matemático Leonhard Euler desenvolveu importantes contribuições que posteriormente se tornaram fundamentais para o entendimento teórico por trás dos algoritmos de fatoração.</p>
+<p>Euler descobre um padrão ao observar uma série <span class="math notranslate nohighlight">\(m\)</span> de potências de 2:</p>
+<div class="math notranslate nohighlight">
+\[
+m = 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, \ldots
 \]</div>
 <p>Aplicando <span class="math notranslate nohighlight">\(\mod 5\)</span> em cada item dessa série, obtemos o seguinte resultado:</p>
 <div class="math notranslate nohighlight">
 \[
-m\mod 5 = 1, 2, 4, 3, 1, 2, 4, 3, 1, 2, 4, 3
+m \mod 5 = 1, 2, 4, 3, 1, 2, 4, 3, 1, 2, 4, 3
 \]</div>
-<p>Nota-se que, nessa série, os valores <span class="math notranslate nohighlight">\([1, 2, 4, 3]\)</span> se repetem indefinidade, com período 4.</p>
+<p>Nota-se que, nessa série, os valores <span class="math notranslate nohighlight">\([1, 2, 4, 3]\)</span> se repetem indefinidamente, com período 4.</p>
 <p>Se aplicarmos <span class="math notranslate nohighlight">\(\mod 15\)</span> na mesma série <span class="math notranslate nohighlight">\(m\)</span> original, notamos que obteremos o seguinte padrão:</p>
 <div class="math notranslate nohighlight">
 \[
-m\mod 15 = 1, 2, 4, 8, 1, 2, 4, 8, 1, 2, 4, 8
+m \mod 15 = 1, 2, 4, 8, 1, 2, 4, 8, 1, 2, 4, 8
 \]</div>
-<p>Dessa vez, nessa série, os valores são diferentes quando comparados a <span class="math notranslate nohighlight">\(m\mod 5\)</span>, <span class="math notranslate nohighlight">\([1, 2, 4, 8]\)</span> se repetem indefinidade. Porém, com exato mesmo período 4.</p>
-<p>Com isso, Euler percebeu que dada a sequência: [<span class="math notranslate nohighlight">\(x \mod N, x^2 \mod N, x^3 \mod N, x^4 \mod N, …\)</span>].
-Se <span class="math notranslate nohighlight">\(N\)</span> é o produto de dois primos <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span>, e <span class="math notranslate nohighlight">\(x\)</span> não é divisível por <span class="math notranslate nohighlight">\(p\)</span> ou <span class="math notranslate nohighlight">\(q\)</span>, a sequência se repete com um período que divide <span class="math notranslate nohighlight">\((p-1)(q-1)\)</span>.</p>
+<p>Dessa vez, os valores obtidos são diferentes quando comparados a <span class="math notranslate nohighlight">\(m \mod 5\)</span>: <span class="math notranslate nohighlight">\([1, 2, 4, 8]\)</span> se repetem indefinidamente, porém com o mesmo período exato, 4.</p>
+<p>Com isso, Euler percebeu que, dada a sequência <span class="math notranslate nohighlight">\([x \mod N, x^2 \mod N, x^3 \mod N, x^4 \mod N, \ldots]\)</span>, se <span class="math notranslate nohighlight">\(N\)</span> é o produto de dois primos <span class="math notranslate nohighlight">\(p\)</span> e <span class="math notranslate nohighlight">\(q\)</span>, e <span class="math notranslate nohighlight">\(x\)</span> não é divisível por <span class="math notranslate nohighlight">\(p\)</span> nem por <span class="math notranslate nohighlight">\(q\)</span>, a sequência se repete com um período que divide <span class="math notranslate nohighlight">\((p - 1)(q - 1)\)</span>.</p>
 </section>
-<section id="algoritmo-de-shor">
-<h2>Algoritmo de Shor<a class="headerlink" href="#algoritmo-de-shor" title="Link para este cabeçalho">#</a></h2>
+<section id="circuito-de-shor">
+<h2>Circuito de Shor<a class="headerlink" href="#circuito-de-shor" title="Link para este cabeçalho">#</a></h2>
 <p>O <em>Algoritmo de Shor</em> possui uma estrutura muito similar ao <em>Algorítmo de Estimação de Fase (QPE)</em>, pois, assim como o <em>QPE</em>, o <em>Algorítmo de Shor</em> é uma aplicação fundamental da <em>Transformada Quântica de Fourier (QFT)</em> que permite estimar o autovalor de um operador unitário.</p>
 <p>Dado um número composto <strong>N</strong> que desejamos fatorar, e um inteiro <strong>a</strong> coprimo com N, encontre o menor inteiro positivo <strong>r</strong> tal que:</p>
 <div class="math notranslate nohighlight">
@@ -533,7 +606,7 @@ Se <span class="math notranslate nohighlight">\(N\)</span> é o produto de dois 
 </ul>
 <section id="circuito-quantico-de-shor">
 <h3>Circuito Quântico de Shor<a class="headerlink" href="#circuito-quantico-de-shor" title="Link para este cabeçalho">#</a></h3>
-<p>O algoritmo quântico para a Estimação de Fase Quântica é implementado através de um circuito composto por portas Hadamard e operadores unitários. O procedimento para <span class="math notranslate nohighlight">\(m\)</span> qubits em <span class="math notranslate nohighlight">\({\ket{0}}\)</span> e <span class="math notranslate nohighlight">\(n\)</span> qubits é:</p>
+<p>O <strong>Algoritmo de Shor</strong> é implementado através de um circuito composto por portas Hadamard e operadores unitários. O procedimento para <span class="math notranslate nohighlight">\(m\)</span> qubits em <span class="math notranslate nohighlight">\({\ket{0}}\)</span> e <span class="math notranslate nohighlight">\(n\)</span> qubits é:</p>
 <p><strong>Procedimento:</strong></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -549,7 +622,6 @@ Se <span class="math notranslate nohighlight">\(N\)</span> é o produto de dois 
 <p><strong>Circuito</strong></p>
 <p>Notação expandida:</p>
 <p><img alt="shor-3.png" src="../../_images/shor-3.png" /></p>
-<p>Observação: Nessa imagem notamos uma diferença de notação para o procedimento, em que: “<span class="math notranslate nohighlight">\(m \space qubits\)</span>” se tornaram “<span class="math notranslate nohighlight">\(n \space qubits\)</span>” e “<span class="math notranslate nohighlight">\(IQFT\)</span>” se tornou “<span class="math notranslate nohighlight">\(QFT^\dagger\)</span>”</p>
 <p>Análise detalhada do algoritmo:</p>
 <p><strong>Estado Inicial:</strong> $<span class="math notranslate nohighlight">\(\ket{\psi_0} = \ket{0}^{\otimes t} \otimes \ket{1}^{\otimes n}\)</span>$</p>
 <p>Aplicamos Hadamard nos qubits inicializados em <span class="math notranslate nohighlight">\(\ket{0}\)</span>:</p>
@@ -686,15 +758,14 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">713</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">187</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">shor</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">N</span><span class="o">//</span><span class="n">a</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sorte!
-23 x 31 = 713
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17 x 11 = 187
 </pre></div>
 </div>
 </div>
@@ -740,7 +811,7 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
   <thead>
     <tr>
       <th>Ket</th>
-      <th>v0.9.1.5</th>
+      <th>v0.9.2</th>
     </tr>
   </thead>
   <tbody>
@@ -750,7 +821,7 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
     </tr>
     <tr>
       <td>KBW</td>
-      <td>v0.4.1</td>
+      <td>v0.4.2</td>
     </tr>
   </tbody>
 </table>
@@ -823,8 +894,19 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-de-euler">Série de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-problema-da-fatoracao-de-numeros-inteiros">O Problema da Fatoração de Números Inteiros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacao-do-algorimto-de-shor">Organização do Algorimto de Shor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-shor">Algoritmo de Shor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processamento-classico">Pré-processamento Clássico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#processamento-quantico">Processamento Quântico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pos-processamento-classico">Pós-processamento Clássico</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado">Resultado</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-de-euler">Série de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-de-shor">Circuito de Shor</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-de-shor">Circuito Quântico de Shor</a></li>
 </ul>
 </li>
