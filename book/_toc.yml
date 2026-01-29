@@ -42,8 +42,6 @@ parts:
             sections:
               - file: algoritmos/variacionais/09_4_1-QAOA
               - file: algoritmos/variacionais/09_4_2-FALQON
-      - url: https://qubox.ufsc.br/index.html
-        title: Qubox UFSC
 
   - caption: Referências
     chapters:
