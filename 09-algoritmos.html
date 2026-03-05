@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -233,7 +233,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10-referencias.html">Referências</a></li>
+<li class="toctree-l1"><a class="reference internal" href="100-referencias.html">Referências</a></li>
 </ul>
 
     </div>
@@ -495,7 +495,7 @@ document.write(`
 <p>Em Teoria da Informação e Criptografia Quântica, é uma convenção tácita rotular os dois lados da comunicação por Alice e Bob!</p>
 </div>
 <p>Não é possível, classicamente, codificar 2 bits de mensagem em 1 bit transmitido, já que só há 2¹ = 2 palavras código – as palavras 0 e 1 – e 2² = 4 palavras de mensagem que podem ser enviadas – as palavras 00, 01, 10 e 11. No entanto, é possível codificar 2 bits de mensagem em 1 qubit transmitido, e é essa a função do circuito de codificação superdensa.</p>
-<p>Uma referância para este conteúdo é <span id="id1">[<a class="reference internal" href="10-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span> seção 2.3, p. 97-98</p>
+<p>Uma referância para este conteúdo é <span id="id1">[<a class="reference internal" href="100-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span> seção 2.3, p. 97-98</p>
 <section id="visao-geral">
 <h3>Visão geral<a class="headerlink" href="#visao-geral" title="Link para este cabeçalho">#</a></h3>
 <p>A codificação superdensa envolve o compartilhamento prévio de um par de qubits emaranhados, no estado de Bell <span class="math notranslate nohighlight">\(\ket{\beta_{00}}= \frac{\ket{00}+\ket{11}}{\sqrt{2}}\)</span>. Esse estado independe da mensagem que Alice quer enviar a Bob, e pode ter sido distribuído por uma fonte externa de pares emaranhados.</p>
@@ -539,7 +539,7 @@ $<span class="math notranslate nohighlight">\(
 <p>O circuito de teletransporte também envolve duas partes, chamadas de Alice e Bob, como de costume. Dessa vez, Alice está em posse de um qubit <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> cujo estado lhe é desconhecido e precisa enviá-lo a Bob. No entanto, o único meio de comunicação entre os dois é um canal clássico, por onde só é possível enviar cbits. Pode-se pensar em uma linha telefônica, ou uma conexão de internet entre os dois, por exemplo, e que os dois estão a uma grande distância um do outro. Enviando apenas bits clássicos, Alice deve tentar enviar o estado de seu qubit a Bob.</p>
 <p>Aparentemente não seria possível realizar essa tarefa, pois o estado de um qubit <span class="math notranslate nohighlight">\(\ket{\psi} = a\ket{0} + b \ket{1}\)</span> é definido por dois números complexos <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>, que demandariam muitos bits para serem representados de maneira satisfatória (mas aproximada apenas). Além disso, Alice não tem conhecimento sobre o estado do seu qubit, e uma medida não seria suficiente para conseguir encontrar os coeficientes <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>. Seriam necessárias muitas medidas de cópias do sistema em bases diferentes para se conseguir obter estimativas das probabilidades de o resultado ser <span class="math notranslate nohighlight">\(\ket{0}\)</span> ou <span class="math notranslate nohighlight">\(\ket{1}\)</span>, e isso não é possível de se fazer quando não se tem cópias do sistema.</p>
 <p>No entanto, se Alice e Bob estiverem compartilhando um par de qubits emaranhados, a situação torna-se mais favorável. O par emaranhado <span class="math notranslate nohighlight">\( \ket{\beta_{00}} \)</span> pode ter sido distribuído previamente, e não depende do qubit <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> de Alice. O circuito de teletransporte faz uso desse par emaranhado para realizar essa tarefa de enviar o estado de um qubit (não conhecido) fazendo-se uso apenas de um canal clássico. O nome ``teletransporte’’ tornou-se popular para fazer referência ao circuito, mas não é muito adequado. Esse circuito envia apenas a informação sobre o estado, não ocorrendo deslocamento físico do qubit em questão.</p>
-<p>Uma referência para esse circuito pode ser encontrado em <span id="id2">[<a class="reference internal" href="10-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span></p>
+<p>Uma referência para esse circuito pode ser encontrado em <span id="id2">[<a class="reference internal" href="100-referencias.html#id2" title="Michael A. Nielsen and Isaac L. Chuang. Quantum computation and quantum information. Cambridge university press, Cambridge, 10th anniversary edition edition, 2010. ISBN 978-1-107-00217-3.">NC10</a>]</span></p>
 <section id="id3">
 <h3>Visão geral<a class="headerlink" href="#id3" title="Link para este cabeçalho">#</a></h3>
 <p>Como na codificação superdensa, o circuito de teletransporte necessita do compartilhamento prévio de dois qubits emaranhados no estado de Bell <span class="math notranslate nohighlight">\(\ket{\beta_{00}}\)</span>, que independe do qubit que Alice quer enviar a Bob.</p>

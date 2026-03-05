@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -233,7 +233,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10-referencias.html">Referências</a></li>
+<li class="toctree-l1"><a class="reference internal" href="100-referencias.html">Referências</a></li>
 </ul>
 
     </div>
@@ -622,9 +622,9 @@ pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f49e18cfca0&gt;
-Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f49e18cfca0&gt;
-Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f49e18cfca0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f55b0525f60&gt;
+Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f55b0525f60&gt;
+Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f55b0525f60&gt;
 </pre></div>
 </div>
 </div>
@@ -1159,13 +1159,10 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f49e18cfca0&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2419/2844684540.py:35: DeprecationWarning:
-
-PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
-
-/tmp/ipykernel_2419/2844684540.py:11: DeprecationWarning:
-
-PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2569/2844684540.py:35: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+  oraculo=lambda i, tgr: PHASE(2 * pi * (fase / 10) * 2**i, tgr),
+/tmp/ipykernel_2569/2844684540.py:11: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+  ctrl(ctrl_qubit, PHASE(pi / 2 ** (i + 1)))(last)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1415939331054688
@@ -1519,12 +1516,12 @@ PHASE is deprecated and will be removed in future versions. Use P(theta, qubits)
 </div>
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado da medida do primeiro qubit: 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado da medida do primeiro qubit: 1
 Estado quântico após o colapso
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle  \left|00\right&gt;\]</div>
+\[\displaystyle  \left|11\right&gt;\]</div>
 </div>
 </div>
 <section id="exercicio-medidas-em-outras-bases">
@@ -1613,7 +1610,7 @@ Estado quântico após o colapso
 </div>
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle \frac{1}{\sqrt{2}} \left|0\right&gt;+\frac{1}{\sqrt{2}} \left|3\right&gt;\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {3: 1050, 0: 998}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {3: 999, 0: 1049}
 </pre></div>
 </div>
 </div>
@@ -1671,7 +1668,7 @@ Estado quântico após o colapso
   <thead>
     <tr>
       <th>Ket</th>
-      <th>v0.9.2</th>
+      <th>v0.9.2.3</th>
     </tr>
   </thead>
   <tbody>
