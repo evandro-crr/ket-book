@@ -1,0 +1,38 @@
+Tópicos Avançados
+Objetivo: Apresentar conceitos e conteúdos de fronteira da área de Computação Quântica, não estando em ordem de aprendizado, 
+dependerá do interesse do usuário.
+Conteúdo:
+    Página de Introdução: Entendendo os tópicos avançados
+        - Objetivo: Apresentar uma visão geral da seção tópicos avançados
+    1a subdivisão: Teoria de Informação Quântica
+        - Objetivo: Apresentar conceitos fundamentais da informação quântica
+        - Conteúdo:
+            - Revisão de Algebra Linear para Informação Quântica
+            - Entropia de von Neumann
+            - Canal quântico
+            - Capacidade de canais quânticos
+            - Compressão quântica de informação
+            - Teorema de Holevo
+        - Observações: "Revisão de Algebra Linear" será adaptada das aulas do professor Guilherme Temporão da PUC-RJ
+    2a subdivisão: Técnias de Medição
+        - Objetivo: Apresentar técnicas de medição em sistemas quânticos
+        - Conteúdo:
+            - Tomografia quântica
+            - POVMs (Positive Operator-Valued Measures)
+            - Shadow Tomography
+            - Classical Shadows
+            - Estimativa de observáveis
+        - Observações: "Classical Shadows" será adaptada da Dissertação de Letícia Bertuzzi
+    3a subdivisão: Aprendizado de Máquina Quântico
+        - Objetivo: Apresentar conceitos e técnicas de aprendizado de máquina quântico
+        - Conteúdo:
+            - Aprendizado de Máquina Clássico
+            - Redes Neurais Quânticas (QNNs)
+            - Variational Quantum Circuits
+            - Quantum Kernel Methods
+            - Quantum Boltzmann Machines
+            - Quantum Reinforcement Learning
+        - Observações: Material retirado de https://arxiv.org/pdf/2205.08154
+    4a subdivisão: Simulação Quântica
+        - Objetivo: Apresentar técnicas de simulação de sistemas quânticos
+        - Conteúdo: 
