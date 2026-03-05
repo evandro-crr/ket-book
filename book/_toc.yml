@@ -45,7 +45,7 @@ parts:
 
   - caption: Tópicos Avançados
     chapters:
-      - file: 10-topicos_avancados
+      - file: 10-avancados
 
   - caption: Referências
     chapters:
