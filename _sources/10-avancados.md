@@ -1,4 +1,4 @@
-# Tópicos Avançados
+# Entendendo os Tópicos Avançados
 
 Neste capítulo serão abordados determinados **tópicos avançados**, **conteúdos de fronteira** da área de Computação Quântica que são de extrema importância para o momento. *Atualizando sempre a literatura mais recente*. 
 

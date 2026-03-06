@@ -49,9 +49,9 @@ Esse material cobrirá todos os conteúdos necessários para o pleno entendiment
 
 - **Algoritmos Quânticos**: Estudo dos principais algoritmos quânticas da literatura atual, nessa sessão, você estudará:
     - [Como Entender um Algoritmo](09-algoritmos.md) : Metodologia para análise e compreensão de algoritmos quânticos.
-        - [Algoritmos Introdutórios](algoritmos/introdutórios/09_1_0-algoritmos_introdutórios.md) : Algoritmos básicos que introduzem conceitos fundamentais.
-        - [Algoritmos de Busca](algoritmos/busca/09_2_0-algoritmos_de_busca.md) : Algoritmos como o de Grover para busca em bancos de dados.
-        - [Algoritmos Baseados em QFT](algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.md) : Algoritmos que utilizam a Transformada Quântica de Fourier.
-        - [Algoritmos Variacionais](algoritmos/variacionais/09_4_0-algoritmos_variacionais.md) : Algoritmos híbridos quântico-clássicos para otimização.
+    - [Algoritmos Introdutórios](algoritmos/introdutórios/09_1_0-algoritmos_introdutórios.md) : Algoritmos básicos que introduzem conceitos fundamentais.
+    - [Algoritmos de Busca](algoritmos/busca/09_2_0-algoritmos_de_busca.md) : Algoritmos como o de Grover para busca em bancos de dados.
+    - [Algoritmos Baseados em QFT](algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.md) : Algoritmos que utilizam a Transformada Quântica de Fourier.
+    - [Algoritmos Variacionais](algoritmos/variacionais/09_4_0-algoritmos_variacionais.md) : Algoritmos híbridos quântico-clássicos para otimização.
 
 - [Referências](10-referencias.md) : Fontes bibliográficas.

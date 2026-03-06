@@ -1,4 +1,4 @@
-# Algoritmos Quânticos
+# Conceitos Iniciais em Algoritmos Quânticos
 
 ```{note}
 Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](./tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
