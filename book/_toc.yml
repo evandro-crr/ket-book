@@ -26,27 +26,30 @@ parts:
   - caption: Algoritmos
     chapters:
       - file: 09-algoritmos
+
       - file: algoritmos/introdutórios/09_1_0-algoritmos_introdutórios
         sections:
           - file: algoritmos/introdutórios/09_1_1-deutsch-jozsa
           - file: algoritmos/introdutórios/09_1_2-bernstein-vazirani
           - file: algoritmos/introdutórios/09_1_3-simon
-      - file: algoritmos/busca/09_2_0-grover 
+
+      - file: algoritmos/busca/09_2_0-grover
+
       - file: algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft
         sections:
           - file: algoritmos/baseados_em_QFT/09_3_1-qft
           - file: algoritmos/baseados_em_QFT/09_3_2-qpe
           - file: algoritmos/baseados_em_QFT/09_3_3-shor
+
       - file: algoritmos/variacionais/09_4_0-algoritmos_variacionais
         sections:
           - file: algoritmos/variacionais/09_4_1-QAOA
           - file: algoritmos/variacionais/09_4_2-FALQON
 
+
   - caption: Tópicos Avançados
     chapters:
       - file: 10-avancados
-
-
 
   - caption: Referências
     chapters:
