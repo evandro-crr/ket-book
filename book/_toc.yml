@@ -51,6 +51,10 @@ parts:
     chapters:
       - file: 10-avancados
 
+      - file: topicos_avancados/teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica
+        sections:
+          - file: topicos_avancados/teoria_da_informacao_quantica/10_1_1-revisao_algebra
+
   - caption: Referências
     chapters:
       - file: 100-referencias

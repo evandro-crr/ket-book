@@ -14,7 +14,7 @@ Conteúdo:
             - Compressão quântica de informação
             - Teorema de Holevo
         - Observações: "Revisão de Algebra Linear" será adaptada das aulas do professor Guilherme Temporão da PUC-RJ
-    2a subdivisão: Técnias de Medição
+    2a subdivisão: Técnicas de Medição
         - Objetivo: Apresentar técnicas de medição em sistemas quânticos
         - Conteúdo:
             - Tomografia quântica
