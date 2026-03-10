@@ -2,7 +2,7 @@
 
 Neste capítulo serão abordados determinados **tópicos avançados**, **conteúdos de fronteira** da área de Computação Quântica que são de extrema importância para o momento. *Atualizando sempre a literatura mais recente*. 
 
-## Como Ler
+## Como Ler os Tópicos Avançados
 
 Os tópicos apresentados neste capítulo tratam de **temas avançados e atuais da Computação Quântica**, frequentemente discutidos em artigos científicos e linhas de pesquisa recentes. Diferentemente dos capítulos anteriores, o objetivo aqui não é apenas introduzir conceitos fundamentais, mas **aproximar o leitor de discussões modernas da área**.
 
