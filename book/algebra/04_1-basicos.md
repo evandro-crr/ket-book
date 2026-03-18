@@ -255,7 +255,7 @@ $$
 $$
 :::
 
-## Produto Interno, Norma e Produto Exterior
+## Produto Interno, Norma e Produto Externo
 
 ### Produto Interno
 

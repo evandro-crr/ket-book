@@ -54,6 +54,10 @@ parts:
       - file: topicos_avancados/teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica
         sections:
           - file: topicos_avancados/teoria_da_informacao_quantica/10_1_1-revisao_algebra
+          - file: topicos_avancados/teoria_da_informacao_quantica/10_1_2-entropia_vn
+          - file: topicos_avancados/teoria_da_informacao_quantica/10_1_3-canal_quantico
+          - file: topicos_avancados/teoria_da_informacao_quantica/10_1_4-compressao_quantica
+          - file: topicos_avancados/teoria_da_informacao_quantica/10_1_5-teorema_de_holevo
 
   - caption: Referências
     chapters:
