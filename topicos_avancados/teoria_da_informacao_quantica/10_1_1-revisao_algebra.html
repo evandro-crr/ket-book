@@ -64,7 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
     <link rel="search" title="Buscar" href="../../search.html" />
-    <link rel="next" title="Referências" href="../../100-referencias.html" />
+    <link rel="next" title="Entropia de von Neumann" href="10_1_2-entropia_vn.html" />
     <link rel="prev" title="Teoria da Informação Quântica" href="10_1_0-teoria_informacao_quantica.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
@@ -234,6 +234,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../10-avancados.html">Entendendo os Tópicos Avançados</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="10_1_0-teoria_informacao_quantica.html">Teoria da Informação Quântica</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Revisão de Álgebra Linear para Informação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_1_2-entropia_vn.html">Entropia de von Neumann</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_1_3-canal_quantico.html">Canais Quânticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_1_4-compressao_quantica.html">Compressão Quântica de Informação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_1_5-teorema_de_holevo.html">Teorema de Holevo</a></li>
 </ul>
 </details></li>
 </ul>
@@ -509,7 +513,7 @@ document.write(`
 
 <span class="k">def</span><span class="w"> </span><span class="nf">show_video</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">IFrame</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;https://drive.google.com/file/d/</span><span class="si">{</span><span class="n">videos_id</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="si">}</span><span class="s2">/preview&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span>
+        <span class="sa">f</span><span class="s2">&quot;https://drive.google.com/file/d/</span><span class="si">{</span><span class="n">videos_id</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="si">}</span><span class="s2">/preview&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">750</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -544,7 +548,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1Xq9izxV7KY0unXvhGb2cE8CJIyqsplX9/preview"
             frameborder="0"
@@ -574,7 +578,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1Yt7Q3aXUSktTjX_uX_MbjipjNwPZnVVC/preview"
             frameborder="0"
@@ -604,7 +608,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/178QGJgAgAL7QfsZ2VIc2K9Pn-EVKLVj3/preview"
             frameborder="0"
@@ -634,7 +638,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1JPeNUhl_wo39hAep-cJdojOFKlp5qOKg/preview"
             frameborder="0"
@@ -664,7 +668,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1WpaWr0Y_7-VcktdZI7ZfLZrO2O8QQFg6/preview"
             frameborder="0"
@@ -689,7 +693,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1binoksBnPk2Pl2htgIYLCERtiMV47vyt/preview"
             frameborder="0"
@@ -719,7 +723,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1BzFikwhHoiBrfssMTDhACJ5HK8M9YakI/preview"
             frameborder="0"
@@ -754,7 +758,7 @@ U^\dagger U = U U^\dagger = I,
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/19i8xRVEiznVoxR6yTPrzcjTuSp4W_JEy/preview"
             frameborder="0"
@@ -789,7 +793,7 @@ A = A^\dagger ,
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1HXf8GEVVOmnbn8ACoJRf6x-TvuCHHFD-/preview"
             frameborder="0"
@@ -824,7 +828,7 @@ A = \sum_i \lambda_i \ket{i}\bra{i}
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1WPLoqIXjQaheToly7m7wH34Mge_Ziwxi/preview"
             frameborder="0"
@@ -859,7 +863,7 @@ f(A) = \sum_i f(\lambda_i)\ \ket{i}\bra{i}
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/18JDMqRAtLnAfz8qRkPkZpITLBh_GbDJr/preview"
             frameborder="0"
@@ -889,7 +893,7 @@ f(A) = \sum_i f(\lambda_i)\ \ket{i}\bra{i}
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1c2Afg8cGPXooxtrb-YIkCfTZy9L7ZV0M/preview"
             frameborder="0"
@@ -914,7 +918,7 @@ f(A) = \sum_i f(\lambda_i)\ \ket{i}\bra{i}
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1920BE5i2IGX38YIEWHpe7xo7xe8LMA1v/preview"
             frameborder="0"
@@ -944,7 +948,7 @@ f(A) = \sum_i f(\lambda_i)\ \ket{i}\bra{i}
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1eTzbRZXnQraQbMht1gYRtmA1kdWUxW4X/preview"
             frameborder="0"
@@ -969,7 +973,7 @@ f(A) = \sum_i f(\lambda_i)\ \ket{i}\bra{i}
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1tsrvRdsqxQ7z3sgW94JdYASJpZl6lMWP/preview"
             frameborder="0"
@@ -994,7 +998,7 @@ f(A) = \sum_i f(\lambda_i)\ \ket{i}\bra{i}
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
-            width="800"
+            width="750"
             height="450"
             src="https://drive.google.com/file/d/1yrkIe7IIiaBIyLWkf7PeU8FL1TXjiB-O/preview"
             frameborder="0"
@@ -1046,11 +1050,11 @@ f(A) = \sum_i f(\lambda_i)\ \ket{i}\bra{i}
       </div>
     </a>
     <a class="right-next"
-       href="../../100-referencias.html"
+       href="10_1_2-entropia_vn.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">próximo</p>
-        <p class="prev-next-title">Referências</p>
+        <p class="prev-next-title">Entropia de von Neumann</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
