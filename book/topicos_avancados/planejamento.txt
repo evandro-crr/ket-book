@@ -4,8 +4,8 @@ dependerá do interesse do usuário.
 Conteúdo:
     Página de Introdução: Entendendo os tópicos avançados
         - Objetivo: Apresentar uma visão geral da seção tópicos avançados
-    1a subdivisão: Teoria de Informação Quântica
-        - Objetivo: Apresentar conceitos fundamentais da informação quântica
+    1a subdivisão: Teoria de Informação Quântica - FEITO!
+        - Objetivo: Apresentar conceitos fundamentais da informação quântica 
         - Conteúdo:
             - Revisão de Algebra Linear para Informação Quântica
             - Entropia de von Neumann
@@ -14,7 +14,15 @@ Conteúdo:
             - Compressão quântica de informação
             - Teorema de Holevo
         - Observações: "Revisão de Algebra Linear" será adaptada das aulas do professor Guilherme Temporão da PUC-RJ
-    2a subdivisão: Técnicas de Medição
+    2a subdivisão: Comunicação Quântica
+        - Objetivo: Apresentar conceitos sobre a comunicação quântica, expandindo a subdivisão de teoria de informação quântica
+        - Conteúdo:
+            - Teletransporte quântico
+            - Distribuição quântica de chaves (QKD)
+            - Superdense coding
+            - Redes quânticas
+        - Observações: Conteúdo Retirado das aulas da Qutech
+    3a subdivisão: Técnicas de Medição
         - Objetivo: Apresentar técnicas de medição em sistemas quânticos
         - Conteúdo:
             - Tomografia quântica
@@ -23,16 +31,20 @@ Conteúdo:
             - Classical Shadows
             - Estimativa de observáveis
         - Observações: "Classical Shadows" será adaptada da Dissertação de Letícia Bertuzzi
-    3a subdivisão: Aprendizado de Máquina Quântico
+    4a subdivisão: Redes Neurais Quânticas
+        - Objetivo: Apresentar conceitos e técnicas de aprendizado de QNNs
+        - Conteúdo:
+            - Classical Neural Networks
+            - Quantum Neural Networks
+    5a subdivisão: Aprendizado de Máquina Quântico
         - Objetivo: Apresentar conceitos e técnicas de aprendizado de máquina quântico
         - Conteúdo:
             - Aprendizado de Máquina Clássico
-            - Redes Neurais Quânticas (QNNs)
             - Variational Quantum Circuits
             - Quantum Kernel Methods
             - Quantum Boltzmann Machines
             - Quantum Reinforcement Learning
         - Observações: Material retirado de https://arxiv.org/pdf/2205.08154
-    4a subdivisão: Simulação Quântica
+    6a subdivisão: Simulação Quântica
         - Objetivo: Apresentar técnicas de simulação de sistemas quânticos
         - Conteúdo: 

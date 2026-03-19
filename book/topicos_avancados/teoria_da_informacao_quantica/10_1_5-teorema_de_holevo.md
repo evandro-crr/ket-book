@@ -6,7 +6,7 @@ Embora estados quânticos possam existir em superposição e parecer carregar um
 
 Esse resultado é central para compreender **as limitações da comunicação quântica** e o papel da mecânica quântica no processamento de informação.
 
-## O problema
+## O problema do Teorema de Holevo
 
 Considere o seguinte cenário:
 
@@ -20,7 +20,7 @@ A questão fundamental é:
 
 > quanta informação clássica Bob pode extrair sobre a variável $i$ a partir das medições?
 
-## Enunciado do teorema
+## Enunciado do Teorema
 
 Defina o estado médio da fonte como
 
@@ -49,7 +49,7 @@ Aqui:
 
 Esse resultado vale para **qualquer estratégia de medição**.
 
-## Interpretação
+## Interpretação do Teorema de Holevo
 
 O teorema de Holevo mostra que:
 
