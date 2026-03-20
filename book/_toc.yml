@@ -59,6 +59,10 @@ parts:
           - file: topicos_avancados/teoria_da_informacao_quantica/10_1_4-compressao_quantica
           - file: topicos_avancados/teoria_da_informacao_quantica/10_1_5-teorema_de_holevo
 
+  - caption: Agradecimentos
+    chapters:
+      - file: 100-agradecimentos
+
   - caption: Referências
     chapters:
       - file: 100-referencias
