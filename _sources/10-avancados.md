@@ -1,8 +1,8 @@
-# Entendendo os Tópicos Avançados
+# Entendendo os Tópicos Complementares
 
-Neste capítulo serão abordados determinados **tópicos avançados**, **conteúdos de fronteira** da área de Computação Quântica que são de extrema importância para o momento. *Atualizando sempre a literatura mais recente*. 
+Neste capítulo serão abordados determinados **tópicos complementares**, **conteúdos de fronteira** da área de Computação Quântica que são de extrema importância para o momento. *Atualizando sempre a literatura mais recente*. 
 
-## Como Ler os Tópicos Avançados
+## Como Ler os Tópicos Complementares
 
 Os tópicos apresentados neste capítulo tratam de **temas avançados e atuais da Computação Quântica**, frequentemente discutidos em artigos científicos e linhas de pesquisa recentes. Diferentemente dos capítulos anteriores, o objetivo aqui não é apenas introduzir conceitos fundamentais, mas **aproximar o leitor de discussões modernas da área**.
 
@@ -12,4 +12,6 @@ Serão apresentados **resultados de pesquisa, ideias conceituais e aplicações 
 
 ## Conteúdo
 
-Nesse capítulo serão abordados os seguintes tópicos:
+Nesse capítulo serão abordados os seguintes tópicos complementares:
+
+- [Teoria de Informação Quântica](topicos_avancados/teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.md): Nesse tópico será abordado conceitos mais complexos sobre a teoria de informação quântica, como a Entropia de Von Neumann, Canais Quânticos, Compressão Quântica e Teoria de Holevo.
