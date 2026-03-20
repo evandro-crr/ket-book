@@ -54,4 +54,8 @@ Esse material cobrirá todos os conteúdos necessários para o pleno entendiment
     - [Algoritmos Baseados em QFT](algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.md) : Algoritmos que utilizam a Transformada Quântica de Fourier.
     - [Algoritmos Variacionais](algoritmos/variacionais/09_4_0-algoritmos_variacionais.md) : Algoritmos híbridos quântico-clássicos para otimização.
 
+- **Tópicos Complementares**: Conteúdos de fronteira, tópicos para aprofundamento de estudantes, neles, você encontrará:
+    - [Entendendo os Tópicos Complementares](10-avancados.md) : Como entender a aba de tópicos complementares.
+    - [Teoria de Informação Quântica](topicos_avancados/teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.md) : Conceitos teóricos mais avançados em teoria de informação quântica.
+
 - [Referências](10-referencias.md) : Fontes bibliográficas.
