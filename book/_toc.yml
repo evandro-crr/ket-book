@@ -61,7 +61,7 @@ parts:
 
   - caption: Autores e Agradecimentos 
     chapters:
-      - file: 100-agradecimentos
+      - file: a_images/100-agradecimentos
 
   - caption: Referências
     chapters:
