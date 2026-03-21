@@ -288,6 +288,73 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/a_images/100-agradecimentos.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/a_images/100-agradecimentos.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
     <i class="fas fa-download"></i>
@@ -296,7 +363,7 @@
       
       
       
-      <li><a href="../_sources/a_images/100-agradecimentos.md" target="_blank"
+      <li><a href="../_sources/a_images/100-agradecimentos.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Baixar arquivo fonte"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -306,7 +373,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -390,14 +457,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autores">Autores</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evandro-chagas-ribeiro-da-rosa">Evandro Chagas Ribeiro da Rosa</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eduardo-inacio-duzzioni">Eduardo Inacio Duzzioni</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jerusa-marchi">Jerusa Marchi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miguel-estivalet-pinto">Miguel Estivalet Pinto</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agradecimentos">Agradecimentos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autores">Autores</a></li>
 </ul>
             </nav>
         </div>
@@ -409,40 +469,106 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="autores-e-agradecimentos">
+  <div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;div style=&quot;display:flex; align-items:center; gap:15px; margin-bottom:20px;&quot;&gt;</span>
+<span class="s2">  &lt;img src=&quot;evandro.png&quot; width=&quot;100&quot; style=&quot;border-radius:10%;&quot;&gt;</span>
+<span class="s2">  &lt;div&gt;</span>
+<span class="s2">    &lt;b&gt;Evandro Chagas Ribeiro da Rosa&lt;/b&gt;&lt;br&gt;</span>
+<span class="s2">    Descrição.</span>
+<span class="s2">  &lt;/div&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+
+<span class="s2">&lt;div style=&quot;display:flex; align-items:center; gap:15px; margin-bottom:20px;&quot;&gt;</span>
+<span class="s2">  &lt;img src=&quot;Duzzioni.jpeg&quot; width=&quot;100&quot; style=&quot;border-radius:10%;&quot;&gt;</span>
+<span class="s2">  &lt;div&gt;</span>
+<span class="s2">    &lt;b&gt;Eduardo Inacio Duzzioni&lt;/b&gt;&lt;br&gt;</span>
+<span class="s2">    Descrição.</span>
+<span class="s2">  &lt;/div&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+
+<span class="s2">&lt;div style=&quot;display:flex; align-items:center; gap:15px; margin-bottom:20px;&quot;&gt;</span>
+<span class="s2">  &lt;img src=&quot;jerusa.jpeg&quot; width=&quot;100&quot; style=&quot;border-radius:10%;&quot;&gt;</span>
+<span class="s2">  &lt;div&gt;</span>
+<span class="s2">    &lt;b&gt;Jerusa Marchi&lt;/b&gt;&lt;br&gt;</span>
+<span class="s2">    Descrição.</span>
+<span class="s2">  &lt;/div&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+
+<span class="s2">&lt;div style=&quot;display:flex; align-items:center; gap:15px;&quot;&gt;</span>
+<span class="s2">  &lt;img src=&quot;miguel.jpg&quot; width=&quot;100&quot; style=&quot;border-radius:10%;&quot;&gt;</span>
+<span class="s2">  &lt;div&gt;</span>
+<span class="s2">    &lt;b&gt;Miguel Estivalet Pinto&lt;/b&gt;&lt;br&gt;</span>
+<span class="s2">    Descrição.</span>
+<span class="s2">  &lt;/div&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="autores-e-agradecimentos">
 <h1>Autores e Agradecimentos<a class="headerlink" href="#autores-e-agradecimentos" title="Link para este cabeçalho">#</a></h1>
 <p>O <em>Aprenda Ket</em> nasceu com o objetivo de tornar a computação quântica mais acessível, agradecemos a todos que constribuiram nessa jornada</p>
 <section id="autores">
 <h2>Autores<a class="headerlink" href="#autores" title="Link para este cabeçalho">#</a></h2>
-<hr class="docutils" />
 <p>O <em>Aprenda Ket</em> nasceu com o objetivo de tornar a computação quântica mais acessível, didática e intuitiva. Este projeto só foi possível graças ao apoio, incentivo e conhecimento compartilhado por pessoas incríveis ao longo do caminho.</p>
-<hr class="docutils" />
-<section id="evandro-chagas-ribeiro-da-rosa">
-<h3>Evandro Chagas Ribeiro da Rosa<a class="headerlink" href="#evandro-chagas-ribeiro-da-rosa" title="Link para este cabeçalho">#</a></h3>
-<img src="evandro.png" width="120" style="border-radius: 50%;">
-<p>Descrição.</p>
-</section>
-<hr class="docutils" />
-<section id="eduardo-inacio-duzzioni">
-<h3>Eduardo Inacio Duzzioni<a class="headerlink" href="#eduardo-inacio-duzzioni" title="Link para este cabeçalho">#</a></h3>
-<img src="Duzzioni.jpeg" width="120" style="border-radius: 50%;">
-<p>Descrição.</p>
-</section>
-<hr class="docutils" />
-<section id="jerusa-marchi">
-<h3>Jerusa Marchi<a class="headerlink" href="#jerusa-marchi" title="Link para este cabeçalho">#</a></h3>
-<img src="jerusa.jpeg" width="120" style="border-radius: 50%;">
-<p>Descrição.</p>
-</section>
-<hr class="docutils" />
-<section id="miguel-estivalet-pinto">
-<h3>Miguel Estivalet Pinto<a class="headerlink" href="#miguel-estivalet-pinto" title="Link para este cabeçalho">#</a></h3>
-<img src="miguel.jpg" width="120" style="border-radius: 50%;">
-<p>Descrição.</p>
-</section>
-</section>
-<section id="agradecimentos">
-<h2>Agradecimentos<a class="headerlink" href="#agradecimentos" title="Link para este cabeçalho">#</a></h2>
+<div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
+  <img src="evandro.png" width="100" style="border-radius:10%;">
+  <div>
+    <b>Evandro Chagas Ribeiro da Rosa</b><br>
+    Descrição.
+  </div>
+</div>
+
+<div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
+  <img src="Duzzioni.jpeg" width="100" style="border-radius:10%;">
+  <div>
+    <b>Eduardo Inacio Duzzioni</b><br>
+    Descrição.
+  </div>
+</div>
+
+<div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
+  <img src="jerusa.jpeg" width="100" style="border-radius:10%;">
+  <div>
+    <b>Jerusa Marchi</b><br>
+    Descrição.
+  </div>
+</div>
+
+<div style="display:flex; align-items:center; gap:15px;">
+  <img src="miguel.jpg" width="100" style="border-radius:10%;">
+  <div>
+    <b>Miguel Estivalet Pinto</b><br>
+    Descrição.
+  </div>
+</div>
+</div></div>
+</div>
 </section>
 </section>
 
@@ -492,14 +618,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autores">Autores</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evandro-chagas-ribeiro-da-rosa">Evandro Chagas Ribeiro da Rosa</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eduardo-inacio-duzzioni">Eduardo Inacio Duzzioni</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jerusa-marchi">Jerusa Marchi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miguel-estivalet-pinto">Miguel Estivalet Pinto</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agradecimentos">Agradecimentos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autores">Autores</a></li>
 </ul>
   </nav></div>
 
