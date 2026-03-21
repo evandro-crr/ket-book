@@ -5,7 +5,7 @@ O *Aprenda Ket* nasceu com o objetivo de tornar a computação quântica mais ac
 ## Autores
 
 <div style="display: flex; align-items: center; gap: 15px;">
-  <img src="a_images/Duzzioni.jpeg" width="100" style="border-radius: 50%;">
+  <img src="Duzzioni.jpeg" width="100" style="border-radius: 50%;">
   <div>
     <b>Eduardo Incacio Duzzioni</b><br>
     Agradecemos profundamente pela orientação e pelas discussões enriquecedoras.
