@@ -47,7 +47,7 @@ parts:
           - file: algoritmos/variacionais/09_4_2-FALQON
 
 
-  - caption: Tópicos Avançados
+  - caption: Tópicos Complementares
     chapters:
       - file: 10-avancados
 
@@ -61,7 +61,7 @@ parts:
 
   - caption: Autores e Agradecimentos 
     chapters:
-      - file: a_images/100-agradecimentos
+      - file: 100-agradecimentos
 
   - caption: Referências
     chapters:
