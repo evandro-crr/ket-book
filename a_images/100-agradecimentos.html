@@ -292,6 +292,73 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/a_images/100-agradecimentos.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/a_images/100-agradecimentos.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
     <i class="fas fa-download"></i>
@@ -300,7 +367,7 @@
       
       
       
-      <li><a href="../_sources/a_images/100-agradecimentos.md" target="_blank"
+      <li><a href="../_sources/a_images/100-agradecimentos.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Baixar arquivo fonte"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -310,7 +377,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -413,7 +480,7 @@ document.write(`
 <section id="autores">
 <h2>Autores<a class="headerlink" href="#autores" title="Link para este cabeçalho">#</a></h2>
 <div style="display: flex; align-items: center; gap: 15px;">
-  <img src="Duzzioni.jpeg" width="100" style="border-radius: 50%;">
+  <img src="Duzzioni.jpeg" width="100" style="border-radius: 10%;">
   <div>
     <b>Eduardo Incacio Duzzioni</b><br>
     Agradecemos profundamente pela orientação e pelas discussões enriquecedoras.
@@ -428,8 +495,7 @@ document.write(`
     <b>Nome do Profissional</b><br>
     Obrigado pelo suporte técnico e compartilhamento de conhecimento.
   </div>
-</div>
-</section>
+</div></section>
 </section>
 
     <script type="text/x-thebe-config">
