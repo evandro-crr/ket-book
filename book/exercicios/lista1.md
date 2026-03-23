@@ -79,13 +79,13 @@ $$
 $$
 \ket{0} =
 \begin{bmatrix}
-1 \
+1 \\
 0
 \end{bmatrix}
 \quad
 \ket{1} =
 \begin{bmatrix}
-0 \
+0 \\
 1
 \end{bmatrix}
 $$
@@ -95,7 +95,7 @@ $$
 $$
 X =
 \begin{bmatrix}
-0 & 1 \
+0 & 1 \\
 1 & 0
 \end{bmatrix}
 $$
@@ -105,7 +105,7 @@ $$
 $$
 Y =
 \begin{bmatrix}
-0 & -i \
+0 & -i \\
 i & 0
 \end{bmatrix}
 $$
@@ -115,7 +115,7 @@ $$
 $$
 Z =
 \begin{bmatrix}
-1 & 0 \
+1 & 0 \\
 0 & -1
 \end{bmatrix}
 $$
@@ -125,7 +125,7 @@ $$
 $$
 I =
 \begin{bmatrix}
-1 & 0 \
+1 & 0 \\
 0 & 1
 \end{bmatrix}
 $$
@@ -175,7 +175,7 @@ $$
 $$
 X =
 \begin{bmatrix}
-0 & 1 \
+0 & 1 \\
 1 & 0
 \end{bmatrix}
 $$
@@ -185,7 +185,7 @@ $$
 $$
 Y =
 \begin{bmatrix}
-0 & -i \
+0 & -i \\
 i & 0
 \end{bmatrix}
 $$
@@ -195,7 +195,7 @@ $$
 $$
 Z =
 \begin{bmatrix}
-1 & 0 \
+1 & 0 \\
 0 & -1
 \end{bmatrix}
 $$
