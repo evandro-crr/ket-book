@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Exercícios de Consolidação &#8212; Computação Quântica com Ket</title>
+    <title>Exercícios para Consolidação &#8212; Computação Quântica com Ket</title>
   
   
   
@@ -195,7 +195,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../06-computacao_classica.html">Computação Clássica</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Exercícios de Consolidação</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Exercícios para Consolidação</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
 <ul class="nav bd-sidenav">
@@ -385,7 +385,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Exercícios de Consolidação</h1>
+    <h1>Exercícios para Consolidação</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -399,8 +399,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="exercicios-de-consolidacao">
-<h1>Exercícios de Consolidação<a class="headerlink" href="#exercicios-de-consolidacao" title="Link para este cabeçalho">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="exercicios-para-consolidacao">
+<h1>Exercícios para Consolidação<a class="headerlink" href="#exercicios-para-consolidacao" title="Link para este cabeçalho">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Material extraído das listas de exercício da matéria FSC7152 – Computação Quântica I ministradas pelo Prof. Dr. Eduardo Inacio Duzzioni.</p>
+</div>
 <ol class="arabic simple">
 <li><p>Considere os estados genéricos de um qubit</p></li>
 </ol>
@@ -412,98 +416,198 @@ document.write(`
 \[
 \ket{\phi} = \gamma \ket{0} + \delta \ket{1}
 \]</div>
-<p>com <span class="math notranslate nohighlight">\(\alpha, \beta, \gamma, \delta \in \mathbb{C}\)</span>.</p>
-<p>Verifique:</p>
-<p>a) Desigualdade de Cauchy-Schwarz
-b) Desigualdade triangular</p>
+<p>em que <span class="math notranslate nohighlight">\(\alpha, \beta, \gamma, \delta \in \mathbb{C}\)</span>, verifique as desigualdades abaixo:</p>
+<p>a) Desigualdade de Cauchy-Schwarz:</p>
+<div class="math notranslate nohighlight">
+\[
+\left| \bra{\psi}\ket{\phi} \right| \leq | \ket{\psi} | \cdot | \ket{\phi} |
+\]</div>
+<p>b) Desigualdade triangular:</p>
+<div class="math notranslate nohighlight">
+\[
+| \ket{\psi} + \ket{\phi} | \leq | \ket{\psi} | + | \ket{\phi} |
+\]</div>
 <hr class="docutils" />
 <ol class="arabic simple" start="2">
-<li><p>Encontre um estado ortogonal a:</p></li>
+<li><p>Ache um estado ortogonal a:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
 \ket{\psi} = \cos\left(\frac{\theta}{2}\right)\ket{0} + \sin\left(\frac{\theta}{2}\right)e^{i\phi}\ket{1}
 \]</div>
-<p>com <span class="math notranslate nohighlight">\(0 \leq \theta \leq \pi\)</span> e <span class="math notranslate nohighlight">\(0 \leq \phi &lt; 2\pi\)</span>.</p>
+<p>onde <span class="math notranslate nohighlight">\(0 \leq \theta \leq \pi\)</span> e <span class="math notranslate nohighlight">\(0 \leq \phi &lt; 2\pi\)</span>.</p>
 <hr class="docutils" />
 <ol class="arabic simple" start="3">
-<li><p>Demonstre as propriedades:</p></li>
+<li><p>Demonstre as seguintes propriedades:</p></li>
 </ol>
+<p>a)</p>
 <div class="math notranslate nohighlight">
 \[
 (A^\dagger)^\dagger = A
 \]</div>
+<p>b)</p>
 <div class="math notranslate nohighlight">
 \[
 (\lambda A)^\dagger = \lambda^* A^\dagger
 \]</div>
+<p>c)</p>
 <div class="math notranslate nohighlight">
 \[
 (A + B)^\dagger = A^\dagger + B^\dagger
 \]</div>
+<p>d)</p>
 <div class="math notranslate nohighlight">
 \[
 (AB)^\dagger = B^\dagger A^\dagger
 \]</div>
+<p>e)</p>
 <div class="math notranslate nohighlight">
 \[
 (\ket{\psi}\bra{\phi})^\dagger = \ket{\phi}\bra{\psi}
 \]</div>
 <hr class="docutils" />
 <ol class="arabic simple" start="4">
-<li><p>Escreva as matrizes de Pauli e identidade usando produto externo:</p></li>
-</ol>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(X\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Y\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Z\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(I\)</span></p></li>
-</ul>
-<hr class="docutils" />
-<ol class="arabic simple" start="5">
-<li><p>Seja <span class="math notranslate nohighlight">\(P\)</span> um projetor. Mostre que:</p></li>
+<li><p>Escreva as matrizes de Pauli <span class="math notranslate nohighlight">\({X, Y, Z}\)</span> e o operador identidade <span class="math notranslate nohighlight">\(I\)</span> utilizando a representação de produto externo usando a base canônica:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
-Q = I - P
+\ket{0} =
+\begin{bmatrix}
+1 \
+0
+\end{bmatrix}
+\quad
+\ket{1} =
+\begin{bmatrix}
+0 \
+1
+\end{bmatrix}
 \]</div>
+<p>a)</p>
+<div class="math notranslate nohighlight">
+\[
+X =
+\begin{bmatrix}
+0 &amp; 1 \
+1 &amp; 0
+\end{bmatrix}
+\]</div>
+<p>b)</p>
+<div class="math notranslate nohighlight">
+\[
+Y =
+\begin{bmatrix}
+0 &amp; -i \
+i &amp; 0
+\end{bmatrix}
+\]</div>
+<p>c)</p>
+<div class="math notranslate nohighlight">
+\[
+Z =
+\begin{bmatrix}
+1 &amp; 0 \
+0 &amp; -1
+\end{bmatrix}
+\]</div>
+<p>d)</p>
+<div class="math notranslate nohighlight">
+\[
+I =
+\begin{bmatrix}
+1 &amp; 0 \
+0 &amp; 1
+\end{bmatrix}
+\]</div>
+<hr class="docutils" />
+<ol class="arabic simple" start="5">
+<li><p>Sendo <span class="math notranslate nohighlight">\(P\)</span> um projetor, mostre que:</p></li>
+</ol>
+<p>a)</p>
+<div class="math notranslate nohighlight">
+\[
+Q = 1 - P
+\]</div>
+<p>também é um projetor.</p>
+<p>b)</p>
 <div class="math notranslate nohighlight">
 \[
 [Q, P] = 0
 \]</div>
+<p>c)</p>
 <div class="math notranslate nohighlight">
 \[
 P \ket{\phi} \perp Q \ket{\phi}
 \]</div>
-<p>d) Interprete fisicamente o resultado</p>
+<p>d) Interprete o resultado.</p>
 <hr class="docutils" />
 <ol class="arabic simple" start="6">
-<li><p>Encontre autovalores e autovetores:</p></li>
+<li><p>Ache os autovetores e autovalores das matrizes.</p></li>
 </ol>
-<ul class="simple">
-<li><p>Porta Hadamard <span class="math notranslate nohighlight">\(H\)</span></p></li>
-<li><p>Porta <span class="math notranslate nohighlight">\(X\)</span></p></li>
-<li><p>Porta <span class="math notranslate nohighlight">\(Y\)</span></p></li>
-<li><p>Porta <span class="math notranslate nohighlight">\(Z\)</span></p></li>
-<li><p>Porta CNOT</p></li>
-</ul>
+<p>a) Porta lógica de Hadamard</p>
+<div class="math notranslate nohighlight">
+\[
+H = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 &amp; 1 \
+1 &amp; -1
+\end{bmatrix}
+\]</div>
+<p>b) Porta lógica <span class="math notranslate nohighlight">\(X\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+X =
+\begin{bmatrix}
+0 &amp; 1 \
+1 &amp; 0
+\end{bmatrix}
+\]</div>
+<p>c) Porta lógica <span class="math notranslate nohighlight">\(Y\)</span> (Pauli <span class="math notranslate nohighlight">\(Y\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[
+Y =
+\begin{bmatrix}
+0 &amp; -i \
+i &amp; 0
+\end{bmatrix}
+\]</div>
+<p>d) Porta lógica <span class="math notranslate nohighlight">\(Z\)</span> (Pauli <span class="math notranslate nohighlight">\(Z\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[
+Z =
+\begin{bmatrix}
+1 &amp; 0 \
+0 &amp; -1
+\end{bmatrix}
+\]</div>
+<p>e) Porta lógica CNOT</p>
+<div class="math notranslate nohighlight">
+\[
+CNOT =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \
+0 &amp; 1 &amp; 0 &amp; 0 \
+0 &amp; 0 &amp; 0 &amp; 1 \
+0 &amp; 0 &amp; 1 &amp; 0
+\end{bmatrix}
+\]</div>
 <hr class="docutils" />
 <ol class="arabic simple" start="7">
-<li><p>Dadas duas bases ortonormais:</p></li>
+<li><p>Considere duas bases ortonormais definidas por:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
-{\ket{u_i}}, {\ket{v_j}}
+{\ket{u_i}} \quad \text{e} \quad {\ket{v_j}}, \quad i, j = 1, \dots, n
 \]</div>
-<p>mostre que:</p>
+<p>Mostre que o operador</p>
 <div class="math notranslate nohighlight">
 \[
 M = \sum_{k=1}^{n} \ket{u_k}\bra{v_k}
 \]</div>
-<p>é unitário e realiza mudança de base.</p>
+<p>é unitário e responsável pela mudança da base <span class="math notranslate nohighlight">\({\ket{v_i}}\)</span> para a base <span class="math notranslate nohighlight">\({\ket{u_j}}\)</span>.</p>
 <hr class="docutils" />
 <ol class="arabic simple" start="8">
-<li><p>Mostre que os estados de Bell formam uma base:</p></li>
+<li><p>Mostre que os estados de Bell, descritos abaixo, formam uma base para um espaço vetorial de 4 dimensões.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
@@ -523,69 +627,95 @@ M = \sum_{k=1}^{n} \ket{u_k}\bra{v_k}
 \]</div>
 <hr class="docutils" />
 <ol class="arabic simple" start="9">
-<li><p>Calcule produtos tensoriais:</p></li>
+<li><p>Calcule as matrizes e vetores resultantes das operações de produto tensorial:</p></li>
 </ol>
-<p>a) Matrizes:</p>
+<p>a) Produto tensorial de matrizes:</p>
+<p>i.</p>
 <div class="math notranslate nohighlight">
 \[
 X \otimes I
 \]</div>
+<p>ii.</p>
 <div class="math notranslate nohighlight">
 \[
 X \otimes X
 \]</div>
+<p>iii.</p>
 <div class="math notranslate nohighlight">
 \[
 H \otimes I
 \]</div>
+<p>iv.</p>
 <div class="math notranslate nohighlight">
 \[
 H \otimes H
 \]</div>
+<p>v.</p>
 <div class="math notranslate nohighlight">
 \[
 I \otimes Z
 \]</div>
+<p>vi.</p>
 <div class="math notranslate nohighlight">
 \[
 Z \otimes Z
 \]</div>
+<p>vii.</p>
 <div class="math notranslate nohighlight">
 \[
 I \otimes Z \otimes Z
 \]</div>
+<p>viii.</p>
 <div class="math notranslate nohighlight">
 \[
 \ket{0}\bra{0} \otimes \ket{0}\bra{0}
 \]</div>
+<p>ix.</p>
 <div class="math notranslate nohighlight">
 \[
 \ket{0}\bra{0} \otimes \ket{1}\bra{1}
 \]</div>
+<p>x.</p>
 <div class="math notranslate nohighlight">
 \[
 I \otimes \ket{0}\bra{0}
 \]</div>
-<p>b) Vetores:</p>
+<p>b) Produto tensorial de vetores:</p>
 <div class="math notranslate nohighlight">
 \[
-{\ket{0}, \ket{1}}^{\otimes 3}
+{\ket{0}, \ket{1}} \otimes {\ket{0}, \ket{1}} \otimes {\ket{0}, \ket{1}}
 \]</div>
 <hr class="docutils" />
 <ol class="arabic simple" start="10">
-<li><p>Obtenha as expressões matriciais:</p></li>
+<li><p>Obtenha a expressão matricial para os seguintes operadores:</p></li>
 </ol>
+<p>a)</p>
 <div class="math notranslate nohighlight">
 \[
 \sqrt{Y}
 \]</div>
+<p>em que <span class="math notranslate nohighlight">\(Y\)</span> é a porta lógica definida no exercício acima.</p>
+<p>b)</p>
 <div class="math notranslate nohighlight">
 \[
 e^{i\theta X}
 \]</div>
+<p>em que <span class="math notranslate nohighlight">\(X\)</span> é a porta lógica definida no exercício acima.</p>
+<p>c)</p>
 <div class="math notranslate nohighlight">
 \[
 \sqrt{SWAP}
+\]</div>
+<p>em que</p>
+<div class="math notranslate nohighlight">
+\[
+SWAP =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \
+0 &amp; 0 &amp; 1 &amp; 0 \
+0 &amp; 1 &amp; 0 &amp; 0 \
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
 \]</div>
 </section>
 
