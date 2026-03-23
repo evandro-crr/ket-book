@@ -374,7 +374,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -390,6 +392,62 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considere-os-estados-genericos-de-um-qubit">1. Considere os estados genéricos de um qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-desigualdade-de-cauchy-schwarz">a) Desigualdade de Cauchy-Schwarz:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-desigualdade-triangular">b) Desigualdade triangular:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ache-um-estado-ortogonal-a">2. Ache um estado ortogonal a:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstre-as-seguintes-propriedades">3. Demonstre as seguintes propriedades:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">d)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e">e)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escreva-as-matrizes-de-pauli-x-y-z-e-o-operador-identidade-i-utilizando-a-representacao-de-produto-externo-usando-a-base-canonica">4. Escreva as matrizes de Pauli <span class="math notranslate nohighlight">\({X, Y, Z}\)</span> e o operador identidade <span class="math notranslate nohighlight">\(I\)</span> utilizando a representação de produto externo usando a base canônica:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">c)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">d)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sendo-p-um-projetor-mostre-que">5. Sendo <span class="math notranslate nohighlight">\(P\)</span> um projetor, mostre que:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">a)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">b)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">c)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-interprete-o-resultado">d) Interprete o resultado.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ache-os-autovetores-e-autovalores-das-matrizes">6. Ache os autovetores e autovalores das matrizes.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-porta-logica-de-hadamard">a) Porta lógica de Hadamard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-porta-logica-x">b) Porta lógica <span class="math notranslate nohighlight">\(X\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-porta-logica-y-pauli-y">c) Porta lógica <span class="math notranslate nohighlight">\(Y\)</span> (Pauli <span class="math notranslate nohighlight">\(Y\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-porta-logica-z-pauli-z">d) Porta lógica <span class="math notranslate nohighlight">\(Z\)</span> (Pauli <span class="math notranslate nohighlight">\(Z\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-porta-logica-cnot">e) Porta lógica CNOT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considere-duas-bases-ortonormais-definidas-por">7. Considere duas bases ortonormais definidas por:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mostre-que-os-estados-de-bell-descritos-abaixo-formam-uma-base-para-um-espaco-vetorial-de-4-dimensoes">8. Mostre que os estados de Bell, descritos abaixo, formam uma base para um espaço vetorial de 4 dimensões.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calcule-as-matrizes-e-vetores-resultantes-das-operacoes-de-produto-tensorial">9. Calcule as matrizes e vetores resultantes das operações de produto tensorial:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-produto-tensorial-de-matrizes">a) Produto tensorial de matrizes:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-produto-tensorial-de-vetores">b) Produto tensorial de vetores:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtenha-a-expressao-matricial-para-os-seguintes-operadores">10. Obtenha a expressão matricial para os seguintes operadores:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">a)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">b)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">c)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -405,9 +463,8 @@ document.write(`
 <p class="admonition-title">Nota</p>
 <p>Material extraído das listas de exercício da matéria FSC7152 – Computação Quântica I ministradas pelo Prof. Dr. Eduardo Inacio Duzzioni.</p>
 </div>
-<ol class="arabic simple">
-<li><p>Considere os estados genéricos de um qubit</p></li>
-</ol>
+<section id="considere-os-estados-genericos-de-um-qubit">
+<h2>1. Considere os estados genéricos de um qubit<a class="headerlink" href="#considere-os-estados-genericos-de-um-qubit" title="Link para este cabeçalho">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \ket{\psi} = \alpha \ket{0} + \beta \ket{1}
@@ -417,58 +474,72 @@ document.write(`
 \ket{\phi} = \gamma \ket{0} + \delta \ket{1}
 \]</div>
 <p>em que <span class="math notranslate nohighlight">\(\alpha, \beta, \gamma, \delta \in \mathbb{C}\)</span>, verifique as desigualdades abaixo:</p>
-<p>a) Desigualdade de Cauchy-Schwarz:</p>
+<section id="a-desigualdade-de-cauchy-schwarz">
+<h3>a) Desigualdade de Cauchy-Schwarz:<a class="headerlink" href="#a-desigualdade-de-cauchy-schwarz" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \left| \bra{\psi}\ket{\phi} \right| \leq | \ket{\psi} | \cdot | \ket{\phi} |
 \]</div>
-<p>b) Desigualdade triangular:</p>
+</section>
+<section id="b-desigualdade-triangular">
+<h3>b) Desigualdade triangular:<a class="headerlink" href="#b-desigualdade-triangular" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 | \ket{\psi} + \ket{\phi} | \leq | \ket{\psi} | + | \ket{\phi} |
 \]</div>
+</section>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="2">
-<li><p>Ache um estado ortogonal a:</p></li>
-</ol>
+<section id="ache-um-estado-ortogonal-a">
+<h2>2. Ache um estado ortogonal a:<a class="headerlink" href="#ache-um-estado-ortogonal-a" title="Link para este cabeçalho">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \ket{\psi} = \cos\left(\frac{\theta}{2}\right)\ket{0} + \sin\left(\frac{\theta}{2}\right)e^{i\phi}\ket{1}
 \]</div>
 <p>onde <span class="math notranslate nohighlight">\(0 \leq \theta \leq \pi\)</span> e <span class="math notranslate nohighlight">\(0 \leq \phi &lt; 2\pi\)</span>.</p>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="3">
-<li><p>Demonstre as seguintes propriedades:</p></li>
-</ol>
-<p>a)</p>
+<section id="demonstre-as-seguintes-propriedades">
+<h2>3. Demonstre as seguintes propriedades:<a class="headerlink" href="#demonstre-as-seguintes-propriedades" title="Link para este cabeçalho">#</a></h2>
+<section id="a">
+<h3>a)<a class="headerlink" href="#a" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 (A^\dagger)^\dagger = A
 \]</div>
-<p>b)</p>
+</section>
+<section id="b">
+<h3>b)<a class="headerlink" href="#b" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 (\lambda A)^\dagger = \lambda^* A^\dagger
 \]</div>
-<p>c)</p>
+</section>
+<section id="c">
+<h3>c)<a class="headerlink" href="#c" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 (A + B)^\dagger = A^\dagger + B^\dagger
 \]</div>
-<p>d)</p>
+</section>
+<section id="d">
+<h3>d)<a class="headerlink" href="#d" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 (AB)^\dagger = B^\dagger A^\dagger
 \]</div>
-<p>e)</p>
+</section>
+<section id="e">
+<h3>e)<a class="headerlink" href="#e" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 (\ket{\psi}\bra{\phi})^\dagger = \ket{\phi}\bra{\psi}
 \]</div>
+</section>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="4">
-<li><p>Escreva as matrizes de Pauli <span class="math notranslate nohighlight">\({X, Y, Z}\)</span> e o operador identidade <span class="math notranslate nohighlight">\(I\)</span> utilizando a representação de produto externo usando a base canônica:</p></li>
-</ol>
+<section id="escreva-as-matrizes-de-pauli-x-y-z-e-o-operador-identidade-i-utilizando-a-representacao-de-produto-externo-usando-a-base-canonica">
+<h2>4. Escreva as matrizes de Pauli <span class="math notranslate nohighlight">\({X, Y, Z}\)</span> e o operador identidade <span class="math notranslate nohighlight">\(I\)</span> utilizando a representação de produto externo usando a base canônica:<a class="headerlink" href="#escreva-as-matrizes-de-pauli-x-y-z-e-o-operador-identidade-i-utilizando-a-representacao-de-produto-externo-usando-a-base-canonica" title="Link para este cabeçalho">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \ket{0} =
@@ -483,7 +554,8 @@ document.write(`
 1
 \end{bmatrix}
 \]</div>
-<p>a)</p>
+<section id="id1">
+<h3>a)<a class="headerlink" href="#id1" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 X =
@@ -492,7 +564,9 @@ X =
 1 &amp; 0
 \end{bmatrix}
 \]</div>
-<p>b)</p>
+</section>
+<section id="id2">
+<h3>b)<a class="headerlink" href="#id2" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 Y =
@@ -501,7 +575,9 @@ Y =
 i &amp; 0
 \end{bmatrix}
 \]</div>
-<p>c)</p>
+</section>
+<section id="id3">
+<h3>c)<a class="headerlink" href="#id3" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 Z =
@@ -510,7 +586,9 @@ Z =
 0 &amp; -1
 \end{bmatrix}
 \]</div>
-<p>d)</p>
+</section>
+<section id="id4">
+<h3>d)<a class="headerlink" href="#id4" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 I =
@@ -519,32 +597,42 @@ I =
 0 &amp; 1
 \end{bmatrix}
 \]</div>
+</section>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="5">
-<li><p>Sendo <span class="math notranslate nohighlight">\(P\)</span> um projetor, mostre que:</p></li>
-</ol>
-<p>a)</p>
+<section id="sendo-p-um-projetor-mostre-que">
+<h2>5. Sendo <span class="math notranslate nohighlight">\(P\)</span> um projetor, mostre que:<a class="headerlink" href="#sendo-p-um-projetor-mostre-que" title="Link para este cabeçalho">#</a></h2>
+<section id="id5">
+<h3>a)<a class="headerlink" href="#id5" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 Q = 1 - P
 \]</div>
 <p>também é um projetor.</p>
-<p>b)</p>
+</section>
+<section id="id6">
+<h3>b)<a class="headerlink" href="#id6" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 [Q, P] = 0
 \]</div>
-<p>c)</p>
+</section>
+<section id="id7">
+<h3>c)<a class="headerlink" href="#id7" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 P \ket{\phi} \perp Q \ket{\phi}
 \]</div>
-<p>d) Interprete o resultado.</p>
+</section>
+<section id="d-interprete-o-resultado">
+<h3>d) Interprete o resultado.<a class="headerlink" href="#d-interprete-o-resultado" title="Link para este cabeçalho">#</a></h3>
+</section>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="6">
-<li><p>Ache os autovetores e autovalores das matrizes.</p></li>
-</ol>
-<p>a) Porta lógica de Hadamard</p>
+<section id="ache-os-autovetores-e-autovalores-das-matrizes">
+<h2>6. Ache os autovetores e autovalores das matrizes.<a class="headerlink" href="#ache-os-autovetores-e-autovalores-das-matrizes" title="Link para este cabeçalho">#</a></h2>
+<section id="a-porta-logica-de-hadamard">
+<h3>a) Porta lógica de Hadamard<a class="headerlink" href="#a-porta-logica-de-hadamard" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 H = \frac{1}{\sqrt{2}}
@@ -553,7 +641,9 @@ H = \frac{1}{\sqrt{2}}
 1 &amp; -1
 \end{bmatrix}
 \]</div>
-<p>b) Porta lógica <span class="math notranslate nohighlight">\(X\)</span></p>
+</section>
+<section id="b-porta-logica-x">
+<h3>b) Porta lógica <span class="math notranslate nohighlight">\(X\)</span><a class="headerlink" href="#b-porta-logica-x" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 X =
@@ -562,7 +652,9 @@ X =
 1 &amp; 0
 \end{bmatrix}
 \]</div>
-<p>c) Porta lógica <span class="math notranslate nohighlight">\(Y\)</span> (Pauli <span class="math notranslate nohighlight">\(Y\)</span>)</p>
+</section>
+<section id="c-porta-logica-y-pauli-y">
+<h3>c) Porta lógica <span class="math notranslate nohighlight">\(Y\)</span> (Pauli <span class="math notranslate nohighlight">\(Y\)</span>)<a class="headerlink" href="#c-porta-logica-y-pauli-y" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 Y =
@@ -571,7 +663,9 @@ Y =
 i &amp; 0
 \end{bmatrix}
 \]</div>
-<p>d) Porta lógica <span class="math notranslate nohighlight">\(Z\)</span> (Pauli <span class="math notranslate nohighlight">\(Z\)</span>)</p>
+</section>
+<section id="d-porta-logica-z-pauli-z">
+<h3>d) Porta lógica <span class="math notranslate nohighlight">\(Z\)</span> (Pauli <span class="math notranslate nohighlight">\(Z\)</span>)<a class="headerlink" href="#d-porta-logica-z-pauli-z" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 Z =
@@ -580,21 +674,24 @@ Z =
 0 &amp; -1
 \end{bmatrix}
 \]</div>
-<p>e) Porta lógica CNOT</p>
+</section>
+<section id="e-porta-logica-cnot">
+<h3>e) Porta lógica CNOT<a class="headerlink" href="#e-porta-logica-cnot" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
 CNOT =
 \begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \
-0 &amp; 1 &amp; 0 &amp; 0 \
-0 &amp; 0 &amp; 0 &amp; 1 \
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
 0 &amp; 0 &amp; 1 &amp; 0
 \end{bmatrix}
-\]</div>
+\end{split}\]</div>
+</section>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="7">
-<li><p>Considere duas bases ortonormais definidas por:</p></li>
-</ol>
+<section id="considere-duas-bases-ortonormais-definidas-por">
+<h2>7. Considere duas bases ortonormais definidas por:<a class="headerlink" href="#considere-duas-bases-ortonormais-definidas-por" title="Link para este cabeçalho">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 {\ket{u_i}} \quad \text{e} \quad {\ket{v_j}}, \quad i, j = 1, \dots, n
@@ -605,10 +702,10 @@ CNOT =
 M = \sum_{k=1}^{n} \ket{u_k}\bra{v_k}
 \]</div>
 <p>é unitário e responsável pela mudança da base <span class="math notranslate nohighlight">\({\ket{v_i}}\)</span> para a base <span class="math notranslate nohighlight">\({\ket{u_j}}\)</span>.</p>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="8">
-<li><p>Mostre que os estados de Bell, descritos abaixo, formam uma base para um espaço vetorial de 4 dimensões.</p></li>
-</ol>
+<section id="mostre-que-os-estados-de-bell-descritos-abaixo-formam-uma-base-para-um-espaco-vetorial-de-4-dimensoes">
+<h2>8. Mostre que os estados de Bell, descritos abaixo, formam uma base para um espaço vetorial de 4 dimensões.<a class="headerlink" href="#mostre-que-os-estados-de-bell-descritos-abaixo-formam-uma-base-para-um-espaco-vetorial-de-4-dimensoes" title="Link para este cabeçalho">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})
@@ -625,11 +722,12 @@ M = \sum_{k=1}^{n} \ket{u_k}\bra{v_k}
 \[
 \ket{\Psi^-} = \frac{1}{\sqrt{2}}(\ket{01} - \ket{10})
 \]</div>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="9">
-<li><p>Calcule as matrizes e vetores resultantes das operações de produto tensorial:</p></li>
-</ol>
-<p>a) Produto tensorial de matrizes:</p>
+<section id="calcule-as-matrizes-e-vetores-resultantes-das-operacoes-de-produto-tensorial">
+<h2>9. Calcule as matrizes e vetores resultantes das operações de produto tensorial:<a class="headerlink" href="#calcule-as-matrizes-e-vetores-resultantes-das-operacoes-de-produto-tensorial" title="Link para este cabeçalho">#</a></h2>
+<section id="a-produto-tensorial-de-matrizes">
+<h3>a) Produto tensorial de matrizes:<a class="headerlink" href="#a-produto-tensorial-de-matrizes" title="Link para este cabeçalho">#</a></h3>
 <p>i.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -680,43 +778,53 @@ I \otimes Z \otimes Z
 \[
 I \otimes \ket{0}\bra{0}
 \]</div>
-<p>b) Produto tensorial de vetores:</p>
+</section>
+<section id="b-produto-tensorial-de-vetores">
+<h3>b) Produto tensorial de vetores:<a class="headerlink" href="#b-produto-tensorial-de-vetores" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 {\ket{0}, \ket{1}} \otimes {\ket{0}, \ket{1}} \otimes {\ket{0}, \ket{1}}
 \]</div>
+</section>
+</section>
 <hr class="docutils" />
-<ol class="arabic simple" start="10">
-<li><p>Obtenha a expressão matricial para os seguintes operadores:</p></li>
-</ol>
-<p>a)</p>
+<section id="obtenha-a-expressao-matricial-para-os-seguintes-operadores">
+<h2>10. Obtenha a expressão matricial para os seguintes operadores:<a class="headerlink" href="#obtenha-a-expressao-matricial-para-os-seguintes-operadores" title="Link para este cabeçalho">#</a></h2>
+<section id="id8">
+<h3>a)<a class="headerlink" href="#id8" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \sqrt{Y}
 \]</div>
 <p>em que <span class="math notranslate nohighlight">\(Y\)</span> é a porta lógica definida no exercício acima.</p>
-<p>b)</p>
+</section>
+<section id="id9">
+<h3>b)<a class="headerlink" href="#id9" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 e^{i\theta X}
 \]</div>
 <p>em que <span class="math notranslate nohighlight">\(X\)</span> é a porta lógica definida no exercício acima.</p>
-<p>c)</p>
+</section>
+<section id="id10">
+<h3>c)<a class="headerlink" href="#id10" title="Link para este cabeçalho">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \sqrt{SWAP}
 \]</div>
 <p>em que</p>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
 SWAP =
 \begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \
-0 &amp; 0 &amp; 1 &amp; 0 \
-0 &amp; 1 &amp; 0 &amp; 0 \
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix}
-\]</div>
+\end{split}\]</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -773,6 +881,69 @@ SWAP =
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considere-os-estados-genericos-de-um-qubit">1. Considere os estados genéricos de um qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-desigualdade-de-cauchy-schwarz">a) Desigualdade de Cauchy-Schwarz:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-desigualdade-triangular">b) Desigualdade triangular:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ache-um-estado-ortogonal-a">2. Ache um estado ortogonal a:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstre-as-seguintes-propriedades">3. Demonstre as seguintes propriedades:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">d)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e">e)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escreva-as-matrizes-de-pauli-x-y-z-e-o-operador-identidade-i-utilizando-a-representacao-de-produto-externo-usando-a-base-canonica">4. Escreva as matrizes de Pauli <span class="math notranslate nohighlight">\({X, Y, Z}\)</span> e o operador identidade <span class="math notranslate nohighlight">\(I\)</span> utilizando a representação de produto externo usando a base canônica:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">a)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">b)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">c)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">d)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sendo-p-um-projetor-mostre-que">5. Sendo <span class="math notranslate nohighlight">\(P\)</span> um projetor, mostre que:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">a)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">b)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">c)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-interprete-o-resultado">d) Interprete o resultado.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ache-os-autovetores-e-autovalores-das-matrizes">6. Ache os autovetores e autovalores das matrizes.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-porta-logica-de-hadamard">a) Porta lógica de Hadamard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-porta-logica-x">b) Porta lógica <span class="math notranslate nohighlight">\(X\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-porta-logica-y-pauli-y">c) Porta lógica <span class="math notranslate nohighlight">\(Y\)</span> (Pauli <span class="math notranslate nohighlight">\(Y\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-porta-logica-z-pauli-z">d) Porta lógica <span class="math notranslate nohighlight">\(Z\)</span> (Pauli <span class="math notranslate nohighlight">\(Z\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-porta-logica-cnot">e) Porta lógica CNOT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considere-duas-bases-ortonormais-definidas-por">7. Considere duas bases ortonormais definidas por:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mostre-que-os-estados-de-bell-descritos-abaixo-formam-uma-base-para-um-espaco-vetorial-de-4-dimensoes">8. Mostre que os estados de Bell, descritos abaixo, formam uma base para um espaço vetorial de 4 dimensões.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calcule-as-matrizes-e-vetores-resultantes-das-operacoes-de-produto-tensorial">9. Calcule as matrizes e vetores resultantes das operações de produto tensorial:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-produto-tensorial-de-matrizes">a) Produto tensorial de matrizes:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-produto-tensorial-de-vetores">b) Produto tensorial de vetores:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtenha-a-expressao-matricial-para-os-seguintes-operadores">10. Obtenha a expressão matricial para os seguintes operadores:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">a)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">b)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">c)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
