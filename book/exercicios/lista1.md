@@ -4,7 +4,7 @@
 Material extraído das listas de exercício da matéria FSC7152 – Computação Quântica I ministradas pelo Prof. Dr. Eduardo Inacio Duzzioni.
 ```
 
-1. Considere os estados genéricos de um qubit
+## 1. Considere os estados genéricos de um qubit
 
 $$
 \ket{\psi} = \alpha \ket{0} + \beta \ket{1}
@@ -16,13 +16,13 @@ $$
 
 em que $\alpha, \beta, \gamma, \delta \in \mathbb{C}$, verifique as desigualdades abaixo:
 
-a) Desigualdade de Cauchy-Schwarz:
+### a) Desigualdade de Cauchy-Schwarz:
 
 $$
 \left| \bra{\psi}\ket{\phi} \right| \leq | \ket{\psi} | \cdot | \ket{\phi} |
 $$
 
-b) Desigualdade triangular:
+### b) Desigualdade triangular:
 
 $$
 | \ket{\psi} + \ket{\phi} | \leq | \ket{\psi} | + | \ket{\phi} |
@@ -30,7 +30,7 @@ $$
 
 ---
 
-2. Ache um estado ortogonal a:
+## 2. Ache um estado ortogonal a:
 
 $$
 \ket{\psi} = \cos\left(\frac{\theta}{2}\right)\ket{0} + \sin\left(\frac{\theta}{2}\right)e^{i\phi}\ket{1}
@@ -40,33 +40,33 @@ onde $0 \leq \theta \leq \pi$ e $0 \leq \phi < 2\pi$.
 
 ---
 
-3. Demonstre as seguintes propriedades:
+## 3. Demonstre as seguintes propriedades:
 
-a)
+### a)
 
 $$
 (A^\dagger)^\dagger = A
 $$
 
-b)
+### b)
 
 $$
 (\lambda A)^\dagger = \lambda^* A^\dagger
 $$
 
-c)
+### c)
 
 $$
 (A + B)^\dagger = A^\dagger + B^\dagger
 $$
 
-d)
+### d)
 
 $$
 (AB)^\dagger = B^\dagger A^\dagger
 $$
 
-e)
+### e)
 
 $$
 (\ket{\psi}\bra{\phi})^\dagger = \ket{\phi}\bra{\psi}
@@ -74,7 +74,7 @@ $$
 
 ---
 
-4. Escreva as matrizes de Pauli ${X, Y, Z}$ e o operador identidade $I$ utilizando a representação de produto externo usando a base canônica:
+## 4. Escreva as matrizes de Pauli ${X, Y, Z}$ e o operador identidade $I$ utilizando a representação de produto externo usando a base canônica:
 
 $$
 \ket{0} =
@@ -90,7 +90,7 @@ $$
 \end{bmatrix}
 $$
 
-a)
+### a)
 
 $$
 X =
@@ -100,7 +100,7 @@ X =
 \end{bmatrix}
 $$
 
-b)
+### b)
 
 $$
 Y =
@@ -110,7 +110,7 @@ i & 0
 \end{bmatrix}
 $$
 
-c)
+### c)
 
 $$
 Z =
@@ -120,7 +120,7 @@ Z =
 \end{bmatrix}
 $$
 
-d)
+### d)
 
 $$
 I =
@@ -132,9 +132,9 @@ $$
 
 ---
 
-5. Sendo $P$ um projetor, mostre que:
+## 5. Sendo $P$ um projetor, mostre que:
 
-a)
+### a)
 
 $$
 Q = 1 - P
@@ -142,25 +142,25 @@ $$
 
 também é um projetor.
 
-b)
+### b)
 
 $$
 [Q, P] = 0
 $$
 
-c)
+### c)
 
 $$
 P \ket{\phi} \perp Q \ket{\phi}
 $$
 
-d) Interprete o resultado.
+### d) Interprete o resultado.
 
 ---
 
-6. Ache os autovetores e autovalores das matrizes.
+## 6. Ache os autovetores e autovalores das matrizes.
 
-a) Porta lógica de Hadamard
+### a) Porta lógica de Hadamard
 
 $$
 H = \frac{1}{\sqrt{2}}
@@ -170,7 +170,7 @@ H = \frac{1}{\sqrt{2}}
 \end{bmatrix}
 $$
 
-b) Porta lógica $X$
+### b) Porta lógica $X$
 
 $$
 X =
@@ -180,7 +180,7 @@ X =
 \end{bmatrix}
 $$
 
-c) Porta lógica $Y$ (Pauli $Y$)
+### c) Porta lógica $Y$ (Pauli $Y$)
 
 $$
 Y =
@@ -190,7 +190,7 @@ i & 0
 \end{bmatrix}
 $$
 
-d) Porta lógica $Z$ (Pauli $Z$)
+### d) Porta lógica $Z$ (Pauli $Z$)
 
 $$
 Z =
@@ -200,21 +200,21 @@ Z =
 \end{bmatrix}
 $$
 
-e) Porta lógica CNOT
+### e) Porta lógica CNOT
 
 $$
 CNOT =
 \begin{bmatrix}
-1 & 0 & 0 & 0 \
-0 & 1 & 0 & 0 \
-0 & 0 & 0 & 1 \
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
 0 & 0 & 1 & 0
 \end{bmatrix}
 $$
 
 ---
 
-7. Considere duas bases ortonormais definidas por:
+## 7. Considere duas bases ortonormais definidas por:
 
 $$
 {\ket{u_i}} \quad \text{e} \quad {\ket{v_j}}, \quad i, j = 1, \dots, n
@@ -230,7 +230,7 @@ $$
 
 ---
 
-8. Mostre que os estados de Bell, descritos abaixo, formam uma base para um espaço vetorial de 4 dimensões.
+## 8. Mostre que os estados de Bell, descritos abaixo, formam uma base para um espaço vetorial de 4 dimensões.
 
 $$
 \ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})
@@ -250,9 +250,9 @@ $$
 
 ---
 
-9. Calcule as matrizes e vetores resultantes das operações de produto tensorial:
+## 9. Calcule as matrizes e vetores resultantes das operações de produto tensorial:
 
-a) Produto tensorial de matrizes:
+### a) Produto tensorial de matrizes:
 
 i.
 
@@ -314,7 +314,7 @@ $$
 I \otimes \ket{0}\bra{0}
 $$
 
-b) Produto tensorial de vetores:
+### b) Produto tensorial de vetores:
 
 $$
 {\ket{0}, \ket{1}} \otimes {\ket{0}, \ket{1}} \otimes {\ket{0}, \ket{1}}
@@ -322,9 +322,9 @@ $$
 
 ---
 
-10. Obtenha a expressão matricial para os seguintes operadores:
+## 10. Obtenha a expressão matricial para os seguintes operadores:
 
-a)
+### a)
 
 $$
 \sqrt{Y}
@@ -332,7 +332,7 @@ $$
 
 em que $Y$ é a porta lógica definida no exercício acima.
 
-b)
+### b)
 
 $$
 e^{i\theta X}
@@ -340,7 +340,7 @@ $$
 
 em que $X$ é a porta lógica definida no exercício acima.
 
-c)
+### c)
 
 $$
 \sqrt{SWAP}
@@ -351,9 +351,9 @@ em que
 $$
 SWAP =
 \begin{bmatrix}
-1 & 0 & 0 & 0 \
-0 & 0 & 1 & 0 \
-0 & 1 & 0 & 0 \
+1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
 0 & 0 & 0 & 1
 \end{bmatrix}
 $$
