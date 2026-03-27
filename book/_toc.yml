@@ -60,6 +60,10 @@ parts:
           - file: topicos_avancados/teoria_da_informacao_quantica/10_1_4-compressao_quantica
           - file: topicos_avancados/teoria_da_informacao_quantica/10_1_5-teorema_de_holevo
 
+      - file: topicos_avancados/comunicação_quantica/10_2_0-comunicacao_quantica
+        sections:
+          - file: topicos_avancados/comunicação_quantica/10_2_1-fundamentos_da_com_segura
+
   - caption: Autores e Agradecimentos 
     chapters:
       - file: a_images/100-agradecimentos
