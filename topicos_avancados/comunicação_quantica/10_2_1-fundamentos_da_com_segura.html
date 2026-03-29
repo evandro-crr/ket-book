@@ -425,21 +425,24 @@ document.write(`
 <h1>Fundamentos da Comunicação Segura<a class="headerlink" href="#fundamentos-da-comunicacao-segura" title="Link para este cabeçalho">#</a></h1>
 <p>A comunicação segura trata do problema de transmitir informação entre duas partes de forma que terceiros não autorizados não consigam acessar ou modificar o conteúdo da mensagem. Esse é um tema central em áreas como computação, redes e teoria da informação.</p>
 <p>De modo geral, a segurança de um sistema de comunicação envolve três aspectos principais: <strong>confidencialidade</strong>, <strong>integridade</strong> e <strong>autenticidade</strong>. A confidencialidade garante que apenas os destinatários tenham acesso à mensagem, a integridade assegura que ela não foi alterada, e a autenticidade permite verificar quem está se comunicando.</p>
+<p>Esses três objetivos podem ser interpretados como diferentes formas de controlar o fluxo de informação em um sistema: quem pode acessar, quem pode modificar e quem pode produzir mensagens válidas.</p>
 <p>Na prática, esses objetivos são tradicionalmente alcançados por meio da criptografia clássica. No entanto, essa abordagem possui limitações importantes, especialmente quando analisada do ponto de vista da teoria da informação e da mecânica quântica.</p>
 <section id="seguranca-na-comunicacao-classica">
 <h2>Segurança na comunicação clássica<a class="headerlink" href="#seguranca-na-comunicacao-classica" title="Link para este cabeçalho">#</a></h2>
-<p>Na comunicação clássica, a segurança geralmente depende de algoritmos criptográficos que utilizam chaves. A ideia é tornar a mensagem incompreensível para qualquer pessoa que não possua a chave correta.</p>
+<p>Na comunicação clássica, a segurança geralmente depende de algoritmos criptográficos que utilizam chaves. A ideia é transformar a mensagem original em uma forma aparentemente aleatória, de modo que apenas quem possui a chave correta consiga recuperá-la.</p>
 <p>Esses métodos são baseados em problemas matemáticos considerados difíceis de resolver. Assim, a segurança depende do fato de que um possível adversário não possui recursos suficientes para quebrar o sistema em tempo viável.</p>
-<p>Esse tipo de segurança é chamado de <strong>segurança computacional</strong>, pois depende diretamente do poder computacional disponível.</p>
-<p>Apesar de funcionar bem na prática, essa abordagem não é absoluta. Com o avanço da tecnologia — seja por novos algoritmos ou novos modelos de computação — esses sistemas podem se tornar vulneráveis.</p>
-<p><img alt="falqon" src="../../_images/Alice.jpg" /></p>
+<p>Esse tipo de segurança é chamado de <strong>segurança computacional</strong>, pois depende diretamente do poder computacional disponível. Em outras palavras, assume-se que certos problemas são difíceis de resolver na prática, mesmo que sejam teoricamente possíveis.</p>
+<p>Apesar de funcionar bem na prática, essa abordagem não é absoluta. Com o avanço da tecnologia — seja por novos algoritmos, aumento de poder computacional ou novos modelos de computação — esses sistemas podem se tornar vulneráveis.</p>
+<p><img alt="comunicacao" src="../../_images/Alice.jpg" /></p>
+<p>Além disso, do ponto de vista da teoria da informação, esses sistemas não impedem que um adversário tenha acesso ao sinal transmitido — apenas tornam sua interpretação difícil. Isso significa que a segurança não está associada ao canal físico, mas ao método de codificação utilizado.</p>
 </section>
 <section id="seguranca-baseada-em-teoria-da-informacao">
 <h2>Segurança baseada em teoria da informação<a class="headerlink" href="#seguranca-baseada-em-teoria-da-informacao" title="Link para este cabeçalho">#</a></h2>
 <p>Uma alternativa é analisar a segurança a partir da teoria da informação. Nesse caso, o objetivo não é apenas dificultar o acesso à mensagem, mas garantir que um interceptador <strong>não consiga extrair informação relevante</strong>, independentemente de seu poder computacional.</p>
-<p>Esse tipo de abordagem é conhecido como <strong>segurança incondicional</strong>.</p>
+<p>Esse tipo de abordagem é conhecido como <strong>segurança incondicional</strong>, pois não depende de suposições sobre a capacidade do adversário.</p>
+<p>Do ponto de vista informacional, isso significa que a variável observada pelo interceptador não possui correlação com a mensagem original, ou seja, a informação mútua entre elas é nula.</p>
 <p>Um exemplo clássico é o <strong>one-time pad</strong>, em que a mensagem é combinada com uma chave aleatória do mesmo tamanho. Quando usado corretamente, esse método garante que a mensagem interceptada não revela nenhuma informação sobre o conteúdo original.</p>
-<p>Apesar disso, ele apresenta dificuldades práticas, principalmente na distribuição segura das chaves.</p>
+<p>Apesar disso, ele apresenta dificuldades práticas, principalmente na distribuição segura das chaves, que precisam ser aleatórias, secretas e do mesmo tamanho da mensagem.</p>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
 <p>Considere uma mensagem binária:</p>
@@ -474,9 +477,9 @@ m = c \oplus k = 0111 \oplus 1100 = 1011
 <section id="limitacoes-da-abordagem-classica">
 <h2>Limitações da abordagem clássica<a class="headerlink" href="#limitacoes-da-abordagem-classica" title="Link para este cabeçalho">#</a></h2>
 <p>Mesmo com técnicas avançadas, a comunicação clássica possui algumas limitações importantes.</p>
-<p>Uma delas é que a informação pode ser copiada perfeitamente. Isso significa que um interceptador pode capturar e duplicar a mensagem sem necessariamente ser detectado.</p>
-<p>Além disso, a distribuição de chaves seguras continua sendo um problema central. Em muitos casos, é necessário assumir a existência de um canal previamente seguro, o que nem sempre é viável.</p>
-<p>Esses pontos mostram que a segurança, no modelo clássico, não está diretamente ligada às leis físicas do sistema.</p>
+<p>Uma delas é que a informação pode ser copiada perfeitamente. Isso significa que um interceptador pode capturar e duplicar a mensagem sem necessariamente ser detectado. Esse comportamento é consequência direta do fato de que estados clássicos podem ser medidos e reproduzidos sem alteração.</p>
+<p>Além disso, a distribuição de chaves seguras continua sendo um problema central. Em muitos sistemas, é necessário assumir a existência de um canal previamente seguro para compartilhar a chave, o que cria uma dependência circular.</p>
+<p>Do ponto de vista mais fundamental, esses aspectos mostram que a segurança, no modelo clássico, não está diretamente associada às leis físicas do sistema, mas sim a construções matemáticas e suposições externas.</p>
 </section>
 <section id="seguranca-em-sistemas-quanticos">
 <h2>Segurança em sistemas quânticos<a class="headerlink" href="#seguranca-em-sistemas-quanticos" title="Link para este cabeçalho">#</a></h2>
@@ -487,8 +490,8 @@ m = c \oplus k = 0111 \oplus 1100 = 1011
 <li><p>a perturbação causada por medições</p></li>
 <li><p>limites fundamentais na extração de informação</p></li>
 </ul>
-<p>Essas propriedades implicam que qualquer tentativa de interceptação tende a deixar rastros, pois altera o estado do sistema.</p>
-<p>Com isso, a segurança deixa de depender apenas de hipóteses matemáticas e passa a ser analisada com base na física do sistema.</p>
+<p>Essas propriedades implicam que qualquer tentativa de interceptação envolve uma interação com o sistema, o que tende a alterar seu estado. Essa alteração pode ser detectada por meio de medições estatísticas realizadas pelos participantes da comunicação.</p>
+<p>Do ponto de vista da teoria da informação, isso significa que a obtenção de informação por um adversário está associada à introdução de ruído no sistema, estabelecendo um <strong>trade-off entre informação e perturbação</strong>.</p>
 </section>
 <section id="motivacao-para-comunicacao-quantica">
 <h2>Motivação para comunicação quântica<a class="headerlink" href="#motivacao-para-comunicacao-quantica" title="Link para este cabeçalho">#</a></h2>
@@ -496,10 +499,11 @@ m = c \oplus k = 0111 \oplus 1100 = 1011
 <p>Ela permite estudar:</p>
 <ul class="simple">
 <li><p>como transmitir informação usando estados quânticos</p></li>
-<li><p>quais são os limites dessa transmissão</p></li>
+<li><p>quais são os limites fundamentais dessa transmissão</p></li>
 <li><p>como explorar propriedades físicas para garantir segurança</p></li>
 </ul>
-<p>Nos próximos tópicos, esses conceitos serão utilizados para analisar protocolos específicos e entender como a informação pode ser transmitida e protegida em sistemas quânticos.</p>
+<p>Além disso, a comunicação quântica fornece um modelo mais geral de informação, no qual a informação clássica aparece como um caso particular.</p>
+<p>Nos próximos tópicos, esses conceitos serão utilizados para analisar protocolos específicos, como distribuição de chaves e teletransporte, e entender como a informação pode ser transmitida e protegida em sistemas quânticos.</p>
 </section>
 </section>
 

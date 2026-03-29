@@ -423,8 +423,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="introducao-a-comunicacao-e-internet-quantica">
 <h1>Introdução à Comunicação e Internet Quântica<a class="headerlink" href="#introducao-a-comunicacao-e-internet-quantica" title="Link para este cabeçalho">#</a></h1>
 <p>A comunicação quântica estuda como transmitir informação utilizando sistemas quânticos, explorando propriedades como superposição e emaranhamento. Diferente da comunicação clássica, onde a informação é codificada em bits, aqui utilizamos os <strong>qubits</strong> já estudados, que permitem representar estados de forma mais geral.</p>
-<p>Com base nos conceitos de teoria da informação quântica, como canais quânticos e limites de informação, é possível desenvolver protocolos que utilizam esses recursos para transmitir informação e estabelecer correlações entre sistemas distantes.</p>
-<p>Esse modelo não substitui a comunicação clássica, mas a <strong>estende</strong>, introduzindo novas possibilidades e também novas limitações.</p>
+<p>Enquanto na comunicação clássica a informação pode ser copiada, amplificada e transmitida sem restrições fundamentais, na comunicação quântica essas operações são limitadas pelas próprias leis da física. Como consequência, surgem tanto novas possibilidades quanto novos desafios.</p>
+<p>Com base nos conceitos de teoria da informação quântica, como canais quânticos, entropia e limites de informação, é possível desenvolver protocolos que utilizam esses recursos para transmitir informação e estabelecer correlações entre sistemas distantes.</p>
+<p>Esse modelo não substitui a comunicação clássica, mas a <strong>estende</strong>, introduzindo novas formas de representar, transmitir e interpretar informação.</p>
 <section id="o-que-e-comunicacao-quantica">
 <h2>O que é Comunicação Quântica<a class="headerlink" href="#o-que-e-comunicacao-quantica" title="Link para este cabeçalho">#</a></h2>
 <p>A comunicação quântica envolve o envio de estados quânticos através de um canal físico, seguido de medições que permitem extrair informação clássica.</p>
@@ -434,38 +435,35 @@ document.write(`
 <li><p>transmissão por um canal quântico</p></li>
 <li><p>medição no receptor</p></li>
 </ul>
-<p>Do ponto de vista formal, esse processo pode ser descrito como a evolução de um estado quântico <span class="math notranslate nohighlight">\(\rho\)</span> através de um canal quântico <span class="math notranslate nohighlight">\(\mathcal{E}\)</span>:</p>
+<p>Do ponto de vista formal, esse processo pode ser descrito como a evolução de um estado quântico ( \rho ) através de um canal quântico ( \mathcal{E} ):</p>
 <div class="math notranslate nohighlight">
 \[
 \rho \rightarrow \mathcal{E}(\rho)
 \]</div>
 <p>seguido de uma medição que produz resultados clássicos. Essa descrição conecta diretamente a comunicação quântica com a teoria de canais quânticos estudada anteriormente.</p>
-<p>Além disso, canais clássicos auxiliares frequentemente são necessários para complementar a comunicação, como ocorre em protocolos de teletransporte quântico.</p>
+<p>Mais especificamente, o canal ( \mathcal{E} ) modela todos os efeitos físicos envolvidos na transmissão, incluindo ruído, perdas e interação com o ambiente. Dessa forma, a comunicação quântica pode ser analisada como um problema de transformação e degradação de estados.</p>
+<p>Além disso, canais clássicos auxiliares frequentemente são necessários para complementar a comunicação, como ocorre em protocolos de teletransporte quântico, nos quais a transmissão do estado depende da troca de bits clássicos.</p>
 <p>Um aspecto central é que a informação quântica não pode ser tratada como informação clássica. Em particular:</p>
 <ul class="simple">
 <li><p>estados quânticos não podem ser copiados arbitrariamente (<em>No-cloning theorem</em>)</p></li>
 <li><p>a medição pode alterar o estado</p></li>
 <li><p>há limites fundamentais para a quantidade de informação que pode ser extraída</p></li>
 </ul>
-<p>Essas características influenciam diretamente como a comunicação é realizada.</p>
+<p>Essas características implicam que a informação quântica não pode ser acessada diretamente, mas apenas por meio de medições, o que introduz uma distinção fundamental entre <strong>informação armazenada</strong> e <strong>informação acessível</strong>.</p>
 </section>
 <section id="o-que-e-uma-internet-quantica">
 <h2>O que é uma Internet Quântica<a class="headerlink" href="#o-que-e-uma-internet-quantica" title="Link para este cabeçalho">#</a></h2>
 <p>A internet quântica é uma rede que permite a distribuição de estados quânticos entre diferentes nós, de forma análoga às redes clássicas, mas com objetivos e funcionamento distintos.</p>
 <p>Enquanto a internet clássica transmite dados (bits), a internet quântica busca transmitir <strong>estados quânticos</strong> ou estabelecer <strong>emaranhamento</strong> entre sistemas distribuídos.</p>
 <p>Na prática, muitas tarefas não envolvem o envio direto de estados quânticos, mas sim a <strong>distribuição de emaranhamento</strong> entre nós. Esse recurso pode então ser utilizado para realizar protocolos como teletransporte quântico e distribuição de chaves criptográficas.</p>
+<p>Essa mudança de paradigma é importante: em vez de transmitir informação diretamente, a rede passa a distribuir <strong>recursos quânticos</strong>, que podem ser utilizados posteriormente para realizar tarefas de comunicação.</p>
 <p>Essa rede é composta por:</p>
 <ul class="simple">
 <li><p><strong>nós quânticos</strong>, capazes de armazenar e processar qubits</p></li>
 <li><p><strong>canais quânticos</strong>, responsáveis pela transmissão de estados</p></li>
 <li><p><strong>canais clássicos</strong>, usados para coordenação e controle</p></li>
 </ul>
-<p>Em vez de simplesmente enviar mensagens, uma rede quântica permite tarefas como:</p>
-<ul class="simple">
-<li><p>distribuição de chaves criptográficas seguras</p></li>
-<li><p>execução de protocolos de comunicação quântica</p></li>
-<li><p>compartilhamento de recursos quânticos entre diferentes locais</p></li>
-</ul>
+<p>A presença simultânea de canais quânticos e clássicos evidencia que redes quânticas são, na prática, sistemas híbridos.</p>
 </section>
 <section id="diferencas-em-relacao-a-internet-classica">
 <h2>Diferenças em relação à internet clássica<a class="headerlink" href="#diferencas-em-relacao-a-internet-classica" title="Link para este cabeçalho">#</a></h2>
@@ -482,8 +480,8 @@ document.write(`
 <li><p>a transmissão é sensível a ruído e perdas</p></li>
 <li><p>a segurança pode ser analisada com base em princípios físicos</p></li>
 </ul>
-<p>Essas diferenças implicam que redes quânticas não podem utilizar estratégias clássicas como amplificação e retransmissão de sinais, exigindo o desenvolvimento de técnicas específicas para preservar e distribuir informação.</p>
-<p>Além disso, em muitos casos, a comunicação quântica não consiste no envio direto de informação, mas sim na criação de correlações entre sistemas distribuídos.</p>
+<p>Essas diferenças implicam que redes quânticas não podem utilizar estratégias clássicas como amplificação e retransmissão de sinais. Em particular, a impossibilidade de clonagem impede a criação de “repetidores clássicos”, exigindo o desenvolvimento de técnicas específicas para preservar e distribuir informação.</p>
+<p>Além disso, em muitos casos, a comunicação quântica não consiste no envio direto de informação, mas sim na criação de correlações entre sistemas distribuídos. Isso altera a forma como a informação é utilizada e interpretada em redes.</p>
 </section>
 <section id="motivacao-e-objetivos">
 <h2>Motivação e objetivos<a class="headerlink" href="#motivacao-e-objetivos" title="Link para este cabeçalho">#</a></h2>
@@ -491,9 +489,10 @@ document.write(`
 <p>Entre os principais objetivos estão:</p>
 <ul class="simple">
 <li><p>desenvolver protocolos de comunicação seguros</p></li>
-<li><p>entender os limites de transmissão de informação</p></li>
+<li><p>entender os limites fundamentais de transmissão de informação</p></li>
 <li><p>construir redes capazes de distribuir estados quânticos de forma confiável</p></li>
 </ul>
+<p>Além disso, a comunicação quântica permite investigar questões mais profundas da teoria da informação, como os limites entre informação clássica e quântica e o papel das correlações na transmissão de informação.</p>
 <p>Nos próximos tópicos, esses conceitos serão formalizados por meio da arquitetura de redes quânticas e utilizados na análise de protocolos de comunicação.</p>
 </section>
 </section>
