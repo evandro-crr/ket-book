@@ -67,6 +67,7 @@ parts:
           - file: topicos_avancados/comunicação_quantica/10_2_3-arq_e_element_RD
           - file: topicos_avancados/comunicação_quantica/10_2_4-revisao_protocolos
           - file: topicos_avancados/comunicação_quantica/10_2_5-qkd
+
   - caption: Autores e Agradecimentos 
     chapters:
       - file: a_images/100-agradecimentos
