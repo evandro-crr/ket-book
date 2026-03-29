@@ -8,13 +8,13 @@ De forma geral, uma rede quântica pode ser modelada como um sistema no qual est
 
 ## Modelo geral de uma rede quântica
 
-Formalmente, a comunicação em uma rede quântica pode ser descrita como a evolução de um estado quântico ( \rho ) através de um canal quântico ( \mathcal{E} ):
+Formalmente, a comunicação em uma rede quântica pode ser descrita como a evolução de um estado quântico $\rho$ através de um canal quântico $\mathcal{E}$:
 
 $$
 \rho \rightarrow \mathcal{E}(\rho)
 $$
 
-onde ( \mathcal{E} ) é um **mapa completamente positivo e preservador de traço (CPTP)**.
+onde $\mathcal{E}$ é um **mapa completamente positivo e preservador de traço (CPTP)**.
 
 Essa descrição encapsula todos os efeitos físicos envolvidos na transmissão, incluindo ruído, perdas e interação com o ambiente. Dessa forma, a comunicação deixa de ser apenas um processo de envio de informação e passa a ser vista como uma **transformação de estados** sujeita a degradação.
 
@@ -35,7 +35,7 @@ Os nós quânticos são sistemas físicos capazes de armazenar e manipular infor
 
 Em um nó quântico, é possível:
 
-* preparar estados ( \rho )
+* preparar estados $\rho$
 * aplicar operações unitárias
 * realizar medições
 * armazenar qubits (memória quântica)
@@ -86,9 +86,9 @@ Assim, redes quânticas são, na prática, sistemas **híbridos**, nos quais can
 
 O funcionamento de uma rede quântica pode ser entendido como um fluxo de transformação de informação:
 
-1. um estado quântico ( \rho ) é preparado em um nó
-2. o estado é transmitido por um canal ( \mathcal{E} )
-3. o estado resultante ( \mathcal{E}(\rho) ) é medido
+1. um estado quântico $\rho$ é preparado em um nó
+2. o estado é transmitido por um canal $\mathcal{E}$
+3. o estado resultante $\mathcal{E}(\rho)$ é medido
 4. a medição gera informação clássica
 
 Esse processo evidencia que a informação quântica não é acessada diretamente, mas sim através de medições, que podem introduzir perda de informação e irreversibilidade.
@@ -101,7 +101,7 @@ As redes quânticas são projetadas para executar tarefas específicas relaciona
 
 ### Distribuição de estados
 
-Consiste em enviar um estado quântico entre nós. Esse processo é limitado pela ação do canal ( \mathcal{E} ), que pode degradar o estado e reduzir sua fidelidade.
+Consiste em enviar um estado quântico entre nós. Esse processo é limitado pela ação do canal $\mathcal{E}$, que pode degradar o estado e reduzir sua fidelidade.
 
 ### Distribuição de emaranhamento
 

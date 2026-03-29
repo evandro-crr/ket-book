@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Repetidores Quânticos &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Clique para mostrar';</script>
+    <script>let toggleHintHide = 'Clique para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'topicos_avancados/comunicação_quantica/10_2_9-repetidores';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../01-index.html">
+                    Boas-vindas ao Aprenda Ket
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">Exercícios para Consolidação</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../09-algoritmos.html">Noções Fundamentais de Algoritmos Quânticos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algoritmos/busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/variacionais/09_4_0-algoritmos_variacionais.html">Algoritmos Variacionais Quânticos (VQAs)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_1-QAOA.html">Algoritmo Quântico de Otimização Aproximada (QAOA)</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_2-FALQON.html">Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tópicos Complementares</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../10-avancados.html">Entendendo os Tópicos Complementares</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.html">Teoria da Informação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../teoria_da_informacao_quantica/10_1_1-revisao_algebra.html">Revisão de Álgebra Linear para Informação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../teoria_da_informacao_quantica/10_1_2-entropia_vn.html">Entropia de von Neumann</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../teoria_da_informacao_quantica/10_1_3-canal_quantico.html">Canais Quânticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../teoria_da_informacao_quantica/10_1_4-compressao_quantica.html">Compressão Quântica de Informação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../teoria_da_informacao_quantica/10_1_5-teorema_de_holevo.html">Teorema de Holevo</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10_2_0-comunicacao_quantica.html">Comunicação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="10_2_1-fundamentos_da_com_segura.html">Fundamentos da Comunicação Segura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_2-introducao_a_com_e_int_quant.html">Introdução à Comunicação e Internet Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_3-arq_e_element_RD.html">Arquitetura e Elementos de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_4-revisao_protocolos.html">Revisão de Protocolos Fundamentais de Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_5-qkd.html">Criptografia Quântica e Distribuição de Chaves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_6-aplicacoes.html">Aplicações de Redes Quânticas</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="10_2_7-limites.html">Limites e Vantagens da Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_8-ruido.html">Ruído, Perdas e Desafios Práticos</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Autores e Agradecimentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../a_images/100-agradecimentos.html">Autores e Agradecimentos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../100-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/topicos_avancados/comunicação_quantica/10_2_9-repetidores.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Repetidores Quânticos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Repetidores Quânticos</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ideia-central">Ideia central</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuicao-segmentada-de-emaranhamento">Distribuição segmentada de emaranhamento</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#entanglement-swapping">Entanglement swapping</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-da-memoria-quantica">Papel da memória quântica</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#purificacao-de-emaranhamento">Purificação de emaranhamento</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitetura-em-multiplos-niveis">Arquitetura em múltiplos níveis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#desafios-praticos">Desafios práticos</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-informacional">Interpretação informacional</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia">Importância</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#observacao">Observação</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="repetidores-quanticos">
+<h1>Repetidores Quânticos<a class="headerlink" href="#repetidores-quanticos" title="Link para este cabeçalho">#</a></h1>
+<p>A comunicação quântica em longas distâncias enfrenta limitações severas devido a <strong>perdas</strong> e <strong>decoerência</strong>. Em canais como fibras ópticas, a probabilidade de um fóton sobreviver decai exponencialmente com a distância, tornando inviável a transmissão direta de estados quânticos em escalas globais.</p>
+<p>Em redes clássicas, esse problema é resolvido com amplificadores que reforçam o sinal ao longo do caminho. No entanto, em sistemas quânticos, essa abordagem não é possível, pois amplificar um estado quântico arbitrário implicaria copiá-lo, o que é proibido pelo teorema da não clonagem.</p>
+<p>Os <strong>repetidores quânticos</strong> surgem como uma solução alternativa para esse problema. Em vez de amplificar o sinal diretamente, eles utilizam uma combinação de <strong>distribuição de emaranhamento</strong>, <strong>armazenamento quântico</strong> e <strong>operações locais</strong> para reconstruir a informação ao longo da rede.</p>
+</section>
+<section id="ideia-central">
+<h1>Ideia central<a class="headerlink" href="#ideia-central" title="Link para este cabeçalho">#</a></h1>
+<p>A ideia fundamental por trás dos repetidores quânticos é dividir um canal longo em vários segmentos menores.</p>
+<p>Em vez de tentar transmitir um estado quântico diretamente de um ponto A até um ponto B distante, a comunicação é realizada em etapas intermediárias:</p>
+<ul class="simple">
+<li><p>primeiro, estabelece-se emaranhamento entre nós vizinhos</p></li>
+<li><p>depois, esse emaranhamento é estendido ao longo da rede</p></li>
+<li><p>por fim, ele pode ser utilizado para transmitir informação (por exemplo, via teletransporte)</p></li>
+</ul>
+<p>Essa abordagem contorna a necessidade de transmitir estados diretamente por longas distâncias, reduzindo o impacto de perdas e ruído.</p>
+</section>
+<section id="distribuicao-segmentada-de-emaranhamento">
+<h1>Distribuição segmentada de emaranhamento<a class="headerlink" href="#distribuicao-segmentada-de-emaranhamento" title="Link para este cabeçalho">#</a></h1>
+<p>Considere três nós: Alice, um nó intermediário (R) e Bob.</p>
+<p>O processo começa com a criação de pares emaranhados:</p>
+<ul class="simple">
+<li><p>entre Alice e R</p></li>
+<li><p>entre R e Bob</p></li>
+</ul>
+<p>Cada um desses pares cobre apenas uma parte do caminho total, o que aumenta a probabilidade de sucesso em comparação com uma transmissão direta.</p>
+<p>No entanto, inicialmente não há emaranhamento direto entre Alice e Bob. Esse recurso precisa ser construído a partir dos pares locais.</p>
+</section>
+<section id="entanglement-swapping">
+<h1>Entanglement swapping<a class="headerlink" href="#entanglement-swapping" title="Link para este cabeçalho">#</a></h1>
+<p>A etapa chave dos repetidores quânticos é o <strong>entanglement swapping</strong>.</p>
+<p>Nesse processo, o nó intermediário realiza uma medição conjunta (tipicamente uma medição na base de Bell) sobre seus dois qubits. Essa operação tem como efeito transferir o emaranhamento, de modo que:</p>
+<ul class="simple">
+<li><p>Alice e Bob passam a estar emaranhados</p></li>
+<li><p>o nó intermediário deixa de fazer parte do estado</p></li>
+</ul>
+<p>Do ponto de vista formal, essa operação transforma dois pares emaranhados locais em um único par emaranhado de maior alcance.</p>
+<p>Esse processo pode ser repetido em múltiplos níveis, permitindo estender o emaranhamento ao longo de toda a rede.</p>
+</section>
+<section id="papel-da-memoria-quantica">
+<h1>Papel da memória quântica<a class="headerlink" href="#papel-da-memoria-quantica" title="Link para este cabeçalho">#</a></h1>
+<p>Um dos componentes essenciais dos repetidores quânticos é a <strong>memória quântica</strong>, que permite armazenar estados enquanto outras partes da rede são preparadas.</p>
+<p>Como a geração de emaranhamento é probabilística, diferentes segmentos da rede podem estar prontos em momentos distintos. A memória quântica permite sincronizar esses processos, armazenando estados até que todas as partes necessárias estejam disponíveis.</p>
+<p>Sem memória quântica, a eficiência do protocolo seria extremamente baixa.</p>
+</section>
+<section id="purificacao-de-emaranhamento">
+<h1>Purificação de emaranhamento<a class="headerlink" href="#purificacao-de-emaranhamento" title="Link para este cabeçalho">#</a></h1>
+<p>Devido ao ruído e perdas, os pares emaranhados distribuídos não são perfeitos. Isso pode comprometer a fidelidade do estado final.</p>
+<p>A <strong>purificação de emaranhamento</strong> (ou destilação) é uma técnica que permite melhorar a qualidade de estados emaranhados a partir de múltiplas cópias imperfeitas.</p>
+<p>O processo envolve:</p>
+<ul class="simple">
+<li><p>operações locais</p></li>
+<li><p>comunicação clássica</p></li>
+<li><p>descarte de estados de baixa qualidade</p></li>
+</ul>
+<p>Como resultado, obtém-se um número menor de pares emaranhados, mas com fidelidade maior.</p>
+</section>
+<section id="arquitetura-em-multiplos-niveis">
+<h1>Arquitetura em múltiplos níveis<a class="headerlink" href="#arquitetura-em-multiplos-niveis" title="Link para este cabeçalho">#</a></h1>
+<p>Repetidores quânticos são frequentemente organizados em uma estrutura hierárquica.</p>
+<p>O processo de distribuição de emaranhamento ocorre em níveis:</p>
+<ol class="arabic simple">
+<li><p>criação de emaranhamento em segmentos curtos</p></li>
+<li><p>aplicação de entanglement swapping para aumentar a distância</p></li>
+<li><p>repetição do processo em níveis superiores</p></li>
+</ol>
+<p>Essa abordagem reduz o crescimento exponencial das perdas com a distância, tornando a comunicação em larga escala mais viável.</p>
+</section>
+<section id="desafios-praticos">
+<h1>Desafios práticos<a class="headerlink" href="#desafios-praticos" title="Link para este cabeçalho">#</a></h1>
+<p>Apesar de seu potencial, a implementação de repetidores quânticos apresenta diversos desafios.</p>
+<p>Entre os principais estão:</p>
+<ul class="simple">
+<li><p>desenvolvimento de memórias quânticas eficientes e de longa duração</p></li>
+<li><p>realização de medições de alta fidelidade</p></li>
+<li><p>controle preciso de operações quânticas</p></li>
+<li><p>gerenciamento de erros acumulados ao longo da rede</p></li>
+</ul>
+<p>Além disso, a complexidade do sistema cresce rapidamente com o número de nós e níveis da rede.</p>
+</section>
+<section id="interpretacao-informacional">
+<h1>Interpretação informacional<a class="headerlink" href="#interpretacao-informacional" title="Link para este cabeçalho">#</a></h1>
+<p>Do ponto de vista da teoria da informação, repetidores quânticos podem ser entendidos como dispositivos que permitem <strong>preservar e redistribuir correlações quânticas</strong> ao longo de um canal ruidoso.</p>
+<p>Eles não aumentam a capacidade fundamental do canal, mas permitem atingir essa capacidade em cenários onde a transmissão direta seria inviável.</p>
+<p>Além disso, mostram que a comunicação quântica não depende apenas do envio de estados, mas da manipulação de <strong>recursos distribuídos</strong>, como o emaranhamento.</p>
+</section>
+<section id="importancia">
+<h1>Importância<a class="headerlink" href="#importancia" title="Link para este cabeçalho">#</a></h1>
+<p>Os repetidores quânticos são considerados um componente essencial para a construção de uma internet quântica em larga escala.</p>
+<p>Sem eles, a comunicação quântica estaria limitada a distâncias relativamente curtas. Com eles, torna-se possível imaginar redes globais capazes de distribuir estados quânticos e executar protocolos entre regiões distantes.</p>
+</section>
+<section id="observacao">
+<h1>Observação<a class="headerlink" href="#observacao" title="Link para este cabeçalho">#</a></h1>
+<p>Embora ainda estejam em desenvolvimento, os repetidores quânticos representam uma das áreas mais ativas de pesquisa em comunicação quântica, combinando conceitos de física, teoria da informação e engenharia experimental.</p>
+<p>Nos próximos tópicos, esses elementos serão utilizados para analisar redes quânticas mais complexas e suas aplicações.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./topicos_avancados/comunicação_quantica"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Repetidores Quânticos</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ideia-central">Ideia central</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuicao-segmentada-de-emaranhamento">Distribuição segmentada de emaranhamento</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#entanglement-swapping">Entanglement swapping</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-da-memoria-quantica">Papel da memória quântica</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#purificacao-de-emaranhamento">Purificação de emaranhamento</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitetura-em-multiplos-niveis">Arquitetura em múltiplos níveis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#desafios-praticos">Desafios práticos</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-informacional">Interpretação informacional</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia">Importância</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#observacao">Observação</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Grupo de Computação Quântica - UFSC
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

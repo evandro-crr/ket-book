@@ -18,7 +18,7 @@ De forma geral, o processo pode ser descrito em três etapas:
 * transmissão por um canal quântico
 * medição no receptor
 
-Do ponto de vista formal, esse processo pode ser descrito como a evolução de um estado quântico ( \rho ) através de um canal quântico ( \mathcal{E} ):
+Do ponto de vista formal, esse processo pode ser descrito como a evolução de um estado quântico $\rho$ através de um canal quântico $\mathcal{E}$:
 
 $$
 \rho \rightarrow \mathcal{E}(\rho)
@@ -26,7 +26,7 @@ $$
 
 seguido de uma medição que produz resultados clássicos. Essa descrição conecta diretamente a comunicação quântica com a teoria de canais quânticos estudada anteriormente.
 
-Mais especificamente, o canal ( \mathcal{E} ) modela todos os efeitos físicos envolvidos na transmissão, incluindo ruído, perdas e interação com o ambiente. Dessa forma, a comunicação quântica pode ser analisada como um problema de transformação e degradação de estados.
+Mais especificamente, o canal $\mathcal{E}$ modela todos os efeitos físicos envolvidos na transmissão, incluindo ruído, perdas e interação com o ambiente. Dessa forma, a comunicação quântica pode ser analisada como um problema de transformação e degradação de estados.
 
 Além disso, canais clássicos auxiliares frequentemente são necessários para complementar a comunicação, como ocorre em protocolos de teletransporte quântico, nos quais a transmissão do estado depende da troca de bits clássicos.
 

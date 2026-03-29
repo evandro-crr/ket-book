@@ -450,12 +450,12 @@ document.write(`
 <p>De forma geral, uma rede quântica pode ser modelada como um sistema no qual estados quânticos são preparados, transformados por canais físicos e posteriormente medidos, gerando informação clássica. Esse modelo estabelece uma ponte direta entre a arquitetura física da rede e o formalismo da teoria da informação quântica.</p>
 <section id="modelo-geral-de-uma-rede-quantica">
 <h2>Modelo geral de uma rede quântica<a class="headerlink" href="#modelo-geral-de-uma-rede-quantica" title="Link para este cabeçalho">#</a></h2>
-<p>Formalmente, a comunicação em uma rede quântica pode ser descrita como a evolução de um estado quântico ( \rho ) através de um canal quântico ( \mathcal{E} ):</p>
+<p>Formalmente, a comunicação em uma rede quântica pode ser descrita como a evolução de um estado quântico <span class="math notranslate nohighlight">\(\rho\)</span> através de um canal quântico <span class="math notranslate nohighlight">\(\mathcal{E}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \rho \rightarrow \mathcal{E}(\rho)
 \]</div>
-<p>onde ( \mathcal{E} ) é um <strong>mapa completamente positivo e preservador de traço (CPTP)</strong>.</p>
+<p>onde <span class="math notranslate nohighlight">\(\mathcal{E}\)</span> é um <strong>mapa completamente positivo e preservador de traço (CPTP)</strong>.</p>
 <p>Essa descrição encapsula todos os efeitos físicos envolvidos na transmissão, incluindo ruído, perdas e interação com o ambiente. Dessa forma, a comunicação deixa de ser apenas um processo de envio de informação e passa a ser vista como uma <strong>transformação de estados</strong> sujeita a degradação.</p>
 <p>Após a transmissão, medições são realizadas, produzindo resultados clássicos que podem ser utilizados para inferir informação ou completar protocolos. Esse passo é essencial, pois a informação quântica só se torna acessível por meio da medição.</p>
 <p>Essa estrutura evidencia uma distinção importante:</p>
@@ -472,7 +472,7 @@ document.write(`
 <p>Os nós quânticos são sistemas físicos capazes de armazenar e manipular informação quântica. Cada nó pode ser descrito por um espaço de Hilbert e por operações locais que atuam sobre seus estados.</p>
 <p>Em um nó quântico, é possível:</p>
 <ul class="simple">
-<li><p>preparar estados ( \rho )</p></li>
+<li><p>preparar estados <span class="math notranslate nohighlight">\(\rho\)</span></p></li>
 <li><p>aplicar operações unitárias</p></li>
 <li><p>realizar medições</p></li>
 <li><p>armazenar qubits (memória quântica)</p></li>
@@ -518,9 +518,9 @@ document.write(`
 <h2>Fluxo de informação em uma rede quântica<a class="headerlink" href="#fluxo-de-informacao-em-uma-rede-quantica" title="Link para este cabeçalho">#</a></h2>
 <p>O funcionamento de uma rede quântica pode ser entendido como um fluxo de transformação de informação:</p>
 <ol class="arabic simple">
-<li><p>um estado quântico ( \rho ) é preparado em um nó</p></li>
-<li><p>o estado é transmitido por um canal ( \mathcal{E} )</p></li>
-<li><p>o estado resultante ( \mathcal{E}(\rho) ) é medido</p></li>
+<li><p>um estado quântico <span class="math notranslate nohighlight">\(\rho\)</span> é preparado em um nó</p></li>
+<li><p>o estado é transmitido por um canal <span class="math notranslate nohighlight">\(\mathcal{E}\)</span></p></li>
+<li><p>o estado resultante <span class="math notranslate nohighlight">\(\mathcal{E}(\rho)\)</span> é medido</p></li>
 <li><p>a medição gera informação clássica</p></li>
 </ol>
 <p>Esse processo evidencia que a informação quântica não é acessada diretamente, mas sim através de medições, que podem introduzir perda de informação e irreversibilidade.</p>
@@ -531,7 +531,7 @@ document.write(`
 <p>As redes quânticas são projetadas para executar tarefas específicas relacionadas à manipulação de informação.</p>
 <section id="distribuicao-de-estados">
 <h3>Distribuição de estados<a class="headerlink" href="#distribuicao-de-estados" title="Link para este cabeçalho">#</a></h3>
-<p>Consiste em enviar um estado quântico entre nós. Esse processo é limitado pela ação do canal ( \mathcal{E} ), que pode degradar o estado e reduzir sua fidelidade.</p>
+<p>Consiste em enviar um estado quântico entre nós. Esse processo é limitado pela ação do canal <span class="math notranslate nohighlight">\(\mathcal{E}\)</span>, que pode degradar o estado e reduzir sua fidelidade.</p>
 </section>
 <section id="distribuicao-de-emaranhamento">
 <h3>Distribuição de emaranhamento<a class="headerlink" href="#distribuicao-de-emaranhamento" title="Link para este cabeçalho">#</a></h3>
