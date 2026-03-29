@@ -70,7 +70,8 @@ parts:
           - file: topicos_avancados/comunicação_quantica/10_2_6-aplicacoes
           - file: topicos_avancados/comunicação_quantica/10_2_7-limites
           - file: topicos_avancados/comunicação_quantica/10_2_8-ruido
-          - file: topicos_avancados/comunicação_quantica/10_2_8-repetidores
+          - file: topicos_avancados/comunicação_quantica/10_2_9-repetidores
+          - file: topicos_avancados/comunicação_quantica/10_2_10-emaranhamento
 
   - caption: Autores e Agradecimentos 
     chapters:

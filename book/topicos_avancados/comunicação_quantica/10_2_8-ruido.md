@@ -14,7 +14,7 @@ $$
 \rho \rightarrow \mathcal{E}(\rho)
 $$
 
-onde ( \mathcal{E} ) representa a interação do sistema com o ambiente ou imperfeições do aparato experimental.
+onde $\mathcal{E}$ representa a interação do sistema com o ambiente ou imperfeições do aparato experimental.
 
 Do ponto de vista físico, o ruído surge porque sistemas quânticos raramente estão completamente isolados. Interações com o ambiente levam à perda de coerência e à introdução de incerteza adicional no sistema.
 
