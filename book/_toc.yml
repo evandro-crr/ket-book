@@ -63,7 +63,10 @@ parts:
       - file: topicos_avancados/comunicação_quantica/10_2_0-comunicacao_quantica
         sections:
           - file: topicos_avancados/comunicação_quantica/10_2_1-fundamentos_da_com_segura
-
+          - file: topicos_avancados/comunicação_quantica/10_2_2-introducao_a_com_e_int_quant
+          - file: topicos_avancados/comunicação_quantica/10_2_3-arq_e_element_RD
+          - file: topicos_avancados/comunicação_quantica/10_2_4-revisao_protocolos
+          - file: topicos_avancados/comunicação_quantica/10_2_5-qkd
   - caption: Autores e Agradecimentos 
     chapters:
       - file: a_images/100-agradecimentos
