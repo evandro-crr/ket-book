@@ -248,26 +248,9 @@
 <li class="toctree-l2"><a class="reference internal" href="10_2_4-revisao_protocolos.html">Revisão de Protocolos Fundamentais de Comunicação Quântica</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Criptografia Quântica e Distribuição de Chaves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_2_6-aplicacoes.html">Aplicações de Redes Quânticas</a></li>
-
-
-
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="10_2_7-limites.html">Limites e Vantagens da Comunicação Quântica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_2_8-ruido.html">Ruído, Perdas e Desafios Práticos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_2_9-repetidores.html">Repetidores Quânticos</a></li>
-
-
-
-
-
-
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="10_2_10-emaranhamento.html">Destilação de Emaranhamento</a></li>
 </ul>
 </details></li>
@@ -509,36 +492,34 @@ document.write(`
 </section>
 <section id="funcionamento-do-protocolo">
 <h2>Funcionamento do protocolo<a class="headerlink" href="#funcionamento-do-protocolo" title="Link para este cabeçalho">#</a></h2>
-<p>O protocolo pode ser descrito em etapas:</p>
+<p>O protocolo pode ser descrito como uma sequência de etapas bem definidas, nas quais informação quântica e comunicação clássica são combinadas para garantir segurança.</p>
 <section id="preparacao">
 <h3>1. Preparação<a class="headerlink" href="#preparacao" title="Link para este cabeçalho">#</a></h3>
-<p>Alice gera duas sequências aleatórias:</p>
+<p>Alice gera duas sequências aleatórias independentes:</p>
 <ul class="simple">
 <li><p>uma sequência de bits</p></li>
-<li><p>uma sequência de bases</p></li>
+<li><p>uma sequência de bases de medição</p></li>
 </ul>
-<p>Ela então prepara qubits de acordo com essas escolhas e os envia para Bob.</p>
+<p>Com base nessas sequências, ela codifica cada bit em um qubit, escolhendo a base correspondente, e envia esses qubits para Bob através de um canal quântico.</p>
 </section>
 <section id="medicao">
 <h3>2. Medição<a class="headerlink" href="#medicao" title="Link para este cabeçalho">#</a></h3>
-<p>Bob, sem saber as bases usadas por Alice, escolhe aleatoriamente uma base para medir cada qubit.</p>
+<p>Bob, sem conhecimento das bases utilizadas por Alice, escolhe aleatoriamente uma base para medir cada qubit recebido.</p>
+<p>Como consequência, quando Bob utiliza a mesma base que Alice, a medição reproduz corretamente o bit enviado; caso contrário, o resultado é essencialmente aleatório.</p>
 </section>
 <section id="comparacao-de-bases">
 <h3>3. Comparação de bases<a class="headerlink" href="#comparacao-de-bases" title="Link para este cabeçalho">#</a></h3>
-<p>Após a transmissão, Alice e Bob comunicam, por um canal clássico, quais bases foram utilizadas — <strong>sem revelar os valores dos bits</strong>.</p>
-<p>Eles mantêm apenas os bits nos quais utilizaram a mesma base.</p>
+<p>Após a transmissão, Alice e Bob utilizam um canal clássico público para comparar as bases utilizadas em cada posição — <strong>sem revelar os valores dos bits</strong>.</p>
+<p>Eles então descartam todos os casos em que utilizaram bases diferentes, mantendo apenas os bits correspondentes às medições compatíveis. Esse conjunto é chamado de <strong>chave bruta (raw key)</strong>.</p>
 </section>
 <section id="deteccao-de-interceptacao">
 <h3>4. Detecção de interceptação<a class="headerlink" href="#deteccao-de-interceptacao" title="Link para este cabeçalho">#</a></h3>
-<p>Alice e Bob comparam uma parte dos bits restantes para estimar a taxa de erro.</p>
-<ul class="simple">
-<li><p>Se a taxa for baixa → a chave é considerada segura</p></li>
-<li><p>Se for alta → houve interferência (possível interceptação)</p></li>
-</ul>
+<p>Para verificar a presença de um possível espião (Eve), Alice e Bob selecionam aleatoriamente uma fração da chave bruta e comparam seus valores.</p>
+<p>A existência de discrepâncias indica a introdução de erros no sistema, que podem ser causados por ruído ou por interceptação. Uma taxa de erro acima de um determinado limiar sugere comprometimento da segurança, levando ao descarte da chave.</p>
 </section>
 <section id="geracao-da-chave">
 <h3>5. Geração da chave<a class="headerlink" href="#geracao-da-chave" title="Link para este cabeçalho">#</a></h3>
-<p>Os bits restantes formam a chave secreta compartilhada.</p>
+<p>Se a taxa de erro estiver dentro de limites aceitáveis, os bits restantes são processados por etapas adicionais, como <strong>correção de erros</strong> e <strong>amplificação de privacidade</strong>, resultando em uma chave secreta compartilhada segura.</p>
 </section>
 </section>
 <section id="execucao-simplificada-do-bb84">

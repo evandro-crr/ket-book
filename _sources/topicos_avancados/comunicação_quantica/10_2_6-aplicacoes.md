@@ -1,4 +1,4 @@
-## Aplicações de Redes Quânticas
+# Aplicações de Redes Quânticas
 
 As redes quânticas permitem a distribuição de estados quânticos e de emaranhamento entre diferentes nós, criando uma infraestrutura capaz de suportar novas formas de comunicação e processamento de informação. Diferente das redes clássicas, em que o objetivo principal é transmitir dados, redes quânticas são projetadas para **distribuir recursos quânticos**, que podem posteriormente ser utilizados em diferentes tarefas.
 

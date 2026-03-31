@@ -97,25 +97,25 @@ Além disso, em muitos protocolos, o objetivo não é transmitir diretamente um 
 
 ## Tarefas fundamentais em redes quânticas
 
-As redes quânticas são projetadas para executar tarefas específicas relacionadas à manipulação de informação.
+As redes quânticas são projetadas para executar tarefas específicas relacionadas à manipulação, transmissão e processamento de informação quântica. Essas tarefas exploram propriedades exclusivamente quânticas, como superposição e emaranhamento, permitindo funcionalidades que não possuem equivalente clássico direto.
 
 ### Distribuição de estados
 
-Consiste em enviar um estado quântico entre nós. Esse processo é limitado pela ação do canal $\mathcal{E}$, que pode degradar o estado e reduzir sua fidelidade.
+A distribuição de estados consiste na transmissão de um estado quântico entre diferentes nós da rede. Esse processo é fundamental para diversas aplicações, mas é fortemente influenciado pelas imperfeições do meio físico.
+
+Em termos formais, a evolução do estado pode ser descrita por um canal quântico $\mathcal{E}$, que introduz ruído e pode degradar a informação. Como consequência, o estado recebido geralmente apresenta uma fidelidade reduzida em relação ao estado original, tornando necessário o uso de técnicas de mitigação de erro e correção quântica.
 
 ### Distribuição de emaranhamento
 
-Uma das tarefas centrais é gerar estados emaranhados entre nós distantes. Esse recurso é essencial para protocolos como teletransporte e comunicação superdensa.
+A distribuição de emaranhamento é uma das tarefas centrais em redes quânticas. Ela consiste em gerar estados emaranhados entre nós espacialmente separados, criando correlações quânticas que não podem ser reproduzidas por sistemas clássicos.
 
-Do ponto de vista informacional, o emaranhamento pode ser tratado como um recurso que altera as capacidades da rede, permitindo realizar tarefas que não seriam possíveis sem ele.
+Esse recurso é essencial para protocolos fundamentais, como o teletransporte quântico e a comunicação superdensa. Do ponto de vista da teoria da informação, o emaranhamento pode ser interpretado como um recurso que amplia as capacidades operacionais da rede, permitindo a realização de tarefas que seriam impossíveis em sua ausência.
 
 ### Processamento distribuído
 
-Em alguns casos, operações quânticas são realizadas de forma distribuída entre diferentes nós, utilizando comunicação clássica e recursos quânticos compartilhados.
+O processamento quântico distribuído envolve a execução de operações quânticas de forma cooperativa entre diferentes nós da rede. Nesse modelo, sistemas locais são combinados por meio de comunicação clássica e compartilhamento de recursos quânticos, como estados emaranhados.
 
-Esse modelo permite contornar limitações físicas de dispositivos individuais e explorar arquiteturas modulares.
-
-## Limitações estruturais
+Essa abordagem permite contornar limitações físicas de dispositivos individuais, como número reduzido de qubits ou alta taxa de erro, ao mesmo tempo em que possibilita arquiteturas modulares e escaláveis. Além disso, o processamento distribuído é um elemento chave para o desenvolvimento de redes quânticas de larga escala.## Limitações estruturais
 
 A arquitetura de redes quânticas é fortemente impactada por limitações físicas.
 

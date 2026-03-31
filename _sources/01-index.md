@@ -57,5 +57,6 @@ Esse material cobrirá todos os conteúdos necessários para o pleno entendiment
 - **Tópicos Complementares**: Conteúdos de fronteira, tópicos para aprofundamento de estudantes, neles, você encontrará:
     - [Entendendo os Tópicos Complementares](10-avancados.md) : Como entender a aba de tópicos complementares.
     - [Teoria de Informação Quântica](topicos_avancados/teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.md) : Conceitos teóricos mais avançados em teoria de informação quântica.
+    - [Comunicação Quântica](topicos_avancados/comunicação_quantica/10_1_0-comunicacao_quantica.md): Fundamentos da comuninação quântica, com foco na criptografia quântica e internet quântica.
 
 - [Referências](10-referencias.md) : Fontes bibliográficas.
