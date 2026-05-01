@@ -73,7 +73,7 @@ parts:
           - file: topicos_avancados/2-comunicação_quantica/10_2_9-repetidores
           - file: topicos_avancados/2-comunicação_quantica/10_2_10-emaranhamento
 
-      - file: topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_0-tecnicas_de_medicao_quantica
+      - file: topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_0-tecnicas_medicao_quantica
         sections:
           - file: topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_1-medicao_projetiva
           - file: topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_2-povm
