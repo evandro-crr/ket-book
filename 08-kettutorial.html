@@ -256,7 +256,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_0-tecnicas_medicao_quantica.html">Técnicas de Medição Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_1-medicao_projetiva.html">Medição Projetiva</a></li>
-<li class="toctree-l2"><a class="reference internal" href="topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_2-povm.html">Positive-Operator Valued Measure (POVM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_2-povm.html">Medida com Valores em Operadores Positivos (POVM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_3-medicao_fraca.html">Medições Fracas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_4-tomografia.html">Tomografia Quântica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_5-classical_shadows.html">Classical Shadows</a></li>
@@ -658,9 +658,9 @@ pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f0fd4f3e0e0&gt;
-Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f0fd4f3e0e0&gt;
-Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f0fd4f3e0e0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f24f5b5a110&gt;
+Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f24f5b5a110&gt;
+Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f24f5b5a110&gt;
 </pre></div>
 </div>
 </div>
@@ -1195,9 +1195,9 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f0fd4f3e0e0&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2540/2844684540.py:35: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2538/2844684540.py:35: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
   oraculo=lambda i, tgr: PHASE(2 * pi * (fase / 10) * 2**i, tgr),
-/tmp/ipykernel_2540/2844684540.py:11: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
+/tmp/ipykernel_2538/2844684540.py:11: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
   ctrl(ctrl_qubit, PHASE(pi / 2 ** (i + 1)))(last)
 </pre></div>
 </div>
@@ -1646,7 +1646,7 @@ Estado quântico após o colapso
 </div>
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle \frac{1}{\sqrt{2}} \left|0\right&gt;+\frac{1}{\sqrt{2}} \left|3\right&gt;\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {3: 1002, 0: 1046}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {3: 1013, 0: 1035}
 </pre></div>
 </div>
 </div>
