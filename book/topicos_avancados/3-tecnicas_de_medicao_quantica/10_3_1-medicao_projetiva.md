@@ -9,32 +9,32 @@ Diferentemente da evolução unitária, a medição projetiva introduz uma dinâ
 Uma medição projetiva é descrita por um conjunto de operadores ${P_i}$ definidos sobre um espaço de Hilbert $\mathcal{H}$, satisfazendo:
 
 * **Hermiticidade:**
-  $$
+  $
   P_i = P_i^\dagger
-  $$
+  $
 
 * **Idempotência:**
-  $$
+  $
   P_i^2 = P_i
-  $$
+  $
 
 * **Ortogonalidade:**
-  $$
+  $
   P_i P_j = 0 \quad (i \neq j)
-  $$
+  $
 
 * **Completude:**
-  $$
+  $
   \sum_i P_i = I
-  $$
+  $
 
 Essas condições implicam que:
 
 * Cada $P_i$ é um **projetor ortogonal** sobre um subespaço de $\mathcal{H}$
 * O conjunto ${P_i}$ define uma **decomposição direta** do espaço:
-  $$
+  $
   \mathcal{H} = \bigoplus_i \mathcal{H}_i
-  $$
+  $
 
 Ou seja, a medição corresponde a uma **partição do espaço de estados em subespaços mutuamente ortogonais**, cada um associado a um resultado possível.
 
