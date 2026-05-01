@@ -1,0 +1,909 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Medição Projetiva &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Clique para mostrar';</script>
+    <script>let toggleHintHide = 'Clique para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_1-medicao_projetiva';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../01-index.html">
+                    Boas-vindas ao Aprenda Ket
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">Exercícios para Consolidação</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../09-algoritmos.html">Noções Fundamentais de Algoritmos Quânticos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algoritmos/busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/variacionais/09_4_0-algoritmos_variacionais.html">Algoritmos Variacionais Quânticos (VQAs)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_1-QAOA.html">Algoritmo Quântico de Otimização Aproximada (QAOA)</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_2-FALQON.html">Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tópicos Complementares</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../10-avancados.html">Entendendo os Tópicos Complementares</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.html">Teoria da Informação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_1-revisao_algebra.html">Revisão de Álgebra Linear para Informação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_2-entropia_vn.html">Entropia de von Neumann</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_3-canal_quantico.html">Canais Quânticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_4-compressao_quantica.html">Compressão Quântica de Informação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_5-teorema_de_holevo.html">Teorema de Holevo</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_0-comunicacao_quantica.html">Comunicação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_1-fundamentos_da_com_segura.html">Fundamentos da Comunicação Segura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_2-introducao_a_com_e_int_quant.html">Introdução à Comunicação e Internet Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_3-arq_e_element_RD.html">Arquitetura e Elementos de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_4-revisao_protocolos.html">Revisão de Protocolos Fundamentais de Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_5-qkd.html">Criptografia Quântica e Distribuição de Chaves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_6-aplicacoes.html">Aplicações de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_7-limites.html">Limites e Vantagens da Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_8-ruido.html">Ruído, Perdas e Desafios Práticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_9-repetidores.html">Repetidores Quânticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_10-emaranhamento.html">Destilação de Emaranhamento</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Autores e Agradecimentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../a_images/100-agradecimentos.html">Autores e Agradecimentos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../100-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_1-medicao_projetiva.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Medição Projetiva</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica">Estrutura Matemática</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-operacional">Interpretação Operacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regra-de-born-generalizada">Regra de Born Generalizada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-puro">Estado puro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-misto">Estado misto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-estatistica-da-medicao">Estrutura Estatística da Medição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-da-medicao">Dinâmica da Medição</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Estado puro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Estado misto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-importantes">Propriedades importantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medicao-como-canal-quantico">Medição como Canal Quântico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-nao-seletivo">Caso não seletivo:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decoerencia-induzida-por-medicao">Decoerência Induzida por Medição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-observaveis">Relação com Observáveis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degenerescencia">Degenerescência</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibilidade-de-medicoes">Compatibilidade de Medições</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencia-de-base">Dependência de Base</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-em-sistemas-compostos">Estrutura em Sistemas Compostos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-com-qubit">Exemplo com Qubit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-computacao-quantica">Papel em Computação Quântica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracao-de-resultado">Extração de resultado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controle-de-informacao">Controle de informação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interferencia">Interferência</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-rotinas-quanticas">Sub-rotinas quânticas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-fisica">Interpretação Física</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-informacional">Estrutura Informacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="medicao-projetiva">
+<h1>Medição Projetiva<a class="headerlink" href="#medicao-projetiva" title="Link para este cabeçalho">#</a></h1>
+<p>A <strong>medição projetiva</strong> constitui uma das estruturas fundamentais da mecânica quântica e representa o formalismo padrão para a extração de informação de sistemas quânticos. Em computação quântica, ela modela o processo pelo qual estados quânticos — potencialmente em superposição e entrelaçamento — produzem resultados clássicos observáveis.</p>
+<p>Diferentemente da evolução unitária, a medição projetiva introduz uma dinâmica intrinsecamente probabilística e não reversível, sendo responsável pela transição entre o domínio quântico e o clássico.</p>
+<section id="estrutura-matematica">
+<h2>Estrutura Matemática<a class="headerlink" href="#estrutura-matematica" title="Link para este cabeçalho">#</a></h2>
+<p>Uma medição projetiva é descrita por um conjunto de operadores <span class="math notranslate nohighlight">\({P_i}\)</span> definidos sobre um espaço de Hilbert <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>, satisfazendo:</p>
+<ul class="simple">
+<li><p><strong>Hermiticidade:</strong>
+$<span class="math notranslate nohighlight">\(
+P_i = P_i^\dagger
+\)</span>$</p></li>
+<li><p><strong>Idempotência:</strong>
+$<span class="math notranslate nohighlight">\(
+P_i^2 = P_i
+\)</span>$</p></li>
+<li><p><strong>Ortogonalidade:</strong>
+$<span class="math notranslate nohighlight">\(
+P_i P_j = 0 \quad (i \neq j)
+\)</span>$</p></li>
+<li><p><strong>Completude:</strong>
+$<span class="math notranslate nohighlight">\(
+\sum_i P_i = I
+\)</span>$</p></li>
+</ul>
+<p>Essas condições implicam que:</p>
+<ul class="simple">
+<li><p>Cada <span class="math notranslate nohighlight">\(P_i\)</span> é um <strong>projetor ortogonal</strong> sobre um subespaço de <span class="math notranslate nohighlight">\(\mathcal{H}\)</span></p></li>
+<li><p>O conjunto <span class="math notranslate nohighlight">\({P_i}\)</span> define uma <strong>decomposição direta</strong> do espaço:
+$<span class="math notranslate nohighlight">\(
+\mathcal{H} = \bigoplus_i \mathcal{H}_i
+\)</span>$</p></li>
+</ul>
+<p>Ou seja, a medição corresponde a uma <strong>partição do espaço de estados em subespaços mutuamente ortogonais</strong>, cada um associado a um resultado possível.</p>
+</section>
+<section id="interpretacao-operacional">
+<h2>Interpretação Operacional<a class="headerlink" href="#interpretacao-operacional" title="Link para este cabeçalho">#</a></h2>
+<p>Fisicamente, cada projetor <span class="math notranslate nohighlight">\(P_i\)</span> representa um possível resultado da medição. O sistema não “escolhe” um vetor específico, mas sim um <strong>subespaço</strong>.</p>
+<p>Isso é crucial em casos degenerados:</p>
+<ul class="simple">
+<li><p>Se o autovalor é degenerado, o estado colapsa para um subespaço de dimensão maior que 1</p></li>
+<li><p>A informação dentro desse subespaço pode permanecer parcialmente preservada</p></li>
+</ul>
+</section>
+<section id="regra-de-born-generalizada">
+<h2>Regra de Born Generalizada<a class="headerlink" href="#regra-de-born-generalizada" title="Link para este cabeçalho">#</a></h2>
+<p>A probabilidade de observar o resultado <span class="math notranslate nohighlight">\(i\)</span> é dada por:</p>
+<section id="estado-puro">
+<h3>Estado puro<a class="headerlink" href="#estado-puro" title="Link para este cabeçalho">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+p(i) = \bra{\psi} P_i \ket{\psi}
+\]</div>
+</section>
+<section id="estado-misto">
+<h3>Estado misto<a class="headerlink" href="#estado-misto" title="Link para este cabeçalho">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+p(i) = \mathrm{Tr}(P_i \rho)
+\]</div>
+<p>Essa formulação tem implicações importantes:</p>
+<ul class="simple">
+<li><p>A probabilidade depende apenas da <strong>projeção do estado no subespaço</strong></p></li>
+<li><p>Fases globais não têm efeito</p></li>
+<li><p>Coerências entre subespaços diferentes não contribuem diretamente para probabilidades</p></li>
+</ul>
+</section>
+</section>
+<section id="estrutura-estatistica-da-medicao">
+<h2>Estrutura Estatística da Medição<a class="headerlink" href="#estrutura-estatistica-da-medicao" title="Link para este cabeçalho">#</a></h2>
+<p>A medição projetiva define uma variável aleatória clássica <span class="math notranslate nohighlight">\(X\)</span> com distribuição:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{P}(X = i) = \mathrm{Tr}(P_i \rho)
+\]</div>
+<p>Além disso, é possível definir o valor esperado de um observável associado:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[A] = \sum_i a_i , \mathrm{Tr}(P_i \rho)
+\]</div>
+<p>Esse resultado conecta diretamente o formalismo da medição com a estatística clássica.</p>
+</section>
+<section id="dinamica-da-medicao">
+<h2>Dinâmica da Medição<a class="headerlink" href="#dinamica-da-medicao" title="Link para este cabeçalho">#</a></h2>
+<p>A medição projetiva induz uma transformação condicional no estado.</p>
+<section id="id1">
+<h3>Estado puro<a class="headerlink" href="#id1" title="Link para este cabeçalho">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} \rightarrow \frac{P_i \ket{\psi}}{\sqrt{\bra{\psi} P_i \ket{\psi}}}
+\]</div>
+</section>
+<section id="id2">
+<h3>Estado misto<a class="headerlink" href="#id2" title="Link para este cabeçalho">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\rho \rightarrow \frac{P_i \rho P_i}{\mathrm{Tr}(P_i \rho)}
+\]</div>
+</section>
+<section id="propriedades-importantes">
+<h3>Propriedades importantes<a class="headerlink" href="#propriedades-importantes" title="Link para este cabeçalho">#</a></h3>
+<ul class="simple">
+<li><p>A transformação é <strong>completamente positiva</strong></p></li>
+<li><p>Preserva o traço</p></li>
+<li><p>Não é unitária</p></li>
+<li><p>Não admite inversa (em geral)</p></li>
+</ul>
+</section>
+</section>
+<section id="medicao-como-canal-quantico">
+<h2>Medição como Canal Quântico<a class="headerlink" href="#medicao-como-canal-quantico" title="Link para este cabeçalho">#</a></h2>
+<p>A medição projetiva pode ser vista como um <strong>mapa quântico (canal)</strong>:</p>
+<section id="caso-nao-seletivo">
+<h3>Caso não seletivo:<a class="headerlink" href="#caso-nao-seletivo" title="Link para este cabeçalho">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{E}(\rho) = \sum_i P_i \rho P_i
+\]</div>
+<p>Esse mapa possui propriedades estruturais importantes:</p>
+<ul class="simple">
+<li><p>É um canal CPTP (completely positive trace-preserving)</p></li>
+<li><p>Remove coerências entre subespaços</p></li>
+<li><p>Atua como um mecanismo formal de <strong>decoerência</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="decoerencia-induzida-por-medicao">
+<h2>Decoerência Induzida por Medição<a class="headerlink" href="#decoerencia-induzida-por-medicao" title="Link para este cabeçalho">#</a></h2>
+<p>Após uma medição não seletiva, termos fora da diagonal na base dos projetores desaparecem:</p>
+<p>Se:
+$<span class="math notranslate nohighlight">\(
+\rho = \sum_{i,j} c_{ij} \ket{i}\bra{j}
+\)</span>$</p>
+<p>então:
+$<span class="math notranslate nohighlight">\(
+\mathcal{E}(\rho) = \sum_i c_{ii} \ket{i}\bra{i}
+\)</span>$</p>
+<p>Isso significa:</p>
+<ul class="simple">
+<li><p>Perda de interferência quântica</p></li>
+<li><p>Conversão de superposição em mistura clássica</p></li>
+<li><p>Redução da informação quântica acessível</p></li>
+</ul>
+</section>
+<section id="relacao-com-observaveis">
+<h2>Relação com Observáveis<a class="headerlink" href="#relacao-com-observaveis" title="Link para este cabeçalho">#</a></h2>
+<p>Toda medição projetiva está associada a um operador hermitiano <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+A = \sum_i a_i P_i
+\]</div>
+<p>Essa decomposição é única (até degenerescência) e define:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a_i\)</span>: valores possíveis medidos</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_i\)</span>: subespaços associados</p></li>
+</ul>
+<section id="degenerescencia">
+<h3>Degenerescência<a class="headerlink" href="#degenerescencia" title="Link para este cabeçalho">#</a></h3>
+<p>Se múltiplos autovetores compartilham o mesmo autovalor:</p>
+<ul class="simple">
+<li><p>O projetor é de dimensão maior</p></li>
+<li><p>A medição não distingue estados dentro desse subespaço</p></li>
+</ul>
+</section>
+</section>
+<section id="compatibilidade-de-medicoes">
+<h2>Compatibilidade de Medições<a class="headerlink" href="#compatibilidade-de-medicoes" title="Link para este cabeçalho">#</a></h2>
+<p>Duas medições são compatíveis se:</p>
+<div class="math notranslate nohighlight">
+\[
+[P_i, Q_j] = 0 \quad \forall i,j
+\]</div>
+<p>Equivalentemente:</p>
+<div class="math notranslate nohighlight">
+\[
+[A, B] = 0
+\]</div>
+<p>Consequências:</p>
+<ul class="simple">
+<li><p>Existe base comum de autovetores</p></li>
+<li><p>Medições simultâneas são possíveis</p></li>
+<li><p>A ordem das medições não altera o resultado</p></li>
+</ul>
+<p>Caso contrário:</p>
+<ul class="simple">
+<li><p>Surge perturbação do estado</p></li>
+<li><p>A ordem das medições altera probabilidades</p></li>
+</ul>
+</section>
+<section id="dependencia-de-base">
+<h2>Dependência de Base<a class="headerlink" href="#dependencia-de-base" title="Link para este cabeçalho">#</a></h2>
+<p>A medição projetiva é intrinsecamente dependente da base escolhida.</p>
+<p>Formalmente:</p>
+<div class="math notranslate nohighlight">
+\[
+P_i^{(U)} = U \ket{i}\bra{i} U^\dagger
+\]</div>
+<p>Isso implica que:</p>
+<ul class="simple">
+<li><p>Medir em uma base arbitrária equivale a aplicar uma unitária seguida de medição padrão</p></li>
+<li><p>Toda medição projetiva pode ser reduzida à base computacional</p></li>
+</ul>
+<p>Esse princípio é central em algoritmos quânticos.</p>
+</section>
+<section id="estrutura-em-sistemas-compostos">
+<h2>Estrutura em Sistemas Compostos<a class="headerlink" href="#estrutura-em-sistemas-compostos" title="Link para este cabeçalho">#</a></h2>
+<p>Para sistemas compostos:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{H} = \mathcal{H}_A \otimes \mathcal{H}_B
+\]</div>
+<p>A medição pode atuar localmente:</p>
+<div class="math notranslate nohighlight">
+\[
+P_i = P_i^{(A)} \otimes I^{(B)}
+\]</div>
+<p>Consequências:</p>
+<ul class="simple">
+<li><p>A medição em <span class="math notranslate nohighlight">\(A\)</span> pode afetar <span class="math notranslate nohighlight">\(B\)</span> se houver entrelaçamento</p></li>
+<li><p>Pode induzir colapso não local</p></li>
+</ul>
+</section>
+<section id="exemplo-com-qubit">
+<h2>Exemplo com Qubit<a class="headerlink" href="#exemplo-com-qubit" title="Link para este cabeçalho">#</a></h2>
+<p>Estado inicial:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}
+\]</div>
+<p>Projetores:</p>
+<div class="math notranslate nohighlight">
+\[
+P_0 = \ket{0}\bra{0}, \quad P_1 = \ket{1}\bra{1}
+\]</div>
+<p>Probabilidades:</p>
+<div class="math notranslate nohighlight">
+\[
+p(0) = p(1) = \frac{1}{2}
+\]</div>
+<p>Após aplicar Hadamard:</p>
+<div class="math notranslate nohighlight">
+\[
+H\ket{\psi} = \ket{0}
+\]</div>
+<p>Resultado:</p>
+<ul class="simple">
+<li><p>Probabilidade determinística</p></li>
+<li><p>Interferência construtiva</p></li>
+</ul>
+</section>
+<section id="papel-em-computacao-quantica">
+<h2>Papel em Computação Quântica<a class="headerlink" href="#papel-em-computacao-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>A medição projetiva é essencial para:</p>
+<section id="extracao-de-resultado">
+<h3>Extração de resultado<a class="headerlink" href="#extracao-de-resultado" title="Link para este cabeçalho">#</a></h3>
+<p>Todo algoritmo quântico termina com medição</p>
+</section>
+<section id="controle-de-informacao">
+<h3>Controle de informação<a class="headerlink" href="#controle-de-informacao" title="Link para este cabeçalho">#</a></h3>
+<p>Escolha da base define o que é observável</p>
+</section>
+<section id="interferencia">
+<h3>Interferência<a class="headerlink" href="#interferencia" title="Link para este cabeçalho">#</a></h3>
+<p>Resultados dependem da interferência antes da medição</p>
+</section>
+<section id="sub-rotinas-quanticas">
+<h3>Sub-rotinas quânticas<a class="headerlink" href="#sub-rotinas-quanticas" title="Link para este cabeçalho">#</a></h3>
+<p>Utilizada em:</p>
+<ul class="simple">
+<li><p>preparação de estados</p></li>
+<li><p>verificação</p></li>
+<li><p>filtragem de resultados</p></li>
+</ul>
+</section>
+</section>
+<section id="interpretacao-fisica">
+<h2>Interpretação Física<a class="headerlink" href="#interpretacao-fisica" title="Link para este cabeçalho">#</a></h2>
+<p>A medição projetiva levanta questões fundamentais:</p>
+<ul class="simple">
+<li><p>O colapso não é descrito pela equação de Schrödinger</p></li>
+<li><p>Introduz descontinuidade na evolução do estado</p></li>
+<li><p>Depende implicitamente de um aparato clássico</p></li>
+</ul>
+<p>Apesar disso:</p>
+<ul class="simple">
+<li><p>É extremamente bem validada experimentalmente</p></li>
+<li><p>Funciona como modelo operacional preciso</p></li>
+</ul>
+</section>
+<section id="estrutura-informacional">
+<h2>Estrutura Informacional<a class="headerlink" href="#estrutura-informacional" title="Link para este cabeçalho">#</a></h2>
+<p>Do ponto de vista da teoria da informação:</p>
+<ul class="simple">
+<li><p>A medição reduz a entropia quântica condicionalmente</p></li>
+<li><p>Pode aumentar entropia média (caso não seletivo)</p></li>
+<li><p>Converte informação quântica em clássica</p></li>
+</ul>
+</section>
+<section id="conclusao">
+<h2>Conclusão<a class="headerlink" href="#conclusao" title="Link para este cabeçalho">#</a></h2>
+<p>A medição projetiva é uma estrutura matemática rigorosa que:</p>
+<ul class="simple">
+<li><p>Define como resultados clássicos emergem de estados quânticos</p></li>
+<li><p>Introduz irreversibilidade e aleatoriedade</p></li>
+<li><p>Depende criticamente da escolha de base</p></li>
+<li><p>Atua como mecanismo formal de decoerência</p></li>
+</ul>
+<p>Ela não é apenas um detalhe do formalismo, é o ponto onde toda computação quântica se conecta com o mundo observável.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./topicos_avancados/3-tecnicas_de_medicao_quantica"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica">Estrutura Matemática</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-operacional">Interpretação Operacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regra-de-born-generalizada">Regra de Born Generalizada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-puro">Estado puro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-misto">Estado misto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-estatistica-da-medicao">Estrutura Estatística da Medição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-da-medicao">Dinâmica da Medição</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Estado puro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Estado misto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-importantes">Propriedades importantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medicao-como-canal-quantico">Medição como Canal Quântico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-nao-seletivo">Caso não seletivo:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decoerencia-induzida-por-medicao">Decoerência Induzida por Medição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-observaveis">Relação com Observáveis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degenerescencia">Degenerescência</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibilidade-de-medicoes">Compatibilidade de Medições</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencia-de-base">Dependência de Base</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-em-sistemas-compostos">Estrutura em Sistemas Compostos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-com-qubit">Exemplo com Qubit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-computacao-quantica">Papel em Computação Quântica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracao-de-resultado">Extração de resultado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controle-de-informacao">Controle de informação</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interferencia">Interferência</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-rotinas-quanticas">Sub-rotinas quânticas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-fisica">Interpretação Física</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-informacional">Estrutura Informacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Grupo de Computação Quântica - UFSC
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

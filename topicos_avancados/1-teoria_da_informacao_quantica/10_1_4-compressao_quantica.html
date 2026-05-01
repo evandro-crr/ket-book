@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Compressão Quântica de Informação &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Clique para mostrar';</script>
+    <script>let toggleHintHide = 'Clique para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'topicos_avancados/1-teoria_da_informacao_quantica/10_1_4-compressao_quantica';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Teorema de Holevo" href="10_1_5-teorema_de_holevo.html" />
+    <link rel="prev" title="Canais Quânticos" href="10_1_3-canal_quantico.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../01-index.html">
+                    Boas-vindas ao Aprenda Ket
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">Exercícios para Consolidação</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../09-algoritmos.html">Noções Fundamentais de Algoritmos Quânticos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algoritmos/busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/variacionais/09_4_0-algoritmos_variacionais.html">Algoritmos Variacionais Quânticos (VQAs)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_1-QAOA.html">Algoritmo Quântico de Otimização Aproximada (QAOA)</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_2-FALQON.html">Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tópicos Complementares</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../10-avancados.html">Entendendo os Tópicos Complementares</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_1_0-teoria_informacao_quantica.html">Teoria da Informação Quântica</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="10_1_1-revisao_algebra.html">Revisão de Álgebra Linear para Informação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_1_2-entropia_vn.html">Entropia de von Neumann</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_1_3-canal_quantico.html">Canais Quânticos</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Compressão Quântica de Informação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_1_5-teorema_de_holevo.html">Teorema de Holevo</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_0-comunicacao_quantica.html">Comunicação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_1-fundamentos_da_com_segura.html">Fundamentos da Comunicação Segura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_2-introducao_a_com_e_int_quant.html">Introdução à Comunicação e Internet Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_3-arq_e_element_RD.html">Arquitetura e Elementos de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_4-revisao_protocolos.html">Revisão de Protocolos Fundamentais de Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_5-qkd.html">Criptografia Quântica e Distribuição de Chaves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_6-aplicacoes.html">Aplicações de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_7-limites.html">Limites e Vantagens da Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_8-ruido.html">Ruído, Perdas e Desafios Práticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_9-repetidores.html">Repetidores Quânticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_10-emaranhamento.html">Destilação de Emaranhamento</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Autores e Agradecimentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../a_images/100-agradecimentos.html">Autores e Agradecimentos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../100-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/topicos_avancados/1-teoria_da_informacao_quantica/10_1_4-compressao_quantica.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Compressão Quântica de Informação</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-problema-da-compressao-quantica">O problema da compressão quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-schumacher">Teorema de Schumacher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subespaco-tipico">Subespaço típico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-intuitiva">Interpretação intuitiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-simples">Exemplo simples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencas-em-relacao-a-compressao-classica">Diferenças em relação à compressão clássica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia">Importância</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="compressao-quantica-de-informacao">
+<h1>Compressão Quântica de Informação<a class="headerlink" href="#compressao-quantica-de-informacao" title="Link para este cabeçalho">#</a></h1>
+<p>A <strong>compressão quântica de informação</strong> estuda como representar estados quânticos utilizando a menor quantidade possível de recursos, preservando a informação essencial. Esse problema é a extensão natural da compressão de dados clássica para o contexto quântico.</p>
+<p>Enquanto na teoria clássica a compressão busca reduzir o número de bits necessários para representar uma fonte de informação, na teoria quântica o objetivo é minimizar o número de <strong>qubits</strong> necessários para representar estados provenientes de uma fonte quântica.</p>
+<p>O resultado central dessa área é o <strong>teorema de compressão de Schumacher</strong>, que estabelece o limite fundamental para a compressão de informação quântica.</p>
+<section id="o-problema-da-compressao-quantica">
+<h2>O problema da compressão quântica<a class="headerlink" href="#o-problema-da-compressao-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>Considere uma fonte quântica que emite estados <span class="math notranslate nohighlight">\(\ket{\psi_i}\)</span> com probabilidades <span class="math notranslate nohighlight">\(p_i\)</span>. Essa fonte pode ser descrita por uma matriz densidade</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_i p_i \ket{\psi_i}\bra{\psi_i}
+\]</div>
+<p>O objetivo da compressão quântica é:</p>
+<ul class="simple">
+<li><p>codificar sequências de estados emitidos pela fonte</p></li>
+<li><p>utilizando o menor número possível de qubits</p></li>
+<li><p>permitindo recuperar os estados originais com alta fidelidade</p></li>
+</ul>
+<p>Diferentemente do caso clássico, não podemos simplesmente “ler” os estados para comprimi-los, pois a <strong>medida quântica destrói informação</strong>. Assim, a compressão deve ser feita diretamente sobre os estados quânticos.</p>
+</section>
+<section id="teorema-de-schumacher">
+<h2>Teorema de Schumacher<a class="headerlink" href="#teorema-de-schumacher" title="Link para este cabeçalho">#</a></h2>
+<p>O <strong>teorema de Schumacher</strong> é o análogo quântico do teorema de compressão de Shannon.</p>
+<p>Ele afirma que:</p>
+<blockquote>
+<div><p>É possível comprimir a saída de uma fonte quântica para aproximadamente <span class="math notranslate nohighlight">\(S(\rho)\)</span> qubits por estado, onde <span class="math notranslate nohighlight">\(S(\rho)\)</span> é a entropia de von Neumann da fonte.</p>
+</div></blockquote>
+<p>Mais precisamente:</p>
+<ul class="simple">
+<li><p>para sequências longas de estados (regime assintótico),</p></li>
+<li><p>existe um esquema de compressão que utiliza cerca de</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+n S(\rho)
+\]</div>
+<p>qubits para representar <span class="math notranslate nohighlight">\(n\)</span> estados,</p>
+<ul class="simple">
+<li><p>com erro arbitrariamente pequeno.</p></li>
+</ul>
+<p>Esse resultado mostra que a <strong>entropia de von Neumann mede a quantidade mínima de recursos necessários para armazenar informação quântica</strong>.</p>
+</section>
+<section id="subespaco-tipico">
+<h2>Subespaço típico<a class="headerlink" href="#subespaco-tipico" title="Link para este cabeçalho">#</a></h2>
+<p>A ideia central por trás da compressão quântica é o conceito de <strong>subespaço típico</strong>.</p>
+<p>Para uma sequência de muitos estados emitidos pela fonte, a maior parte da probabilidade está concentrada em um subespaço do espaço de Hilbert cujo tamanho é aproximadamente</p>
+<div class="math notranslate nohighlight">
+\[
+2^{n S(\rho)}
+\]</div>
+<p>Isso significa que:</p>
+<ul class="simple">
+<li><p>embora o espaço total tenha dimensão exponencial maior,</p></li>
+<li><p>os estados relevantes ocupam apenas uma fração pequena desse espaço.</p></li>
+</ul>
+<p>A compressão consiste em:</p>
+<ol class="arabic simple">
+<li><p>projetar o estado no subespaço típico</p></li>
+<li><p>codificar apenas essa parte relevante</p></li>
+<li><p>descartar o restante</p></li>
+</ol>
+<p>Como a probabilidade de sair desse subespaço é muito pequena, a informação é preservada com alta fidelidade.</p>
+</section>
+<section id="interpretacao-intuitiva">
+<h2>Interpretação intuitiva<a class="headerlink" href="#interpretacao-intuitiva" title="Link para este cabeçalho">#</a></h2>
+<p>A compressão quântica pode ser entendida como uma forma de remover <strong>redundância quântica</strong>.</p>
+<p>Se uma fonte gera estados com estrutura ou correlação, então nem todos os graus de liberdade do sistema são igualmente relevantes. A entropia de von Neumann quantifica exatamente essa redundância.</p>
+<ul class="simple">
+<li><p>baixa entropia → alta redundância → maior compressão</p></li>
+<li><p>alta entropia → pouca redundância → menor compressão</p></li>
+</ul>
+<p>No caso extremo:</p>
+<ul class="simple">
+<li><p>se <span class="math notranslate nohighlight">\(S(\rho)=0\)</span>, o estado é puro → não há incerteza → compressão máxima</p></li>
+<li><p>se <span class="math notranslate nohighlight">\(S(\rho)=1\)</span> (para um qubit), o estado é maximamente misto → nenhuma compressão possível</p></li>
+</ul>
+</section>
+<section id="exemplo-simples">
+<h2>Exemplo simples<a class="headerlink" href="#exemplo-simples" title="Link para este cabeçalho">#</a></h2>
+<p>Considere uma fonte que emite:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\ket{0}\)</span> com probabilidade <span class="math notranslate nohighlight">\(0.9\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ket{1}\)</span> com probabilidade <span class="math notranslate nohighlight">\(0.1\)</span></p></li>
+</ul>
+<p>A matriz densidade é</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = 0.9 \ket{0}\bra{0} + 0.1 \ket{1}\bra{1}
+\]</div>
+<p>A entropia de von Neumann é</p>
+<div class="math notranslate nohighlight">
+\[
+S(\rho) = - (0.9 \log_2 0.9 + 0.1 \log_2 0.1) \approx 0.47
+\]</div>
+<p>Isso significa que, em média, cada estado pode ser comprimido para cerca de <strong>0.47 qubits</strong>, no regime assintótico.</p>
+<p>Esse resultado é análogo à compressão clássica, mas aqui ocorre <strong>sem medir os estados</strong>.</p>
+</section>
+<section id="diferencas-em-relacao-a-compressao-classica">
+<h2>Diferenças em relação à compressão clássica<a class="headerlink" href="#diferencas-em-relacao-a-compressao-classica" title="Link para este cabeçalho">#</a></h2>
+<p>Embora exista uma forte analogia com a teoria clássica, há diferenças fundamentais:</p>
+<ul class="simple">
+<li><p>estados quânticos <strong>não podem ser copiados</strong> (teorema do no-cloning)</p></li>
+<li><p>não é possível medir os estados sem perturbá-los</p></li>
+<li><p>a compressão ocorre em termos de <strong>subespaços</strong>, não apenas sequências de símbolos</p></li>
+</ul>
+<p>Essas diferenças tornam a compressão quântica conceitualmente mais sutil.</p>
+</section>
+<section id="importancia">
+<h2>Importância<a class="headerlink" href="#importancia" title="Link para este cabeçalho">#</a></h2>
+<p>A compressão quântica de informação é um resultado central da teoria da informação quântica.</p>
+<p>Ela:</p>
+<ul class="simple">
+<li><p>fornece uma interpretação operacional da <strong>entropia de von Neumann</strong></p></li>
+<li><p>estabelece limites fundamentais para <strong>armazenamento de informação quântica</strong></p></li>
+<li><p>conecta teoria da informação com <strong>estrutura do espaço de Hilbert</strong></p></li>
+<li><p>serve de base para resultados mais avançados em <strong>comunicação quântica</strong></p></li>
+</ul>
+<p>Assim, o teorema de Schumacher mostra que a entropia quântica não é apenas uma quantidade abstrata, mas representa diretamente o <strong>custo físico de armazenar informação quântica</strong>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./topicos_avancados/1-teoria_da_informacao_quantica"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_1_3-canal_quantico.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Canais Quânticos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_1_5-teorema_de_holevo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Teorema de Holevo</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-problema-da-compressao-quantica">O problema da compressão quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-schumacher">Teorema de Schumacher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subespaco-tipico">Subespaço típico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-intuitiva">Interpretação intuitiva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-simples">Exemplo simples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencas-em-relacao-a-compressao-classica">Diferenças em relação à compressão clássica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia">Importância</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Grupo de Computação Quântica - UFSC
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

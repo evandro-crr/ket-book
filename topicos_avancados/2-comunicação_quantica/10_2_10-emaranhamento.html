@@ -1,0 +1,746 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Destilação de Emaranhamento &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Clique para mostrar';</script>
+    <script>let toggleHintHide = 'Clique para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'topicos_avancados/2-comunicação_quantica/10_2_10-emaranhamento';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Autores e Agradecimentos" href="../../a_images/100-agradecimentos.html" />
+    <link rel="prev" title="Repetidores Quânticos" href="10_2_9-repetidores.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../01-index.html">
+                    Boas-vindas ao Aprenda Ket
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">Exercícios para Consolidação</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../09-algoritmos.html">Noções Fundamentais de Algoritmos Quânticos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algoritmos/busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/variacionais/09_4_0-algoritmos_variacionais.html">Algoritmos Variacionais Quânticos (VQAs)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_1-QAOA.html">Algoritmo Quântico de Otimização Aproximada (QAOA)</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_2-FALQON.html">Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tópicos Complementares</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../10-avancados.html">Entendendo os Tópicos Complementares</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.html">Teoria da Informação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_1-revisao_algebra.html">Revisão de Álgebra Linear para Informação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_2-entropia_vn.html">Entropia de von Neumann</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_3-canal_quantico.html">Canais Quânticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_4-compressao_quantica.html">Compressão Quântica de Informação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_5-teorema_de_holevo.html">Teorema de Holevo</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_2_0-comunicacao_quantica.html">Comunicação Quântica</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="10_2_1-fundamentos_da_com_segura.html">Fundamentos da Comunicação Segura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_2-introducao_a_com_e_int_quant.html">Introdução à Comunicação e Internet Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_3-arq_e_element_RD.html">Arquitetura e Elementos de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_4-revisao_protocolos.html">Revisão de Protocolos Fundamentais de Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_5-qkd.html">Criptografia Quântica e Distribuição de Chaves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_6-aplicacoes.html">Aplicações de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_7-limites.html">Limites e Vantagens da Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_8-ruido.html">Ruído, Perdas e Desafios Práticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_2_9-repetidores.html">Repetidores Quânticos</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Destilação de Emaranhamento</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Autores e Agradecimentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../a_images/100-agradecimentos.html">Autores e Agradecimentos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../100-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/topicos_avancados/2-comunicação_quantica/10_2_10-emaranhamento.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Destilação de Emaranhamento</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao">Motivação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideia-central">Ideia central</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-geral-de-um-protocolo-de-destilacao">Estrutura geral de um protocolo de destilação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-conceitual-detalhado">Exemplo conceitual detalhado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-em-termos-de-informacao">Interpretação em termos de informação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fidelidade-e-eficiencia">Fidelidade e eficiência</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-fundamentais">Limites fundamentais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-redes-quanticas">Papel em redes quânticas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-com-repetidores-quanticos">Integração com repetidores quânticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desafios-praticos">Desafios práticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-geral">Interpretação geral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observacao">Observação</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="destilacao-de-emaranhamento">
+<h1>Destilação de Emaranhamento<a class="headerlink" href="#destilacao-de-emaranhamento" title="Link para este cabeçalho">#</a></h1>
+<p>A destilação de emaranhamento é um processo que permite transformar vários pares de estados quânticos <strong>imperfeitamente emaranhados</strong> em um número menor de pares com <strong>maior fidelidade de emaranhamento</strong>.</p>
+<p>Em implementações reais de comunicação quântica, os estados emaranhados distribuídos entre nós nunca são ideais. Interações com o ambiente, ruído nos canais e imperfeições experimentais fazem com que esses estados se tornem mistos e parcialmente degradados. Como consequência, o emaranhamento disponível não é suficiente, por si só, para executar protocolos de forma confiável.</p>
+<p>A destilação surge como um mecanismo para contornar esse problema. Em vez de tentar evitar completamente o ruído — o que é impossível na prática — ela permite <strong>recuperar a qualidade do recurso quântico a partir de múltiplas cópias imperfeitas</strong>.</p>
+<p>Esse processo é fundamental em redes quânticas, pois permite transformar recursos imperfeitos em recursos utilizáveis, viabilizando protocolos em cenários realistas.</p>
+<section id="motivacao">
+<h2>Motivação<a class="headerlink" href="#motivacao" title="Link para este cabeçalho">#</a></h2>
+<p>Considere que Alice e Bob compartilham um grande número de pares emaranhados, cada um descrito por um estado misto <span class="math notranslate nohighlight">\(\rho\)</span>, próximo de um estado de Bell, mas com fidelidade reduzida.</p>
+<p>Se esses pares forem utilizados diretamente:</p>
+<ul class="simple">
+<li><p>a fidelidade do teletransporte diminui</p></li>
+<li><p>a taxa de erro em protocolos aumenta</p></li>
+<li><p>a segurança em QKD pode ser comprometida</p></li>
+</ul>
+<p>Do ponto de vista informacional, esses estados possuem <strong>correlações quânticas úteis misturadas com ruído</strong>, o que reduz a quantidade de informação que pode ser extraída de forma confiável.</p>
+<p>A destilação permite separar esses dois componentes:</p>
+<ul class="simple">
+<li><p>preservar correlações úteis</p></li>
+<li><p>descartar contribuições ruidosas</p></li>
+</ul>
+</section>
+<section id="ideia-central">
+<h2>Ideia central<a class="headerlink" href="#ideia-central" title="Link para este cabeçalho">#</a></h2>
+<p>A ideia fundamental da destilação é utilizar múltiplos pares imperfeitos e aplicar apenas:</p>
+<ul class="simple">
+<li><p>operações locais (LO)</p></li>
+<li><p>comunicação clássica (CC)</p></li>
+</ul>
+<p>para extrair pares com maior qualidade.</p>
+<p>Esse tipo de operação é conhecido como <strong>LOCC (Local Operations and Classical Communication)</strong>.</p>
+<p>O ponto crucial é que, mesmo sem troca adicional de estados quânticos, Alice e Bob conseguem manipular as correlações existentes para obter um recurso mais útil.</p>
+<p>O processo envolve:</p>
+<ul class="simple">
+<li><p>combinar pares de estados</p></li>
+<li><p>correlacionar seus erros</p></li>
+<li><p>medir parte dos sistemas</p></li>
+<li><p>usar informação clássica para decidir quais pares manter</p></li>
+</ul>
+<p>Como resultado, há uma troca fundamental:</p>
+<blockquote>
+<div><p>quantidade de pares ↓
+qualidade do emaranhamento ↑</p>
+</div></blockquote>
+</section>
+<section id="estrutura-geral-de-um-protocolo-de-destilacao">
+<h2>Estrutura geral de um protocolo de destilação<a class="headerlink" href="#estrutura-geral-de-um-protocolo-de-destilacao" title="Link para este cabeçalho">#</a></h2>
+<p>Um protocolo típico de destilação segue uma sequência estruturada:</p>
+<ol class="arabic simple">
+<li><p><strong>Seleção de pares</strong>
+Dois ou mais pares emaranhados são escolhidos como entrada do processo.</p></li>
+<li><p><strong>Operações locais</strong>
+Alice e Bob aplicam operações unitárias locais (como CNOT) entre seus qubits.</p></li>
+<li><p><strong>Medição parcial</strong>
+Parte dos qubits é medida, introduzindo um colapso controlado no sistema.</p></li>
+<li><p><strong>Comunicação clássica</strong>
+Os resultados das medições são compartilhados.</p></li>
+<li><p><strong>Pós-seleção</strong>
+Com base nesses resultados, decide-se se o par restante é mantido ou descartado.</p></li>
+</ol>
+<p>Esse processo é repetido iterativamente, aumentando progressivamente a fidelidade dos pares sobreviventes.</p>
+</section>
+<section id="exemplo-conceitual-detalhado">
+<h2>Exemplo conceitual detalhado<a class="headerlink" href="#exemplo-conceitual-detalhado" title="Link para este cabeçalho">#</a></h2>
+<p>Considere dois pares emaranhados compartilhados entre Alice e Bob:</p>
+<ul class="simple">
+<li><p>Alice possui <span class="math notranslate nohighlight">\(A_1, A_2\)</span></p></li>
+<li><p>Bob possui <span class="math notranslate nohighlight">\(B_1, B_2\)</span></p></li>
+</ul>
+<p>O estado total pode ser visto como <span class="math notranslate nohighlight">\(\rho \otimes \rho\)</span>, onde cada <span class="math notranslate nohighlight">\(\rho\)</span> é imperfeito.</p>
+<p>Um protocolo simples pode seguir:</p>
+<ul class="simple">
+<li><p>aplicar CNOT de <span class="math notranslate nohighlight">\(A_1 \rightarrow A_2\)</span> e <span class="math notranslate nohighlight">\(B_1 \rightarrow B_2\)</span></p></li>
+<li><p>medir <span class="math notranslate nohighlight">\(A_2\)</span> e <span class="math notranslate nohighlight">\(B_2\)</span></p></li>
+<li><p>comparar os resultados</p></li>
+</ul>
+<p>Se os resultados coincidirem, o par <span class="math notranslate nohighlight">\((A_1, B_1)\)</span> é mantido; caso contrário, é descartado.</p>
+<p>Esse procedimento funciona porque:</p>
+<ul class="simple">
+<li><p>erros tendem a se propagar para o par medido</p></li>
+<li><p>a pós-seleção elimina estados com maior ruído</p></li>
+<li><p>o par restante possui maior fidelidade média</p></li>
+</ul>
+</section>
+<section id="interpretacao-em-termos-de-informacao">
+<h2>Interpretação em termos de informação<a class="headerlink" href="#interpretacao-em-termos-de-informacao" title="Link para este cabeçalho">#</a></h2>
+<p>A destilação pode ser entendida como um processo de <strong>concentração de informação quântica</strong>.</p>
+<p>Inicialmente, a informação útil (emaranhamento) está distribuída de forma diluída em vários pares. Após o processo, essa informação é concentrada em menos pares, mas com maior qualidade.</p>
+<p>Do ponto de vista da teoria da informação:</p>
+<ul class="simple">
+<li><p>a entropia do sistema selecionado diminui</p></li>
+<li><p>as correlações quânticas aumentam</p></li>
+<li><p>a informação útil torna-se mais acessível</p></li>
+</ul>
+<p>Esse processo é análogo à compressão de informação, mas aplicado a <strong>correlações quânticas</strong> em vez de bits clássicos.</p>
+</section>
+<section id="fidelidade-e-eficiencia">
+<h2>Fidelidade e eficiência<a class="headerlink" href="#fidelidade-e-eficiencia" title="Link para este cabeçalho">#</a></h2>
+<p>A qualidade dos estados é medida pela fidelidade em relação a um estado ideal:</p>
+<div class="math notranslate nohighlight">
+\[
+F = \bra{\Phi^+} \rho \ket{\Phi^+}
+\]</div>
+<p>A destilação aumenta essa fidelidade ao longo das iterações.</p>
+<p>No entanto, esse ganho tem custo:</p>
+<ul class="simple">
+<li><p>o número de pares diminui</p></li>
+<li><p>o processo é probabilístico</p></li>
+<li><p>múltiplas rodadas podem ser necessárias</p></li>
+</ul>
+<p>A eficiência do protocolo depende de:</p>
+<ul class="simple">
+<li><p>fidelidade inicial</p></li>
+<li><p>tipo de ruído</p></li>
+<li><p>precisão das operações</p></li>
+</ul>
+</section>
+<section id="limites-fundamentais">
+<h2>Limites fundamentais<a class="headerlink" href="#limites-fundamentais" title="Link para este cabeçalho">#</a></h2>
+<p>A destilação não é sempre possível.</p>
+<p>Existem estados conhecidos como <strong>emaranhamento ligado (bound entanglement)</strong> que, embora sejam emaranhados, não podem ser convertidos em estados de alta fidelidade via LOCC.</p>
+<p>Além disso:</p>
+<ul class="simple">
+<li><p>a destilação requer múltiplas cópias independentes</p></li>
+<li><p>erros nas operações locais podem introduzir ruído adicional</p></li>
+<li><p>existe um limiar mínimo de fidelidade para que o processo funcione</p></li>
+</ul>
+<p>Esses limites mostram que a destilação é poderosa, mas não universal.</p>
+</section>
+<section id="papel-em-redes-quanticas">
+<h2>Papel em redes quânticas<a class="headerlink" href="#papel-em-redes-quanticas" title="Link para este cabeçalho">#</a></h2>
+<p>Em redes quânticas, a destilação é essencial para manter a qualidade do emaranhamento ao longo de múltiplos segmentos.</p>
+<p>O fluxo típico é:</p>
+<ol class="arabic simple">
+<li><p>pares emaranhados são distribuídos localmente</p></li>
+<li><p>esses pares são degradados por ruído</p></li>
+<li><p>a destilação melhora sua qualidade</p></li>
+<li><p>entanglement swapping estende o alcance</p></li>
+</ol>
+<p>Sem destilação, erros se acumulam rapidamente, tornando inviável a comunicação em larga escala.</p>
+</section>
+<section id="integracao-com-repetidores-quanticos">
+<h2>Integração com repetidores quânticos<a class="headerlink" href="#integracao-com-repetidores-quanticos" title="Link para este cabeçalho">#</a></h2>
+<p>Repetidores quânticos utilizam destilação como uma etapa fundamental.</p>
+<p>A arquitetura completa envolve:</p>
+<ul class="simple">
+<li><p>distribuição de emaranhamento em pequenos segmentos</p></li>
+<li><p>destilação para aumentar fidelidade</p></li>
+<li><p>entanglement swapping para conectar segmentos</p></li>
+</ul>
+<p>Essa combinação permite transformar canais altamente ruidosos em um recurso útil para comunicação de longa distância.</p>
+</section>
+<section id="desafios-praticos">
+<h2>Desafios práticos<a class="headerlink" href="#desafios-praticos" title="Link para este cabeçalho">#</a></h2>
+<p>Apesar de sua importância, a implementação de destilação enfrenta desafios significativos:</p>
+<ul class="simple">
+<li><p>necessidade de múltiplas cópias do estado</p></li>
+<li><p>operações locais de alta fidelidade</p></li>
+<li><p>memória quântica para armazenamento temporário</p></li>
+<li><p>comunicação clássica eficiente</p></li>
+</ul>
+<p>Além disso, o custo em recursos cresce rapidamente com o tamanho da rede.</p>
+</section>
+<section id="interpretacao-geral">
+<h2>Interpretação geral<a class="headerlink" href="#interpretacao-geral" title="Link para este cabeçalho">#</a></h2>
+<p>A destilação de emaranhamento mostra que, em sistemas quânticos, não basta apenas transmitir informação — é necessário <strong>gerenciar a qualidade dos recursos distribuídos</strong>.</p>
+<p>Ela introduz um novo paradigma:</p>
+<ul class="simple">
+<li><p>informação quântica pode ser degradada</p></li>
+<li><p>mas também pode ser parcialmente recuperada</p></li>
+<li><p>desde que múltiplos recursos estejam disponíveis</p></li>
+</ul>
+</section>
+<section id="observacao">
+<h2>Observação<a class="headerlink" href="#observacao" title="Link para este cabeçalho">#</a></h2>
+<p>A destilação de emaranhamento é um dos elementos centrais que tornam viável a comunicação quântica em cenários realistas.</p>
+<p>Ela conecta diretamente conceitos de teoria da informação, física quântica e arquitetura de redes, mostrando como limitações físicas podem ser contornadas por meio de estratégias informacionais.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./topicos_avancados/2-comunicação_quantica"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_2_9-repetidores.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Repetidores Quânticos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../a_images/100-agradecimentos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Autores e Agradecimentos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao">Motivação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideia-central">Ideia central</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-geral-de-um-protocolo-de-destilacao">Estrutura geral de um protocolo de destilação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-conceitual-detalhado">Exemplo conceitual detalhado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-em-termos-de-informacao">Interpretação em termos de informação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fidelidade-e-eficiencia">Fidelidade e eficiência</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limites-fundamentais">Limites fundamentais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-redes-quanticas">Papel em redes quânticas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-com-repetidores-quanticos">Integração com repetidores quânticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desafios-praticos">Desafios práticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-geral">Interpretação geral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observacao">Observação</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Grupo de Computação Quântica - UFSC
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

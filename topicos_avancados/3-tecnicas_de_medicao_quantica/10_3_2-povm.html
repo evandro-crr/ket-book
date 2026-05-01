@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Positive-Operator Valued Measure (POVM) &#8212; Computação Quântica com Ket</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Clique para mostrar';</script>
+    <script>let toggleHintHide = 'Clique para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_2-povm';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../01-index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gcq.svg" class="logo__image only-light" alt="Computação Quântica com Ket - Home"/>
+    <script>document.write(`<img src="../../_static/gcq.svg" class="logo__image only-dark" alt="Computação Quântica com Ket - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Buscar</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../01-index.html">
+                    Boas-vindas ao Aprenda Ket
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pré-requisitos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../02-pytutorial.html">Tutorial de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-complexos.html">Números Complexos para Computação Quântica</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04-algebra.html">Álgebra Linear para Computação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_1-basicos.html">Conceitos Básicos de Álgebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_2-transformacoes.html">Transformações Lineares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_3-operadores.html">Autovalores, Autovetores e Operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algebra/04_4-prod_tensorial.html">Produto Tensorial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06-computacao_classica.html">Computação Clássica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">Exercícios para Consolidação</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05-postulados.html">Postulados da Mecânica Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07-computacao_quantica.html">Computação Quântica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08-kettutorial.html">Programacão Quântica com Ket</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../09-algoritmos.html">Noções Fundamentais de Algoritmos Quânticos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_0-algoritmos_introdut%C3%B3rios.html">Algoritmos Introdutórios</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_1-deutsch-jozsa.html">Problema de Deutsch-Jozsa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_2-bernstein-vazirani.html">Problema de Bernstein-Vazirani</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/introdut%C3%B3rios/09_1_3-simon.html">Problema de Simon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../algoritmos/busca/09_2_0-grover.html">Algoritmos de Busca</a></li>
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.html">Algoritmos Baseados em QFT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_1-qft.html">Transformada Quântica de Fourier (QFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_2-qpe.html">Estimativa de Fase Quântica (QPE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/baseados_em_QFT/09_3_3-shor.html">Fatoração de Números Inteiros (Shor)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../algoritmos/variacionais/09_4_0-algoritmos_variacionais.html">Algoritmos Variacionais Quânticos (VQAs)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_1-QAOA.html">Algoritmo Quântico de Otimização Aproximada (QAOA)</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../algoritmos/variacionais/09_4_2-FALQON.html">Algoritmo Baseado em Feedback para Otimização Quântica Linear (FALQON)</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tópicos Complementares</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../10-avancados.html">Entendendo os Tópicos Complementares</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.html">Teoria da Informação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_1-revisao_algebra.html">Revisão de Álgebra Linear para Informação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_2-entropia_vn.html">Entropia de von Neumann</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_3-canal_quantico.html">Canais Quânticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_4-compressao_quantica.html">Compressão Quântica de Informação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-teoria_da_informacao_quantica/10_1_5-teorema_de_holevo.html">Teorema de Holevo</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_0-comunicacao_quantica.html">Comunicação Quântica</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_1-fundamentos_da_com_segura.html">Fundamentos da Comunicação Segura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_2-introducao_a_com_e_int_quant.html">Introdução à Comunicação e Internet Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_3-arq_e_element_RD.html">Arquitetura e Elementos de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_4-revisao_protocolos.html">Revisão de Protocolos Fundamentais de Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_5-qkd.html">Criptografia Quântica e Distribuição de Chaves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_6-aplicacoes.html">Aplicações de Redes Quânticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_7-limites.html">Limites e Vantagens da Comunicação Quântica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_8-ruido.html">Ruído, Perdas e Desafios Práticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_9-repetidores.html">Repetidores Quânticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-comunica%C3%A7%C3%A3o_quantica/10_2_10-emaranhamento.html">Destilação de Emaranhamento</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Autores e Agradecimentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../a_images/100-agradecimentos.html">Autores e Agradecimentos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../100-referencias.html">Referências</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_2-povm.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Positive-Operator Valued Measure (POVM)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-de-discriminacao-de-estados">Exemplo de Discriminação de Estados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#realizacao-de-povm-via-pvm">Realização de POVM via PVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-de-implementacao-fisica">Exemplo de Implementação Física</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="positive-operator-valued-measure-povm">
+<h1>Positive-Operator Valued Measure (POVM)<a class="headerlink" href="#positive-operator-valued-measure-povm" title="Link para este cabeçalho">#</a></h1>
+<p>A <strong>Positive-Operator Valued Measure (POVM)</strong> surge como uma generalização direta das medições projetivas (PVM), obtida ao relaxar duas de suas restrições estruturais fundamentais:</p>
+<ul class="simple">
+<li><p>a <strong>idempotência</strong> (<span class="math notranslate nohighlight">\(P_i^2 = P_i\)</span>)</p></li>
+<li><p>a <strong>ortogonalidade</strong> (<span class="math notranslate nohighlight">\(P_i P_j = 0\)</span>, para <span class="math notranslate nohighlight">\( i \neq j\)</span>)</p></li>
+</ul>
+<p>Ao remover essas condições, obtemos uma classe mais ampla de operadores de medição, capazes de descrever processos físicos mais gerais.</p>
+<p>Uma POVM é então definida por um conjunto de operadores:</p>
+<div class="math notranslate nohighlight">
+\[
+{Q_i}_{i \in M}
+\]</div>
+<p>atuando em um espaço de Hilbert <span class="math notranslate nohighlight">\( \mathcal{H}\)</span>, que satisfazem:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( Q_i = Q_i^\dagger\)</span> (hermiticidade)</p></li>
+<li><p><span class="math notranslate nohighlight">\( Q_i \geq 0\)</span> (positividade)</p></li>
+<li><p><span class="math notranslate nohighlight">\( \sum_i Q_i = I\)</span> (completude)</p></li>
+</ul>
+<p>A probabilidade de obter o resultado <span class="math notranslate nohighlight">\( i\)</span>, dado um estado descrito por uma matriz densidade <span class="math notranslate nohighlight">\( \rho\)</span>, é dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+p(i|\rho) = \mathrm{tr}(Q_i \rho)
+\]</div>
+<p>Essa expressão generaliza a regra de Born e garante que as probabilidades são reais, não negativas e somam 1.</p>
+<p>Diferentemente do caso projetivo, os operadores <span class="math notranslate nohighlight">\(Q_i\)</span> <strong>não especificam completamente a dinâmica do sistema após a medição</strong>. Isso ocorre porque uma POVM descreve apenas os resultados estatísticos, mas não o processo físico detalhado que leva a esses resultados.</p>
+<p>Para descrever o estado pós-medição, é necessário introduzir um conjunto de operadores auxiliares <span class="math notranslate nohighlight">\({A_i}\)</span>, chamados <strong>operadores de Kraus</strong>, tais que:</p>
+<div class="math notranslate nohighlight">
+\[
+Q_i = A_i^\dagger A_i
+\]</div>
+<p>Essa decomposição sempre existe, mas não é única. De fato, diferentes conjuntos de operadores de Kraus podem gerar os mesmos operadores <span class="math notranslate nohighlight">\(Q_i\)</span>, refletindo o fato de que uma mesma POVM pode ser implementada por diferentes processos físicos.</p>
+<p>Com isso, o estado do sistema após a obtenção do resultado <span class="math notranslate nohighlight">\(i\)</span> é dado por:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_i = \frac{A_i \rho A_i^\dagger}{\mathrm{tr}(A_i^\dagger A_i \rho)}
+\]</div>
+<p>Essa expressão mostra que a evolução associada à medição é, em geral, <strong>não unitária</strong> e dependente do resultado observado.</p>
+<p>Essa distinção entre:</p>
+<ul class="simple">
+<li><p>operadores <span class="math notranslate nohighlight">\(Q_i\)</span>, que determinam as probabilidades</p></li>
+<li><p>operadores <span class="math notranslate nohighlight">\(A_i\)</span>, que determinam a dinâmica</p></li>
+</ul>
+<p>é uma das características centrais das POVMs e evidencia sua natureza mais geral em relação às medições projetivas.</p>
+<section id="exemplo-de-discriminacao-de-estados">
+<h2>Exemplo de Discriminação de Estados<a class="headerlink" href="#exemplo-de-discriminacao-de-estados" title="Link para este cabeçalho">#</a></h2>
+<p>Considere dois estados quânticos não ortogonais <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> e <span class="math notranslate nohighlight">\(\ket{\phi}\)</span>, com <span class="math notranslate nohighlight">\(|\bra{\psi} \ket{\phi}| \neq 0\)</span>.</p>
+<p>Nesse caso, não existe nenhuma medição projetiva (PVM) capaz de distingui-los perfeitamente, pois estados não ortogonais não podem ser discriminados com certeza sem introduzir erro.</p>
+<p>Uma POVM, no entanto, permite construir uma estratégia de discriminação <strong>sem erro</strong>, ao custo de admitir um resultado inconclusivo.</p>
+<p>Considere o conjunto de operadores:</p>
+<div class="math notranslate nohighlight">
+\[
+Q_0 = a(I - \ket{\psi}\bra{\psi}), \quad
+Q_1 = a(I - \ket{\phi}\bra{\phi}), \quad
+Q_2 = I - Q_0 - Q_1
+\]</div>
+<p>onde o parâmetro <span class="math notranslate nohighlight">\(a\)</span> deve ser escolhido de modo que todos os operadores permaneçam positivos.</p>
+<p>Analisando os resultados:</p>
+<ul class="simple">
+<li><p>Se o estado for <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(p(0) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(1) = a(1 - |\bra{\psi} \ket{\phi}|^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(2) = 1 - p(1)\)</span></p></li>
+</ul>
+</li>
+<li><p>Se o estado for <span class="math notranslate nohighlight">\(\ket{\phi}\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(p(1) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(0) = a(1 - |\bra{\psi} \ket{\phi}|^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(2) = 1 - p(0)\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Dessa forma:</p>
+<ul class="simple">
+<li><p>Resultado associado a <span class="math notranslate nohighlight">\(Q_1\)</span> identifica o estado como <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> com certeza</p></li>
+<li><p>Resultado associado a <span class="math notranslate nohighlight">\(Q_0\)</span> identifica o estado como <span class="math notranslate nohighlight">\(\ket{\phi}\)</span> com certeza</p></li>
+<li><p>Resultado associado a <span class="math notranslate nohighlight">\(Q_2\)</span> não fornece informação conclusiva</p></li>
+</ul>
+<p>Portanto, essa POVM implementa um esquema de <strong>discriminação não ambígua</strong>: sempre que uma decisão é tomada, ela está correta, mas existe uma probabilidade não nula de obter um resultado inconclusivo.</p>
+<p>Esse exemplo ilustra uma vantagem fundamental das POVMs em relação às PVMs: a possibilidade de realizar tarefas de inferência quântica que seriam impossíveis no formalismo projetivo tradicional.</p>
+</section>
+<section id="realizacao-de-povm-via-pvm">
+<h2>Realização de POVM via PVM<a class="headerlink" href="#realizacao-de-povm-via-pvm" title="Link para este cabeçalho">#</a></h2>
+<p>O teorema de Neumark estabelece que qualquer POVM definida em um subespaço <span class="math notranslate nohighlight">\(U\)</span> pode ser realizada como uma medição projetiva (PVM) em um espaço de Hilbert maior <span class="math notranslate nohighlight">\(\tilde{U}\)</span>.</p>
+<p>A construção segue uma sequência estrutural bem definida:</p>
+<ol class="arabic simple">
+<li><p>Cada operador <span class="math notranslate nohighlight">\(Q_i\)</span> é decomposto em operadores de posto 1 por meio de sua decomposição espectral</p></li>
+<li><p>Os autovetores associados são reorganizados como vetores de medição <span class="math notranslate nohighlight">\({\ket{\mu_j}}\)</span></p></li>
+<li><p>Constrói-se a chamada matriz de medição <span class="math notranslate nohighlight">\(M = {\ket{\mu_1}, \dots, \ket{\mu_N}}\)</span></p></li>
+<li><p>Aplica-se a decomposição em valores singulares (SVD) dessa matriz</p></li>
+<li><p>A partir dessa decomposição, constrói-se uma base ortonormal em um espaço ampliado <span class="math notranslate nohighlight">\(\tilde{U}\)</span></p></li>
+</ol>
+<p>Nesse novo espaço, define-se um conjunto de projetores:</p>
+<div class="math notranslate nohighlight">
+\[
+P_i = \ket{p_i}\bra{p_i}
+\]</div>
+<p>que formam uma PVM.</p>
+<p>A relação entre os operadores da POVM original e os projetores no espaço ampliado é dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+Q_i = P_A P_i P_A
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(P_A\)</span> é o projetor que restringe o sistema ao subespaço original <span class="math notranslate nohighlight">\(U\)</span>.</p>
+<p>Essa construção mostra que qualquer POVM pode ser interpretada como uma <strong>medição projetiva realizada indiretamente</strong>, após um embedding do sistema em um espaço de maior dimensão.</p>
+</section>
+<section id="exemplo-de-implementacao-fisica">
+<h2>Exemplo de Implementação Física<a class="headerlink" href="#exemplo-de-implementacao-fisica" title="Link para este cabeçalho">#</a></h2>
+<p>Considere um sistema quântico definido em um subespaço bidimensional <span class="math notranslate nohighlight">\(U\)</span>, com estado:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} = \alpha_0 \ket{0} + \alpha_1 \ket{1}
+\]</div>
+<p>Para implementar fisicamente uma POVM, introduzimos um sistema auxiliar (ancilla), inicialmente desacoplado do sistema principal.</p>
+<p>O procedimento é o seguinte:</p>
+<ol class="arabic simple">
+<li><p>Introduz-se um estado auxiliar <span class="math notranslate nohighlight">\(\ket{0}_{U^\perp}\)</span> em um subespaço complementar</p></li>
+<li><p>Forma-se o estado composto:
+$<span class="math notranslate nohighlight">\(
+\ket{\psi} \otimes \ket{0}
+\)</span>$</p></li>
+<li><p>Aplica-se uma transformação unitária global <span class="math notranslate nohighlight">\(A\)</span>, que correlaciona sistema e ancilla</p></li>
+<li><p>Realiza-se uma medição projetiva apenas no sistema auxiliar</p></li>
+</ol>
+<p>A probabilidade de obter o resultado <span class="math notranslate nohighlight">\(i\)</span> é então:</p>
+<div class="math notranslate nohighlight">
+\[
+p_i = (\bra{\psi} \otimes \bra{0}) A^\dagger (I \otimes P_i) A (\ket{\psi} \otimes \ket{0})
+\]</div>
+<p>Essa expressão pode ser reescrita como:</p>
+<div class="math notranslate nohighlight">
+\[
+p_i = \bra{\psi} Q_i \ket{\psi}
+\]</div>
+<p>onde os operadores <span class="math notranslate nohighlight">\(Q_i\)</span> atuam apenas no sistema original e satisfazem as propriedades de uma POVM.</p>
+<p>Assim, a medição projetiva no sistema ampliado reproduz exatamente as estatísticas de uma POVM no sistema original, evidenciando que POVMs correspondem a medições indiretas obtidas via acoplamento com sistemas auxiliares.</p>
+</section>
+<section id="conclusao">
+<h2>Conclusão<a class="headerlink" href="#conclusao" title="Link para este cabeçalho">#</a></h2>
+<p>A POVM representa a generalização natural das medições quânticas, permitindo descrever situações onde medições projetivas são insuficientes.</p>
+<ul class="simple">
+<li><p>amplia o conjunto de estratégias de medição</p></li>
+<li><p>permite tarefas impossíveis com PVM</p></li>
+<li><p>possui implementação física via sistemas auxiliares</p></li>
+</ul>
+<p>Essa formalização é essencial para a teoria moderna de informação quântica e aplicações práticas.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "evandro-crr/ket-book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./topicos_avancados/3-tecnicas_de_medicao_quantica"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-de-discriminacao-de-estados">Exemplo de Discriminação de Estados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#realizacao-de-povm-via-pvm">Realização de POVM via PVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-de-implementacao-fisica">Exemplo de Implementação Física</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Grupo de Computação Quântica - UFSC
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
