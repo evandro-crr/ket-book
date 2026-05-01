@@ -1,0 +1,22 @@
+Modelos Computacionais:
+    -> Máquina de Turing
+        -> O que é a Maquina de Turing
+        -> Exemplo de fita com imagem
+            Uma máquina de Turing é composta por 4 elementos principais:
+                1o = Unidade de Controle de Estados Finitos:
+                    - onde todo o processamento é realizado entre possiveis estados da máquina q_1..., q_n. 
+                    - q_s é o estado de partida e q_h é o estado caso a computação seja concluída
+                2o = Fita:
+                    - memória, sequência infinita (em uma direção) de células.
+                        GAMA MAISCULO - alfabeto : símbolos que podem ser escritos na fita
+                        *COLOCAR EXEMPLO* gama {0, 1, b, PLAY}
+                3o = Cabeça de Leitura e Gravação:
+                    - identifica uma única célula na fita a qual está sendo examinada
+                4o = Programa:
+                    - lista finita ordenada de linhas de programa da forma que <q, x, q', x', s>
+                    A máquina procura o estado q com símbolo do alfabeto x, se não acha-lo, a máquina vai para q_h (parando o processo). 
+                    Porém, se encontrado, o estado interno muda para q' e o símbolo x é trocado por x'. s indica o movimento da cabeça de
+                    leitura e gravação, sendo s = 0 parada, porém, s = +1 move-se para direita, e s = -1 move-se para esquerda.
+                        *COLOCAR EXEMPLOS* utilize a máquina de Turing para adicionar 1 a um número binário
+                        - 
+    -> Modelo Circuital

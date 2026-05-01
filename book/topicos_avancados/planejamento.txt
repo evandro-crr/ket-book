@@ -1,4 +1,4 @@
-Tópicos Avançados
+Tópicos Complementares
 Objetivo: Apresentar conceitos e conteúdos de fronteira da área de Computação Quântica, não estando em ordem de aprendizado, 
 dependerá do interesse do usuário.
 Conteúdo:
@@ -14,29 +14,51 @@ Conteúdo:
             - Compressão quântica de informação
             - Teorema de Holevo
         - Observações: "Revisão de Algebra Linear" será adaptada das aulas do professor Guilherme Temporão da PUC-RJ
-    2a subdivisão: Comunicação Quântica
+    2a subdivisão: Comunicação Quântica - FEITO!
         - Objetivo: Apresentar conceitos sobre a comunicação quântica, expandindo a subdivisão de teoria de informação quântica
         - Conteúdo:
-            - Teletransporte quântico
+            - Fundamentos da Comunicação Segura
+            - Introdução a Comunicação e Internet Quântica
+            - Arquitetura e ELementos de Redes Quânticas
+            - Revisão dos Protocolos
             - Distribuição quântica de chaves (QKD)
-            - Superdense coding
-            - Redes quânticas
+            - Aplicações de Redes quânticas
+            - Limites
+            - Ruidos
+            - Repetidores
+            - Emaranhamento
         - Observações: Conteúdo Retirado das aulas da Qutech
     3a subdivisão: Técnicas de Medição
         - Objetivo: Apresentar técnicas de medição em sistemas quânticos
         - Conteúdo:
-            - Tomografia quântica
+            - Medição projetiva (ou de von Neumann)
             - POVMs (Positive Operator-Valued Measures)
-            - Shadow Tomography
+            - Medições fracas
+            - Tomografia quântica
             - Classical Shadows
-            - Estimativa de observáveis
-        - Observações: "Classical Shadows" será adaptada da Dissertação de Letícia Bertuzzi
-    4a subdivisão: Redes Neurais Quânticas
+        - Observação: CS retirado do mestrado da Letícia
+    4a subdivisão: Simulação Quântica
+        - Objetivo: Apresentar maneiras de simular a física/química em computadores quânticos (FINALMENTE VOLTEI PRA COMPUTADORES QUÂNTICOS)
+        - Conteúdo:
+            - Por que simular sistemas quânticos
+            - O que é Simulação Quântica
+            - Aprofundamento em Hamiltonianos
+            - Tipos de Simulação Quântica
+            - O problema prático
+            - Trotterização
+            - Construindo Circuitos de Simulação
+            - Algoritmos de Simulação
+                = Trotter (Clássico)
+                - Revisão de QPE
+                - VQE
+            - Aplicações
+            - Limitações e Desafios
+    5a subdivisão: Redes Neurais Quânticas
         - Objetivo: Apresentar conceitos e técnicas de aprendizado de QNNs
         - Conteúdo:
             - Classical Neural Networks
             - Quantum Neural Networks
-    5a subdivisão: Aprendizado de Máquina Quântico
+    6a subdivisão: Aprendizado de Máquina Quântico
         - Objetivo: Apresentar conceitos e técnicas de aprendizado de máquina quântico
         - Conteúdo:
             - Aprendizado de Máquina Clássico
@@ -45,6 +67,3 @@ Conteúdo:
             - Quantum Boltzmann Machines
             - Quantum Reinforcement Learning
         - Observações: Material retirado de https://arxiv.org/pdf/2205.08154
-    6a subdivisão: Simulação Quântica
-        - Objetivo: Apresentar técnicas de simulação de sistemas quânticos
-        - Conteúdo: 
