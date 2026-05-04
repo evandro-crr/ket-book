@@ -58,6 +58,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_3-medicao_fraca';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
@@ -393,7 +395,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -409,6 +413,20 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica-e-regime-de-acoplamento">Estrutura Matemática e Regime de Acoplamento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-fisica-e-extracao-de-informacao">Interpretação Física e Extração de Informação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-fracos-e-pos-selecao">Valores Fracos e Pós-Seleção</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-continua-e-decoerencia-parcial">Dinâmica Contínua e Decoerência Parcial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-medicoes-projetivas">Relação com Medições Projetivas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes-em-computacao-e-informacao-quantica">Aplicações em Computação e Informação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -420,6 +438,78 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="medicoes-fracas">
 <h1>Medições Fracas<a class="headerlink" href="#medicoes-fracas" title="Link para este cabeçalho">#</a></h1>
+<p>As <strong>medições fracas</strong> constituem uma generalização do formalismo de medição na mecânica quântica, permitindo a extração parcial de informação de um sistema com perturbação mínima do estado. Diferentemente da medição projetiva, que colapsa o estado em um subespaço ortogonal de forma abrupta e irreversível, a medição fraca introduz uma interação controlada entre o sistema e o aparato de medição, preservando, em grande medida, as coerências quânticas.</p>
+<p>Esse tipo de medição é particularmente relevante em contextos onde se deseja monitorar um sistema ao longo do tempo, implementar protocolos adaptativos ou acessar propriedades sutis do estado quântico — como valores médios condicionais — sem destruir completamente a estrutura de superposição.</p>
+<section id="estrutura-matematica-e-regime-de-acoplamento">
+<h2>Estrutura Matemática e Regime de Acoplamento<a class="headerlink" href="#estrutura-matematica-e-regime-de-acoplamento" title="Link para este cabeçalho">#</a></h2>
+<p>O formalismo das medições fracas pode ser compreendido como um caso particular de medições generalizadas, descritas por operadores de medição <span class="math notranslate nohighlight">\({M_i}\)</span> que satisfazem:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_i M_i^\dagger M_i = I
+\]</div>
+<p>Esses operadores não são projetores, mas sim operadores de Kraus que definem um conjunto de transformações possíveis sobre o estado. A probabilidade de obter o resultado <span class="math notranslate nohighlight">\(i\)</span> é dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+p(i) = \mathrm{Tr}(M_i \rho M_i^\dagger)
+\]</div>
+<p>e o estado pós-medição (condicional) é:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho \rightarrow \frac{M_i \rho M_i^\dagger}{\mathrm{Tr}(M_i \rho M_i^\dagger)}
+\]</div>
+<p>O caráter “fraco” da medição emerge quando os operadores <span class="math notranslate nohighlight">\(M_i\)</span> estão próximos da identidade. Em termos físicos, isso corresponde a um regime de acoplamento fraco entre o sistema e o dispositivo de medição, no qual a informação extraída em uma única realização é limitada, mas a perturbação induzida também é pequena.</p>
+<p>Uma forma típica de modelar esse regime é considerar operadores da forma:</p>
+<div class="math notranslate nohighlight">
+\[
+M_i \approx \sqrt{p_i},(I + \epsilon K_i)
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\epsilon \ll 1\)</span> controla a intensidade da medição. Nesse limite, a evolução do estado se aproxima de uma dinâmica contínua, frequentemente descrita por equações diferenciais estocásticas.</p>
+</section>
+<section id="interpretacao-fisica-e-extracao-de-informacao">
+<h2>Interpretação Física e Extração de Informação<a class="headerlink" href="#interpretacao-fisica-e-extracao-de-informacao" title="Link para este cabeçalho">#</a></h2>
+<p>Ao contrário da medição projetiva, que resolve completamente um observável em uma única etapa, a medição fraca fornece apenas uma estimativa parcial. Cada realização individual carrega pouca informação, mas ao repetir o experimento muitas vezes é possível reconstruir propriedades do sistema com alta precisão.</p>
+<p>Esse compromisso entre informação e perturbação é um dos aspectos centrais do formalismo: quanto mais fraca a medição, menor o distúrbio no estado, mas também menor a informação obtida por tentativa. Em termos informacionais, a medição fraca permite uma leitura “suave” do sistema, preservando coerências que seriam destruídas por uma medição projetiva.</p>
+<p>Além disso, como a perturbação é pequena, o estado pós-medição permanece próximo do estado original, permitindo sequências de medições sucessivas e até monitoramento contínuo da dinâmica quântica.</p>
+</section>
+<section id="valores-fracos-e-pos-selecao">
+<h2>Valores Fracos e Pós-Seleção<a class="headerlink" href="#valores-fracos-e-pos-selecao" title="Link para este cabeçalho">#</a></h2>
+<p>Um dos conceitos mais marcantes associados a medições fracas é o de <strong>valor fraco</strong>, introduzido no contexto de medições condicionadas por pós-seleção. Nesse cenário, o sistema é preparado em um estado inicial <span class="math notranslate nohighlight">\(\ket{\psi}\)</span>, submetido a uma medição fraca de um observável <span class="math notranslate nohighlight">\(A\)</span>, e posteriormente projetado em um estado final <span class="math notranslate nohighlight">\(\ket{\phi}\)</span>.</p>
+<p>O valor fraco é definido como:</p>
+<div class="math notranslate nohighlight">
+\[
+A_w = \frac{\bra{\phi} A \ket{\psi}}{\braket{\phi}{\psi}}
+\]</div>
+<p>Essa quantidade pode apresentar propriedades surpreendentes:</p>
+<ul class="simple">
+<li><p>Pode assumir valores fora do espectro de <span class="math notranslate nohighlight">\(A\)</span></p></li>
+<li><p>Pode ser complexa</p></li>
+<li><p>Codifica informação interferencial entre estados inicial e final</p></li>
+</ul>
+<p>Fisicamente, o valor fraco não corresponde a um resultado de medição individual, mas emerge como média estatística em experimentos repetidos sob pós-seleção. Ele fornece uma forma de acessar aspectos do sistema que não são diretamente observáveis em medições fortes.</p>
+</section>
+<section id="dinamica-continua-e-decoerencia-parcial">
+<h2>Dinâmica Contínua e Decoerência Parcial<a class="headerlink" href="#dinamica-continua-e-decoerencia-parcial" title="Link para este cabeçalho">#</a></h2>
+<p>No limite de medições fracas sucessivas, o sistema pode ser descrito por uma evolução contínua, frequentemente modelada por equações mestras ou trajetórias quânticas estocásticas. Nesse regime, a medição atua como um processo gradual de decoerência, em contraste com a eliminação abrupta de coerências observada em medições projetivas.</p>
+<p>Em particular, os termos fora da diagonal da matriz densidade decaem progressivamente, permitindo acompanhar a transição entre regimes puramente quânticos e comportamentos efetivamente clássicos.</p>
+<p>Esse tipo de descrição é essencial em áreas como controle quântico, feedback em tempo real e experimentos de monitoramento contínuo.</p>
+</section>
+<section id="relacao-com-medicoes-projetivas">
+<h2>Relação com Medições Projetivas<a class="headerlink" href="#relacao-com-medicoes-projetivas" title="Link para este cabeçalho">#</a></h2>
+<p>As medições fracas podem ser vistas como uma interpolação entre a ausência de medição e a medição projetiva. À medida que a intensidade do acoplamento aumenta, os operadores de medição se aproximam de projetores, e o formalismo recupera o comportamento de colapso típico das medições fortes.</p>
+<p>Por outro lado, no limite de acoplamento infinitesimal, a medição se torna praticamente não invasiva, mas também quase não informativa.</p>
+<p>Essa continuidade evidencia que a medição projetiva não é um caso isolado, mas sim um limite extremo dentro de uma teoria mais geral de medições quânticas.</p>
+</section>
+<section id="aplicacoes-em-computacao-e-informacao-quantica">
+<h2>Aplicações em Computação e Informação Quântica<a class="headerlink" href="#aplicacoes-em-computacao-e-informacao-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>No contexto da computação quântica, medições fracas desempenham um papel importante em protocolos onde a preservação do estado é crucial. Elas são utilizadas em esquemas de correção de erros, onde é necessário extrair informação sobre o sistema sem destruir completamente o estado lógico.</p>
+<p>Também aparecem em algoritmos adaptativos, em metrologia quântica e em protocolos de amplificação de sinais fracos, onde valores fracos podem ser explorados para aumentar a sensibilidade de medições experimentais.</p>
+<p>Além disso, são fundamentais em implementações experimentais de controle quântico, permitindo ajustar dinamicamente a evolução do sistema com base em informações parciais obtidas em tempo real.</p>
+</section>
+<section id="consideracoes-finais">
+<h2>Considerações Finais<a class="headerlink" href="#consideracoes-finais" title="Link para este cabeçalho">#</a></h2>
+<p>As medições fracas expandem o conceito de medição na mecânica quântica, mostrando que a extração de informação não precisa estar necessariamente associada a um colapso abrupto e destrutivo do estado. Elas introduzem um regime intermediário no qual informação e perturbação podem ser cuidadosamente balanceadas.</p>
+<p>Esse formalismo revela que a medição quântica é, em essência, um processo físico contínuo, cuja forma extrema — a medição projetiva — emerge apenas como um caso limite. Ao permitir acesso a estruturas mais sutis do estado quântico, como os valores fracos e a dinâmica contínua, essas medições desempenham um papel cada vez mais relevante tanto na compreensão fundamental da teoria quanto em suas aplicações tecnológicas.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -476,6 +566,27 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica-e-regime-de-acoplamento">Estrutura Matemática e Regime de Acoplamento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-fisica-e-extracao-de-informacao">Interpretação Física e Extração de Informação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-fracos-e-pos-selecao">Valores Fracos e Pós-Seleção</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-continua-e-decoerencia-parcial">Dinâmica Contínua e Decoerência Parcial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-medicoes-projetivas">Relação com Medições Projetivas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes-em-computacao-e-informacao-quantica">Aplicações em Computação e Informação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
