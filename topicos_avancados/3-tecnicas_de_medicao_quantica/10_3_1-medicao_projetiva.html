@@ -418,42 +418,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica">Estrutura Matemática</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-operacional">Interpretação Operacional</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regra-de-born-generalizada">Regra de Born Generalizada</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-puro">Estado puro</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-misto">Estado misto</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-estatistica-da-medicao">Estrutura Estatística da Medição</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-da-medicao">Dinâmica da Medição</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Estado puro</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Estado misto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-importantes">Propriedades importantes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medicao-como-canal-quantico">Medição como Canal Quântico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-nao-seletivo">Caso não seletivo:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decoerencia-induzida-por-medicao">Decoerência Induzida por Medição</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-observaveis">Relação com Observáveis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degenerescencia">Degenerescência</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibilidade-de-medicoes">Compatibilidade de Medições</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencia-de-base">Dependência de Base</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-em-sistemas-compostos">Estrutura em Sistemas Compostos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-com-qubit">Exemplo com Qubit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-computacao-quantica">Papel em Computação Quântica</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracao-de-resultado">Extração de resultado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controle-de-informacao">Controle de informação</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interferencia">Interferência</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-rotinas-quanticas">Sub-rotinas quânticas</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-fisica">Interpretação Física</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-informacional">Estrutura Informacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica-e-interpretacao">Estrutura Matemática e Interpretação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-e-estrutura-estatistica">Dinâmica e Estrutura Estatística</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-observaveis-e-base-de-medicao">Relação com Observáveis e Base de Medição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-compostos-e-efeitos-nao-locais">Sistemas Compostos e Efeitos Não Locais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-computacao-quantica">Papel em Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-fisicas-e-informacionais">Considerações Físicas e Informacionais</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
 </ul>
             </nav>
@@ -468,312 +438,83 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="medicao-projetiva">
 <h1>Medição Projetiva<a class="headerlink" href="#medicao-projetiva" title="Link para este cabeçalho">#</a></h1>
-<p>A <strong>medição projetiva</strong> constitui uma das estruturas fundamentais da mecânica quântica e representa o formalismo padrão para a extração de informação de sistemas quânticos. Em computação quântica, ela modela o processo pelo qual estados quânticos — potencialmente em superposição e entrelaçamento — produzem resultados clássicos observáveis.</p>
-<p>Diferentemente da evolução unitária, a medição projetiva introduz uma dinâmica intrinsecamente probabilística e não reversível, sendo responsável pela transição entre o domínio quântico e o clássico.</p>
-<section id="estrutura-matematica">
-<h2>Estrutura Matemática<a class="headerlink" href="#estrutura-matematica" title="Link para este cabeçalho">#</a></h2>
-<p>Uma medição projetiva é descrita por um conjunto de operadores <span class="math notranslate nohighlight">\({P_i}\)</span> definidos sobre um espaço de Hilbert <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>, satisfazendo:</p>
-<ul class="simple">
-<li><p><strong>Hermiticidade:</strong>
-<span class="math notranslate nohighlight">\(
-P_i = P_i^\dagger
-\)</span></p></li>
-<li><p><strong>Idempotência:</strong>
-<span class="math notranslate nohighlight">\(
-P_i^2 = P_i
-\)</span></p></li>
-<li><p><strong>Ortogonalidade:</strong>
-<span class="math notranslate nohighlight">\(
-P_i P_j = 0 \quad (i \neq j)
-\)</span></p></li>
-<li><p><strong>Completude:</strong>
-<span class="math notranslate nohighlight">\(
-\sum_i P_i = I
-\)</span></p></li>
-</ul>
-<p>Essas condições implicam que:</p>
-<ul class="simple">
-<li><p>Cada <span class="math notranslate nohighlight">\(P_i\)</span> é um <strong>projetor ortogonal</strong> sobre um subespaço de <span class="math notranslate nohighlight">\(\mathcal{H}\)</span></p></li>
-<li><p>O conjunto <span class="math notranslate nohighlight">\({P_i}\)</span> define uma <strong>decomposição direta</strong> do espaço:
-<span class="math notranslate nohighlight">\(
+<p>A <strong>medição projetiva</strong> constitui um dos elementos centrais da formulação da mecânica quântica, sendo o mecanismo formal responsável por conectar estados quânticos — descritos por vetores em um espaço de Hilbert — a resultados clássicos observáveis. Em computação quântica, ela desempenha um papel essencial, pois é através dela que a informação codificada em superposição e entrelaçamento se torna acessível.</p>
+<p>Diferentemente da evolução unitária, que é contínua, determinística e reversível, a medição projetiva introduz uma dinâmica intrinsecamente probabilística e não reversível. Esse processo não apenas extrai informação, mas também altera o estado do sistema, caracterizando a chamada transição do domínio quântico para o clássico.</p>
+<section id="estrutura-matematica-e-interpretacao">
+<h2>Estrutura Matemática e Interpretação<a class="headerlink" href="#estrutura-matematica-e-interpretacao" title="Link para este cabeçalho">#</a></h2>
+<p>Formalmente, uma medição projetiva é descrita por um conjunto de operadores <span class="math notranslate nohighlight">\({P_i}\)</span> definidos sobre um espaço de Hilbert <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>, satisfazendo propriedades fundamentais: são hermitianos, idempotentes, mutuamente ortogonais e completos. Essas condições garantem que cada operador <span class="math notranslate nohighlight">\(P_i\)</span> atua como um projetor ortogonal sobre um subespaço específico de <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>, e que o conjunto completo desses projetores induz uma decomposição direta do espaço:</p>
+<div class="math notranslate nohighlight">
+\[
 \mathcal{H} = \bigoplus_i \mathcal{H}_i
-\)</span></p></li>
-</ul>
-<p>Ou seja, a medição corresponde a uma <strong>partição do espaço de estados em subespaços mutuamente ortogonais</strong>, cada um associado a um resultado possível.</p>
-</section>
-<section id="interpretacao-operacional">
-<h2>Interpretação Operacional<a class="headerlink" href="#interpretacao-operacional" title="Link para este cabeçalho">#</a></h2>
-<p>Fisicamente, cada projetor <span class="math notranslate nohighlight">\(P_i\)</span> representa um possível resultado da medição. O sistema não “escolhe” um vetor específico, mas sim um <strong>subespaço</strong>.</p>
-<p>Isso é crucial em casos degenerados:</p>
-<ul class="simple">
-<li><p>Se o autovalor é degenerado, o estado colapsa para um subespaço de dimensão maior que 1</p></li>
-<li><p>A informação dentro desse subespaço pode permanecer parcialmente preservada</p></li>
-</ul>
-</section>
-<section id="regra-de-born-generalizada">
-<h2>Regra de Born Generalizada<a class="headerlink" href="#regra-de-born-generalizada" title="Link para este cabeçalho">#</a></h2>
-<p>A probabilidade de observar o resultado <span class="math notranslate nohighlight">\(i\)</span> é dada por:</p>
-<section id="estado-puro">
-<h3>Estado puro<a class="headerlink" href="#estado-puro" title="Link para este cabeçalho">#</a></h3>
-<div class="math notranslate nohighlight">
-\[
-p(i) = \bra{\psi} P_i \ket{\psi}
 \]</div>
-</section>
-<section id="estado-misto">
-<h3>Estado misto<a class="headerlink" href="#estado-misto" title="Link para este cabeçalho">#</a></h3>
+<p>Essa estrutura revela um ponto conceitual importante: a medição não seleciona um vetor específico, mas sim um subespaço do espaço de estados. Em particular, quando há degenerescência — isto é, múltiplos estados associados ao mesmo resultado — o colapso ocorre para um subespaço de dimensão maior que 1, preservando parcialmente a informação interna a esse subespaço.</p>
+<p>Do ponto de vista operacional, cada projetor <span class="math notranslate nohighlight">\(P_i\)</span> corresponde a um possível resultado da medição. A probabilidade de observar esse resultado é dada pela <strong>regra de Born generalizada</strong>, que assume formas equivalentes para estados puros e mistos:</p>
 <div class="math notranslate nohighlight">
 \[
-p(i) = \mathrm{Tr}(P_i \rho)
+p(i) = \bra{\psi} P_i \ket{\psi}, \quad \text{ou} \quad p(i) = \mathrm{Tr}(P_i \rho)
 \]</div>
-<p>Essa formulação tem implicações importantes:</p>
-<ul class="simple">
-<li><p>A probabilidade depende apenas da <strong>projeção do estado no subespaço</strong></p></li>
-<li><p>Fases globais não têm efeito</p></li>
-<li><p>Coerências entre subespaços diferentes não contribuem diretamente para probabilidades</p></li>
-</ul>
+<p>Essa formulação destaca que apenas a projeção do estado sobre o subespaço relevante contribui para a probabilidade. Fases globais são irrelevantes, e coerências entre subespaços distintos não influenciam diretamente os resultados observáveis.</p>
 </section>
-</section>
-<section id="estrutura-estatistica-da-medicao">
-<h2>Estrutura Estatística da Medição<a class="headerlink" href="#estrutura-estatistica-da-medicao" title="Link para este cabeçalho">#</a></h2>
-<p>A medição projetiva define uma variável aleatória clássica <span class="math notranslate nohighlight">\(X\)</span> com distribuição:</p>
+<section id="dinamica-e-estrutura-estatistica">
+<h2>Dinâmica e Estrutura Estatística<a class="headerlink" href="#dinamica-e-estrutura-estatistica" title="Link para este cabeçalho">#</a></h2>
+<p>Além de definir probabilidades, a medição projetiva induz uma transformação no estado do sistema. No caso de um resultado específico <span class="math notranslate nohighlight">\(i\)</span>, o estado é atualizado de forma condicional:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{P}(X = i) = \mathrm{Tr}(P_i \rho)
-\]</div>
-<p>Além disso, é possível definir o valor esperado de um observável associado:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathbb{E}[A] = \sum_i a_i , \mathrm{Tr}(P_i \rho)
-\]</div>
-<p>Esse resultado conecta diretamente o formalismo da medição com a estatística clássica.</p>
-</section>
-<section id="dinamica-da-medicao">
-<h2>Dinâmica da Medição<a class="headerlink" href="#dinamica-da-medicao" title="Link para este cabeçalho">#</a></h2>
-<p>A medição projetiva induz uma transformação condicional no estado.</p>
-<section id="id1">
-<h3>Estado puro<a class="headerlink" href="#id1" title="Link para este cabeçalho">#</a></h3>
-<div class="math notranslate nohighlight">
-\[
-\ket{\psi} \rightarrow \frac{P_i \ket{\psi}}{\sqrt{\bra{\psi} P_i \ket{\psi}}}
-\]</div>
-</section>
-<section id="id2">
-<h3>Estado misto<a class="headerlink" href="#id2" title="Link para este cabeçalho">#</a></h3>
-<div class="math notranslate nohighlight">
-\[
+\ket{\psi} \rightarrow \frac{P_i \ket{\psi}}{\sqrt{\bra{\psi} P_i \ket{\psi}}},
+\quad
 \rho \rightarrow \frac{P_i \rho P_i}{\mathrm{Tr}(P_i \rho)}
 \]</div>
-</section>
-<section id="propriedades-importantes">
-<h3>Propriedades importantes<a class="headerlink" href="#propriedades-importantes" title="Link para este cabeçalho">#</a></h3>
-<ul class="simple">
-<li><p>A transformação é <strong>completamente positiva</strong></p></li>
-<li><p>Preserva o traço</p></li>
-<li><p>Não é unitária</p></li>
-<li><p>Não admite inversa (em geral)</p></li>
-</ul>
-</section>
-</section>
-<section id="medicao-como-canal-quantico">
-<h2>Medição como Canal Quântico<a class="headerlink" href="#medicao-como-canal-quantico" title="Link para este cabeçalho">#</a></h2>
-<p>A medição projetiva pode ser vista como um <strong>mapa quântico (canal)</strong>:</p>
-<section id="caso-nao-seletivo">
-<h3>Caso não seletivo:<a class="headerlink" href="#caso-nao-seletivo" title="Link para este cabeçalho">#</a></h3>
+<p>Essa transformação possui propriedades importantes: é completamente positiva, preserva o traço, mas não é unitária nem reversível. Isso reflete o fato de que a medição envolve perda de informação — especialmente sobre coerências quânticas.</p>
+<p>Se o resultado da medição não é observado (caso não seletivo), a dinâmica é descrita por um canal quântico:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathcal{E}(\rho) = \sum_i P_i \rho P_i
 \]</div>
-<p>Esse mapa possui propriedades estruturais importantes:</p>
-<ul class="simple">
-<li><p>É um canal CPTP (completely positive trace-preserving)</p></li>
-<li><p>Remove coerências entre subespaços</p></li>
-<li><p>Atua como um mecanismo formal de <strong>decoerência</strong></p></li>
-</ul>
+<p>Esse mapa remove os termos fora da diagonal na base dos projetores, caracterizando um processo formal de <strong>decoerência</strong>. Em termos práticos, isso significa a perda de interferência quântica e a conversão de superposições em distribuições clássicas de probabilidades.</p>
+<p>Consequentemente, a medição projetiva pode ser interpretada como a definição de uma variável aleatória clássica <span class="math notranslate nohighlight">\(X\)</span>, com distribuição:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{P}(X = i) = \mathrm{Tr}(P_i \rho)
+\]</div>
+<p>Essa conexão explicita como o formalismo quântico se integra à teoria clássica de probabilidades.</p>
 </section>
-</section>
-<section id="decoerencia-induzida-por-medicao">
-<h2>Decoerência Induzida por Medição<a class="headerlink" href="#decoerencia-induzida-por-medicao" title="Link para este cabeçalho">#</a></h2>
-<p>Após uma medição não seletiva, termos fora da diagonal na base dos projetores desaparecem:</p>
-<p>Se:
-$<span class="math notranslate nohighlight">\(
-\rho = \sum_{i,j} c_{ij} \ket{i}\bra{j}
-\)</span>$</p>
-<p>então:
-$<span class="math notranslate nohighlight">\(
-\mathcal{E}(\rho) = \sum_i c_{ii} \ket{i}\bra{i}
-\)</span>$</p>
-<p>Isso significa:</p>
-<ul class="simple">
-<li><p>Perda de interferência quântica</p></li>
-<li><p>Conversão de superposição em mistura clássica</p></li>
-<li><p>Redução da informação quântica acessível</p></li>
-</ul>
-</section>
-<section id="relacao-com-observaveis">
-<h2>Relação com Observáveis<a class="headerlink" href="#relacao-com-observaveis" title="Link para este cabeçalho">#</a></h2>
-<p>Toda medição projetiva está associada a um operador hermitiano <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<section id="relacao-com-observaveis-e-base-de-medicao">
+<h2>Relação com Observáveis e Base de Medição<a class="headerlink" href="#relacao-com-observaveis-e-base-de-medicao" title="Link para este cabeçalho">#</a></h2>
+<p>Toda medição projetiva pode ser associada a um operador hermitiano <span class="math notranslate nohighlight">\(A\)</span>, decomponível como:</p>
 <div class="math notranslate nohighlight">
 \[
 A = \sum_i a_i P_i
 \]</div>
-<p>Essa decomposição é única (até degenerescência) e define:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(a_i\)</span>: valores possíveis medidos</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_i\)</span>: subespaços associados</p></li>
-</ul>
-<section id="degenerescencia">
-<h3>Degenerescência<a class="headerlink" href="#degenerescencia" title="Link para este cabeçalho">#</a></h3>
-<p>Se múltiplos autovetores compartilham o mesmo autovalor:</p>
-<ul class="simple">
-<li><p>O projetor é de dimensão maior</p></li>
-<li><p>A medição não distingue estados dentro desse subespaço</p></li>
-</ul>
-</section>
-</section>
-<section id="compatibilidade-de-medicoes">
-<h2>Compatibilidade de Medições<a class="headerlink" href="#compatibilidade-de-medicoes" title="Link para este cabeçalho">#</a></h2>
-<p>Duas medições são compatíveis se:</p>
-<div class="math notranslate nohighlight">
-\[
-[P_i, Q_j] = 0 \quad \forall i,j
-\]</div>
-<p>Equivalentemente:</p>
-<div class="math notranslate nohighlight">
-\[
-[A, B] = 0
-\]</div>
-<p>Consequências:</p>
-<ul class="simple">
-<li><p>Existe base comum de autovetores</p></li>
-<li><p>Medições simultâneas são possíveis</p></li>
-<li><p>A ordem das medições não altera o resultado</p></li>
-</ul>
-<p>Caso contrário:</p>
-<ul class="simple">
-<li><p>Surge perturbação do estado</p></li>
-<li><p>A ordem das medições altera probabilidades</p></li>
-</ul>
-</section>
-<section id="dependencia-de-base">
-<h2>Dependência de Base<a class="headerlink" href="#dependencia-de-base" title="Link para este cabeçalho">#</a></h2>
-<p>A medição projetiva é intrinsecamente dependente da base escolhida.</p>
-<p>Formalmente:</p>
+<p>onde os <span class="math notranslate nohighlight">\(a_i\)</span> representam os possíveis valores observados. Essa decomposição estabelece uma correspondência direta entre espectro do operador e resultados da medição.</p>
+<p>Um aspecto fundamental é que a medição depende intrinsecamente da base escolhida. Medir em uma base arbitrária é equivalente a aplicar uma transformação unitária seguida de uma medição na base computacional:</p>
 <div class="math notranslate nohighlight">
 \[
 P_i^{(U)} = U \ket{i}\bra{i} U^\dagger
 \]</div>
-<p>Isso implica que:</p>
-<ul class="simple">
-<li><p>Medir em uma base arbitrária equivale a aplicar uma unitária seguida de medição padrão</p></li>
-<li><p>Toda medição projetiva pode ser reduzida à base computacional</p></li>
-</ul>
-<p>Esse princípio é central em algoritmos quânticos.</p>
+<p>Esse princípio é central em computação quântica, pois a escolha da base determina quais propriedades do sistema serão acessíveis.</p>
+<p>Além disso, medições associadas a operadores que comutam podem ser realizadas simultaneamente sem perturbação mútua. Quando operadores não comutam, a ordem das medições afeta os resultados, refletindo a estrutura não clássica da teoria.</p>
 </section>
-<section id="estrutura-em-sistemas-compostos">
-<h2>Estrutura em Sistemas Compostos<a class="headerlink" href="#estrutura-em-sistemas-compostos" title="Link para este cabeçalho">#</a></h2>
-<p>Para sistemas compostos:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{H} = \mathcal{H}_A \otimes \mathcal{H}_B
-\]</div>
-<p>A medição pode atuar localmente:</p>
-<div class="math notranslate nohighlight">
-\[
-P_i = P_i^{(A)} \otimes I^{(B)}
-\]</div>
-<p>Consequências:</p>
-<ul class="simple">
-<li><p>A medição em <span class="math notranslate nohighlight">\(A\)</span> pode afetar <span class="math notranslate nohighlight">\(B\)</span> se houver entrelaçamento</p></li>
-<li><p>Pode induzir colapso não local</p></li>
-</ul>
-</section>
-<section id="exemplo-com-qubit">
-<h2>Exemplo com Qubit<a class="headerlink" href="#exemplo-com-qubit" title="Link para este cabeçalho">#</a></h2>
-<p>Estado inicial:</p>
-<div class="math notranslate nohighlight">
-\[
-\ket{\psi} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}
-\]</div>
-<p>Projetores:</p>
-<div class="math notranslate nohighlight">
-\[
-P_0 = \ket{0}\bra{0}, \quad P_1 = \ket{1}\bra{1}
-\]</div>
-<p>Probabilidades:</p>
-<div class="math notranslate nohighlight">
-\[
-p(0) = p(1) = \frac{1}{2}
-\]</div>
-<p>Após aplicar Hadamard:</p>
-<div class="math notranslate nohighlight">
-\[
-H\ket{\psi} = \ket{0}
-\]</div>
-<p>Resultado:</p>
-<ul class="simple">
-<li><p>Probabilidade determinística</p></li>
-<li><p>Interferência construtiva</p></li>
-</ul>
+<section id="sistemas-compostos-e-efeitos-nao-locais">
+<h2>Sistemas Compostos e Efeitos Não Locais<a class="headerlink" href="#sistemas-compostos-e-efeitos-nao-locais" title="Link para este cabeçalho">#</a></h2>
+<p>Em sistemas compostos, descritos por espaços tensoriais <span class="math notranslate nohighlight">\(\mathcal{H}_A \otimes \mathcal{H}_B\)</span>, medições podem atuar localmente, mas ainda assim produzir efeitos globais. Em particular, se o sistema estiver entrelaçado, uma medição em uma parte pode induzir mudanças instantâneas na outra, fenômeno frequentemente descrito como colapso não local.</p>
+<p>Esse comportamento não permite comunicação superluminal, mas evidencia a natureza profundamente não clássica da correlação quântica.</p>
 </section>
 <section id="papel-em-computacao-quantica">
 <h2>Papel em Computação Quântica<a class="headerlink" href="#papel-em-computacao-quantica" title="Link para este cabeçalho">#</a></h2>
-<p>A medição projetiva é essencial para:</p>
-<section id="extracao-de-resultado">
-<h3>Extração de resultado<a class="headerlink" href="#extracao-de-resultado" title="Link para este cabeçalho">#</a></h3>
-<p>Todo algoritmo quântico termina com medição</p>
+<p>Na prática, a medição projetiva é indispensável em computação quântica. Todo algoritmo quântico termina com uma medição, responsável por extrair o resultado final. No entanto, o sucesso do algoritmo depende criticamente do estado antes da medição, especialmente das interferências construídas ao longo da computação.</p>
+<p>A escolha da base de medição define quais informações serão acessíveis, enquanto a própria medição atua como um mecanismo que converte informação quântica — rica em coerência e entrelaçamento — em dados clássicos utilizáveis.</p>
+<p>Além disso, medições são frequentemente utilizadas em sub-rotinas, como preparação de estados, filtragem de resultados e protocolos adaptativos.</p>
 </section>
-<section id="controle-de-informacao">
-<h3>Controle de informação<a class="headerlink" href="#controle-de-informacao" title="Link para este cabeçalho">#</a></h3>
-<p>Escolha da base define o que é observável</p>
-</section>
-<section id="interferencia">
-<h3>Interferência<a class="headerlink" href="#interferencia" title="Link para este cabeçalho">#</a></h3>
-<p>Resultados dependem da interferência antes da medição</p>
-</section>
-<section id="sub-rotinas-quanticas">
-<h3>Sub-rotinas quânticas<a class="headerlink" href="#sub-rotinas-quanticas" title="Link para este cabeçalho">#</a></h3>
-<p>Utilizada em:</p>
-<ul class="simple">
-<li><p>preparação de estados</p></li>
-<li><p>verificação</p></li>
-<li><p>filtragem de resultados</p></li>
-</ul>
-</section>
-</section>
-<section id="interpretacao-fisica">
-<h2>Interpretação Física<a class="headerlink" href="#interpretacao-fisica" title="Link para este cabeçalho">#</a></h2>
-<p>A medição projetiva levanta questões fundamentais:</p>
-<ul class="simple">
-<li><p>O colapso não é descrito pela equação de Schrödinger</p></li>
-<li><p>Introduz descontinuidade na evolução do estado</p></li>
-<li><p>Depende implicitamente de um aparato clássico</p></li>
-</ul>
-<p>Apesar disso:</p>
-<ul class="simple">
-<li><p>É extremamente bem validada experimentalmente</p></li>
-<li><p>Funciona como modelo operacional preciso</p></li>
-</ul>
-</section>
-<section id="estrutura-informacional">
-<h2>Estrutura Informacional<a class="headerlink" href="#estrutura-informacional" title="Link para este cabeçalho">#</a></h2>
-<p>Do ponto de vista da teoria da informação:</p>
-<ul class="simple">
-<li><p>A medição reduz a entropia quântica condicionalmente</p></li>
-<li><p>Pode aumentar entropia média (caso não seletivo)</p></li>
-<li><p>Converte informação quântica em clássica</p></li>
-</ul>
+<section id="consideracoes-fisicas-e-informacionais">
+<h2>Considerações Físicas e Informacionais<a class="headerlink" href="#consideracoes-fisicas-e-informacionais" title="Link para este cabeçalho">#</a></h2>
+<p>Do ponto de vista físico, a medição projetiva levanta questões fundamentais, pois o colapso do estado não é descrito pela evolução unitária governada pela equação de Schrödinger. Isso introduz uma descontinuidade no formalismo e sugere a necessidade de um aparato clássico para interpretar resultados.</p>
+<p>Apesar dessas questões conceituais, o modelo é extremamente bem validado experimentalmente e funciona como uma ferramenta operacional precisa.</p>
+<p>Sob a ótica da teoria da informação, a medição converte informação quântica em clássica, reduzindo coerências e, em muitos casos, aumentando a entropia média do sistema. Esse processo formaliza a perda de acessibilidade de certas informações quânticas após a medição.</p>
 </section>
 <section id="conclusao">
 <h2>Conclusão<a class="headerlink" href="#conclusao" title="Link para este cabeçalho">#</a></h2>
-<p>A medição projetiva é uma estrutura matemática rigorosa que:</p>
-<ul class="simple">
-<li><p>Define como resultados clássicos emergem de estados quânticos</p></li>
-<li><p>Introduz irreversibilidade e aleatoriedade</p></li>
-<li><p>Depende criticamente da escolha de base</p></li>
-<li><p>Atua como mecanismo formal de decoerência</p></li>
-</ul>
-<p>Ela não é apenas um detalhe do formalismo, é o ponto onde toda computação quântica se conecta com o mundo observável.</p>
+<p>A medição projetiva não é apenas um componente técnico da mecânica quântica, mas o ponto onde toda a teoria se conecta com a observação. Ela define como resultados clássicos emergem de estados quânticos, introduz irreversibilidade e aleatoriedade, e atua como um mecanismo formal de decoerência.</p>
+<p>Em computação quântica, seu papel é duplo: é tanto o meio de leitura dos resultados quanto um elemento estrutural que influencia profundamente o desenho dos algoritmos.</p>
 </section>
 </section>
 
@@ -841,42 +582,12 @@ H\ket{\psi} = \ket{0}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica">Estrutura Matemática</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-operacional">Interpretação Operacional</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regra-de-born-generalizada">Regra de Born Generalizada</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-puro">Estado puro</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estado-misto">Estado misto</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-estatistica-da-medicao">Estrutura Estatística da Medição</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-da-medicao">Dinâmica da Medição</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Estado puro</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Estado misto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-importantes">Propriedades importantes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medicao-como-canal-quantico">Medição como Canal Quântico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-nao-seletivo">Caso não seletivo:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decoerencia-induzida-por-medicao">Decoerência Induzida por Medição</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-observaveis">Relação com Observáveis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degenerescencia">Degenerescência</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibilidade-de-medicoes">Compatibilidade de Medições</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencia-de-base">Dependência de Base</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-em-sistemas-compostos">Estrutura em Sistemas Compostos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-com-qubit">Exemplo com Qubit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-computacao-quantica">Papel em Computação Quântica</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracao-de-resultado">Extração de resultado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controle-de-informacao">Controle de informação</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interferencia">Interferência</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-rotinas-quanticas">Sub-rotinas quânticas</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-fisica">Interpretação Física</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-informacional">Estrutura Informacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica-e-interpretacao">Estrutura Matemática e Interpretação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dinamica-e-estrutura-estatistica">Dinâmica e Estrutura Estatística</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-observaveis-e-base-de-medicao">Relação com Observáveis e Base de Medição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-compostos-e-efeitos-nao-locais">Sistemas Compostos e Efeitos Não Locais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-computacao-quantica">Papel em Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-fisicas-e-informacionais">Considerações Físicas e Informacionais</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
 </ul>
   </nav></div>
