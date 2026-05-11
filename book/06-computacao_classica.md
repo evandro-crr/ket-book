@@ -1,5 +1,120 @@
 # Computação Clássica
 
+# Máquina de Turing
+
+A Máquina de Turing é um modelo matemático proposto por Alan Turing em 1936 para descrever formalmente o que significa “computar” um problema. Apesar de extremamente simples, esse modelo é poderoso o suficiente para representar qualquer algoritmo executável em um computador clássico moderno.
+
+O estudo da Máquina de Turing é fundamental para compreender a teoria da computação e, principalmente, a noção de *complexidade de algoritmos*. A partir dela é possível definir formalmente quanto tempo ou memória um algoritmo necessita para resolver um problema.
+
+Uma Máquina de Turing é composta por:
+
+* uma **fita infinita**, dividida em células, que funciona como memória;
+* um **cabeçote de leitura e escrita**, capaz de ler ou modificar os símbolos da fita;
+* um conjunto finito de **estados internos**;
+* uma **função de transição**, que determina o comportamento da máquina.
+
+A cada passo computacional, a máquina:
+
+1. lê o símbolo atual da fita;
+2. verifica o estado interno atual;
+3. escreve um novo símbolo;
+4. move o cabeçote para a esquerda ou direita;
+5. altera seu estado interno.
+
+O processo continua até atingir um estado de parada.
+
+A figura abaixo representa esquematicamente uma Máquina de Turing:
+
+```{figure} images/comp_classica/fita1.jpg
+:align: center
+:width: 500px
+
+Representação esquemática de uma Máquina de Turing.
+```
+
+## Funcionamento
+
+Considere uma máquina simples que reconhece uma sequência de bits e substitui todos os símbolos `1` por `0`.
+
+Inicialmente, a fita pode conter:
+
+$$
+11101
+$$
+
+A máquina percorre a fita da esquerda para a direita. Sempre que encontra o símbolo `1`, escreve `0` na mesma posição e move o cabeçote para a direita. Quando encontra o símbolo em branco que marca o fim da entrada, a computação termina.
+
+Após a execução, a fita conterá:
+
+$$
+00000
+$$
+
+Embora esse exemplo seja simples, máquinas de Turing podem implementar operações extremamente complexas, incluindo compiladores, sistemas operacionais e algoritmos matemáticos sofisticados.
+
+## Máquina de Turing e Algoritmos
+
+A Máquina de Turing tornou-se o principal modelo teórico para análise de algoritmos clássicos. Um algoritmo pode ser interpretado como uma sequência de transições executadas pela máquina.
+
+A partir desse modelo definem-se importantes conceitos de complexidade computacional:
+
+* **Complexidade temporal**: quantidade de passos executados;
+* **Complexidade espacial**: quantidade de memória utilizada na fita.
+
+Por exemplo, se um algoritmo realiza aproximadamente (n^2) operações para uma entrada de tamanho (n), dizemos que ele possui complexidade:
+
+$$
+O(n^2)
+$$
+
+Já algoritmos mais eficientes podem possuir complexidade:
+
+$$
+O(n \log n)
+$$
+
+ou até mesmo linear:
+
+$$
+O(n)
+$$
+
+A análise assintótica permite comparar algoritmos independentemente do hardware utilizado.
+
+## Classes de Complexidade
+
+O modelo da Máquina de Turing também permite definir formalmente as chamadas *classes de complexidade*, que agrupam problemas segundo os recursos computacionais necessários para resolvê-los.
+
+Algumas das principais classes são:
+
+* (P): problemas resolvidos em tempo polinomial;
+* (NP): problemas cuja solução pode ser verificada em tempo polinomial;
+* (EXP): problemas que requerem tempo exponencial;
+* (BPP): problemas solucionáveis probabilisticamente com pequeno erro.
+
+Grande parte da pesquisa em Ciência da Computação teórica envolve estudar relações entre essas classes, especialmente o famoso problema:
+
+$$
+P \stackrel{?}{=} NP
+$$
+
+Esse problema investiga se todo problema cuja solução pode ser verificada eficientemente também pode ser resolvido eficientemente.
+
+## Relação com Computação Quântica
+
+A Computação Quântica surge como um novo paradigma computacional capaz de alterar profundamente a complexidade de determinados problemas.
+
+Enquanto computadores clássicos são modelados por Máquinas de Turing clássicas, computadores quânticos são modelados por versões quânticas desse formalismo, como a *Máquina de Turing Quântica* e os *Circuitos Quânticos*.
+
+Algoritmos quânticos famosos demonstram vantagens significativas sobre algoritmos clássicos:
+
+* o algoritmo de Peter Shor fatoriza inteiros em tempo polinomial;
+* o algoritmo de Lov Grover realiza buscas quadráticamente mais rápidas que algoritmos clássicos.
+
+Assim, o estudo da Máquina de Turing clássica fornece a base conceitual necessária para compreender por que certos problemas podem ser acelerados por computadores quânticos. 
+
+## Computação Clássica Circuital
+
 :::{admonition} Referências
 Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](./tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
 :::
