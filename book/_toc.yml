@@ -80,14 +80,14 @@ parts:
           - file: topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_4-tomografia
           - file: topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_5-classical_shadows
 
-  - caption: Autores e Agradecimentos 
-    chapters:
-      - file: a_images/100-agradecimentos
-
-  - caption: Listas de Exercícios 
+  - caption: Exercícios para Consolidação
     chapters:
       - file: exercicios/lista1
       - file: exercicios/lista2
+      
+  - caption: Autores e Agradecimentos 
+    chapters:
+      - file: a_images/100-agradecimentos
 
   - caption: Referências
     chapters:

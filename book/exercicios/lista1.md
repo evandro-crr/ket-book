@@ -1,4 +1,4 @@
-# 1a Lista de Exercícios para Consolidação
+# 1a Lista de Exercícios
 
 ```{note}
 Material extraído das listas de exercício da matéria FSC7152 – Computação Quântica I ministradas pelo Prof. Dr. Eduardo Inacio Duzzioni.
