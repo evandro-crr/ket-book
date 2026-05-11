@@ -195,6 +195,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Computação Clássica</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
 <ul class="nav bd-sidenav">
@@ -422,6 +423,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Computação Clássica</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing">Máquina de Turing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamento">Funcionamento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing-e-algoritmos">Máquina de Turing e Algoritmos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-de-complexidade">Classes de Complexidade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-computacao-quantica">Relação com Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-classica-circuital">Computação Clássica Circuital</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveis-de-abstracao">Niveis de abstração</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-logico">Nível lógico</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algebra-booleana">Álgebra booleana</a></li>
@@ -439,6 +447,9 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#universalidade-das-portas-logicas-classicas">Universalidade das Portas Lógicas Clássicas</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -451,6 +462,105 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="computacao-classica">
 <h1>Computação Clássica<a class="headerlink" href="#computacao-classica" title="Link para este cabeçalho">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="maquina-de-turing">
+<h1>Máquina de Turing<a class="headerlink" href="#maquina-de-turing" title="Link para este cabeçalho">#</a></h1>
+<p>A Máquina de Turing é um modelo matemático proposto por Alan Turing em 1936 para descrever formalmente o que significa “computar” um problema. Apesar de extremamente simples, esse modelo é poderoso o suficiente para representar qualquer algoritmo executável em um computador clássico moderno.</p>
+<p>O estudo da Máquina de Turing é fundamental para compreender a teoria da computação e, principalmente, a noção de <em>complexidade de algoritmos</em>. A partir dela é possível definir formalmente quanto tempo ou memória um algoritmo necessita para resolver um problema.</p>
+<p>Uma Máquina de Turing é composta por:</p>
+<ul class="simple">
+<li><p>uma <strong>fita infinita</strong>, dividida em células, que funciona como memória;</p></li>
+<li><p>um <strong>cabeçote de leitura e escrita</strong>, capaz de ler ou modificar os símbolos da fita;</p></li>
+<li><p>um conjunto finito de <strong>estados internos</strong>;</p></li>
+<li><p>uma <strong>função de transição</strong>, que determina o comportamento da máquina.</p></li>
+</ul>
+<p>A cada passo computacional, a máquina:</p>
+<ol class="arabic simple">
+<li><p>lê o símbolo atual da fita;</p></li>
+<li><p>verifica o estado interno atual;</p></li>
+<li><p>escreve um novo símbolo;</p></li>
+<li><p>move o cabeçote para a esquerda ou direita;</p></li>
+<li><p>altera seu estado interno.</p></li>
+</ol>
+<p>O processo continua até atingir um estado de parada.</p>
+<p>A figura abaixo representa esquematicamente uma Máquina de Turing:</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/fita1.jpg"><img alt="_images/fita1.jpg" src="_images/fita1.jpg" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Representação esquemática de uma Máquina de Turing.</span><a class="headerlink" href="#id1" title="Link para esta imagem">#</a></p>
+</figcaption>
+</figure>
+<section id="funcionamento">
+<h2>Funcionamento<a class="headerlink" href="#funcionamento" title="Link para este cabeçalho">#</a></h2>
+<p>Considere uma máquina simples que reconhece uma sequência de bits e substitui todos os símbolos <code class="docutils literal notranslate"><span class="pre">1</span></code> por <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Inicialmente, a fita pode conter:</p>
+<div class="math notranslate nohighlight">
+\[
+11101
+\]</div>
+<p>A máquina percorre a fita da esquerda para a direita. Sempre que encontra o símbolo <code class="docutils literal notranslate"><span class="pre">1</span></code>, escreve <code class="docutils literal notranslate"><span class="pre">0</span></code> na mesma posição e move o cabeçote para a direita. Quando encontra o símbolo em branco que marca o fim da entrada, a computação termina.</p>
+<p>Após a execução, a fita conterá:</p>
+<div class="math notranslate nohighlight">
+\[
+00000
+\]</div>
+<p>Embora esse exemplo seja simples, máquinas de Turing podem implementar operações extremamente complexas, incluindo compiladores, sistemas operacionais e algoritmos matemáticos sofisticados.</p>
+</section>
+<section id="maquina-de-turing-e-algoritmos">
+<h2>Máquina de Turing e Algoritmos<a class="headerlink" href="#maquina-de-turing-e-algoritmos" title="Link para este cabeçalho">#</a></h2>
+<p>A Máquina de Turing tornou-se o principal modelo teórico para análise de algoritmos clássicos. Um algoritmo pode ser interpretado como uma sequência de transições executadas pela máquina.</p>
+<p>A partir desse modelo definem-se importantes conceitos de complexidade computacional:</p>
+<ul class="simple">
+<li><p><strong>Complexidade temporal</strong>: quantidade de passos executados;</p></li>
+<li><p><strong>Complexidade espacial</strong>: quantidade de memória utilizada na fita.</p></li>
+</ul>
+<p>Por exemplo, se um algoritmo realiza aproximadamente (n^2) operações para uma entrada de tamanho (n), dizemos que ele possui complexidade:</p>
+<div class="math notranslate nohighlight">
+\[
+O(n^2)
+\]</div>
+<p>Já algoritmos mais eficientes podem possuir complexidade:</p>
+<div class="math notranslate nohighlight">
+\[
+O(n \log n)
+\]</div>
+<p>ou até mesmo linear:</p>
+<div class="math notranslate nohighlight">
+\[
+O(n)
+\]</div>
+<p>A análise assintótica permite comparar algoritmos independentemente do hardware utilizado.</p>
+</section>
+<section id="classes-de-complexidade">
+<h2>Classes de Complexidade<a class="headerlink" href="#classes-de-complexidade" title="Link para este cabeçalho">#</a></h2>
+<p>O modelo da Máquina de Turing também permite definir formalmente as chamadas <em>classes de complexidade</em>, que agrupam problemas segundo os recursos computacionais necessários para resolvê-los.</p>
+<p>Algumas das principais classes são:</p>
+<ul class="simple">
+<li><p>(P): problemas resolvidos em tempo polinomial;</p></li>
+<li><p>(NP): problemas cuja solução pode ser verificada em tempo polinomial;</p></li>
+<li><p>(EXP): problemas que requerem tempo exponencial;</p></li>
+<li><p>(BPP): problemas solucionáveis probabilisticamente com pequeno erro.</p></li>
+</ul>
+<p>Grande parte da pesquisa em Ciência da Computação teórica envolve estudar relações entre essas classes, especialmente o famoso problema:</p>
+<div class="math notranslate nohighlight">
+\[
+P \stackrel{?}{=} NP
+\]</div>
+<p>Esse problema investiga se todo problema cuja solução pode ser verificada eficientemente também pode ser resolvido eficientemente.</p>
+</section>
+<section id="relacao-com-computacao-quantica">
+<h2>Relação com Computação Quântica<a class="headerlink" href="#relacao-com-computacao-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>A Computação Quântica surge como um novo paradigma computacional capaz de alterar profundamente a complexidade de determinados problemas.</p>
+<p>Enquanto computadores clássicos são modelados por Máquinas de Turing clássicas, computadores quânticos são modelados por versões quânticas desse formalismo, como a <em>Máquina de Turing Quântica</em> e os <em>Circuitos Quânticos</em>.</p>
+<p>Algoritmos quânticos famosos demonstram vantagens significativas sobre algoritmos clássicos:</p>
+<ul class="simple">
+<li><p>o algoritmo de Peter Shor fatoriza inteiros em tempo polinomial;</p></li>
+<li><p>o algoritmo de Lov Grover realiza buscas quadráticamente mais rápidas que algoritmos clássicos.</p></li>
+</ul>
+<p>Assim, o estudo da Máquina de Turing clássica fornece a base conceitual necessária para compreender por que certos problemas podem ser acelerados por computadores quânticos.</p>
+</section>
+<section id="computacao-classica-circuital">
+<h2>Computação Clássica Circuital<a class="headerlink" href="#computacao-classica-circuital" title="Link para este cabeçalho">#</a></h2>
 <div class="admonition-referencias admonition">
 <p class="admonition-title">Referências</p>
 <p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
@@ -460,6 +570,7 @@ document.write(`
 <p>Para que o computador consiga operar em um conjunto de informações, é necessário que essa informação seja traduzida, ou, codificada, de forma conveniente. O projeto dos computadores digitais se baseia em que as informações de entrada do sistema, e mesmo as instruções a serem seguidas, são codificadas em <em>bits</em>.</p>
 <p>Os bits são variáveis que podem assumir apenas dois valores, rotulados de 0/1 ou Verdadeiro/Falso, por exemplo. No computador digital, a tensão elétrica é utilizada como bit; as tensões próximas a <span class="math notranslate nohighlight">\(0V\)</span> são consideradas como bit 0 e as tensões próximas à tensão de alimentação do circuito (normalmente <span class="math notranslate nohighlight">\(5V\)</span> ou <span class="math notranslate nohighlight">\(3,\!3V\)</span>), como bit 1.</p>
 <p>Nas seções seguintes alguns desses tópicos serão detalhados. A ênfase será nas ideias vinculadas aos Sistemas Digitais, no manejo da complexidade por meio das camadas de abstração e nos detalhes das camadas mais próximas da camada física, com o objetivo de passar a ideia de como um computador digital clássico funciona. A finalidade é, também, comparar esse paradigma de computação com as ideias que estão surgindo na área da Computação Quântica.</p>
+</section>
 <section id="niveis-de-abstracao">
 <h2>Niveis de abstração<a class="headerlink" href="#niveis-de-abstracao" title="Link para este cabeçalho">#</a></h2>
 <p>Na engenharia, uma maneira de lidar com a complexidade de sistemas muito grandes é subdividí-los em subsistemas que possam ser descritos de maneira mais simples, omitindo detalhes internos. Componentes mais básicos são usados para projetar blocos que realizam funções simples. Esses blocos passam a ser descritos apenas pela sua função (como as saídas se comportam em relação às entradas), e passa-se a ignorar sua estrutura interna. Sistemas mais complexos podem ser projetados por meio desses blocos. A cada vez que se agrupa os sistemas em blocos e passa-se a ignorar sua estrutura interna, sobe-se um nível nas <em>camadas de abstração</em>. Quando se ``abre’’ um sistema para analisar sua estrutura interna, passa-se à camada de abstração inferior.</p>
@@ -716,6 +827,13 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Computação Clássica</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing">Máquina de Turing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamento">Funcionamento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing-e-algoritmos">Máquina de Turing e Algoritmos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-de-complexidade">Classes de Complexidade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-computacao-quantica">Relação com Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-classica-circuital">Computação Clássica Circuital</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveis-de-abstracao">Niveis de abstração</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-logico">Nível lógico</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algebra-booleana">Álgebra booleana</a></li>
@@ -733,6 +851,9 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#universalidade-das-portas-logicas-classicas">Universalidade das Portas Lógicas Clássicas</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
