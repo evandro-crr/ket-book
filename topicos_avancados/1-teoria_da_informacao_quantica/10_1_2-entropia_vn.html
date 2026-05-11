@@ -262,14 +262,14 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios para Consolidação</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">1a Lista de Exercícios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista2.html">2a Lista de Exercícios</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Autores e Agradecimentos</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../a_images/100-agradecimentos.html">Autores e Agradecimentos</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Listas de Exercícios</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">1a Lista de Exercícios para Consolidação</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista2.html">2a Lista de Exercícios para Consolidação</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
 <ul class="nav bd-sidenav">
@@ -422,20 +422,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">Definição</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estados-puros-e-estados-mistos">Estados puros e estados mistos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos">Exemplos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-1-estado-puro">Exemplo 1 — Estado puro</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-2-estado-maximamente-misto">Exemplo 2 — Estado maximamente misto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-3-estado-parcialmente-misto">Exemplo 3 — Estado parcialmente misto</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropia-em-sistemas-compostos">Entropia em sistemas compostos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-estado-de-bell">Exemplo — Estado de Bell</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-na-teoria-da-informacao-quantica">Papel na teoria da informação quântica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia">Importância</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica-e-interpretacao-informacional">Estrutura Matemática e Interpretação Informacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estados-puros-estados-mistos-e-informacao-quantica">Estados Puros, Estados Mistos e Informação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-estatistica-e-coerencia-quantica">Estrutura Estatística e Coerência Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-compostos-e-entrelacamento">Sistemas Compostos e Entrelaçamento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-fundamentais">Propriedades Fundamentais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-comunicacao-e-computacao-quantica">Papel em Comunicação e Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-decoerencia-e-medicao">Relação com Decoerência e Medição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a></li>
 </ul>
             </nav>
         </div>
@@ -449,188 +443,165 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="entropia-de-von-neumann">
 <h1>Entropia de von Neumann<a class="headerlink" href="#entropia-de-von-neumann" title="Link para este cabeçalho">#</a></h1>
-<p>A <strong>entropia de von Neumann</strong> é uma das quantidades mais fundamentais da teoria da informação quântica. Ela generaliza a entropia de Shannon, usada na teoria da informação clássica, para sistemas descritos pela mecânica quântica. Sua função principal é quantificar a <strong>quantidade de incerteza, desordem ou informação contida em um estado quântico</strong>.</p>
-<p>Em sistemas clássicos, a entropia mede a incerteza associada a uma distribuição de probabilidades. No contexto quântico, porém, os estados de um sistema podem estar em <strong>superposição</strong> e apresentar <strong>entrelaçamento</strong>, exigindo uma formulação mais geral para medir informação. A entropia de von Neumann surge exatamente como essa extensão natural, sendo definida para estados descritos por <strong>matrizes densidade</strong>.</p>
-<p>Essa medida desempenha um papel central em diversos resultados fundamentais da teoria da informação quântica, incluindo compressão de informação quântica, limites de comunicação e análise de correlações entre sistemas quânticos.</p>
-<section id="definicao">
-<h2>Definição<a class="headerlink" href="#definicao" title="Link para este cabeçalho">#</a></h2>
-<p>Considere um sistema quântico descrito por uma matriz densidade <span class="math notranslate nohighlight">\( \rho \)</span>. A <strong>entropia de von Neumann</strong> é definida como</p>
+<p>A <strong>entropia de von Neumann</strong> é uma das estruturas centrais da teoria da informação quântica, desempenhando o papel de medida fundamental de informação, incerteza e correlação em sistemas quânticos. Ela surge como uma generalização direta da entropia de Shannon para estados descritos por matrizes densidade, incorporando fenômenos exclusivamente quânticos como superposição, coerência e entrelaçamento.</p>
+<p>Enquanto na teoria clássica a entropia quantifica a incerteza associada a uma distribuição de probabilidades, no contexto quântico ela mede a quantidade de informação inacessível sobre um sistema cuja descrição pode envolver combinações coerentes de estados. Dessa forma, a entropia de von Neumann não apenas caracteriza desordem estatística, mas também captura propriedades estruturais profundas da mecânica quântica.</p>
+<p>Seu papel é extremamente amplo: aparece na formulação de limites fundamentais de comunicação quântica, na caracterização de entrelaçamento, na análise de canais quânticos, em termodinâmica quântica e até em teorias modernas envolvendo gravidade e informação.</p>
+<section id="estrutura-matematica-e-interpretacao-informacional">
+<h2>Estrutura Matemática e Interpretação Informacional<a class="headerlink" href="#estrutura-matematica-e-interpretacao-informacional" title="Link para este cabeçalho">#</a></h2>
+<p>Considere um sistema quântico descrito por uma matriz densidade <span class="math notranslate nohighlight">\(\rho\)</span>. A entropia de von Neumann é definida por</p>
 <div class="math notranslate nohighlight">
 \[
-S(\rho) = - \mathrm{Tr}(\rho \log \rho)
+S(\rho) = -\mathrm{Tr}(\rho \log \rho)
 \]</div>
-<p>onde <span class="math notranslate nohighlight">\( \mathrm{Tr} \)</span> representa o traço da matriz.</p>
-<p>Se <span class="math notranslate nohighlight">\( \lambda_i \)</span> são os autovalores da matriz densidade <span class="math notranslate nohighlight">\( \rho \)</span>, a entropia pode ser escrita de forma equivalente como</p>
+<p>onde <span class="math notranslate nohighlight">\(\mathrm{Tr}\)</span> representa o traço da matriz.</p>
+<p>Diagonalizando <span class="math notranslate nohighlight">\(\rho\)</span>, obtemos uma decomposição espectral:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_i \lambda_i \ket{i}\bra{i}
+\]</div>
+<p>com <span class="math notranslate nohighlight">\(\lambda_i\)</span> correspondendo aos autovalores da matriz densidade. Nesse caso, a entropia assume a forma</p>
 <div class="math notranslate nohighlight">
 \[
 S(\rho) = - \sum_i \lambda_i \log \lambda_i
 \]</div>
-<p>Essa expressão evidencia a forte relação com a <strong>entropia de Shannon</strong>, pois os autovalores da matriz densidade formam uma distribuição de probabilidades.</p>
-<p>Em muitas aplicações utiliza-se o logaritmo na base 2, fazendo com que a entropia seja medida em <strong>bits</strong>.</p>
+<p>Essa expressão evidencia a forte analogia com a entropia de Shannon, já que os autovalores da matriz densidade formam uma distribuição de probabilidades. No entanto, a interpretação quântica é mais rica: os autovalores representam a estrutura estatística efetiva do estado, enquanto os autovetores codificam sua organização quântica.</p>
+<p>Em geral, utiliza-se o logaritmo na base 2, fazendo com que a entropia seja medida em bits quânticos de informação.</p>
+<p>Uma característica importante é que a entropia depende apenas do espectro da matriz densidade, sendo invariante sob transformações unitárias:</p>
+<div class="math notranslate nohighlight">
+\[
+S(U\rho U^\dagger) = S(\rho)
+\]</div>
+<p>Isso mostra que a entropia mede propriedades intrínsecas do estado e não da base utilizada para descrevê-lo.</p>
 </section>
-<section id="estados-puros-e-estados-mistos">
-<h2>Estados puros e estados mistos<a class="headerlink" href="#estados-puros-e-estados-mistos" title="Link para este cabeçalho">#</a></h2>
-<p>Uma das interpretações mais importantes da entropia de von Neumann é sua capacidade de distinguir <strong>estados puros</strong> de <strong>estados mistos</strong>.</p>
-<p>Um estado quântico puro é descrito por uma matriz densidade da forma</p>
+<section id="estados-puros-estados-mistos-e-informacao-quantica">
+<h2>Estados Puros, Estados Mistos e Informação Quântica<a class="headerlink" href="#estados-puros-estados-mistos-e-informacao-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>A interpretação mais imediata da entropia de von Neumann é sua capacidade de distinguir estados puros de estados mistos.</p>
+<p>Um estado puro possui a forma</p>
 <div class="math notranslate nohighlight">
 \[
 \rho = \ket{\psi}\bra{\psi}
 \]</div>
-<p>Nesse caso, a matriz densidade possui apenas um autovalor igual a 1 e os demais iguais a 0. Como consequência,</p>
+<p>e satisfaz</p>
+<div class="math notranslate nohighlight">
+\[
+\rho^2 = \rho
+\]</div>
+<p>Nesse caso, existe apenas um autovalor igual a 1, enquanto todos os demais são nulos. Consequentemente,</p>
 <div class="math notranslate nohighlight">
 \[
 S(\rho) = 0
 \]</div>
-<p>Isso significa que <strong>não há incerteza intrínseca no estado quântico</strong>.</p>
-<p>Por outro lado, um <strong>estado misto</strong> representa uma distribuição estatística de estados quânticos. Nesse caso, a matriz densidade possui múltiplos autovalores diferentes de zero, e a entropia torna-se positiva. Quanto maior a mistura do estado, maior será sua entropia.</p>
-<p>Assim, a entropia de von Neumann mede o <strong>grau de mistura de um estado quântico</strong>.</p>
+<p>Isso significa que o estado contém informação máxima possível sobre o sistema: não existe incerteza estatística intrínseca.</p>
+<p>Por outro lado, estados mistos representam ensembles estatísticos de estados quânticos. Nesses casos, múltiplos autovalores são diferentes de zero, produzindo entropia positiva. Quanto mais uniforme for a distribuição espectral, maior será a entropia.</p>
+<p>Para um sistema de dimensão <span class="math notranslate nohighlight">\(d\)</span>, o valor máximo possível da entropia é</p>
+<div class="math notranslate nohighlight">
+\[
+S_{\max} = \log d
+\]</div>
+<p>atingido pelo estado maximamente misto</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \frac{I}{d}
+\]</div>
+<p>Esse estado representa ausência completa de informação sobre o sistema.</p>
+<p>Assim, a entropia de von Neumann mede o grau de mistura do estado e, simultaneamente, a quantidade de informação clássica faltante sobre sua preparação.</p>
 </section>
-<section id="exemplos">
-<h2>Exemplos<a class="headerlink" href="#exemplos" title="Link para este cabeçalho">#</a></h2>
-<section id="exemplo-1-estado-puro">
-<h3>Exemplo 1 — Estado puro<a class="headerlink" href="#exemplo-1-estado-puro" title="Link para este cabeçalho">#</a></h3>
-<p>Considere o estado quântico</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\rho =
-\begin{pmatrix}
-1 &amp; 0 \\
-0 &amp; 0
-\end{pmatrix}
-\end{split}\]</div>
-<p>Os autovalores dessa matriz são</p>
-<div class="math notranslate nohighlight">
-\[
-\lambda_1 = 1, \quad \lambda_2 = 0
-\]</div>
-<p>Aplicando a definição da entropia:</p>
-<div class="math notranslate nohighlight">
-\[
-S(\rho) = - (1 \log 1 + 0 \log 0)
-\]</div>
-<p>Como <span class="math notranslate nohighlight">\( \log 1 = 0 \)</span>, obtemos</p>
-<div class="math notranslate nohighlight">
-\[
-S(\rho) = 0
-\]</div>
-<p>Esse resultado mostra que <strong>estados puros possuem entropia zero</strong>, pois não há incerteza sobre o estado do sistema.</p>
+<section id="estrutura-estatistica-e-coerencia-quantica">
+<h2>Estrutura Estatística e Coerência Quântica<a class="headerlink" href="#estrutura-estatistica-e-coerencia-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>Embora a entropia dependa apenas dos autovalores da matriz densidade, ela está profundamente relacionada à coerência quântica.</p>
+<p>Considere dois estados com o mesmo espectro. Ambos possuem a mesma entropia, mesmo que um deles apresente coerências fora da diagonal em determinada base. Isso evidencia que a entropia de von Neumann não mede coerência diretamente, mas sim a estrutura probabilística global do estado.</p>
+<p>Ainda assim, processos que destroem coerências — como decoerência e medições não seletivas — frequentemente aumentam a entropia do sistema, pois convertem superposições quânticas em misturas clássicas.</p>
+<p>Nesse sentido, a entropia conecta informação quântica e irreversibilidade física.</p>
 </section>
-<section id="exemplo-2-estado-maximamente-misto">
-<h3>Exemplo 2 — Estado maximamente misto<a class="headerlink" href="#exemplo-2-estado-maximamente-misto" title="Link para este cabeçalho">#</a></h3>
-<p>Considere agora o estado</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\rho =
-\frac{1}{2}
-\begin{pmatrix}
-1 &amp; 0 \\
-0 &amp; 1
-\end{pmatrix}
-\end{split}\]</div>
-<p>Os autovalores são</p>
+<section id="sistemas-compostos-e-entrelacamento">
+<h2>Sistemas Compostos e Entrelaçamento<a class="headerlink" href="#sistemas-compostos-e-entrelacamento" title="Link para este cabeçalho">#</a></h2>
+<p>A entropia de von Neumann assume um papel ainda mais profundo em sistemas compostos.</p>
+<p>Considere um sistema bipartido descrito por</p>
 <div class="math notranslate nohighlight">
 \[
-\lambda_1 = \frac{1}{2}, \quad \lambda_2 = \frac{1}{2}
+\rho_{AB}
 \]</div>
-<p>Calculando a entropia:</p>
+<p>As matrizes reduzidas são definidas por traço parcial:</p>
 <div class="math notranslate nohighlight">
 \[
-S(\rho) =
-- \left(
-\frac{1}{2}\log_2\frac{1}{2} +
-\frac{1}{2}\log_2\frac{1}{2}
-\right)
+\rho_A = \mathrm{Tr}*B(\rho*{AB}),
+\qquad
+\rho_B = \mathrm{Tr}*A(\rho*{AB})
 \]</div>
-<p>Como <span class="math notranslate nohighlight">\( \log_2 \frac{1}{2} = -1 \)</span>, obtemos</p>
-<div class="math notranslate nohighlight">
-\[
-S(\rho) = 1
-\]</div>
-<p>Esse estado é chamado de <strong>estado maximamente misto</strong>, pois representa a maior incerteza possível para um único qubit.</p>
-</section>
-<section id="exemplo-3-estado-parcialmente-misto">
-<h3>Exemplo 3 — Estado parcialmente misto<a class="headerlink" href="#exemplo-3-estado-parcialmente-misto" title="Link para este cabeçalho">#</a></h3>
-<p>Considere o estado</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\rho =
-\begin{pmatrix}
-0.8 &amp; 0 \\
-0 &amp; 0.2
-\end{pmatrix}
-\end{split}\]</div>
-<p>Os autovalores são <span class="math notranslate nohighlight">\(0.8\)</span> e <span class="math notranslate nohighlight">\(0.2\)</span>. A entropia é</p>
-<div class="math notranslate nohighlight">
-\[
-S(\rho) =
--(0.8 \log_2 0.8 + 0.2 \log_2 0.2)
-\]</div>
-<p>Calculando aproximadamente,</p>
-<div class="math notranslate nohighlight">
-\[
-S(\rho) \approx 0.72
-\]</div>
-<p>Esse valor mostra que o estado possui <strong>incerteza intermediária</strong>: ele não é puro, mas também não é completamente misto.</p>
-</section>
-</section>
-<section id="entropia-em-sistemas-compostos">
-<h2>Entropia em sistemas compostos<a class="headerlink" href="#entropia-em-sistemas-compostos" title="Link para este cabeçalho">#</a></h2>
-<p>A entropia de von Neumann também desempenha um papel fundamental no estudo de <strong>sistemas quânticos compostos</strong>.</p>
-<p>Considere um sistema formado por duas partes <span class="math notranslate nohighlight">\(A\)</span> e <span class="math notranslate nohighlight">\(B\)</span>, descrito por uma matriz densidade conjunta <span class="math notranslate nohighlight">\( \rho_{AB} \)</span>. Podemos definir as matrizes densidade reduzidas</p>
-<div class="math notranslate nohighlight">
-\[
-\rho_A = \mathrm{Tr}_B(\rho_{AB})
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\rho_B = \mathrm{Tr}_A(\rho_{AB})
-\]</div>
-<p>A entropia dessas matrizes fornece informações importantes sobre as <strong>correlações entre os subsistemas</strong>.</p>
-<p>Um resultado particularmente interessante ocorre quando o estado total <span class="math notranslate nohighlight">\( \rho_{AB} \)</span> é puro, mas os subsistemas possuem entropia positiva. Isso acontece quando os sistemas estão <strong>entrelaçados</strong>.</p>
-<section id="exemplo-estado-de-bell">
-<h3>Exemplo — Estado de Bell<a class="headerlink" href="#exemplo-estado-de-bell" title="Link para este cabeçalho">#</a></h3>
-<p>Considere o estado entrelaçado</p>
+<p>Quando o sistema total está em um estado puro mas os subsistemas possuem entropia positiva, surge um dos fenômenos mais característicos da mecânica quântica: o entrelaçamento.</p>
+<p>Considere, por exemplo, o estado de Bell</p>
 <div class="math notranslate nohighlight">
 \[
 \ket{\Phi^+} =
 \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})
 \]</div>
-<p>O estado total possui entropia</p>
+<p>O sistema total satisfaz</p>
 <div class="math notranslate nohighlight">
 \[
 S(\rho_{AB}) = 0
 \]</div>
-<p>pois é um estado puro.</p>
-<p>No entanto, a matriz densidade reduzida de cada qubit é</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\rho_A =
-\frac{1}{2}
-\begin{pmatrix}
-1 &amp; 0 \\
-0 &amp; 1
-\end{pmatrix}
-\end{split}\]</div>
-<p>Assim,</p>
+<p>pois o estado global é puro. Entretanto, cada subsistema individual possui matriz reduzida</p>
 <div class="math notranslate nohighlight">
 \[
-S(\rho_A) = 1
+\rho_A = \rho_B = \frac{I}{2}
 \]</div>
-<p>Isso mostra que <strong>cada subsistema individualmente parece completamente misto</strong>, mesmo que o sistema total esteja em um estado puro. Esse fenômeno é uma assinatura do <strong>entrelaçamento quântico</strong>.</p>
+<p>resultando em</p>
+<div class="math notranslate nohighlight">
+\[
+S(\rho_A) = S(\rho_B) = 1
+\]</div>
+<p>Esse resultado é profundamente não clássico: individualmente, cada qubit parece completamente aleatório, embora o sistema conjunto possua informação perfeitamente definida.</p>
+<p>A entropia dos subsistemas torna-se, portanto, uma medida natural de entrelaçamento para estados puros bipartidos.</p>
 </section>
+<section id="propriedades-fundamentais">
+<h2>Propriedades Fundamentais<a class="headerlink" href="#propriedades-fundamentais" title="Link para este cabeçalho">#</a></h2>
+<p>A entropia de von Neumann possui propriedades matemáticas fundamentais que estruturam grande parte da teoria da informação quântica.</p>
+<p>Ela é sempre não negativa:</p>
+<div class="math notranslate nohighlight">
+\[
+S(\rho) \geq 0
+\]</div>
+<p>e é côncava, refletindo o fato de que misturas estatísticas aumentam incerteza.</p>
+<p>Além disso, satisfaz a importante propriedade de subaditividade:</p>
+<div class="math notranslate nohighlight">
+\[
+S(\rho_{AB}) \leq S(\rho_A) + S(\rho_B)
+\]</div>
+<p>e a desigualdade forte de subaditividade, considerada uma das estruturas centrais da teoria da informação quântica.</p>
+<p>Outra característica notável é que, diferentemente do caso clássico, a entropia condicional quântica pode assumir valores negativos:</p>
+<div class="math notranslate nohighlight">
+\[
+S(A|B) = S(\rho_{AB}) - S(\rho_B)
+\]</div>
+<p>Esse comportamento está diretamente ligado ao entrelaçamento e não possui análogo clássico.</p>
 </section>
-<section id="papel-na-teoria-da-informacao-quantica">
-<h2>Papel na teoria da informação quântica<a class="headerlink" href="#papel-na-teoria-da-informacao-quantica" title="Link para este cabeçalho">#</a></h2>
-<p>A entropia de von Neumann aparece em diversos resultados centrais da teoria da informação quântica.</p>
-<p>Ela é fundamental na formulação do <strong>teorema de compressão quântica de Schumacher</strong>, que mostra como estados quânticos podem ser comprimidos de forma eficiente quando existe redundância estatística.</p>
-<p>Também aparece em resultados relacionados à <strong>capacidade de canais quânticos</strong>, determinando limites fundamentais para a transmissão de informação. Um exemplo importante é o <strong>teorema de Holevo</strong>, que estabelece limites para a quantidade de informação clássica que pode ser extraída de estados quânticos.</p>
-<p>Além disso, a entropia de von Neumann é amplamente utilizada no estudo de <strong>entrelaçamento quântico</strong>, correlações quânticas e termodinâmica quântica.</p>
+<section id="papel-em-comunicacao-e-computacao-quantica">
+<h2>Papel em Comunicação e Computação Quântica<a class="headerlink" href="#papel-em-comunicacao-e-computacao-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>A entropia de von Neumann aparece em praticamente toda a teoria da informação quântica moderna.</p>
+<p>Ela é central no <strong>teorema de compressão de Schumacher</strong>, que estabelece o limite fundamental para compressão de estados quânticos, desempenhando papel análogo ao teorema de Shannon na teoria clássica.</p>
+<p>Também surge no <strong>teorema de Holevo</strong>, que limita a quantidade de informação clássica extraível de sistemas quânticos.</p>
+<p>Em canais quânticos, a entropia é utilizada para definir capacidades de transmissão, caracterizar ruído e analisar perda de coerência.</p>
+<p>Na computação quântica, ela é amplamente utilizada para:</p>
+<ul class="simple">
+<li><p>caracterização de entrelaçamento;</p></li>
+<li><p>análise de decoerência;</p></li>
+<li><p>estudo de complexidade quântica;</p></li>
+<li><p>validação de estados preparados experimentalmente.</p></li>
+</ul>
+<p>Além disso, em termodinâmica quântica, a entropia conecta informação e energia, aparecendo em formulações modernas da segunda lei da termodinâmica.</p>
 </section>
-<section id="importancia">
-<h2>Importância<a class="headerlink" href="#importancia" title="Link para este cabeçalho">#</a></h2>
-<p>A entropia de von Neumann é considerada uma das quantidades centrais da teoria da informação quântica. Ela fornece uma forma natural de quantificar informação, incerteza e correlações em sistemas quânticos.</p>
-<p>Seu papel vai além da computação quântica, sendo também essencial em áreas como <strong>comunicação quântica, física da matéria condensada, termodinâmica quântica e teoria de campos quânticos</strong>.</p>
-<p>Assim como a entropia de Shannon revolucionou a teoria da informação clássica, a entropia de von Neumann tornou-se uma ferramenta fundamental para compreender <strong>os limites e possibilidades da informação no mundo quântico</strong>.</p>
+<section id="relacao-com-decoerencia-e-medicao">
+<h2>Relação com Decoerência e Medição<a class="headerlink" href="#relacao-com-decoerencia-e-medicao" title="Link para este cabeçalho">#</a></h2>
+<p>A medição quântica frequentemente produz aumento de entropia ao destruir coerências do sistema.</p>
+<p>Quando um estado sofre decoerência, os termos fora da diagonal da matriz densidade desaparecem gradualmente, transformando superposições em misturas estatísticas. Esse processo corresponde a uma perda de informação quântica acessível e, em geral, a um crescimento entrópico.</p>
+<p>Assim, a entropia de von Neumann fornece uma descrição quantitativa da transição entre comportamento quântico e clássico.</p>
+<p>Ela também permite compreender por que processos irreversíveis emergem naturalmente em sistemas quânticos abertos.</p>
+</section>
+<section id="consideracoes-finais">
+<h2>Considerações Finais<a class="headerlink" href="#consideracoes-finais" title="Link para este cabeçalho">#</a></h2>
+<p>A entropia de von Neumann constitui uma das quantidades mais profundas da física moderna. Mais do que uma simples medida de desordem, ela organiza matematicamente conceitos fundamentais como informação, coerência, mistura estatística e entrelaçamento.</p>
+<p>Seu formalismo revela que informação quântica possui uma estrutura muito mais rica do que a informação clássica, permitindo fenômenos sem equivalente no mundo clássico, como entropia condicional negativa e correlações não locais.</p>
+<p>Por esse motivo, a entropia de von Neumann tornou-se uma ferramenta indispensável não apenas na computação quântica, mas em praticamente toda a teoria quântica contemporânea.</p>
 </section>
 </section>
 
@@ -698,20 +669,14 @@ S(\rho_A) = 1
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">Definição</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estados-puros-e-estados-mistos">Estados puros e estados mistos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos">Exemplos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-1-estado-puro">Exemplo 1 — Estado puro</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-2-estado-maximamente-misto">Exemplo 2 — Estado maximamente misto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-3-estado-parcialmente-misto">Exemplo 3 — Estado parcialmente misto</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropia-em-sistemas-compostos">Entropia em sistemas compostos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-estado-de-bell">Exemplo — Estado de Bell</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-na-teoria-da-informacao-quantica">Papel na teoria da informação quântica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia">Importância</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-matematica-e-interpretacao-informacional">Estrutura Matemática e Interpretação Informacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estados-puros-estados-mistos-e-informacao-quantica">Estados Puros, Estados Mistos e Informação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-estatistica-e-coerencia-quantica">Estrutura Estatística e Coerência Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-compostos-e-entrelacamento">Sistemas Compostos e Entrelaçamento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-fundamentais">Propriedades Fundamentais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papel-em-comunicacao-e-computacao-quantica">Papel em Comunicação e Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-decoerencia-e-medicao">Relação com Decoerência e Medição</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a></li>
 </ul>
   </nav></div>
 

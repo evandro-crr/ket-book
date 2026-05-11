@@ -262,14 +262,14 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercícios para Consolidação</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">1a Lista de Exercícios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista2.html">2a Lista de Exercícios</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Autores e Agradecimentos</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../a_images/100-agradecimentos.html">Autores e Agradecimentos</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Listas de Exercícios</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista1.html">1a Lista de Exercícios para Consolidação</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../exercicios/lista2.html">2a Lista de Exercícios para Consolidação</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
 <ul class="nav bd-sidenav">
@@ -422,13 +422,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-problema-do-teorema-de-holevo">O problema do Teorema de Holevo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-do-problema-informacional">Estrutura do Problema Informacional</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enunciado-do-teorema">Enunciado do Teorema</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-do-teorema-de-holevo">Interpretação do Teorema de Holevo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-simples">Exemplo simples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequencias-importantes">Consequências importantes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-outros-conceitos">Relação com outros conceitos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia">Importância</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-informacional">Interpretação Informacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ortogonalidade-e-distinguibilidade">Ortogonalidade e Distinguibilidade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limite-informacional-dos-qubits">Limite Informacional dos Qubits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-medicao-quantica">Relação com Medição Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-entropia-e-canais-quanticos">Relação com Entropia e Canais Quânticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequencias-conceituais">Consequências Conceituais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a></li>
 </ul>
             </nav>
         </div>
@@ -442,127 +444,179 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="teorema-de-holevo">
 <h1>Teorema de Holevo<a class="headerlink" href="#teorema-de-holevo" title="Link para este cabeçalho">#</a></h1>
-<p>O <strong>teorema de Holevo</strong> é um dos resultados mais importantes da teoria da informação quântica. Ele estabelece um limite fundamental para a quantidade de <strong>informação clássica</strong> que pode ser extraída de um sistema quântico.</p>
-<p>Embora estados quânticos possam existir em superposição e parecer carregar uma grande quantidade de informação, o teorema de Holevo mostra que há um limite rigoroso para o quanto dessa informação pode ser acessado por meio de medidas.</p>
-<p>Esse resultado é central para compreender <strong>as limitações da comunicação quântica</strong> e o papel da mecânica quântica no processamento de informação.</p>
-<section id="o-problema-do-teorema-de-holevo">
-<h2>O problema do Teorema de Holevo<a class="headerlink" href="#o-problema-do-teorema-de-holevo" title="Link para este cabeçalho">#</a></h2>
-<p>Considere o seguinte cenário:</p>
-<ul class="simple">
-<li><p>um emissor (Alice) deseja enviar informação clássica</p></li>
-<li><p>ela codifica mensagens clássicas <span class="math notranslate nohighlight">\(i\)</span> em estados quânticos <span class="math notranslate nohighlight">\(\rho_i\)</span></p></li>
-<li><p>cada estado é enviado com probabilidade <span class="math notranslate nohighlight">\(p_i\)</span></p></li>
-</ul>
-<p>O receptor (Bob) recebe o estado quântico, mas para obter informação ele precisa realizar uma <strong>medida quântica</strong>.</p>
-<p>A questão fundamental é:</p>
-<blockquote>
-<div><p>quanta informação clássica Bob pode extrair sobre a variável <span class="math notranslate nohighlight">\(i\)</span> a partir das medições?</p>
-</div></blockquote>
-</section>
-<section id="enunciado-do-teorema">
-<h2>Enunciado do Teorema<a class="headerlink" href="#enunciado-do-teorema" title="Link para este cabeçalho">#</a></h2>
-<p>Defina o estado médio da fonte como</p>
+<p>O <strong>teorema de Holevo</strong> é um dos resultados mais profundos e fundamentais da teoria da informação quântica. Ele estabelece um limite rigoroso para a quantidade de <strong>informação clássica</strong> que pode ser extraída de sistemas quânticos, mostrando que, apesar da enorme riqueza estrutural dos estados quânticos, existe uma restrição física sobre o quanto dessa informação pode ser acessado por meio de medições.</p>
+<p>Esse resultado possui enorme importância conceitual porque revela uma tensão central da mecânica quântica: estados quânticos parecem conter muito mais informação do que sistemas clássicos equivalentes — devido à superposição, amplitudes complexas e espaços de Hilbert de alta dimensão — mas a teoria impõe limites severos sobre a informação efetivamente observável.</p>
+<p>O teorema de Holevo tornou-se um dos pilares da comunicação quântica moderna, sendo essencial para compreender capacidades de canais quânticos, limites de transmissão de informação e a relação entre informação clássica e quântica.</p>
+<section id="estrutura-do-problema-informacional">
+<h2>Estrutura do Problema Informacional<a class="headerlink" href="#estrutura-do-problema-informacional" title="Link para este cabeçalho">#</a></h2>
+<p>Considere um cenário de comunicação entre dois agentes, Alice e Bob.</p>
+<p>Alice deseja transmitir uma variável clássica <span class="math notranslate nohighlight">\(i\)</span> escolhida segundo probabilidades <span class="math notranslate nohighlight">\(p_i\)</span>. Para isso, ela associa cada mensagem clássica a um estado quântico <span class="math notranslate nohighlight">\(\rho_i\)</span> e envia esse estado para Bob.</p>
+<p>A fonte é então descrita pelo ensemble:</p>
+<div class="math notranslate nohighlight">
+\[
+{p_i,\rho_i}
+\]</div>
+<p>O estado médio recebido por Bob é</p>
 <div class="math notranslate nohighlight">
 \[
 \rho = \sum_i p_i \rho_i
 \]</div>
-<p>O teorema de Holevo afirma que a quantidade de informação acessível é limitada por</p>
+<p>No entanto, Bob não possui acesso direto à variável clássica original. Tudo o que ele recebe é um sistema quântico sobre o qual precisa realizar medições para tentar inferir qual estado foi enviado.</p>
+<p>A pergunta fundamental torna-se:</p>
+<blockquote>
+<div><p>Qual é a quantidade máxima de informação clássica que Bob pode recuperar a partir das medições?</p>
+</div></blockquote>
+<p>Essa questão é extremamente profunda porque medições quânticas possuem natureza probabilística e inevitavelmente perturbam os estados. Além disso, estados quânticos não ortogonais não podem ser perfeitamente distinguidos.</p>
+<p>O teorema de Holevo fornece exatamente o limite fundamental dessa extração de informação.</p>
+</section>
+<section id="enunciado-do-teorema">
+<h2>Enunciado do Teorema<a class="headerlink" href="#enunciado-do-teorema" title="Link para este cabeçalho">#</a></h2>
+<p>A quantidade de informação clássica acessível por qualquer procedimento de medição satisfaz</p>
 <div class="math notranslate nohighlight">
 \[
 I(X:Y) \le \chi
 \]</div>
 <p>onde</p>
 <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+\chi =
+S(\rho)
+-------\\\sum_i p_i S(\rho_i)
+\end{aligned}\end{align} \]</div>
+<p>A quantidade</p>
+<div class="math notranslate nohighlight">
 \[
-\chi = S(\rho) - \sum_i p_i S(\rho_i)
+\chi
 \]</div>
 <p>é chamada de <strong>quantidade de Holevo</strong>.</p>
 <p>Aqui:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(S(\rho)\)</span> é a entropia de von Neumann</p></li>
-<li><p><span class="math notranslate nohighlight">\(I(X:Y)\)</span> é a informação mútua entre a variável enviada e o resultado da medida</p></li>
+<li><p><span class="math notranslate nohighlight">\(S(\rho)\)</span> representa a entropia de von Neumann;</p></li>
+<li><p><span class="math notranslate nohighlight">\(I(X:Y)\)</span> é a informação mútua entre a variável enviada e o resultado obtido na medição.</p></li>
 </ul>
-<p>Esse resultado vale para <strong>qualquer estratégia de medição</strong>.</p>
+<p>Esse limite vale para qualquer estratégia física possível de medição, incluindo medições coletivas sofisticadas sobre múltiplos sistemas.</p>
+<p>O resultado estabelece que a quantidade de informação clássica recuperável depende da diferença entre a incerteza global do ensemble e a incerteza média interna dos estados enviados.</p>
 </section>
-<section id="interpretacao-do-teorema-de-holevo">
-<h2>Interpretação do Teorema de Holevo<a class="headerlink" href="#interpretacao-do-teorema-de-holevo" title="Link para este cabeçalho">#</a></h2>
-<p>O teorema de Holevo mostra que:</p>
-<ul class="simple">
-<li><p>não é possível extrair arbitrariamente muita informação de um sistema quântico</p></li>
-<li><p>a quantidade acessível é limitada por uma diferença de entropias</p></li>
-</ul>
-<p>Mesmo que os estados <span class="math notranslate nohighlight">\(\rho_i\)</span> sejam complexos ou de alta dimensão, a informação clássica recuperável é restrita.</p>
-<p>Um caso importante ocorre quando os estados <span class="math notranslate nohighlight">\(\rho_i\)</span> são puros:</p>
+<section id="interpretacao-informacional">
+<h2>Interpretação Informacional<a class="headerlink" href="#interpretacao-informacional" title="Link para este cabeçalho">#</a></h2>
+<p>A interpretação física do teorema é extremamente rica.</p>
+<p>O termo</p>
 <div class="math notranslate nohighlight">
 \[
-S(\rho_i) = 0
+S(\rho)
 \]</div>
-<p>Nesse caso,</p>
+<p>mede a incerteza total associada ao estado médio recebido. Já o termo</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_i p_i S(\rho_i)
+\]</div>
+<p>representa a incerteza média interna dos estados individuais.</p>
+<p>A diferença entre essas quantidades mede efetivamente quanta informação clássica está codificada nas diferenças entre os estados enviados.</p>
+<p>Quando os estados <span class="math notranslate nohighlight">\(\rho_i\)</span> são puros:</p>
+<div class="math notranslate nohighlight">
+\[
+S(\rho_i)=0
+\]</div>
+<p>e a quantidade de Holevo reduz-se a</p>
 <div class="math notranslate nohighlight">
 \[
 \chi = S(\rho)
 \]</div>
-<p>Ou seja, a quantidade de informação acessível é limitada pela entropia do estado médio.</p>
+<p>Nesse caso, toda a limitação informacional é determinada pela estrutura estatística do ensemble médio.</p>
+<p>Esse resultado mostra algo profundo: embora estados quânticos possam ser descritos por amplitudes contínuas e aparentemente carregar informação arbitrariamente grande, apenas uma quantidade limitada dessa informação pode ser acessada operacionalmente.</p>
+<p>A informação “escondida” nas amplitudes quânticas não pode ser completamente extraída por medições.</p>
 </section>
-<section id="exemplo-simples">
-<h2>Exemplo simples<a class="headerlink" href="#exemplo-simples" title="Link para este cabeçalho">#</a></h2>
-<p>Considere uma fonte que envia:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\ket{0}\)</span> com probabilidade <span class="math notranslate nohighlight">\(1/2\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\ket{1}\)</span> com probabilidade <span class="math notranslate nohighlight">\(1/2\)</span></p></li>
-</ul>
-<p>O estado médio é</p>
+<section id="ortogonalidade-e-distinguibilidade">
+<h2>Ortogonalidade e Distinguibilidade<a class="headerlink" href="#ortogonalidade-e-distinguibilidade" title="Link para este cabeçalho">#</a></h2>
+<p>A capacidade de extrair informação depende diretamente da distinguibilidade dos estados enviados.</p>
+<p>Considere primeiro o caso em que Alice envia:</p>
 <div class="math notranslate nohighlight">
 \[
-\rho =
-\frac{1}{2}\ket{0}\bra{0} +
-\frac{1}{2}\ket{1}\bra{1}
+\ket{0}
+\quad \text{ou} \quad
+\ket{1}
 \]</div>
-<p>A entropia é</p>
+<p>com probabilidade igual.</p>
+<p>Como esses estados são ortogonais, Bob pode distingui-los perfeitamente através de uma medição apropriada. O estado médio possui entropia</p>
 <div class="math notranslate nohighlight">
 \[
-S(\rho) = 1
+S(\rho)=1
 \]</div>
-<p>Como os estados são ortogonais, é possível distingui-los perfeitamente, e Bob pode recuperar <strong>1 bit de informação</strong>.</p>
-<p>Agora considere:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\ket{0}\)</span> com probabilidade <span class="math notranslate nohighlight">\(1/2\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})\)</span> com probabilidade <span class="math notranslate nohighlight">\(1/2\)</span></p></li>
-</ul>
-<p>Nesse caso, os estados <strong>não são ortogonais</strong>, e não podem ser perfeitamente distinguidos.</p>
-<p>O teorema de Holevo garante que a informação extraível é <strong>menor que 1 bit</strong>, mesmo que os estados sejam diferentes.</p>
+<p>e Bob consegue recuperar exatamente 1 bit de informação clássica.</p>
+<p>Agora considere o ensemble:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{0}
+\quad \text{e} \quad
+\ket{+} =
+\frac{1}{\sqrt{2}}(\ket{0}+\ket{1})
+\]</div>
+<p>Esses estados não são ortogonais. Consequentemente, nenhuma medição consegue distingui-los perfeitamente.</p>
+<p>Mesmo que os estados sejam diferentes, a mecânica quântica impõe ambiguidade inevitável. O teorema de Holevo garante então que a informação acessível é estritamente menor que 1 bit.</p>
+<p>Essa limitação não é tecnológica, mas fundamentalmente física.</p>
 </section>
-<section id="consequencias-importantes">
-<h2>Consequências importantes<a class="headerlink" href="#consequencias-importantes" title="Link para este cabeçalho">#</a></h2>
-<p>O teorema de Holevo possui diversas implicações fundamentais.</p>
-<p><strong>Limite de 1 bit por qubit</strong></p>
-<p>Um único qubit não pode transportar mais do que <strong>1 bit de informação clássica</strong> de forma confiável, mesmo que esteja em superposição contínua.</p>
-<p><strong>Não violação da teoria clássica</strong></p>
-<p>Embora estados quânticos pareçam conter infinitas informações (por serem descritos por amplitudes contínuas), essa informação não pode ser totalmente acessada.</p>
-<p><strong>Fundamento da comunicação quântica</strong></p>
-<p>O teorema estabelece limites fundamentais para protocolos de comunicação e para a capacidade de canais quânticos.</p>
+<section id="limite-informacional-dos-qubits">
+<h2>Limite Informacional dos Qubits<a class="headerlink" href="#limite-informacional-dos-qubits" title="Link para este cabeçalho">#</a></h2>
+<p>Uma das consequências mais importantes do teorema é o famoso resultado de que:</p>
+<blockquote>
+<div><p>Um único qubit não pode transmitir mais do que 1 bit clássico de informação acessível.</p>
+</div></blockquote>
+<p>Isso é surpreendente porque um qubit puro arbitrário depende de parâmetros contínuos:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{\psi} =
+\alpha\ket{0}+\beta\ket{1}
+\]</div>
+<p>aparentemente contendo infinitas informações reais.</p>
+<p>Entretanto, o teorema de Holevo mostra que essas amplitudes não podem ser livremente convertidas em informação clássica observável.</p>
+<p>Esse resultado impede paradoxos informacionais e preserva consistência entre teoria quântica e teoria clássica da informação.</p>
 </section>
-<section id="relacao-com-outros-conceitos">
-<h2>Relação com outros conceitos<a class="headerlink" href="#relacao-com-outros-conceitos" title="Link para este cabeçalho">#</a></h2>
-<p>O teorema de Holevo está profundamente conectado a outros resultados da teoria da informação quântica.</p>
+<section id="relacao-com-medicao-quantica">
+<h2>Relação com Medição Quântica<a class="headerlink" href="#relacao-com-medicao-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>O limite de Holevo emerge diretamente da natureza das medições quânticas.</p>
+<p>Medições não revelam o estado completo do sistema, mas apenas projeções probabilísticas associadas a determinados observáveis. Além disso:</p>
 <ul class="simple">
-<li><p>ele utiliza a <strong>entropia de von Neumann</strong> como medida central</p></li>
-<li><p>está relacionado à <strong>capacidade de canais quânticos</strong></p></li>
-<li><p>complementa o <strong>teorema de compressão de Schumacher</strong></p></li>
-<li><p>aparece em estudos de <strong>codificação e transmissão de informação</strong></p></li>
+<li><p>medições perturbam os estados;</p></li>
+<li><p>estados não ortogonais não podem ser perfeitamente distinguidos;</p></li>
+<li><p>não existe procedimento universal de leitura completa de um estado desconhecido.</p></li>
 </ul>
-<p>Além disso, ele é essencial para entender por que a computação quântica não permite acessar diretamente toda a informação contida em um estado quântico.</p>
+<p>Essas restrições tornam impossível acessar toda a informação aparentemente codificada nas amplitudes quânticas.</p>
+<p>Assim, o teorema de Holevo formaliza matematicamente os limites observacionais impostos pela mecânica quântica.</p>
 </section>
-<section id="importancia">
-<h2>Importância<a class="headerlink" href="#importancia" title="Link para este cabeçalho">#</a></h2>
-<p>O teorema de Holevo é um dos resultados mais profundos da teoria da informação quântica.</p>
-<p>Ele mostra que:</p>
+<section id="relacao-com-entropia-e-canais-quanticos">
+<h2>Relação com Entropia e Canais Quânticos<a class="headerlink" href="#relacao-com-entropia-e-canais-quanticos" title="Link para este cabeçalho">#</a></h2>
+<p>O teorema de Holevo está profundamente conectado à entropia de von Neumann e à teoria de canais quânticos.</p>
+<p>A quantidade de Holevo atua como um limite superior para a capacidade clássica de canais quânticos. Em particular, ela aparece em resultados fundamentais envolvendo:</p>
 <ul class="simple">
-<li><p>a mecânica quântica permite novas formas de codificação de informação</p></li>
-<li><p>mas impõe limites fundamentais sobre o que pode ser extraído</p></li>
-<li><p>e estabelece uma ponte entre informação clássica e quântica</p></li>
+<li><p>capacidade clássica de transmissão;</p></li>
+<li><p>codificação quântica;</p></li>
+<li><p>comunicação assistida por entrelaçamento;</p></li>
+<li><p>teoria de compressão quântica.</p></li>
 </ul>
-<p>Assim, o teorema de Holevo é essencial para compreender <strong>os limites da informação no mundo quântico</strong> e desempenha um papel central em comunicação quântica, criptografia e computação quântica.</p>
+<p>Além disso, o teorema complementa diretamente o teorema de Schumacher:</p>
+<ul class="simple">
+<li><p>Schumacher determina quanto custa armazenar informação quântica;</p></li>
+<li><p>Holevo determina quanta informação clássica pode ser extraída de sistemas quânticos.</p></li>
+</ul>
+<p>Juntos, esses resultados estruturam grande parte da teoria moderna da informação quântica.</p>
+</section>
+<section id="consequencias-conceituais">
+<h2>Consequências Conceituais<a class="headerlink" href="#consequencias-conceituais" title="Link para este cabeçalho">#</a></h2>
+<p>O teorema de Holevo possui implicações conceituais profundas.</p>
+<p>Ele mostra que sistemas quânticos não funcionam como “supermemórias clássicas” capazes de liberar informação arbitrária.</p>
+<p>Embora estados quânticos permitam codificações extremamente sofisticadas, a quantidade de informação clássica acessível continua limitada pelas leis da teoria quântica.</p>
+<p>Esse resultado ajuda a explicar por que:</p>
+<ul class="simple">
+<li><p>a computação quântica não fornece acesso direto exponencial à informação;</p></li>
+<li><p>algoritmos quânticos dependem de interferência e estrutura global, e não simples leitura de amplitudes;</p></li>
+<li><p>protocolos quânticos mantêm compatibilidade com causalidade e limites físicos de comunicação.</p></li>
+</ul>
+</section>
+<section id="consideracoes-finais">
+<h2>Considerações Finais<a class="headerlink" href="#consideracoes-finais" title="Link para este cabeçalho">#</a></h2>
+<p>O teorema de Holevo estabelece um dos limites mais fundamentais da informação no universo quântico. Ele demonstra que, apesar da enorme riqueza matemática dos estados quânticos, apenas uma quantidade limitada de informação clássica pode ser extraída operacionalmente.</p>
+<p>Mais profundamente, o resultado revela que a informação quântica possui natureza distinta da informação clássica: ela não corresponde simplesmente a dados ocultos esperando para serem lidos, mas a estruturas físicas cujo acesso é condicionado pelas próprias leis da mecânica quântica.</p>
+<p>Por esse motivo, o teorema de Holevo tornou-se uma peça central da teoria da informação quântica, influenciando profundamente comunicação quântica, criptografia, computação quântica e os fundamentos da própria noção física de informação.</p>
 </section>
 </section>
 
@@ -630,13 +684,15 @@ S(\rho) = 1
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-problema-do-teorema-de-holevo">O problema do Teorema de Holevo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-do-problema-informacional">Estrutura do Problema Informacional</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enunciado-do-teorema">Enunciado do Teorema</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-do-teorema-de-holevo">Interpretação do Teorema de Holevo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-simples">Exemplo simples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequencias-importantes">Consequências importantes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-outros-conceitos">Relação com outros conceitos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia">Importância</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-informacional">Interpretação Informacional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ortogonalidade-e-distinguibilidade">Ortogonalidade e Distinguibilidade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limite-informacional-dos-qubits">Limite Informacional dos Qubits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-medicao-quantica">Relação com Medição Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-entropia-e-canais-quanticos">Relação com Entropia e Canais Quânticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequencias-conceituais">Consequências Conceituais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a></li>
 </ul>
   </nav></div>
 
