@@ -16,7 +16,6 @@ parts:
           - file: algebra/04_3-operadores
           - file: algebra/04_4-prod_tensorial
       - file: 06-computacao_classica
-      - file: exercicios/lista1
 
   - caption: Fundamentos
     chapters:
@@ -84,6 +83,11 @@ parts:
   - caption: Autores e Agradecimentos 
     chapters:
       - file: a_images/100-agradecimentos
+
+  - caption: Listas de Exercícios 
+    chapters:
+      - file: exercicios/lista1
+      - file: exercicios/lista2
 
   - caption: Referências
     chapters:

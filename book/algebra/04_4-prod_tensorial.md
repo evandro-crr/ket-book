@@ -398,3 +398,7 @@ $$
 $$
 
 Há, pois, diversas maneiras de se denotar os mesmos vetores ou operadores. Essa variedade é útil para permitir a escrita de expressões compactas em diversas situações em que o produto tensorial aparece.
+
+## Exercícios
+
+Após a leitura desse capítulo, você está apto para realizar os exercícios da primeira lista de exercícios - [Lista 1](../exercicios/lista1.md)
