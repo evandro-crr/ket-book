@@ -1,6 +1,8 @@
 # Computação Clássica
 
-# Máquina de Turing
+Neste capítulo entenderemos conteúdos da computação clássica com o objetivo de comparar seu funcionamento com a computação quântica.
+
+## Máquina de Turing
 
 A Máquina de Turing é um modelo matemático proposto por Alan Turing em 1936 para descrever formalmente o que significa “computar” um problema. Apesar de extremamente simples, esse modelo é poderoso o suficiente para representar qualquer algoritmo executável em um computador clássico moderno.
 
@@ -32,7 +34,7 @@ A figura abaixo representa esquematicamente uma Máquina de Turing:
 Representação esquemática de uma Máquina de Turing.
 ```
 
-## Funcionamento
+### Funcionamento
 
 Considere uma máquina simples que reconhece uma sequência de bits e substitui todos os símbolos `1` por `0`.
 
@@ -52,7 +54,7 @@ $$
 
 Embora esse exemplo seja simples, máquinas de Turing podem implementar operações extremamente complexas, incluindo compiladores, sistemas operacionais e algoritmos matemáticos sofisticados.
 
-## Máquina de Turing e Algoritmos
+### Máquina de Turing e Algoritmos
 
 A Máquina de Turing tornou-se o principal modelo teórico para análise de algoritmos clássicos. Um algoritmo pode ser interpretado como uma sequência de transições executadas pela máquina.
 
@@ -81,7 +83,7 @@ $$
 
 A análise assintótica permite comparar algoritmos independentemente do hardware utilizado.
 
-## Classes de Complexidade
+### Classes de Complexidade
 
 O modelo da Máquina de Turing também permite definir formalmente as chamadas *classes de complexidade*, que agrupam problemas segundo os recursos computacionais necessários para resolvê-los.
 
@@ -100,7 +102,7 @@ $$
 
 Esse problema investiga se todo problema cuja solução pode ser verificada eficientemente também pode ser resolvido eficientemente.
 
-## Relação com Computação Quântica
+### Relação com Computação Quântica
 
 A Computação Quântica surge como um novo paradigma computacional capaz de alterar profundamente a complexidade de determinados problemas.
 

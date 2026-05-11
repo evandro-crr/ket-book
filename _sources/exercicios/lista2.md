@@ -1,4 +1,4 @@
-# Exercícios para Consolidação
+# 2a Lista de Exercícios para Consolidação
 
 ```{note}
 Material extraído das listas de exercício da matéria FSC5172 – Computação Quântica I ministradas pelo Prof. Dr. Eduardo Inacio Duzzioni.

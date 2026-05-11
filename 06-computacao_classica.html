@@ -195,7 +195,6 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Computação Clássica</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
 <ul class="nav bd-sidenav">
@@ -269,8 +268,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Listas de Exercícios</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="exercicios/lista1.html">Exercícios para Consolidação</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercicios/lista2.html">Exercícios para Consolidação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercicios/lista1.html">1a Lista de Exercícios para Consolidação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercicios/lista2.html">2a Lista de Exercícios para Consolidação</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referências</span></p>
 <ul class="nav bd-sidenav">
@@ -423,12 +422,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Computação Clássica</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing">Máquina de Turing</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamento">Funcionamento</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing-e-algoritmos">Máquina de Turing e Algoritmos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-de-complexidade">Classes de Complexidade</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-computacao-quantica">Relação com Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing">Máquina de Turing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamento">Funcionamento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing-e-algoritmos">Máquina de Turing e Algoritmos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-de-complexidade">Classes de Complexidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-computacao-quantica">Relação com Computação Quântica</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-classica-circuital">Computação Clássica Circuital</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveis-de-abstracao">Niveis de abstração</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-logico">Nível lógico</a><ul class="nav section-nav flex-column">
@@ -447,9 +447,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#universalidade-das-portas-logicas-classicas">Universalidade das Portas Lógicas Clássicas</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -462,9 +459,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="computacao-classica">
 <h1>Computação Clássica<a class="headerlink" href="#computacao-classica" title="Link para este cabeçalho">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="maquina-de-turing">
-<h1>Máquina de Turing<a class="headerlink" href="#maquina-de-turing" title="Link para este cabeçalho">#</a></h1>
+<p>Neste capítulo entenderemos conteúdos da computação clássica com o objetivo de comparar seu funcionamento com a computação quântica.</p>
+<section id="maquina-de-turing">
+<h2>Máquina de Turing<a class="headerlink" href="#maquina-de-turing" title="Link para este cabeçalho">#</a></h2>
 <p>A Máquina de Turing é um modelo matemático proposto por Alan Turing em 1936 para descrever formalmente o que significa “computar” um problema. Apesar de extremamente simples, esse modelo é poderoso o suficiente para representar qualquer algoritmo executável em um computador clássico moderno.</p>
 <p>O estudo da Máquina de Turing é fundamental para compreender a teoria da computação e, principalmente, a noção de <em>complexidade de algoritmos</em>. A partir dela é possível definir formalmente quanto tempo ou memória um algoritmo necessita para resolver um problema.</p>
 <p>Uma Máquina de Turing é composta por:</p>
@@ -491,7 +488,7 @@ document.write(`
 </figcaption>
 </figure>
 <section id="funcionamento">
-<h2>Funcionamento<a class="headerlink" href="#funcionamento" title="Link para este cabeçalho">#</a></h2>
+<h3>Funcionamento<a class="headerlink" href="#funcionamento" title="Link para este cabeçalho">#</a></h3>
 <p>Considere uma máquina simples que reconhece uma sequência de bits e substitui todos os símbolos <code class="docutils literal notranslate"><span class="pre">1</span></code> por <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <p>Inicialmente, a fita pode conter:</p>
 <div class="math notranslate nohighlight">
@@ -507,7 +504,7 @@ document.write(`
 <p>Embora esse exemplo seja simples, máquinas de Turing podem implementar operações extremamente complexas, incluindo compiladores, sistemas operacionais e algoritmos matemáticos sofisticados.</p>
 </section>
 <section id="maquina-de-turing-e-algoritmos">
-<h2>Máquina de Turing e Algoritmos<a class="headerlink" href="#maquina-de-turing-e-algoritmos" title="Link para este cabeçalho">#</a></h2>
+<h3>Máquina de Turing e Algoritmos<a class="headerlink" href="#maquina-de-turing-e-algoritmos" title="Link para este cabeçalho">#</a></h3>
 <p>A Máquina de Turing tornou-se o principal modelo teórico para análise de algoritmos clássicos. Um algoritmo pode ser interpretado como uma sequência de transições executadas pela máquina.</p>
 <p>A partir desse modelo definem-se importantes conceitos de complexidade computacional:</p>
 <ul class="simple">
@@ -532,7 +529,7 @@ O(n)
 <p>A análise assintótica permite comparar algoritmos independentemente do hardware utilizado.</p>
 </section>
 <section id="classes-de-complexidade">
-<h2>Classes de Complexidade<a class="headerlink" href="#classes-de-complexidade" title="Link para este cabeçalho">#</a></h2>
+<h3>Classes de Complexidade<a class="headerlink" href="#classes-de-complexidade" title="Link para este cabeçalho">#</a></h3>
 <p>O modelo da Máquina de Turing também permite definir formalmente as chamadas <em>classes de complexidade</em>, que agrupam problemas segundo os recursos computacionais necessários para resolvê-los.</p>
 <p>Algumas das principais classes são:</p>
 <ul class="simple">
@@ -549,7 +546,7 @@ P \stackrel{?}{=} NP
 <p>Esse problema investiga se todo problema cuja solução pode ser verificada eficientemente também pode ser resolvido eficientemente.</p>
 </section>
 <section id="relacao-com-computacao-quantica">
-<h2>Relação com Computação Quântica<a class="headerlink" href="#relacao-com-computacao-quantica" title="Link para este cabeçalho">#</a></h2>
+<h3>Relação com Computação Quântica<a class="headerlink" href="#relacao-com-computacao-quantica" title="Link para este cabeçalho">#</a></h3>
 <p>A Computação Quântica surge como um novo paradigma computacional capaz de alterar profundamente a complexidade de determinados problemas.</p>
 <p>Enquanto computadores clássicos são modelados por Máquinas de Turing clássicas, computadores quânticos são modelados por versões quânticas desse formalismo, como a <em>Máquina de Turing Quântica</em> e os <em>Circuitos Quânticos</em>.</p>
 <p>Algoritmos quânticos famosos demonstram vantagens significativas sobre algoritmos clássicos:</p>
@@ -558,6 +555,7 @@ P \stackrel{?}{=} NP
 <li><p>o algoritmo de Lov Grover realiza buscas quadráticamente mais rápidas que algoritmos clássicos.</p></li>
 </ul>
 <p>Assim, o estudo da Máquina de Turing clássica fornece a base conceitual necessária para compreender por que certos problemas podem ser acelerados por computadores quânticos.</p>
+</section>
 </section>
 <section id="computacao-classica-circuital">
 <h2>Computação Clássica Circuital<a class="headerlink" href="#computacao-classica-circuital" title="Link para este cabeçalho">#</a></h2>
@@ -827,12 +825,13 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Computação Clássica</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing">Máquina de Turing</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamento">Funcionamento</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing-e-algoritmos">Máquina de Turing e Algoritmos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-de-complexidade">Classes de Complexidade</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-computacao-quantica">Relação com Computação Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing">Máquina de Turing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamento">Funcionamento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing-e-algoritmos">Máquina de Turing e Algoritmos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-de-complexidade">Classes de Complexidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-com-computacao-quantica">Relação com Computação Quântica</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacao-classica-circuital">Computação Clássica Circuital</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveis-de-abstracao">Niveis de abstração</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-logico">Nível lógico</a><ul class="nav section-nav flex-column">
@@ -851,9 +850,6 @@ Mostrando <span class="math notranslate nohighlight">\(  \overline{X \cdot Y} = 
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#universalidade-das-portas-logicas-classicas">Universalidade das Portas Lógicas Clássicas</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
