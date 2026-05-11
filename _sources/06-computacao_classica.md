@@ -131,7 +131,7 @@ Os bits são variáveis que podem assumir apenas dois valores, rotulados de 0/1 
 
 Nas seções seguintes alguns desses tópicos serão detalhados. A ênfase será nas ideias vinculadas aos Sistemas Digitais, no manejo da complexidade por meio das camadas de abstração e nos detalhes das camadas mais próximas da camada física, com o objetivo de passar a ideia de como um computador digital clássico funciona. A finalidade é, também, comparar esse paradigma de computação com as ideias que estão surgindo na área da Computação Quântica.
 
-## Niveis de abstração
+### Niveis de abstração
 
 Na engenharia, uma maneira de lidar com a complexidade de sistemas muito grandes é subdividí-los em subsistemas que possam ser descritos de maneira mais simples, omitindo detalhes internos. Componentes mais básicos são usados para projetar blocos que realizam funções simples. Esses blocos passam a ser descritos apenas pela sua função (como as saídas se comportam em relação às entradas), e passa-se a ignorar sua estrutura interna. Sistemas mais complexos podem ser projetados por meio desses blocos. A cada vez que se agrupa os sistemas em blocos e passa-se a ignorar sua estrutura interna, sobe-se um nível nas *camadas de abstração*. Quando se ``abre'' um sistema para analisar sua estrutura interna, passa-se à camada de abstração inferior. 
 
@@ -152,13 +152,13 @@ $$
 \end{array}
 $$
 
-## Nível lógico
+### Nível lógico
 
 O nível lógico refere-se à camada de abstração imediatamente acima da dos transistores. Os transistores são reunidos em *portas lógicas*. Nessa camada de abstração, os sinais de tensão na entrada e na saída são interpretados como bits, e as portas lógicas que operam esses bits simulam as funções lógicas como OR, AND, NOT, entre outras.
 
 Nesse agrupamento em blocos os detalhes internos do circuito são ignorados. 
 
-### Álgebra booleana
+#### Álgebra booleana
 
 As *variáveis booleanas* são variáveis que podem assumir apenas dois valores, rotulados como 0/1 ou Falso/Verdadeiro. Os bits são sinônimos de variáveis booleanas. As funções $f\colon \{0,1\}^n \to \{0,1\}^m \,$, que levam um conjunto de $n$ bits em um conjunto de $m$ bits, são chamadas *funções booleanas*. As funções booleanas podem ser especificadas por expressões matemáticas ou por uma tabela  -- a \emph{tabela verdade} -- listando todos os possíveis valores de entrada e a saída atribuída a cada valor de entrada. 
  
@@ -168,7 +168,7 @@ As *variáveis booleanas* são variáveis que podem assumir apenas dois valores,
  
  Neste trabalho, o enfoque será mais voltado às aplicações em Sistemas Digitais.
  
-## Portas lógicas
+### Portas lógicas
 
 As portas lógicas são funções booleanas simples, blocos fundamentais dos circuitos digitais. As portas lógicas mais importantes são descritas resumidamente nas figuras a seguir. 
 
@@ -190,11 +190,11 @@ As portas lógicas são funções booleanas simples, blocos fundamentais dos cir
 
 Qualquer sistema físico que se comporte de maneira a fornecer uma tabela verdade como as apresentadas acima pode ser considerado uma porta lógica. 
 
-## Teoremas da Álgebra Booleana
+### Teoremas da Álgebra Booleana
 
 Apresentam-se algumas identidades booleanas úteis para simplificação de expressões. 
 
-### Teoremas da Álgebra Booleana para uma variável
+#### Teoremas da Álgebra Booleana para uma variável
 
 Valem as seguintes identidades:
 
@@ -256,7 +256,7 @@ $$
   \end{array}
 $$
 
-### Teoremas da Álgebra Booleana para várias variáveis
+#### Teoremas da Álgebra Booleana para várias variáveis
 
 Valem as seguintes identidades:
 
@@ -298,7 +298,7 @@ A verificação se dá atribuindo valores às variáveis ou escrevendo a tabela 
  
  Para $X=1$:  $1(Y+Z) = Y+Z = 1Y + 1Z$.
 
-### Teoremas DeMorgan
+#### Teoremas DeMorgan
 
 Valem as seguintes identidades booleanas:
 
@@ -309,7 +309,7 @@ $$
     \end{split}
 $$
 
-#### Prova
+##### Prova
 
 Mostrando $  \overline{X + Y} = \overline{X} \cdot \overline{Y}$:
 
@@ -338,7 +338,7 @@ $$
 
   Como os valores das colunas $\overline{X \cdot Y}$ e $\overline{X} + \overline{Y}$ coincidem, igualdade é válida.
 
-## Universalidade das Portas Lógicas Clássicas
+### Universalidade das Portas Lógicas Clássicas
 
 Com apenas algumas das portas lógicas apresentadas nesse artigo pode-se compor qualquer função booleana. 
 
