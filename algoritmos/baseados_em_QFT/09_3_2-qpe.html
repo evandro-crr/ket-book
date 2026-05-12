@@ -660,11 +660,38 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2767/2383908159.py:17: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
-  oraculo=lambda i, tgr: PHASE(2 * pi * (fase / 10) * 2**i, tgr),
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1415939331054688
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">fase</span> <span class="o">=</span> <span class="n">pi</span>
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">estimador_de_fase</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">oraculo</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">:</span> <span class="n">PHASE</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">fase</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">precisão</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="nn">Cell In[4], line 7,</span> in <span class="ni">estimador_de_fase</span><span class="nt">(oraculo, precisão)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">tgr</span> <span class="o">=</span> <span class="n">X</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ctr</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">ctrl</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">oraculo</span><span class="p">)(</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">adj</span><span class="p">(</span><span class="n">qft</span><span class="p">)(</span><span class="n">ctr</span><span class="p">)</span>  <span class="c1"># &lt;- chada da transformada de Fourier quântica inversa</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/ket/operations.py:238,</span> in <span class="ni">ctrl.&lt;locals&gt;.inner</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">gate</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span> <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span>     <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">control_qubits</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">238</span>         <span class="k">return</span> <span class="n">control_qubits</span><span class="p">,</span> <span class="n">gate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">Cell In[4], line 17,</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(i, tgr)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">fase</span> <span class="o">=</span> <span class="n">pi</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">estimador_de_fase</span><span class="p">(</span>
+<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">oraculo</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">:</span> <span class="n">PHASE</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">fase</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">precisão</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="ne">NameError</span>: name &#39;PHASE&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -704,27 +731,6 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<table>
-  <thead>
-    <tr>
-      <th>Ket</th>
-      <th>v0.9.2.8</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Libket</td>
-      <td>v0.6.0</td>
-    </tr>
-    <tr>
-      <td>KBW</td>
-      <td>v0.4.2</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
 </div>
 </section>
 </section>

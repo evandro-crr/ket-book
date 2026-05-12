@@ -662,9 +662,9 @@ pip<span class="w"> </span>install<span class="w"> </span>ket-lang
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f4675156e00&gt;
-Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f4675156e00&gt;
-Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit alocado: &lt;Ket &#39;Quant&#39; [0] pid=0x7f8a96355f00&gt;
+Par de qubits alocados: &lt;Ket &#39;Quant&#39; [1, 2] pid=0x7f8a96355f00&gt;
+Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f8a96355f00&gt;
 </pre></div>
 </div>
 </div>
@@ -895,7 +895,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
+\[\displaystyle \frac{1}{\sqrt{2}}\left|00\right&gt;+\frac{1}{\sqrt{2}}\left|11\right&gt;\]</div>
 </div>
 </div>
 <p>Assim como ocorre com as portas de 1 qubit, também é possível oncatenar operações com portas de 2 qubits, como exemplificado no código abaixo, que prepara o estado de Bell:</p>
@@ -918,7 +918,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
+\[\displaystyle \frac{1}{\sqrt{2}}\left|00\right&gt;+\frac{1}{\sqrt{2}}\left|11\right&gt;\]</div>
 </div>
 </div>
 <section id="produto-tensorial-de-portas">
@@ -944,7 +944,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \frac{1}{\sqrt{2}} \left|00\right&gt;+\frac{1}{\sqrt{2}} \left|11\right&gt;\]</div>
+\[\displaystyle \frac{1}{\sqrt{2}}\left|00\right&gt;+\frac{1}{\sqrt{2}}\left|11\right&gt;\]</div>
 </div>
 </div>
 <p>Neste exemplo, a operação <code class="docutils literal notranslate"><span class="pre">kron(H,</span> <span class="pre">I)</span></code> cria uma porta de dois qubits, aplicando a operação Hadamard em <code class="docutils literal notranslate"><span class="pre">a</span></code> e a operação identidade em <code class="docutils literal notranslate"><span class="pre">b</span></code>. Em seguida, a operação <code class="docutils literal notranslate"><span class="pre">CNOT</span></code> é aplicada como uma operação controlada entre <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code>. Isso resulta na preparação do estado de Bell nos qubits <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
@@ -1102,7 +1102,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle  \left|0000000000\right&gt;\]</div>
+\[\displaystyle \left|0000000000\right&gt;\]</div>
 </div>
 </div>
 <p>A função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.ctrl" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ctrl()</span></code></a> recebe dois argumentos: um objeto do tipo <a class="reference external" href="https://quantumket.org/ket/api/ket.base.html#ket.base.Quant" title="(em Ket Quantum Programming)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quant</span></code></a> com os qubits de controle (sendo possível utilizar múltiplos qubits de controle) e uma função que atua como uma porta lógica quântica. É importante ressaltar que a função <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.ctrl" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">ctrl()</span></code></a> não está limitada a adicionar qubits de controle apenas às portas quânticas disponíveis no módulo <a class="reference external" href="https://quantumket.org/ket/api/ket.gates.html#module-ket.gates" title="(em Ket Quantum Programming)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gates</span></code></a>, mas pode adicionar qubits de controle a qualquer função. Por exemplo, podemos implementar uma porta de Bell e adicionar qubits de controle a ela como no código abaixo.</p>
@@ -1145,7 +1145,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle 0.7071067962091637 \left|000\right&gt;+0.4999999893774061 \left|100\right&gt;+0.4999999893774061 \left|111\right&gt;\]</div>
+\[\displaystyle \frac{1}{\sqrt{2}}\left|000\right&gt;+\frac{1}{\sqrt{4}}\left|100\right&gt;+\frac{1}{\sqrt{4}}\left|111\right&gt;\]</div>
 </div>
 </div>
 </section>
@@ -1199,13 +1199,38 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2595/2844684540.py:35: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
-  oraculo=lambda i, tgr: PHASE(2 * pi * (fase / 10) * 2**i, tgr),
-/tmp/ipykernel_2595/2844684540.py:11: DeprecationWarning: PHASE is deprecated and will be removed in future versions. Use P(theta, qubits) instead.
-  ctrl(ctrl_qubit, PHASE(pi / 2 ** (i + 1)))(last)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1415939331054688
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">34</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">fase</span> <span class="o">=</span> <span class="n">pi</span>
+<span class="ne">---&gt; </span><span class="mi">34</span> <span class="n">estimador_de_fase</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">oraculo</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">:</span> <span class="n">PHASE</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">fase</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="n">precisão</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="nn">Cell In[22], line 25,</span> in <span class="ni">estimador_de_fase</span><span class="nt">(oraculo, precisão)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">tgr</span> <span class="o">=</span> <span class="n">X</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ctr</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">ctrl</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">oraculo</span><span class="p">)(</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="n">adj</span><span class="p">(</span><span class="n">qft</span><span class="p">)(</span><span class="n">ctr</span><span class="p">)</span>  <span class="c1"># &lt;- chada da transformada de Fourier quântica inversa</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/ket/operations.py:238,</span> in <span class="ni">ctrl.&lt;locals&gt;.inner</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">gate</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span> <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span>     <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">control_qubits</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">238</span>         <span class="k">return</span> <span class="n">control_qubits</span><span class="p">,</span> <span class="n">gate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">Cell In[22], line 35,</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(i, tgr)</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">fase</span> <span class="o">=</span> <span class="n">pi</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">estimador_de_fase</span><span class="p">(</span>
+<span class="ne">---&gt; </span><span class="mi">35</span>     <span class="n">oraculo</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">:</span> <span class="n">PHASE</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">fase</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="n">precisão</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="ne">NameError</span>: name &#39;PHASE&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1272,7 +1297,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/72c7e9285e01907306a93aa7a83489050688ff90c66e0a4984d8a0f1adec0058.png" src="_images/72c7e9285e01907306a93aa7a83489050688ff90c66e0a4984d8a0f1adec0058.png" />
+<img alt="_images/ccf72d20c32a615100724b691cffade900275980eceaa9b144e7c5190ee92551.png" src="_images/ccf72d20c32a615100724b691cffade900275980eceaa9b144e7c5190ee92551.png" />
 </div>
 </div>
 <p>Para facilitar essa construção no Ket, a instrução <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> é oferecida. No exemplo acima, implementamos o difusor de Grover usando essa instrução.</p>
@@ -1292,7 +1317,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8a769f661867729a37170729cf560c9d1596c1db15ec8244ea7ccbfc3dc90812.png" src="_images/8a769f661867729a37170729cf560c9d1596c1db15ec8244ea7ccbfc3dc90812.png" />
+<img alt="_images/291fa6ba553d2a0ac9327d57605d138e8ace4eb4e11d0b76ef8a08a1917b61fd.png" src="_images/291fa6ba553d2a0ac9327d57605d138e8ace4eb4e11d0b76ef8a08a1917b61fd.png" />
 </div>
 </div>
 <p>Além de facilitar a construção de algumas operações quânticas, a estrutura <code class="docutils literal notranslate"><span class="pre">with</span></code> <a class="reference external" href="https://quantumket.org/ket/api/ket.operations.html#ket.operations.around" title="(em Ket Quantum Programming)"><code class="xref py py-func docutils literal notranslate"><span class="pre">around()</span></code></a> também permite <a class="reference external" href="https://arxiv.org/abs/2406.05581">reduzir o número de qubits de controle em certas operações</a>.</p>
@@ -1314,7 +1339,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/472ab6a643fc681affb1810b30e5bb89caa669e2cac9f1b2eab8bb1ca2216ef6.png" src="_images/472ab6a643fc681affb1810b30e5bb89caa669e2cac9f1b2eab8bb1ca2216ef6.png" />
+<img alt="_images/9540045a6cf954c215906715bb3301c4bcca63d2083ed368fd2b7fe542f957c4.png" src="_images/9540045a6cf954c215906715bb3301c4bcca63d2083ed368fd2b7fe542f957c4.png" />
 </div>
 </div>
 <section id="alterando-o-estado-de-controle">
@@ -1389,7 +1414,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0c35136398d1d869d2850be0795aed1f41a71a445c5470b8313ce833c34e188a.png" src="_images/0c35136398d1d869d2850be0795aed1f41a71a445c5470b8313ce833c34e188a.png" />
+<img alt="_images/d12850cce210d4388e279b157efe106b2504aa6bd3828b8fdf3f308064828c4d.png" src="_images/d12850cce210d4388e279b157efe106b2504aa6bd3828b8fdf3f308064828c4d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1404,7 +1429,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e245c19ac18eb5c66906db65801b747bc244b5473ac80c41fdcff5b2b3d7342f.png" src="_images/e245c19ac18eb5c66906db65801b747bc244b5473ac80c41fdcff5b2b3d7342f.png" />
+<img alt="_images/8d10df434ba05615ea5eb2ebea6980fad933d2766ab39257c29e7a8c26128e44.png" src="_images/8d10df434ba05615ea5eb2ebea6980fad933d2766ab39257c29e7a8c26128e44.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1422,7 +1447,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2338e3860e765b8a5491035242c8d907c3c3da83bd2c02695a25d51f28d15a87.png" src="_images/2338e3860e765b8a5491035242c8d907c3c3da83bd2c02695a25d51f28d15a87.png" />
+<img alt="_images/d0d92291a126e565cac12841b8f4ed061c42388bd427e99e0aa372a6b356bd05.png" src="_images/d0d92291a126e565cac12841b8f4ed061c42388bd427e99e0aa372a6b356bd05.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1437,7 +1462,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e245c19ac18eb5c66906db65801b747bc244b5473ac80c41fdcff5b2b3d7342f.png" src="_images/e245c19ac18eb5c66906db65801b747bc244b5473ac80c41fdcff5b2b3d7342f.png" />
+<img alt="_images/8d10df434ba05615ea5eb2ebea6980fad933d2766ab39257c29e7a8c26128e44.png" src="_images/8d10df434ba05615ea5eb2ebea6980fad933d2766ab39257c29e7a8c26128e44.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1455,7 +1480,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b797be5d2e10762d591d8b60f079437d7c6ec10ed65febb749b9126df6b96e69.png" src="_images/b797be5d2e10762d591d8b60f079437d7c6ec10ed65febb749b9126df6b96e69.png" />
+<img alt="_images/2c7a56e18896497bb8fe97d58b1475e116222ef461df76877f45985531fc0890.png" src="_images/2c7a56e18896497bb8fe97d58b1475e116222ef461df76877f45985531fc0890.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1470,7 +1495,7 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e245c19ac18eb5c66906db65801b747bc244b5473ac80c41fdcff5b2b3d7342f.png" src="_images/e245c19ac18eb5c66906db65801b747bc244b5473ac80c41fdcff5b2b3d7342f.png" />
+<img alt="_images/8d10df434ba05615ea5eb2ebea6980fad933d2766ab39257c29e7a8c26128e44.png" src="_images/8d10df434ba05615ea5eb2ebea6980fad933d2766ab39257c29e7a8c26128e44.png" />
 </div>
 </div>
 </section>
@@ -1507,8 +1532,8 @@ Qubits concatenados: &lt;Ket &#39;Quant&#39; [0, 1, 2] pid=0x7f4675156e00&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.7071067811865475+0j) |0⟩
-(0.7071067811865475+0j) |3⟩
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.7071067811865476+0j) |0⟩
+(0.7071067811865476+0j) |3⟩
 </pre></div>
 </div>
 </div>
@@ -1650,7 +1675,7 @@ Estado quântico após o colapso
 </div>
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle \frac{1}{\sqrt{2}} \left|0\right&gt;+\frac{1}{\sqrt{2}} \left|3\right&gt;\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {0: 1036, 3: 1012}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado das medidas: {0: 1082, 3: 966}
 </pre></div>
 </div>
 </div>
@@ -1704,11 +1729,11 @@ Estado quântico após o colapso
 </details>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<table>
+<table style="text-align: left;">
   <thead>
     <tr>
       <th>Ket</th>
-      <th>v0.9.2.8</th>
+      <th>v0.9.1.5</th>
     </tr>
   </thead>
   <tbody>
@@ -1718,7 +1743,7 @@ Estado quântico após o colapso
     </tr>
     <tr>
       <td>KBW</td>
-      <td>v0.4.2</td>
+      <td>v0.4.1</td>
     </tr>
   </tbody>
 </table>
