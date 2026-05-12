@@ -46,10 +46,7 @@ onde
 
 $$
 \chi =
-S(\rho)
--------
-
-\sum_i p_i S(\rho_i)
+S(\rho) - \sum_i p_i S(\rho_i)
 $$
 
 A quantidade
