@@ -58,6 +58,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'topicos_avancados/3-tecnicas_de_medicao_quantica/10_3_5-classical_shadows';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
@@ -397,7 +399,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -413,6 +417,38 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao-fisica">Motivação Física</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideia-central-do-protocolo">Ideia Central do Protocolo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fotografias-classicas">Fotografias Clássicas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-shadows-para-medicoes-de-pauli">Classical Shadows para Medições de Pauli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimativa-de-observaveis">Estimativa de Observáveis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexidade-amostral">Complexidade Amostral</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#versoes-do-protocolo">Versões do Protocolo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-shadows-randomizado">Classical Shadows Randomizado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derandomized-classical-shadows">Derandomized Classical Shadows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#locally-biased-classical-shadows">Locally-Biased Classical Shadows</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes-de-classical-shadows">Aplicações de Classical Shadows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fidelidade-quantica">Fidelidade Quântica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quimica-quantica">Química Quântica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimativa-de-propriedades-globais">Estimativa de Propriedades Globais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacoes-experimentais">Implementações Experimentais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -424,6 +460,198 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="classical-shadows">
 <h1>Classical Shadows<a class="headerlink" href="#classical-shadows" title="Link para este cabeçalho">#</a></h1>
+<div class="admonition-referencias admonition">
+<p class="admonition-title">Referências</p>
+<p>Material adaptado da dissertação <a class="reference external" href="https://repositorio.ufsc.br/handle/123456789/265955"><em>Classical Shadows para algoritmos quânticos de feedback</em></a> de Leticia Bertuzzi, desenvolvida no Programa de Pós-Graduação em Física da Universidade Federal de Santa Catarina.</p>
+</div>
+<section id="introducao">
+<h2>Introdução<a class="headerlink" href="#introducao" title="Link para este cabeçalho">#</a></h2>
+<p>Em algoritmos quânticos, especialmente algoritmos variacionais e procedimentos de otimização, grande parte das informações úteis do sistema é obtida através de medições. Entretanto, medir um estado quântico é um processo delicado: ao realizar uma medida, a função de onda colapsa e parte da informação do sistema é perdida. Esse problema se torna ainda mais relevante quando desejamos caracterizar estados quânticos complexos compostos por muitos qubits.</p>
+<p>Na tentativa de reconstruir ou estimar propriedades de sistemas quânticos, diversas técnicas de tomografia quântica foram desenvolvidas, como a tomografia de estados tradicional, Local Quantum Overlapping Tomography (LQOT) e métodos baseados em redes neurais. Entre essas abordagens, destaca-se a técnica de <strong>Classical Shadows (CS)</strong>, proposta por Huang, Kueng e Preskill em 2020.</p>
+<p>A principal motivação do protocolo de Classical Shadows é reduzir drasticamente o número de medições necessárias para estimar propriedades de um sistema quântico. Em vez de reconstruir completamente a matriz densidade do sistema — tarefa exponencialmente custosa — o protocolo busca armazenar apenas informações suficientes para prever observáveis específicos com alta precisão.</p>
+<p>Uma das características mais importantes do método é que sua complexidade amostral cresce apenas de forma logarítmica com o número de observáveis que desejamos estimar. Isso representa uma vantagem significativa em comparação com métodos tradicionais de tomografia quântica, cuja complexidade cresce exponencialmente com o número de qubits.</p>
+</section>
+<section id="motivacao-fisica">
+<h2>Motivação Física<a class="headerlink" href="#motivacao-fisica" title="Link para este cabeçalho">#</a></h2>
+<p>A tomografia quântica tradicional busca reconstruir completamente a matriz densidade de um sistema quântico. Para isso, é necessário preparar o mesmo estado diversas vezes e realizar medições em diferentes bases. O problema é que a quantidade de coeficientes necessários para descrever a matriz densidade cresce exponencialmente com o número de qubits. Consequentemente, o custo experimental e computacional rapidamente se torna inviável para sistemas maiores.</p>
+<p>O protocolo de Classical Shadows surge justamente para contornar essa limitação. A ideia central não é reconstruir integralmente o estado quântico, mas sim gerar uma representação clássica compacta contendo informação suficiente para estimar múltiplos observáveis posteriormente. Essa representação é chamada de <strong>sombra clássica</strong> (<em>classical shadow</em>).</p>
+<p>O aspecto revolucionário do método está no fato de que o mesmo conjunto de medições pode ser reutilizado para prever diferentes propriedades do sistema. Assim, uma única aquisição experimental pode servir para calcular fidelidade, correlações, observáveis locais, energia de Hamiltonianos e propriedades de emaranhamento sem necessidade de repetir completamente o experimento.</p>
+</section>
+<section id="ideia-central-do-protocolo">
+<h2>Ideia Central do Protocolo<a class="headerlink" href="#ideia-central-do-protocolo" title="Link para este cabeçalho">#</a></h2>
+<p>O protocolo de Classical Shadows pode ser entendido como um procedimento dividido em três etapas principais:</p>
+<ol class="arabic simple">
+<li><p>Aplicação de rotações aleatórias;</p></li>
+<li><p>Medição do estado quântico;</p></li>
+<li><p>Pós-processamento clássico para reconstrução das sombras.</p></li>
+</ol>
+<p>Inicialmente, escolhe-se aleatoriamente uma base de medição. Para medições de Pauli, utiliza-se o conjunto:</p>
+<div class="math notranslate nohighlight">
+\[
+U \in {H, HS^\dagger, I},
+\]</div>
+<p>onde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H\)</span> é a porta de Hadamard;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> é a porta de fase;</p></li>
+<li><p><span class="math notranslate nohighlight">\(I\)</span> é a identidade.</p></li>
+</ul>
+<p>Essas operações realizam mudanças de base para os autovetores dos operadores de Pauli <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(Z\)</span>.</p>
+<p>As matrizes correspondentes são:</p>
+<div class="math notranslate nohighlight">
+\[
+H=\frac{1}{\sqrt{2}}\begin{pmatrix}1&amp;1\1&amp;-1\end{pmatrix},\quad S=\begin{pmatrix}1&amp;0\0&amp;i\end{pmatrix}
+\]</div>
+<p>Após aplicar uma rotação aleatória ao estado quântico <span class="math notranslate nohighlight">\(\rho\)</span>, realiza-se uma medição na base computacional. O resultado da medida corresponde a uma string binária, como por exemplo:</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{010101}.
+\]</div>
+<p>Essa sequência representa o colapso do sistema após a medição projetiva.</p>
+<section id="fotografias-classicas">
+<h3>Fotografias Clássicas<a class="headerlink" href="#fotografias-classicas" title="Link para este cabeçalho">#</a></h3>
+<p>Depois da medição, aplica-se a rotação inversa ao estado colapsado:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho'' = U^{\dagger}\ket{\hat{b}}\bra{\hat{b}}U
+\]</div>
+<p>Essa matriz recebe o nome de <strong>fotografia clássica</strong> (<em>classical snapshot</em>). Ela representa uma descrição clássica parcial do estado quântico original.</p>
+<p>O termo “clássico” aparece porque o resultado final das medições é armazenado como dados clássicos — bits — que posteriormente são processados computacionalmente.</p>
+<p>O procedimento completo pode ser interpretado formalmente como um canal quântico:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{M}(\rho)=\mathbb{E}\left[U^{\dagger}\ket{\hat{b}}\bra{\hat{b}}U\right]
+\]</div>
+<p>A partir da inversão desse canal, obtemos um estimador para a matriz densidade:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\rho}=\mathcal{M}^{-1}\left(U^{\dagger}\ket{\hat{b}}\bra{\hat{b}}U\right)
+\]</div>
+<p>A média desses estimadores permite reconstruir propriedades estatísticas do sistema original.</p>
+</section>
+</section>
+<section id="classical-shadows-para-medicoes-de-pauli">
+<h2>Classical Shadows para Medições de Pauli<a class="headerlink" href="#classical-shadows-para-medicoes-de-pauli" title="Link para este cabeçalho">#</a></h2>
+<p>No caso específico de medições de Pauli, a expressão para a reconstrução de um qubit é particularmente simples:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\rho}=3U^{\dagger}\ket{\hat{b}}\bra{\hat{b}}U-I
+    \]</div>
+<p>onde <span class="math notranslate nohighlight">\(I\)</span> representa a matriz identidade <span class="math notranslate nohighlight">\(2\times2\)</span>.</p>
+<p>Para sistemas de múltiplos qubits, generaliza-se o procedimento utilizando produtos tensoriais:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\rho}^{(m)}=\bigotimes_{j=1}^{n}\left(3U_j^{(m)\dagger}\ket{b_j^{(m)}}\bra{b_j^{(m)}}U_j^{(m)}-I\right)
+\]</div>
+<p>Cada repetição do experimento produz uma nova fotografia clássica. Repetindo o procedimento <span class="math notranslate nohighlight">\(N\)</span> vezes, obtemos a sombra clássica:</p>
+<div class="math notranslate nohighlight">
+\[
+S(\rho;N)={\hat{\rho}_1,\ldots,\hat{\rho}_N}
+\]</div>
+</section>
+<section id="estimativa-de-observaveis">
+<h2>Estimativa de Observáveis<a class="headerlink" href="#estimativa-de-observaveis" title="Link para este cabeçalho">#</a></h2>
+<p>Após construir as sombras clássicas, podemos estimar observáveis do sistema quântico.</p>
+<p>Seja <span class="math notranslate nohighlight">\(O_j\)</span> um observável qualquer. Seu valor esperado pode ser calculado através da média:</p>
+<div class="math notranslate nohighlight">
+\[
+\langle O_j\rangle=\frac{1}{N}\sum_{m=1}^{N}\mathrm{Tr}(O_j\hat{\rho}^{(m)})
+\]</div>
+<p>Assim, utilizando apenas um único conjunto de sombras clássicas, conseguimos prever simultaneamente vários observáveis diferentes do sistema.</p>
+<p>Isso é uma das maiores vantagens do protocolo: o reaproveitamento das medições para múltiplas estimativas.</p>
+<section id="complexidade-amostral">
+<h3>Complexidade Amostral<a class="headerlink" href="#complexidade-amostral" title="Link para este cabeçalho">#</a></h3>
+<p>A quantidade de medições necessárias para obter boas estimativas é chamada de <strong>complexidade amostral</strong>.</p>
+<p>Para observáveis de Pauli, ela pode ser escrita como:</p>
+<div class="math notranslate nohighlight">
+\[
+N=\mathcal{O}\left(\frac{3^w\log(L)}{\varepsilon^2}\right)
+\]</div>
+<p>onde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L\)</span> é o número de observáveis;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon\)</span> é o erro máximo permitido;</p></li>
+<li><p><span class="math notranslate nohighlight">\(w\)</span> é a localidade do operador.</p></li>
+</ul>
+<p>A localidade <span class="math notranslate nohighlight">\(w\)</span> corresponde ao número de matrizes de Pauli não triviais presentes no operador. Quanto menor a localidade, mais eficiente o protocolo se torna.</p>
+<p>Esse resultado mostra que o número de medições cresce apenas logaritmicamente com o número de observáveis, característica fundamental do Classical Shadows.</p>
+<p>Para observáveis mais gerais, existe ainda uma formulação mais ampla da complexidade amostral:</p>
+<div class="math notranslate nohighlight">
+\[
+N=2\log\left(\frac{2L}{\delta}\right)\frac{34}{\varepsilon^2}\max_{1\leq i\leq L}\left|O_i-\frac{\mathrm{Tr}(O_i)}{2^n}I\right|_{shadow}^2
+\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\delta\)</span> representa a probabilidade de falha da estimativa.</p>
+</section>
+</section>
+<section id="versoes-do-protocolo">
+<h2>Versões do Protocolo<a class="headerlink" href="#versoes-do-protocolo" title="Link para este cabeçalho">#</a></h2>
+<p>Atualmente existem diferentes variantes da técnica de Classical Shadows.</p>
+<section id="classical-shadows-randomizado">
+<h3>Classical Shadows Randomizado<a class="headerlink" href="#classical-shadows-randomizado" title="Link para este cabeçalho">#</a></h3>
+<p>Na versão tradicional, as unitárias são escolhidas aleatoriamente do conjunto:</p>
+<div class="math notranslate nohighlight">
+\[
+{H, HS^\dagger, I}.
+\]</div>
+<p>Essa é a abordagem utilizada na maior parte dos trabalhos introdutórios.</p>
+</section>
+<section id="derandomized-classical-shadows">
+<h3>Derandomized Classical Shadows<a class="headerlink" href="#derandomized-classical-shadows" title="Link para este cabeçalho">#</a></h3>
+<p>Na versão <em>derandomized</em>, as direções de medição são escolhidas de maneira estratégica em vez de puramente aleatória. Isso pode reduzir o número de medições necessárias em alguns problemas específicos.</p>
+</section>
+<section id="locally-biased-classical-shadows">
+<h3>Locally-Biased Classical Shadows<a class="headerlink" href="#locally-biased-classical-shadows" title="Link para este cabeçalho">#</a></h3>
+<p>A versão enviesada localmente (<em>Locally-Biased Classical Shadows — LBCS</em>) modifica a distribuição de probabilidade das medições.</p>
+<p>Por exemplo, se os observáveis de interesse dependem apenas das direções <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Z\)</span>, então medições na direção <span class="math notranslate nohighlight">\(Y\)</span> podem ser removidas do protocolo, reduzindo custos experimentais.</p>
+</section>
+</section>
+<section id="aplicacoes-de-classical-shadows">
+<h2>Aplicações de Classical Shadows<a class="headerlink" href="#aplicacoes-de-classical-shadows" title="Link para este cabeçalho">#</a></h2>
+<section id="fidelidade-quantica">
+<h3>Fidelidade Quântica<a class="headerlink" href="#fidelidade-quantica" title="Link para este cabeçalho">#</a></h3>
+<p>Uma das aplicações mais importantes é a estimativa de fidelidade entre estados quânticos.</p>
+<p>A fidelidade entre dois estados <span class="math notranslate nohighlight">\(\rho\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span> é definida por:</p>
+<div class="math notranslate nohighlight">
+\[
+F(\rho,\sigma)=\mathrm{Tr}\sqrt{\rho\sigma\rho}
+\]</div>
+<p>Experimentos numéricos mostraram que Classical Shadows consegue estimar fidelidades de estados GHZ com alta precisão mesmo conforme o número de qubits cresce.</p>
+</section>
+<section id="quimica-quantica">
+<h3>Química Quântica<a class="headerlink" href="#quimica-quantica" title="Link para este cabeçalho">#</a></h3>
+<p>Classical Shadows também possui aplicações relevantes em algoritmos variacionais como o VQE (<em>Variational Quantum Eigensolver</em>).</p>
+<p>Em problemas de química quântica, Hamiltonianos moleculares podem ser decompostos em operadores de Pauli, permitindo que a técnica seja utilizada para estimar energias moleculares com menos medições.</p>
+<p>Estudos envolvendo moléculas como:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(LiH\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(BeH_2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_2O\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(NH_3\)</span></p></li>
+</ul>
+<p>demonstraram redução significativa da variância utilizando versões enviesadas do protocolo.</p>
+</section>
+<section id="estimativa-de-propriedades-globais">
+<h3>Estimativa de Propriedades Globais<a class="headerlink" href="#estimativa-de-propriedades-globais" title="Link para este cabeçalho">#</a></h3>
+<p>Outro tema recente envolve o uso de Classical Shadows para estimar propriedades globais como:</p>
+<ul class="simple">
+<li><p>entropia;</p></li>
+<li><p>pureza;</p></li>
+<li><p>emaranhamento.</p></li>
+</ul>
+<p>Embora o protocolo seja eficiente para observáveis locais, estimar propriedades globais ainda é desafiador devido ao custo de pós-processamento. Novas técnicas baseadas em <em>Approximate Factorization Conditions (AFCs)</em> vêm sendo investigadas para tornar esse procedimento viável em dispositivos NISQ.</p>
+</section>
+<section id="implementacoes-experimentais">
+<h3>Implementações Experimentais<a class="headerlink" href="#implementacoes-experimentais" title="Link para este cabeçalho">#</a></h3>
+<p>A técnica também já foi implementada experimentalmente em processadores quânticos fotônicos de múltiplos qubits. Os resultados mostraram que o protocolo é robusto mesmo em dispositivos ruidosos da era NISQ, indicando forte potencial para aplicações práticas em hardware quântico real.</p>
+</section>
+</section>
+<section id="consideracoes-finais">
+<h2>Considerações Finais<a class="headerlink" href="#consideracoes-finais" title="Link para este cabeçalho">#</a></h2>
+<p>Classical Shadows representa uma das técnicas mais promissoras da teoria da informação quântica moderna. Seu principal diferencial é permitir a estimativa eficiente de muitas propriedades físicas utilizando um número relativamente pequeno de medições.</p>
+<p>Ao evitar a reconstrução completa da matriz densidade, o protocolo reduz drasticamente custos experimentais e computacionais, tornando-se especialmente relevante para sistemas quânticos de larga escala.</p>
+<p>Além disso, a possibilidade de reutilizar o mesmo conjunto de medições para estimar múltiplos observáveis faz do método uma ferramenta extremamente poderosa para algoritmos variacionais, química quântica, caracterização de estados e aplicações futuras em dispositivos NISQ.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,6 +708,45 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacao-fisica">Motivação Física</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideia-central-do-protocolo">Ideia Central do Protocolo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fotografias-classicas">Fotografias Clássicas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-shadows-para-medicoes-de-pauli">Classical Shadows para Medições de Pauli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimativa-de-observaveis">Estimativa de Observáveis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexidade-amostral">Complexidade Amostral</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#versoes-do-protocolo">Versões do Protocolo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-shadows-randomizado">Classical Shadows Randomizado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derandomized-classical-shadows">Derandomized Classical Shadows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#locally-biased-classical-shadows">Locally-Biased Classical Shadows</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes-de-classical-shadows">Aplicações de Classical Shadows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fidelidade-quantica">Fidelidade Quântica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quimica-quantica">Química Quântica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimativa-de-propriedades-globais">Estimativa de Propriedades Globais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacoes-experimentais">Implementações Experimentais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
