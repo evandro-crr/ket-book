@@ -33,7 +33,7 @@ O protocolo de Classical Shadows pode ser entendido como um procedimento dividid
 Inicialmente, escolhe-se aleatoriamente uma base de medição. Para medições de Pauli, utiliza-se o conjunto:
 
 $$
-U \in \\{H, HS^\dagger, I\\},
+U \in \{ H, HS^\dagger, I \},
 $$
 
 onde:
@@ -159,7 +159,7 @@ Atualmente existem diferentes variantes da técnica de Classical Shadows.
 Na versão tradicional, as unitárias são escolhidas aleatoriamente do conjunto:
 
 $$
-{H, HS^\dagger, I}.
+\{ H, HS^\dagger, I \}.
 $$
 
 Essa é a abordagem utilizada na maior parte dos trabalhos introdutórios. 
