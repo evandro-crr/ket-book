@@ -116,13 +116,13 @@ Outro exemplo fundamental é o **canal de damping de amplitude**, utilizado para
 $$
 K_0 =
 \begin{pmatrix}
-1 & 0 \
+1 & 0 \\
 0 & \sqrt{1-\gamma}
 \end{pmatrix},
 \qquad
 K_1 =
 \begin{pmatrix}
-0 & \sqrt{\gamma} \
+0 & \sqrt{\gamma} \\
 0 & 0
 \end{pmatrix}
 $$

@@ -17,6 +17,7 @@ O *Aprenda Ket* nasceu com o objetivo de tornar a computação quântica mais ac
     height:100px;
     object-fit:cover;
     border-radius:10%;
+    flex-shrink:0;
   ">
   <div>
     <b>Evandro Chagas Ribeiro da Rosa</b><br>
@@ -33,6 +34,7 @@ O *Aprenda Ket* nasceu com o objetivo de tornar a computação quântica mais ac
     height:100px;
     object-fit:cover;
     border-radius:10%;
+    flex-shrink:0;
   "
   >
   
@@ -49,7 +51,9 @@ O *Aprenda Ket* nasceu com o objetivo de tornar a computação quântica mais ac
     height:100px;
     object-fit:cover;
     border-radius:10%;
-  ">
+    flex-shrink:0;
+  "
+>
   <div>
     <b>Jerusa Marchi</b><br>
     Jerusa é Professora Associada no Departamento de Informática e Estatística da Universidade Federal de Santa Catarina. Tem experiência na área de Ciência da Computação, com ênfase em Matemática da Computação, atuando principalmente nos seguintes temas: inteligência artificial (lógica e representação do conhecimento, processos de mudança de crenças, sistemas cognitivos), teoria da computação (reduções e satisfação booleana) e computação quântica.
@@ -62,7 +66,9 @@ O *Aprenda Ket* nasceu com o objetivo de tornar a computação quântica mais ac
     height:100px;
     object-fit:cover;
     border-radius:10%;
-  ">
+    flex-shrink:0;
+  "
+>
   <div>
     <b>Miguel Estivalet Pinto</b><br>
     Miguel é estudante de Ciências da Computação na UFSC e membro do Grupo de Computação Quântica da UFSC. Seus interesses envolvem computação quântica, com ênfase em: Simulação Quântica, Aprendizado de Máquina Quântica e Divulgação Científica. 
@@ -74,7 +80,14 @@ O *Aprenda Ket* nasceu com o objetivo de tornar a computação quântica mais ac
 Na ampliação do Aprenda Ket, contamos com o apoio de diversos profissionais que contribuíram com a disponibilização de materiais para a plataforma. Agradecemos pela confiança, colaboração e dedicação de todos que ajudaram a fortalecer este projeto e a expandir o acesso ao conhecimento em computação quântica.
 
 <div style="display:flex; align-items:center; gap:15px;">
-  <img src="https://raw.githubusercontent.com/evandro-crr/ket-book/main/book/a_images/giovani.jpg" width="100" style="border-radius:10%;">
+  <img src="https://raw.githubusercontent.com/evandro-crr/ket-book/main/book/a_images/giovani.jpg" style="
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:10%;
+    flex-shrink:0;
+  "
+>
   <div>
     <b>Giovani Goraiebe Pollachini</b><br>
     Giovani é formado em Física, Matemática e Engenharia Eletrônica, possui experiência como professor substituto na UFSC e na UDESC (Joinville/SC), lecionando disciplinas de Matemática e Física para Engenharias. Seus interesses são: Computação Quântica, Ciência de Dados e demais áreas correlatas.
@@ -82,7 +95,14 @@ Na ampliação do Aprenda Ket, contamos com o apoio de diversos profissionais qu
 </div>
 
 <div style="display:flex; align-items:center; gap:15px;">
-  <img src="https://raw.githubusercontent.com/evandro-crr/ket-book/main/book/a_images/guilherme_temporao.jpg" width="100" style="border-radius:10%;">
+  <img src="https://raw.githubusercontent.com/evandro-crr/ket-book/main/book/a_images/guilherme_temporao.jpg" style="
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:10%;
+    flex-shrink:0;
+  "
+>
   <div>
     <b>Guilherme Temporão</b><br>
     Guilherme é Professor Associado da PUC-Rio e leciona disciplinas de graduação e pós-graduação, além de atuar como pesquisador na área de comunicação quântica, metrologia quântica e computação quântica. É pesquisador principal do projeto Rede Rio Quântica e coordenador do NITeQ/PUC-Rio (Núcleo Interdisciplinar de Tecnologias Quânticas). Suas demais áreas de interesse incluem redes quânticas, instrumentação optoeletrônica e educação em Engenharia.
@@ -90,7 +110,14 @@ Na ampliação do Aprenda Ket, contamos com o apoio de diversos profissionais qu
 </div>
 
 <div style="display:flex; align-items:center; gap:15px;">
-  <img src="https://raw.githubusercontent.com/evandro-crr/ket-book/main/book/a_images/let.jpg" width="100" style="border-radius:10%;">
+  <img src="https://raw.githubusercontent.com/evandro-crr/ket-book/main/book/a_images/let.jpg" style="
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:10%;
+    flex-shrink:0;
+  "
+>
   <div>
     <b>Leticia Bertuzzi</b><br>
   Leticia é mestra e graduada em Física Bacharelado pela Universidade Federal de Santa Catarina (UFSC). Tem experiência na área da Física, com ênfase em Computação Quântica e Física Quântica, também tem experiência em Física da Matéria Condensada e Mecânica Estatística com foco em Nanomateriais. Atualmente, está cursando o doutorado em Física na UFSC. Participa no grupo de pesquisa: Grupo de Computação Quântica da Universidade Federal de Santa Catarina (UFSC) - GCQ e do O Grupo de Informação Quântica do Sul(UFSC)-GIQSul .
