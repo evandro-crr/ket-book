@@ -33,7 +33,7 @@ O protocolo de Classical Shadows pode ser entendido como um procedimento dividid
 Inicialmente, escolhe-se aleatoriamente uma base de medição. Para medições de Pauli, utiliza-se o conjunto:
 
 $$
-U \in {H, HS^\dagger, I},
+U \in \\{H, HS^\dagger, I\\},
 $$
 
 onde:
@@ -47,7 +47,7 @@ Essas operações realizam mudanças de base para os autovetores dos operadores 
 As matrizes correspondentes são:
 
 $$
-H=\frac{1}{\sqrt{2}}\begin{pmatrix}1&1\1&-1\end{pmatrix},\quad S=\begin{pmatrix}1&0\0&i\end{pmatrix}
+H=\frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix},\quad S=\begin{pmatrix}1&0\\0&i\end{pmatrix}
 $$
 
 Após aplicar uma rotação aleatória ao estado quântico $\rho$, realiza-se uma medição na base computacional. O resultado da medida corresponde a uma string binária, como por exemplo:
