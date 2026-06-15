@@ -37,7 +37,7 @@ $$
 \det (A-\lambda I ) = 0 \  .
 $$
 
-Com a equação acima, consegue-se encontrar os autovalores $\lambda$ do operador $A$ encontrando-se as raízes do *polinômio característico* $(A-\lambda I)$. Esse polinômio têm grau $n$ e, como estamos buscando raízes nos números complexos, admite $n$ raízes (pode acontecer que sejam repetidas). Dessa forma, todo operador admite um autovalor (isso não é necessariamente válido para espaços vetoriais reais).
+Com a equação acima, consegue-se encontrar os autovalores $\lambda$ do operador $A$ encontrando-se as raízes do *polinômio característico* $\det(A-\lambda I)$. Esse polinômio tem grau $n$ e, como estamos buscando raízes nos números complexos, admite $n$ raízes (pode acontecer que sejam repetidas). Dessa forma, todo operador admite um autovalor (isso não é necessariamente válido para espaços vetoriais reais).
 
 :::{admonition} Exemplo
 :class: tip
@@ -243,7 +243,7 @@ $$
 
 obtendo-se:
 
-- $\lambda = 1\phantom{-}$ , $\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ $\phantom{-}$ $(`a \in \mathbb{C}, a \neq 0$)$
+- $\lambda = 1\phantom{-}$ , $\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ $\phantom{-}$ ($a \in \mathbb{C}, a \neq 0$)
 - $\lambda = -1$ , $\ket{v} = a \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}$ ($a \in \mathbb{C}, a \neq 0$)
 
 Pretende-se extrair uma base ortonormal de autovetores para escrever $X$ na forma diagonal. Nesse caso (Todos os autoespaços de dimensão 1.), basta normalizar os autovetores obtidos.
@@ -336,7 +336,7 @@ $$
 $$
 
 $$
-= \sum_{i,j} a_i a_j \ket{a_i} \underbrace{\braket a_i | a_j}_{\delta_ij} \bra{a_j}
+= \sum_{i,j} a_i a_j \ket{a_i} \underbrace{\braket{a_i | a_j}}_{\delta_{ij}} \bra{a_j}
 $$
 
 $$
@@ -351,7 +351,7 @@ $$
 \therefore A^{2} = \sum_{i} a_{i}^{2} \ket{a_i} \bra{a_i} \implies A^{n} = \sum_{i} a_{i}^{n} \ket{a_i} \bra{a_i}
 $$
 
-Calculando $e^A$ via autovalores, subsituímos na série:
+Calculando $e^A$ via autovalores, substituímos na série:
 
 $$
 e^A = \sum_{n=0}^{\infty} \frac{A^n}{n!} = \sum_{i} \left(\sum_{n=0}^{\infty} \frac{a_{i}^{n}}{n!} \right) \ket{a_i}\bra{a_i} = \sum_{i} e^{a_i} \ket{a_i}\bra{a_i}
@@ -509,8 +509,8 @@ $$
 
 $$
 \begin{array}{rcl}
-||{\ket{c_0}||} &=& ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
-||{\ket{c_0}||} &=& ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
+||{\ket{c_0}}|| &=& ||{ \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}}|| = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
+||{\ket{c_1}}|| &=& ||{ \frac{1}{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}}|| = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
 \braket{c_0 | c_1} &=& \begin{bmatrix} 1 & 1 \end{bmatrix} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix} = 1 - 1 = 0
 \end{array}
 $$
@@ -538,7 +538,7 @@ Um operador é dito *positivo* quando satisfaz a seguinte propriedade:
 
 - **(OPos)**  $\bra{\psi}P\ket{\psi} \geq 0 \ , \ \ \forall \ket{\psi}$.
 
-  É possível demonstrar que um operador positivo é, automaticamente, hermitiano, e, portanto, todos os seus autovalores são reais. Além disso, a propriedade (OPos) é equivalente a dizer que todos os autovetores de $P$ são números reais não-negativos $\lambda \geq 0$.
+  É possível demonstrar que um operador positivo é, automaticamente, hermitiano, e, portanto, todos os seus autovalores são reais. Além disso, a propriedade (OPos) é equivalente a dizer que todos os **autovalores** de $P$ são números reais não-negativos $\lambda \geq 0$.
 
 Diz-se que um operador é *positivo definido* quando satisfaz a condição seguinte, mais rigorosas que (OPos):
 

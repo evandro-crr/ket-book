@@ -19,7 +19,7 @@ A ideia central dos VQAs é a seguinte:
    Esses parâmetros controlam rotações e operações que definem o estado quântico $\ket{\psi(\boldsymbol{\theta})} = U(\boldsymbol{\theta})\ket{0}$.
 
 2. **Medição de um Observável:**
-   Mede-se o valor esperado de um **Observável, que pode ser Hamiltoniano** $H$, que representa o problema físico ou matemático a ser resolvido.
+   Mede-se o valor esperado de um **Observável** (que pode ser o Hamiltoniano $H$), o qual representa o problema físico ou matemático a ser resolvido.
    Essa medida fornece a **função de custo**:
    
    $$

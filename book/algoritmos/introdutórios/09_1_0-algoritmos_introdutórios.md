@@ -4,7 +4,7 @@
 Material extraído do TCC [*Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas*](../../tcc-giovani.pdf), de Giovani Goraiebe Pollachini.
 ```
 
-Neste capítulo serão abordados os algoritmos introdutórios, algoritmos que possuem problemas que a única aplicação é servir como material de estudos em computação quântica, para entender as bases de algorítmos mais complexos que possuem aplicações reais, como os algorítmos de busca.
+Neste capítulo serão abordados os algoritmos introdutórios, algoritmos que possuem problemas cuja única aplicação é servir como material de estudos em computação quântica, para entender as bases de algoritmos mais complexos que possuem aplicações reais, como os algoritmos de busca.
 
 ## Oráculos quânticos
 
@@ -13,7 +13,7 @@ Oráculos quânticos são peças fundamentais em vários algoritmos, especialmen
 A ideia central é: **como transformar uma função clássica**
 
 $$
-f:{0,1}^n \to {0,1}
+f:\{0,1\}^n \to \{0,1\}
 $$
 
 **em uma operação unitária**.
@@ -33,13 +33,13 @@ O primeiro passo é construir uma versão unitária da função booleana.
 A operação desejada é:
 
 $$
-U_f , \ket{x}\ket{y} = \ket{x}\ket{y}\ket{y \oplus f(x)} ,
+U_f \ket{x}\ket{y} = \ket{x}\ket{y \oplus f(x)},
 $$
 
 onde:
 
 * $x$ são os qubits de entrada,
-* $y$ é um qubit auxiliar $target (ou alvo)$,
+* $y$ é um qubit auxiliar (alvo ou *target*),
 * $\oplus$ é XOR.
 
 ##### Como montar o oráculo de XOR
@@ -94,13 +94,13 @@ e ocorre o seguinte:
 * Se $f(x)=0$: nada muda.
 * Se $f(x)=1$: o XOR troca $\ket{0}$ ↔ $\ket{1}$, o que introduz um sinal negativo.
 
-Isso resulta exatamente em:
+Sendo assim:
 
 $$
-\ket{x} \ket{-} ; \longrightarrow ; (-1)^{f(x)} \ket{x} \ket{-} .
+\ket{x} \ket{-} \longrightarrow (-1)^{f(x)} \ket{x} \ket{-} .
 $$
 
-Ou seja, o oráculo XOR “induz” um oráculo de fase se a entrada target for \ket{-}.
+Ou seja, o oráculo XOR "induz" um oráculo de fase se a entrada alvo for $\ket{-}$.
 
 Essa é a construção padrão.
 

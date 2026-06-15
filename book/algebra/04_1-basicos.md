@@ -46,10 +46,10 @@ Esse espaço vetorial será largamente utilizado nos capítulos seguintes e desc
 
 Uma base para o espaço vetorial $\mathbb{C}^n$ é um conjunto de vetores *linearmente independentes* (LI) e que *geram o espaço*.  Demonstra-se que todas as bases de um espaço vetorial têm o mesmo número de elementos, e define-se a *dimensão* do espaço vetorial pelo número de elementos de uma base.
 
-O espaço vetorial $\mathbb{C}^n$ tem dimensão $n$, isto é, todas as suas bases têm $n$ vetores. Uma base muito útil é a chamada *base computacional*, ou base canônica\`(O adjetivo "canônico", na Matemática, tem um sentido de "padrão", como na expressão "configuração padrão"):
+O espaço vetorial $\mathbb{C}^n$ tem dimensão $n$, isto é, todas as suas bases têm $n$ vetores. Uma base muito útil é a chamada *base computacional*, ou base canônica (O adjetivo "canônico", na Matemática, tem um sentido de "padrão", como na expressão "configuração padrão"):
 
 $$
-\ket{0} = \begin{bmatrix}1 \\ 0 \\ \vdots \\ 0\end{bmatrix} \ \ , \ \ \ket{1} = \begin{bmatrix}0 \\ 1 \\ \vdots \\ 0 \end{bmatrix}  \ \ , \ \ \cdots \ \ , \ \ \ket{n-1}^= \begin{bmatrix}0 \\ 0 \\ \vdots \\ 1\end{bmatrix}  \ \ .
+\ket{0} = \begin{bmatrix}1 \\ 0 \\ \vdots \\ 0\end{bmatrix} \ \ , \ \ \ket{1} = \begin{bmatrix}0 \\ 1 \\ \vdots \\ 0 \end{bmatrix}  \ \ , \ \ \cdots \ \ , \ \ \ket{n-1} = \begin{bmatrix}0 \\ 0 \\ \vdots \\ 1\end{bmatrix}  \ \ .
 $$
 
 Na base computacional, um vetor $\ket{\psi} = (z_0 , z_{1} , \ldots , z_{n-1} )$ é escrito como
@@ -323,7 +323,7 @@ $$
   \braket{\phi | \psi}
   &=& \left( \frac{-i}{2} \bra{0} + \frac{\sqrt{3}}{2} \bra{1} \right) \left( \frac{1}{\sqrt{2}} \ket{0} + \frac{-i}{\sqrt{2}} \ket{1} \right)  \\
   &=&
-  \frac{-i}{2\sqrt{2}} \braket{0 | 0} + \frac{-i^2}{2\sqrt{2}} \braket{0 | 1} + \frac{\sqrt{3}}{2\sqrt{2}} \braket{1 | 0} + \frac{-i\sqrt{3}}{2\sqrt{2}} \braket{0 | 0} \\
+  \frac{-i}{2\sqrt{2}} \braket{0 | 0} + \frac{-i^2}{2\sqrt{2}} \braket{0 | 1} + \frac{\sqrt{3}}{2\sqrt{2}} \braket{1 | 0} + \frac{-i\sqrt{3}}{2\sqrt{2}} \braket{1 | 1} \\
   &=&
   \frac{-i}{2\sqrt{2}} + 0 + 0 + \frac{-i\sqrt{3}}{2\sqrt{2}} = -i\frac{1+\sqrt{3}}{2\sqrt{2}} \ .
 \end{array}
@@ -597,10 +597,10 @@ Sabendo que as bases $\mathcal{I}$ e $\mathcal{X}$ são ortonormais, pode-se enc
 
 $$
 \begin{array}{rcl}
-\braket{0 | +} &=& \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\
-\braket{1 | +} &=& \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\ \\
-\braket{0 | -} &=& \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\
-\braket{1 | -} &=& \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{0} \right) = - \frac{1}{\sqrt{2}} \\
+\braket{0 | +} &=& \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{1} \right) =  \frac{1}{\sqrt{2}} \\
+\braket{1 | +} &=& \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{1} \right) =  \frac{1}{\sqrt{2}} \\ \\
+\braket{0 | -} &=& \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{1} \right) =  \frac{1}{\sqrt{2}} \\
+\braket{1 | -} &=& \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{1} \right) = - \frac{1}{\sqrt{2}} \\
 \end{array}
 $$
 

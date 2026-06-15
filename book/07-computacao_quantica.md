@@ -65,7 +65,7 @@ e uma subsequente medição não conseguiria distinguir esses dois estados que d
 Na formação de um sistema composto, os vetores $\ket{\psi_1}$ e $\ket{\psi_2} = e^{i\alpha}\ket{\psi}$ produzem resultados idênticos, a menos da fase global $\alpha$, dada a multilinearidade do produto tensorial:
 
 $$
- \ket{\psi_2} \otimes \ket{\phi} = \big(e^{i\alpha}\ket{\psi_1}\big) \otimes \ket{\phi} = e^{i\alpha} \big( \ket{\psi_1} \otimes \ket{\phi}
+ \ket{\psi_2} \otimes \ket{\phi} = \big(e^{i\alpha}\ket{\psi_1}\big) \otimes \ket{\phi} = e^{i\alpha} \big( \ket{\psi_1} \otimes \ket{\phi} \big)
 $$
 
 Do mesmo modo, uma medida posterior não conseguiria distinguir esses dois estados. 
@@ -74,10 +74,10 @@ Dessa forma, a fase global não tem relevância física, e um sistema descrito p
 
 #### Fase Relativa
 
-A *fase relativa* em um qubit é a diferença de fase entre os coeficientes que multiplicam o $\ket{1}$. Por exemplo, os vetores 
+A *fase relativa* em um qubit é a diferença de fase entre os coeficientes que multiplicam os estados $\ket{0}$ e $\ket{1}$. Por exemplo, os vetores 
 
 $$
- \ket{+} =  \frac{\ket{0} +i \ket{1}}{\sqrt{2}} \ \ \text{e} \ \  \ket{-} =  \frac{\ket{0} - \ket{1}}{\sqrt{2}}
+ \ket{+} =  \frac{\ket{0} + \ket{1}}{\sqrt{2}} \ \ \text{e} \ \  \ket{-} =  \frac{\ket{0} - \ket{1}}{\sqrt{2}}
 $$
 
 têm mesmo coeficiente multiplicando $\ket{0}$ e diferem apenas por um fator $-1 = e^{i \pi}$ multiplicando $\ket{1}$, isto é, por uma fase relativa de $\pi$. 
@@ -139,7 +139,7 @@ Observe que os vetores da base $\mathcal{X}$ correspondem às intersecções da 
 
 #### Projeções nos eixos coordenados
 
-As projeções nos eixos $x$, $y$ e $x$ de um ponto $\vec{r}$ na superfície da esfera de Bloch são dadas pelas coordenadas esféricas:
+As projeções nos eixos $x$, $y$ e $z$ de um ponto $\vec{r}$ na superfície da esfera de Bloch são dadas pelas coordenadas esféricas:
 
 $$
  \begin{split}
@@ -430,9 +430,9 @@ $$
     
 Outra maneira de se verificar isso é perceber que $H$ é hermitiana ($H^\dagger = H$) e unitária ($H^{-1} = H^\dagger$), de forma que $H^{-1} = H^\dagger = H$.
 
-#### Relação entre as portas $S$ e $T$
+#### Identidades CNOT e SWAP
 
-As portas CNOT e SWAP são suas próprias inversas. CNOT^2 = SWAP^2 = I 
+As portas CNOT e SWAP são suas próprias inversas: $\text{CNOT}^2 = \text{SWAP}^2 = I$.
 
  
 

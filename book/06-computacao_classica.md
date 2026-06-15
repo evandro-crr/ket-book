@@ -123,7 +123,7 @@ Material extraído do TCC [*Computação Quântica: Uma abordagem para estudante
 
  Um computador digital é um sistema que pode seguir uma sequência de instruções, chamada programa, e que opera em um conjunto de informações. Os computadores digitais modernos são compostos de milhões a bilhões de transistores, que se agrupam em circuitos digitais. Para lidar com a complexidade desses sistemas, os circuitos são subdivididos em circuitos menores, que realizam funções específicas. Esses circuitos são considerados ``caixas pretas'', em que se ignoram os detalhes internos, e são agrupados de forma a realizar funções mais sofisticadas. 
 
-A engenharia trabalha com *níveis de abstração*; cada nível corresponde a omitir detalhes internos dos subsistemas constituíntes, ou da camada de abstração anterior. Uma discussão mais detalhada sobre as camadas de abstração do computador será realizada na seção seguinte. 
+A engenharia trabalha com *níveis de abstração*; cada nível corresponde a omitir detalhes internos dos subsistemas constituintes, ou da camada de abstração anterior. Uma discussão mais detalhada sobre as camadas de abstração do computador será realizada na seção seguinte. 
 
 Para que o computador consiga operar em um conjunto de informações, é necessário que essa informação seja traduzida, ou, codificada, de forma conveniente. O projeto dos computadores digitais se baseia em que as informações de entrada do sistema, e mesmo as instruções a serem seguidas, são codificadas em *bits*. 
 
@@ -342,7 +342,7 @@ $$
 
 Com apenas algumas das portas lógicas apresentadas nesse artigo pode-se compor qualquer função booleana. 
 
--**Teorema 1 (Universalidade das Portas Lógicas Clássicas)**: Uma função booleana $f \colon \{0,1\}^m \to \{0,1\}^n$ qualquer pode ser implementada por uma composição das portas lógicas OR, AND e NOT (além das portas SWAP e FANOUT).
+**Teorema 1 (Universalidade das Portas Lógicas Clássicas)**: Uma função booleana $f \colon \{0,1\}^m \to \{0,1\}^n$ qualquer pode ser implementada por uma composição das portas lógicas OR, AND e NOT (além das portas SWAP e FANOUT).
 
 **Teorema 2 (Universalidade da porta NAND)**:  Uma função booleana $f \colon \{0,1\}^m \to \{0,1\}^n$ qualquer pode ser implementada por uma composição de portas lógicas NAND (além das portas SWAP e FANOUT).
 

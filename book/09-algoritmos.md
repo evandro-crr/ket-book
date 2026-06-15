@@ -12,7 +12,7 @@ A leitura de algoritmos quânticos requer uma abordagem diferente daquela utiliz
 
 ### Elementos fundamentais para compreensão
 
-Para compreender bem o funcionamento de um algoritmo quântica é necessário compreender alguns elementos fundamentais para a computação quântica, sendo eles:
+Para compreender bem o funcionamento de um algoritmo quântico é necessário compreender alguns elementos fundamentais para a computação quântica, sendo eles:
 
 1. **Notação de Dirac**: Os estados quânticos são representados usando a notação bra-ket (⟨| e |⟩), onde |0⟩ e |1⟩ representam os estados base.
 
@@ -33,7 +33,7 @@ Para compreender bem o funcionamento de um algoritmo quântica é necessário co
 - **Analise antes e depois da medição**: Compreenda quais informações são acessíveis antes da medição (em superposição) e depois (resultados clássicos).
 
 ```{note}
-No começo, é recomendado abrir os cálculos de matrizes na mão, independente da dificuldade deles, para estruturar noções fundamentais que será exigidas em algorítmos mais complexos.
+No começo, é recomendado abrir os cálculos de matrizes na mão, independente da dificuldade deles, para estruturar noções fundamentais que serão exigidas em algoritmos mais complexos.
 
 A abordagem mais eficaz é através da análise metódica de exemplos progressivos:
 
@@ -51,7 +51,7 @@ A abordagem mais eficaz é através da análise metódica de exemplos progressiv
 
 ## Entendendo um circuito
 
-Os circuitos quânticos são a principal ferramenta visual para representar algoritmos quânticos. Eles funcionam como mapas que guiam o funcionamento do algorítmo, transformando operações matemáticas em diagramas intuitivos que podemos seguir passo a passo.
+Os circuitos quânticos são a principal ferramenta visual para representar algoritmos quânticos. Eles funcionam como mapas que guiam o funcionamento do algoritmo, transformando operações matemáticas em diagramas intuitivos que podemos seguir passo a passo.
 
 ### A estrutura básica de um circuito
 
@@ -92,7 +92,7 @@ Em Teoria da Informação e Criptografia Quântica, é uma convenção tácita r
 
 Não é possível, classicamente, codificar 2 bits de mensagem em 1 bit transmitido, já que só há 2¹ = 2 palavras código – as palavras 0 e 1 – e 2² = 4 palavras de mensagem que podem ser enviadas – as palavras 00, 01, 10 e 11. No entanto, é possível codificar 2 bits de mensagem em 1 qubit transmitido, e é essa a função do circuito de codificação superdensa.
 
-Uma referância para este conteúdo é {cite}`nielsen_quantum_2010` seção 2.3, p. 97-98
+Uma referência para este conteúdo é {cite}`nielsen_quantum_2010` seção 2.3, p. 97-98
 
 ### Visão geral 
 

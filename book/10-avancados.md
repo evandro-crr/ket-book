@@ -16,4 +16,4 @@ Nesse capítulo serão abordados os seguintes tópicos complementares:
 
 - [Teoria de Informação Quântica](topicos_avancados/teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.md): Nesse tópico será abordado conceitos mais complexos sobre a teoria de informação quântica, como a Entropia de Von Neumann, Canais Quânticos, Compressão Quântica e Teoria de Holevo.
 
-- [Comunicação Quântica](topicos_avancados/comunicação_quantica/10_1_0-comunicacao_quantica.md): Nessa subdivisão, você encontrará os fundamentos da comuninação quântica, com foco na criptografia quântica e internet quântica.
+- [Comunicação Quântica](topicos_avancados/comunicação_quantica/10_1_0-comunicacao_quantica.md): Nessa subdivisão, você encontrará os fundamentos da comunicação quântica, com foco na criptografia quântica e na internet quântica.
