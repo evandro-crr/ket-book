@@ -26,7 +26,7 @@ Um *operador linear* é uma transformação linear $A \colon \mathbb{C}^n \to \m
 A função $H \colon \mathbb{C}^2 \to \mathbb{C}^2$ dada por
 
 $$
-H \left( a_0 \ket{0} + a_1 \ket{1} \right) = \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0-a_1}{\sqrt{2}}
+H \left( a_0 \ket{0} + a_1 \ket{1} \right) = \frac{a_0 + a_1}{\sqrt{2}} \ket{0} + \frac{a_0-a_1}{\sqrt{2}} \ket{1}
 $$
 
 é uma transformação linear. De fato, as propriedades de transformação linear se verificam para $H$.
@@ -285,7 +285,7 @@ em que a operação simbolizada por $\dagger$ é a transposição e conjugação
 
 (cap2ex-matriz-hadamard-mudanca-base-x)=
 
-:::{admonition} Matrizes de Pauli
+:::{admonition} Exemplo: Mudança de Base do Operador $X$
 :class: tip
 
 Considere as bases $\mathcal{I}$ e $\mathcal{X}$ apresentadas no exemplo [Base para 1 qubit].

@@ -446,7 +446,7 @@ document.write(`
 <p>É possível compor dois espaços vetoriais para formar um terceiro espaço. Uma maneira de fazer isso é por meio do <em>produto tensorial</em>. Em Computação Quântica, essa construção é fundamental para se trabalhar com sistemas compostos por mais de um qubit. Um sistema de dois qubits será o produto tensorial de dois espaços <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>, que modelam um qubit.</p>
 <section id="espaco-vetorial-do-produto-tensorial">
 <h2>Espaço Vetorial do Produto Tensorial<a class="headerlink" href="#espaco-vetorial-do-produto-tensorial" title="Link para este cabeçalho">#</a></h2>
-<p>Dados dois espaços vetorias <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, com bases <span class="math notranslate nohighlight">\(\beta_V = \{ \ket{v_k} \}\)</span> e <span class="math notranslate nohighlight">\(\beta_W = \{ \ket{w_l} \}\)</span>, o <em>produto tensorial</em> de <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, denotado por <span class="math notranslate nohighlight">\(V\otimes W\)</span>, é definido como o espaço vetorial gerado pela base:</p>
+<p>Dados dois espaços vetoriais <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, com bases <span class="math notranslate nohighlight">\(\beta_V = \{ \ket{v_k} \}\)</span> e <span class="math notranslate nohighlight">\(\beta_W = \{ \ket{w_l} \}\)</span>, o <em>produto tensorial</em> de <span class="math notranslate nohighlight">\(V\)</span> e <span class="math notranslate nohighlight">\(W\)</span>, denotado por <span class="math notranslate nohighlight">\(V\otimes W\)</span>, é definido como o espaço vetorial gerado pela base:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 v_k \otimes w_l \ , \ \ \begin{matrix} k=0 , \ldots , \dim V - 1 \\  l=0 , \ldots , \dim W - 1 \end{matrix} \ .
@@ -456,7 +456,7 @@ v_k \otimes w_l \ , \ \ \begin{matrix} k=0 , \ldots , \dim V - 1 \\  l=0 , \ldot
 \[
 \dim V\otimes W = \dim V \cdot \dim W \ .
 \]</div>
-<p>O produto tensorial <span class="math notranslate nohighlight">\(\otimes\)</span> forma uma dupla ordenada com propriedades diferentes das do produto cartesiano. Essas propriedades, listadas abaixos, são chamadas conjuntamente de <em>bilinearidade</em>:</p>
+<p>O produto tensorial <span class="math notranslate nohighlight">\(\otimes\)</span> forma uma dupla ordenada com propriedades diferentes das do produto cartesiano. Essas propriedades, listadas a seguir, são chamadas conjuntamente de <em>bilinearidade</em>:</p>
 <ul>
 <li><p>Para todos <span class="math notranslate nohighlight">\(z \in \mathbb{C}\)</span>, <span class="math notranslate nohighlight">\(\ket{v}\in V\)</span> e <span class="math notranslate nohighlight">\(\ket{w} \in W\)</span>,</p>
 <div class="math notranslate nohighlight">
@@ -511,7 +511,7 @@ v_k \otimes w_l \ , \ \ \begin{matrix} k=0 , \ldots , \dim V - 1 \\  l=0 , \ldot
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-\left(\frac{1}{\sqrt{2}}\ket{0} - \frac{i}{\sqrt{2}} \right) \ket{0} = \frac{1}{\sqrt{2}}\ket{00} - \frac{i}{\sqrt{2}}\ket{10} \ .
+\left(\frac{1}{\sqrt{2}}\ket{0} - \frac{i}{\sqrt{2}}\ket{1} \right) \ket{0} = \frac{1}{\sqrt{2}}\ket{00} - \frac{i}{\sqrt{2}}\ket{10} \ .
 \]</div>
 <p>As igualdades acima são exemplos da bilinearidade do produto tensorial.</p>
 </div>
@@ -764,7 +764,7 @@ A \otimes B = \begin{bmatrix} a_{0,0} &amp; \cdots &amp; a_{0,n-1} \\ a_{1,1} &a
 \[
    (A \otimes B)_{4,2} = a_{\text{quoc}(4,3),\text{quoc}(2,2)}\  b_{\text{resto}(4,3),\text{resto}(2,2)} = a_{1,1} b_{1,0} \ .
 \]</div>
-<p>A matriz <span class="math notranslate nohighlight">\(A\otimes B*\)</span> está representada abaixo, destacando-se o elemento <span class="math notranslate nohighlight">\(4,2\)</span>:</p>
+<p>A matriz <span class="math notranslate nohighlight">\(A\otimes B\)</span> está representada abaixo, destacando-se o elemento <span class="math notranslate nohighlight">\(4,2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 A \otimes B = \begin{bmatrix} a_{0,0} B &amp; a_{0,1} B \\ a_{1,0} B &amp; a_{1,1} B \end{bmatrix} =   \begin{bmatrix} a_{0,0} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} &amp; a_{0,1} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} \\ &amp; \\ a_{1,0} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ b_{1,0} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} &amp; \boxed{a_{1,1}} \begin{bmatrix} b_{0,0} &amp; b_{0,1} \\ \boxed{b_{1,0}} &amp; b_{1,1} \\ b_{2,0} &amp; b_{2,1} \end{bmatrix} \end{bmatrix}   \ .

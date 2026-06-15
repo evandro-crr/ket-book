@@ -487,7 +487,7 @@ Z = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}
 \[
 \det (A-\lambda I ) = 0 \  .
 \]</div>
-<p>Com a equação acima, consegue-se encontrar os autovalores <span class="math notranslate nohighlight">\(\lambda\)</span> do operador <span class="math notranslate nohighlight">\(A\)</span> encontrando-se as raízes do <em>polinômio característico</em> <span class="math notranslate nohighlight">\((A-\lambda I)\)</span>. Esse polinômio têm grau <span class="math notranslate nohighlight">\(n\)</span> e, como estamos buscando raízes nos números complexos, admite <span class="math notranslate nohighlight">\(n\)</span> raízes (pode acontecer que sejam repetidas). Dessa forma, todo operador admite um autovalor (isso não é necessariamente válido para espaços vetoriais reais).</p>
+<p>Com a equação acima, consegue-se encontrar os autovalores <span class="math notranslate nohighlight">\(\lambda\)</span> do operador <span class="math notranslate nohighlight">\(A\)</span> encontrando-se as raízes do <em>polinômio característico</em> <span class="math notranslate nohighlight">\(\det(A-\lambda I)\)</span>. Esse polinômio tem grau <span class="math notranslate nohighlight">\(n\)</span> e, como estamos buscando raízes nos números complexos, admite <span class="math notranslate nohighlight">\(n\)</span> raízes (pode acontecer que sejam repetidas). Dessa forma, todo operador admite um autovalor (isso não é necessariamente válido para espaços vetoriais reais).</p>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
 <p>Os autovalores da matriz</p>
@@ -665,7 +665,7 @@ X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ ,
 \end{split}\]</div>
 <p>obtendo-se:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\lambda = 1\phantom{-}\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> <span class="math notranslate nohighlight">\(\phantom{-}\)</span> <span class="math notranslate nohighlight">\((`a \in \mathbb{C}, a \neq 0\)</span>)$</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda = 1\phantom{-}\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> <span class="math notranslate nohighlight">\(\phantom{-}\)</span> (<span class="math notranslate nohighlight">\(a \in \mathbb{C}, a \neq 0\)</span>)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\lambda = -1\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}\)</span> (<span class="math notranslate nohighlight">\(a \in \mathbb{C}, a \neq 0\)</span>)</p></li>
 </ul>
 <p>Pretende-se extrair uma base ortonormal de autovetores para escrever <span class="math notranslate nohighlight">\(X\)</span> na forma diagonal. Nesse caso (Todos os autoespaços de dimensão 1.), basta normalizar os autovetores obtidos.</p>
@@ -749,7 +749,7 @@ A = \sum_{i} a_i \ket{a_i} \bra{a_i}, \, \text{com } A \ket{a_i} = a_i\ket{a_i}
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-= \sum_{i,j} a_i a_j \ket{a_i} \underbrace{\braket a_i | a_j}_{\delta_ij} \bra{a_j}
+= \sum_{i,j} a_i a_j \ket{a_i} \underbrace{\braket{a_i | a_j}}_{\delta_{ij}} \bra{a_j}
 \]</div>
 <div class="math notranslate nohighlight">
 \[
@@ -763,7 +763,7 @@ A = \sum_{i} a_i \ket{a_i} \bra{a_i}, \, \text{com } A \ket{a_i} = a_i\ket{a_i}
 \[
 \therefore A^{2} = \sum_{i} a_{i}^{2} \ket{a_i} \bra{a_i} \implies A^{n} = \sum_{i} a_{i}^{n} \ket{a_i} \bra{a_i}
 \]</div>
-<p>Calculando <span class="math notranslate nohighlight">\(e^A\)</span> via autovalores, subsituímos na série:</p>
+<p>Calculando <span class="math notranslate nohighlight">\(e^A\)</span> via autovalores, substituímos na série:</p>
 <div class="math notranslate nohighlight">
 \[
 e^A = \sum_{n=0}^{\infty} \frac{A^n}{n!} = \sum_{i} \left(\sum_{n=0}^{\infty} \frac{a_{i}^{n}}{n!} \right) \ket{a_i}\bra{a_i} = \sum_{i} e^{a_i} \ket{a_i}\bra{a_i}
@@ -887,8 +887,8 @@ H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bma
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{rcl}
-||{\ket{c_0}||} &amp;=&amp; ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
-||{\ket{c_0}||} &amp;=&amp; ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
+||{\ket{c_0}}|| &amp;=&amp; ||{ \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}}|| = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
+||{\ket{c_1}}|| &amp;=&amp; ||{ \frac{1}{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}}|| = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
 \braket{c_0 | c_1} &amp;=&amp; \begin{bmatrix} 1 &amp; 1 \end{bmatrix} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix} = 1 - 1 = 0
 \end{array}
 \end{split}\]</div>
@@ -909,7 +909,7 @@ H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bma
 <p>Um operador é dito <em>positivo</em> quando satisfaz a seguinte propriedade:</p>
 <ul>
 <li><p><strong>(OPos)</strong>  <span class="math notranslate nohighlight">\(\bra{\psi}P\ket{\psi} \geq 0 \ , \ \ \forall \ket{\psi}\)</span>.</p>
-<p>É possível demonstrar que um operador positivo é, automaticamente, hermitiano, e, portanto, todos os seus autovalores são reais. Além disso, a propriedade (OPos) é equivalente a dizer que todos os autovetores de <span class="math notranslate nohighlight">\(P\)</span> são números reais não-negativos <span class="math notranslate nohighlight">\(\lambda \geq 0\)</span>.</p>
+<p>É possível demonstrar que um operador positivo é, automaticamente, hermitiano, e, portanto, todos os seus autovalores são reais. Além disso, a propriedade (OPos) é equivalente a dizer que todos os <strong>autovalores</strong> de <span class="math notranslate nohighlight">\(P\)</span> são números reais não-negativos <span class="math notranslate nohighlight">\(\lambda \geq 0\)</span>.</p>
 </li>
 </ul>
 <p>Diz-se que um operador é <em>positivo definido</em> quando satisfaz a condição seguinte, mais rigorosas que (OPos):</p>

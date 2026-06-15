@@ -495,7 +495,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-bernstein-vazirani">Algoritmo de Bernstein-Vazirani</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-bernstein-vazirani">Simulação do algorítimo de Bernstein-Vazirani</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-bernstein-vazirani">Simulação do algoritmo de Bernstein-Vazirani</a></li>
 </ul>
             </nav>
         </div>
@@ -514,8 +514,8 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ket-lang
+<span class="o">%</span><span class="k">pip</span> install numpy
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -663,9 +663,9 @@ $<span class="math notranslate nohighlight">\(
 <p>A comparação direta entre as complexidades de consulta clássica (Θ(n)) e quântica (Θ(1)) para o problema de Bernstein-Vazirani, embora matematicamente correta, deve ser interpretada com cautela, pois operações em arquiteturas distintas possuem naturezas e custos computacionais fundamentalmente diferentes que não permitem uma equiparação direta. No entanto, como exercício teórico, essa análise revela o potencial da computação quântica para explorar paralelismo e interferência de formas radicalmente novas, oferecendo um vislumbre conceitual de como certos problemas poderiam ser resolvidos de maneira intrinsicamente mais eficiente em princípio, mesmo que desafios práticos de implementação permaneçam.</p>
 <p>Em relação ao algoritmo clássico, o algoritmo quântico apresenta ganho exponencial em desempenho.</p>
 </section>
-<section id="simulacao-do-algoritimo-de-bernstein-vazirani">
-<h2>Simulação do algorítimo de Bernstein-Vazirani<a class="headerlink" href="#simulacao-do-algoritimo-de-bernstein-vazirani" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o algorítimo de Bernstein-Vazirani usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<section id="simulacao-do-algoritmo-de-bernstein-vazirani">
+<h2>Simulação do algoritmo de Bernstein-Vazirani<a class="headerlink" href="#simulacao-do-algoritmo-de-bernstein-vazirani" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algoritmo de Bernstein-Vazirani usaremos a linguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
 </div>
@@ -678,7 +678,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <p><strong>Exercício:</strong></p>
-<p>Antes de implementarmos o algorítmo de Bernstein Vazirani, tente realizar uma versão mais fácil, unicamente para a string <span class="math notranslate nohighlight">\(s = 1010\)</span></p>
+<p>Antes de implementarmos o algoritmo de Bernstein Vazirani, tente realizar uma versão mais fácil, unicamente para a string <span class="math notranslate nohighlight">\(s = 1010\)</span></p>
 <p>Faremos o mesmo exemplo realizado com o Algoritmo de Bernstein-Vazirani, implementaremos um <em>oráculo</em> que pode ser usada para qualquer string <span class="math notranslate nohighlight">\(s\)</span>:</p>
 <p>Em seguida, implementaremo ele no algoritmo completo de Bernstein-Vazirani para verificar se o algoritmo consegue retornar a string secreta com <em>uma única chamada ao oráculo</em></p>
 <div class="cell docutils container">
@@ -776,7 +776,7 @@ $<span class="math notranslate nohighlight">\(
   <thead>
     <tr>
       <th>Ket</th>
-      <th>v0.9.3.1</th>
+      <th>v0.9.3.5.post1</th>
     </tr>
   </thead>
   <tbody>
@@ -865,7 +865,7 @@ $<span class="math notranslate nohighlight">\(
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-bernstein-vazirani">Algoritmo de Bernstein-Vazirani</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-bernstein-vazirani">Simulação do algorítimo de Bernstein-Vazirani</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-bernstein-vazirani">Simulação do algoritmo de Bernstein-Vazirani</a></li>
 </ul>
   </nav></div>
 

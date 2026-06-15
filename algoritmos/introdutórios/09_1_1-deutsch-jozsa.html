@@ -495,12 +495,12 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch">Algoritmo de Deutsch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsch">Simulação do algorítimo de Deutsch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-deutsch">Simulação do algoritmo de Deutsch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch-versao-simplificada">Algoritmo de Deutsch - Versão Simplificada</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsch-simplificado">Simulação do algorítimo de Deutsch Simplificado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-deutsch-simplificado">Simulação do algoritmo de Deutsch Simplificado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch-jozsa">Algoritmo de Deutsch-Jozsa</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsche-jozsa">Simulação do algorítimo de Deutsche-Jozsa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-deutsch-jozsa">Simulação do algoritmo de Deutsch-Jozsa</a></li>
 </ul>
             </nav>
         </div>
@@ -519,8 +519,8 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ket-lang
+<span class="o">%</span><span class="k">pip</span> install numpy
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -609,7 +609,7 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
 <section id="algoritmo-de-deutsch">
 <h2>Algoritmo de Deutsch<a class="headerlink" href="#algoritmo-de-deutsch" title="Link para este cabeçalho">#</a></h2>
 <p>O Algoritmo de Deutsch é um dos primeiros algoritmos quânticos conhecidos, proposto por David Deutsch em 1985. Embora resolva um problema que não haja uma implementação direta, sua importância é histórica e conceitual, pois foi a primeira demonstração de que um computador quântico poderia superar um computador clássico para uma tarefa específica. O algoritmo serve como uma demonstração para introduzir conceitos-chave da computação quântica.</p>
-<p>O algorítmo de Deutsch resolve parcialmente o problema de Deutsch-Jozsa, resolvendo um problema artificial de complexidade mínima (envolvendo uma função de um único bit).</p>
+<p>O algoritmo de Deutsch resolve parcialmente o problema de Deutsch-Jozsa, resolvendo um problema artificial de complexidade mínima (envolvendo uma função de um único bit).</p>
 <p>Considere que <span class="math notranslate nohighlight">\(f\)</span> <span class="math notranslate nohighlight">\({(f : {0,1} →{0,1})}\)</span> seja dada por meio do oráculo de fase. O algoritmo de Deutsch para decidir se <span class="math notranslate nohighlight">\(f\)</span> é constante <span class="math notranslate nohighlight">\({(f(0) = f(1))}\)</span> ou balanceada <span class="math notranslate nohighlight">\({(f(0) \neq f(1))}\)</span> é dado pelo procedimento abaixo.</p>
 <p><span class="math notranslate nohighlight">\(\textbf{Entrada:}\)</span> <span class="math notranslate nohighlight">\(O_\text{F}(f) = O\)</span> \ \ (oráculo de fase associado à função booleana <span class="math notranslate nohighlight">\(f\)</span>)</p>
 <p><strong>Procedimento:</strong></p>
@@ -635,7 +635,7 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
 <p>Notação:</p>
 <p><img alt="The-Deutsch-Algorithm" src="../../_images/The-Deutsch-Algorithm.png" /></p>
 <p>Observação: Nessa imagem vemos a inicialização de ambos os qubits em <span class="math notranslate nohighlight">\({\ket{0}}\)</span> e a aplicação da porta <span class="math notranslate nohighlight">\(X\)</span> no 2° qubit, havendo a mesma aplicação que inicializar o sistema com dois qubits em <span class="math notranslate nohighlight">\({\ket{1}}\)</span>.</p>
-<p>Análise detalhada do alogorítmo:</p>
+<p>Análise detalhada do algoritmo:</p>
 <p>Na etapa 1, aplica-se <span class="math notranslate nohighlight">\(H\)</span> em ambos qubits, resultando em:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -684,9 +684,9 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
 \end{split}
 \]</div>
 </section>
-<section id="simulacao-do-algoritimo-de-deutsch">
-<h2>Simulação do algorítimo de Deutsch<a class="headerlink" href="#simulacao-do-algoritimo-de-deutsch" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o algorítimo de Deutsch usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<section id="simulacao-do-algoritmo-de-deutsch">
+<h2>Simulação do algoritmo de Deutsch<a class="headerlink" href="#simulacao-do-algoritmo-de-deutsch" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algoritmo de Deutsch usaremos a linguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
 </div>
@@ -735,13 +735,13 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
     <span class="c1"># Configuração inicial: |0⟩|1⟩</span>
     <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="c1"># Aplicação de Haddamard em ambos os qubits -&gt; Estado: |+⟩|−⟩</span>
+    <span class="c1"># Aplicação de Hadamard em ambos os qubits -&gt; Estado: |+⟩|−⟩</span>
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 
     <span class="c1"># Aplicação do oráculo</span>
     <span class="n">balanced_oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Troque por constant_oracle para testar o outro oráculo</span>
 
-    <span class="c1"># Aplicação de Haddamard no primeiro qubit</span>
+    <span class="c1"># Aplicação de Hadamard no primeiro qubit</span>
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="c1"># Medição do primeiro qubit</span>
@@ -765,7 +765,7 @@ P_e = 1 \cdot 0,\!5 \cdot \ldots \cdot 0,\!5 = (0,\!5)^{m-1} = 1/2^{m-1}
 </div>
 </div>
 <p><strong>Exercício:</strong></p>
-<p>Implemente outros oráculos quânticos possíveis, um para função constante e um para função balanceada, para o algorítmo de Deutsch</p>
+<p>Implemente outros oráculos quânticos possíveis, um para função constante e um para função balanceada, para o algoritmo de Deutsch</p>
 </section>
 <section id="algoritmo-de-deutsch-versao-simplificada">
 <h2>Algoritmo de Deutsch - Versão Simplificada<a class="headerlink" href="#algoritmo-de-deutsch-versao-simplificada" title="Link para este cabeçalho">#</a></h2>
@@ -797,7 +797,7 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
 <p><strong>Circuito</strong></p>
 <p>Notação:</p>
 <p><img alt="Deutsch-Simple" src="../../_images/Deutsch-Simple.png" /></p>
-<p>Análise detalhada do alogorítmo:</p>
+<p>Análise detalhada do algoritmo:</p>
 <p>Na etapa 1, aplica-se <span class="math notranslate nohighlight">\(H\)</span> no qubit, resultando em:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -836,9 +836,9 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
 \ket{\psi_3} = \pm\ket{1} \Rightarrow \text{Medição = 1}
 \]</div>
 </section>
-<section id="simulacao-do-algoritimo-de-deutsch-simplificado">
-<h2>Simulação do algorítimo de Deutsch Simplificado<a class="headerlink" href="#simulacao-do-algoritimo-de-deutsch-simplificado" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o algorítimo de Deutsch Simplificado usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<section id="simulacao-do-algoritmo-de-deutsch-simplificado">
+<h2>Simulação do algoritmo de Deutsch Simplificado<a class="headerlink" href="#simulacao-do-algoritmo-de-deutsch-simplificado" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algoritmo de Deutsch Simplificado usaremos a linguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <p>Faremos o mesmo exemplo realizado com o Algoritmo de Deutsch, implementaremos dois <em>oráculos</em> para o Algoritmo de Deutsch:</p>
 <ul class="simple">
 <li><p>Um <em>oráculo constante</em>, onde <span class="math notranslate nohighlight">\(f(0) = f(1)\)</span>.</p></li>
@@ -874,13 +874,13 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
     <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
     <span class="n">qubits</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">()</span>
 
-    <span class="c1"># Aplicação de Haddamard em ambos os qubits -&gt; Estado: |+⟩</span>
+    <span class="c1"># Aplicação de Hadamard em ambos os qubits -&gt; Estado: |+⟩</span>
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 
     <span class="c1"># Aplicação do oráculo</span>
     <span class="n">balanced_oracle</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>  <span class="c1"># Troque por constant_oracle para testar o outro oráculo</span>
 
-    <span class="c1"># Aplicação de Haddamard no primeiro qubit</span>
+    <span class="c1"># Aplicação de Hadamard no primeiro qubit</span>
     <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
 
     <span class="c1"># Medição do primeiro qubit</span>
@@ -904,7 +904,7 @@ O_f|x⟩ = (-1)^{f(x)}|x⟩
 </div>
 </div>
 <p><strong>Exercício:</strong></p>
-<p>Implemente outros oráculos quânticos possíveis, um para função constante e um para função balanceada, para o algorítmo de Deutsch Simplificado</p>
+<p>Implemente outros oráculos quânticos possíveis, um para função constante e um para função balanceada, para o algoritmo de Deutsch Simplificado</p>
 </section>
 <section id="algoritmo-de-deutsch-jozsa">
 <h2>Algoritmo de Deutsch-Jozsa<a class="headerlink" href="#algoritmo-de-deutsch-jozsa" title="Link para este cabeçalho">#</a></h2>
@@ -1018,9 +1018,9 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
 <p>Essa comparação entre o desempenho clássico e quântico, no entanto, não pode ser considerada muito seriamente. Há que se levar em conta que são arquiteturas diferentes: aplicar uma operação <span class="math notranslate nohighlight">\(f\)</span> clássica (correspondente a chamar uma subrotina ``caixa preta’’) e aplicar o oráculo de fase <span class="math notranslate nohighlight">\(O_\text{F}(f)\)</span> em um circuito quântico são coisas distintas. Não é claro que essas operações têm custo computacional equivalente para que sejam comparadas diretamente como na tabela apresentada. Por outro lado, como comparação simplificada, essa análise serve para se ter uma noção dos ganhos que a Computação Quântica poderia trazer em relação a Computação Clássica.</p>
 <p>Em relação ao algoritmo clássico determinístico, o algoritmo quântico apresenta ganho exponencial em desempenho. Já em relação ao algoritmo clássico probabilístico, o desempenho é semelhante.</p>
 </section>
-<section id="simulacao-do-algoritimo-de-deutsche-jozsa">
-<h2>Simulação do algorítimo de Deutsche-Jozsa<a class="headerlink" href="#simulacao-do-algoritimo-de-deutsche-jozsa" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o algorítimo de Deutsche-Jozsa usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<section id="simulacao-do-algoritmo-de-deutsch-jozsa">
+<h2>Simulação do algoritmo de Deutsch-Jozsa<a class="headerlink" href="#simulacao-do-algoritmo-de-deutsch-jozsa" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algoritmo de Deutsch-Jozsa usaremos a linguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <p>Primeiro devemos definir o oráculo. O oráculo é uma função que representa a função f(x) que queremos testar. Para este exemplo, consideraremos uma função balanceada que retorna 0 para entradas com número par e 1 para entradas com número ímpar.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1031,7 +1031,7 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
 </div>
 </div>
 </div>
-<p>Então, implementa-se o algorítimo de Deutsche-Jozsa:</p>
+<p>Então, implementa-se o algoritmo de Deutsch-Jozsa:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deutsch_jozsa</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1057,8 +1057,8 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
     <span class="c1"># Mede os qubits de entrada</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
-    <span class="c1"># Verifica se todos os resultados são 0 ou 1</span>
-    <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">2</span><span class="o">**</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="c1"># Verifica se todos os qubits mediram 0 (função constante)</span>
+    <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é constante.&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A função é balanceada.&quot;</span><span class="p">)</span>
@@ -1115,7 +1115,7 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
   <thead>
     <tr>
       <th>Ket</th>
-      <th>v0.9.3.1</th>
+      <th>v0.9.3.5.post1</th>
     </tr>
   </thead>
   <tbody>
@@ -1204,12 +1204,12 @@ P = |\bra{+}^{\otimes n} \ket{\psi_2}|^2 = \begin{cases}
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch">Algoritmo de Deutsch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsch">Simulação do algorítimo de Deutsch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-deutsch">Simulação do algoritmo de Deutsch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch-versao-simplificada">Algoritmo de Deutsch - Versão Simplificada</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsch-simplificado">Simulação do algorítimo de Deutsch Simplificado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-deutsch-simplificado">Simulação do algoritmo de Deutsch Simplificado</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-deutsch-jozsa">Algoritmo de Deutsch-Jozsa</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de desempenho</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-deutsche-jozsa">Simulação do algorítimo de Deutsche-Jozsa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-deutsch-jozsa">Simulação do algoritmo de Deutsch-Jozsa</a></li>
 </ul>
   </nav></div>
 

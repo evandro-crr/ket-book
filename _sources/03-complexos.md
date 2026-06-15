@@ -10,7 +10,7 @@ A referência para esse capítulo é {cite}`Yanofsky_Quantum_2008`, que aborda o
 
 ### Motivação
 
-A motivação para ao uso de números complexos surge com um empasse na busca de soluções polinomiais, uma vez que existem equações algébricas que não podem ser solucionadas utilizando o sistema numérico usual, como por exemplos:
+A motivação para o uso de números complexos surge com um impasse na busca de soluções polinomiais, uma vez que existem equações algébricas que não podem ser solucionadas utilizando o sistema numérico usual, como por exemplo:
 
 ```{math}
 x^2 + 1 = 0
@@ -48,7 +48,7 @@ c = a + bi
 Então, idenficamos qualquer número possível sendo um resultado dessa equação, como por exemplo:
 
 ```{math}
-c = 3 + 7i \space \text{resulta no número complexo} \space 3 + 9i
+c = 3 + 7i \space \text{resulta no número complexo} \space 3 + 7i
 
 c = 19 - 8i \space \text{resulta no número complexo} \space 19 - 8i
 
@@ -118,7 +118,7 @@ c_3 &=& -15 + 195i
 \end{array}
 $$
 
-Esse resultado, permite perceber que uma das principais proposições do teorema fundamental da álgebra, que define que toda equação polinomial de uma variável com coeficientes complexos possuem uma solução complexa.
+Esse resultado ilustra uma das principais implicações do Teorema Fundamental da Álgebra, que afirma que toda equação polinomial de grau $n$ com coeficientes complexos possui exatamente $n$ raízes complexas (contadas com multiplicidade).
 
 ## Algebra dos Números Complexos
 
@@ -202,7 +202,7 @@ Dado dois números complexos, ${c_1 = 3 + 2i}$ e ${c_2 = 2 + 4i}$, a divisão de
 ### Módulo e Conjugação
 
 #### Módulo
-O módulo generaliza o valor absoluto dos reais, permitidindo ser encontrado por meio de:
+O módulo generaliza o valor absoluto dos reais, podendo ser encontrado por meio de:
 
 ```{math}
 |c| = |a + bi| = +\sqrt{a^2 + b^2}
@@ -211,7 +211,7 @@ O módulo generaliza o valor absoluto dos reais, permitidindo ser encontrado por
 Visando isso, nota-se que, o denominador na fórmula da divisão corresponde ao quadrado do módulo do divisor.
 
 #### Conjugação
-Para conjugar um número complexo é simples, baste realizar a troca o sinal da parte imaginária:
+Para conjugar um número complexo é simples: basta trocar o sinal da parte imaginária:
 
 ```{math}
 \overline{a + bi} = a - bi
@@ -337,7 +337,7 @@ c_1c_2 = (1 + i)(-1 + i) = -2 + 0i = -2
 c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})
 
 
-\text{Portanto, seu produto usando a raegra geométrica é:}
+\text{Portanto, seu produto usando a regra geométrica é:}
 
 
 c_1c_2 = (\sqrt{2} \times \sqrt{2}, \frac{\pi}{4} + \frac{3\pi}{4}) = (2, \pi)
@@ -407,7 +407,7 @@ c_1 = (\sqrt{2}, \frac{\pi}{4}), \quad c_2 = (\sqrt{2}, \frac{3\pi}{4})
 ### Potências e Raízes
 
 #### Potências
-Se ${c = (ρ, θ)}$ é um número complexo na forma polar e n um inteiro positivo, sua n-ésima potência é dada pela múltiplicação de si mesmo ${n}$ vezes, que quando simplificada resulta na fórmula:
+Se ${c = (\rho, \theta)}$ é um número complexo na forma polar e $n$ um inteiro positivo, sua $n$-ésima potência é dada pela multiplicação de si mesmo $n$ vezes, que quando simplificada resulta na fórmula:
 
 ```{math}
 c^n = (\rho^n, n\theta)

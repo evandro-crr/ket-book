@@ -5,7 +5,7 @@
 
 ## Espaço Vetorial do Produto Tensorial
 
-Dados dois espaços vetorias $V$ e $W$, com bases $\beta_V = \{ \ket{v_k} \}$ e $\beta_W = \{ \ket{w_l} \}$, o *produto tensorial* de $V$ e $W$, denotado por $V\otimes W$, é definido como o espaço vetorial gerado pela base:
+Dados dois espaços vetoriais $V$ e $W$, com bases $\beta_V = \{ \ket{v_k} \}$ e $\beta_W = \{ \ket{w_l} \}$, o *produto tensorial* de $V$ e $W$, denotado por $V\otimes W$, é definido como o espaço vetorial gerado pela base:
 
 $$
 v_k \otimes w_l \ , \ \ \begin{matrix} k=0 , \ldots , \dim V - 1 \\  l=0 , \ldots , \dim W - 1 \end{matrix} \ .
@@ -17,7 +17,7 @@ $$
 \dim V\otimes W = \dim V \cdot \dim W \ .
 $$
 
-O produto tensorial $\otimes$ forma uma dupla ordenada com propriedades diferentes das do produto cartesiano. Essas propriedades, listadas abaixos, são chamadas conjuntamente de *bilinearidade*:
+O produto tensorial $\otimes$ forma uma dupla ordenada com propriedades diferentes das do produto cartesiano. Essas propriedades, listadas a seguir, são chamadas conjuntamente de *bilinearidade*:
 
 - Para todos $z \in \mathbb{C}$, $\ket{v}\in V$ e $\ket{w} \in W$,
 
@@ -78,7 +78,7 @@ $$
 $$
 
 $$
-\left(\frac{1}{\sqrt{2}}\ket{0} - \frac{i}{\sqrt{2}} \right) \ket{0} = \frac{1}{\sqrt{2}}\ket{00} - \frac{i}{\sqrt{2}}\ket{10} \ .
+\left(\frac{1}{\sqrt{2}}\ket{0} - \frac{i}{\sqrt{2}}\ket{1} \right) \ket{0} = \frac{1}{\sqrt{2}}\ket{00} - \frac{i}{\sqrt{2}}\ket{10} \ .
 $$
 
 As igualdades acima são exemplos da bilinearidade do produto tensorial.
@@ -356,7 +356,7 @@ $$
    (A \otimes B)_{4,2} = a_{\text{quoc}(4,3),\text{quoc}(2,2)}\  b_{\text{resto}(4,3),\text{resto}(2,2)} = a_{1,1} b_{1,0} \ .
 $$
 
-A matriz $A\otimes B*$ está representada abaixo, destacando-se o elemento $4,2$:
+A matriz $A\otimes B$ está representada abaixo, destacando-se o elemento $4,2$:
 
 
 $$

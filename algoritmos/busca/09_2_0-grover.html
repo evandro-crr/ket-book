@@ -510,7 +510,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-grover">Simulação do algorítimo de Grover</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-grover">Simulação do algoritmo de Grover</a></li>
 </ul>
 </li>
 </ul>
@@ -532,8 +532,8 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ket-lang
+<span class="o">%</span><span class="k">pip</span> install numpy
 <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -883,9 +883,9 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
 \end{split}\]</div>
 <p>Dessa forma, o algoritmo de Grover apresentaria ganho quadrático de desempenho em relação aos algoritmos clássicos, se a aplicação de <span class="math notranslate nohighlight">\(f\)</span> nos casos clássico e quântico forem equivalentes em termos de custos computacionais.</p>
 </section>
-<section id="simulacao-do-algoritimo-de-grover">
-<h2>Simulação do algorítimo de Grover<a class="headerlink" href="#simulacao-do-algoritimo-de-grover" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o algorítimo de Grover usaremos a línguagem Ket de computação quântica, para isso precisamos ter a mesma instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<section id="simulacao-do-algoritmo-de-grover">
+<h2>Simulação do algoritmo de Grover<a class="headerlink" href="#simulacao-do-algoritmo-de-grover" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algoritmo de Grover usaremos a linguagem Ket de computação quântica, para isso precisamos ter a mesma instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
 </div>
@@ -929,7 +929,10 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">grover</span><span class="p">(</span><span class="n">oracle</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">grover</span><span class="p">(</span><span class="n">oracle</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Algoritmo de Grover.&quot;&quot;&quot;</span>
 
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
@@ -952,10 +955,13 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
 <img alt="../../_images/b2ccfd8dcf1a6152bec4a291c3f1b73451999ce72cc8bff23cbdbdfe9f456f02.png" src="../../_images/b2ccfd8dcf1a6152bec4a291c3f1b73451999ce72cc8bff23cbdbdfe9f456f02.png" />
 </div>
 </div>
-<p>Por fim aplicamos o algorítimo de Grover utilizando-se das portas quânticas já conhecidas, do oráculo e do operador de difusão:</p>
+<p>Por fim aplicamos o algoritmo de Grover utilizando-se das portas quânticas já conhecidas, do oráculo e do operador de difusão:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_grover</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_grover</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Executa o algoritmo de Grover.&quot;&quot;&quot;</span>
     <span class="c1"># Inicialização do processo</span>
     <span class="n">process</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
@@ -1020,7 +1026,7 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
   <thead>
     <tr>
       <th>Ket</th>
-      <th>v0.9.3.1</th>
+      <th>v0.9.3.5.post1</th>
     </tr>
   </thead>
   <tbody>
@@ -1124,7 +1130,7 @@ P_a &gt;\frac{N-1}{N} , \ \ N = 2^n  \ .
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-grover">Simulação do algorítimo de Grover</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-grover">Simulação do algoritmo de Grover</a></li>
 </ul>
 </li>
 </ul>

@@ -493,7 +493,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-para-o-qpe">Circuito Quântico para o QPE</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-estimacao-de-fase-quantica">Simulação do algorítimo de Estimação de Fase Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-estimacao-de-fase-quantica">Simulação do algoritmo de Estimação de Fase Quântica</a></li>
 </ul>
             </nav>
         </div>
@@ -512,8 +512,8 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ket-lang
+<span class="o">%</span><span class="k">pip</span> install numpy
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -525,7 +525,7 @@ document.write(`
 <p>A Estimativa de Fase Quântica (QPE) é um dos algoritmos quânticos mais fundamentais, servindo como peça central para diversos outros algoritmos quânticos, incluindo o famoso algoritmo de Shor para fatoração e simulações quânticas. O QPE é a ponte que conecta operadores unitários com informação mensurável, permitindo-nos “ler” as fases dos autovetores - propriedades intrinsecamente quânticas que permanecem inacessíveis aos métodos clássicos.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="estimativa-de-fase-quantica-qpe">
 <h1>Estimativa de Fase Quântica (QPE)<a class="headerlink" href="#estimativa-de-fase-quantica-qpe" title="Link para este cabeçalho">#</a></h1>
-<p><strong>AVISO:</strong> Para o entedimento completo do algorítmo de estimação de fase quântica é necessário conhecimento perante a Transformada Quântica de Fourier</p>
+<p><strong>AVISO:</strong> Para o entedimento completo do algoritmo de estimação de fase quântica é necessário conhecimento perante a Transformada Quântica de Fourier</p>
 <p>O algoritmo opera em dois conjuntos de qubits, referidos neste contexto como <strong>registros</strong>. Os dois registros contêm <span class="math notranslate nohighlight">\(n\)</span> e <span class="math notranslate nohighlight">\(m\)</span> qubits, respectivamente. Seja <span class="math notranslate nohighlight">\(U\)</span> um operador unitário atuando no registro de <span class="math notranslate nohighlight">\(m\)</span> qubits.</p>
 <p>Os autovalores de um operador unitário possuem <strong>módulo unitário</strong> e são, portanto, caracterizados por sua <strong>fase</strong>. Assim, se <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> é um autovetor de <span class="math notranslate nohighlight">\(U\)</span>, então:</p>
 <div class="math notranslate nohighlight">
@@ -595,9 +595,9 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 <p>A complexidade do algoritmo é   <span class="math notranslate nohighlight">\({O(t^2 + t \cdot C_U)}\)</span>, em que <span class="math notranslate nohighlight">\(C_U\)</span> é custo de implementar <span class="math notranslate nohighlight">\(U\)</span></p>
 </section>
 </section>
-<section id="simulacao-do-algoritimo-de-estimacao-de-fase-quantica">
-<h2>Simulação do algorítimo de Estimação de Fase Quântica<a class="headerlink" href="#simulacao-do-algoritimo-de-estimacao-de-fase-quantica" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o algorítimo QPE usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<section id="simulacao-do-algoritmo-de-estimacao-de-fase-quantica">
+<h2>Simulação do algoritmo de Estimação de Fase Quântica<a class="headerlink" href="#simulacao-do-algoritmo-de-estimacao-de-fase-quantica" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algoritmo QPE usaremos a linguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
 </div>
@@ -634,7 +634,7 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 </div>
 </div>
 </div>
-<p>Uma vez que a implementação da <em>Transformada Quântica de Fourier</em> foi feita, pode-se implementar o algorítmo de <em>Estimação de Fase Quântica</em></p>
+<p>Uma vez que a implementação da <em>Transformada Quântica de Fourier</em> foi feita, pode-se implementar o algoritmo de <em>Estimação de Fase Quântica</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">estimador_de_fase</span><span class="p">(</span><span class="n">oraculo</span><span class="p">,</span> <span class="n">precisão</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -653,45 +653,14 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 <span class="n">fase</span> <span class="o">=</span> <span class="n">pi</span>
 
 <span class="n">estimador_de_fase</span><span class="p">(</span>
-    <span class="n">oraculo</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">:</span> <span class="n">PHASE</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">fase</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">),</span>
+    <span class="n">oraculo</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">:</span> <span class="n">P</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">fase</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">),</span>
     <span class="n">precisão</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">fase</span> <span class="o">=</span> <span class="n">pi</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">estimador_de_fase</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">oraculo</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">:</span> <span class="n">PHASE</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">fase</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">),</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">precisão</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
-
-<span class="nn">Cell In[4], line 7,</span> in <span class="ni">estimador_de_fase</span><span class="nt">(oraculo, precisão)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">tgr</span> <span class="o">=</span> <span class="n">X</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">alloc</span><span class="p">())</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ctr</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">ctrl</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">oraculo</span><span class="p">)(</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">adj</span><span class="p">(</span><span class="n">qft</span><span class="p">)(</span><span class="n">ctr</span><span class="p">)</span>  <span class="c1"># &lt;- chada da transformada de Fourier quântica inversa</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/ket/operations.py:238,</span> in <span class="ni">ctrl.&lt;locals&gt;.inner</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">gate</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span> <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span>     <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">control_qubits</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">238</span>         <span class="k">return</span> <span class="n">control_qubits</span><span class="p">,</span> <span class="n">gate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">Cell In[4], line 17,</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(i, tgr)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="k">return</span> <span class="n">measure</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">ctr</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">precisão</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">fase</span> <span class="o">=</span> <span class="n">pi</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">estimador_de_fase</span><span class="p">(</span>
-<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">oraculo</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">:</span> <span class="n">PHASE</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">fase</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">tgr</span><span class="p">),</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">precisão</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
-
-<span class="ne">NameError</span>: name &#39;PHASE&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1415939331054688
 </pre></div>
 </div>
 </div>
@@ -731,6 +700,27 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<table>
+  <thead>
+    <tr>
+      <th>Ket</th>
+      <th>v0.9.3.5.post1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Libket</td>
+      <td>v0.6.0</td>
+    </tr>
+    <tr>
+      <td>KBW</td>
+      <td>v0.4.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 </div>
 </section>
 </section>
@@ -803,7 +793,7 @@ U\ket{\psi} = e^{2\pi i\phi}\ket{\psi}
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-para-o-qpe">Circuito Quântico para o QPE</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-estimacao-de-fase-quantica">Simulação do algorítimo de Estimação de Fase Quântica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-estimacao-de-fase-quantica">Simulação do algoritmo de Estimação de Fase Quântica</a></li>
 </ul>
   </nav></div>
 

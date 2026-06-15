@@ -528,7 +528,7 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang<span class="o">[</span>plot<span class="o">]==</span><span class="m">0</span>.9.1.2<span class="w"> </span><span class="nv">kaleido</span><span class="o">==</span><span class="m">0</span>.2.1<span class="w"> </span>pyqubo<span class="w"> </span>-q
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ket-lang[plot] -q
 </pre></div>
 </div>
 </div>
@@ -618,7 +618,7 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 </section>
 <section id="simulacao-do-algoritmo-quantico-de-otimizacao-aproximada-qaoa-no-problema-do-max-cut">
 <h2>Simulação do Algoritmo Quântico de Otimização Aproximada (QAOA) no Problema do Max-Cut<a class="headerlink" href="#simulacao-do-algoritmo-quantico-de-otimizacao-aproximada-qaoa-no-problema-do-max-cut" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o QAOA usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<p>Para simular o QAOA usaremos a linguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
 </div>
@@ -723,9 +723,9 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Maximum number of function evaluations has been exceeded.
  success: False
   status: 2
-     fun: -4.8266232328576075
-       x: [ 8.710e-01 -3.853e-01  1.078e+00 -1.913e-01  3.352e-01
-           -8.294e-01 -6.968e-01  4.922e-01]
+     fun: -4.826351017910782
+       x: [ 8.649e-01 -3.824e-01  1.082e+00 -1.916e-01  3.408e-01
+           -8.376e-01 -6.894e-01  4.842e-01]
     nfev: 1000
    maxcv: 0.0
 </pre></div>
@@ -778,7 +778,7 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 </section>
 <section id="simulacao-do-algoritmo-quantico-de-otimizacao-aproximada-qaoa-ao-qubo">
 <h2>Simulação do Algoritmo Quântico de Otimização Aproximada (QAOA) ao QUBO<a class="headerlink" href="#simulacao-do-algoritmo-quantico-de-otimizacao-aproximada-qaoa-ao-qubo" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o QAOA usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<p>Para simular o QAOA usaremos a linguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
 </div>
@@ -790,7 +790,6 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="n">ket_version</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyqubo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>
 </pre></div>
 </div>
 </div>
@@ -805,29 +804,32 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
     <span class="n">risk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
     <span class="n">penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">risk</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;risk must be between 0 and 1&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">qubits</span><span class="p">:</span> <span class="n">Quant</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Hamiltonian</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">risk</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;risk must be between 0 and 1&quot;</span><span class="p">)</span>
 
-    <span class="n">num_assets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">exp_return</span><span class="p">)</span>
+        <span class="n">num_assets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">exp_return</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">num_assets</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cov_matrix must be square </span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">num_assets</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cov_matrix must be square </span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">budget</span> <span class="o">&lt;=</span> <span class="n">num_assets</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;budget must be between 0 and </span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">budget</span> <span class="o">&lt;=</span> <span class="n">num_assets</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;budget must be between 0 and </span><span class="si">{</span><span class="n">num_assets</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="n">assets</span> <span class="o">=</span> <span class="n">Array</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;assets&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_assets</span><span class="p">,),</span> <span class="n">vartype</span><span class="o">=</span><span class="s2">&quot;BINARY&quot;</span><span class="p">)</span>
+        <span class="n">assets</span> <span class="o">=</span> <span class="p">[</span><span class="n">B</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="o">-</span><span class="p">(</span>
-        <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">prod</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">assets</span><span class="p">,</span> <span class="n">exp_return</span><span class="p">)))</span>
-        <span class="o">-</span> <span class="n">risk</span>
-        <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span>
-            <span class="n">cov_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">assets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">assets</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_assets</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_assets</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">(</span>
+            <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">prod</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">assets</span><span class="p">,</span> <span class="n">exp_return</span><span class="p">)))</span>
+            <span class="o">-</span> <span class="n">risk</span>
+            <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span>
+                <span class="n">cov_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">assets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">assets</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_assets</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_assets</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="o">-</span> <span class="n">penalty</span> <span class="o">*</span> <span class="p">(</span><span class="n">budget</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">assets</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="p">)</span>
-        <span class="o">-</span> <span class="n">penalty</span> <span class="o">*</span> <span class="p">(</span><span class="n">budget</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">assets</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
-    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
 </pre></div>
 </div>
 </div>
@@ -835,12 +837,11 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 <p>Agora definimos os Hamiltonianos (mixel e custo), que já está nativamente no Ket, e suas camadas</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost_h</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">ham</span><span class="o">.</span><span class="n">qubo</span>
-<span class="n">mixer_h</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">ham</span><span class="o">.</span><span class="n">x_mixer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mixer_h</span> <span class="o">=</span> <span class="n">qulib</span><span class="o">.</span><span class="n">ham</span><span class="o">.</span><span class="n">x_mixer</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">qaoa_layer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
-    <span class="n">evolve</span><span class="p">(</span><span class="n">cost_h</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">qubits</span><span class="p">)</span> <span class="o">*</span> <span class="n">gamma</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">qaoa_layer</span><span class="p">(</span><span class="n">cost_h</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+    <span class="n">evolve</span><span class="p">(</span><span class="n">cost_h</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="o">*</span> <span class="n">gamma</span><span class="p">)</span>
     <span class="n">evolve</span><span class="p">(</span><span class="n">mixer_h</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -858,16 +859,15 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 
 <span class="n">mu</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.31542042</span><span class="p">,</span> <span class="mf">0.0571331</span><span class="p">,</span> <span class="mf">0.11430001</span><span class="p">,</span> <span class="mf">0.30109367</span><span class="p">]</span>
 
-<span class="n">h</span> <span class="o">=</span> <span class="n">portfolio</span><span class="p">(</span><span class="n">exp_return</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov_matrix</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">risk</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">portfolio</span><span class="p">(</span><span class="n">exp_return</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov_matrix</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">risk</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
 
 <span class="n">qulib</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">qaoa_layer</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">),</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04c004a71aa0a3cab029d6915b8ade9247e75565741cf0d2aa69e1f3d89dea5c.png" src="../../_images/04c004a71aa0a3cab029d6915b8ade9247e75565741cf0d2aa69e1f3d89dea5c.png" />
+<img alt="../../_images/366aaef1162f6802674a43657f034f3c98e4ca45943908c7420e6f23de6aca43.png" src="../../_images/366aaef1162f6802674a43657f034f3c98e4ca45943908c7420e6f23de6aca43.png" />
 </div>
 </div>
 <p>Agora, podemos definir o QAOA aplicando sua evolução temporal</p>
@@ -893,193 +893,6 @@ e^{-i \beta_1 H_m} e^{-i \gamma_1 H_c}
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dimod</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExactSolver</span>
-
-<span class="n">bqm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to_bqm</span><span class="p">()</span>
-<span class="n">sa</span> <span class="o">=</span> <span class="n">ExactSolver</span><span class="p">()</span>
-<span class="n">sampleset</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">bqm</span><span class="p">)</span>
-<span class="n">sampleset</span><span class="o">.</span><span class="n">to_pandas_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;energy&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>assets[0]</th>
-      <th>assets[1]</th>
-      <th>assets[2]</th>
-      <th>assets[3]</th>
-      <th>energy</th>
-      <th>num_occurrences</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>14</th>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>-0.616353</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>-0.429630</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>-0.415325</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-0.372424</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>-0.358113</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>-0.171396</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0.269506</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0.326757</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0.513404</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0.527693</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0.684580</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0.698906</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0.885700</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0.942867</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>3.212654</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>4.000000</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 </section>

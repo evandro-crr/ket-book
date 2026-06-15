@@ -501,7 +501,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-caso-geral">Encontrando o valor do período c – caso geral</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidade-de-erro">Probabilidade de erro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-simon">Simulação do algorítimo de simon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-simon">Simulação do algoritmo de simon</a></li>
 </ul>
             </nav>
         </div>
@@ -520,7 +520,7 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ket-lang
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
@@ -1083,9 +1083,9 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
 \end{split}\]</div>
 <p>Da mesma forma como no problema de Deutsch-Jozsa, essa comparação tem limitações, mas serve como laboratório para testar em que situações a Computação Quântica pode trazer vantagem computacional em relação à Computação Clássica. Em particular, esse é um exemplo em que o algoritmo quântico apresenta ganho exponencial em desempenho em relação aos algoritmos clássicos existentes.</p>
 </section>
-<section id="simulacao-do-algoritimo-de-simon">
-<h2>Simulação do algorítimo de simon<a class="headerlink" href="#simulacao-do-algoritimo-de-simon" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o algorítimo de Simon usaremos a línguagem Ket de computação quântica, para isso precisamos ter a mesma instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<section id="simulacao-do-algoritmo-de-simon">
+<h2>Simulação do algoritmo de simon<a class="headerlink" href="#simulacao-do-algoritmo-de-simon" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algoritmo de Simon usaremos a linguagem Ket de computação quântica, para isso precisamos ter a mesma instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
 </div>
@@ -1101,10 +1101,14 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">oracle</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">,</span> <span class="n">qubits_output</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-    <span class="c1"># Implementa o oráculo U_f, baseado no vetor s (a periodicidade).</span>
+    <span class="c1"># Implementa o oráculo U_f: para cada bit x_i, copia para output_i via CNOT.</span>
+    <span class="c1"># Em seguida, aplica o deslocamento s com CNOTs adicionais.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">)):</span>
+        <span class="n">CNOT</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubits_output</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">CZ</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubits_output</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qubits_output</span><span class="p">)):</span>
+                <span class="n">CNOT</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubits_output</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1121,9 +1125,7 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
     <span class="n">qubits_input</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="n">qubits_output</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
-    <span class="c1"># Inicialização do segundo registrador no estado |0&gt;</span>
-    <span class="n">X</span><span class="p">(</span><span class="n">qubits_output</span><span class="p">)</span>
-
+    <span class="c1"># O segundo registrador começa em |0⟩ (padrão)</span>
     <span class="c1"># Superposição inicial no primeiro registrador</span>
     <span class="n">H</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">)</span>
 
@@ -1134,7 +1136,7 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
     <span class="n">H</span><span class="p">(</span><span class="n">qubits_input</span><span class="p">)</span>
 
     <span class="c1"># Medição</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits_input</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits_input</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultados da medição:&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
 
 
@@ -1143,7 +1145,7 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultados da medição: [1, 0, 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultados da medição: [1, 1, 0]
 </pre></div>
 </div>
 </div>
@@ -1189,7 +1191,7 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
   <thead>
     <tr>
       <th>Ket</th>
-      <th>v0.9.3.1</th>
+      <th>v0.9.3.5.post1</th>
     </tr>
   </thead>
   <tbody>
@@ -1284,7 +1286,7 @@ Para analisar esse sistema, é interessante considerar <span class="math notrans
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrando-o-valor-do-periodo-c-caso-geral">Encontrando o valor do período c – caso geral</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilidade-de-erro">Probabilidade de erro</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-de-desempenho">Comparação de Desempenho</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-simon">Simulação do algorítimo de simon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-simon">Simulação do algoritmo de simon</a></li>
 </ul>
   </nav></div>
 

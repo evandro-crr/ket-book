@@ -4,7 +4,7 @@ Este é um material didático produzido por membros do Grupo de Computação Qu�
 
 Desenvolvido para estabelecer uma ponte entre os conceitos teóricos fundamentais e a prática da programação quântica utilizando a [plataforma Ket](https://quantumket.org), este material foi testado e validado como recurso auxiliar na disciplina FSC7152 – Computação Quântica da UFSC, mas também foi estruturado para servir como um guia de aprendizado independente para qualquer pessoa interessada em ingressar neste campo, independente de seus conhecimentos prévios.
 
-Parte deste conteúdo é adaptada das notas de aula do Prof. Dr. Eduardo Inácio Duzzioni e do TCC de Giovani Goraiebe Pollachini, incorporando anos de experiência docente e de pesquisa em computação quântica. Demais material utilizados estão devidamente citados em seus momentos de uso e nas referências.
+Parte deste conteúdo é adaptada das notas de aula do Prof. Dr. Eduardo Inácio Duzzioni e do TCC de Giovani Goraiebe Pollachini, incorporando anos de experiência docente e de pesquisa em computação quântica. Os demais materiais utilizados estão devidamente citados em seus momentos de uso e nas referências.
 
 ## O que é a Computação Quântica
 
@@ -14,7 +14,7 @@ Esta abordagem permite encontrar soluções para desafios computacionais que era
 
 ## Fundamentos Quânticos
 
-Diferente dos computadores clássicos que utilizam bits (unidade que podem ou ser 0 ou ser 1), os computadores quânticos utilizam qubits (bits quânticos), que podem existir em superposição de estados, representando simultaneamente 0 e 1. 
+Diferente dos computadores clássicos que utilizam bits (unidades que podem ser 0 ou 1), os computadores quânticos utilizam qubits (bits quânticos), que podem existir em superposição de estados, representando simultaneamente 0 e 1. 
 
 Esta capacidade de superposição, combinada com outros fenômenos quânticos como emaranhamento e interferência, permite que computadores quânticos resolvam certos tipos de problemas de forma exponencialmente mais rápida que os computadores clássicos. Problemas complexos em áreas como criptografia, otimização, simulação de materiais e machine learning podem ser abordados de maneira completamente nova através da computação quântica.
 
@@ -34,7 +34,7 @@ Essa abordagem oferece uma maneira prática e didática de explorar os conceitos
 
 ## Entendendo o Material
 
-Esse material cobrirá todos os conteúdos necessários para o pleno entendimento da computação quântica, ele é dividido em três sessões principais, com cada uma contendo subsessões de tópicos necessários no estudo da matería.
+Esse material cobrirá todos os conteúdos necessários para o pleno entendimento da computação quântica. Ele é dividido em quatro seções principais, com cada uma contendo subseções de tópicos necessários no estudo da matéria.
 
 - **Pré-requisitos**: Os pré-requisitos da computação quântica contém uma base de conhecimentos que serão de suma importância ao se aprofundar em tópicos mais complexos, nele possuímos:
     - [Tutorial de Python](02-pytutorial.ipynb) : A linguagem de programação Python, que, mais tarde, será utilizada para o entendimento da plataforma de programação quântica Ket.
@@ -47,16 +47,16 @@ Esse material cobrirá todos os conteúdos necessários para o pleno entendiment
     - [Computação Quântica](07-computacao_quantica.md) : Introdução aos princípios e elementos fundamentais da computação quântica.
     - [Tutorial do Ket](08-kettutorial.ipynb) : Guia prático para utilizar a plataforma de programação quântica Ket.
 
-- **Algoritmos Quânticos**: Estudo dos principais algoritmos quânticas da literatura atual, nessa sessão, você estudará:
+- **Algoritmos Quânticos**: Estudo dos principais algoritmos quânticos da literatura atual. Nessa seção, você estudará:
     - [Como Entender um Algoritmo](09-algoritmos.md) : Metodologia para análise e compreensão de algoritmos quânticos.
     - [Algoritmos Introdutórios](algoritmos/introdutórios/09_1_0-algoritmos_introdutórios.md) : Algoritmos básicos que introduzem conceitos fundamentais.
     - [Algoritmos de Busca](algoritmos/busca/09_2_0-algoritmos_de_busca.md) : Algoritmos como o de Grover para busca em bancos de dados.
     - [Algoritmos Baseados em QFT](algoritmos/baseados_em_QFT/09_3_0-algoritmos_qft.md) : Algoritmos que utilizam a Transformada Quântica de Fourier.
     - [Algoritmos Variacionais](algoritmos/variacionais/09_4_0-algoritmos_variacionais.md) : Algoritmos híbridos quântico-clássicos para otimização.
 
-- **Tópicos Complementares**: Conteúdos de fronteira, tópicos para aprofundamento de estudantes, neles, você encontrará:
+- **Tópicos Complementares**: Conteúdos de fronteira e tópicos para aprofundamento de estudantes. Neles, você encontrará:
     - [Entendendo os Tópicos Complementares](10-avancados.md) : Como entender a aba de tópicos complementares.
     - [Teoria de Informação Quântica](topicos_avancados/teoria_da_informacao_quantica/10_1_0-teoria_informacao_quantica.md) : Conceitos teóricos mais avançados em teoria de informação quântica.
-    - [Comunicação Quântica](topicos_avancados/comunicação_quantica/10_1_0-comunicacao_quantica.md): Fundamentos da comuninação quântica, com foco na criptografia quântica e internet quântica.
+    - [Comunicação Quântica](topicos_avancados/comunicação_quantica/10_1_0-comunicacao_quantica.md): Fundamentos da comunicação quântica, com foco na criptografia quântica e na internet quântica.
 
-- [Referências](10-referencias.md) : Fontes bibliográficas.
+- [Referências](100-referencias.md) : Fontes bibliográficas.

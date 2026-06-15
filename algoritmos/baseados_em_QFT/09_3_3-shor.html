@@ -505,7 +505,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-de-shor">Circuito Quântico de Shor</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-shor">Simulação do algorítimo de Shor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-shor">Simulação do algoritmo de Shor</a></li>
 </ul>
             </nav>
         </div>
@@ -524,8 +524,8 @@ document.write(`
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ket-lang
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install ket-lang
+<span class="o">%</span><span class="k">pip</span> install numpy
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ket</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -537,7 +537,7 @@ document.write(`
 <p>O Algoritmo de Shor é um dos marcos fundamentais da computação quântica, servindo como demonstração prática mais impactante da supremacia quântica sobre paradigmas clássicos. O algoritmo é a ponte que conecta princípios profundos da teoria de números com o poder exponencial do paralelismo quântico, permitindo-nos “desvendar” a estrutura multiplicativa de inteiros - um problema que há séculos resiste aos ataques dos mais avançados algoritmos clássicos. Mais do que uma ferramenta de fatoração, Shor é a materialização quântica que transforma o problema aparentemente intratável da periodização modular em informação mensurável, expondo assim as fundações teóricas que sustentam sistemas criptográficos globais e redefinindo os limites do computável.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="fatoracao-de-numeros-inteiros-shor">
 <h1>Fatoração de Números Inteiros (Shor)<a class="headerlink" href="#fatoracao-de-numeros-inteiros-shor" title="Link para este cabeçalho">#</a></h1>
-<p><strong>AVISO:</strong> Para o entedimento completo do algorítmo de Shor é necessário conhecimento perante o Algorítmo de Estimação de Fase Quântica e Transformada Quântica de Fourier</p>
+<p><strong>AVISO:</strong> Para o entedimento completo do algoritmo de Shor é necessário conhecimento perante o Algorítmo de Estimação de Fase Quântica e Transformada Quântica de Fourier</p>
 <section id="o-problema-da-fatoracao-de-numeros-inteiros">
 <h2>O Problema da Fatoração de Números Inteiros<a class="headerlink" href="#o-problema-da-fatoracao-de-numeros-inteiros" title="Link para este cabeçalho">#</a></h2>
 <p>O Problema da Fatoração de Números Inteiros constitui um dos desafios computacionais mais fundamentais e persistentes da matemática e ciência da computação. Em sua essência, o problema questiona: dado um número composto N, como encontrar eficientemente seus fatores primos? Enquanto verificar se um número é primo é relativamente fácil, fazer o caminho inverso, descobrir quais números primos multiplicados geram um número grande, é extremamente complexo e consome muito tempo.</p>
@@ -680,9 +680,9 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
 <p>A complexidade do algoritmo é   <span class="math notranslate nohighlight">\({O(t^2 + t \cdot C_U)}\)</span>, em que <span class="math notranslate nohighlight">\(C_U\)</span> é custo de implementar <span class="math notranslate nohighlight">\(U\)</span></p>
 </section>
 </section>
-<section id="simulacao-do-algoritimo-de-shor">
-<h2>Simulação do algorítimo de Shor<a class="headerlink" href="#simulacao-do-algoritimo-de-shor" title="Link para este cabeçalho">#</a></h2>
-<p>Para simular o algorítimo de Shor usaremos a línguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
+<section id="simulacao-do-algoritmo-de-shor">
+<h2>Simulação do algoritmo de Shor<a class="headerlink" href="#simulacao-do-algoritmo-de-shor" title="Link para este cabeçalho">#</a></h2>
+<p>Para simular o algoritmo de Shor usaremos a linguagem Ket de computação quântica, para isso precisamos ter ela instalada, caso não possua o pacote instalado rode o seguinte código:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ket</span><span class="o">-</span><span class="n">lang</span>
 </pre></div>
 </div>
@@ -727,7 +727,7 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">qu_exp</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Quant</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Quant</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
         <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-            <span class="n">qulib</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">set_int</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+            <span class="n">Qint</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">shor_quantico</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
@@ -804,33 +804,7 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">187</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">a</span> <span class="o">=</span> <span class="n">shor</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">N</span><span class="o">//</span><span class="n">a</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="nn">Cell In[5], line 28,</span> in <span class="ni">shor</span><span class="nt">(N)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="k">return</span> <span class="n">mdc_a_N</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="c1"># Encontrando a ordem com algoritmo quântico</span>
-<span class="ne">---&gt; </span><span class="mi">28</span> <span class="n">r</span> <span class="o">=</span> <span class="n">shor_quantico</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">if</span> <span class="n">r</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">!=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="p">(</span><span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-
-<span class="nn">Cell In[4], line 15,</span> in <span class="ni">shor_quantico</span><span class="nt">(a, N)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">y</span> <span class="o">=</span> <span class="n">processo</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">H</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">qu_exp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">measure</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">adj</span><span class="p">(</span><span class="n">qft</span><span class="p">)(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-
-<span class="nn">Cell In[4], line 4,</span> in <span class="ni">qu_exp</span><span class="nt">(a, x, n, y)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">with</span> <span class="n">control</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>         <span class="n">qulib</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">set_int</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-
-<span class="ne">AttributeError</span>: module &#39;ket.qulib&#39; has no attribute &#39;math&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17 x 11 = 187
 </pre></div>
 </div>
 </div>
@@ -876,7 +850,7 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
   <thead>
     <tr>
       <th>Ket</th>
-      <th>v0.9.1.2</th>
+      <th>v0.9.3.5.post1</th>
     </tr>
   </thead>
   <tbody>
@@ -886,7 +860,7 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
     </tr>
     <tr>
       <td>KBW</td>
-      <td>v0.4.0</td>
+      <td>v0.4.2</td>
     </tr>
   </tbody>
 </table>
@@ -975,7 +949,7 @@ Medimos o registro de controle para obter uma aproximação da fase.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-quantico-de-shor">Circuito Quântico de Shor</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritimo-de-shor">Simulação do algorítimo de Shor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacao-do-algoritmo-de-shor">Simulação do algoritmo de Shor</a></li>
 </ul>
   </nav></div>
 

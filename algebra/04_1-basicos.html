@@ -489,10 +489,10 @@ z \cdot \begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} za \\ zb \end{bma
 <section id="base-e-dimensao">
 <h3>Base e Dimensão<a class="headerlink" href="#base-e-dimensao" title="Link para este cabeçalho">#</a></h3>
 <p>Uma base para o espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> é um conjunto de vetores <em>linearmente independentes</em> (LI) e que <em>geram o espaço</em>.  Demonstra-se que todas as bases de um espaço vetorial têm o mesmo número de elementos, e define-se a <em>dimensão</em> do espaço vetorial pelo número de elementos de uma base.</p>
-<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> tem dimensão <span class="math notranslate nohighlight">\(n\)</span>, isto é, todas as suas bases têm <span class="math notranslate nohighlight">\(n\)</span> vetores. Uma base muito útil é a chamada <em>base computacional</em>, ou base canônica`(O adjetivo “canônico”, na Matemática, tem um sentido de “padrão”, como na expressão “configuração padrão”):</p>
+<p>O espaço vetorial <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> tem dimensão <span class="math notranslate nohighlight">\(n\)</span>, isto é, todas as suas bases têm <span class="math notranslate nohighlight">\(n\)</span> vetores. Uma base muito útil é a chamada <em>base computacional</em>, ou base canônica (O adjetivo “canônico”, na Matemática, tem um sentido de “padrão”, como na expressão “configuração padrão”):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\ket{0} = \begin{bmatrix}1 \\ 0 \\ \vdots \\ 0\end{bmatrix} \ \ , \ \ \ket{1} = \begin{bmatrix}0 \\ 1 \\ \vdots \\ 0 \end{bmatrix}  \ \ , \ \ \cdots \ \ , \ \ \ket{n-1}^= \begin{bmatrix}0 \\ 0 \\ \vdots \\ 1\end{bmatrix}  \ \ .
+\ket{0} = \begin{bmatrix}1 \\ 0 \\ \vdots \\ 0\end{bmatrix} \ \ , \ \ \ket{1} = \begin{bmatrix}0 \\ 1 \\ \vdots \\ 0 \end{bmatrix}  \ \ , \ \ \cdots \ \ , \ \ \ket{n-1} = \begin{bmatrix}0 \\ 0 \\ \vdots \\ 1\end{bmatrix}  \ \ .
 \end{split}\]</div>
 <p>Na base computacional, um vetor <span class="math notranslate nohighlight">\(\ket{\psi} = (z_0 , z_{1} , \ldots , z_{n-1} )\)</span> é escrito como</p>
 <div class="math notranslate nohighlight">
@@ -723,7 +723,7 @@ HH = I  \implies H^{-1} = H \implies [I]_\mathcal{I}^\mathcal{X} = \big([I]^\mat
   \braket{\phi | \psi}
   &amp;=&amp; \left( \frac{-i}{2} \bra{0} + \frac{\sqrt{3}}{2} \bra{1} \right) \left( \frac{1}{\sqrt{2}} \ket{0} + \frac{-i}{\sqrt{2}} \ket{1} \right)  \\
   &amp;=&amp;
-  \frac{-i}{2\sqrt{2}} \braket{0 | 0} + \frac{-i^2}{2\sqrt{2}} \braket{0 | 1} + \frac{\sqrt{3}}{2\sqrt{2}} \braket{1 | 0} + \frac{-i\sqrt{3}}{2\sqrt{2}} \braket{0 | 0} \\
+  \frac{-i}{2\sqrt{2}} \braket{0 | 0} + \frac{-i^2}{2\sqrt{2}} \braket{0 | 1} + \frac{\sqrt{3}}{2\sqrt{2}} \braket{1 | 0} + \frac{-i\sqrt{3}}{2\sqrt{2}} \braket{1 | 1} \\
   &amp;=&amp;
   \frac{-i}{2\sqrt{2}} + 0 + 0 + \frac{-i\sqrt{3}}{2\sqrt{2}} = -i\frac{1+\sqrt{3}}{2\sqrt{2}} \ .
 \end{array}
@@ -944,10 +944,10 @@ a_1 &amp;=&amp; \braket{1 | \psi}
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{rcl}
-\braket{0 | +} &amp;=&amp; \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\
-\braket{1 | +} &amp;=&amp; \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\ \\
-\braket{0 | -} &amp;=&amp; \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{0} \right) =  \frac{1}{\sqrt{2}} \\
-\braket{1 | -} &amp;=&amp; \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{0} \right) = - \frac{1}{\sqrt{2}} \\
+\braket{0 | +} &amp;=&amp; \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{1} \right) =  \frac{1}{\sqrt{2}} \\
+\braket{1 | +} &amp;=&amp; \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} +  \frac{1}{\sqrt{2}}\ket{1} \right) =  \frac{1}{\sqrt{2}} \\ \\
+\braket{0 | -} &amp;=&amp; \bra{0} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{1} \right) =  \frac{1}{\sqrt{2}} \\
+\braket{1 | -} &amp;=&amp; \bra{1} \left( \frac{1}{\sqrt{2}}\ket{0} -  \frac{1}{\sqrt{2}}\ket{1} \right) = - \frac{1}{\sqrt{2}} \\
 \end{array}
 \end{split}\]</div>
 <p>Portanto, a matriz de mudança de base de <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> para <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> é dada por:</p>

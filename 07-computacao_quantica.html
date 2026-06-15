@@ -451,7 +451,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identidades-para-as-matrizes-de-pauli">Identidades para as matrizes de Pauli</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrizes-de-pauli-na-base-ket-ket">Matrizes de Pauli na base <span class="math notranslate nohighlight">\(\ket{+},\ket{-}\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversa-de-hadamard">Inversa de Hadamard</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-entre-as-portas-s-e-t">Relação entre as portas <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identidades-cnot-e-swap">Identidades CNOT e SWAP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cnot-por-z">CNOT por Z</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#swap-por-cnot">SWAP por CNOT</a></li>
 </ul>
@@ -528,17 +528,17 @@ document.write(`
 Na formação de um sistema composto, os vetores <span class="math notranslate nohighlight">\(\ket{\psi_1}\)</span> e <span class="math notranslate nohighlight">\(\ket{\psi_2} = e^{i\alpha}\ket{\psi}\)</span> produzem resultados idênticos, a menos da fase global <span class="math notranslate nohighlight">\(\alpha\)</span>, dada a multilinearidade do produto tensorial:</p>
 <div class="math notranslate nohighlight">
 \[
- \ket{\psi_2} \otimes \ket{\phi} = \big(e^{i\alpha}\ket{\psi_1}\big) \otimes \ket{\phi} = e^{i\alpha} \big( \ket{\psi_1} \otimes \ket{\phi}
+ \ket{\psi_2} \otimes \ket{\phi} = \big(e^{i\alpha}\ket{\psi_1}\big) \otimes \ket{\phi} = e^{i\alpha} \big( \ket{\psi_1} \otimes \ket{\phi} \big)
 \]</div>
 <p>Do mesmo modo, uma medida posterior não conseguiria distinguir esses dois estados.</p>
 <p>Dessa forma, a fase global não tem relevância física, e um sistema descrito por um vetor de estado <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> também pode ser descrito pelo vetor <span class="math notranslate nohighlight">\(e^{i\alpha}\ket{\psi}\)</span>.</p>
 </section>
 <section id="fase-relativa">
 <h4>Fase Relativa<a class="headerlink" href="#fase-relativa" title="Link para este cabeçalho">#</a></h4>
-<p>A <em>fase relativa</em> em um qubit é a diferença de fase entre os coeficientes que multiplicam o <span class="math notranslate nohighlight">\(\ket{1}\)</span>. Por exemplo, os vetores</p>
+<p>A <em>fase relativa</em> em um qubit é a diferença de fase entre os coeficientes que multiplicam os estados <span class="math notranslate nohighlight">\(\ket{0}\)</span> e <span class="math notranslate nohighlight">\(\ket{1}\)</span>. Por exemplo, os vetores</p>
 <div class="math notranslate nohighlight">
 \[
- \ket{+} =  \frac{\ket{0} +i \ket{1}}{\sqrt{2}} \ \ \text{e} \ \  \ket{-} =  \frac{\ket{0} - \ket{1}}{\sqrt{2}}
+ \ket{+} =  \frac{\ket{0} + \ket{1}}{\sqrt{2}} \ \ \text{e} \ \  \ket{-} =  \frac{\ket{0} - \ket{1}}{\sqrt{2}}
 \]</div>
 <p>têm mesmo coeficiente multiplicando <span class="math notranslate nohighlight">\(\ket{0}\)</span> e diferem apenas por um fator <span class="math notranslate nohighlight">\(-1 = e^{i \pi}\)</span> multiplicando <span class="math notranslate nohighlight">\(\ket{1}\)</span>, isto é, por uma fase relativa de <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
 <p>De forma geral, os estados</p>
@@ -590,7 +590,7 @@ p_2(\ket{1}) = |b e^{i\varphi}|^2 = |b|^2  |e^{i\varphi}|^2 =  |b|^2 =  p_1(\ket
 </section>
 <section id="projecoes-nos-eixos-coordenados">
 <h4>Projeções nos eixos coordenados<a class="headerlink" href="#projecoes-nos-eixos-coordenados" title="Link para este cabeçalho">#</a></h4>
-<p>As projeções nos eixos <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(x\)</span> de um ponto <span class="math notranslate nohighlight">\(\vec{r}\)</span> na superfície da esfera de Bloch são dadas pelas coordenadas esféricas:</p>
+<p>As projeções nos eixos <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(z\)</span> de um ponto <span class="math notranslate nohighlight">\(\vec{r}\)</span> na superfície da esfera de Bloch são dadas pelas coordenadas esféricas:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
  \begin{split}
@@ -813,9 +813,9 @@ Z = S(\pi) \ , \ \ S = S(\tfrac{\pi}{2}) \ \text{e} \ \ T = S(\tfrac{\pi}{4})
 \end{split}
 \end{split}\]</div>
 <p>Outra maneira de se verificar isso é perceber que <span class="math notranslate nohighlight">\(H\)</span> é hermitiana (<span class="math notranslate nohighlight">\(H^\dagger = H\)</span>) e unitária (<span class="math notranslate nohighlight">\(H^{-1} = H^\dagger\)</span>), de forma que <span class="math notranslate nohighlight">\(H^{-1} = H^\dagger = H\)</span>.</p>
-<section id="relacao-entre-as-portas-s-e-t">
-<h4>Relação entre as portas <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span><a class="headerlink" href="#relacao-entre-as-portas-s-e-t" title="Link para este cabeçalho">#</a></h4>
-<p>As portas CNOT e SWAP são suas próprias inversas. CNOT^2 = SWAP^2 = I</p>
+<section id="identidades-cnot-e-swap">
+<h4>Identidades CNOT e SWAP<a class="headerlink" href="#identidades-cnot-e-swap" title="Link para este cabeçalho">#</a></h4>
+<p>As portas CNOT e SWAP são suas próprias inversas: <span class="math notranslate nohighlight">\(\text{CNOT}^2 = \text{SWAP}^2 = I\)</span>.</p>
 </section>
 <section id="cnot-por-z">
 <h4>CNOT por Z<a class="headerlink" href="#cnot-por-z" title="Link para este cabeçalho">#</a></h4>
@@ -996,7 +996,7 @@ Z = S(\pi) \ , \ \ S = S(\tfrac{\pi}{2}) \ \text{e} \ \ T = S(\tfrac{\pi}{4})
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identidades-para-as-matrizes-de-pauli">Identidades para as matrizes de Pauli</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrizes-de-pauli-na-base-ket-ket">Matrizes de Pauli na base <span class="math notranslate nohighlight">\(\ket{+},\ket{-}\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversa-de-hadamard">Inversa de Hadamard</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-entre-as-portas-s-e-t">Relação entre as portas <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identidades-cnot-e-swap">Identidades CNOT e SWAP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cnot-por-z">CNOT por Z</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#swap-por-cnot">SWAP por CNOT</a></li>
 </ul>
