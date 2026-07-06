@@ -320,6 +320,73 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/algebra/04_3-operadores.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/algebra/04_3-operadores.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
     <i class="fas fa-download"></i>
@@ -328,7 +395,7 @@
       
       
       
-      <li><a href="../_sources/algebra/04_3-operadores.md" target="_blank"
+      <li><a href="../_sources/algebra/04_3-operadores.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Baixar arquivo fonte"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +405,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -454,7 +521,45 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="autovalores-autovetores-e-operadores">
+  <div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">IFrame</span>
+
+<span class="n">videos_id</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;1Xq9izxV7KY0unXvhGb2cE8CJIyqsplX9&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1Yt7Q3aXUSktTjX_uX_MbjipjNwPZnVVC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;178QGJgAgAL7QfsZ2VIc2K9Pn-EVKLVj3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1JPeNUhl_wo39hAep-cJdojOFKlp5qOKg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1WpaWr0Y_7-VcktdZI7ZfLZrO2O8QQFg6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1binoksBnPk2Pl2htgIYLCERtiMV47vyt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1BzFikwhHoiBrfssMTDhACJ5HK8M9YakI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;19i8xRVEiznVoxR6yTPrzcjTuSp4W_JEy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1HXf8GEVVOmnbn8ACoJRf6x-TvuCHHFD-&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1WPLoqIXjQaheToly7m7wH34Mge_Ziwxi&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;18JDMqRAtLnAfz8qRkPkZpITLBh_GbDJr&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1c2Afg8cGPXooxtrb-YIkCfTZy9L7ZV0M&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1920BE5i2IGX38YIEWHpe7xo7xe8LMA1v&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1eTzbRZXnQraQbMht1gYRtmA1kdWUxW4X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1tsrvRdsqxQ7z3sgW94JdYASJpZl6lMWP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1yrkIe7IIiaBIyLWkf7PeU8FL1TXjiB-O&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">show_video</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">IFrame</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://drive.google.com/file/d/</span><span class="si">{</span><span class="n">videos_id</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="si">}</span><span class="s2">/preview&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">750</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="autovalores-autovetores-e-operadores">
 <h1>Autovalores, Autovetores e Operadores<a class="headerlink" href="#autovalores-autovetores-e-operadores" title="Link para este cabeçalho">#</a></h1>
 <section id="autovalores-autovetores-e-decomposicao-espectral">
 <h2>Autovalores, Autovetores e Decomposição Espectral<a class="headerlink" href="#autovalores-autovetores-e-decomposicao-espectral" title="Link para este cabeçalho">#</a></h2>
@@ -487,7 +592,7 @@ Z = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}
 \[
 \det (A-\lambda I ) = 0 \  .
 \]</div>
-<p>Com a equação acima, consegue-se encontrar os autovalores <span class="math notranslate nohighlight">\(\lambda\)</span> do operador <span class="math notranslate nohighlight">\(A\)</span> encontrando-se as raízes do <em>polinômio característico</em> <span class="math notranslate nohighlight">\(\det(A-\lambda I)\)</span>. Esse polinômio tem grau <span class="math notranslate nohighlight">\(n\)</span> e, como estamos buscando raízes nos números complexos, admite <span class="math notranslate nohighlight">\(n\)</span> raízes (pode acontecer que sejam repetidas). Dessa forma, todo operador admite um autovalor (isso não é necessariamente válido para espaços vetoriais reais).</p>
+<p>Com a equação acima, consegue-se encontrar os autovalores <span class="math notranslate nohighlight">\(\lambda\)</span> do operador <span class="math notranslate nohighlight">\(A\)</span> encontrando-se as raízes do <em>polinômio característico</em> <span class="math notranslate nohighlight">\((A-\lambda I)\)</span>. Esse polinômio têm grau <span class="math notranslate nohighlight">\(n\)</span> e, como estamos buscando raízes nos números complexos, admite <span class="math notranslate nohighlight">\(n\)</span> raízes (pode acontecer que sejam repetidas). Dessa forma, todo operador admite um autovalor (isso não é necessariamente válido para espaços vetoriais reais).</p>
 <div class="tip admonition">
 <p class="admonition-title">Exemplo</p>
 <p>Os autovalores da matriz</p>
@@ -616,6 +721,30 @@ V_{1} = \left\lbrace a_0 \begin{bmatrix} \phantom{-}1 \\ -1 \end{bmatrix}  \colo
 </section>
 <section id="operadores">
 <h2>Operadores<a class="headerlink" href="#operadores" title="Link para este cabeçalho">#</a></h2>
+<div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_video</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="750"
+            height="450"
+            src="https://drive.google.com/file/d/1BzFikwhHoiBrfssMTDhACJ5HK8M9YakI/preview"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 <section id="diagonalizacao-de-operadores">
 <h3>Diagonalização de Operadores<a class="headerlink" href="#diagonalizacao-de-operadores" title="Link para este cabeçalho">#</a></h3>
 <p>Uma vez encontrados os autovalores <span class="math notranslate nohighlight">\(\lambda_j\)</span> e uma base de autovetores <span class="math notranslate nohighlight">\(\mathcal{V} = \{ \ket{v_j} , j=0, \ldots , n-1 \}\)</span>, com <span class="math notranslate nohighlight">\(\ket{v_j}\)</span> associado ao autovalor <span class="math notranslate nohighlight">\(\lambda_j\)</span>, o operador linear <span class="math notranslate nohighlight">\(A\)</span> pode ser escrito na base <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> como uma matriz diagonal. Defina as matrizes:</p>
@@ -665,7 +794,7 @@ X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \ ,
 \end{split}\]</div>
 <p>obtendo-se:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\lambda = 1\phantom{-}\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> <span class="math notranslate nohighlight">\(\phantom{-}\)</span> (<span class="math notranslate nohighlight">\(a \in \mathbb{C}, a \neq 0\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda = 1\phantom{-}\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> <span class="math notranslate nohighlight">\(\phantom{-}\)</span> <span class="math notranslate nohighlight">\((`a \in \mathbb{C}, a \neq 0\)</span>)$</p></li>
 <li><p><span class="math notranslate nohighlight">\(\lambda = -1\)</span> , <span class="math notranslate nohighlight">\(\ket{v} = a \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix}\)</span> (<span class="math notranslate nohighlight">\(a \in \mathbb{C}, a \neq 0\)</span>)</p></li>
 </ul>
 <p>Pretende-se extrair uma base ortonormal de autovetores para escrever <span class="math notranslate nohighlight">\(X\)</span> na forma diagonal. Nesse caso (Todos os autoespaços de dimensão 1.), basta normalizar os autovetores obtidos.</p>
@@ -720,6 +849,30 @@ X = \sum_k \lambda_k \ket{v_k}\bra{v_k} = 1 \cdot \ket{v_0}\bra{v_0} - 1 \cdot \
 </section>
 <section id="funcao-de-operadores">
 <span id="id1"></span><h3>Função de Operadores<a class="headerlink" href="#funcao-de-operadores" title="Link para este cabeçalho">#</a></h3>
+<div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_video</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="750"
+            height="450"
+            src="https://drive.google.com/file/d/18JDMqRAtLnAfz8qRkPkZpITLBh_GbDJr/preview"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 <p>Como podemos calcular <span class="math notranslate nohighlight">\(f(A)\)</span>, em que <span class="math notranslate nohighlight">\(A\)</span> é um operador? Vamos utilizar a série de Taylor</p>
 <div class="math notranslate nohighlight">
 \[
@@ -749,7 +902,7 @@ A = \sum_{i} a_i \ket{a_i} \bra{a_i}, \, \text{com } A \ket{a_i} = a_i\ket{a_i}
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-= \sum_{i,j} a_i a_j \ket{a_i} \underbrace{\braket{a_i | a_j}}_{\delta_{ij}} \bra{a_j}
+= \sum_{i,j} a_i a_j \ket{a_i} \underbrace{\braket a_i | a_j}_{\delta_ij} \bra{a_j}
 \]</div>
 <div class="math notranslate nohighlight">
 \[
@@ -763,7 +916,7 @@ A = \sum_{i} a_i \ket{a_i} \bra{a_i}, \, \text{com } A \ket{a_i} = a_i\ket{a_i}
 \[
 \therefore A^{2} = \sum_{i} a_{i}^{2} \ket{a_i} \bra{a_i} \implies A^{n} = \sum_{i} a_{i}^{n} \ket{a_i} \bra{a_i}
 \]</div>
-<p>Calculando <span class="math notranslate nohighlight">\(e^A\)</span> via autovalores, substituímos na série:</p>
+<p>Calculando <span class="math notranslate nohighlight">\(e^A\)</span> via autovalores, subsituímos na série:</p>
 <div class="math notranslate nohighlight">
 \[
 e^A = \sum_{n=0}^{\infty} \frac{A^n}{n!} = \sum_{i} \left(\sum_{n=0}^{\infty} \frac{a_{i}^{n}}{n!} \right) \ket{a_i}\bra{a_i} = \sum_{i} e^{a_i} \ket{a_i}\bra{a_i}
@@ -840,10 +993,34 @@ A^\dagger A = \begin{bmatrix} 1-i &amp; 1 \\ -1 &amp; 1+i \end{bmatrix} \begin{b
 <p class="admonition-title">Teorema Espectral</p>
 <p>Um operador é normal se, e somente se, for diagonalizável.</p>
 </div>
-<p>Dessa forma, basta checar se um operador é normal para se saber se ele admite uma base de autovetores e uma representação por matriz diagonal.</p>
+<p>Dessa forma, basta checar se um operador é normal para se saber se ele admite uma base de autovetores e uma representação por matriz diagonal</p>
 </section>
 <section id="operadores-hermitianos-ou-autoadjuntos">
 <span id="cap2op-hermitianos"></span><h4>Operadores Hermitianos ou Autoadjuntos<a class="headerlink" href="#operadores-hermitianos-ou-autoadjuntos" title="Link para este cabeçalho">#</a></h4>
+<div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_video</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="750"
+            height="450"
+            src="https://drive.google.com/file/d/1HXf8GEVVOmnbn8ACoJRf6x-TvuCHHFD-/preview"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 <p>Um operador <span class="math notranslate nohighlight">\(H\)</span> é dito <em>hermitiano</em>, ou <em>autoadjunto</em> se valer a seguinte propriedade:</p>
 <ul class="simple">
 <li><p><strong>(OH)</strong>  <span class="math notranslate nohighlight">\(H^{\dagger} =  H\)</span></p></li>
@@ -870,6 +1047,30 @@ A^\dagger = \begin{bmatrix}1 &amp; -i \\ i &amp; 1\end{bmatrix} = A \ .
 </section>
 <section id="operadores-unitarios">
 <span id="cap2operadores-unitarios"></span><h4>Operadores Unitários<a class="headerlink" href="#operadores-unitarios" title="Link para este cabeçalho">#</a></h4>
+<div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_video</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="750"
+            height="450"
+            src="https://drive.google.com/file/d/19i8xRVEiznVoxR6yTPrzcjTuSp4W_JEy/preview"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 <p>Um operador <span class="math notranslate nohighlight">\(U\)</span> é dito <em>unitário</em> se satisfizer alguma das condições equivalentes:</p>
 <ul class="simple">
 <li><p><strong>(OU1)</strong> <span class="math notranslate nohighlight">\(U^{\dagger} =  U^{-1}\)</span>.</p></li>
@@ -887,8 +1088,8 @@ H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bma
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{rcl}
-||{\ket{c_0}}|| &amp;=&amp; ||{ \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}}|| = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
-||{\ket{c_1}}|| &amp;=&amp; ||{ \frac{1}{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}}|| = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
+||{\ket{c_0}||} &amp;=&amp; ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2} = 1 \\
+||{\ket{c_0}||} &amp;=&amp; ||{ \frac{1}||{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1\end{bmatrix}} = \frac{1}{\sqrt{2}} \sqrt{1^2 + (-1)^2} = 1 \\
 \braket{c_0 | c_1} &amp;=&amp; \begin{bmatrix} 1 &amp; 1 \end{bmatrix} \begin{bmatrix}\phantom{-}1 \\ -1 \end{bmatrix} = 1 - 1 = 0
 \end{array}
 \end{split}\]</div>
@@ -909,7 +1110,7 @@ H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bma
 <p>Um operador é dito <em>positivo</em> quando satisfaz a seguinte propriedade:</p>
 <ul>
 <li><p><strong>(OPos)</strong>  <span class="math notranslate nohighlight">\(\bra{\psi}P\ket{\psi} \geq 0 \ , \ \ \forall \ket{\psi}\)</span>.</p>
-<p>É possível demonstrar que um operador positivo é, automaticamente, hermitiano, e, portanto, todos os seus autovalores são reais. Além disso, a propriedade (OPos) é equivalente a dizer que todos os <strong>autovalores</strong> de <span class="math notranslate nohighlight">\(P\)</span> são números reais não-negativos <span class="math notranslate nohighlight">\(\lambda \geq 0\)</span>.</p>
+<p>É possível demonstrar que um operador positivo é, automaticamente, hermitiano, e, portanto, todos os seus autovalores são reais. Além disso, a propriedade (OPos) é equivalente a dizer que todos os autovetores de <span class="math notranslate nohighlight">\(P\)</span> são números reais não-negativos <span class="math notranslate nohighlight">\(\lambda \geq 0\)</span>.</p>
 </li>
 </ul>
 <p>Diz-se que um operador é <em>positivo definido</em> quando satisfaz a condição seguinte, mais rigorosas que (OPos):</p>

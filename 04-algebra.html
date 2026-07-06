@@ -320,6 +320,73 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/evandro-crr/ket-book/main?urlpath=lab/tree/book/04-algebra.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/evandro-crr/ket-book/blob/main/book/04-algebra.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
     <i class="fas fa-download"></i>
@@ -328,7 +395,7 @@
       
       
       
-      <li><a href="_sources/04-algebra.md" target="_blank"
+      <li><a href="_sources/04-algebra.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Baixar arquivo fonte"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +405,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -438,11 +505,34 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="algebra-linear-para-computacao-quantica">
+  <div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">IFrame</span>
+
+<span class="n">videos_id</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;14Vav3LzWwPAm1oMa_DQFGi_YOzTQm2Tr&quot;</span><span class="p">,</span> <span class="s2">&quot;1JAkGHwn8OqVPNeAAB6C5ZxsJWFikJdl_&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">show_video</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">IFrame</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://drive.google.com/file/d/</span><span class="si">{</span><span class="n">videos_id</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="si">}</span><span class="s2">/preview&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">750</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="algebra-linear-para-computacao-quantica">
 <h1>Álgebra Linear para Computação Quântica<a class="headerlink" href="#algebra-linear-para-computacao-quantica" title="Link para este cabeçalho">#</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini.</p>
+<p>Material extraído do TCC <a class="reference download internal" download="" href="_downloads/1532b4f800e6ea2a61ebc24c0835116b/tcc-giovani.pdf"><span class="xref download myst"><em>Computação Quântica: Uma abordagem para estudantes de graduação em Ciências Exatas</em></span></a>, de Giovani Goraiebe Pollachini. Além  das aulas gravadas <a class="reference external" href="https://www.maxwell.vrac.puc-rio.br/series/serie_geral.php?nrSeq=49158"><em>Álgebra Linear para Informação Quântica</em></a>, ministradas pelo professor Guilherme Penello Temporão, da PUC-Rio.</p>
+<div class="docutils">
+</div>
 </div>
 <p>NESTE capítulo, um resumo de Álgebra Linear voltado para Computação Quântica é apresentado. A teoria é apresentada usando-se a <em>notação de Dirac</em>, ou, <em>notação de braket</em>, uma notação utilizada largamente em Mecânica Quântica e que será necessária para o restante do trabalho. Essa notação é conveniente para se fazer contas e faz com que as diversas operações possíveis se encaixem naturalmente.</p>
 <p>Na Álgebra Linear abstrata, pode-se considerar espaços vetoriais sobre diversos corpos (ou escalares), que são estruturas algébricas com propriedades semelhantes aos números reais e complexos. Os espaços vetoriais podem ter dimensão finita ou infinita.</p>
@@ -451,6 +541,54 @@ document.write(`
 <p>Será considerado um pré-requisito a este texto um curso de Álgebra Linear ao nível de graduação abordando-se os seguintes itens: espaços vetoriais, base e dimensão, transformações lineares, autovalores e autovetores. Por ter um caráter de resumo, os resultados apresentados, via de regra, não são acompanhados de suas demonstrações, as quais podem ser encontradas nos livros mencionados no parágrafo anterior.</p>
 <section id="notacao-de-dirac">
 <h2>Notação de Dirac<a class="headerlink" href="#notacao-de-dirac" title="Link para este cabeçalho">#</a></h2>
+<div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_video</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="750"
+            height="450"
+            src="https://drive.google.com/file/d/14Vav3LzWwPAm1oMa_DQFGi_YOzTQm2Tr/preview"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<div class="cell tag_hide-input tag_thebe-init docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_video</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="750"
+            height="450"
+            src="https://drive.google.com/file/d/1JAkGHwn8OqVPNeAAB6C5ZxsJWFikJdl_/preview"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 <p>Como mencionado, neste trabalho será utilizada a notação de Dirac ou notação de Braket. Esta notação é uma forma compacta de representar vetores, permitindo representar cálculos e operações de forma mais compacta e intuitiva.</p>
 <p>Esta notação consiste de 2 representações: o ket <span class="math notranslate nohighlight">\(\ket{\cdot}\)</span> e o bra <span class="math notranslate nohighlight">\(\bra{\cdot}\)</span></p>
 <section id="ket">
