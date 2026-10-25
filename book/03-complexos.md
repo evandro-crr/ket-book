@@ -305,7 +305,7 @@ c é o vetor de comprimento ${\sqrt{2}}$ a partir da origem em um ângulo de ${\
 
 ### Magnitude e Fase
 
-**Definição Essencial** Um número complexo é uma **magnitude** e uma **fase**.
+**Definição Essencial**: Todo número complexo possui uma **magnitude** e uma **fase**.
 
 - Os reais positivos ordinários são números complexos com fase zero
 - Os reais negativos têm fase ${π}$
